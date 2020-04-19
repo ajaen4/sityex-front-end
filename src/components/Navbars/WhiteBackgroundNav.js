@@ -19,10 +19,28 @@ import {
 function WhiteBackGroundNav() {
 
   const [collapseOpen, setCollapseOpen] = useState(false);
+  const [navbarColor, setNavbarColor] = useState("navbar-transparent");
 
-  useEffect(() => {
-    //eliminado color de navbar
+  React.useEffect(() => {
+    const updateNavbarColor = () => {
+      if (
+        document.documentElement.scrollTop > 399 ||
+        document.body.scrollTop > 399
+      ) {
+        setNavbarColor("");
+      } else if (
+        document.documentElement.scrollTop < 400 ||
+        document.body.scrollTop < 400
+      ) {
+        setNavbarColor("navbar-transparent");
+      }
+    };
+    window.addEventListener("scroll", updateNavbarColor);
+    return function cleanup() {
+      window.removeEventListener("scroll", updateNavbarColor);
+    };
   });
+
   return (
     <>
       {collapseOpen ? (

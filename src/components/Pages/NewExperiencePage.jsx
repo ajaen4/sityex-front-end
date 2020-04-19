@@ -57,7 +57,6 @@ const NewExperiencePage = (props) => {
   React.useEffect(() => {
     document.body.classList.add("profile-page");
     document.body.classList.add("sidebar-collapse");
-    document.documentElement.classList.remove("nav-open");
     window.addEventListener("resize", updateWindowDimensions);
 
     return function cleanup() {
@@ -137,8 +136,8 @@ const NewExperiencePage = (props) => {
   return (
 
     <>
-      <div style = {{justifyContent: "center", textAlign: "center"}}>
       <WhiteBackGroundNav />
+        <div style = {{justifyContent: "center", textAlign: "center"}}>
               <h2 className = "bold" style = {{marginTop: "100px"}}> Rellenar experiencia </h2>
               <Form onSubmit = {handleOnSubmit}>
               <Container style = {{
@@ -184,22 +183,16 @@ const NewExperiencePage = (props) => {
                       <p className = "bold" >Como completar los siguientes pasos</p>
                       <p style = {{margin: "0px"}}>Las opciones son las siguientes:</p>
                       <Row style = {{justifyContent: "center"}}>
-                        <Col lg = "3">
-                          <ul style = {{margin: "0px"}}>
-                          <li style = {{listStyleType: "none"}}>5 = Muy bueno</li>
-                          <li style = {{listStyleType: "none"}}>4 = Bueno</li>
-                          </ul>
+                        <Col lg = "3" style = {{alignItems: "center", textAlign: "center"}}>
+                          <div>5 = Muy bueno</div>
+                          <div>4 = Bueno</div>
                         </Col>
                         <Col lg = "3" style = {{alignItems: "center", textAlign: "center"}}>
-                          <ul style = {{margin: "0px"}}>
-                          <li style = {{listStyleType: "none"}}>3 = Sin mas</li>
-                          </ul>
+                          <div>3 = Sin mas</div>
                         </Col>
-                        <Col lg = "3">
-                          <ul style = {{margin: "0px"}}>
-                          <li style = {{listStyleType: "none"}}>2 = Malo</li>
-                          <li style = {{listStyleType: "none"}}>1 = Muy malo</li>
-                          </ul>
+                        <Col lg = "3" style = {{alignItems: "center", textAlign: "center"}}>
+                          <div>2 = Malo</div>
+                          <div>1 = Muy malo</div>
                         </Col>
                       </Row>
                       <p className = "bold" >Ejemplos</p>
@@ -397,8 +390,8 @@ const NewExperiencePage = (props) => {
               </Button>
               </Container>
             </Form>
+          </div>
         <DefaultFooter />
-        </div>
     </>
     );
 

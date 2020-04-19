@@ -53,7 +53,7 @@ function Map(props){
               position={{lat: selectedCity.latitude, lng: selectedCity.longitude}}>
               <div style = {{padding: "5px"}}>
                 <div><b>{selectedCity.name.toUpperCase()}</b></div>
-                <div>{new Intl.NumberFormat("es-418").format(selectedCity.population) + "habitantes"}</div>
+                <div>{new Intl.NumberFormat("es-418").format(selectedCity.population) + " habitantes"}</div>
                 <Button href = {"destination/" + selectedCity.name} color = "success" >Mas informacion</Button>
               </div>
             </InfoWindow>

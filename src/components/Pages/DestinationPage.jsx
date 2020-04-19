@@ -59,7 +59,6 @@ const DestinationPage = (props) => {
   useEffect(() => {
     document.body.classList.add("profile-page");
     document.body.classList.add("sidebar-collapse");
-    document.documentElement.classList.remove("nav-open");
 
     return function cleanup() {
       document.body.classList.remove("profile-page");
