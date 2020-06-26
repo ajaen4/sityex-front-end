@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { withRouter } from 'react-router-dom';
-import * as ROUTES from '../../constants/routes';
-import { withFirebase } from '../Firebase';
+import * as ROUTES from 'constants/routes';
+import { withFirebase } from 'components/Firebase';
 
 // reactstrap components
 import{
@@ -69,7 +69,7 @@ class SignUpFormBase extends React.Component {
 
         //save user in firestore
         this.props.firebase.doSaveUser(username, email);
-        
+
         this.props.history.push(ROUTES.LOG_IN);
       })
       .catch(error => {

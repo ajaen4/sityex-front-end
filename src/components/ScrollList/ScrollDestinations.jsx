@@ -14,9 +14,10 @@ function ScrollDestinations(props){
                           borderColor: "#b2b4b8",
                           padding: "10px"
                         }}
-                        className ="rowDirection">
+                        className ="rowDirection"
+                    key = {props.destinations[index].toString()}>
                     <a href = {"destination/" + props.destinations[index].toString()}>
-                      <div action key = {props.destinations[index].toString()} className ="rowDirection">
+                      <div key = {props.destinations[index].toString()} className ="rowDirection">
                         <img alt = "country flag" src = {require("assets/img/flags/" + getCountryCode(props.destinations[index]).countryCode + ".png")} style = {{
                           marginTop: "3px",
                           marginRight: "10px",

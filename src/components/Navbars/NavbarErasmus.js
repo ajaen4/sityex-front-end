@@ -1,5 +1,7 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
+
 // reactstrap components
 import {
   Collapse,
@@ -16,8 +18,22 @@ import {
   UncontrolledTooltip
 } from "reactstrap";
 
-function NavbarErasmus() {
-  const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
+const chooseNavbarClass = (color) => {
+
+  switch(color){
+
+    case "blue":
+      return "";
+      break;
+    case "transparent":
+      return "navbar-transparent";
+      break;
+  }
+}
+
+function NavbarErasmus(props) {
+
+  const [navbarColor, setNavbarColor] = React.useState(chooseNavbarClass(props.color));
   const [collapseOpen, setCollapseOpen] = React.useState(false);
 
   React.useEffect(() => {
@@ -27,11 +43,12 @@ function NavbarErasmus() {
         document.body.scrollTop > 399
       ) {
         setNavbarColor("");
+
       } else if (
         document.documentElement.scrollTop < 400 ||
         document.body.scrollTop < 400
       ) {
-        setNavbarColor("navbar-transparent");
+        setNavbarColor(chooseNavbarClass(props.color));
       }
     };
     window.addEventListener("scroll", updateNavbarColor);

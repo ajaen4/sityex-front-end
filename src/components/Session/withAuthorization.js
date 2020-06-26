@@ -4,9 +4,13 @@ import { compose } from 'recompose';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 
-const withAuthorization = condition => Component => {
+const condition = authUser => !!authUser;
+
+const withAuthorization = () => Component => {
 
   class WithAuthorization extends React.Component {
+
+
     componentDidMount() {
       this.listener = this.props.firebase.auth.onAuthStateChanged(
         authUser => {

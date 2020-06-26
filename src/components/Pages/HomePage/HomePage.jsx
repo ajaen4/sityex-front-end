@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 
-import { withAuthorization } from '../Session';
-import { withFirebase } from '../Firebase';
+import { withAuthorization } from 'components/Session';
+import { withFirebase } from 'components/Firebase';
 
 // reactstrap components
 import{
@@ -22,15 +22,12 @@ import{
   Row,
 } from "reactstrap";
 
-import WhiteBackGroundNav from "components/Navbars/WhiteBackgroundNav.js";
+import NavbarErasmus from "components/Navbars/NavbarErasmus.js";
 import DefaultFooter from "components/Footers/DefaultFooter.js";
 import ScrollDestinations from "components/ScrollList/ScrollDestinations.jsx";
-import WrappedMapDestinations from '../GoogleMapsFolder/MapComponentDestinations.js';
-
-import * as CITIES from '../../constants/citiesEU';
+import WrappedMapDestinations from 'components/GoogleMapsFolder/MapComponentDestinations.js';
 
 const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places`;
-const cityData = {latitude: 50.77603, longitude: 6.08723};
 
 const HomePage = (props) => {
 
@@ -38,13 +35,15 @@ const HomePage = (props) => {
   const [pills, setPills] = useState("1");
   const [location, setLocation] = useState('');
   const [authUser, setAuthUser] = useState(props.authUser);
-  const [citiesIndex, setCitiesIndex] = useState(null);
+  const [citiesIndex, setCitiesIndex] = useState([]);
 
-  var citiesList = Object.values(CITIES)[0];
+  const setCitiesIndexCallBack = (citiesIndexCB) => {
+      setCitiesIndex(citiesIndexCB);
+    };
 
   useEffect(() => {
 
-    props.firebase.doGetCitiesIndex(setCitiesIndex);
+    props.firebase.doGetCitiesIndex(setCitiesIndexCallBack);
 
   }, []);
 
@@ -67,7 +66,8 @@ const HomePage = (props) => {
 
   return (
     <>
-      <WhiteBackGroundNav />
+
+      <NavbarErasmus color = "blue" />
         <Container style = {{
           marginTop: "100px",
           textAlign: "center",
@@ -146,7 +146,7 @@ const HomePage = (props) => {
                   fontSize: "25px"
                 }}>Destinos</CardTitle>
                 </CardBody>
-                <ScrollDestinations destinations = {citiesList.sort().filter(item => item.toLowerCase().includes(location.toLowerCase()))}/>
+                <ScrollDestinations destinations = {Object.keys(citiesIndex).sort().filter(item => item.toLowerCase().includes(location.toLowerCase()))}/>
               </Card>
             </Col>
           </Row>
@@ -230,6 +230,4 @@ const HomePage = (props) => {
 
 }
 
-const condition = authUser => !!authUser;
-
-export default withAuthorization(condition)(withFirebase(HomePage));
+export default withAuthorization()(withFirebase(HomePage));

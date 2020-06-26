@@ -5,14 +5,14 @@ import {
   Route,
 } from 'react-router-dom';
 
-import SignUpPage from './Pages/SignUpPage';
-import LogInPage from './Pages/LogInPage';
-import HomePage from './Pages/HomePage';
-import DestinationPage from './Pages/DestinationPage';
-import NewExperiencePage from './Pages/NewExperiencePage';
+import SignUpPage from 'components/Pages/SignUpPage';
+import LogInPage from 'components/Pages/LogInPage';
+import HomePage from 'components/Pages/HomePage';
+import DestinationPage from 'components/Pages/DestinationPage';
+import NewExperiencePage from 'components/Pages/NewExperiencePage';
 
-import * as ROUTES from '../constants/routes';
-import { withFirebase } from './Firebase';
+import * as ROUTES from 'constants/routes';
+import { withFirebase } from 'components/Firebase';
 
 class App extends Component {
 

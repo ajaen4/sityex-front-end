@@ -1,12 +1,12 @@
 import React from "react";
 
-import { withAuthorization } from '../Session';
+import { withAuthorization } from 'components/Session';
 
-import { withFirebase } from '../Firebase';
+import { withFirebase } from 'components/Firebase';
 
 import Geocode from "react-geocode";
 
-import * as CITIES from '../../constants/citiesEU';
+import * as CITIES from 'constants/citiesEU';
 
 import {prettyCity} from 'components/UsefulFunctions/usefulFunctions';
 
@@ -25,10 +25,10 @@ import {
 } from "reactstrap";
 
 // core components
-import WhiteBackGroundNav from "components/Navbars/WhiteBackgroundNav.js";
+import NavbarErasmus from "components/Navbars/NavbarErasmus.js";
 import DefaultFooter from "components/Footers/DefaultFooter.js";
 
-import WrappedMapWithSearch from '../GoogleMapsFolder/MapComponentSearch.js';
+import WrappedMapWithSearch from 'components/GoogleMapsFolder/MapComponentSearch.js';
 import Opinion2 from "components/Opinions/Opinion2.jsx";
 import Opinion5 from "components/Opinions/Opinion5.jsx";
 import ScrollList from "components/ScrollList/ScrollRecomendations.jsx";
@@ -136,7 +136,7 @@ const NewExperiencePage = (props) => {
   return (
 
     <>
-      <WhiteBackGroundNav />
+      <NavbarErasmus color = "blue"/>
         <div style = {{justifyContent: "center", textAlign: "center"}}>
               <h2 className = "bold" style = {{marginTop: "100px"}}> Rellenar experiencia </h2>
               <Form onSubmit = {handleOnSubmit}>
@@ -397,7 +397,4 @@ const NewExperiencePage = (props) => {
 
 }
 
-
-const condition = authUser => !!authUser;
-
-export default withAuthorization(condition)(withFirebase(NewExperiencePage));
+export default withAuthorization()(withFirebase(NewExperiencePage));
