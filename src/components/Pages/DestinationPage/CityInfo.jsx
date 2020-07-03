@@ -1,7 +1,7 @@
 
 import React, {Component} from "react";
 
-import { withFirebase } from 'components/Firebase';
+import { withFirebase } from 'apis/Firebase';
 
 // reactstrap components
 import {

@@ -12,7 +12,7 @@ import DestinationPage from 'components/Pages/DestinationPage';
 import NewExperiencePage from 'components/Pages/NewExperiencePage';
 
 import * as ROUTES from 'constants/routes';
-import { withFirebase } from 'components/Firebase';
+import { withFirebase } from 'apis/Firebase';
 
 class App extends Component {
 

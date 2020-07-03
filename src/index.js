@@ -11,13 +11,13 @@ import "assets/demo/nucleo-icons-page-styles.css";
 //Cache data in order to work offline
 import * as serviceWorker from './serviceWorker';
 
-import App from './components/App.jsx';
+import App from 'components/App.jsx';
 
 //Firebase
-import Firebase, { FirebaseContext } from './components/Firebase';
+import Firebase, { FirebaseContext } from 'apis/Firebase';
 
 //Unirest
-import Unirest, { UnirestContext } from './components/Unirest';
+import Unirest, { UnirestContext } from 'apis/Unirest';
 
 ReactDOM.render(
   <FirebaseContext.Provider value={new Firebase()}>

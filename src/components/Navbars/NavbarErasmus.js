@@ -24,10 +24,11 @@ const chooseNavbarClass = (color) => {
 
     case "blue":
       return "";
-      break;
     case "transparent":
       return "navbar-transparent";
-      break;
+    default:
+      return "";
+
   }
 }
 

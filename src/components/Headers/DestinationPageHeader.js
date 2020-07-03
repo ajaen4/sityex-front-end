@@ -3,13 +3,9 @@ import React, {useEffect, createRef} from "react";
 // reactstrap components
 import { Container } from "reactstrap";
 
-import {getCountryCode} from 'components/UsefulFunctions/usefulFunctions';
-
-function DestinationPageHeader(props) {
+function DestinationPageHeader({cityName, countryName}) {
 
   let pageHeader = createRef();
-
-  var countryName = getCountryCode(props.cityName).country;
 
   useEffect(() => {
 
@@ -37,12 +33,12 @@ function DestinationPageHeader(props) {
         <div
           className="page-header-image"
           style={{
-            backgroundImage: "url(" + require("assets/img/cityImage/" + props.cityName.replace(" ","-") + ".jpg") + ")"
+            backgroundImage: "url(" + require("assets/img/cityImage/" + cityName.replace(" ","-") + ".jpg") + ")"
           }}
           ref={pageHeader}
         ></div>
         <Container>
-          <h3 className="title capitalize">{props.cityName}</h3>
+          <h3 className="title capitalize">{cityName}</h3>
           <p className="category">{countryName}</p>
           <div className="content">
             <div className="social-description">

@@ -3,9 +3,9 @@ import React from "react";
 
 import ReactList from 'react-list';
 
-import {getCountryCode, prettyCity} from 'components/UsefulFunctions/usefulFunctions';
+import { prettyCity } from 'helpers/usefulFunctions.js';
 
-function ScrollDestinations(props){
+function ScrollDestinations({destinations}){
 
   const renderItem = (index, key) => {
 
@@ -15,10 +15,10 @@ function ScrollDestinations(props){
                           padding: "10px"
                         }}
                         className ="rowDirection"
-                    key = {props.destinations[index].toString()}>
-                    <a href = {"destination/" + props.destinations[index].toString()}>
-                      <div key = {props.destinations[index].toString()} className ="rowDirection">
-                        <img alt = "country flag" src = {require("assets/img/flags/" + getCountryCode(props.destinations[index]).countryCode + ".png")} style = {{
+                    key = {destinations[index].name.toString()}>
+                    <a href = {"destination/" + destinations[index].name.toString()}>
+                      <div key = {destinations[index].name.toString()} className ="rowDirection">
+                        <img alt = "country flag" src = {require("assets/img/flags/" + destinations[index].countryCode + ".png")} style = {{
                           marginTop: "3px",
                           marginRight: "10px",
                           height: "20px"
@@ -26,7 +26,7 @@ function ScrollDestinations(props){
                         <div className = "centerText" style = {{
                           marginTop: "3px"
                         }}>
-                        {prettyCity(props.destinations[index])}
+                        {prettyCity(destinations[index].name)}
                         </div>
                       </div>
                     </a>
@@ -43,7 +43,7 @@ function ScrollDestinations(props){
         justifyContent: "center"
       }}
       itemRenderer = {renderItem}
-      length = {props.destinations.length}
+      length = {destinations.length}
       type = 'uniform'
       />
     </div>

@@ -1,14 +1,12 @@
-import React from "react";
+import React, {useEffect} from "react";
 
-import { withAuthorization } from 'components/Session';
+import { withAuthorization } from 'session';
 
-import { withFirebase } from 'components/Firebase';
+import { withFirebase } from 'apis/Firebase';
 
 import Geocode from "react-geocode";
 
-import * as CITIES from 'constants/citiesEU';
-
-import {prettyCity} from 'components/UsefulFunctions/usefulFunctions';
+import {prettyCity} from 'helpers/usefulFunctions';
 
 // reactstrap components
 import {
@@ -28,7 +26,7 @@ import {
 import NavbarErasmus from "components/Navbars/NavbarErasmus.js";
 import DefaultFooter from "components/Footers/DefaultFooter.js";
 
-import WrappedMapWithSearch from 'components/GoogleMapsFolder/MapComponentSearch.js';
+import WrappedMapWithSearch from 'components/GoogleMaps/MapComponentSearch.js';
 import Opinion2 from "components/Opinions/Opinion2.jsx";
 import Opinion5 from "components/Opinions/Opinion5.jsx";
 import ScrollList from "components/ScrollList/ScrollRecomendations.jsx";
@@ -42,19 +40,24 @@ Geocode.enableDebug();
 
 const NewExperiencePage = (props) => {
 
+  const initialCity = "Aachen";
   //State
   const [cityData, setCityData] = React.useState({});
-  const [coordinates, setCoordinates] = React.useState({lat: 50.77603, lng: 6.08723});
-  const [cityName, setCityName] = React.useState("Aachen");
+  const [citiesList, setCitiesList] = React.useState([]);
   const [windowDimensions, setWindowDimensions] = React.useState(window.innerWidth);
   const [currRecomendations, setCurrRecomendations] = React.useState([]);
 
-  props.firebase.doGetCity("Aachen", setCityData);
+  //Funcion que se ejecuta solo despues de la creacion
+  useEffect(() => {
+    props.firebase.doGetCity(initialCity, setCityData);
+    props.firebase.doGetCitiesIndex(setCitiesIndexCallBack);
+    }, []);
 
-  const citiesList = Object.values(CITIES)[0];
+  const setCitiesIndexCallBack = (citiesIndexCB) => {
+      setCitiesList(Object.keys(citiesIndexCB));
+    };
 
-  //Funcion que se ejecuta despues de cada renderizado
-  React.useEffect(() => {
+  useEffect(() => {
     document.body.classList.add("profile-page");
     document.body.classList.add("sidebar-collapse");
     window.addEventListener("resize", updateWindowDimensions);
@@ -73,22 +76,15 @@ const NewExperiencePage = (props) => {
 
   //When firebase fetch comes back, fill in data
   const setAllCityData = (cityData) => {
-
     setCityData(cityData);
-    setCityName(cityData.name);
-    setCoordinates({lat: cityData.latitude, lng: cityData.longitude});
-
   }
 
   //Fetch city data if the user changes the city in the dropdown list
   const onChangeCity = event => {
-
     props.firebase.doGetCity(event.target.value, setAllCityData);
-
   };
 
   const incrementRecomendation = (recomendation) => {
-
     console.log("Recomendation incremented");
     console.log(recomendation);
     if(!currRecomendations.some(recom => recom.name === recomendation.name)){
@@ -103,7 +99,6 @@ const NewExperiencePage = (props) => {
 
   //Callback from map to push recomendation
   const pushRecomendation = place => {
-
     var aux = {};
     if((place.name != null) && (!currRecomendations.some(recom => (recom.coordinates.lat === place.coordinates.lat) && (recom.coordinates.lng === place.coordinates.lng)))){
       Object.assign(aux, place);
@@ -112,7 +107,6 @@ const NewExperiencePage = (props) => {
       auxRecomendations.push(aux);
       setCurrRecomendations(auxRecomendations);
     }
-
   };
 
   //Deletes recomendation when button is pressed
@@ -129,8 +123,7 @@ const NewExperiencePage = (props) => {
     var markerContainer = {
       mapMarkers: currRecomendations
       };
-
-    props.firebase.doUpdateMarkers(cityName, markerContainer);
+    props.firebase.doUpdateMarkers(cityData.cityName, markerContainer);
   }
 
   return (
@@ -277,18 +270,19 @@ const NewExperiencePage = (props) => {
                         justifyContent: "center",
                         marginBottom: "60px"
                       }}>
+                      { (cityData.latitude !== undefined) && (cityData.longitude !== undefined) &&
                         <WrappedMapWithSearch
                         incrementRecomendation = {incrementRecomendation}
                         currRecomendations = {currRecomendations}
                         savedRecomendations = {cityData.mapMarkers === undefined ? [] : cityData.mapMarkers}
                         style = {{justifyContent: "center"}}
-                        city = {cityName}
-                        coordinates = {coordinates}
+                        city = {cityData.cityName}
+                        coordinates = {{lat:cityData.latitude, lng: cityData.longitude}}
                         pushRecomendation = {pushRecomendation}
                         googleMapURL = {mapURL}
                         loadingElement = {<p>Cargando</p>}
                         containerElement = {<div style = {{ width: "100%", height : "500px", justifyContent: "center"}}/>}
-                        mapElement = {<div style = {{width: "100%", height : "100%", justifyContent: "center"}}/>}/>
+                        mapElement = {<div style = {{width: "100%", height : "100%", justifyContent: "center"}}/>}/>}
                         </div>
                         <Row style = {{
                             display: "flex",

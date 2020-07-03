@@ -16,6 +16,7 @@
     "react-geocode": "^0.2.1",
     "react-google-autocomplete": "^1.1.2",
     "react-google-maps": "^9.4.5",
+    "react-hook-form": "^5.7.2",
     "react-list": "^0.8.13",
     "react-native-listener": "^1.1.0",
     "react-router": "5.0.1",

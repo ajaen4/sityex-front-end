@@ -84,6 +84,8 @@ getHistWeatherData = (cityName, countryCode, month, returnFunction) =>{
         cityName = "Pabianice";
         break;
 
+      default:
+        break;
     }
 
     req.query({

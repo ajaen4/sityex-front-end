@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
 
-import { withAuthorization } from 'components/Session';
+import { withAuthorization } from 'session';
 
-import { withFirebase } from 'components/Firebase';
+import { withFirebase } from 'apis/Firebase';
 
-import {prettyCity} from 'components/UsefulFunctions/usefulFunctions';
+import {prettyCity} from 'helpers/usefulFunctions';
 
 // reactstrap components
 import {
@@ -23,7 +23,7 @@ import {
 import NavbarErasmus from "components/Navbars/NavbarErasmus.js";
 import DestinationPageHeader from "components/Headers/DestinationPageHeader.js";
 import DefaultFooter from "components/Footers/DefaultFooter.js";
-import WrappedMap from 'components/GoogleMapsFolder/MapComponent.js';
+import WrappedMap from 'components/GoogleMaps/MapComponent.js';
 import Experiences from 'components/Experiences/Experiences.jsx';
 import CityInfo from 'components/Pages/DestinationPage/CityInfo.jsx';
 
@@ -33,9 +33,8 @@ const DestinationPage = (props) => {
 
   const [pills, setPills] = useState("1");
   const [cityData, setCityData] = useState(null);
-  const [location, setLocation] = useState(props.match.params.location);
 
-  useEffect(() => props.firebase.doGetCity(prettyCity(location), setCityData), [props]);
+  useEffect(() => props.firebase.doGetCity(prettyCity(props.match.params.location), setCityData), [props]);
 
   useEffect(() => {
     document.body.classList.add("profile-page");
@@ -49,11 +48,14 @@ const DestinationPage = (props) => {
 
   if(cityData === null) return null;
   else {
+
+    const location = props.match.params.location;
+
     return (
 
       <>
         <NavbarErasmus color = "transparent"/>
-          <DestinationPageHeader cityName = {location} countryCode = {cityData.countryCode} />
+          <DestinationPageHeader cityName = {location} countryName = {cityData.countryName} />
           <div className="mySection">
             <Container>
               <div className="button-container">

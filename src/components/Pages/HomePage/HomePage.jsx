@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 
-import { withAuthorization } from 'components/Session';
-import { withFirebase } from 'components/Firebase';
+import { withAuthorization } from 'session';
+import { withFirebase } from 'apis/Firebase';
 
 // reactstrap components
 import{
@@ -25,7 +25,7 @@ import{
 import NavbarErasmus from "components/Navbars/NavbarErasmus.js";
 import DefaultFooter from "components/Footers/DefaultFooter.js";
 import ScrollDestinations from "components/ScrollList/ScrollDestinations.jsx";
-import WrappedMapDestinations from 'components/GoogleMapsFolder/MapComponentDestinations.js';
+import WrappedMapDestinations from 'components/GoogleMaps/MapComponentDestinations.js';
 
 const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places`;
 
@@ -34,18 +34,13 @@ const HomePage = (props) => {
   //State
   const [pills, setPills] = useState("1");
   const [location, setLocation] = useState('');
-  const [authUser, setAuthUser] = useState(props.authUser);
   const [citiesIndex, setCitiesIndex] = useState([]);
 
   const setCitiesIndexCallBack = (citiesIndexCB) => {
       setCitiesIndex(citiesIndexCB);
     };
 
-  useEffect(() => {
-
-    props.firebase.doGetCitiesIndex(setCitiesIndexCallBack);
-
-  }, []);
+  useEffect(() => props.firebase.doGetCitiesIndex(setCitiesIndexCallBack), []);
 
   useEffect(() => {
 
@@ -146,7 +141,7 @@ const HomePage = (props) => {
                   fontSize: "25px"
                 }}>Destinos</CardTitle>
                 </CardBody>
-                <ScrollDestinations destinations = {Object.keys(citiesIndex).sort().filter(item => item.toLowerCase().includes(location.toLowerCase()))}/>
+                <ScrollDestinations destinations = {Object.values(citiesIndex).sort().filter(item => item.name.toLowerCase().includes(location.toLowerCase()))}/>
               </Card>
             </Col>
           </Row>

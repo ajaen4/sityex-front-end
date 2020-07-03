@@ -16,20 +16,20 @@ import Autocomplete from 'react-google-autocomplete';
 
 function MapWithSearch(props){
 
-  const dummyRecom = {coordinates: {lat: 0, lng: 0}, name: "", address: "" };
-
-  var ref = React.createRef();
-
   const iconSelected = { url: require("assets/icons/pin_filled_red.png"), scaledSize: { width: 38, height: 38 } };
   const iconSavedRec = { url: require("assets/icons/pin_filled_blue.png"), scaledSize: { width: 38, height: 38 } };
   const iconCurrRec = { url: require("assets/icons/pin_outline_blue.png"), scaledSize: { width: 38, height: 38 } };
 
-  const titleSelOption = "Localizacion incorrecta. ";
-  const selectOption = "Selecciona una de las opciones que aparecen como sugerencias.";
-  const titleOptSelected = "Ya ha recomendado esta localizacion.";
-  const optionExists = "La localizacion buscada ya ha sido recomendada por otros usuarios. Por favor, seleccionela en el mapa y haga click en 'Recomendar'";
-  const titleOptExists = "La localizacion ya existe. "
+  const TITLESELOPTION = "Localizacion incorrecta. ";
+  const SELECTOPTION = "Selecciona una de las opciones que aparecen como sugerencias.";
+  const TITLEOPTSELECTED = "Ya ha recomendado esta localizacion.";
+  const OPTIONEXISTS = "La localizacion buscada ya ha sido recomendada por otros usuarios. Por favor, seleccionela en el mapa y haga click en 'Recomendar'";
+  const TITLEOPTEXISTS = "La localizacion ya existe. "
 
+  const dummyRecom = {coordinates: {lat: 0, lng: 0}, name: "", address: "" };
+
+  var ref = React.createRef();
+  
   const [coordinates, setCoordinates] = React.useState(props.coordinates);
   const [currRecomendations, setCurrRecomendations] = React.useState(props.currRecomendations);
   const [savedRecomendations, setSavedRecomendations] = React.useState(props.savedRecomendations);
@@ -79,11 +79,11 @@ function MapWithSearch(props){
     }
     else if(place.geometry === undefined){
       //Configuramos el texto de la alerta y el color
-      setConfigAlert({title: titleSelOption, text: selectOption, color: "info"});
+      setConfigAlert({title: TITLESELOPTION, text: SELECTOPTION, color: "info"});
     }
     else if(currRecomendations.some(recom => (recom.coordinates.lat === place.geometry.location.lat()) && (recom.coordinates.lng === place.geometry.location.lng()))){
       //Configuramos el texto de la alerta y el color
-      setConfigAlert({title: titleOptSelected, text: "", color: "info"});
+      setConfigAlert({title: TITLEOPTSELECTED, text: "", color: "info"});
     }
     else if(savedRecomendations.some(recom => (recom.coordinates.lat === place.geometry.location.lat()) && (recom.coordinates.lng === place.geometry.location.lng()))){
       //Cogemos la info de la recomendacion guardada
@@ -91,7 +91,7 @@ function MapWithSearch(props){
       //Para añadir un marcador en el sitio que se seleccione (no tiene mas consecuencias)
       setSelectedRecomen(existingRecomendation);
       setCoordinates(existingRecomendation.coordinates);
-      setConfigAlert({title: titleOptExists, text: optionExists, color: "info"});
+      setConfigAlert({title: TITLEOPTEXISTS, text: OPTIONEXISTS, color: "info"});
     }
   };
 
