@@ -1,8 +1,8 @@
 
-import React from "react";
-import { Link } from "react-router-dom";
+import React from "react"
+import { Link } from "react-router-dom"
+import { connect } from 'react-redux'
 
-// reactstrap components
 import {
   Collapse,
   DropdownToggle,
@@ -16,26 +16,23 @@ import {
   Nav,
   Container,
   UncontrolledTooltip
-} from "reactstrap";
+} from "reactstrap"
 
 const chooseNavbarClass = (color) => {
-
   switch(color){
-
     case "blue":
-      return "";
+      return ""
     case "transparent":
-      return "navbar-transparent";
+      return "navbar-transparent"
     default:
-      return "";
-
+      return ""
   }
 }
 
-function NavbarErasmus(props) {
+function NavbarErasmus({ color, test }) {
 
-  const [navbarColor, setNavbarColor] = React.useState(chooseNavbarClass(props.color));
-  const [collapseOpen, setCollapseOpen] = React.useState(false);
+  const [navbarColor, setNavbarColor] = React.useState(chooseNavbarClass(color))
+  const [collapseOpen, setCollapseOpen] = React.useState(false)
 
   React.useEffect(() => {
     const updateNavbarColor = () => {
@@ -43,20 +40,20 @@ function NavbarErasmus(props) {
         document.documentElement.scrollTop > 399 ||
         document.body.scrollTop > 399
       ) {
-        setNavbarColor("");
+        setNavbarColor("")
 
       } else if (
         document.documentElement.scrollTop < 400 ||
         document.body.scrollTop < 400
       ) {
-        setNavbarColor(chooseNavbarClass(props.color));
+        setNavbarColor(chooseNavbarClass(color))
       }
-    };
-    window.addEventListener("scroll", updateNavbarColor);
+    }
+    window.addEventListener("scroll", updateNavbarColor)
     return function cleanup() {
-      window.removeEventListener("scroll", updateNavbarColor);
-    };
-  });
+      window.removeEventListener("scroll", updateNavbarColor)
+    }
+  })
 
   return (
     <>
@@ -64,8 +61,8 @@ function NavbarErasmus(props) {
         <div
           id="bodyClick"
           onClick={() => {
-            document.documentElement.classList.toggle("nav-open");
-            setCollapseOpen(false);
+            document.documentElement.classList.toggle("nav-open")
+            setCollapseOpen(false)
           }}
         />
       ) : null}
@@ -81,8 +78,8 @@ function NavbarErasmus(props) {
             <button
               className="navbar-toggler navbar-toggler"
               onClick={() => {
-                document.documentElement.classList.toggle("nav-open");
-                setCollapseOpen(!collapseOpen);
+                document.documentElement.classList.toggle("nav-open")
+                setCollapseOpen(!collapseOpen)
               }}
               aria-expanded={collapseOpen}
               type="button"
@@ -204,7 +201,11 @@ function NavbarErasmus(props) {
         </Container>
       </Navbar>
     </>
-  );
+  )
 }
 
-export default NavbarErasmus;
+export default connect((state) => {
+  return {
+    test: state.service
+  }
+})(NavbarErasmus)

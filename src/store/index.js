@@ -1,11 +1,12 @@
 
 import { createStore, combineReducers } from 'redux'
 
+import servicesReducer from 'reducers'
 
 const initStore = () => {
 
   const serviceApp = combineReducers({
-    service: () => ({ testingData: 'Hello World', testingNumber: 10})
+    service: servicesReducer
   })
 
   const browerSupport = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
