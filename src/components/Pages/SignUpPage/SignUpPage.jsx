@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 
 import { withRouter } from 'react-router-dom';
-import { withFirebase } from 'apis/Firebase';
 
 // reactstrap components
 import{
@@ -12,7 +11,7 @@ import{
 } from "reactstrap";
 
 import NavbarErasmus from "components/Navbars/NavbarErasmus.js";
-import SignUpForm from "components/Pages/SignUpPage/SignUpForm.jsx";
+import SignUpForm from "components/Forms/SignUpForm.jsx";
 
 class SignUpPageBase extends Component {
 
@@ -51,7 +50,7 @@ class SignUpPageBase extends Component {
 }
 
 
-const SignUpPage = withRouter(withFirebase(SignUpPageBase));
+const SignUpPage = withRouter(SignUpPageBase);
 
 export {SignUpForm};
 export default SignUpPage;

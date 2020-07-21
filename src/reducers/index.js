@@ -1,17 +1,22 @@
 
-import { FETCH_SERVICES } from 'types'
+import { combineReducers } from 'redux'
 
-const INITIAL_STATE = {}
+//----------- AUTH
+import createUser from 'reducers/createUser.js'
+import logInUser from 'reducers/logInUser.js'
 
-const servicesReducer = (state = INITIAL_STATE, action) => {
+//----------- CITIES
+import citiesIndex from 'reducers/citiesIndex.js'
+import selectedCity from 'reducers/selectedCity.js'
+import updateMarkers from 'reducers/updateMarkers.js'
 
-  switch(action.type){
 
-    case FETCH_SERVICES:
-      return {...state, items: action.services}
-    default: return state
-  }
+const serviceApp = combineReducers({
+  createUser,
+  logInUser,
+  citiesIndex,
+  selectedCity,
+  updateMarkers
+})
 
-}
-
-export default servicesReducer
+export default serviceApp

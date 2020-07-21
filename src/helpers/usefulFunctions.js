@@ -24,3 +24,11 @@ export function prettyCity(cityName){
         .replace("ţ","t")
         .replace("É","E");
 }
+
+export function objectIsEmpty(obj) {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
+}

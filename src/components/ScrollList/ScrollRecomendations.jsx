@@ -39,19 +39,19 @@ function ScrollRecomendations(props){
               width: "80%",
               marginTop: "5px",
               marginBottom: "5px"
-            }}>
-            <CardBody
-            key = {recomendations[index].name.trim()}>
+            }}
+            key = {recomendations[index].name.toString()}>
+            <CardBody>
               <Row style = {{
                   justifyContent: "center",
                   alignItems: "center",
                   textAlign: "center"
-                  }}
-                  key={key}>
+                  }}>
                 <Col lg = "3" md = "12" sm = "12" style = {{maxWidth: "70px"}} >
                 <img  alt = "recomendations from users" src = {require("assets/icons/pin_blue.png")} ></img>
                 </Col>
-                <div lg = "6" md = "12" sm = "12" style = {{
+                <div
+                lg = "6" md = "12" sm = "12" style = {{
                   textAlign: "center"
                 }}>
                   {recomendations[index].name.trim()}

@@ -1,16 +1,24 @@
 
-import { createStore, combineReducers } from 'redux'
-
-import servicesReducer from 'reducers'
+import { createStore, applyMiddleware, compose } from 'redux'
+import serviceApp from 'reducers'
+import thunk from 'redux-thunk'
+import logger from 'redux-logger'
 
 const initStore = () => {
 
-  const serviceApp = combineReducers({
-    service: servicesReducer
-  })
+  const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose
 
-  const browerSupport = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  const store = createStore(serviceApp, browerSupport)
+  let middlewares = []
+
+  if(process.env.NODE_ENV !== 'production')
+    middlewares.push(logger)
+
+  middlewares.push(thunk)
+
+  const store = createStore(
+    serviceApp,
+    composeEnhancers(applyMiddleware(...middlewares))
+    )
 
   return store
 }

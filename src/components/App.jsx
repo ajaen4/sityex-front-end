@@ -1,40 +1,40 @@
-import React, {Component} from 'react';
+import React, {Component} from 'react'
 
 import {
   BrowserRouter as Router,
   Route,
-} from 'react-router-dom';
+} from 'react-router-dom'
 
-import SignUpPage from 'components/Pages/SignUpPage';
-import LogInPage from 'components/Pages/LogInPage';
-import HomePage from 'components/Pages/HomePage';
-import DestinationPage from 'components/Pages/DestinationPage';
-import NewExperiencePage from 'components/Pages/NewExperiencePage';
+import SignUpPage from 'components/Pages/SignUpPage'
+import LogInPage from 'components/Pages/LogInPage'
+import HomePage from 'components/Pages/HomePage'
+import DestinationPage from 'components/Pages/DestinationPage'
+import NewExperiencePage from 'components/Pages/NewExperiencePage'
 
-import * as ROUTES from 'constants/routes';
-import { withFirebase } from 'apis/Firebase';
+import * as ROUTES from 'constants/routes'
 
 class App extends Component {
 
   constructor (props){
-    super(props);
+    super(props)
 
     this.state = {
       authUser: null
-    };
+    }
   }
 
   componentDidMount() {
-    this.listener = this.props.firebase.auth.onAuthStateChanged(
+    /*this.listener = this.props.firebase.auth.onAuthStateChanged(
       authUser => {
         authUser
           ? this.setState({ authUser })
-          : this.setState({ authUser: null });
+          : this.setState({ authUser: null })
       },
-    );
+    )*/
   }
+
   componentWillUnmount() {
-    this.listener();
+    //this.listener()
   }
 
   render(){
@@ -50,8 +50,8 @@ class App extends Component {
         </div>
       </Router>
 
-    );
+    )
   }
 }
 
-export default withFirebase(App);
+export default App

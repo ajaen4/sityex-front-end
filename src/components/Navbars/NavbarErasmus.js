@@ -204,8 +204,4 @@ function NavbarErasmus({ color, test }) {
   )
 }
 
-export default connect((state) => {
-  return {
-    test: state.service
-  }
-})(NavbarErasmus)
+export default connect()(NavbarErasmus)

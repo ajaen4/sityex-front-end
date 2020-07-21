@@ -1,14 +1,14 @@
-import React, {useEffect} from "react";
+import React, {useEffect} from "react"
+import { connect } from 'react-redux'
+import Geocode from "react-geocode"
 
-import { withAuthorization } from 'session';
+//Custom functionality
+import { withAuthorization } from 'session'
+import { prettyCity } from 'helpers/usefulFunctions'
+import { fetchCitiesIndex, fetchCity, updateMarkers } from 'actions'
+import { objectIsEmpty } from 'helpers/usefulFunctions'
 
-import { withFirebase } from 'apis/Firebase';
-
-import Geocode from "react-geocode";
-
-import {prettyCity} from 'helpers/usefulFunctions';
-
-// reactstrap components
+//reactstrap components
 import {
   Row,
   Col,
@@ -20,110 +20,97 @@ import {
   InputGroup,
   InputGroupAddon,
   InputGroupText
-} from "reactstrap";
+} from "reactstrap"
 
-// core components
-import NavbarErasmus from "components/Navbars/NavbarErasmus.js";
-import DefaultFooter from "components/Footers/DefaultFooter.js";
+//Custom UI components
+import NavbarErasmus from "components/Navbars/NavbarErasmus.js"
+import DefaultFooter from "components/Footers/DefaultFooter.js"
+import WrappedMapWithSearch from 'components/GoogleMaps/MapComponentSearch.js'
+import Opinion2 from "components/Opinions/Opinion2.jsx"
+import Opinion5 from "components/Opinions/Opinion5.jsx"
+import ScrollRecomendations from "components/ScrollList/ScrollRecomendations.jsx"
 
-import WrappedMapWithSearch from 'components/GoogleMaps/MapComponentSearch.js';
-import Opinion2 from "components/Opinions/Opinion2.jsx";
-import Opinion5 from "components/Opinions/Opinion5.jsx";
-import ScrollList from "components/ScrollList/ScrollRecomendations.jsx";
-
-const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places`;
+const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places`
 
 //NOT USING IT AT THE MOMENT
 //Geocode, transforms address into lat and long and the other way around
-Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
-Geocode.enableDebug();
+Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
+Geocode.enableDebug()
 
-const NewExperiencePage = (props) => {
+const NewExperiencePage = ({dispatch, selectedCity, citiesIndex}) => {
 
-  const initialCity = "Aachen";
-  //State
-  const [cityData, setCityData] = React.useState({});
-  const [citiesList, setCitiesList] = React.useState([]);
-  const [windowDimensions, setWindowDimensions] = React.useState(window.innerWidth);
-  const [currRecomendations, setCurrRecomendations] = React.useState([]);
+  const [windowDimensions, setWindowDimensions] = React.useState(window.innerWidth)
+  const [currRecomendations, setCurrRecomendations] = React.useState([])
 
-  //Funcion que se ejecuta solo despues de la creacion
-  useEffect(() => {
-    props.firebase.doGetCity(initialCity, setCityData);
-    props.firebase.doGetCitiesIndex(setCitiesIndexCallBack);
-    }, []);
-
-  const setCitiesIndexCallBack = (citiesIndexCB) => {
-      setCitiesList(Object.keys(citiesIndexCB));
-    };
+  const initialCity = "Aachen"
 
   useEffect(() => {
-    document.body.classList.add("profile-page");
-    document.body.classList.add("sidebar-collapse");
-    window.addEventListener("resize", updateWindowDimensions);
+    dispatch(fetchCity(prettyCity(initialCity)))
+    dispatch(fetchCitiesIndex())
+  }, [dispatch])
+
+  useEffect(() => {
+    document.body.classList.add("profile-page")
+    document.body.classList.add("sidebar-collapse")
+    window.addEventListener("resize", updateWindowDimensions)
 
     return function cleanup() {
-      document.body.classList.remove("profile-page");
-      document.body.classList.remove("sidebar-collapse");
-      window.removeEventListener("resize", updateWindowDimensions);
-    };
-  });
+      document.body.classList.remove("profile-page")
+      document.body.classList.remove("sidebar-collapse")
+      window.removeEventListener("resize", updateWindowDimensions)
+    }
+  })
 
   //Updates the window dimensions (width) when this changes
   const updateWindowDimensions = () => {
-    setWindowDimensions(window.innerWidth);
-  }
-
-  //When firebase fetch comes back, fill in data
-  const setAllCityData = (cityData) => {
-    setCityData(cityData);
+    setWindowDimensions(window.innerWidth)
   }
 
   //Fetch city data if the user changes the city in the dropdown list
   const onChangeCity = event => {
-    props.firebase.doGetCity(event.target.value, setAllCityData);
-  };
+    dispatch(fetchCity(prettyCity(event.target.value)))
+  }
 
   const incrementRecomendation = (recomendation) => {
-    console.log("Recomendation incremented");
-    console.log(recomendation);
+    console.log("Recomendation incremented")
+    console.log(recomendation)
     if(!currRecomendations.some(recom => recom.name === recomendation.name)){
-      var aux = {};
-      Object.assign(aux, recomendation);
-      var auxRecomendations = [];
-      Object.assign(auxRecomendations, currRecomendations);
-      auxRecomendations.push(aux);
-      setCurrRecomendations(auxRecomendations);
+      var aux = {}
+      Object.assign(aux, recomendation)
+      var auxRecomendations = []
+      Object.assign(auxRecomendations, currRecomendations)
+      auxRecomendations.push(aux)
+      setCurrRecomendations(auxRecomendations)
     }
-  };
+  }
 
   //Callback from map to push recomendation
   const pushRecomendation = place => {
-    var aux = {};
+    var aux = {}
     if((place.name != null) && (!currRecomendations.some(recom => (recom.coordinates.lat === place.coordinates.lat) && (recom.coordinates.lng === place.coordinates.lng)))){
-      Object.assign(aux, place);
-      var auxRecomendations = [];
-      Object.assign(auxRecomendations, currRecomendations);
-      auxRecomendations.push(aux);
-      setCurrRecomendations(auxRecomendations);
+      Object.assign(aux, place)
+      var auxRecomendations = []
+      Object.assign(auxRecomendations, currRecomendations)
+      auxRecomendations.push(aux)
+      setCurrRecomendations(auxRecomendations)
     }
-  };
+  }
 
   //Deletes recomendation when button is pressed
   const deleteRec = (index) => {
-    var aux = [];
-    Object.assign(aux, currRecomendations);
-    aux.splice(index, 1);
-    setCurrRecomendations(aux);
+    var aux = []
+    Object.assign(aux, currRecomendations)
+    aux.splice(index, 1)
+    setCurrRecomendations(aux)
   }
 
   //Stop form from submitting in a standar way (problems with the Autocomplete Google Maps function when pressing enter)
   const handleOnSubmit = (event) => {
-    event.preventDefault();
+    event.preventDefault()
     var markerContainer = {
       mapMarkers: currRecomendations
-      };
-    props.firebase.doUpdateMarkers(cityData.cityName, markerContainer);
+      }
+    dispatch(updateMarkers(selectedCity.name, markerContainer))
   }
 
   return (
@@ -150,7 +137,7 @@ const NewExperiencePage = (props) => {
                       id="exampleFormControlSelect1"
                       className="form-control-lg"
                       type="select">
-                      {(citiesList.sort().map( item =>
+                      {(Object.keys(citiesIndex).sort().map( item =>
                         <option
                         tag="a"
                         href = "#"
@@ -270,14 +257,14 @@ const NewExperiencePage = (props) => {
                         justifyContent: "center",
                         marginBottom: "60px"
                       }}>
-                      { (cityData.latitude !== undefined) && (cityData.longitude !== undefined) &&
+                      { (!objectIsEmpty(selectedCity)) &&
                         <WrappedMapWithSearch
                         incrementRecomendation = {incrementRecomendation}
                         currRecomendations = {currRecomendations}
-                        savedRecomendations = {cityData.mapMarkers === undefined ? [] : cityData.mapMarkers}
+                        savedRecomendations = {selectedCity.mapMarkers === undefined ? [] : selectedCity.mapMarkers}
                         style = {{justifyContent: "center"}}
-                        city = {cityData.cityName}
-                        coordinates = {{lat:cityData.latitude, lng: cityData.longitude}}
+                        city = {selectedCity.cityName}
+                        coordinates = {{lat:selectedCity.latitude, lng: selectedCity.longitude}}
                         pushRecomendation = {pushRecomendation}
                         googleMapURL = {mapURL}
                         loadingElement = {<p>Cargando</p>}
@@ -347,7 +334,7 @@ const NewExperiencePage = (props) => {
                         <h5><b>
                           Recomendaciones
                         </b></h5>
-                        <ScrollList currRecomendations = {currRecomendations} windowWidth = {windowDimensions} deleteRec = {deleteRec}/>
+                        <ScrollRecomendations currRecomendations = {currRecomendations} windowWidth = {windowDimensions} deleteRec = {deleteRec}/>
                       </div>
                     </Col>
                 </Row>
@@ -387,8 +374,12 @@ const NewExperiencePage = (props) => {
           </div>
         <DefaultFooter />
     </>
-    );
-
+    )
 }
 
-export default withAuthorization()(withFirebase(NewExperiencePage));
+const mapStateToProps = state => ({
+  citiesIndex: state.citiesIndex.data,
+  selectedCity: state.selectedCity.data
+})
+
+export default connect(mapStateToProps)(withAuthorization()(NewExperiencePage))

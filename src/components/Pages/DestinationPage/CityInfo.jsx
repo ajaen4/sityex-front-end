@@ -1,8 +1,6 @@
 
 import React, {Component} from "react";
 
-import { withFirebase } from 'apis/Firebase';
-
 // reactstrap components
 import {
   Container,
@@ -21,7 +19,7 @@ class CityInfo extends Component {
 
     this.state =
         {
-          cityName: props.cityName,
+          cityName: props.cityData.displayName,
           cityData: props.cityData,
           isOpen: false,
           currencySymbol: "€"
@@ -239,4 +237,4 @@ class CityInfo extends Component {
   }
 }
 
-export default withFirebase(CityInfo);
+export default CityInfo;

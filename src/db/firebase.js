@@ -21,22 +21,20 @@ class Firebase {
   // ---------------- AUTH -------------------
 
   //Creates user with email and password
-  doCreateUserWithEmailAndPassword = async (email, username, password) => {
+  doCreateUser = async ({email, password}) => {
     try{
       const resp = await this.auth.createUserWithEmailAndPassword(email, password)
       const { user } = resp
-      return true
+      return Promise.resolve(user)
     }
     catch (error) {
       return Promise.reject(error.message)
     }
-
   }
 
   //Creates user in database
   //TODO: save more info!
   doSaveUser = (userName, email) => {
-
     this.firestore.collection("users").add({
       userName: userName,
       email: email
@@ -44,8 +42,15 @@ class Firebase {
   }
 
   //Function that signs in user with email and password
-  doSignInWithEmailAndPassword = (email, password) => {
-    this.auth.signInWithEmailAndPassword(email, password)
+  doSignInWithEmailAndPassword = async ({email, password}) => {
+    try{
+      const resp = await this.auth.signInWithEmailAndPassword(email, password)
+      const { user } = resp
+      return Promise.resolve(user)
+    }
+    catch (error) {
+      return Promise.reject(error.message)
+    }
   }
 
   //Signs out user
@@ -72,37 +77,34 @@ class Firebase {
     this.firestore.collection("cities").doc(cityData["name"]).set(cityData, {merge: true})
   }
 
-  //Fetches city and run callback function passed as an argument
-  doGetCity = (city, setCityData) => {
-    let cityRef = this.firestore.collection("cities").doc(city)
-    cityRef.get()
+  //Fetches city data
+  doGetCity = (city) => {
+      return this.firestore.collection("cities").doc(city).get()
       .then(doc => {
         if (!doc.exists) {
-          console.log('No such document ' + city + ' in collection cities!')
+          console.log('No such document ', city ,' in collection cities!')
+          return {}
         } else {
-          console.log('Document data:', doc.data())
-          setCityData(doc.data())
+          return doc.data()
         }
       })
       .catch(err => {
-        console.log('Error getting document', err)
+        return err
       })
   }
 
-  //Fetches cities index
-  doGetCitiesIndex = (setIndexData) => {
-    let cityRef = this.firestore.collection("cities").doc("_Index")
-    cityRef.get()
-      .then(doc => {
+  doGetCitiesIndex = () => {
+    return this.firestore.collection("cities").doc("_Index").get()
+      .then( doc => {
         if (!doc.exists) {
           console.log('No such document "Index" in collection cities!')
+          return {}
         } else {
-          console.log('Document data:', doc.data())
-          setIndexData(doc.data())
+          return doc.data()
         }
       })
       .catch(err => {
-        console.log('Error getting document', err)
+        return err
       })
   }
 
@@ -111,47 +113,46 @@ class Firebase {
   // ---------------- MARKERS ----------------------
 
   doUpdateMarkers = (cityName, markers) => {
+      let cityRef = this.firestore.collection('cities').doc(cityName)
+      return this.firestore.runTransaction(t => {
+        return t.get(cityRef)
+        .then(doc => {
 
-    let cityRef = this.firestore.collection('cities').doc(cityName)
-    this.firestore.runTransaction(t => {
-      return t.get(cityRef)
-      .then(doc => {
+          //Get mapMarkers
+          var markerExists = false
+          let originalMarkers = []
+          if(doc.data().mapMarkers !== undefined){
+            originalMarkers = doc.data().mapMarkers
+          }
+          let newMarkers = markers.mapMarkers
+          for(var indexNewM in markers.mapMarkers){
 
-        //Get mapMarkers
-        var markerExists = false
-        let originalMarkers = []
-        if(doc.data().mapMarkers !== undefined){
-          originalMarkers = doc.data().mapMarkers
-        }
-        let newMarkers = markers.mapMarkers
-        for(var indexNewM in markers.mapMarkers){
-
-          for(var singleMarker in originalMarkers){
-              const coordinates1 = originalMarkers[singleMarker].coordinates
-              const coordinates2 = newMarkers[indexNewM].coordinates
-            if( JSON.stringify(coordinates1) === JSON.stringify(coordinates2)){
-              originalMarkers[singleMarker].numOfRecomendations++
-              markerExists = true
-              break
+            for(var singleMarker in originalMarkers){
+                const coordinates1 = originalMarkers[singleMarker].coordinates
+                const coordinates2 = newMarkers[indexNewM].coordinates
+              if( JSON.stringify(coordinates1) === JSON.stringify(coordinates2)){
+                originalMarkers[singleMarker].numOfRecomendations++
+                markerExists = true
+                break
+              }
             }
+            if(!markerExists){
+              originalMarkers.push(newMarkers[indexNewM])
+            }
+            markerExists = false
           }
-          if(!markerExists){
-            originalMarkers.push(newMarkers[indexNewM])
+
+          var setObject = {
+            mapMarkers: originalMarkers
           }
-          markerExists = false
-        }
 
-        var setObject = {
-          mapMarkers: originalMarkers
-        }
-
-        t.set(cityRef, setObject, {merge: true})
-      })
-    }).then(result => {
-        console.log('Transaction success!')
-      }).catch(err => {
-        console.log('Transaction failure:', err)
-      })
+          t.set(cityRef, setObject, {merge: true})
+        })
+      }).then(result => {
+          return('Transaction success!')
+        }).catch(err => {
+          return(err)
+        })
   }
 
   // ---------------- MARKERS END -------------------

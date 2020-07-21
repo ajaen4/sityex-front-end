@@ -13,7 +13,6 @@ import * as serviceWorker from './serviceWorker'
 
 import App from 'components/App.jsx'
 
-import Firebase, { FirebaseContext } from 'apis/Firebase'
 import Unirest, { UnirestContext } from 'apis/Unirest'
 import initStore from 'store'
 import { Provider } from 'react-redux'
@@ -22,11 +21,9 @@ const store = initStore()
 
 ReactDOM.render(
   <Provider store = {store}>
-    <FirebaseContext.Provider value = {new Firebase()}>
       <UnirestContext.Provider value = {new Unirest()}>
         <App />
       </UnirestContext.Provider>
-    </FirebaseContext.Provider>
   </Provider>,
   document.getElementById('root'),
 )

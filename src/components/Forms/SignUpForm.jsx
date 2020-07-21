@@ -1,41 +1,50 @@
 
-import React from 'react'
+import React, { useEffect } from 'react'
 
+
+import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import { withFirebase } from 'apis/Firebase'
 
+//Custom functionality
+import { sameAs } from "helpers/validators.js"
+import { prettyCity, objectIsEmpty } from 'helpers/usefulFunctions'
+import { createUser } from 'actions'
+
+//reactstrap components
 import{
   Button,
   Input,
   InputGroupAddon,
   InputGroupText,
   InputGroup,
-  FormFeedback
+  FormFeedback,
+  Alert
 } from "reactstrap"
 
-import { sameAs } from "helpers/validators.js"
+//Custom components
+import LoadingSpinner from 'components/Spinner/LoadingSpinner.jsx'
 
-const SignUpFormBase = (props) => {
+const SignUpFormBase = ({dispatch, user, isFetching, errorMessage}) => {
 
   const {register, handleSubmit, errors, getValues} = useForm()
 
-  const createUser = data => {
+  const handleForm = data => {
     console.log(data)
+    dispatch(createUser(data))
+  }
 
-    /*props.firebase
-      .doSignInWithEmailAndPassword(data.email, data.password)
-      .then(authUser => {
-        props.history.push(ROUTES.HOME)
-      })
-      .catch(error => {
-        //setError(error)
-      })*/
+  if(isFetching)
+    return <LoadingSpinner/>
 
+  if(!objectIsEmpty(user)){
+    debugger
+    return <Alert color = "success">El usuario con email {user.email} se ha creado correctamente</Alert>
   }
 
   return (
-      <form onSubmit={handleSubmit(createUser)}>
+    <>
+      <form onSubmit={handleSubmit(handleForm)}>
         <InputGroup
           className = "no-border input-lg input-group-focus"
         >
@@ -49,6 +58,7 @@ const SignUpFormBase = (props) => {
             innerRef={
               register({
                 required: true,
+                //eslint-disable-next-line
                 pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
                 })}
             name = "email"
@@ -74,8 +84,7 @@ const SignUpFormBase = (props) => {
           invalid={errors.username !== undefined}
           innerRef={
             register({
-              required: true,
-              pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+              required: true
               })}
           name = "username"
           placeholder="Nombre de usuario..."
@@ -149,9 +158,17 @@ const SignUpFormBase = (props) => {
         Crea una cuenta
       </Button>
     </form>
+    {(errorMessage !== "") && <Alert color = "danger">{errorMessage}</Alert>}
+  </>
   )
 }
 
-const SignUpForm = withRouter(withFirebase(SignUpFormBase))
+const mapStateToProps = state => ({
+  user: state.createUser.data,
+  isFetching: state.createUser.isFetching,
+  errorMessage: state.createUser.errorMessage
+})
+
+const SignUpForm = connect(mapStateToProps)(withRouter(SignUpFormBase))
 
 export default SignUpForm

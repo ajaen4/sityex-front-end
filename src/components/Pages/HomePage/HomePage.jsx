@@ -1,9 +1,12 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react'
+import { connect } from 'react-redux'
 
-import { withAuthorization } from 'session';
-import { withFirebase } from 'apis/Firebase';
+//Custom functionality
+import { withAuthorization } from 'session'
+import { fetchCitiesIndex } from 'actions'
+import { objectIsEmpty } from 'helpers/usefulFunctions'
 
-// reactstrap components
+//reactstrap components
 import{
   NavItem,
   NavLink,
@@ -20,48 +23,39 @@ import{
   Container,
   Col,
   Row,
-} from "reactstrap";
+} from "reactstrap"
 
-import NavbarErasmus from "components/Navbars/NavbarErasmus.js";
-import DefaultFooter from "components/Footers/DefaultFooter.js";
-import ScrollDestinations from "components/ScrollList/ScrollDestinations.jsx";
-import WrappedMapDestinations from 'components/GoogleMaps/MapComponentDestinations.js';
+//Custom UI components
+import NavbarErasmus from "components/Navbars/NavbarErasmus.js"
+import DefaultFooter from "components/Footers/DefaultFooter.js"
+import ScrollDestinations from "components/ScrollList/ScrollDestinations.jsx"
+import WrappedMapDestinations from 'components/GoogleMaps/MapComponentDestinations.js'
 
-const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places`;
+const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places`
 
-const HomePage = (props) => {
+const HomePage = ({dispatch, citiesIndex, isFetching}) => {
 
-  //State
-  const [pills, setPills] = useState("1");
-  const [location, setLocation] = useState('');
-  const [citiesIndex, setCitiesIndex] = useState([]);
-
-  const setCitiesIndexCallBack = (citiesIndexCB) => {
-      setCitiesIndex(citiesIndexCB);
-    };
-
-  useEffect(() => props.firebase.doGetCitiesIndex(setCitiesIndexCallBack), []);
+  const [pills, setPills] = useState("1")
+  const [location, setLocation] = useState('')
 
   useEffect(() => {
+    dispatch(fetchCitiesIndex())
+  }, [dispatch])
 
-    document.body.classList.add("profile-page");
-    document.body.classList.add("sidebar-collapse");
-    document.documentElement.classList.remove("nav-open");
-
+  useEffect(() => {
+    document.body.classList.add("profile-page")
+    document.body.classList.add("sidebar-collapse")
+    document.documentElement.classList.remove("nav-open")
     return function cleanup() {
-      document.body.classList.remove("profile-page");
-      document.body.classList.remove("sidebar-collapse");
-    };
+      document.body.classList.remove("profile-page")
+      document.body.classList.remove("sidebar-collapse")
+    }
+  })
 
-  });
-
-  const onSearchChange = event => {
-      setLocation(event.target.value);
-    };
+  const onSearchChange = event => setLocation(event.target.value)
 
   return (
     <>
-
       <NavbarErasmus color = "blue" />
         <Container style = {{
           marginTop: "100px",
@@ -78,8 +72,8 @@ const HomePage = (props) => {
                 className={pills === "1" ? "active" : ""}
                 href=""
                 onClick={e => {
-                  e.preventDefault();
-                  setPills("1");
+                  e.preventDefault()
+                  setPills("1")
                 }}
               >
                 <i className="now-ui-icons design_bullet-list-67"></i>
@@ -90,8 +84,8 @@ const HomePage = (props) => {
                 className={pills === "2" ? "active" : ""}
                 href=""
                 onClick={e => {
-                  e.preventDefault();
-                  setPills("2");
+                  e.preventDefault()
+                  setPills("2")
                 }}
               >
                 <i className="now-ui-icons location_map-big"></i>
@@ -141,7 +135,8 @@ const HomePage = (props) => {
                   fontSize: "25px"
                 }}>Destinos</CardTitle>
                 </CardBody>
-                <ScrollDestinations destinations = {Object.values(citiesIndex).sort().filter(item => item.name.toLowerCase().includes(location.toLowerCase()))}/>
+                <ScrollDestinations isFetching = {isFetching}
+                destinations = {Object.values(citiesIndex).sort().filter(item => item.name.toLowerCase().includes(location.toLowerCase()))}/>
               </Card>
             </Col>
           </Row>
@@ -150,7 +145,7 @@ const HomePage = (props) => {
           <Row style ={{marginTop: "50px", justifyContent: "center"}}>
             <WrappedMapDestinations
             style = {{justifyContent: "center"}}
-            citiesIndex = {citiesIndex === null ? {} : citiesIndex}
+            citiesIndex = {objectIsEmpty(citiesIndex) ? {} : citiesIndex}
             googleMapURL = {mapURL}
             loadingElement = {<p>Cargando</p>}
             containerElement = {<div style = {{ width: "100%", height : "600px", justifyContent: "center"}}/>}
@@ -221,8 +216,12 @@ const HomePage = (props) => {
     </Container>
   <DefaultFooter/>
   </>
-    );
-
+)
 }
 
-export default withAuthorization()(withFirebase(HomePage));
+const mapStateToProps = state => ({
+  citiesIndex: state.citiesIndex.data,
+  isFetching: state.citiesIndex.isFetching
+})
+
+export default connect(mapStateToProps)(withAuthorization()(HomePage))
