@@ -110,7 +110,7 @@ const NewExperiencePage = ({dispatch, selectedCity, citiesIndex}) => {
     var markerContainer = {
       mapMarkers: currRecomendations
       }
-    dispatch(updateMarkers(selectedCity.name, markerContainer))
+    updateMarkers(selectedCity.name, markerContainer)
   }
 
   return (

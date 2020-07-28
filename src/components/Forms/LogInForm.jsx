@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { withRouter } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
@@ -23,18 +23,30 @@ import{
 import LoadingSpinner from 'components/Spinner/LoadingSpinner.jsx'
 import { DismissAlert } from 'components/Alerts/'
 
-const LogInFormBase = ({dispatch, user, isFetching, errorMessage, history}) => {
+const LogInFormBase = ({dispatch, history}) => {
 
   const {register, handleSubmit, errors} = useForm()
 
+  const [isFetching, setIsFetching] = useState(false)
+  const [user, setUser] = useState(null)
+  const [errorMessage, setErrorMessage] = useState(null)
+
+
   useEffect(() => {
-    if(!objectIsEmpty(user))
+    if(user)
       setTimeout(() => history.push(ROUTES.HOME), 2000)
   }, [user, history])
 
   const signInUser = data => {
-    console.log(data)
-    dispatch(logInUser(data))
+    setIsFetching(true)
+    logInUser(data)
+    .then(user => {
+      setUser(user)
+      setIsFetching(false)
+    }, errorMessage => {
+      setErrorMessage(errorMessage)
+      setIsFetching(false)
+    })
   }
 
   if(isFetching)

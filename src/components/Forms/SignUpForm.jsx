@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 
 import { connect } from 'react-redux'
@@ -26,14 +26,24 @@ import{
 import LoadingSpinner from 'components/Spinner/LoadingSpinner.jsx'
 import { DismissAlert } from 'components/Alerts/'
 
-const SignUpFormBase = ({dispatch, user, isFetching, errorMessage, history}) => {
+const SignUpFormBase = ({history}) => {
 
   const {register, handleSubmit, errors, getValues} = useForm()
 
+  const [isFetching, setIsFetching] = useState(false)
+  const [user, setUser] = useState(null)
+  const [errorMessage, setErrorMessage] = useState(null)
+
   const handleForm = data => {
-    console.log(data)
-    debugger
-    dispatch(createUser(data))
+    setIsFetching(true)
+    createUser(data)
+    .then(user => {
+      setUser(user)
+      setIsFetching(false)
+    }, errorMessage => {
+      setErrorMessage(errorMessage)
+      setIsFetching(false)
+    })
   }
 
   useEffect(() => {
@@ -44,7 +54,7 @@ const SignUpFormBase = ({dispatch, user, isFetching, errorMessage, history}) => 
   if(isFetching)
     return <LoadingSpinner/>
 
-  if(!objectIsEmpty(user)){
+  if(user){
     return <DismissAlert
             color = "success"
             message = {"El usuario con email " + user.email +  " se ha creado correctamente"}
