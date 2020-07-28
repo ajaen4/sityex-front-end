@@ -11,20 +11,10 @@ import "assets/demo/nucleo-icons-page-styles.css"
 //Cache data in order to work offline
 import * as serviceWorker from './serviceWorker'
 
-import App from 'components/App.jsx'
-
-import Unirest, { UnirestContext } from 'apis/Unirest'
-import initStore from 'store'
-import { Provider } from 'react-redux'
-
-const store = initStore()
+import App from './App.jsx'
 
 ReactDOM.render(
-  <Provider store = {store}>
-      <UnirestContext.Provider value = {new Unirest()}>
-        <App />
-      </UnirestContext.Provider>
-  </Provider>,
+        <App />,
   document.getElementById('root'),
 )
 

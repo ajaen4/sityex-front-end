@@ -8,8 +8,9 @@ import { useForm } from 'react-hook-form'
 
 //Custom functionality
 import { sameAs } from "helpers/validators.js"
-import { prettyCity, objectIsEmpty } from 'helpers/usefulFunctions'
+import { objectIsEmpty } from 'helpers/usefulFunctions'
 import { createUser } from 'actions'
+import * as ROUTES from 'constants/routes'
 
 //reactstrap components
 import{
@@ -18,28 +19,36 @@ import{
   InputGroupAddon,
   InputGroupText,
   InputGroup,
-  FormFeedback,
-  Alert
+  FormFeedback
 } from "reactstrap"
 
 //Custom components
 import LoadingSpinner from 'components/Spinner/LoadingSpinner.jsx'
+import { DismissAlert } from 'components/Alerts/'
 
-const SignUpFormBase = ({dispatch, user, isFetching, errorMessage}) => {
+const SignUpFormBase = ({dispatch, user, isFetching, errorMessage, history}) => {
 
   const {register, handleSubmit, errors, getValues} = useForm()
 
   const handleForm = data => {
     console.log(data)
+    debugger
     dispatch(createUser(data))
   }
+
+  useEffect(() => {
+    if(!objectIsEmpty(user))
+      setTimeout(() => history.push(ROUTES.HOME), 3000)
+  }, [user, history])
 
   if(isFetching)
     return <LoadingSpinner/>
 
   if(!objectIsEmpty(user)){
-    debugger
-    return <Alert color = "success">El usuario con email {user.email} se ha creado correctamente</Alert>
+    return <DismissAlert
+            color = "success"
+            message = {"El usuario con email " + user.email +  " se ha creado correctamente"}
+            />
   }
 
   return (
@@ -81,16 +90,16 @@ const SignUpFormBase = ({dispatch, user, isFetching, errorMessage}) => {
           </InputGroupText>
         </InputGroupAddon>
         <Input
-          invalid={errors.username !== undefined}
+          invalid={errors.userName !== undefined}
           innerRef={
             register({
               required: true
               })}
-          name = "username"
+          name = "userName"
           placeholder="Nombre de usuario..."
           type="text"
         ></Input>
-        {errors.username && errors.username.type === 'required' &&
+        {errors.userName && errors.userName.type === 'required' &&
         <FormFeedback>Se debe introducir el nombre de usuario</FormFeedback>
         }
     </InputGroup>
@@ -158,7 +167,7 @@ const SignUpFormBase = ({dispatch, user, isFetching, errorMessage}) => {
         Crea una cuenta
       </Button>
     </form>
-    {(errorMessage !== "") && <Alert color = "danger">{errorMessage}</Alert>}
+    {(errorMessage !== "") && <DismissAlert color = "danger" message = {errorMessage}/>}
   </>
   )
 }

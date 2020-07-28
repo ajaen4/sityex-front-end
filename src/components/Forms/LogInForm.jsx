@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { withRouter } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
@@ -16,30 +16,32 @@ import{
   InputGroupAddon,
   InputGroupText,
   InputGroup,
-  FormFeedback,
-  Alert
+  FormFeedback
 } from "reactstrap"
 
 //Custom components
 import LoadingSpinner from 'components/Spinner/LoadingSpinner.jsx'
+import { DismissAlert } from 'components/Alerts/'
 
-const LogInFormBase = ({dispatch, user, isFetching, errorMessage}) => {
+const LogInFormBase = ({dispatch, user, isFetching, errorMessage, history}) => {
 
   const {register, handleSubmit, errors} = useForm()
+
+  useEffect(() => {
+    if(!objectIsEmpty(user))
+      setTimeout(() => history.push(ROUTES.HOME), 2000)
+  }, [user, history])
 
   const signInUser = data => {
     console.log(data)
     dispatch(logInUser(data))
   }
 
-  debugger
   if(isFetching)
     return <LoadingSpinner/>
 
-  if(!objectIsEmpty(user)){
-    debugger
-    return <Alert color = "success">El usuario con email {user.email} ha iniciado sesion correctamente</Alert>
-  }
+  if(!objectIsEmpty(user))
+    return <DismissAlert color = "success" message = {"Se ha iniciado sesion correctamente"}/>
 
   return (
       <>
@@ -113,12 +115,13 @@ const LogInFormBase = ({dispatch, user, isFetching, errorMessage}) => {
         </Button>
       </form>
     {(errorMessage !== "") &&
-    <Alert
-    color = "danger"
-    style = {{
-      marginTop: "15px"
-    }}
-    >{errorMessage}</Alert>}
+      <DismissAlert
+      color = "danger"
+      style = {{
+        marginTop: "15px"
+      }}
+      message = {errorMessage}
+      />}
     </>
   )
 }
