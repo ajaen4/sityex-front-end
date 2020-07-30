@@ -17,7 +17,7 @@ function DefaultFooter() {
                 <a
                   target="_blank"
                 >
-                  THEERASMUSPROJECT
+                  ERASMUSPROJECT
                 </a>
               </li>
               <li>
@@ -42,7 +42,7 @@ function DefaultFooter() {
               href=""
               target="_blank"
             >
-              THEERASMUSPROJECT
+              ERASMUSPROJECT
             </a>
             . Coded by{" "}
             <a

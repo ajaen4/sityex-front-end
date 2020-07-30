@@ -13,25 +13,25 @@ import {
 } from "reactstrap";
 
 
-function ScrollRecomendations(props){
+function ScrollRecomendations({currRecomendations, deleteRec, windowWidth}){
 
-  const [recomendations, setRecomendations] = React.useState(props.currRecomendations);
+  const [recomendations, setRecomendations] = React.useState(currRecomendations);
   const [scrollHeight, setScrollHeight] = React.useState("0px");
 
   React.useEffect(() => {
 
-    if(props.windowWidth < 800 && props.currRecomendations.length === 0){
+    if(windowWidth < 800 && currRecomendations.length === 0){
       setScrollHeight("0px");
     }
     else{
-    setScrollHeight(props.windowWidth > 800 ? "500px" : "200px");
+    setScrollHeight(windowWidth > 800 ? "500px" : "200px");
     }
-    setRecomendations(props.currRecomendations);
+    setRecomendations(currRecomendations);
 
-  }, [props]);
+  }, [windowWidth, currRecomendations]);
 
-  const deleteRec = (event) => {
-    props.deleteRec(parseInt(event._targetInst.key));
+  const deleteRecom = (event) => {
+    deleteRec(parseInt(event._targetInst.key));
   };
 
   const renderItem = (index, key) => {
@@ -39,25 +39,25 @@ function ScrollRecomendations(props){
               width: "80%",
               marginTop: "5px",
               marginBottom: "5px"
-            }}>
-            <CardBody
-            key = {recomendations[index].name.trim()}>
+            }}
+            key = {recomendations[index].name.toString()}>
+            <CardBody>
               <Row style = {{
                   justifyContent: "center",
                   alignItems: "center",
                   textAlign: "center"
-                  }}
-                  key={key}>
+                  }}>
                 <Col lg = "3" md = "12" sm = "12" style = {{maxWidth: "70px"}} >
                 <img  alt = "recomendations from users" src = {require("assets/icons/pin_blue.png")} ></img>
                 </Col>
-                <div lg = "6" md = "12" sm = "12" style = {{
+                <div
+                lg = "6" md = "12" sm = "12" style = {{
                   textAlign: "center"
                 }}>
                   {recomendations[index].name.trim()}
                 </div>
                 <Col lg = "3" md = "12" sm = "12">
-                <Button className="btn-round btn-icon" color="danger" onClick = {deleteRec} >
+                <Button className="btn-round btn-icon" color="danger" onClick = {deleteRecom} >
                   <i key = {index} className="now-ui-icons ui-1_simple-remove" />
                 </Button>
                 </Col>

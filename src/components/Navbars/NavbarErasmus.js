@@ -1,6 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
-// reactstrap components
+
+import React, {useEffect} from "react"
+import { Link, withRouter } from "react-router-dom"
+
 import {
   Collapse,
   DropdownToggle,
@@ -14,44 +15,64 @@ import {
   Nav,
   Container,
   UncontrolledTooltip
-} from "reactstrap";
+} from "reactstrap"
 
-function NavbarErasmus() {
-  const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
-  const [collapseOpen, setCollapseOpen] = React.useState(false);
+//Custom functionality
+import * as ROUTES from 'constants/routes'
 
-  React.useEffect(() => {
+const chooseNavbarClass = (history) => {
+  const currPath = history.location.pathname.split("/")[1]
+  const destinationPath = ROUTES.DESTINATION.split("/")[1]
+  if(currPath === destinationPath){
+      return "transparent"
+    }
+  else return "info"
+}
+
+const NavbarErasmus = ({ history, auth }) => {
+
+  const [navbarColor, setNavbarColor] = React.useState(chooseNavbarClass(history))
+  const [collapseOpen, setCollapseOpen] = React.useState(false)
+
+  useEffect(() => {
+    setNavbarColor(chooseNavbarClass(history))
+
     const updateNavbarColor = () => {
       if (
         document.documentElement.scrollTop > 399 ||
         document.body.scrollTop > 399
       ) {
-        setNavbarColor("");
+        setNavbarColor("")
+
       } else if (
         document.documentElement.scrollTop < 400 ||
         document.body.scrollTop < 400
       ) {
-        setNavbarColor("navbar-transparent");
+        setNavbarColor(chooseNavbarClass(history))
       }
-    };
-    window.addEventListener("scroll", updateNavbarColor);
-    return function cleanup() {
-      window.removeEventListener("scroll", updateNavbarColor);
-    };
-  });
+    }
 
+    window.addEventListener("scroll", updateNavbarColor)
+    document.body.classList.add("sidebar-collapse")
+
+    return function cleanup() {
+      window.removeEventListener("scroll", updateNavbarColor)
+      document.body.classList.remove("sidebar-collapse")
+    }
+  }, [navbarColor, history])
+  
   return (
     <>
       {collapseOpen ? (
         <div
           id="bodyClick"
           onClick={() => {
-            document.documentElement.classList.toggle("nav-open");
-            setCollapseOpen(false);
+            document.documentElement.classList.toggle("nav-open")
+            setCollapseOpen(false)
           }}
         />
       ) : null}
-      <Navbar className={"fixed-top " + navbarColor} color="info" expand="lg">
+      <Navbar className = "fixed-top " color= {navbarColor} expand="lg">
         <Container>
           <div className="navbar-translate">
             <NavbarBrand
@@ -63,8 +84,8 @@ function NavbarErasmus() {
             <button
               className="navbar-toggler navbar-toggler"
               onClick={() => {
-                document.documentElement.classList.toggle("nav-open");
-                setCollapseOpen(!collapseOpen);
+                document.documentElement.classList.toggle("nav-open")
+                setCollapseOpen(!collapseOpen)
               }}
               aria-expanded={collapseOpen}
               type="button"
@@ -186,7 +207,7 @@ function NavbarErasmus() {
         </Container>
       </Navbar>
     </>
-  );
+  )
 }
 
-export default NavbarErasmus;
+export default withRouter(NavbarErasmus)
