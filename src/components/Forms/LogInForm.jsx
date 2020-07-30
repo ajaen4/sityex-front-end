@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react'
 
 import { withRouter } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import { connect } from 'react-redux'
 
 //Custom functionality
 import * as ROUTES from 'constants/routes'
@@ -23,7 +22,7 @@ import{
 import LoadingSpinner from 'components/Spinner/LoadingSpinner.jsx'
 import { DismissAlert } from 'components/Alerts/'
 
-const LogInFormBase = ({dispatch, history}) => {
+const LogInFormBase = ({history}) => {
 
   const {register, handleSubmit, errors} = useForm()
 
@@ -126,7 +125,7 @@ const LogInFormBase = ({dispatch, history}) => {
           Crea una cuenta
         </Button>
       </form>
-    {(errorMessage !== "") &&
+    {(errorMessage !== null) &&
       <DismissAlert
       color = "danger"
       style = {{
@@ -138,12 +137,7 @@ const LogInFormBase = ({dispatch, history}) => {
   )
 }
 
-const mapStateToProps = state => ({
-  user: state.logInUser.data,
-  isFetching: state.logInUser.isFetching,
-  errorMessage: state.logInUser.errorMessage
-})
 
-const LogInForm = connect(mapStateToProps)(withRouter(LogInFormBase))
+const LogInForm = withRouter(LogInFormBase)
 
 export default LogInForm

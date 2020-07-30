@@ -1,8 +1,6 @@
 
 import React, { useEffect, useState } from 'react'
 
-
-import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 
@@ -177,17 +175,11 @@ const SignUpFormBase = ({history}) => {
         Crea una cuenta
       </Button>
     </form>
-    {(errorMessage !== "") && <DismissAlert color = "danger" message = {errorMessage}/>}
+    {(errorMessage !== null) && <DismissAlert color = "danger" message = {errorMessage}/>}
   </>
   )
 }
 
-const mapStateToProps = state => ({
-  user: state.createUser.data,
-  isFetching: state.createUser.isFetching,
-  errorMessage: state.createUser.errorMessage
-})
-
-const SignUpForm = connect(mapStateToProps)(withRouter(SignUpFormBase))
+const SignUpForm = withRouter(SignUpFormBase)
 
 export default SignUpForm

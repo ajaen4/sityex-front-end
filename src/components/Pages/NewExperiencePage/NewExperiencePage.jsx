@@ -50,13 +50,8 @@ const NewExperiencePage = ({dispatch, selectedCity, citiesIndex}) => {
   }, [dispatch])
 
   useEffect(() => {
-    document.body.classList.add("profile-page")
-    document.body.classList.add("sidebar-collapse")
     window.addEventListener("resize", updateWindowDimensions)
-
     return function cleanup() {
-      document.body.classList.remove("profile-page")
-      document.body.classList.remove("sidebar-collapse")
       window.removeEventListener("resize", updateWindowDimensions)
     }
   })
@@ -137,7 +132,7 @@ const NewExperiencePage = ({dispatch, selectedCity, citiesIndex}) => {
                       id="exampleFormControlSelect1"
                       className="form-control-lg"
                       type="select">
-                      {(Object.keys(citiesIndex).sort().map( item =>
+                      {citiesIndex !== null && (Object.keys(citiesIndex).sort().map( item =>
                         <option
                         tag="a"
                         href = "#"

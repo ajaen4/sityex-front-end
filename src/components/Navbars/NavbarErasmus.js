@@ -1,7 +1,6 @@
 
-import React from "react"
-import { Link } from "react-router-dom"
-import { connect } from 'react-redux'
+import React, {useEffect} from "react"
+import { Link, withRouter } from "react-router-dom"
 
 import {
   Collapse,
@@ -18,23 +17,26 @@ import {
   UncontrolledTooltip
 } from "reactstrap"
 
-const chooseNavbarClass = (color) => {
-  switch(color){
-    case "blue":
-      return ""
-    case "transparent":
-      return "navbar-transparent"
-    default:
-      return ""
-  }
+//Custom functionality
+import * as ROUTES from 'constants/routes'
+
+const chooseNavbarClass = (history) => {
+  const currPath = history.location.pathname.split("/")[1]
+  const destinationPath = ROUTES.DESTINATION.split("/")[1]
+  if(currPath === destinationPath){
+      return "transparent"
+    }
+  else return "info"
 }
 
-function NavbarErasmus({ color, test }) {
+const NavbarErasmus = ({ history, auth }) => {
 
-  const [navbarColor, setNavbarColor] = React.useState(chooseNavbarClass(color))
+  const [navbarColor, setNavbarColor] = React.useState(chooseNavbarClass(history))
   const [collapseOpen, setCollapseOpen] = React.useState(false)
 
-  React.useEffect(() => {
+  useEffect(() => {
+    setNavbarColor(chooseNavbarClass(history))
+
     const updateNavbarColor = () => {
       if (
         document.documentElement.scrollTop > 399 ||
@@ -46,15 +48,19 @@ function NavbarErasmus({ color, test }) {
         document.documentElement.scrollTop < 400 ||
         document.body.scrollTop < 400
       ) {
-        setNavbarColor(chooseNavbarClass(color))
+        setNavbarColor(chooseNavbarClass(history))
       }
     }
+
     window.addEventListener("scroll", updateNavbarColor)
+    document.body.classList.add("sidebar-collapse")
+
     return function cleanup() {
       window.removeEventListener("scroll", updateNavbarColor)
+      document.body.classList.remove("sidebar-collapse")
     }
-  })
-
+  }, [navbarColor, history])
+  
   return (
     <>
       {collapseOpen ? (
@@ -66,7 +72,7 @@ function NavbarErasmus({ color, test }) {
           }}
         />
       ) : null}
-      <Navbar className={"fixed-top " + navbarColor} color="info" expand="lg">
+      <Navbar className = "fixed-top " color= {navbarColor} expand="lg">
         <Container>
           <div className="navbar-translate">
             <NavbarBrand
@@ -204,4 +210,4 @@ function NavbarErasmus({ color, test }) {
   )
 }
 
-export default connect()(NavbarErasmus)
+export default withRouter(NavbarErasmus)

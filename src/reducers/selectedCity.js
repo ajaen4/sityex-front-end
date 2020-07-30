@@ -4,9 +4,11 @@ import {
   FETCH_CITY_SUCCESS,
   REQUESTING_CITY } from 'types'
 
+const INITIAL_STATE = null
+
 const initSelectedCity = () => {
 
-  const data = (state = {}, action) => {
+  const data = (state = INITIAL_STATE, action) => {
     switch(action.type){
       case FETCH_CITY_SUCCESS:
         return action.cityData

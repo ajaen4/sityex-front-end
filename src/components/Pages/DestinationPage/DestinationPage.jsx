@@ -7,7 +7,6 @@ import { connect } from 'react-redux'
 import { withAuthorization } from 'session'
 import { prettyCity } from 'helpers/usefulFunctions'
 import { fetchCity } from 'actions'
-import { objectIsEmpty } from 'helpers/usefulFunctions'
 
 //reactstrap components
 import {
@@ -23,7 +22,6 @@ import {
 } from "reactstrap"
 
 //Custom UI components
-import NavbarErasmus from "components/Navbars/NavbarErasmus.js"
 import DestinationPageHeader from "components/Headers/DestinationPageHeader.js"
 import DefaultFooter from "components/Footers/DefaultFooter.js"
 import WrappedMap from 'components/GoogleMaps/MapComponent.js'
@@ -40,24 +38,20 @@ const DestinationPage = ({selectedCity, dispatch}) => {
   const { location } = useParams()
 
   useEffect(() => {
-    dispatch(fetchCity(prettyCity(location))
-  )}, [dispatch, location])
-
-  useEffect(() => {
     document.body.classList.add("profile-page")
-    document.body.classList.add("sidebar-collapse")
-
     return function cleanup() {
       document.body.classList.remove("profile-page")
-      document.body.classList.remove("sidebar-collapse")
     }
   })
 
-  if(selectedCity.name !== prettyCity(location) || objectIsEmpty(selectedCity)) return <CenteredLoadingSpinner/>
+  useEffect(() => {
+    dispatch(fetchCity(prettyCity(location))
+  )}, [dispatch, location])
+
+  if(selectedCity === null || (selectedCity.name !== prettyCity(location))) return <CenteredLoadingSpinner/>
 
   return (
     <>
-      <NavbarErasmus color = "transparent"/>
         <DestinationPageHeader cityName = {selectedCity.displayName} countryName = {selectedCity.countryName} />
         <div className="mySection">
           <Container>

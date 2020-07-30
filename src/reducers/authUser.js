@@ -4,7 +4,9 @@ import {
   SET_AUTH_USER,
   SET_AUTH_USER_ERROR } from 'types'
 
-const initLogInUser = () => {
+const INITIAL_STATE = null
+
+const initAuthUser = () => {
 
   const data = (state = {}, action) => {
     switch(action.type){
@@ -14,7 +16,7 @@ const initLogInUser = () => {
     }
   }
 
-  const errorMessage = (state = "", action) => {
+  const errorMessage = (state = INITIAL_STATE, action) => {
     switch(action.type){
       case SET_AUTH_USER_ERROR:
         return action.errorMessage
@@ -29,6 +31,6 @@ const initLogInUser = () => {
 
 }
 
-const logInUser = initLogInUser()
+const authUser = initAuthUser()
 
-export default logInUser
+export default authUser

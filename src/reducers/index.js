@@ -2,14 +2,14 @@
 import { combineReducers } from 'redux'
 
 //----------- AUTH
-import setAuthUser from 'reducers/setAuthUser.js'
+import authUser from 'reducers/authUser.js'
 
 //----------- CITIES
 import citiesIndex from 'reducers/citiesIndex.js'
 import selectedCity from 'reducers/selectedCity.js'
 
 const serviceApp = combineReducers({
-  setAuthUser,
+  authUser,
   citiesIndex,
   selectedCity
 })

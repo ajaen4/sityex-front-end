@@ -24,8 +24,7 @@ export const fetchCitiesIndex = () => (dispatch, getState) => {
 
 export const fetchCity = cityName => (dispatch, getState) => {
 
-  debugger
-  if(getState().selectedCity.data.name === cityName) { return Promise.resolve() }
+  if(getState().selectedCity.data !== null && getState().selectedCity.data.name === cityName) { return Promise.resolve() }
 
   dispatch({type: REQUESTING_CITY})
   return api.doGetCity(cityName)

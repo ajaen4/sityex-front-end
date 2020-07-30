@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 
 import { withRouter } from 'react-router-dom';
 
@@ -10,24 +10,12 @@ import{
   CardTitle
 } from "reactstrap";
 
-import NavbarErasmus from "components/Navbars/NavbarErasmus.js";
 import SignUpForm from "components/Forms/SignUpForm.jsx";
 
-class SignUpPageBase extends Component {
-
-  constructor (props){
-
-    super(props);
-    this.state = {
-      authUser: props.authUser
-    };
-  }
-
-  render(){
+const  SignUpPageBase = () => {
 
     return (
       <>
-      <NavbarErasmus color = "blue"/>
       <Container className="content" style = {{
         marginTop: "100px",
         justifyContent: "center",
@@ -45,12 +33,9 @@ class SignUpPageBase extends Component {
         </Card>
       </Container>
     </>
-    );
-  }
+    )
 }
-
 
 const SignUpPage = withRouter(SignUpPageBase);
 
-export {SignUpForm};
 export default SignUpPage;

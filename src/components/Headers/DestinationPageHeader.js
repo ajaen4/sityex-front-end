@@ -1,5 +1,6 @@
 import React, {useEffect, createRef} from "react";
 
+import { prettyCity } from 'helpers/usefulFunctions'
 // reactstrap components
 import { Container } from "reactstrap";
 
@@ -33,7 +34,7 @@ function DestinationPageHeader({cityName, countryName}) {
         <div
           className="page-header-image"
           style={{
-            backgroundImage: "url(" + require("assets/img/cityImage/" + cityName.replace(" ","-") + ".jpg") + ")"
+            backgroundImage: "url(" + require("assets/img/cityImage/" + prettyCity(cityName).replace(" ","-") + ".jpg") + ")"
           }}
           ref={pageHeader}
         ></div>
