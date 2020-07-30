@@ -1,38 +1,28 @@
 
-import React from "react";
-import ReactDOM from "react-dom";
+import React from "react"
+import ReactDOM from "react-dom"
 
 // styles for this kit
-import "assets/css/bootstrap.min.css";
-import "assets/scss/now-ui-kit.scss";
-import "assets/demo/demo.css";
-import "assets/demo/nucleo-icons-page-styles.css";
+import "assets/css/bootstrap.min.css"
+import "assets/scss/now-ui-kit.scss"
+import "assets/demo/demo.css"
+import "assets/demo/nucleo-icons-page-styles.css"
 
 //Cache data in order to work offline
-import * as serviceWorker from './serviceWorker';
+import * as serviceWorker from './serviceWorker'
 
-import App from './components/App.jsx';
-
-//Firebase
-import Firebase, { FirebaseContext } from './components/Firebase';
-
-//Unirest
-import Unirest, { UnirestContext } from './components/Unirest';
+import App from './App.jsx'
 
 ReactDOM.render(
-  <FirebaseContext.Provider value={new Firebase()}>
-  <UnirestContext.Provider value={new Unirest()}>
-    <App />
-  </UnirestContext.Provider>
-  </FirebaseContext.Provider>,
+        <App />,
   document.getElementById('root'),
-);
+)
 
 /*if (module.hot) {
-module.hot.accept();
+module.hot.accept()
 }*/
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+serviceWorker.unregister()
