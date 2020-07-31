@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 //Custom funcionality
-import { withAuthorization } from 'session'
+import { withAuth } from 'session'
 import { prettyCity } from 'helpers/usefulFunctions'
 import { fetchCity } from 'actions'
 
@@ -159,4 +159,4 @@ const DestinationPage = ({selectedCity, dispatch}) => {
 
 const mapStateToProps = state => ({selectedCity: state.selectedCity.data})
 
-export default connect(mapStateToProps)(withAuthorization()((DestinationPage)))
+export default connect(mapStateToProps)(withAuth()(DestinationPage))

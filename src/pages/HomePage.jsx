@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { connect } from 'react-redux'
 
 //Custom functionality
-import { withAuthorization } from 'session'
+import { withAuth } from 'session'
 import { fetchCitiesIndex } from 'actions'
 import { objectIsEmpty } from 'helpers/usefulFunctions'
 
@@ -226,4 +226,4 @@ const mapStateToProps = state => ({
   isFetching: state.citiesIndex.isFetching
 })
 
-export default connect(mapStateToProps)(withAuthorization()(HomePage))
+export default connect(mapStateToProps)(withAuth()(HomePage))

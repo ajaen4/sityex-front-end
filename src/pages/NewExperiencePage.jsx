@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Geocode from "react-geocode"
 
 //Custom functionality
-import { withAuthorization } from 'session'
+import { withAuth } from 'session'
 import { prettyCity } from 'helpers/usefulFunctions'
 import { fetchCitiesIndex, fetchCity, updateMarkers } from 'actions'
 import { objectIsEmpty } from 'helpers/usefulFunctions'
@@ -377,4 +377,4 @@ const mapStateToProps = state => ({
   selectedCity: state.selectedCity.data
 })
 
-export default connect(mapStateToProps)(withAuthorization()(NewExperiencePage))
+export default connect(mapStateToProps)(withAuth()(NewExperiencePage))
