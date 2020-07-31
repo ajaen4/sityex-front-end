@@ -9,6 +9,8 @@ export const createUser = (signUpData) => api.createUser(signUpData)
 
 export const logInUser = (logInData) => api.logIn(logInData)
 
+export const signOutUser = () => api.signOut()
+
 export const onAuthStateChanged = (onAuthCallback) => api.onAuthStateChanged(onAuthCallback)
 
 export const storeAuthUser = (authUser) => (dispatch, getState) => {

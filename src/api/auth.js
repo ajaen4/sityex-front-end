@@ -3,7 +3,6 @@ import 'firebase/auth'
 
 import db from 'db'
 
-//Function that signs in user with email and password
 export const logIn = async ({email, password}) => {
   try{
     const resp = await firebase.auth().signInWithEmailAndPassword(email, password)
@@ -48,7 +47,15 @@ export const getUserData = (uid) =>
   .then(snapshot => snapshot.data())
 
 //Signs out user
-export const signOut = () => firebase.auth().signOut()
+export const signOut = async () => {
+  try{
+    await firebase.auth().signOut()
+    return Promise.resolve()
+  }
+  catch (error) {
+    return Promise.reject(error.message)
+  }
+}
 
 //Sends and email to reset the password
 export const resetPassword = email => firebase.auth().sendPasswordResetEmail(email)

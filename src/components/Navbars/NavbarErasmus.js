@@ -19,6 +19,7 @@ import {
 
 //Custom functionality
 import * as ROUTES from 'constants/routes'
+import { signOutUser } from 'actions'
 
 const chooseNavbarClass = (history) => {
   const currPath = history.location.pathname.split("/")[1]
@@ -59,11 +60,13 @@ const NavbarErasmus = ({ history, auth }) => {
       window.removeEventListener("scroll", updateNavbarColor)
       document.body.classList.remove("sidebar-collapse")
     }
-  }, [history, navbarColor])
+  // eslint-disable-next-line
+  }, [])
 
   useEffect(() => {
     setNavbarColor(chooseNavbarClass(history))
-  }, [history.location.pathname, history])
+  // eslint-disable-next-line
+  }, [history.location.pathname])
 
   return (
     <>
@@ -159,6 +162,7 @@ const NavbarErasmus = ({ history, auth }) => {
                   Follow us on Instagram
                 </UncontrolledTooltip>
               </NavItem>
+              { auth &&
               <UncontrolledDropdown nav>
                 <DropdownToggle
                   aria-haspopup={true}
@@ -170,7 +174,7 @@ const NavbarErasmus = ({ history, auth }) => {
                   nav
                   onClick={e => e.preventDefault()}
                 >
-                  Perfil / Iniciar sesion
+                  {" " + auth.userName + " "}
                 </DropdownToggle>
                 <DropdownMenu aria-labelledby="navbarDropdownMenuLink">
                   <DropdownItem
@@ -200,12 +204,13 @@ const NavbarErasmus = ({ history, auth }) => {
                   </DropdownItem>
                   <DropdownItem
                     href="#pablo"
-                    onClick={e => e.preventDefault()}
+                    onClick={e => signOutUser()}
                   >
                     Cerrar sesion
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
+            }
             </Nav>
           </Collapse>
         </Container>
