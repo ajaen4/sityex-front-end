@@ -4,11 +4,11 @@ import React from 'react'
 
 import { Route } from 'react-router-dom'
 
-import SignUpPage from 'components/Pages/SignUpPage'
-import LogInPage from 'components/Pages/LogInPage'
-import HomePage from 'components/Pages/HomePage'
-import DestinationPage from 'components/Pages/DestinationPage'
-import NewExperiencePage from 'components/Pages/NewExperiencePage'
+import { SignUpPage } from 'pages'
+import { LogInPage } from 'pages'
+import { HomePage } from 'pages'
+import { DestinationPage } from 'pages'
+import { NewExperiencePage } from 'pages'
 
 import * as ROUTES from 'constants/routes'
 

@@ -26,7 +26,7 @@ import DestinationPageHeader from "components/Headers/DestinationPageHeader.js"
 import DefaultFooter from "components/Footers/DefaultFooter.js"
 import WrappedMap from 'components/GoogleMaps/MapComponent.js'
 import Experiences from 'components/Experiences/Experiences.jsx'
-import CityInfo from 'components/Pages/DestinationPage/CityInfo.jsx'
+import CityInfo from 'components/CityData/CityInfo.jsx'
 import CenteredLoadingSpinner from 'components/Spinner/CenteredLoadingSpinner'
 
 const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places`

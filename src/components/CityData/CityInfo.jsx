@@ -1,5 +1,5 @@
 
-import React, {Component} from "react";
+import React, {Component} from "react"
 
 // reactstrap components
 import {
@@ -7,7 +7,7 @@ import {
   Collapse,
   Card,
   CardBody
-} from "reactstrap";
+} from "reactstrap"
 
 const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
 
@@ -15,7 +15,7 @@ const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", 
 class CityInfo extends Component {
 
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state =
         {
@@ -23,11 +23,11 @@ class CityInfo extends Component {
           cityData: props.cityData,
           isOpen: false,
           currencySymbol: "€"
-        };
+        }
 
   }
 
-  toggle = () => this.setState({isOpen: !this.state.isOpen});
+  toggle = () => this.setState({isOpen: !this.state.isOpen})
 
   render() {
 
@@ -36,27 +36,27 @@ class CityInfo extends Component {
       cityData,
       isOpen,
       currencySymbol
-    } = this.state;
+    } = this.state
 
     if(cityData !== null){
 
-      const prices = cityData.prices;
-      const weather = cityData.weather;
-      const population = new Intl.NumberFormat("es-418").format(cityData.population);
+      const prices = cityData.prices
+      const weather = cityData.weather
+      const population = new Intl.NumberFormat("es-418").format(cityData.population)
 
       //Extract prices from document
 
-      const rent = new Intl.NumberFormat("es-418").format(prices["Apartment (1 bedroom) Outside of Centre"].replace(",", ""));
-      const apartmentCost = new Intl.NumberFormat("es-418").format(prices["Basic (Electricity, Heating, Cooling, Water, Garbage) for 85m2 Apartment"]);
-      const internetCost = new Intl.NumberFormat("es-418").format(prices["Internet (60 Mbps or More, Unlimited Data, Cable/ADSL)"]);
-      const salaryAvg = new Intl.NumberFormat("es-418").format(prices["Average Monthly Net Salary (After Tax)"].replace(",", ""));
-      const mobileFee = new Intl.NumberFormat("es-418").format(prices["1 min. of Prepaid Mobile Tariff Local (No Discounts or Plans)"]);
-      const costOfCinema = new Intl.NumberFormat("es-418").format(prices["Cinema, International Release, 1 Seat"]);
-      const costOfApples = new Intl.NumberFormat("es-418").format(prices["Apples (1kg)"]);
-      const costOfEggs = new Intl.NumberFormat("es-418").format(prices["Eggs (regular) (12)"]);
-      const costOfChicken = new Intl.NumberFormat("es-418").format(prices["Chicken Breasts (Boneless, Skinless), (1kg)"]);
-      const costOfBeer = new Intl.NumberFormat("es-418").format(prices["Domestic Beer (0.5 liter bottle)"]);
-      const costOfMilk = new Intl.NumberFormat("es-418").format(prices["Milk (regular), (1 liter)"]);
+      const rent = new Intl.NumberFormat("es-418").format(prices["Apartment (1 bedroom) Outside of Centre"].replace(",", ""))
+      const apartmentCost = new Intl.NumberFormat("es-418").format(prices["Basic (Electricity, Heating, Cooling, Water, Garbage) for 85m2 Apartment"])
+      const internetCost = new Intl.NumberFormat("es-418").format(prices["Internet (60 Mbps or More, Unlimited Data, Cable/ADSL)"])
+      const salaryAvg = new Intl.NumberFormat("es-418").format(prices["Average Monthly Net Salary (After Tax)"].replace(",", ""))
+      const mobileFee = new Intl.NumberFormat("es-418").format(prices["1 min. of Prepaid Mobile Tariff Local (No Discounts or Plans)"])
+      const costOfCinema = new Intl.NumberFormat("es-418").format(prices["Cinema, International Release, 1 Seat"])
+      const costOfApples = new Intl.NumberFormat("es-418").format(prices["Apples (1kg)"])
+      const costOfEggs = new Intl.NumberFormat("es-418").format(prices["Eggs (regular) (12)"])
+      const costOfChicken = new Intl.NumberFormat("es-418").format(prices["Chicken Breasts (Boneless, Skinless), (1kg)"])
+      const costOfBeer = new Intl.NumberFormat("es-418").format(prices["Domestic Beer (0.5 liter bottle)"])
+      const costOfMilk = new Intl.NumberFormat("es-418").format(prices["Milk (regular), (1 liter)"])
 
       const checkPrices = rent
                         + apartmentCost
@@ -68,13 +68,13 @@ class CityInfo extends Component {
                         + costOfEggs
                         + costOfChicken
                         + costOfBeer
-                        + costOfMilk;
+                        + costOfMilk
 
       const checkSupermarket = costOfApples
                         + costOfEggs
                         + costOfChicken
                         + costOfBeer
-                        + costOfMilk;
+                        + costOfMilk
 
       const histAvgTempIds = [
         {id: "first", value: 0},
@@ -89,16 +89,16 @@ class CityInfo extends Component {
         {id: "tenth", value: 9},
         {id: "eleventh", value: 10},
         {id: "twelth", value:11}
-          ];
+          ]
 
-      const histAvgTemp = weather.avgTemp;
-      let sum = 0;
+      const histAvgTemp = weather.avgTemp
+      let sum = 0
       for(let temp in weather.avgTemp){
-        sum += parseFloat(weather.avgTemp[temp]);
+        sum += parseFloat(weather.avgTemp[temp])
       }
-      const histSunset= weather.sunset;
+      const histSunset= weather.sunset
 
-      const yearAvgTemp = (sum / 12).toFixed(2);
+      const yearAvgTemp = (sum / 12).toFixed(2)
 
       return (
         <Container className = "centerText" style = {{
@@ -231,10 +231,10 @@ class CityInfo extends Component {
           </Collapse>
         </Container>
 
-      );
-  } else return null;
+      )
+  } else return null
 
   }
 }
 
-export default CityInfo;
+export default CityInfo
