@@ -26,7 +26,9 @@ const chooseNavbarClass = (history) => {
   if(currPath === destinationPath){
       return "transparent"
     }
-  else return "info"
+  else {
+    return "info"
+  }
 }
 
 const NavbarErasmus = ({ history, auth }) => {
@@ -35,14 +37,12 @@ const NavbarErasmus = ({ history, auth }) => {
   const [collapseOpen, setCollapseOpen] = React.useState(false)
 
   useEffect(() => {
-    setNavbarColor(chooseNavbarClass(history))
-
     const updateNavbarColor = () => {
       if (
         document.documentElement.scrollTop > 399 ||
         document.body.scrollTop > 399
       ) {
-        setNavbarColor("")
+        setNavbarColor("info")
 
       } else if (
         document.documentElement.scrollTop < 400 ||
@@ -59,8 +59,12 @@ const NavbarErasmus = ({ history, auth }) => {
       window.removeEventListener("scroll", updateNavbarColor)
       document.body.classList.remove("sidebar-collapse")
     }
-  }, [navbarColor, history])
-  
+  }, [history, navbarColor])
+
+  useEffect(() => {
+    setNavbarColor(chooseNavbarClass(history))
+  }, [history.location.pathname, history])
+
   return (
     <>
       {collapseOpen ? (
@@ -72,7 +76,7 @@ const NavbarErasmus = ({ history, auth }) => {
           }}
         />
       ) : null}
-      <Navbar className = "fixed-top " color= {navbarColor} expand="lg">
+      <Navbar className = "fixed-top" color = {navbarColor} expand="lg">
         <Container>
           <div className="navbar-translate">
             <NavbarBrand
