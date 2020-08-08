@@ -34,7 +34,7 @@ import UserJustCreatedModal from 'components/Modals/UserJustCreatedModal'
 
 const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places`
 
-const HomePage = ({dispatch, citiesIndex, isFetching, justLoggedIn, userJustCreated}) => {
+const HomePage = ({dispatch, citiesIndex, isFetching, authUser}) => {
 
   const [pills, setPills] = useState("1")
   const [city, setCity] = useState('')
@@ -61,8 +61,8 @@ const HomePage = ({dispatch, citiesIndex, isFetching, justLoggedIn, userJustCrea
   debugger
   return (
     <>
-      <JustLoggedInModal justLoggedIn = {justLoggedIn} title = "Inicio de sesion" message = "Se ha iniciado sesion correctamente"/>
-      <UserJustCreatedModal userJustCreated = {userJustCreated} title = "Nuevo usuario" message = "Se ha creado el usuario correctamente"/>
+      <JustLoggedInModal justLoggedIn = {authUser.justLoggedIn} title = "Inicio de sesion" message = "Se ha iniciado sesion correctamente"/>
+      <UserJustCreatedModal userJustCreated = {authUser.userJustCreated} title = "Nuevo usuario" message = "Se ha creado el usuario correctamente"/>
       <Container style = {{
         marginTop: "100px",
         textAlign: "center",
@@ -228,8 +228,7 @@ const HomePage = ({dispatch, citiesIndex, isFetching, justLoggedIn, userJustCrea
 
 const mapStateToProps = state => ({
   citiesIndex: state.citiesIndex.data,
-  justLoggedIn: state.authUser.justLoggedIn,
-  userJustCreated: state.authUser.userJustCreated,
+  authUser: state.authUser,
   isFetching: state.citiesIndex.isFetching
 })
 
