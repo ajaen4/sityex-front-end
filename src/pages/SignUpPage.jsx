@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { withRouter } from 'react-router-dom';
+import compose from 'recompose/compose'
 
 // reactstrap components
 import{
@@ -10,10 +11,14 @@ import{
   CardTitle
 } from "reactstrap";
 
+//Custom functionality
+import { withoutAuth } from 'session'
+
 import SignUpForm from "components/Forms/SignUpForm.jsx";
 
 const  SignUpPageBase = () => {
 
+    debugger
     return (
       <>
       <Container className="content" style = {{
@@ -36,6 +41,8 @@ const  SignUpPageBase = () => {
     )
 }
 
-const SignUpPage = withRouter(SignUpPageBase);
+const SignUpPage = compose(
+  withRouter,
+  withoutAuth)(SignUpPageBase);
 
 export default SignUpPage;

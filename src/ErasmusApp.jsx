@@ -12,7 +12,7 @@ class ErasmusApp extends React.Component {
   render(){
     return (
       <React.Fragment>
-        <NavbarErasmus auth = {this.props.auth}/>
+        <NavbarErasmus auth = {this.props.auth} isAuthResolved = {this.props.isAuthResolved}/>
         <Routes/>
       </React.Fragment>
     )
@@ -21,7 +21,8 @@ class ErasmusApp extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    auth: state.authUser.data
+    auth: state.authUser.data,
+    isAuthResolved: state.authUser.isAuthResolved
   }
 }
 

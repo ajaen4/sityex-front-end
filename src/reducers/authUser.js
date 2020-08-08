@@ -2,13 +2,12 @@ import { combineReducers } from 'redux'
 
 import {
   SET_AUTH_USER,
+  JUST_LOGGED_IN,
   SET_AUTH_USER_ERROR } from 'types'
-
-const INITIAL_STATE = null
 
 const initAuthUser = () => {
 
-  const data = (state = {}, action) => {
+  const data = (state = null, action) => {
     switch(action.type){
       case SET_AUTH_USER:
         return action.user
@@ -16,7 +15,23 @@ const initAuthUser = () => {
     }
   }
 
-  const errorMessage = (state = INITIAL_STATE, action) => {
+  const justLoggedIn = (state = false, action) => {
+    switch(action.type){
+      case JUST_LOGGED_IN:
+        return action.justLoggedIn
+      default: return state
+    }
+  }
+
+  const isAuthResolved = (state = false, action) => {
+    switch(action.type){
+      case SET_AUTH_USER:
+        return action.isAuthResolved
+      default: return state
+    }
+  }
+
+  const errorMessage = (state = null, action) => {
     switch(action.type){
       case SET_AUTH_USER_ERROR:
         return action.errorMessage
@@ -26,6 +41,8 @@ const initAuthUser = () => {
 
   return combineReducers({
     data,
+    justLoggedIn,
+    isAuthResolved,
     errorMessage
   })
 

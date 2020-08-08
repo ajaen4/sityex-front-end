@@ -2,17 +2,19 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-const withAuth = Component => {
+const withoutAuth = Component => {
 
-  class WithAuth extends React.Component {
+  class WithoutAuth extends React.Component {
     render() {
-      if(this.props.isAuthResolved)
+      if(!this.props.isAuthResolved)
         return (
           <Component {...this.props} />
           )
-      else return(
-          <Redirect to = "/login" />
+      else {
+        return(
+          <Redirect to= "/home"/>
           )
+        }
     }
   }
 
@@ -23,8 +25,8 @@ const withAuth = Component => {
     }
   }
 
-  return connect(mapStateToProps)(WithAuth)
+  return connect(mapStateToProps)(WithoutAuth)
 
 }
 
-export default withAuth
+export default withoutAuth

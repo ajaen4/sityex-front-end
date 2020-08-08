@@ -12,6 +12,7 @@ export const REQUESTING_CITY = 'REQUESTING_CITY'
 //--------------------AUTH
 
 export const SET_AUTH_USER = 'SET_AUTH_USER'
+export const JUST_LOGGED_IN = 'JUST_LOGGED_IN'
 export const SET_AUTH_USER_ERROR = 'SET_AUTH_USER_ERROR'
 
 //--------------------AUTH END

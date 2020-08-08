@@ -159,4 +159,4 @@ const DestinationPage = ({selectedCity, dispatch}) => {
 
 const mapStateToProps = state => ({selectedCity: state.selectedCity.data})
 
-export default connect(mapStateToProps)(withAuth()(DestinationPage))
+export default connect(mapStateToProps)(withAuth(DestinationPage))

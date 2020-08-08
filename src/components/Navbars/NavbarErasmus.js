@@ -13,15 +13,14 @@ import {
   NavItem,
   NavLink,
   Nav,
-  Container,
-  UncontrolledTooltip
+  Container
 } from "reactstrap"
 
 //Custom functionality
 import * as ROUTES from 'constants/routes'
 import { signOutUser } from 'actions'
 
-const chooseNavbarClass = (history) => {
+const chooseNavbarColor = (history) => {
   const currPath = history.location.pathname.split("/")[1]
   const destinationPath = ROUTES.DESTINATION.split("/")[1]
   if(currPath === destinationPath){
@@ -32,9 +31,9 @@ const chooseNavbarClass = (history) => {
   }
 }
 
-const NavbarErasmus = ({ history, auth }) => {
+const NavbarErasmus = ({ history, auth, isAuthResolved }) => {
 
-  const [navbarColor, setNavbarColor] = React.useState(chooseNavbarClass(history))
+  const [navbarColor, setNavbarColor] = React.useState(chooseNavbarColor(history))
   const [collapseOpen, setCollapseOpen] = React.useState(false)
 
   useEffect(() => {
@@ -49,7 +48,7 @@ const NavbarErasmus = ({ history, auth }) => {
         document.documentElement.scrollTop < 400 ||
         document.body.scrollTop < 400
       ) {
-        setNavbarColor(chooseNavbarClass(history))
+        setNavbarColor(chooseNavbarColor(history))
       }
     }
 
@@ -64,7 +63,7 @@ const NavbarErasmus = ({ history, auth }) => {
   }, [])
 
   useEffect(() => {
-    setNavbarColor(chooseNavbarClass(history))
+    setNavbarColor(chooseNavbarColor(history))
   // eslint-disable-next-line
   }, [history.location.pathname])
 
@@ -119,50 +118,11 @@ const NavbarErasmus = ({ history, auth }) => {
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="">
+                <NavLink href="#">
                   Algun problema?
                 </NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink
-                  href="#"
-                  target="_blank"
-                  id="twitter-tooltip"
-                >
-                  <i className="fab fa-twitter"></i>
-                  <p className="d-lg-none d-xl-none">Twitter</p>
-                </NavLink>
-                <UncontrolledTooltip target="#twitter-tooltip">
-                  Follow us on Twitter
-                </UncontrolledTooltip>
-              </NavItem>
-              <NavItem>
-                <NavLink
-                  href="#"
-                  target="_blank"
-                  id="facebook-tooltip"
-                >
-                  <i className="fab fa-facebook-square"></i>
-                  <p className="d-lg-none d-xl-none">Facebook</p>
-                </NavLink>
-                <UncontrolledTooltip target="#facebook-tooltip">
-                  Like us on Facebook
-                </UncontrolledTooltip>
-              </NavItem>
-              <NavItem>
-                <NavLink
-                  href="#"
-                  target="_blank"
-                  id="instagram-tooltip"
-                >
-                  <i className="fab fa-instagram"></i>
-                  <p className="d-lg-none d-xl-none">Instagram</p>
-                </NavLink>
-                <UncontrolledTooltip target="#instagram-tooltip">
-                  Follow us on Instagram
-                </UncontrolledTooltip>
-              </NavItem>
-              { auth &&
+              { isAuthResolved &&
               <UncontrolledDropdown nav>
                 <DropdownToggle
                   aria-haspopup={true}

@@ -1,6 +1,7 @@
-import React from 'react';
+import React from 'react'
 
-import { withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom'
+import compose from 'recompose/compose'
 
 // reactstrap components
 import{
@@ -8,10 +9,13 @@ import{
   Card,
   CardBody,
   CardTitle
-} from "reactstrap";
+} from "reactstrap"
+
+//Custom functionality
+import { withoutAuth } from 'session'
 
 //Custom UI components
-import LogInForm from "components/Forms/LogInForm.jsx";
+import LogInForm from "components/Forms/LogInForm.jsx"
 
 const LogInPageBase = () => {
 
@@ -38,6 +42,8 @@ const LogInPageBase = () => {
 }
 
 
-const LogInPage = withRouter(LogInPageBase);
+const LogInPage = compose(
+  withoutAuth,
+  withRouter)(LogInPageBase)
 
-export default LogInPage;
+export default LogInPage

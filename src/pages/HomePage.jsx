@@ -29,13 +29,14 @@ import{
 import DefaultFooter from "components/Footers/DefaultFooter.js"
 import ScrollDestinations from "components/ScrollList/ScrollDestinations.jsx"
 import MapComponentDestinations from 'components/GoogleMaps/MapComponentDestinations.js'
+import JustLoggedInModal from 'components/Modals/JustLoggedInModal'
 
 const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places`
 
-const HomePage = ({dispatch, citiesIndex, isFetching}) => {
+const HomePage = ({dispatch, citiesIndex, isFetching, justLoggedIn}) => {
 
   const [pills, setPills] = useState("1")
-  const [location, setLocation] = useState('')
+  const [city, setCity] = useState('')
   const [windowWidth, setwindowWidth] = React.useState(window.innerWidth)
 
   useEffect(() => {
@@ -54,10 +55,12 @@ const HomePage = ({dispatch, citiesIndex, isFetching}) => {
     dispatch(fetchCitiesIndex())
   }, [dispatch])
 
-  const onSearchChange = event => setLocation(event.target.value)
+  const onSearchChange = event => setCity(event.target.value)
 
+  debugger
   return (
     <>
+      <JustLoggedInModal justLoggedIn = {justLoggedIn} title = "Inicio de sesion" message = "Se ha iniciado sesion correctamente"/>
       <Container style = {{
         marginTop: "100px",
         textAlign: "center",
@@ -117,7 +120,7 @@ const HomePage = ({dispatch, citiesIndex, isFetching}) => {
                       name = "location"
                       placeholder = {"Ej. Turin..."}
                       type = "text"
-                      value = {location}
+                      value = {city}
                       onChange = {onSearchChange}
                   ></Input>
                 </InputGroup>
@@ -137,7 +140,7 @@ const HomePage = ({dispatch, citiesIndex, isFetching}) => {
                 }}>Destinos</CardTitle>
                 </CardBody>
                 <ScrollDestinations isFetching = {isFetching}
-                destinations = { citiesIndex !== null && Object.values(citiesIndex).sort().filter(item => item.name.toLowerCase().includes(location.toLowerCase()))}/>
+                destinations = { citiesIndex !== null && Object.values(citiesIndex).sort().filter(item => item.name.toLowerCase().includes(city.toLowerCase()))}/>
               </Card>
             </Col>
           </Row>
@@ -223,7 +226,8 @@ const HomePage = ({dispatch, citiesIndex, isFetching}) => {
 
 const mapStateToProps = state => ({
   citiesIndex: state.citiesIndex.data,
+  justLoggedIn: state.authUser.justLoggedIn,
   isFetching: state.citiesIndex.isFetching
 })
 
-export default connect(mapStateToProps)(withAuth()(HomePage))
+export default connect(mapStateToProps)(withAuth(HomePage))
