@@ -4,11 +4,12 @@ import React from 'react'
 
 import { Route } from 'react-router-dom'
 
-import { SignUpPage } from 'pages'
-import { LogInPage } from 'pages'
-import { HomePage } from 'pages'
-import { DestinationPage } from 'pages'
-import { NewExperiencePage } from 'pages'
+import {
+  LogInPage,
+  SignUpPage,
+  HomePage,
+  DestinationPage,
+  NewExperiencePage } from 'pages'
 
 import * as ROUTES from 'constants/routes'
 
