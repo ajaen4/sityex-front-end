@@ -6,14 +6,14 @@ import {
   ModalBody,
   ModalFooter } from 'reactstrap'
 
-const JustLoggedInModalBase = ({title, message, justLoggedIn, justLoggedInShown}) => {
+const ActionModal = ({title, message, show, action}) => {
 
-  const [showModal, setShowModal] = useState(justLoggedIn)
+  const [showModal, setShowModal] = useState(show)
 
   const toggle = () => {
     setShowModal(!showModal)
     debugger
-    justLoggedInShown()
+    action()
   }
 
   return (
@@ -27,4 +27,4 @@ const JustLoggedInModalBase = ({title, message, justLoggedIn, justLoggedInShown}
   )
 }
 
-export default JustLoggedInModalBase
+export default ActionModal

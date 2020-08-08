@@ -13,6 +13,7 @@ export const REQUESTING_CITY = 'REQUESTING_CITY'
 
 export const SET_AUTH_USER = 'SET_AUTH_USER'
 export const JUST_LOGGED_IN = 'JUST_LOGGED_IN'
+export const USER_JUST_CREATED = 'USER_JUST_CREATED'
 export const SET_AUTH_USER_ERROR = 'SET_AUTH_USER_ERROR'
 
 //--------------------AUTH END
