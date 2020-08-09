@@ -27,7 +27,8 @@ const LogInPageBase = () => {
       justifyContent: "center"
     }}>
       <Card style={{
-        width: "40%"
+        width: "40%",
+        minWidth: "300px"
         }} >
         <CardBody>
           <CardTitle style={{

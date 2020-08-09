@@ -58,7 +58,6 @@ const HomePage = ({dispatch, citiesIndex, isFetching, authUser}) => {
 
   const onSearchChange = event => setCity(event.target.value)
 
-  debugger
   return (
     <>
       <JustLoggedInModal justLoggedIn = {authUser.justLoggedIn} title = "Inicio de sesion" message = "Se ha iniciado sesion correctamente"/>
