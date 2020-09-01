@@ -7,9 +7,7 @@ export const doSaveCity = (cityData) => {
 }
 
 //Saves city merging with existing data
-export const doSaveWithMergeCity = (cityData) => {
-  db.collection("cities").doc(cityData["name"]).set(cityData, {merge: true})
-}
+export const doSaveWithMergeCity = (cityData) => db.collection("cities").doc(cityData["name"]).set(cityData, {merge: true})
 
 //Fetches city data
 export const doGetCity = (city) => {

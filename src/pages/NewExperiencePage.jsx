@@ -5,7 +5,7 @@ import Geocode from "react-geocode"
 //Custom functionality
 import { withAuth } from 'session'
 import { prettyCity } from 'helpers/usefulFunctions'
-import { fetchCitiesIndex, fetchCity, updateMarkers } from 'actions'
+import { fetchCitiesIndex, fetchCity, addExperience } from 'actions'
 import { objectIsEmpty } from 'helpers/usefulFunctions'
 
 //reactstrap components
@@ -23,11 +23,14 @@ import {
 } from "reactstrap"
 
 //Custom UI components
-import DefaultFooter from "components/Footers/DefaultFooter.js"
-import WrappedMapWithSearch from 'components/GoogleMaps/MapComponentSearch.js'
-import Opinion2 from "components/Opinions/Opinion2.jsx"
-import Opinion5 from "components/Opinions/Opinion5.jsx"
-import ScrollRecomendations from "components/ScrollList/ScrollRecomendations.jsx"
+import DefaultFooter from "components/Footers/DefaultFooter"
+import WrappedMapWithSearch from 'components/GoogleMaps/MapComponentSearch'
+import Opinion2 from "components/Opinions/Opinion2"
+import Opinion5 from "components/Opinions/Opinion5"
+import ScrollRecomendations from "components/ScrollList/ScrollRecomendations"
+import NewExpControl from "components/FormControl/NewExpControl"
+import CitiesDropDown from "components/DropDownList/CitiesDropDown"
+
 
 const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places`
 
@@ -38,13 +41,13 @@ Geocode.enableDebug()
 
 const NewExperiencePage = ({dispatch, selectedCity, citiesIndex}) => {
 
+  const INITIALCITY = "Aachen"
+
   const [windowDimensions, setWindowDimensions] = React.useState(window.innerWidth)
   const [currRecomendations, setCurrRecomendations] = React.useState([])
 
-  const initialCity = "Aachen"
-
   useEffect(() => {
-    dispatch(fetchCity(prettyCity(initialCity)))
+    dispatch(fetchCity(prettyCity(INITIALCITY)))
     dispatch(fetchCitiesIndex())
   }, [dispatch])
 
@@ -81,6 +84,7 @@ const NewExperiencePage = ({dispatch, selectedCity, citiesIndex}) => {
   //Callback from map to push recomendation
   const pushRecomendation = place => {
     var aux = {}
+
     if((place.name != null) && (!currRecomendations.some(recom => (recom.coordinates.lat === place.coordinates.lat) && (recom.coordinates.lng === place.coordinates.lng)))){
       Object.assign(aux, place)
       var auxRecomendations = []
@@ -104,7 +108,8 @@ const NewExperiencePage = ({dispatch, selectedCity, citiesIndex}) => {
     var markerContainer = {
       mapMarkers: currRecomendations
       }
-    updateMarkers(selectedCity.name, markerContainer)
+    //updateMarkers(selectedCity.name, markerContainer)
+    addExperience(selectedCity.name, {}, markerContainer)
   }
 
   return (
@@ -117,68 +122,8 @@ const NewExperiencePage = ({dispatch, selectedCity, citiesIndex}) => {
               marginTop: "20px",
               textAlign: "center"
             }}>
-              <Row style = {{
-                justifyContent: "center",
-                textAlign: "center"}} >
-                <Col lg = "6">
-                  <FormGroup  style ={{
-                  justifyContent: "center",
-                  textAlign: "center"}} >
-                    <label htmlFor="exampleFormControlSelect1">En que ciudad has estado?</label>
-                    <Input
-                    onChange = {onChangeCity}
-                    id="exampleFormControlSelect1"
-                    className="form-control-lg"
-                    type="select">
-                    {citiesIndex !== null && (Object.keys(citiesIndex).sort().map( item =>
-                      <option
-                      tag="a"
-                      href = "#"
-                      name = {item}
-                      id = {item + "_option"}
-                      key = {item} >
-                      {prettyCity(item)}
-                      </option>
-                    ))
-                    }
-                    </Input>
-                  </FormGroup>
-                </Col>
-              </Row>
-              <Row style = {{
-                justifyContent: "center",
-                textAlign: "center",
-                marginTop: "30px"
-                }}>
-                <Col lg = "12">
-                <label htmlFor="exampleFormControlTextarea1">
-                  <div className = "blockquote blockquote-primary">
-                    <p className = "bold" >Como completar los siguientes pasos</p>
-                    <p style = {{margin: "0px"}}>Las opciones son las siguientes:</p>
-                    <Row style = {{justifyContent: "center"}}>
-                      <Col lg = "3" style = {{alignItems: "center", textAlign: "center"}}>
-                        <div>5 = Muy bueno</div>
-                        <div>4 = Bueno</div>
-                      </Col>
-                      <Col lg = "3" style = {{alignItems: "center", textAlign: "center"}}>
-                        <div>3 = Sin mas</div>
-                      </Col>
-                      <Col lg = "3" style = {{alignItems: "center", textAlign: "center"}}>
-                        <div>2 = Malo</div>
-                        <div>1 = Muy malo</div>
-                      </Col>
-                    </Row>
-                    <p className = "bold" >Ejemplos</p>
-                    <Row style = {{justifyContent: "center", padding: "15px", fontSize: "0.9em"}}>
-                    <p>La mayor parte del tiempo llovia y anochecia muy pronto. <b>Clima = 1</b></p>
-                    <p>Habia 2 o 3 viajes de la ESN increibles, aunque me falto mas cantidad de planes durante el año. <b>Viajes ESN = 4</b></p>
-                    <p>Habia muchas discotecas con diferentes tipos de musica. Ademas, se podia salir casi cualquier dia de la semana. <b>Fiesta = 5</b></p>
-                    <p>Comer fuera por lo general es caro y tampoco hay una gastronomia propia. <b>Comida = 2</b></p>
-                    </Row>
-                  </div>
-                </label>
-                </Col>
-              </Row>
+              <CitiesDropDown citiesList = {Object.keys(citiesIndex)} onChangeCity = {onChangeCity} />
+              <NewExpControl/>
               <Row style = {{
                 justifyContent: "center",
                 textAlign: "center"
@@ -257,7 +202,7 @@ const NewExperiencePage = ({dispatch, selectedCity, citiesIndex}) => {
                       savedRecomendations = {selectedCity.mapMarkers === undefined ? [] : selectedCity.mapMarkers}
                       style = {{justifyContent: "center"}}
                       city = {selectedCity.cityName}
-                      coordinates = {{lat:selectedCity.latitude, lng: selectedCity.longitude}}
+                      cityCoordinates = {{lat:selectedCity.latitude, lng: selectedCity.longitude}}
                       pushRecomendation = {pushRecomendation}
                       googleMapURL = {mapURL}
                       loadingElement = {<p>Cargando</p>}
@@ -348,8 +293,11 @@ const NewExperiencePage = ({dispatch, selectedCity, citiesIndex}) => {
                   </div>
                 </label>
                 <Input
+                  style = {{
+                    fontSize: "large"
+                  }}
                   bsSize="lg"
-                  id="exampleFormControlTextarea1"
+                  id="textArea"
                   rows="3"
                   type="textarea"
                 ></Input>

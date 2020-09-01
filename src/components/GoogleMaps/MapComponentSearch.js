@@ -1,107 +1,94 @@
 
-import React from "react";
+import React, {useEffect} from "react"
 
 import {
   Button,
-  Alert} from "reactstrap";
+  Alert} from "reactstrap"
 import {
     withScriptjs,
     withGoogleMap,
     GoogleMap,
     Marker,
     InfoWindow
-  } from "react-google-maps";
+  } from "react-google-maps"
 
-import Autocomplete from 'react-google-autocomplete';
+import Autocomplete from 'react-google-autocomplete'
 
-function MapWithSearch(props){
+function MapWithSearch({cityCoordinates, currRecomendations, savedRecomendations, pushRecomendation, incrementRecomendation}){
 
-  const iconSelected = { url: require("assets/icons/pin_filled_red.png"), scaledSize: { width: 38, height: 38 } };
-  const iconSavedRec = { url: require("assets/icons/pin_filled_blue.png"), scaledSize: { width: 38, height: 38 } };
-  const iconCurrRec = { url: require("assets/icons/pin_outline_blue.png"), scaledSize: { width: 38, height: 38 } };
+  const iconSelected = { url: require("assets/icons/pin_filled_red.png"), scaledSize: { width: 38, height: 38 } }
+  const iconSavedRec = { url: require("assets/icons/pin_filled_blue.png"), scaledSize: { width: 38, height: 38 } }
+  const iconCurrRec = { url: require("assets/icons/pin_outline_blue.png"), scaledSize: { width: 38, height: 38 } }
 
-  const TITLESELOPTION = "Localizacion incorrecta. ";
-  const SELECTOPTION = "Selecciona una de las opciones que aparecen como sugerencias.";
-  const TITLEOPTSELECTED = "Ya ha recomendado esta localizacion.";
-  const OPTIONEXISTS = "La localizacion buscada ya ha sido recomendada por otros usuarios. Por favor, seleccionela en el mapa y haga click en 'Recomendar'";
+  const TITLESELOPTION = "Localizacion incorrecta. "
+  const SELECTOPTION = "Selecciona una de las opciones que aparecen como sugerencias."
+  const TITLEOPTSELECTED = "Ya ha recomendado esta localizacion."
+  const OPTIONEXISTS = "La localizacion buscada ya ha sido recomendada por otros usuarios. Por favor, seleccionela en el mapa y haga click en 'Recomendar'"
   const TITLEOPTEXISTS = "La localizacion ya existe. "
 
-  const dummyRecom = {coordinates: {lat: 0, lng: 0}, name: "", address: "" };
+  const DUMMYRECOM = {coordinates: {lat: 0, lng: 0}, name: "", address: "" }
 
-  var ref = React.createRef();
-  
-  const [coordinates, setCoordinates] = React.useState(props.coordinates);
-  const [currRecomendations, setCurrRecomendations] = React.useState(props.currRecomendations);
-  const [savedRecomendations, setSavedRecomendations] = React.useState(props.savedRecomendations);
-  const [selectedRecomen, setSelectedRecomen] = React.useState(dummyRecom);
-  const [selectedPlace, setSelectedPlace] = React.useState(null);
-  const [isPlaceSelected, setIsPlaceSelected] = React.useState(false);
-  const [configAlert, setConfigAlert] = React.useState(null);
+  var ref = React.createRef()
+
+  const [coordinates, setCoordinates] = React.useState(cityCoordinates)
+  const [selectedRecomen, setSelectedRecomen] = React.useState(DUMMYRECOM)
+  const [selectedPlace, setSelectedPlace] = React.useState(null)
+  const [isPlaceSelected, setIsPlaceSelected] = React.useState(false)
+  const [configAlert, setConfigAlert] = React.useState(null)
 
   /*const [bounds, setBounds] = React.useState(new window.google.maps.LatLngBounds(
-                new window.google.maps.LatLng({lat: props.coordinates.lat - 0.1, lng: props.coordinates.lng - 0.1}),
-                new window.google.maps.LatLng({lat: props.coordinates.lat + 0.1, lng: props.coordinates.lng + 0.1})));*/
+                new window.google.maps.LatLng({lat: coordinates.lat - 0.1, lng: coordinates.lng - 0.1}),
+                new window.google.maps.LatLng({lat: coordinates.lat + 0.1, lng: coordinates.lng + 0.1})))*/
 
-  React.useEffect(() => {
-
-    setCoordinates(props.coordinates);
-    setSavedRecomendations(props.savedRecomendations);
-    setCurrRecomendations(props.currRecomendations);
-    setSelectedPlace(null);
-    setIsPlaceSelected(false);
-    /*setBounds(new window.google.maps.LatLngBounds(
-                  new window.google.maps.LatLng({lat: props.coordinates.lat - 0.1, lng: props.coordinates.lng - 0.1}),
-                  new window.google.maps.LatLng({lat: props.coordinates.lat + 0.1, lng: props.coordinates.lng + 0.1})));*/
-
-  }, [props]);
+  useEffect(() => setCoordinates(cityCoordinates), [cityCoordinates])
 
   //Corre cuando se presiona enter o una opcion del autocompletar del google maps
   const onPlaceSelected = (place, ref) => {
-
     //Comprobacion para obligar a elegir un campo autocompletado y que no exista ya
     if((place.geometry !== undefined) && (!savedRecomendations.some(recom => (recom.coordinates.lat === place.geometry.location.lat()) && (recom.coordinates.lng === place.geometry.location.lng())))){
 
-      console.log("Place selected");
-      console.log(place);
+      console.log("Place selected")
+      console.log(place)
 
-      var placesKey = Object.keys(ref.current.autocomplete.gm_bindings_.types);
-      var selectedPlace = {};
-      selectedPlace.name = ref.current.autocomplete.gm_bindings_.types[placesKey[0]].ue.formattedPrediction.split(",")[0];
-      selectedPlace.address = place.formatted_address;
-      selectedPlace.coordinates = {lat: place.geometry.location.lat(), lng: place.geometry.location.lng()};
-      selectedPlace.numOfRecomendations = 1;
+      var placesKey = Object.keys(ref.current.autocomplete.gm_bindings_.types)
+      var selectedPlace = {}
+
+      selectedPlace.name = ref.current.autocomplete.gm_bindings_.types[placesKey[0]].oe.formattedPrediction.split(",")[0]
+      selectedPlace.address = place.formatted_address
+      selectedPlace.coordinates = {lat: place.geometry.location.lat(), lng: place.geometry.location.lng()}
+      selectedPlace.numOfRecomendations = 1
 
       //Para añadir un marcador en el sitio que se seleccione (no tiene mas consecuencias)
-      setSelectedPlace(selectedPlace);
-      setIsPlaceSelected(true);
-      setCoordinates(selectedPlace.coordinates);
-      setConfigAlert(null);
+      setSelectedPlace(selectedPlace)
+      setIsPlaceSelected(true)
+      setCoordinates(selectedPlace.coordinates)
+      setConfigAlert(null)
     }
     else if(place.geometry === undefined){
       //Configuramos el texto de la alerta y el color
-      setConfigAlert({title: TITLESELOPTION, text: SELECTOPTION, color: "info"});
+      setConfigAlert({title: TITLESELOPTION, text: SELECTOPTION, color: "info"})
     }
     else if(currRecomendations.some(recom => (recom.coordinates.lat === place.geometry.location.lat()) && (recom.coordinates.lng === place.geometry.location.lng()))){
       //Configuramos el texto de la alerta y el color
-      setConfigAlert({title: TITLEOPTSELECTED, text: "", color: "info"});
+      setConfigAlert({title: TITLEOPTSELECTED, text: "", color: "info"})
     }
     else if(savedRecomendations.some(recom => (recom.coordinates.lat === place.geometry.location.lat()) && (recom.coordinates.lng === place.geometry.location.lng()))){
       //Cogemos la info de la recomendacion guardada
-      var existingRecomendation = savedRecomendations.filter(recom => (recom.coordinates.lat === place.geometry.location.lat()) && (recom.coordinates.lng === place.geometry.location.lng()))[0];
+      var existingRecomendation = savedRecomendations.filter(recom => (recom.coordinates.lat === place.geometry.location.lat()) && (recom.coordinates.lng === place.geometry.location.lng()))[0]
       //Para añadir un marcador en el sitio que se seleccione (no tiene mas consecuencias)
-      setSelectedRecomen(existingRecomendation);
-      setCoordinates(existingRecomendation.coordinates);
-      setConfigAlert({title: TITLEOPTEXISTS, text: OPTIONEXISTS, color: "info"});
+      setSelectedRecomen(existingRecomendation)
+      setCoordinates(existingRecomendation.coordinates)
+      setConfigAlert({title: TITLEOPTEXISTS, text: OPTIONEXISTS, color: "info"})
     }
-  };
+  }
 
-  const pushRecomendation = (place) => {
-    props.pushRecomendation(place);
-  };
+  const addRecommendation = (place) => {
+    pushRecomendation(place)
+  }
 
-  const incrementRecomendation = (recomendation) => {
-    props.incrementRecomendation(recomendation);
-  };
+  const increaseRecomendation = (recomendation) => {
+    incrementRecomendation(recomendation)
+  }
 
   return (
     <>
@@ -117,19 +104,19 @@ function MapWithSearch(props){
           draggable = {false}
           position = {recomendation.coordinates}
           icon = {iconSavedRec}
-          onClick = {() => {setSelectedRecomen(recomendation);}}
+          onClick = {() => {setSelectedRecomen(recomendation)}}
         >
         {
           //Solo enseñar en caso de que la recomendacion elegida sea la actual
           ((recomendation.coordinates.lat === selectedRecomen.coordinates.lat) && (recomendation.coordinates.lng === selectedRecomen.coordinates.lng)) &&
           <InfoWindow
             onCloseClick={() => {
-              setSelectedRecomen(dummyRecom);
+              setSelectedRecomen(DUMMYRECOM)
             }}
             position={selectedRecomen.coordinates}>
             <div style = {{padding: "5px"}}>
               {(!currRecomendations.some(currRec => (currRec.coordinates.lat === selectedRecomen.coordinates.lat) && (currRec.coordinates.lng === selectedRecomen.coordinates.lng))) &&
-                <Button color = "success" onClick = {() => {incrementRecomendation(selectedRecomen)}}>Recomendar</Button>}
+                <Button color = "success" onClick = {() => {increaseRecomendation(selectedRecomen)}}>Recomendar</Button>}
               <div><b>Nombre: </b> {selectedRecomen.name}</div>
               <div><b># de recomendaciones: </b>{selectedRecomen.numOfRecomendations}</div>
               <div><b>Direccion: </b> {selectedRecomen.address}</div>
@@ -147,14 +134,14 @@ function MapWithSearch(props){
           draggable = {false}
           position = {recomendation.coordinates}
           icon={iconCurrRec}
-          onClick={() => {setSelectedRecomen(recomendation);}}
+          onClick={() => {setSelectedRecomen(recomendation)}}
         >
         {
           //Solo enseñar en caso de que la recomendacion elegida sea la actual
           ((recomendation.coordinates.lat === selectedRecomen.coordinates.lat) && (recomendation.coordinates.lng === selectedRecomen.coordinates.lng)) &&
           <InfoWindow
             onCloseClick={() => {
-              setSelectedRecomen(dummyRecom);
+              setSelectedRecomen(DUMMYRECOM)
             }}
             position={selectedRecomen.coordinates}>
             <div style = {{padding: "5px"}}>
@@ -177,15 +164,15 @@ function MapWithSearch(props){
           draggable = {false}
           position = {selectedPlace.coordinates}
           icon={iconSelected}
-          onClick={() => {setIsPlaceSelected(true);}}
+          onClick={() => {setIsPlaceSelected(true)}}
         >
         {(isPlaceSelected) &&
           <InfoWindow style = {{padding: "5px"}}
-            onCloseClick={() => {setIsPlaceSelected(false);}}
+            onCloseClick={() => {setIsPlaceSelected(false)}}
             position={selectedPlace.coordinates}>
             <div>
             {(!currRecomendations.some(recom => recom.name === selectedPlace.name)) &&
-              <Button color = "success" onClick = {() => {pushRecomendation(selectedPlace)}}>Recomendar</Button>}
+              <Button color = "success" onClick = {() => {addRecommendation(selectedPlace)}}>Recomendar</Button>}
               <div><b>Nombre: </b> {selectedPlace.name}</div>
               <div><b># de recomendaciones: </b>{selectedPlace.numOfRecomendations}</div>
               <div><b>Direccion: </b> {selectedPlace.address}</div>
@@ -203,7 +190,7 @@ function MapWithSearch(props){
         marginTop: '2px'
        }}
        ref = {ref}
-       onPlaceSelected = { (event) => {onPlaceSelected(event, ref);} }
+       onPlaceSelected = { (event) => {onPlaceSelected(event, ref)} }
        types = {['establishment']}
        />
        {(configAlert) && <Alert color= {configAlert.color} isOpen={true} style = {{padding: "20px"}}>
@@ -217,7 +204,7 @@ function MapWithSearch(props){
               type = "button"
               className = "close"
               aria-label = "Close"
-              onClick = {() => {setConfigAlert(null);}}
+              onClick = {() => {setConfigAlert(null)}}
             >
               <span aria-hidden="true">
                 <i className="now-ui-icons ui-1_simple-remove"></i>
@@ -227,9 +214,9 @@ function MapWithSearch(props){
         </Alert>
       }
     </>
-  );
+  )
 }
 
-const WrappedMapWithSearch = withScriptjs(withGoogleMap(MapWithSearch));
+const WrappedMapWithSearch = withScriptjs(withGoogleMap(MapWithSearch))
 
-export default WrappedMapWithSearch;
+export default WrappedMapWithSearch

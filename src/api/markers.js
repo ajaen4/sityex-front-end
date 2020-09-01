@@ -6,7 +6,6 @@ export const doUpdateMarkers = (cityName, markers) => {
     return db.runTransaction(t => {
       return t.get(cityRef)
       .then(doc => {
-        //Get mapMarkers
         var markerExists = false
         let originalMarkers = []
         if(doc.data().mapMarkers !== undefined){
