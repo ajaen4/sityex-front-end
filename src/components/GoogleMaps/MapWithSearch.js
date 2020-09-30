@@ -1,5 +1,5 @@
 
-import React, {useEffect} from "react"
+import React, {useState, useEffect} from "react"
 
 import {
   Button,
@@ -30,13 +30,13 @@ function MapWithSearch({cityCoordinates, currRecomendations, savedRecomendations
 
   var ref = React.createRef()
 
-  const [coordinates, setCoordinates] = React.useState(cityCoordinates)
-  const [selectedRecomen, setSelectedRecomen] = React.useState(DUMMYRECOM)
-  const [selectedPlace, setSelectedPlace] = React.useState(null)
-  const [isPlaceSelected, setIsPlaceSelected] = React.useState(false)
-  const [configAlert, setConfigAlert] = React.useState(null)
+  const [coordinates, setCoordinates] = useState(cityCoordinates)
+  const [selectedRecomen, setSelectedRecomen] = useState(DUMMYRECOM)
+  const [selectedPlace, setSelectedPlace] = useState(null)
+  const [isPlaceSelected, setIsPlaceSelected] = useState(false)
+  const [configAlert, setConfigAlert] = useState(null)
 
-  /*const [bounds, setBounds] = React.useState(new window.google.maps.LatLngBounds(
+  /*const [bounds, setBounds] = useState(new window.google.maps.LatLngBounds(
                 new window.google.maps.LatLng({lat: coordinates.lat - 0.1, lng: coordinates.lng - 0.1}),
                 new window.google.maps.LatLng({lat: coordinates.lat + 0.1, lng: coordinates.lng + 0.1})))*/
 
@@ -53,7 +53,12 @@ function MapWithSearch({cityCoordinates, currRecomendations, savedRecomendations
       var placesKey = Object.keys(ref.current.autocomplete.gm_bindings_.types)
       var selectedPlace = {}
 
-      selectedPlace.name = ref.current.autocomplete.gm_bindings_.types[placesKey[0]].oe.formattedPrediction.split(",")[0]
+      debugger
+      if(ref.current.autocomplete.gm_bindings_.types[placesKey[0]].re != undefined)
+        selectedPlace.name = ref.current.autocomplete.gm_bindings_.types[placesKey[0]].re.formattedPrediction.split(",")[0]
+      else
+        selectedPlace.name = ref.current.autocomplete.gm_bindings_.types[placesKey[0]].oe.formattedPrediction.split(",")[0]
+
       selectedPlace.address = place.formatted_address
       selectedPlace.coordinates = {lat: place.geometry.location.lat(), lng: place.geometry.location.lng()}
       selectedPlace.numOfRecomendations = 1

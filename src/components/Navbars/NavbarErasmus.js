@@ -107,16 +107,19 @@ const NavbarErasmus = ({ history, auth, isAuthResolved }) => {
             navbar
           >
             <Nav navbar>
+              { isAuthResolved &&
               <NavItem>
                 <NavLink to="/new-experience" tag={Link}>
                   Nueva opinion
                 </NavLink>
-              </NavItem>
+              </NavItem>}
+              { isAuthResolved &&
               <NavItem>
                 <NavLink to="/Home" tag={Link}>
                   Destinos
                 </NavLink>
               </NavItem>
+              }
               <NavItem>
                 <NavLink href="#">
                   Algun problema?
