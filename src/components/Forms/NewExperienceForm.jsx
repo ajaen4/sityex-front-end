@@ -1,11 +1,8 @@
 
-import React, {useEffect} from "react"
-import { connect } from 'react-redux'
+import React from "react"
 
 //Custom functionality
-import { withAuth } from 'session'
-import { prettyCity } from 'helpers/usefulFunctions'
-import { fetchCitiesIndex, fetchCity, addExperience } from 'actions'
+import { addExperience } from 'actions'
 
 //reactstrap components
 import {

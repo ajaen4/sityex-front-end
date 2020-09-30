@@ -4,18 +4,7 @@ import { connect } from 'react-redux'
 //Custom functionality
 import { withAuth } from 'session'
 import { prettyCity } from 'helpers/usefulFunctions'
-import { fetchCitiesIndex, fetchCity, addExperience } from 'actions'
-
-//reactstrap components
-import {
-  Row,
-  Col,
-  Container,
-  Form,
-  FormGroup,
-  Input,
-  Button
-} from "reactstrap"
+import { fetchCitiesIndex, fetchCity } from 'actions'
 
 //Custom UI components
 import DefaultFooter from "components/Footers/DefaultFooter"

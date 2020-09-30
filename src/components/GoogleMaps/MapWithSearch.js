@@ -54,7 +54,7 @@ function MapWithSearch({cityCoordinates, currRecomendations, savedRecomendations
       var selectedPlace = {}
 
       debugger
-      if(ref.current.autocomplete.gm_bindings_.types[placesKey[0]].re != undefined)
+      if(ref.current.autocomplete.gm_bindings_.types[placesKey[0]].re !== undefined)
         selectedPlace.name = ref.current.autocomplete.gm_bindings_.types[placesKey[0]].re.formattedPrediction.split(",")[0]
       else
         selectedPlace.name = ref.current.autocomplete.gm_bindings_.types[placesKey[0]].oe.formattedPrediction.split(",")[0]
