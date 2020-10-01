@@ -1,5 +1,5 @@
 
-import React from "react"
+import React, {useState} from "react"
 
 //Custom functionality
 import { addExperience } from 'actions'
@@ -26,18 +26,19 @@ import RecomenMapWithList from "components/GoogleMaps/RecomenMapWithList"
 
 const NewExperienceForm = ({selectedCity, onChangeCity, citiesIndex, windowDimensions}) => {
 
-  const {register, handleSubmit, errors, getValues} = useForm()
+  const {register, handleSubmit, errors, clearError, getValues, setValue} = useForm()
 
   let currRecomendations = []
+
+  const [invalidPrice, setInvalidPrice] = useState(false)
 
   const updateRecomendations = recomendations => {
     currRecomendations = recomendations
   }
 
   //Stop form from submitting in a standar way (problems with the Autocomplete Google Maps function when pressing enter)
-  const handleForm = event => {
+  const handleForm = data => {
     debugger
-    event.preventDefault()
     var markerContainer = {
       mapMarkers: currRecomendations
       }
@@ -45,12 +46,25 @@ const NewExperienceForm = ({selectedCity, onChangeCity, citiesIndex, windowDimen
     addExperience(selectedCity.name, {}, markerContainer)
   }
 
+  const onChangeHousing = event => {
+    debugger
+    if(event.target.value === 'option1'){
+      setInvalidPrice(true)
+      setValue('residencePrice', 0)
+    }
+    else
+      setInvalidPrice(false)
+
+    var aux = getValues()
+  }
+
     return (
-        <Form style = {{
+        <form
+        onSubmit = {handleSubmit(handleForm)}
+        style = {{
           marginTop: "20px",
           textAlign: "center"
-        }}
-        onSubmit = {handleSubmit(handleForm)}>
+        }}>
           <Container style = {{
             marginTop: "20px",
             textAlign: "center"
@@ -106,15 +120,19 @@ const NewExperienceForm = ({selectedCity, onChangeCity, citiesIndex, windowDimen
                   option2 = "Residencia"
                   icon = "shopping_shop"
                   register = {register}
-                  errors = {errors}/>
+                  errors = {errors}
+                  onChange = {onChangeHousing}/>
               </Col>
               <Col lg = "6">
                 <InputWithIcon
                   title = "En caso de ser residencia, aproximadamente, cuanto costaba el alquiler?"
+                  name = "residencePrice"
                   placeHolder = "Alquiler en €"
                   iconName = "business_money-coins"
                   register = {register}
-                  errors = {errors}/>
+                  errors = {errors}
+                  getValues = {getValues}
+                  disabled = {invalidPrice}/>
               </Col>
             </Row>
           </Container>
@@ -161,11 +179,11 @@ const NewExperienceForm = ({selectedCity, onChangeCity, citiesIndex, windowDimen
             marginBottom: "100px"}}
             size = "lg"
             color = "success"
-            type="submit">
+            type = "submit">
             Enviar
           </Button>
         </Container>
-      </Form>
+      </form>
     )
 }
 

@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React from "react"
 
 // reactstrap components
 import {
@@ -12,7 +12,7 @@ import {
 } from "reactstrap"
 
 
-const InputWithIcon = ({title, placeHolder, iconName, register, errors}) => {
+const InputWithIcon = ({name, title, placeHolder, iconName, disabled, register, errors}) => {
 
   return (
      <>
@@ -24,29 +24,30 @@ const InputWithIcon = ({title, placeHolder, iconName, register, errors}) => {
            <FormGroup>
              <InputGroup>
                <Input style = {{textAlign: "center"}}
-               name = {title}
-               placeholder = {placeHolder}
-               type = "text"
-               invalid = {errors[title] !== undefined}
-               innerRef = {
-                 register({
-                   required: true,
-                   validate: { isANumber: value => !isNaN(value) }
-                 })}/>
+                 name = {name}
+                 disabled = {disabled}
+                 placeholder = {placeHolder}
+                 type = "text"
+                 invalid = {disabled === false && errors[name] !== undefined}
+                 innerRef = {
+                   register({
+                     required: true,
+                     validate: { isANumber: value => !isNaN(value) }
+                   })}/>
                <InputGroupAddon addonType="append">
                  <InputGroupText>
                    <i className = {"now-ui-icons " + iconName}></i>
                  </InputGroupText>
                </InputGroupAddon>
              </InputGroup>
-            {errors[title] && errors[title].type === 'required' &&
+            {disabled === false && errors[name] && errors[name].type === 'required' &&
             <div
               style = {{
                 fontSize: "small",
                 color: "red"
               }}>Se debe rellenar</div>
             }
-            {errors[title] && errors[title].type === 'isANumber' &&
+            {disabled === false && errors[name] && errors[name].type === 'isANumber' &&
             <div
               style = {{
                 fontSize: "small",

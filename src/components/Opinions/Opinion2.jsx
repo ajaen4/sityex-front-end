@@ -9,7 +9,7 @@ import {
 } from "reactstrap";
 
 
-const Opinion2 = ({icon, labelName, option1, option2, register, errors}) => {
+const Opinion2 = ({icon, labelName, option1, option2, onChange, register, errors}) => {
 
   const className = "now-ui-icons " + icon;
 
@@ -36,6 +36,7 @@ const Opinion2 = ({icon, labelName, option1, option2, register, errors}) => {
               register({
                 required: true
               })}
+            onChange = {onChange}
           ></Input>
           {option1} <span className="form-check-sign"></span>
         </Label>
@@ -50,6 +51,7 @@ const Opinion2 = ({icon, labelName, option1, option2, register, errors}) => {
                 register({
                   required: true
                 })}
+              onChange = {onChange}
             ></Input>
             {option2} <span className="form-check-sign"></span>
           </Label>

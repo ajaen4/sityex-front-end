@@ -163,7 +163,7 @@ const SignUpFormBase = ({history, dispatch}) => {
       <Button
         color = "success"
         type="submit"
-        style={{ margin: "2%" }}
+        style={{margin: "2%"}}
       >
         Crea una cuenta
       </Button>
