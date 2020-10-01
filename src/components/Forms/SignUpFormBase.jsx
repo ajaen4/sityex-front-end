@@ -1,14 +1,12 @@
 
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import { withRouter } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 
 //Custom functionality
 import { sameAs } from "helpers/validators.js"
-import { objectIsEmpty } from 'helpers/usefulFunctions'
 import { createUser } from 'actions'
-import * as ROUTES from 'constants/routes'
 
 //reactstrap components
 import{
@@ -43,11 +41,6 @@ const SignUpFormBase = ({history, dispatch}) => {
       setIsFetching(false)
     })
   }
-
-  useEffect(() => {
-    if(!objectIsEmpty(user))
-      setTimeout(() => history.push(ROUTES.HOME), 3000)
-  }, [user, history])
 
   if(isFetching)
     return <LoadingSpinner/>

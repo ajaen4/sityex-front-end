@@ -3,6 +3,7 @@ import React from "react"
 
 //Custom functionality
 import { addExperience } from 'actions'
+import { useForm } from 'react-hook-form'
 
 //reactstrap components
 import {
@@ -25,6 +26,8 @@ import RecomenMapWithList from "components/GoogleMaps/RecomenMapWithList"
 
 const NewExperienceForm = ({selectedCity, onChangeCity, citiesIndex, windowDimensions}) => {
 
+  const {register, handleSubmit, errors, getValues} = useForm()
+
   let currRecomendations = []
 
   const updateRecomendations = recomendations => {
@@ -32,7 +35,8 @@ const NewExperienceForm = ({selectedCity, onChangeCity, citiesIndex, windowDimen
   }
 
   //Stop form from submitting in a standar way (problems with the Autocomplete Google Maps function when pressing enter)
-  const handleOnSubmit = (event) => {
+  const handleForm = event => {
+    debugger
     event.preventDefault()
     var markerContainer = {
       mapMarkers: currRecomendations
@@ -46,7 +50,7 @@ const NewExperienceForm = ({selectedCity, onChangeCity, citiesIndex, windowDimen
           marginTop: "20px",
           textAlign: "center"
         }}
-        onSubmit = {handleOnSubmit}>
+        onSubmit = {handleSubmit(handleForm)}>
           <Container style = {{
             marginTop: "20px",
             textAlign: "center"
@@ -58,21 +62,18 @@ const NewExperienceForm = ({selectedCity, onChangeCity, citiesIndex, windowDimen
               textAlign: "center"
               }}>
               <Col lg = "6">
-                <Opinion5 labelName = "Clima" icon = "sun"/>
+                <Opinion5
+                  labelName = "Clima"
+                  icon = "sun"
+                  register = {register}
+                  errors = {errors}/>
               </Col>
               <Col lg = "6">
-                <Opinion5 labelName = "Comida" icon = "shopping_basket"/>
-              </Col>
-            </Row>
-            <Row style = {{
-              justifyContent: "center",
-              textAlign: "center"
-              }} >
-              <Col lg = "6">
-                <Opinion5 labelName = "Fiesta" icon = "emoticons_satisfied"/>
-              </Col>
-              <Col lg = "6">
-                <Opinion5 labelName = "Viajes ESN" icon = "transportation_bus-front-12"/>
+                <Opinion5
+                  labelName = "Comida"
+                  icon = "shopping_basket"
+                  register = {register}
+                  errors = {errors}/>
               </Col>
             </Row>
             <Row style = {{
@@ -80,13 +81,40 @@ const NewExperienceForm = ({selectedCity, onChangeCity, citiesIndex, windowDimen
               textAlign: "center"
               }} >
               <Col lg = "6">
-                <Opinion2 labelName = "Apartamento o residencia" option1 = "Apartamento" option2 = "Residencia" icon = "shopping_shop"/>
+                <Opinion5
+                  labelName = "Fiesta"
+                  icon = "emoticons_satisfied"
+                  register = {register}
+                  errors = {errors}/>
+              </Col>
+              <Col lg = "6">
+                <Opinion5
+                  labelName = "Viajes ESN"
+                  icon = "transportation_bus-front-12"
+                  register = {register}
+                  errors = {errors}/>
+              </Col>
+            </Row>
+            <Row style = {{
+              justifyContent: "center",
+              textAlign: "center"
+              }} >
+              <Col lg = "6">
+                <Opinion2
+                  labelName = "Apartamento o residencia"
+                  option1 = "Apartamento"
+                  option2 = "Residencia"
+                  icon = "shopping_shop"
+                  register = {register}
+                  errors = {errors}/>
               </Col>
               <Col lg = "6">
                 <InputWithIcon
                   title = "En caso de ser residencia, aproximadamente, cuanto costaba el alquiler?"
                   placeHolder = "Alquiler en €"
-                  iconName = "business_money-coins"/>
+                  iconName = "business_money-coins"
+                  register = {register}
+                  errors = {errors}/>
               </Col>
             </Row>
           </Container>
@@ -133,7 +161,7 @@ const NewExperienceForm = ({selectedCity, onChangeCity, citiesIndex, windowDimen
             marginBottom: "100px"}}
             size = "lg"
             color = "success"
-            onClick = {handleOnSubmit}>
+            type="submit">
             Enviar
           </Button>
         </Container>
