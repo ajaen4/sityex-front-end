@@ -12,14 +12,7 @@ import {
 } from "reactstrap"
 
 
-const InputWithIcon = ({title, placeHolder, iconName, onChangeValue, register, errors}) => {
-
-  const [inputValue, setInputValue] = useState("")
-
-  const onChange = event => {
-    //onChangeValue(event)
-    setInputValue(event.target.value)
-  }
+const InputWithIcon = ({title, placeHolder, iconName, register, errors}) => {
 
   return (
      <>
@@ -34,8 +27,6 @@ const InputWithIcon = ({title, placeHolder, iconName, onChangeValue, register, e
                name = {title}
                placeholder = {placeHolder}
                type = "text"
-               value= {inputValue}
-               onChange = {onChange}
                invalid = {errors[title] !== undefined}
                innerRef = {
                  register({
