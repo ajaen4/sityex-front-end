@@ -1,8 +1,7 @@
 
-import React, {useState} from "react"
+import React, {useState, useRef} from "react"
 
 //Custom functionality
-import { addExperience } from 'actions'
 import { useForm } from 'react-hook-form'
 
 //reactstrap components
@@ -13,7 +12,8 @@ import {
   Form,
   FormGroup,
   Input,
-  Button
+  Button,
+  FormFeedback
 } from "reactstrap"
 
 //Custom components
@@ -23,14 +23,17 @@ import InputWithIcon from "components/Inputs/InputWithIcon"
 import NewExpControl from "components/FormControl/NewExpControl"
 import CitiesDropDown from "components/DropDownList/CitiesDropDown"
 import RecomenMapWithList from "components/GoogleMaps/RecomenMapWithList"
+import StandarModal from 'components/Modals/StandarModal'
 
 const NewExperienceForm = ({selectedCity, onChangeCity, citiesIndex, windowDimensions}) => {
 
-  const {register, handleSubmit, errors, clearError, getValues, setValue} = useForm()
+  const {register, handleSubmit, errors, getValues, setValue} = useForm()
 
   let currRecomendations = []
+  let myRef = useRef(null)
 
   const [invalidPrice, setInvalidPrice] = useState(false)
+  const [noRecomendations, setNoRecomendations] = useState(false)
 
   const updateRecomendations = recomendations => {
     currRecomendations = recomendations
@@ -38,28 +41,30 @@ const NewExperienceForm = ({selectedCity, onChangeCity, citiesIndex, windowDimen
 
   //Stop form from submitting in a standar way (problems with the Autocomplete Google Maps function when pressing enter)
   const handleForm = data => {
-    debugger
-    var markerContainer = {
-      mapMarkers: currRecomendations
-      }
-    //updateMarkers(selectedCity.name, markerContainer)
-    addExperience(selectedCity.name, {}, markerContainer)
+    if(currRecomendations.length === 0){
+      window.scrollTo(0, myRef.current.offsetTop)
+      setNoRecomendations(true)
+    }
+    else {
+      var markerContainer = {
+        mapMarkers: currRecomendations
+        }
+      //updateMarkers(selectedCity.name, markerContainer)
+      //addExperience(selectedCity.name, {}, markerContainer)
+    }
   }
 
   const onChangeHousing = event => {
-    debugger
     if(event.target.value === 'option1'){
       setInvalidPrice(true)
       setValue('residencePrice', 0)
     }
     else
       setInvalidPrice(false)
-
-    var aux = getValues()
   }
 
     return (
-        <form
+        <Form
         onSubmit = {handleSubmit(handleForm)}
         style = {{
           marginTop: "20px",
@@ -143,13 +148,23 @@ const NewExperienceForm = ({selectedCity, onChangeCity, citiesIndex, windowDimen
             textAlign: "center",
             marginLeft: "20px",
             marginRight: "20px"
-          }}>
+            }}
+            ref = {myRef}
+          >
             <h3 className = "bold"> Recomiendanos sitios! </h3>
             <RecomenMapWithList
               selectedCity = {selectedCity}
               windowDimensions = {windowDimensions}
-              updateRecomendations = {updateRecomendations} />
+              updateRecomendations = {updateRecomendations}/>
            </div>
+           {noRecomendations &&
+             <StandarModal
+             color = "danger"
+             style = {{
+               marginTop: "15px"
+             }}
+             message = "Por favor, elige al menos una recomendacion"
+             />}
           <Container style = {{
             textAlign: "center"
           }}>
@@ -166,13 +181,22 @@ const NewExperienceForm = ({selectedCity, onChangeCity, citiesIndex, windowDimen
                   </div>
                 </label>
                 <Input
+                  style = {{
+                    fontSize: "large"
+                  }}
+                  name = "advice"
                   bsSize="lg"
                   id="textArea"
                   rows="3"
                   type="textarea"
-                  style = {{
-                    fontSize: "large"
-                  }}/>
+                  invalid = {errors.advice !== undefined}
+                  innerRef={
+                    register({
+                      required: true
+                    })}/>
+                  {errors.advice && errors.advice.type === 'required' &&
+                  <FormFeedback>Se debe introducir al menos un consejo</FormFeedback>
+                  }
               </FormGroup>
              </Row>
           <Button style = {{
@@ -183,7 +207,7 @@ const NewExperienceForm = ({selectedCity, onChangeCity, citiesIndex, windowDimen
             Enviar
           </Button>
         </Container>
-      </form>
+      </Form>
     )
 }
 
