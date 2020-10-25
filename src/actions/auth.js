@@ -16,7 +16,7 @@ export const userJustCreatedShown = () => (dispatch, getState) => {
   dispatch({ type: USER_JUST_CREATED, userJustCreated: false })
 }
 
-export const logInUser = (logInData) => (dispatch, getState) => {
+export const logInUser = logInData => (dispatch, getState) => {
   return api.logIn(logInData)
   .then(user => dispatch({ type: JUST_LOGGED_IN, justLoggedIn: true }))
 }

@@ -141,7 +141,7 @@ const HomePage = ({dispatch, citiesIndex, isFetching, authUser}) => {
                 }}>Destinos</CardTitle>
                 </CardBody>
                 <ScrollDestinations isFetching = {isFetching}
-                destinations = { citiesIndex !== null && Object.values(citiesIndex).sort().filter(item => item.name.toLowerCase().includes(city.toLowerCase()))}/>
+                  destinations = { citiesIndex !== null && Object.values(citiesIndex).filter(item => item.name.toLowerCase().includes(city.toLowerCase())).sort((a,b) => a.name.localeCompare(b.name))}/>
               </Card>
             </Col>
           </Row>
@@ -228,7 +228,8 @@ const HomePage = ({dispatch, citiesIndex, isFetching, authUser}) => {
 const mapStateToProps = state => ({
   citiesIndex: state.citiesIndex.data,
   authUser: state.authUser,
-  isFetching: state.citiesIndex.isFetching
+  isFetching: state.citiesIndex.isFetching,
+  savedExperience: state.experiences.message
 })
 
 export default connect(mapStateToProps)(withAuth(HomePage))

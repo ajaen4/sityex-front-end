@@ -51,13 +51,10 @@ function MapWithSearch({cityCoordinates, currRecomendations, savedRecomendations
       console.log(place)
 
       var placesKey = Object.keys(ref.current.autocomplete.gm_bindings_.types)
+      var nextKeys = Object.keys(ref.current.autocomplete.gm_bindings_.types[placesKey[0]])
       var selectedPlace = {}
 
-      debugger
-      if(ref.current.autocomplete.gm_bindings_.types[placesKey[0]].re !== undefined)
-        selectedPlace.name = ref.current.autocomplete.gm_bindings_.types[placesKey[0]].re.formattedPrediction.split(",")[0]
-      else
-        selectedPlace.name = ref.current.autocomplete.gm_bindings_.types[placesKey[0]].oe.formattedPrediction.split(",")[0]
+      selectedPlace.name = ref.current.autocomplete.gm_bindings_.types[placesKey[0]][nextKeys[0]].formattedPrediction.split(",")[0]
 
       selectedPlace.address = place.formatted_address
       selectedPlace.coordinates = {lat: place.geometry.location.lat(), lng: place.geometry.location.lng()}

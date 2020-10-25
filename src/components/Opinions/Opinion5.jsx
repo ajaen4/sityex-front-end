@@ -16,7 +16,7 @@ const Opinion5 = ({icon, labelName, register, errors}) => {
      <>
        <Container style = {{marginTop: "30px"}}>
          <div className = "rowMainCharact">
-           {(!(icon === "sun")) && <i className = {className} style = {{
+           {((icon !== "sun")) && <i className = {className} style = {{
              marginTop: "5px",
              marginRight: "5px"
            }}></i>}
@@ -34,9 +34,9 @@ const Opinion5 = ({icon, labelName, register, errors}) => {
         <FormGroup check className="form-check-radio" inline>
         <Label check>
           <Input
-            defaultValue = "option1"
+            defaultValue = "1"
             id = {labelName + "1"}
-            name = {labelName + "Options"}
+            name = {labelName}
             type = "radio"
             style = {{margin: "0px"}}
             innerRef={
@@ -50,8 +50,9 @@ const Opinion5 = ({icon, labelName, register, errors}) => {
         <FormGroup check className="form-check-radio" inline>
           <Label check>
             <Input
+              defaultValue = "2"
               id = {labelName + "2"}
-              name = {labelName + "Options"}
+              name = {labelName}
               type= "radio"
               style = {{margin: "0px"}}
               innerRef={
@@ -65,9 +66,9 @@ const Opinion5 = ({icon, labelName, register, errors}) => {
         <FormGroup check className="form-check-radio" inline>
           <Label check>
             <Input
-              defaultValue="option3"
+              defaultValue = "3"
               id = {labelName + "3"}
-              name = {labelName + "Options"}
+              name = {labelName}
               type = "radio"
               style = {{margin: "0px"}}
               innerRef={
@@ -81,9 +82,9 @@ const Opinion5 = ({icon, labelName, register, errors}) => {
         <FormGroup check className="form-check-radio" inline>
           <Label check>
             <Input
-              defaultValue="option4"
+              defaultValue="4"
               id = {labelName + "4"}
-              name = {labelName + "Options"}
+              name = {labelName}
               type = "radio"
               style = {{margin: "0px"}}
               innerRef={
@@ -97,9 +98,9 @@ const Opinion5 = ({icon, labelName, register, errors}) => {
         <FormGroup check className="form-check-radio" inline>
           <Label check>
             <Input
-              defaultValue="option5"
+              defaultValue="5"
               id = {labelName + "5"}
-              name = {labelName + "Options"}
+              name = {labelName}
               type = "radio"
               style = {{margin: "0px"}}
               innerRef={
@@ -111,7 +112,7 @@ const Opinion5 = ({icon, labelName, register, errors}) => {
           </Label>
         </FormGroup>
       </Container>
-      {errors[labelName + 'Options'] && errors[labelName + 'Options'].type === 'required' &&
+      {errors[labelName] && errors[labelName].type === 'required' &&
       <div
         style = {{
           fontSize: "small",

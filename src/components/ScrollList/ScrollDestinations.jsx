@@ -49,9 +49,9 @@ function ScrollDestinations({ destinations, isFetching }){
           display: "flex",
           justifyContent: "center"
         }}
-        itemRenderer = {renderItem}
-        length = {destinations.length}
-        type = 'uniform'
+          itemRenderer = {renderItem}
+          length = {destinations.length}
+          type = 'uniform'
         />
       </div>
       </>

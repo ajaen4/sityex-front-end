@@ -1,7 +1,7 @@
 
-import React from "react";
+import React from "react"
 
-import ReactList from 'react-list';
+import ReactList from 'react-list'
 
 // reactstrap components
 import {
@@ -10,29 +10,29 @@ import {
   Col,
   Card,
   CardBody
-} from "reactstrap";
+} from "reactstrap"
 
 
 function ScrollRecomendations({currRecomendations, deleteRec, windowWidth}){
 
-  const [recomendations, setRecomendations] = React.useState(currRecomendations);
-  const [scrollHeight, setScrollHeight] = React.useState("0px");
+  const [recomendations, setRecomendations] = React.useState(currRecomendations)
+  const [scrollHeight, setScrollHeight] = React.useState("0px")
 
   React.useEffect(() => {
 
     if(windowWidth < 800 && currRecomendations.length === 0){
-      setScrollHeight("0px");
+      setScrollHeight("0px")
     }
     else{
-    setScrollHeight(windowWidth > 800 ? "500px" : "200px");
+    setScrollHeight(windowWidth > 800 ? "500px" : "200px")
     }
-    setRecomendations(currRecomendations);
+    setRecomendations(currRecomendations)
 
-  }, [windowWidth, currRecomendations]);
+  }, [windowWidth, currRecomendations])
 
   const deleteRecom = (event) => {
-    deleteRec(parseInt(event._targetInst.key));
-  };
+    deleteRec(parseInt(event._targetInst.key))
+  }
 
   const renderItem = (index, key) => {
     return <Card style = {{
@@ -63,7 +63,7 @@ function ScrollRecomendations({currRecomendations, deleteRec, windowWidth}){
                 </Col>
               </Row>
             </CardBody>
-          </Card>;
+          </Card>
         }
 
   return (
@@ -76,8 +76,8 @@ function ScrollRecomendations({currRecomendations, deleteRec, windowWidth}){
       />
     </div>
     </>
-  );
+  )
 
 }
 
-export default ScrollRecomendations;
+export default ScrollRecomendations

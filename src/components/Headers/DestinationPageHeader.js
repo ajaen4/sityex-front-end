@@ -4,7 +4,7 @@ import { prettyCity } from 'helpers/usefulFunctions'
 // reactstrap components
 import { Container } from "reactstrap";
 
-function DestinationPageHeader({cityName, countryName}) {
+function DestinationPageHeader({cityName, countryName, numExp}) {
 
   let pageHeader = createRef();
 
@@ -43,7 +43,7 @@ function DestinationPageHeader({cityName, countryName}) {
           <p className="category">{countryName}</p>
           <div className="content">
             <div className="social-description">
-              <h2>0</h2>
+              <h2>{numExp}</h2>
               <b>Experiencias</b>
             </div>
             <div className="social-description">

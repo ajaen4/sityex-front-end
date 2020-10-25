@@ -1,17 +1,16 @@
 
 import { combineReducers } from 'redux'
 
-//----------- AUTH
 import authUser from 'reducers/authUser.js'
-
-//----------- CITIES
 import citiesIndex from 'reducers/citiesIndex.js'
 import selectedCity from 'reducers/selectedCity.js'
+import experiences from 'reducers/experiences.js'
 
 const serviceApp = combineReducers({
   authUser,
   citiesIndex,
-  selectedCity
+  selectedCity,
+  experiences
 })
 
 export default serviceApp

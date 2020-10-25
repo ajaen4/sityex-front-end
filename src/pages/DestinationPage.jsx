@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 //Custom funcionality
 import { withAuth } from 'session'
 import { prettyCity } from 'helpers/usefulFunctions'
-import { fetchCity } from 'actions'
+import { fetchCity, getExperiences } from 'actions'
 
 //reactstrap components
 import {
@@ -25,7 +25,7 @@ import {
 import DestinationPageHeader from "components/Headers/DestinationPageHeader.js"
 import DefaultFooter from "components/Footers/DefaultFooter.js"
 import WrappedMap from 'components/GoogleMaps/MapComponent.js'
-import Experiences from 'components/Experiences/Experiences.jsx'
+import ExperiencesList from 'components/ScrollList/ExperiencesList.jsx'
 import CityInfo from 'components/CityData/CityInfo.jsx'
 import CenteredLoadingSpinner from 'components/Spinner/CenteredLoadingSpinner'
 
@@ -34,8 +34,13 @@ const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${process.en
 const DestinationPage = ({selectedCity, dispatch}) => {
 
   const [pills, setPills] = useState("1")
+  const [experiences, setExperiences] = useState([])
 
   const { location } = useParams()
+
+  if (window.navigator.geolocation) {
+    window.navigator.geolocation.getCurrentPosition(console.log, console.log)
+  }
 
   useEffect(() => {
     document.body.classList.add("profile-page")
@@ -45,14 +50,18 @@ const DestinationPage = ({selectedCity, dispatch}) => {
   })
 
   useEffect(() => {
-    dispatch(fetchCity(prettyCity(location))
-  )}, [dispatch, location])
+    dispatch(fetchCity(prettyCity(location)))
+    getExperiences(prettyCity(location))
+    .then((experiences) => {
+      setExperiences(experiences)
+    })
+  }, [dispatch, location])
 
   if(selectedCity === null || (selectedCity.name !== prettyCity(location))) return <CenteredLoadingSpinner/>
 
   return (
     <>
-        <DestinationPageHeader cityName = {selectedCity.displayName} countryName = {selectedCity.countryName} />
+        <DestinationPageHeader cityName = {selectedCity.displayName} countryName = {selectedCity.countryName} numExp = {experiences.length}/>
         <div className="mySection">
           <Container>
             <div className="button-container">
@@ -119,16 +128,16 @@ const DestinationPage = ({selectedCity, dispatch}) => {
             <TabPane tabId="pills1">
               <Row style = {{justifyContent: "center"}}>
                 <Col sm = "11" md = "12" lg = "11" >
-                  <Experiences/>
+                  <ExperiencesList experiences = {experiences}/>
                 </Col>
               </Row>
               </TabPane>
               <TabPane tabId="pills2">
-              <Row style = {{justifyContent: "center"}}>
-                <Col sm = "11" md = "12" lg = "11" >
-                  <Experiences/>
-                </Col>
-              </Row>
+                <Row style = {{justifyContent: "center"}}>
+                  <Col sm = "11" md = "12" lg = "11" >
+                    <ExperiencesList experiences = {experiences}/>
+                  </Col>
+                </Row>
               </TabPane>
               <TabPane tabId="pills3">
               <Row style = {{justifyContent: "center"}}>

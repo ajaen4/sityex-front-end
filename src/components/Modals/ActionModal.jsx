@@ -6,13 +6,12 @@ import {
   ModalBody,
   ModalFooter } from 'reactstrap'
 
-const ActionModal = ({title, message, show, action}) => {
+const ActionModal = ({show, title, message, action}) => {
 
   const [showModal, setShowModal] = useState(show)
 
   const toggle = () => {
     setShowModal(!showModal)
-    debugger
     action()
   }
 

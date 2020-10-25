@@ -18,7 +18,7 @@ function Map(props){
   return (
     <>
       <GoogleMap
-      defaultZoom = {14}
+      defaultZoom = {12}
       center = {props.coordinates} >
         {props.recomendations.map( recomendation =>
           <Marker

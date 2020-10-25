@@ -1,6 +1,13 @@
 
 import *  as api from 'api'
 
-export const getExperiences = (cityName) => api.doGetExperiences(cityName)
+import {
+  SAVING_EXPERIENCES
+} from 'types'
 
-export const addExperience = (cityName, experience, markers) => api.doAddExperience(cityName, experience, markers)
+export const getExperiences = cityName => api.doGetExperiences(cityName)
+
+export const addExperience = (cityName, experience, markers) => (dispatch, getState) =>  {
+  dispatch({type: SAVING_EXPERIENCES})
+  return api.doAddExperience(cityName, experience, markers)
+}

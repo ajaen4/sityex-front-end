@@ -30,7 +30,7 @@ const Opinion2 = ({icon, labelName, option1, option2, onChange, register, errors
           <Input
             defaultValue = "option1"
             id = {labelName + "1"}
-            name = {labelName + "Options"}
+            name = {labelName}
             type="radio"
             innerRef={
               register({
@@ -45,7 +45,7 @@ const Opinion2 = ({icon, labelName, option1, option2, onChange, register, errors
           <Label check>
             <Input
               id = {labelName + "2"}
-              name = {labelName + "Options"}
+              name = {labelName}
               type="radio"
               innerRef={
                 register({
@@ -57,7 +57,7 @@ const Opinion2 = ({icon, labelName, option1, option2, onChange, register, errors
           </Label>
         </FormGroup>
       </Container>
-      {errors[labelName + 'Options'] && errors[labelName + 'Options'].type === 'required' &&
+      {errors[labelName] && errors[labelName].type === 'required' &&
       <div
         style = {{
           fontSize: "small",
