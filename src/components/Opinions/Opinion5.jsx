@@ -9,7 +9,7 @@ import {
 } from "reactstrap"
 
 
-const Opinion5 = ({icon, labelName, register, errors}) => {
+const Opinion5 = ({icon, fieldName, labelName, register, errors}) => {
 
   const className = "now-ui-icons " + icon
   return (
@@ -35,8 +35,8 @@ const Opinion5 = ({icon, labelName, register, errors}) => {
         <Label check>
           <Input
             defaultValue = "1"
-            id = {labelName + "1"}
-            name = {labelName}
+            id = {fieldName + "1"}
+            name = {fieldName}
             type = "radio"
             style = {{margin: "0px"}}
             innerRef={
@@ -51,8 +51,8 @@ const Opinion5 = ({icon, labelName, register, errors}) => {
           <Label check>
             <Input
               defaultValue = "2"
-              id = {labelName + "2"}
-              name = {labelName}
+              id = {fieldName + "2"}
+              name = {fieldName}
               type= "radio"
               style = {{margin: "0px"}}
               innerRef={
@@ -67,8 +67,8 @@ const Opinion5 = ({icon, labelName, register, errors}) => {
           <Label check>
             <Input
               defaultValue = "3"
-              id = {labelName + "3"}
-              name = {labelName}
+              id = {fieldName + "3"}
+              name = {fieldName}
               type = "radio"
               style = {{margin: "0px"}}
               innerRef={
@@ -83,8 +83,8 @@ const Opinion5 = ({icon, labelName, register, errors}) => {
           <Label check>
             <Input
               defaultValue="4"
-              id = {labelName + "4"}
-              name = {labelName}
+              id = {fieldName + "4"}
+              name = {fieldName}
               type = "radio"
               style = {{margin: "0px"}}
               innerRef={
@@ -99,8 +99,8 @@ const Opinion5 = ({icon, labelName, register, errors}) => {
           <Label check>
             <Input
               defaultValue="5"
-              id = {labelName + "5"}
-              name = {labelName}
+              id = {fieldName + "5"}
+              name = {fieldName}
               type = "radio"
               style = {{margin: "0px"}}
               innerRef={
@@ -112,7 +112,7 @@ const Opinion5 = ({icon, labelName, register, errors}) => {
           </Label>
         </FormGroup>
       </Container>
-      {errors[labelName] && errors[labelName].type === 'required' &&
+      {errors[fieldName] && errors[fieldName].type === 'required' &&
       <div
         style = {{
           fontSize: "small",

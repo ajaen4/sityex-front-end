@@ -4,6 +4,8 @@ import serviceApp from 'reducers'
 import thunk from 'redux-thunk'
 import logger from 'redux-logger'
 
+import {loadState} from "localStorage/localStorage"
+
 const initStore = () => {
   const middlewares = [thunk]
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
@@ -14,6 +16,7 @@ const initStore = () => {
 
   const store = createStore(
     serviceApp,
+    loadState(),
     composeEnhancers(applyMiddleware(...middlewares))
   )
 

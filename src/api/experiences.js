@@ -28,7 +28,6 @@ const updateOriginalMarkers = (originalMarkers, newMarkers) => {
     for(var singleMarker in auxMarkerObject){
         const coordinates1 = auxMarkerObject[singleMarker].coordinates
         const coordinates2 = newMarkers[indexNewM].coordinates
-      debugger
       if((round(coordinates1.lat, ROUND_PRESCISION) === round(coordinates2.lat, ROUND_PRESCISION)) &&
           (round(coordinates1.lng, ROUND_PRESCISION) === round(coordinates2.lng, ROUND_PRESCISION))){
         auxMarkerObject[singleMarker].numOfRecomendations++
@@ -49,7 +48,6 @@ export const doAddExperience = (cityName, experience, markers) => {
   const experiencesRef = db.collection("cities").doc(cityName).collection("experiences")
   const cityRef = db.collection("cities").doc(cityName)
   return db.runTransaction(t => {
-
     return t.get(cityRef)
     .then(doc => {
       let originalMarkers = []
@@ -65,9 +63,13 @@ export const doAddExperience = (cityName, experience, markers) => {
       t.set(cityRef, setObject, {merge: true})
 
       //Add the experience to the subcollection of the city
-      const expWithTimeStamp = {...experience, timeStamp: firebase.firestore.FieldValue.serverTimestamp()}
+      debugger
+      const ref = experiencesRef.doc()
+      const id = ref.path.split("/").pop()
 
-      t.set(experiencesRef.doc(), expWithTimeStamp)
+      const expTimeId = {...experience, timeStamp: firebase.firestore.FieldValue.serverTimestamp(), id: id}
+
+      t.set(ref, expTimeId)
     })
   })
 }

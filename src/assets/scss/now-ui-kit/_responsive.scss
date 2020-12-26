@@ -1,63 +1,12 @@
 @media screen and (max-width: 991px){
-    .sidebar-collapse{
-        @include navbar-collapse();
-
-        &.menu-on-left{
-            .navbar-collapse{
-                right: auto;
-                left: 0;
-                @include transform-translate-x(-300px);
-            }
-        }
-
-        .nav-open &{
-            .navbar-collapse{
-                @include transform-translate-x(0px);
-            }
-
-            .wrapper{
-                @include transform-translate-x(-150px);
-            }
-
-            .navbar-translate{
-                @include transform-translate-x(-300px);
-            }
-
-            &.menu-on-left{
-                .navbar-collapse{
-                    @include transform-translate-x(0px);
-                }
-
-                .navbar-translate{
-                    @include transform-translate-x(300px);
-                }
-
-                .wrapper{
-                    @include transform-translate-x(150px);
-                }
-
-                #bodyClick{
-                    right: auto;
-                    left: 300px;
-                }
-            }
-        }
-    }
-
-    .navbar-nav .nav-link i.fab,
-    .navbar-nav .nav-link i.now-ui-icons {
-      opacity: .5;
-    }
-
-    .bootstrap-collapse{
-        .navbar .navbar-collapse{
-            background: none !important;
-        }
-        @include navbar-responsive();
-    }
+    @include navbar-collapse();
 
     .profile-photo .profile-photo-small{
         margin-left: -2px;
+    }
+
+    [class*="navbar-toggleable-"] .navbar-collapse{
+        width: 300px;
     }
 
     .button-dropdown{
@@ -76,15 +25,6 @@
 
     .section-nucleo-icons .icons-container{
         margin-top: 65px;
-    }
-
-    .navbar-nav{
-        .nav-link{
-            i.fa,
-            i.now-ui-icons{
-                opacity: .5;
-            }
-        }
     }
 
     .section-images{
@@ -107,23 +47,85 @@
             top: 93%;
         }
     }
+
+    .nav-open{
+        .navbar-collapse{
+            @include transform-translate-x(0px);
+        }
+
+        .wrapper{
+            @include transform-translate-x(-150px);
+        }
+
+        .navbar-translate{
+            @include transform-translate-x(-300px);
+        }
+
+        .menu-on-left{
+            .navbar-collapse{
+                @include transform-translate-x(0px);
+            }
+
+            .navbar-translate{
+                @include transform-translate-x(300px);
+            }
+
+            .wrapper{
+                @include transform-translate-x(150px);
+            }
+
+            #bodyClick{
+                right: auto;
+                left: 300px;
+            }
+        }
+    }
 }
 
 @media screen and (min-width: 992px){
-  .navbar-collapse:not(.has-image) {
-    background: transparent !important;
-}
+    .navbar-nav{
+        .nav-link{
+            &.profile-photo{
+                padding: 0;
+                margin: 7px $padding-base-horizontal;
+            }
+
+            &.btn:not(.btn-sm){
+                margin: 0;
+            }
+        }
+
+        .nav-item:not(:last-child){
+            margin-right: 5px;
+        }
+
+    }
+    .navbar-collapse:not(.has-image){
+      background: transparent !important;
+    }
+
+    .card.card-form-horizontal{
+        [class*="col-sm-"]:not(:last-child),
+        [class*="col-md-"]:not(:last-child){
+            padding-right: 0;
+        }
+    }
+
     .burger-menu{
         @include navbar-collapse();
 
-        .nav-open & .navbar-collapse{
-            @include transform-translate-x(0px);
+        .navbar-toggler{
+          display: block;
         }
 
         .navbar-collapse {
             display: block !important;
 
             .navbar-nav {
+                position: relative;
+                max-height: calc(100vh - 75px);
+                min-height: 100%;
+                overflow: auto;
                 margin-top: 53px;
                 height: 100%;
                 z-index: 2;
@@ -144,13 +146,24 @@
             }
         }
 
-        &.menu-on-left .navbar-collapse{
-            right: auto;
-            left: 0;
-            @include transform-translate-x(-300px);
+        .navbar-nav .dropdown-menu{
+          position: static;
+          float: none;
         }
 
-        [class*="navbar-expand-"]{
+        &.menu-on-left{
+          .navbar-collapse{
+              right: auto;
+              left: 0;
+              @include transform-translate-x(-300px);
+          }
+
+          .navbar-translate {
+            flex-direction: row-reverse;
+          }
+        }
+
+        .navbar-toggleable-md{
             .navbar-nav .dropdown-menu{
                 position: static;
                 float: none;
@@ -159,10 +172,6 @@
             .navbar-toggler{
                 display: inline-block;
             }
-        }
-
-        .section-navbars .navbar-collapse{
-            display: none !important;
         }
 
         .nav-open &{
@@ -174,7 +183,8 @@
                 @include transform-translate-x(-300px);
             }
 
-            &.menu-on-left .navbar-collapse{
+            &.menu-on-left .navbar-collapse,
+            .navbar-collapse{
                 @include transform-translate-x(0px);
             }
 
@@ -191,41 +201,13 @@
         }
     }
 
-    .navbar-nav{
-        .nav-link{
-            &.profile-photo{
-                padding: 0;
-                margin: 7px $padding-base-horizontal;
-            }
 
-            &.btn:not(.btn-sm){
-                margin: 0;
-            }
-        }
-
-        .nav-item:not(:last-child){
-            margin-right: 5px;
-        }
-
-    }
 
     .section-nucleo-icons .icons-container{
         margin: 0 0 0 auto;
     }
 
-    .dropdown-menu .dropdown-item{
-        color: inherit;
-        display: flex;
-        align-items: center;
-
-        i {
-          margin-right: 5px;
-          position: relative;
-          top: 1px;
-        }
-    }
-
-    .footer{
+    .footer:not(.footer-big){
         .copyright{
             float: right;
         }
@@ -249,7 +231,7 @@
 @media screen and (max-width: 768px){
     .image-container{
         &.image-left{
-            margin-bottom: 220px;
+            margin-bottom: 260px;
 
             p.blockquote{
                 margin: 0 auto;
@@ -257,6 +239,41 @@
                 right: 0;
             }
         }
+    }
+
+    .profile-page{
+      .page-header{
+          min-height: 580px !important;
+      }
+    }
+
+    .header-2{
+        .card-form-horizontal .input-group, .card-form-horizontal .form-group{
+            margin-bottom: 10px;
+        }
+    }
+
+    .contactus-2 .card-contact{
+        max-width: inherit;
+        margin:0;
+        margin-top: 15px;
+    }
+
+    .section-story-overview .image-container + .category{
+        padding-top: 50px;
+    }
+
+    .features-7 .image-container img{
+        left: 0px;
+        top: 0;
+        max-width: inherit;
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .footer.footer-big .social-feed i{
+        padding-bottom: 10px;
     }
 
     .nav-tabs{
@@ -277,15 +294,139 @@
     }
 }
 
+@media screen and (max-width: 580px) {
+    .alert{
+        button.close{
+            position: absolute;
+            right: 6px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+}
+
+
+
 @media screen and (max-width: 576px){
-    .navbar[class*='navbar-expand-'] .container{
+    .navbar[class*='navbar-toggleable-'] .container{
         margin-left: 0;
         margin-right: 0;
+    }
+
+    .typography-line span{
+        margin-left: 0;
+    }
+
+    .team-4{
+      .card-profile .card-footer{
+        text-align: center;
+      }
+    }
+
+    .nav-pills.nav-pills-just-icons{
+      justify-content: center;
+
+      .nav-item .nav-link{
+        margin-top: 15px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    .footer{
+      .pull-left,
+      .footer-brand,
+      .pull-right{
+        float: unset;
+      }
+    }
+
+    .media{
+      display: block;
+
+      .media{
+        padding-left: 35px;
+      }
+    }
+
+    .fileinput{
+      margin: 0 auto;
+      width: stretch;
+    }
+
+    .header-3{
+      .buttons{
+        text-align: center!important;
+      }
+    }
+
+    .blog-post{
+      .button-container > .btn:first-child{
+        display: block;
+      }
+    }
+
+    .testimonials-2{
+      .card-testimonial .card-body{
+        max-width: 350px;
+        min-height: 400px;
+        margin: 0 auto;
+      }
     }
 
     .footer{
         .copyright{
             text-align: center;
+        }
+    }
+
+    .projects-1{
+        .nav-pills{
+            display: block;
+
+            .nav-item{
+              min-width: 200px
+            }
+
+            &:not(.flex-column) .nav-item:not(:last-child) .nav-link{
+              margin-right: 0;
+            }
+
+            .nav-item .nav-link{
+                margin: 0 auto;
+                margin-bottom: 15px;
+            }
+        }
+    }
+
+
+
+    .subscribe-line .card-form-horizontal .btn{
+        margin-top: 10px;
+    }
+
+    .modal .modal-dialog .modal-header button.close{
+        font-size: 18px;
+        right: 12px;
+        top:10px;
+    }
+
+    .header-3 .btn{
+        margin-bottom: 10px;
+    }
+
+    .card.card-fashion:not(.card-background):before{
+        display: none;
+    }
+
+    .profile-page{
+        .content-center{
+            margin: 10px 0 0;
+
+            .content .social-description{
+                width: 105px;
+                max-width: 105px;
+            }
         }
     }
 
@@ -343,6 +484,29 @@
             top: 99%;
         }
     }
+
+    .pricing-5{
+      .title{
+        text-align: center;
+      }
+
+      .nav-pills{
+        justify-content: center;
+      }
+    }
+
+    .footer nav{
+        display: block;
+        float: none;
+    }
+
+    #social-buttons > .row{
+        .col-md-1:nth-child(2) p,
+        .col-md-1:nth-child(3) p,
+        .col-md-3 p{
+            display: none;
+        }
+    }
 }
 
 @media screen and (max-width: 517px) {
@@ -361,48 +525,6 @@
         .hero-images-container-2{
             top: 66%;
             right: 14%;
-        }
-    }
-}
-
-// Ipad responsive portrait mode
-@media only screen
-and (min-device-width : 768px)
-and (max-device-width : 1024px)
-and ( orientation : portrait){
-    .section-images .hero-images-container,
-    .section-images .hero-images-container-1,
-    .section-images .hero-images-container-2{
-        margin-top: -15vh;
-        margin-left: 80px;
-    }
-
-    .section-images .hero-images-container{
-        max-width: 300px;
-    }
-
-    .section-images .hero-images-container-1{
-        right: 28%;
-        top: 40%;
-    }
-
-    .section-images .hero-images-container-2{
-        right: 21%;
-        top: 55%;
-    }
-
-    .index-page .category-absolute{
-        top: 90vh;
-    }
-}
-
-@media screen and (max-width: 580px) {
-    .alert{
-        button.close{
-            position: absolute;
-            right: 11px;
-            top: 50%;
-            transform: translateY(-50%);
         }
     }
 }

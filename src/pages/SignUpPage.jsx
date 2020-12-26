@@ -18,7 +18,6 @@ import SignUpForm from "components/Forms/SignUpForm.jsx";
 
 const  SignUpPageBase = () => {
 
-    debugger
     return (
       <>
       <Container className="content" style = {{

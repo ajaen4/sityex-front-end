@@ -16,8 +16,8 @@ import Autocomplete from 'react-google-autocomplete'
 
 function MapWithSearch({cityCoordinates, currRecomendations, savedRecomendations, pushRecomendation, incrementRecomendation}){
 
-  const iconSelected = { url: require("assets/icons/pin_filled_red.png"), scaledSize: { width: 38, height: 38 } }
-  const iconSavedRec = { url: require("assets/icons/pin_filled_blue.png"), scaledSize: { width: 38, height: 38 } }
+  const iconSelected = { url: require("assets/icons/pin_red.png"), scaledSize: { width: 38, height: 38 } }
+  const iconSavedRec = { url: require("assets/icons/pin_blue.png"), scaledSize: { width: 38, height: 38 } }
   const iconCurrRec = { url: require("assets/icons/pin_outline_blue.png"), scaledSize: { width: 38, height: 38 } }
 
   const TITLESELOPTION = "Localizacion incorrecta. "

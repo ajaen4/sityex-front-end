@@ -90,7 +90,7 @@ const RecomenMapWithList = ({selectedCity, windowDimensions, updateRecomendation
                justifyContent: "center",
                alignItems: "center",
                textAlign: "center"}}>
-                 <img  alt = "selected place icon" src = {require("assets/icons/pin_filled_red.png")} style = {{
+                 <img  alt = "selected place icon" src = {require("assets/icons/pin_red.png")} style = {{
                    height: "30px"
                  }}></img>
                  <div style = {{
@@ -128,7 +128,7 @@ const RecomenMapWithList = ({selectedCity, windowDimensions, updateRecomendation
                alignItems: "center",
                textAlign: "center"
                }}>
-                 <img  alt = "other users recomendations icon" src = {require("assets/icons/pin_filled_blue.png")} style = {{
+                 <img  alt = "other users recomendations icon" src = {require("assets/icons/pin_blue.png")} style = {{
                    height: "30px"
                  }}></img>
                  <div style = {{

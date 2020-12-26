@@ -6,7 +6,7 @@ import ReactList from 'react-list'
 import Experience from 'components/Experiences/Experience.jsx'
 import LoadingSpinner from 'components/Spinner/LoadingSpinner.jsx'
 
-function ExperiencesList({ experiences, isFetching }){
+function ScrollExperiences({ experiences, isFetching }){
 
   const renderItem = (index, key) => {
 
@@ -36,4 +36,4 @@ function ExperiencesList({ experiences, isFetching }){
 
 }
 
-export default ExperiencesList
+export default ScrollExperiences

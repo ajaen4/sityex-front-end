@@ -28,15 +28,13 @@ function DestinationPageHeader({cityName, countryName, numExp}) {
   });
   return (
     <>
-      <div
-        className="page-header clear-filter page-header-medium"
-      >
+      <div className="page-header page-header-small">
         <div
           className="page-header-image"
           style={{
             backgroundImage: "url(" + require("assets/img/cityImage/" + prettyCity(cityName).replace(" ","-") + ".jpg") + ")"
           }}
-          ref={pageHeader}
+          ref = {pageHeader}
         ></div>
         <Container>
           <h3 className="title capitalize">{cityName}</h3>

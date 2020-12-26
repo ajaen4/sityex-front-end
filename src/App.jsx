@@ -8,9 +8,17 @@ import { Provider } from 'react-redux'
 
 //Custom fuctionality
 import ErasmusApp from './ErasmusApp'
-import { onAuthStateChanged, storeAuthUser } from 'actions'
+import { onAuthStateChanged, storeAuthUser, fetchCitiesIndex } from 'actions'
+import {saveState} from "localStorage/localStorage"
+
 
 const store = initStore()
+
+store.subscribe(() => {
+  const stateToSave = {}
+  stateToSave.authUser = store.getState().authUser
+  saveState(stateToSave)
+})
 
 class App extends Component {
 
@@ -26,6 +34,8 @@ class App extends Component {
     this.unsuscribeAuth = onAuthStateChanged(authUser => {
       store.dispatch(storeAuthUser(authUser))
     })
+    if(store.getState().citiesIndex.data === null)
+      store.dispatch(fetchCitiesIndex())
   }
 
   componentWillUnmount() {

@@ -11,7 +11,7 @@ import {
 function Map(props){
 
   const dummyRecom = {coordinates: {lat: 0, lng: 0}, name: "", address: "" };
-  const iconRecomendation = { url: require("assets/icons/pin_filled_blue.png"), scaledSize: { width: 38, height: 38 } };
+  const iconRecomendation = { url: require("assets/icons/pin_blue.png"), scaledSize: { width: 38, height: 38 } };
 
   const [selectedRecomen, setSelectedRecomen] = React.useState(dummyRecom);
 
@@ -19,7 +19,7 @@ function Map(props){
     <>
       <GoogleMap
       defaultZoom = {12}
-      center = {props.coordinates} >
+      center = {props.coordinates}>
         {props.recomendations.map( recomendation =>
           <Marker
             key = {recomendation.name}

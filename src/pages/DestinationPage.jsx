@@ -25,7 +25,7 @@ import {
 import DestinationPageHeader from "components/Headers/DestinationPageHeader.js"
 import DefaultFooter from "components/Footers/DefaultFooter.js"
 import WrappedMap from 'components/GoogleMaps/MapComponent.js'
-import ExperiencesList from 'components/ScrollList/ExperiencesList.jsx'
+import ScrollExperiences from 'components/ScrollList/ScrollExperiences.jsx'
 import CityInfo from 'components/CityData/CityInfo.jsx'
 import CenteredLoadingSpinner from 'components/Spinner/CenteredLoadingSpinner'
 
@@ -53,7 +53,7 @@ const DestinationPage = ({selectedCity, dispatch}) => {
     dispatch(fetchCity(prettyCity(location)))
     getExperiences(prettyCity(location))
     .then((experiences) => {
-      setExperiences(experiences)
+      setExperiences(experiences.sort((a, b) => b.timeStamp - a.timeStamp))
     })
   }, [dispatch, location])
 
@@ -76,8 +76,8 @@ const DestinationPage = ({selectedCity, dispatch}) => {
               </Col>
             </Row>
             <Row>
-              <Col>
-                <h3 className="title text-center">Áreas</h3>
+              <Col style = {{marginTop: "0px"}}>
+                <h3 style = {{marginTop: "0px"}} className="title text-center">Áreas</h3>
                 <div className="nav-align-center">
                   <Nav
                     className="nav-pills-info nav-pills-just-icons"
@@ -128,14 +128,14 @@ const DestinationPage = ({selectedCity, dispatch}) => {
             <TabPane tabId="pills1">
               <Row style = {{justifyContent: "center"}}>
                 <Col sm = "11" md = "12" lg = "11" >
-                  <ExperiencesList experiences = {experiences}/>
+                  <ScrollExperiences experiences = {experiences}/>
                 </Col>
               </Row>
               </TabPane>
               <TabPane tabId="pills2">
                 <Row style = {{justifyContent: "center"}}>
                   <Col sm = "11" md = "12" lg = "11" >
-                    <ExperiencesList experiences = {experiences}/>
+                    <ScrollExperiences experiences = {experiences}/>
                   </Col>
                 </Row>
               </TabPane>

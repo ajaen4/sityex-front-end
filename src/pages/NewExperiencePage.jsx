@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 //Custom functionality
 import { withAuth } from 'session'
 import { prettyCity } from 'helpers/usefulFunctions'
-import { fetchCitiesIndex, fetchCity } from 'actions'
+import { fetchCity } from 'actions'
 
 //Custom UI components
 import DefaultFooter from "components/Footers/DefaultFooter"
@@ -19,7 +19,6 @@ const NewExperiencePage = ({dispatch, selectedCity, citiesIndex}) => {
 
   useEffect(() => {
     dispatch(fetchCity(prettyCity(INITIALCITY)))
-    dispatch(fetchCitiesIndex())
   }, [dispatch])
 
   useEffect(() => {
@@ -46,7 +45,7 @@ const NewExperiencePage = ({dispatch, selectedCity, citiesIndex}) => {
         <NewExperienceForm
           selectedCity = {selectedCity}
           onChangeCity = {onChangeCity}
-          citiesIndex = {citiesIndex}
+          citiesIndex = {citiesIndex !== null ? citiesIndex : []}
           windowDimensions = {windowDimensions}/>
       </div>
       <DefaultFooter />

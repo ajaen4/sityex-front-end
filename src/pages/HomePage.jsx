@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 
 //Custom functionality
 import { withAuth } from 'session'
-import { fetchCitiesIndex } from 'actions'
 import { objectIsEmpty } from 'helpers/usefulFunctions'
 
 //reactstrap components
@@ -34,7 +33,7 @@ import UserJustCreatedModal from 'components/Modals/UserJustCreatedModal'
 
 const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places`
 
-const HomePage = ({dispatch, citiesIndex, isFetching, authUser}) => {
+const HomePage = ({citiesIndex, isFetching, authUser}) => {
 
   const [pills, setPills] = useState("1")
   const [city, setCity] = useState('')
@@ -51,10 +50,6 @@ const HomePage = ({dispatch, citiesIndex, isFetching, authUser}) => {
   const updatewindowWidth = () => {
     setwindowWidth(window.innerWidth)
   }
-
-  useEffect(() => {
-    dispatch(fetchCitiesIndex())
-  }, [dispatch])
 
   const onSearchChange = event => setCity(event.target.value)
 

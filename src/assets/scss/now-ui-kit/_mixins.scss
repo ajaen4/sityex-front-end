@@ -5,10 +5,14 @@
 @import "mixins/buttons";
 @import "mixins/vendor-prefixes";
 @import "mixins/inputs";
+@import "mixins/cards";
 @import "mixins/dropdown";
 @import "mixins/badges";
-@import "mixins/navbar";
 @import "mixins/popovers";
 @import "mixins/modals";
 @import "mixins/pages";
 @import "mixins/datepicker";
+@import "mixins/navbar";
+
+@import "mixins/tags";
+@import "mixins/social-buttons";
