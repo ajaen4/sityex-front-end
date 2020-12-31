@@ -6,6 +6,8 @@ import {
 import initStore from 'store'
 import { Provider } from 'react-redux'
 
+import 'react-dates/initialize'
+
 //Custom fuctionality
 import ErasmusApp from './ErasmusApp'
 import { onAuthStateChanged, storeAuthUser, fetchCitiesIndex } from 'actions'

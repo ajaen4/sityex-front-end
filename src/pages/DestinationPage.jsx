@@ -24,7 +24,7 @@ import {
 //Custom UI components
 import DestinationPageHeader from "components/Headers/DestinationPageHeader.js"
 import DefaultFooter from "components/Footers/DefaultFooter.js"
-import WrappedMap from 'components/GoogleMaps/MapComponent.js'
+import RecomenMap from 'components/GoogleMaps/RecomenMap.js'
 import ScrollExperiences from 'components/ScrollList/ScrollExperiences.jsx'
 import CityInfo from 'components/CityData/CityInfo.jsx'
 import CenteredLoadingSpinner from 'components/Spinner/CenteredLoadingSpinner'
@@ -127,14 +127,14 @@ const DestinationPage = ({selectedCity, dispatch}) => {
           <TabContent className="gallery" activeTab={"pills" + pills} sm = "11" md = "11" lg = "11" style = {{width: "100%"}}>
             <TabPane tabId="pills1">
               <Row style = {{justifyContent: "center"}}>
-                <Col sm = "11" md = "12" lg = "11" >
+                <Col sm = "12" md = "12" lg = "12" >
                   <ScrollExperiences experiences = {experiences}/>
                 </Col>
               </Row>
               </TabPane>
               <TabPane tabId="pills2">
                 <Row style = {{justifyContent: "center"}}>
-                  <Col sm = "11" md = "12" lg = "11" >
+                  <Col sm = "12" md = "12" lg = "12" >
                     <ScrollExperiences experiences = {experiences}/>
                   </Col>
                 </Row>
@@ -145,7 +145,7 @@ const DestinationPage = ({selectedCity, dispatch}) => {
                   <div style = {{
                     justifyContent: "center"
                     }}>
-                    <WrappedMap
+                    <RecomenMap
                     style = {{justifyContent: "center"}}
                     coordinates = {{lat: selectedCity.latitude, lng: selectedCity.longitude }}
                     recomendations = {selectedCity.mapMarkers === undefined ? [] : selectedCity.mapMarkers}

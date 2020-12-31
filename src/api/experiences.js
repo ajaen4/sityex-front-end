@@ -63,7 +63,6 @@ export const doAddExperience = (cityName, experience, markers) => {
       t.set(cityRef, setObject, {merge: true})
 
       //Add the experience to the subcollection of the city
-      debugger
       const ref = experiencesRef.doc()
       const id = ref.path.split("/").pop()
 

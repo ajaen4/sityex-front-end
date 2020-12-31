@@ -1,19 +1,19 @@
 
-import React from "react";
+import React from "react"
 import {
     withScriptjs,
     withGoogleMap,
     GoogleMap,
     Marker,
-    InfoWindow } from "react-google-maps";
+    InfoWindow} from "react-google-maps"
 
 
 function Map(props){
 
-  const dummyRecom = {coordinates: {lat: 0, lng: 0}, name: "", address: "" };
-  const iconRecomendation = { url: require("assets/icons/pin_blue.png"), scaledSize: { width: 38, height: 38 } };
+  const dummyRecom = {coordinates: {lat: 0, lng: 0}, name: "", address: "" }
+  const iconRecomendation = { url: require("assets/icons/pin_blue.png"), scaledSize: { width: 38, height: 38 } }
 
-  const [selectedRecomen, setSelectedRecomen] = React.useState(dummyRecom);
+  const [selectedRecomen, setSelectedRecomen] = React.useState(dummyRecom)
 
   return (
     <>
@@ -27,12 +27,12 @@ function Map(props){
             draggable = {false}
             position = {recomendation.coordinates}
             icon = {iconRecomendation}
-            onClick={() => {setSelectedRecomen(recomendation);}}
+            onClick={() => {setSelectedRecomen(recomendation)}}
           >
           {((recomendation.coordinates.lat === selectedRecomen.coordinates.lat) && (recomendation.coordinates.lng === selectedRecomen.coordinates.lng)) &&
             <InfoWindow
               onCloseClick={() => {
-                setSelectedRecomen(dummyRecom);
+                setSelectedRecomen(dummyRecom)
               }}
               position={selectedRecomen.coordinates}>
               <div style = {{padding: "5px"}}>
@@ -46,10 +46,10 @@ function Map(props){
         )}
       </GoogleMap>
     </>
-  );
+  )
 
 }
 
-const WrappedMap = withScriptjs(withGoogleMap(Map));
+const RecomenMap = withScriptjs(withGoogleMap(Map))
 
-export default WrappedMap;
+export default RecomenMap

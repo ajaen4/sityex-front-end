@@ -13,7 +13,7 @@ import {
 import { prettyCity } from 'helpers/usefulFunctions'
 
 
-const CitiesDropDown = ({citiesList, onChangeCity}) => {
+const CitiesDropDown = ({label, citiesList, onChangeCity}) => {
 
   return (
     <Row style = {{
@@ -23,7 +23,7 @@ const CitiesDropDown = ({citiesList, onChangeCity}) => {
         <FormGroup  style ={{
         justifyContent: "center",
         textAlign: "center"}} >
-          <label htmlFor="exampleFormControlSelect1">En que ciudad has estado?</label>
+          <label htmlFor="exampleFormControlSelect1">{label}</label>
           <Input
           onChange = {onChangeCity}
           id="exampleFormControlSelect1"

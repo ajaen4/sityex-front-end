@@ -16,7 +16,7 @@ import { withoutAuth } from 'session'
 
 import SignUpForm from "components/Forms/SignUpForm.jsx";
 
-const  SignUpPageBase = () => {
+const SignUpPageBase = () => {
 
     return (
       <>

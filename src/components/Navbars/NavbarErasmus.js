@@ -109,6 +109,12 @@ const NavbarErasmus = ({ history, auth, isAuthResolved }) => {
             <Nav navbar>
               { isAuthResolved &&
               <NavItem>
+                <NavLink to="/new-housemate" tag={Link}>
+                  Comparte apartamento
+                </NavLink>
+              </NavItem>}
+              { isAuthResolved &&
+              <NavItem>
                 <NavLink to="/new-experience" tag={Link}>
                   Nueva opinion
                 </NavLink>
@@ -154,8 +160,7 @@ const NavbarErasmus = ({ history, auth, isAuthResolved }) => {
                   </DropdownItem>
                   <DropdownItem divider></DropdownItem>
                   <DropdownItem
-                    href="#pablo"
-                    onClick={e => e.preventDefault()}
+                    href="/profile"
                   >
                   Perfil
                   </DropdownItem>

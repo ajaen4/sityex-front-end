@@ -27,7 +27,7 @@ import{
 //Custom UI components
 import DefaultFooter from "components/Footers/DefaultFooter.js"
 import ScrollDestinations from "components/ScrollList/ScrollDestinations.jsx"
-import MapComponentDestinations from 'components/GoogleMaps/MapComponentDestinations.js'
+import DestinationsMap from 'components/GoogleMaps/DestinationsMap.js'
 import JustLoggedInModal from 'components/Modals/JustLoggedInModal'
 import UserJustCreatedModal from 'components/Modals/UserJustCreatedModal'
 
@@ -143,13 +143,14 @@ const HomePage = ({citiesIndex, isFetching, authUser}) => {
         </TabPane>
         <TabPane tabId="pills2">
           <Row style ={{marginTop: "50px", marginLeft: "20px", marginRight: "20px", justifyContent: "center"}}>
-            <MapComponentDestinations
+            <DestinationsMap
+            windowWidth = {windowWidth}
             style = {{justifyContent: "center"}}
             citiesIndex = {objectIsEmpty(citiesIndex) ? {} : citiesIndex}
             googleMapURL = {mapURL}
             loadingElement = {<p>Cargando</p>}
             containerElement = {<div style = {{ width: "100%", height : windowWidth > 800 ? "600px" : "450px", justifyContent: "center"}}/>}
-            mapElement = {<div style = {{width: "100%", height : "100%", justifyContent: "center"}}/>}/>
+            mapElement = {<div style = {{width: "100%", height : "100%", justifyContent: "center"}}/>}/>/>
           </Row>
           <Row style = {{
               display: "flex",
@@ -159,7 +160,7 @@ const HomePage = ({citiesIndex, isFetching, authUser}) => {
               textAlign: "center",
               marginTop: "15px"
               }}>
-            <img  alt = "selected place icon" src = {require("assets/icons/cityscape.png")} style = {{
+            <img  alt = "selected place icon" src = {require('assets/icons/pin_green.png')} style = {{
               height: "30px"
             }}></img>
             <div style = {{
@@ -179,7 +180,7 @@ const HomePage = ({citiesIndex, isFetching, authUser}) => {
               textAlign: "center",
               marginTop: "10px"
               }}>
-            <img  alt = "my recomendation icon" src = {require("assets/icons/city.png")} style = {{
+            <img  alt = "my recomendation icon" src = {require("assets/icons/pin_blue.png")} style = {{
               height: "30px"
             }}></img>
             <div style = {{
@@ -200,7 +201,7 @@ const HomePage = ({citiesIndex, isFetching, authUser}) => {
               marginTop: "10px",
               marginBottom: "10px"
               }}>
-            <img  alt = "other users recomendations icon" src = {require("assets/icons/small_town.png")} style = {{
+            <img  alt = "other users recomendations icon" src = {require("assets/icons/pin_orange.png")} style = {{
               height: "30px"
             }}></img>
             <div style = {{

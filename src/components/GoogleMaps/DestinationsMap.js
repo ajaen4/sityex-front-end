@@ -5,19 +5,19 @@ import {
     withGoogleMap,
     GoogleMap,
     Marker,
-    InfoWindow } from "react-google-maps"
+    InfoWindow} from "react-google-maps"
 import { Link } from "react-router-dom"
 import { Button } from "reactstrap"
 
 function Map({citiesIndex}){
 
   const dummyCity = {latitude: 0, longitude: 0, name: "", population: "" }
-  const iconSmallTown = { url: require("assets/icons/small_town.png"), scaledSize: { width: 20, height: 20 } }
-  const iconCity = { url: require("assets/icons/city.png"), scaledSize: { width: 30, height: 30 } }
-  const iconBigCity = { url: require("assets/icons/cityscape.png"), scaledSize: { width: 33, height: 33 } }
+  const iconSmallTown = { url: require("assets/icons/pin_orange.png"), scaledSize: { width: 30, height: 30 } }
+  const iconCity = { url: require("assets/icons/pin_blue.png"), scaledSize: { width: 30, height: 30 } }
+  const iconBigCity = { url: require("assets/icons/pin_green.png"), scaledSize: { width: 30, height: 30 } }
 
-  const populationBigCity = 1000000
-  const populationSmallTown = 300000
+  const POPULATIONBIG = 1000000
+  const POPULATIONSMALL = 300000
 
   const [selectedCity, setSelectedCity] = useState(dummyCity)
 
@@ -34,7 +34,7 @@ function Map({citiesIndex}){
             name = {city.name}
             draggable = {false}
             position = {{lat: city.latitude, lng: city.longitude}}
-            icon = {city.population >= populationBigCity ? iconBigCity : city.population >= populationSmallTown ? iconCity : iconSmallTown}
+            icon = {city.population >= POPULATIONBIG ? iconBigCity : city.population >= POPULATIONSMALL ? iconCity : iconSmallTown}
             onClick={() => {setSelectedCity(city)}}
           >
           {((city.latitude === selectedCity.latitude) && (city.longitude === selectedCity.longitude)) &&
@@ -60,6 +60,6 @@ function Map({citiesIndex}){
 
 }
 
-const WrappedMap = withScriptjs(withGoogleMap(Map))
+const DestinationsMap = withScriptjs(withGoogleMap(Map))
 
-export default WrappedMap
+export default DestinationsMap

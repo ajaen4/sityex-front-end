@@ -1,4 +1,3 @@
-
 import React, {useState, useRef} from "react"
 import { useForm } from 'react-hook-form'
 import { Redirect } from 'react-router-dom'
@@ -31,7 +30,7 @@ import ActionModal from 'components/Modals/ActionModal'
 
 const NewExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowDimensions, savingExpState, dispatch, isAuthResolved, auth}) => {
 
-  const {register, handleSubmit, errors, getValues, setValue, reset} = useForm()
+  const {register, handleSubmit, errors, setValue, reset} = useForm()
 
   let myRef = useRef(null)
 
@@ -101,13 +100,13 @@ const NewExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowD
             marginTop: "20px",
             textAlign: "center"
           }}>
-            <CitiesDropDown citiesList = {Object.keys(citiesIndex)} onChangeCity = {onChangeCity} />
+            <CitiesDropDown label = "En que ciudad has estado?" citiesList = {Object.keys(citiesIndex)} onChangeCity = {onChangeCity} />
             <NewExpControl/>
             <Row style = {{
               justifyContent: "center",
               textAlign: "center"
               }}>
-              <Col lg = "6">
+              <Col lg = "6" md = "6" sm = "12" xs = "12">
                 <Opinion5
                   fieldName = "weather"
                   labelName = "Clima"
@@ -115,7 +114,7 @@ const NewExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowD
                   register = {register}
                   errors = {errors}/>
               </Col>
-              <Col lg = "6">
+              <Col lg = "6" md = "6" sm = "12" xs = "12">
                 <Opinion5
                   fieldName = "food"
                   labelName = "Comida"
@@ -128,7 +127,7 @@ const NewExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowD
               justifyContent: "center",
               textAlign: "center"
               }} >
-              <Col lg = "6">
+              <Col lg = "6" md = "6">
                 <Opinion5
                   fieldName = "party"
                   labelName = "Fiesta"
@@ -136,7 +135,7 @@ const NewExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowD
                   register = {register}
                   errors = {errors}/>
               </Col>
-              <Col lg = "6">
+              <Col lg = "6" md = "6">
                 <Opinion5
                   fieldName = "trips"
                   labelName = "Viajes ESN"
@@ -149,7 +148,7 @@ const NewExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowD
               justifyContent: "center",
               textAlign: "center"
               }} >
-              <Col lg = "6">
+              <Col lg = "6" md = "6">
                 <Opinion2
                   labelName = "Apartamento o residencia"
                   option1 = "Apartamento"
@@ -159,7 +158,7 @@ const NewExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowD
                   errors = {errors}
                   onChange = {onChangeHousing}/>
               </Col>
-              <Col lg = "6">
+              <Col lg = "6" md = "6">
                 <InputWithIcon
                   title = "En caso de ser residencia, aproximadamente, cuanto costaba el alquiler?"
                   name = "residencePrice"
@@ -167,7 +166,6 @@ const NewExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowD
                   iconName = "business_money-coins"
                   register = {register}
                   errors = {errors}
-                  getValues = {getValues}
                   disabled = {invalidPrice}/>
               </Col>
             </Row>

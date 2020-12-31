@@ -36,7 +36,12 @@ const InputWithIcon = ({name, title, placeHolder, iconName, disabled, register, 
                    })}/>
                <InputGroupAddon addonType="append">
                  <InputGroupText>
-                   <i className = {"now-ui-icons " + iconName}></i>
+                   {iconName !== "people" && <i className = {"now-ui-icons " + iconName}></i>}
+                   {(iconName === "people") &&
+                   <img alt = "city icon" src = {require("assets/icons/people.png")} style = {{
+                     height: "18px"
+                   }}></img>
+                    }
                  </InputGroupText>
                </InputGroupAddon>
              </InputGroup>
