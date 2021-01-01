@@ -10,7 +10,7 @@ import {
   LoadScript,
   Marker,
   InfoWindow,
-  Autocomplete} from '@react-google-maps/api';
+  Autocomplete} from '@react-google-maps/api'
 
 //import Autocomplete from 'react-google-autocomplete'
 
@@ -220,7 +220,7 @@ function MapWithSearch({cityCoordinates, currRecomendations, savedRecomendations
               }}
             />
           </Autocomplete>
-          </LoadScript>
+        </LoadScript>
          {(configAlert) && <Alert color= {configAlert.color} isOpen={true} style = {{padding: "20px"}}>
             <div className="container">
                 <img  alt = "warning" src = {require("assets/icons/warning.png")} style = {{

@@ -1,25 +1,30 @@
 
 import React from "react"
 import {
-    withScriptjs,
-    withGoogleMap,
-    GoogleMap,
-    Marker,
-    InfoWindow} from "react-google-maps"
+  GoogleMap,
+  LoadScript,
+  Marker,
+  InfoWindow} from '@react-google-maps/api'
 
+import {MAPS_API_KEY} from "./mapKeys"
 
-function Map(props){
+function RecomenMap(props){
 
   const dummyRecom = {coordinates: {lat: 0, lng: 0}, name: "", address: "" }
   const iconRecomendation = { url: require("assets/icons/pin_blue.png"), scaledSize: { width: 38, height: 38 } }
 
   const [selectedRecomen, setSelectedRecomen] = React.useState(dummyRecom)
 
+  const center = props.coordinates
+
   return (
-    <>
+    <LoadScript
+      googleMapsApiKey = {MAPS_API_KEY}>
       <GoogleMap
-      defaultZoom = {12}
-      center = {props.coordinates}>
+      style = {{width: "100%", height : "100%", justifyContent: "center"}}
+      mapContainerStyle = {{ width: "100%", height : "500px", justifyContent: "center"}}
+      zoom = {12}
+      center = {center}>
         {props.recomendations.map( recomendation =>
           <Marker
             key = {recomendation.name}
@@ -45,11 +50,9 @@ function Map(props){
           </Marker>
         )}
       </GoogleMap>
-    </>
+    </LoadScript>
   )
 
 }
 
-const RecomenMap = withScriptjs(withGoogleMap(Map))
-
-export default RecomenMap
+export default React.memo(RecomenMap)

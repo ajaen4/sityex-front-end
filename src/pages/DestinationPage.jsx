@@ -29,8 +29,6 @@ import ScrollExperiences from 'components/ScrollList/ScrollExperiences'
 import CityInfo from 'components/CityData/CityInfo'
 import CenteredLoadingSpinner from 'components/Spinner/CenteredLoadingSpinner'
 
-const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places`
-
 const DestinationPage = ({selectedCity, dispatch}) => {
 
   const [pills, setPills] = useState("1")
@@ -146,13 +144,8 @@ const DestinationPage = ({selectedCity, dispatch}) => {
                     justifyContent: "center"
                     }}>
                     <RecomenMap
-                    style = {{justifyContent: "center"}}
                     coordinates = {{lat: selectedCity.latitude, lng: selectedCity.longitude }}
-                    recomendations = {selectedCity.mapMarkers === undefined ? [] : selectedCity.mapMarkers}
-                    googleMapURL = {mapURL}
-                    loadingElement = {<p>Cargando</p>}
-                    containerElement = {<div style = {{ width: "100%", height : "500px", justifyContent: "center"}}/>}
-                    mapElement = {<div style = {{width: "100%", height : "100%", justifyContent: "center"}}/>}/>
+                    recomendations = {selectedCity.mapMarkers === undefined ? [] : selectedCity.mapMarkers}/>
                   </div>
                 </Col>
                 </Row>
