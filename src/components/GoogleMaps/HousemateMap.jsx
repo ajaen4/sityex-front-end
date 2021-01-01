@@ -1,30 +1,30 @@
 
 import React from "react"
 import {
-    withScriptjs,
-    withGoogleMap,
-    GoogleMap,
-    Circle} from "react-google-maps"
+  GoogleMap,
+  LoadScript,
+  Circle } from '@react-google-maps/api'
 
+import {MAPS_API_KEY} from "./mapKeys"
 
-function Map({center_}){
+const CENTER = {lat: 50.7747198, lng: 6.083920099999999}
 
-  const center = {lat: 50.7747198, lng: 6.083920099999999}
-  
+function HousemateMap({center_}){
+
   return (
-    <>
+    <LoadScript googleMapsApiKey = {MAPS_API_KEY}>
       <GoogleMap
-      defaultZoom = {12}
-      center = {center}>
+        style = {{width: "100%", height : "100%", justifyContent: "center"}}
+        mapContainerStyle = {{ width: "100%", height : "500px", justifyContent: "center"}}
+        zoom = {12}
+        center = {CENTER}>
         <Circle
-          center = {center}
+          center = {CENTER}
           radius = {300}/>
       </GoogleMap>
-    </>
+    </LoadScript>
   )
 
 }
 
-const HousemateMap = withScriptjs(withGoogleMap(Map))
-
-export default HousemateMap
+export default React.memo(HousemateMap)

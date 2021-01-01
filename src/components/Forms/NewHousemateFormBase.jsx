@@ -123,11 +123,7 @@ const NewExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowD
             ref = {myRef}
           >
             <h3 className = "bold"> Donde buscas apartamento? </h3>
-            <HousemateMap
-              googleMapURL = {mapURL}
-              loadingElement = {<p>Cargando</p>}
-              containerElement = {<div style = {{ width: "100%", height : "500px", justifyContent: "center"}}/>}
-              mapElement = {<div style = {{width: "100%", height : "100%", justifyContent: "center"}}/>}/>}
+            <HousemateMap/>
           </div>
           <Container style = {{
             textAlign: "center"

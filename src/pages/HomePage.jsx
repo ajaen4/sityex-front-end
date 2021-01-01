@@ -25,13 +25,11 @@ import{
 } from "reactstrap"
 
 //Custom UI components
-import DefaultFooter from "components/Footers/DefaultFooter.js"
-import ScrollDestinations from "components/ScrollList/ScrollDestinations.jsx"
-import DestinationsMap from 'components/GoogleMaps/DestinationsMap.js'
+import DefaultFooter from "components/Footers/DefaultFooter"
+import ScrollDestinations from "components/ScrollList/ScrollDestinations"
+import DestinationsMap from 'components/GoogleMaps/DestinationsMap'
 import JustLoggedInModal from 'components/Modals/JustLoggedInModal'
 import UserJustCreatedModal from 'components/Modals/UserJustCreatedModal'
-
-const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places`
 
 const HomePage = ({citiesIndex, isFetching, authUser}) => {
 
@@ -146,11 +144,7 @@ const HomePage = ({citiesIndex, isFetching, authUser}) => {
             <DestinationsMap
             windowWidth = {windowWidth}
             style = {{justifyContent: "center"}}
-            citiesIndex = {objectIsEmpty(citiesIndex) ? {} : citiesIndex}
-            googleMapURL = {mapURL}
-            loadingElement = {<p>Cargando</p>}
-            containerElement = {<div style = {{ width: "100%", height : windowWidth > 800 ? "600px" : "450px", justifyContent: "center"}}/>}
-            mapElement = {<div style = {{width: "100%", height : "100%", justifyContent: "center"}}/>}/>/>
+            citiesIndex = {objectIsEmpty(citiesIndex) ? {} : citiesIndex}/>
           </Row>
           <Row style = {{
               display: "flex",

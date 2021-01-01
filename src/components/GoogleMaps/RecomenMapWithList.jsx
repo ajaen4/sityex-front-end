@@ -16,10 +16,7 @@ import ScrollRecomendations from "components/ScrollList/ScrollRecomendations"
 
 const RecomenMapWithList = ({selectedCity, windowDimensions, updateRecomendations}) => {
 
-  const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places`
-
   const [currRecomendations, setCurrRecomendations] = React.useState([])
-
 
   const incrementRecomendation = (recomendation) => {
     console.log("Recomendation incremented")
@@ -79,7 +76,6 @@ const RecomenMapWithList = ({selectedCity, windowDimensions, updateRecomendation
                city = {selectedCity.cityName}
                cityCoordinates = {{lat:selectedCity.latitude, lng: selectedCity.longitude}}
                pushRecomendation = {pushRecomendation}
-               googleMapURL = {mapURL}
                loadingElement = {<p>Cargando</p>}
                containerElement = {<div style = {{ width: "100%", height : "500px", justifyContent: "center"}}/>}
                mapElement = {<div style = {{width: "100%", height : "100%", justifyContent: "center"}}/>}/>}

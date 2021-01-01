@@ -1,8 +1,5 @@
 import React from 'react'
 
-import { withRouter } from 'react-router-dom'
-import compose from 'recompose/compose'
-
 // reactstrap components
 import{
   Container,
@@ -42,9 +39,4 @@ const LogInPageBase = () => {
   )
 }
 
-
-const LogInPage = compose(
-  withoutAuth,
-  withRouter)(LogInPageBase)
-
-export default LogInPage
+export default withoutAuth(LogInPageBase)

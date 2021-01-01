@@ -22,11 +22,11 @@ import {
 } from "reactstrap"
 
 //Custom UI components
-import DestinationPageHeader from "components/Headers/DestinationPageHeader.js"
-import DefaultFooter from "components/Footers/DefaultFooter.js"
-import RecomenMap from 'components/GoogleMaps/RecomenMap.js'
-import ScrollExperiences from 'components/ScrollList/ScrollExperiences.jsx'
-import CityInfo from 'components/CityData/CityInfo.jsx'
+import DestinationPageHeader from "components/Headers/DestinationPageHeader"
+import DefaultFooter from "components/Footers/DefaultFooter"
+import RecomenMap from 'components/GoogleMaps/RecomenMap'
+import ScrollExperiences from 'components/ScrollList/ScrollExperiences'
+import CityInfo from 'components/CityData/CityInfo'
 import CenteredLoadingSpinner from 'components/Spinner/CenteredLoadingSpinner'
 
 const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places`

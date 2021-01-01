@@ -1,7 +1,5 @@
-import React from 'react';
+import React from 'react'
 
-import { withRouter } from 'react-router-dom';
-import compose from 'recompose/compose'
 
 // reactstrap components
 import{
@@ -9,12 +7,12 @@ import{
   Card,
   CardBody,
   CardTitle
-} from "reactstrap";
+} from "reactstrap"
 
 //Custom functionality
 import { withoutAuth } from 'session'
 
-import SignUpForm from "components/Forms/SignUpForm.jsx";
+import SignUpForm from "components/Forms/SignUpForm.jsx"
 
 const SignUpPageBase = () => {
 
@@ -40,8 +38,4 @@ const SignUpPageBase = () => {
     )
 }
 
-const SignUpPage = compose(
-  withRouter,
-  withoutAuth)(SignUpPageBase);
-
-export default SignUpPage;
+export default withoutAuth(SignUpPageBase)
