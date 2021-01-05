@@ -2,13 +2,11 @@
 import React, { useState } from "react"
 import {
   GoogleMap,
-  LoadScript,
   Marker,
   InfoWindow } from '@react-google-maps/api'
 import { Link } from "react-router-dom"
 import { Button } from "reactstrap"
 
-import {MAPS_API_KEY} from "./mapKeys"
 
 const CENTER = {lat: 52.520008, lng: 9.993682}
 const POPULATIONBIG = 1000000
@@ -26,7 +24,6 @@ function DestinationsMap({citiesIndex, windowWidth}){
   const arrayCitiesIndex = Object.values(citiesIndex)
 
   return (
-    <LoadScript googleMapsApiKey = {MAPS_API_KEY}>
       <GoogleMap
         style = {{width: "100%", height : "100%", justifyContent: "center"}}
         mapContainerStyle = {{ width: "100%", height : windowWidth > 800 ? "600px" : "450px", justifyContent: "center"}}
@@ -59,7 +56,6 @@ function DestinationsMap({citiesIndex, windowWidth}){
             </Marker>
           )}
       </GoogleMap>
-    </LoadScript>
   )
 }
 

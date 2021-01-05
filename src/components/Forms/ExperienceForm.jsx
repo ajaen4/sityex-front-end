@@ -2,19 +2,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import NewExperienceFormBase from './NewExperienceFormBase'
+import ExperienceFormBase from './ExperienceFormBase'
 
-const NewExperienceForm = ({selectedCity, onChangeCity, citiesIndex, windowDimensions, dispatch, savingExpState, isAuthResolved, auth}) => {
+const ExperienceForm = ({selectedCity, onChangeCity, citiesIndex, windowDimensions, dispatch, auth}) => {
 
   return (
-    <NewExperienceFormBase
+    <ExperienceFormBase
       selectedCity = {selectedCity}
       onChangeCity = {onChangeCity}
       citiesIndex = {citiesIndex}
       windowDimensions = {windowDimensions}
       dispatch = {dispatch}
-      savingExpState = {savingExpState}
-      isAuthResolved = {isAuthResolved}
       auth = {auth}/>
   )
 }
@@ -25,4 +23,4 @@ const mapStateToProps = state => ({
   isAuthResolved: state.authUser.isAuthResolved
 })
 
-export default connect(mapStateToProps)(NewExperienceForm)
+export default connect(mapStateToProps)(ExperienceForm)

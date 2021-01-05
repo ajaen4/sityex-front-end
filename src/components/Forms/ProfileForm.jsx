@@ -12,7 +12,7 @@ import {
 
 //Custom components
 import InputIconLeft from "components/Inputs/InputIconLeft"
-import DateTime from "components/Inputs/DateTime"
+import DateSelector from "components/Inputs/DateSelector"
 
 
 const ProfileForm = ({userData}) => {
@@ -55,7 +55,7 @@ const ProfileForm = ({userData}) => {
                 label = "Email:"/>
             </Col>
             <Col lg = "4" md = "4" style = {{marginTop: "6px"}}>
-              <DateTime
+              <DateSelector
                 label = "Fecha de nacimiento:"/>
             </Col>
             <Col lg = "4" md = "4">

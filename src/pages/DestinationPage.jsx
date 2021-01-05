@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 //Custom funcionality
 import { withAuth } from 'session'
 import { prettyCity } from 'helpers/usefulFunctions'
-import { fetchCity, getExperiences } from 'actions'
+import { fetchCity, getExperiences, getHousemates } from 'actions'
 
 //reactstrap components
 import {
@@ -26,6 +26,7 @@ import DestinationPageHeader from "components/Headers/DestinationPageHeader"
 import DefaultFooter from "components/Footers/DefaultFooter"
 import RecomenMap from 'components/GoogleMaps/RecomenMap'
 import ScrollExperiences from 'components/ScrollList/ScrollExperiences'
+import ScrollHousemates from 'components/ScrollList/ScrollHousemates'
 import CityInfo from 'components/CityData/CityInfo'
 import CenteredLoadingSpinner from 'components/Spinner/CenteredLoadingSpinner'
 
@@ -33,6 +34,7 @@ const DestinationPage = ({selectedCity, dispatch}) => {
 
   const [pills, setPills] = useState("1")
   const [experiences, setExperiences] = useState([])
+  const [housemates, setHousemates] = useState([])
 
   const { location } = useParams()
 
@@ -49,10 +51,17 @@ const DestinationPage = ({selectedCity, dispatch}) => {
 
   useEffect(() => {
     dispatch(fetchCity(prettyCity(location)))
+
     getExperiences(prettyCity(location))
     .then((experiences) => {
       setExperiences(experiences.sort((a, b) => b.timeStamp - a.timeStamp))
     })
+
+    getHousemates(prettyCity(location))
+    .then((housemates) => {
+      setHousemates(housemates.sort((a, b) => b.timeStamp - a.timeStamp))
+    })
+
   }, [dispatch, location])
 
   if(selectedCity === null || (selectedCity.name !== prettyCity(location))) return <CenteredLoadingSpinner/>
@@ -133,7 +142,7 @@ const DestinationPage = ({selectedCity, dispatch}) => {
               <TabPane tabId="pills2">
                 <Row style = {{justifyContent: "center"}}>
                   <Col sm = "12" md = "12" lg = "12" >
-                    <ScrollExperiences experiences = {experiences}/>
+                    <ScrollHousemates housemates = {housemates}/>
                   </Col>
                 </Row>
               </TabPane>

@@ -2,11 +2,8 @@
 import React from "react"
 import {
   GoogleMap,
-  LoadScript,
   Marker,
   InfoWindow} from '@react-google-maps/api'
-
-import {MAPS_API_KEY} from "./mapKeys"
 
 function RecomenMap(props){
 
@@ -18,8 +15,6 @@ function RecomenMap(props){
   const center = props.coordinates
 
   return (
-    <LoadScript
-      googleMapsApiKey = {MAPS_API_KEY}>
       <GoogleMap
       style = {{width: "100%", height : "100%", justifyContent: "center"}}
       mapContainerStyle = {{ width: "100%", height : "500px", justifyContent: "center"}}
@@ -50,7 +45,6 @@ function RecomenMap(props){
           </Marker>
         )}
       </GoogleMap>
-    </LoadScript>
   )
 
 }

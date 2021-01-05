@@ -10,7 +10,7 @@ import {
 } from "reactstrap"
 
 
-const Opinion5 = ({icon, fieldName, labelName, register, errors}) => {
+const Opinion5 = ({icon, fieldName, labelName, errorName, register, errors}) => {
 
   const style = {marginRight: "0.5em", padding: "0px"}
   const className = "now-ui-icons " + icon
@@ -116,7 +116,7 @@ const Opinion5 = ({icon, fieldName, labelName, register, errors}) => {
           fontSize: "small",
           color: "red"
         }}>
-      {"Se debe introducir la opinion sobre " + labelName}</div>
+      {"Se debe introducir la opinion sobre " + (errorName === undefined ? labelName : errorName)}</div>
       }
     </>
     )

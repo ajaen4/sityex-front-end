@@ -8,10 +8,10 @@ import { fetchCity } from 'actions'
 
 //Custom UI components
 import DefaultFooter from "components/Footers/DefaultFooter"
-import NewExperienceForm from 'components/Forms/NewExperienceForm'
+import HousemateForm from 'components/Forms/HousemateForm'
 
 
-const NewExperiencePage = ({dispatch, selectedCity, citiesIndex}) => {
+const HousematePage = ({dispatch, selectedCity, citiesIndex}) => {
 
   const INITIALCITY = "Aachen"
 
@@ -41,8 +41,8 @@ const NewExperiencePage = ({dispatch, selectedCity, citiesIndex}) => {
   return (
     <>
       <div style = {{justifyContent: "center", textAlign: "center"}}>
-        <h2 className = "bold" style = {{marginTop: "100px"}}> Rellenar experiencia </h2>
-        <NewExperienceForm
+        <h2 className = "bold" style = {{marginTop: "100px"}}> Peticion de compartir apartamento </h2>
+        <HousemateForm
           selectedCity = {selectedCity}
           onChangeCity = {onChangeCity}
           citiesIndex = {citiesIndex !== null ? citiesIndex : []}
@@ -58,4 +58,4 @@ const mapStateToProps = state => ({
   selectedCity: state.selectedCity.data
 })
 
-export default connect(mapStateToProps)(withAuth(NewExperiencePage))
+export default connect(mapStateToProps)(withAuth(HousematePage))

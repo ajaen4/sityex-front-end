@@ -28,13 +28,13 @@ import RecomenMapWithList from "components/GoogleMaps/RecomenMapWithList"
 import CenteredLoadingSpinner from 'components/Spinner/CenteredLoadingSpinner'
 import ActionModal from 'components/Modals/ActionModal'
 
-const NewExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowDimensions, savingExpState, dispatch, isAuthResolved, auth}) => {
+const ExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowDimensions, dispatch, auth}) => {
 
   const {register, handleSubmit, errors, setValue, reset} = useForm()
 
-  let myRef = useRef(null)
+  let mapContainer = useRef(null)
 
-  const [invalidPrice, setInvalidPrice] = useState(false)
+  const [disablePrice, setDisablePrice] = useState(false)
   const [noRecomendations, setNoRecomendations] = useState(false)
   const [currRecomendations, setCurrRecomendations] = useState([])
   const [isFetching, setIsFetching] = useState(false)
@@ -54,7 +54,7 @@ const NewExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowD
   //Stop form from submitting in a standar way (problems with the Autocomplete Google Maps function when pressing enter)
   const handleForm = data => {
     if(currRecomendations.length === 0){
-      window.scrollTo(0, myRef.current.offsetTop)
+      window.scrollTo(0, mapContainer.current.offsetTop)
       setNoRecomendations(true)
     }
     else {
@@ -77,11 +77,11 @@ const NewExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowD
 
   const onChangeHousing = event => {
     if(event.target.value === 'option1'){
-      setInvalidPrice(true)
+      setDisablePrice(true)
       setValue('residencePrice', 0)
     }
     else{
-      setInvalidPrice(false)
+      setDisablePrice(false)
       setValue('residencePrice', "")
     }
   }
@@ -166,7 +166,7 @@ const NewExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowD
                   iconName = "business_money-coins"
                   register = {register}
                   errors = {errors}
-                  disabled = {invalidPrice}/>
+                  disabled = {disablePrice}/>
               </Col>
             </Row>
           </Container>
@@ -178,7 +178,7 @@ const NewExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowD
             marginLeft: "20px",
             marginRight: "20px"
             }}
-            ref = {myRef}
+            ref = {mapContainer}
           >
             <h3 className = "bold"> Recomiendanos sitios! </h3>
             <RecomenMapWithList
@@ -234,13 +234,17 @@ const NewExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowD
                   innerRef={
                     register({
                       required: true,
-                      maxLength: 300
+                      maxLength: 300,
+                      pattern: /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u
                     })}/>
                   {errors.advice && errors.advice.type === 'required' &&
                   <FormFeedback>Se debe introducir al menos un consejo</FormFeedback>
                   }
                   {errors.advice && errors.advice.type === 'maxLength' &&
                   <FormFeedback>El consejo puede tener como maximo 300 caracteres</FormFeedback>
+                  }
+                  {errors.advice && errors.advice.type === 'pattern' &&
+                  <FormFeedback>Existen caracteres no permitidos</FormFeedback>
                   }
               </FormGroup>
              </Row>
@@ -262,4 +266,4 @@ const NewExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowD
   }
 }
 
-export default NewExperienceFormBase
+export default ExperienceFormBase

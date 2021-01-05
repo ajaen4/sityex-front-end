@@ -7,17 +7,11 @@ import {
 
 import {
   GoogleMap,
-  LoadScript,
   Marker,
   InfoWindow,
   Autocomplete} from '@react-google-maps/api'
 
 //import Autocomplete from 'react-google-autocomplete'
-
-//Custom
-import {MAPS_API_KEY} from "./mapKeys"
-
-const LIBRARIES = ["places"]
 
 const TITLESELOPTION = "Localizacion incorrecta. "
 const SELECTOPTION = "Selecciona una de las opciones que aparecen como sugerencias."
@@ -49,7 +43,6 @@ function MapWithSearch({cityCoordinates, currRecomendations, savedRecomendations
     const place = autocomplete.getPlace()
     //Si se ha instanciado el autocomplete
     if(autocomplete !== null){
-      debugger
       //Comprobacion para obligar a elegir un campo autocompletado y que no exista ya
       if((place.geometry !== undefined) && (!savedRecomendations.some(recom => (recom.coordinates.lat === place.geometry.location.lat()) && (recom.coordinates.lng === place.geometry.location.lng())))){
 
@@ -103,9 +96,6 @@ function MapWithSearch({cityCoordinates, currRecomendations, savedRecomendations
 
   return (
     <>
-      <LoadScript
-        googleMapsApiKey = {MAPS_API_KEY}
-        libraries = {LIBRARIES}>
         <GoogleMap
           style = {{width: "100%", height : "100%", justifyContent: "center"}}
           mapContainerStyle = {{ width: "100%", height : "500px", justifyContent: "center"}}
@@ -220,7 +210,6 @@ function MapWithSearch({cityCoordinates, currRecomendations, savedRecomendations
               }}
             />
           </Autocomplete>
-        </LoadScript>
          {(configAlert) && <Alert color= {configAlert.color} isOpen={true} style = {{padding: "20px"}}>
             <div className="container">
                 <img  alt = "warning" src = {require("assets/icons/warning.png")} style = {{

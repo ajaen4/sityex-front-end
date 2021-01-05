@@ -16,36 +16,79 @@ import {
 } from "reactstrap"
 
 //Custom functionality
+import { addHousemate } from 'actions'
 
 //Custom components
-import HousemateMap from "components/GoogleMaps/HousemateMap"
+//import DropCircleRadius from "components/DropDownList/DropCircleRadius"
+//import HousemateMap from "components/GoogleMaps/HousemateMap"
 import Opinion5 from "components/Opinions/Opinion5"
 import InputWithIcon from "components/Inputs/InputWithIcon"
 import CitiesDropDown from "components/DropDownList/CitiesDropDown"
 import CenteredLoadingSpinner from 'components/Spinner/CenteredLoadingSpinner'
 import ActionModal from 'components/Modals/ActionModal'
+import DateRange from "components/Inputs/DateRange"
 
-const NewExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowDimensions, savingExpState, dispatch, isAuthResolved, auth}) => {
 
-  const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places`
+//const DEFAULT_CENTER = {lat: 50.77603, lng: 6.08723}
+
+const HouseMateFormBase = ({selectedCity, onChangeCity, citiesIndex, savingExpState, dispatch, isAuthResolved, auth}) => {
 
   const {register, handleSubmit, errors, getValues, reset} = useForm()
 
-  let myRef = useRef(null)
+  let dateContainer = useRef(null)
 
-  const [invalidPrice, setInvalidPrice] = useState(false)
+  //const circleLocation = useRef({lat: 0, lng: 0})
+
+  //const [circleRadius, setCircleRadius] = useState("1 km")
   const [isFetching, setIsFetching] = useState(false)
   const [modalMessage, setModalMessage] = useState("")
   const [goToDestinations, setGoToDestinations] = useState(false)
-
+  const [dateRange, setDateRange] = useState({startDate: null, endDate: null})
+  const [errorDateRange, setErrorDateRange] = useState(false)
 
   const resetForm = () => {
     setModalMessage("")
     reset()
   }
 
+  /*useEffect(() => {
+    if(selectedCity !== null){
+      circleLocation.current = {lat: selectedCity.latitude, lng: selectedCity.longitude}
+    }
+  }, [selectedCity])*/
+
+  const onChangeDates = (startDate, endDate) => setDateRange({startDate: startDate, endDate: endDate})
+
+  /*const onDragCircle = (location) => {
+    circleLocation.current = location
+  }*/
+
   //Stop form from submitting in a standard way (problems with the Autocomplete Google Maps function when pressing enter)
   const handleForm = data => {
+    if((dateRange.startDate === null) || (dateRange.endDate === null)){
+      setErrorDateRange(true)
+      window.scrollTo(0, dateContainer.current.offsetTop)
+    }
+    else {
+      data.userName = auth.userName
+      //data.circleLocation = circleLocation.current
+      //data.circleRadius = circleRadius
+      data.startDate = dateRange.startDate.toDate()
+      data.endDate = dateRange.endDate.toDate()
+      setIsFetching(true)
+      dispatch(addHousemate(selectedCity.name, data))
+      .then(() => {
+        setIsFetching(false)
+        setModalMessage("Su peticion se ha guardado correctamente")
+        setTimeout(() => {
+          setGoToDestinations(true)
+        }, 2500);
+      })
+      .catch(err => {
+        setIsFetching(false)
+        setModalMessage("Ha ocurrido un problema. Por favor, vuelva a intentarlo")
+      })
+    }
   }
 
   if(!goToDestinations){
@@ -76,18 +119,18 @@ const NewExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowD
                   register = {register}
                   errors = {errors}
                   getValues = {getValues}
-                  disabled = {invalidPrice}/>
+                  disabled = {false}/>
               </Col>
               <Col lg = "6" md = "6">
                 <InputWithIcon
                   title = "Cual es tu precio de alquiler objetivo?"
                   name = "rent"
-                  placeHolder = "Total de personas"
+                  placeHolder = "Precio"
                   iconName = "business_money-coins"
                   register = {register}
                   errors = {errors}
                   getValues = {getValues}
-                  disabled = {invalidPrice}/>
+                  disabled = {false}/>
               </Col>
             </Row>
             <Row style = {{
@@ -97,6 +140,7 @@ const NewExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowD
               <Col lg = "6" md = "6">
                 <Opinion5
                   fieldName = "cleanliness"
+                  errorName = "limpieza"
                   labelName = "Cuanto valoras la limpieza?"
                   icon = "broom"
                   register = {register}
@@ -104,15 +148,30 @@ const NewExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowD
               </Col>
               <Col lg = "6" md = "6">
                 <Opinion5
-                  fieldName = "weather"
+                  fieldName = "party"
+                  errorName = "fiesta"
                   labelName = "Cuanto valoras la fiesta?"
                   icon = "emoticons_satisfied"
                   register = {register}
                   errors = {errors}/>
               </Col>
             </Row>
+            <div ref = {dateContainer}>
+              <Row style = {{
+                justifyContent: "center",
+                textAlign: "center"
+                }}>
+                <Col lg = "4" md = "4" style = {{marginTop: "40px"}}>
+                  <DateRange
+                    label = "Tiempo de estancia:"
+                    onChangeDates = {onChangeDates}
+                    />
+                    {errorDateRange && <p style = {{color: "red", fontSize: "1em"}}>Se debe rellenar el rango de fechas de estancia</p>}
+                </Col>
+              </Row>
+            </div>
           </Container>
-          <div style = {{
+          {/*<div style = {{
             display: "flex",
             flexDirection: "column",
             marginTop: "50px",
@@ -120,11 +179,19 @@ const NewExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowD
             marginLeft: "20px",
             marginRight: "20px"
             }}
-            ref = {myRef}
           >
             <h3 className = "bold"> Donde buscas apartamento? </h3>
-            <HousemateMap/>
-          </div>
+            <Row style = {{justifyContent: "center"}}>
+              <Col lg = "2" md = "3" sm = "6" xs = "6">
+                <DropCircleRadius
+                  onChange = {setCircleRadius}/>
+              </Col>
+            </Row>
+            <HousemateMap
+              center = {selectedCity !== null ? {lat: selectedCity.latitude, lng: selectedCity.longitude} : DEFAULT_CENTER }
+              circleRadiusProp = {circleRadius}
+              onDragCircle = {onDragCircle}/>
+          </div>*/}
           <Container style = {{
             textAlign: "center"
           }}>
@@ -142,28 +209,31 @@ const NewExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowD
                   style = {{
                     fontSize: "large"
                   }}
-                  name = "advice"
+                  name = "comment"
                   bsSize="lg"
                   id="textArea"
                   rows="5"
                   type="textarea"
-                  invalid = {errors.advice !== undefined}
+                  invalid = {errors.comment !== undefined}
                   innerRef={
                     register({
                       required: true,
-                      maxLength: 300
+                      maxLength: 300,
+                      pattern: /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u
                     })}/>
-                  {errors.advice && errors.advice.type === 'required' &&
+                  {errors.comment && errors.comment.type === 'required' &&
                   <FormFeedback>Se debe introducir al menos un consejo</FormFeedback>
                   }
-                  {errors.advice && errors.advice.type === 'maxLength' &&
+                  {errors.comment && errors.comment.type === 'maxLength' &&
                   <FormFeedback>El consejo puede tener como maximo 300 caracteres</FormFeedback>
+                  }
+                  {errors.comment && errors.comment.type === 'pattern' &&
+                  <FormFeedback>Existen caracteres no permitidos</FormFeedback>
                   }
               </FormGroup>
              </Row>
           <Button style = {{
             marginBottom: "100px"}}
-            disabled = {true}
             size = "lg"
             color = "success"
             type = "submit">
@@ -180,4 +250,4 @@ const NewExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowD
   }
 }
 
-export default NewExperienceFormBase
+export default HouseMateFormBase

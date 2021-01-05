@@ -6,13 +6,14 @@ import {
 import initStore from 'store'
 import { Provider } from 'react-redux'
 
+import {LoadScript} from '@react-google-maps/api'
+
 import 'react-dates/initialize'
 
 //Custom fuctionality
 import ErasmusApp from './ErasmusApp'
 import { onAuthStateChanged, storeAuthUser, fetchCitiesIndex } from 'actions'
 import {saveState} from "localStorage/localStorage"
-
 
 const store = initStore()
 
@@ -21,6 +22,8 @@ store.subscribe(() => {
   stateToSave.authUser = store.getState().authUser
   saveState(stateToSave)
 })
+
+const LIBRARIES = ["places"]
 
 class App extends Component {
 
@@ -47,9 +50,11 @@ class App extends Component {
   render(){
     return (
       <Provider store = {store}>
+        <LoadScript googleMapsApiKey = {process.env.REACT_APP_GOOGLE_MAPS_API_KEY} libraries = {LIBRARIES} language = "en">
           <Router>
             <ErasmusApp/>
           </Router>
+        </LoadScript>
       </Provider>
     )
   }

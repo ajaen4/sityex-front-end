@@ -2,16 +2,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import NewHousemateFormBase from './NewHousemateFormBase'
+import HousemateFormBase from './HousemateFormBase'
 
-const NewHousemateForm = ({selectedCity, onChangeCity, citiesIndex, windowDimensions, dispatch, savingExpState, isAuthResolved, auth}) => {
+const HousemateForm = ({selectedCity, onChangeCity, citiesIndex, dispatch, savingExpState, isAuthResolved, auth}) => {
 
   return (
-    <NewHousemateFormBase
+    <HousemateFormBase
       selectedCity = {selectedCity}
       onChangeCity = {onChangeCity}
       citiesIndex = {citiesIndex}
-      windowDimensions = {windowDimensions}
       dispatch = {dispatch}
       savingExpState = {savingExpState}
       isAuthResolved = {isAuthResolved}
@@ -25,4 +24,4 @@ const mapStateToProps = state => ({
   isAuthResolved: state.authUser.isAuthResolved
 })
 
-export default connect(mapStateToProps)(NewHousemateForm)
+export default connect(mapStateToProps)(HousemateForm)

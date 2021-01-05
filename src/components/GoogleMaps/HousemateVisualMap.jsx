@@ -5,6 +5,7 @@ import {
   GoogleMap,
   Circle} from '@react-google-maps/api'
 
+
 const blue = "#3493eb"
 
 const options = {
@@ -13,8 +14,8 @@ const options = {
   strokeWeight: 2,
   fillColor: blue,
   fillOpacity: 0.35,
-  clickable: true,
-  draggable: true,
+  clickable: false,
+  draggable: false,
   editable: false,
   visible: true,
   radius: 30000,
@@ -28,26 +29,22 @@ const RADIUS_TYPES = {
   "2 km" : 2000
 }
 
-function HousemateMap({center, circleRadiusProp, onDragCircle}){
+function HousemateVisualMap({center, circleRadiusProp}){
 
   const circleRadius = RADIUS_TYPES[circleRadiusProp]
-
-  const onDrag = (event) => onDragCircle({lat: event.latLng.lat(), lng: event.latLng.lng()})
-
   return (
         <GoogleMap
           style = {{width: "100%", height : "100%", justifyContent: "center"}}
-          mapContainerStyle = {{ width: "100%", height : "500px", justifyContent: "center"}}
+          mapContainerStyle = {{ width: "100%", height : "300px", justifyContent: "center"}}
           zoom = {12}
           center = {center}>
           <Circle
             center = {center}
             radius = {circleRadius}
-            options = {options}
-            onDragEnd = {onDrag}/>
+            options = {options}/>
         </GoogleMap>
   )
 
 }
 
-export default React.memo(HousemateMap)
+export default React.memo(HousemateVisualMap)

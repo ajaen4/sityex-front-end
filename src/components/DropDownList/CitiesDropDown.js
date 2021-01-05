@@ -23,10 +23,10 @@ const CitiesDropDown = ({label, citiesList, onChangeCity}) => {
         <FormGroup  style ={{
         justifyContent: "center",
         textAlign: "center"}} >
-          <label htmlFor="exampleFormControlSelect1">{label}</label>
+          <label htmlFor="citiesDropDown">{label}</label>
           <Input
           onChange = {onChangeCity}
-          id="exampleFormControlSelect1"
+          id="citiesDropDown"
           className="form-control-lg"
           type="select">
           {citiesList !== null && citiesList.sort().map( item =>

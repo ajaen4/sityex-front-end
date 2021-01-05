@@ -25,10 +25,10 @@ const InputWithIcon = ({name, title, placeHolder, iconName, disabled, register, 
              <InputGroup>
                <Input style = {{textAlign: "center"}}
                  name = {name}
-                 disabled = {disabled}
+                 disabled = {disabled || false}
                  placeholder = {placeHolder}
                  type = "text"
-                 invalid = {disabled === false && errors[name] !== undefined}
+                 invalid = {((disabled === false) || (disabled === null)) && errors[name] !== undefined}
                  innerRef = {
                    register({
                      required: true,

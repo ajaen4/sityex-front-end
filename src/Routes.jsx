@@ -9,9 +9,9 @@ import {
   SignUpPage,
   HomePage,
   DestinationPage,
-  NewExperiencePage,
+  ExperiencePage,
   ProfilePage,
-  NewHousematePage } from 'pages'
+  HousematePage } from 'pages'
 
 import * as ROUTES from 'constants/routes'
 
@@ -22,8 +22,8 @@ const Routes = () =>
     <Route path={ROUTES.LOG_IN} render={(props) => <LogInPage {...props}  />} />
     <Route path={ROUTES.HOME} render={(props) => <HomePage {...props}  />} />
     <Route path={ROUTES.DESTINATION} render={(props) => <DestinationPage {...props}  />} />
-    <Route path={ROUTES.NEW_EXPERIENCE} render={(props) => <NewExperiencePage {...props}  />} />
-    <Route path={ROUTES.NEW_HOUSEMATE} render={(props) => <NewHousematePage {...props}  />} />
+    <Route path={ROUTES.NEW_EXPERIENCE} render={(props) => <ExperiencePage {...props}  />} />
+    <Route path={ROUTES.NEW_HOUSEMATE} render={(props) => <HousematePage {...props}  />} />
     <Route exact path={ROUTES.PROFILE} render={(props) => <ProfilePage {...props}  />} />
   </div>
 

@@ -12,7 +12,7 @@ import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 
 
-const DateTime = ({register, errors, orgValue, fieldName, label}) => {
+const DateSelector = ({register, errors, orgValue, fieldName, label}) => {
 
   const [date, setDate] = useState(moment())
   const [focus, setFocus] = useState(false)
@@ -23,11 +23,11 @@ const DateTime = ({register, errors, orgValue, fieldName, label}) => {
     <SingleDatePicker
       date = {date} // momentPropTypes.momentObj or null
       onDateChange = {date => setDate(date)} // PropTypes.func.isRequired
-      focused = {false} //focus
+      focused = {focus} //false para que no se extienda la vista
       onFocusChange = {() => setFocus(focus ? false : true)}
       id="day_of_birth"/>
     </Container>
   )
 }
 
-export default DateTime
+export default DateSelector
