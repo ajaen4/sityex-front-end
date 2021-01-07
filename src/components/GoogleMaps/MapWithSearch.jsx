@@ -14,6 +14,7 @@ import {
 //import Autocomplete from 'react-google-autocomplete'
 
 const TITLESELOPTION = "Localizacion incorrecta. "
+const WRONGCOUNTRYORCITY = "La localizacion no esta en la ciudad seleccionada"
 const SELECTOPTION = "Selecciona una de las opciones que aparecen como sugerencias."
 const TITLEOPTSELECTED = "Ya ha recomendado esta localizacion."
 const OPTIONEXISTS = "La localizacion buscada ya ha sido recomendada por otros usuarios. Por favor, seleccionela en el mapa y haga click en 'Recomendar'"
@@ -26,9 +27,9 @@ const ICONSAVEDREC = { url: require("assets/icons/pin_blue.png"), scaledSize: { 
 const ICONCURRREC = { url: require("assets/icons/pin_outline_blue.png"), scaledSize: { width: 38, height: 38 } }
 
 
-function MapWithSearch({cityCoordinates, currRecomendations, savedRecomendations, pushRecomendation, incrementRecomendation}){
+function MapWithSearch({selectedCity, currRecomendations, savedRecomendations, pushRecomendation, incrementRecomendation}){
 
-  const [coordinates, setCoordinates] = useState(cityCoordinates)
+  const [coordinates, setCoordinates] = useState({lat: selectedCity.latitude, lng: selectedCity.longitude})
   const [selectedRecomen, setSelectedRecomen] = useState(DUMMYRECOM)
   const [selectedPlace, setSelectedPlace] = useState(null)
   const [isPlaceSelected, setIsPlaceSelected] = useState(false)
@@ -36,25 +37,47 @@ function MapWithSearch({cityCoordinates, currRecomendations, savedRecomendations
   const [autocomplete, setAutocomplete] = useState(null)
 
 
-  useEffect(() => setCoordinates(cityCoordinates), [cityCoordinates])
+  useEffect(() => setCoordinates({lat: selectedCity.latitude, lng: selectedCity.longitude}), [selectedCity])
+
+  const checkCityAndCountry = (selectedCity, selectedPlace) => {
+    let sameCity = false
+    let sameCountry = false
+
+    const address = selectedPlace.address_components
+
+    for(const index in address){
+      if(address[index].types.includes("locality") && (address[index].long_name === selectedCity.name)){
+        sameCity = true
+      }
+
+      if(address[index].types.includes("country") && (address[index].long_name === selectedCity.countryName)){
+        sameCountry = true
+      }
+    }
+    return sameCity && sameCountry
+  }
 
   //Corre cuando se presiona enter o una opcion del autocompletar del google maps
   const onPlaceSelected = () => {
     const place = autocomplete.getPlace()
     //Si se ha instanciado el autocomplete
     if(autocomplete !== null){
+
+      if(!checkCityAndCountry(selectedCity, place)){
+        setConfigAlert({title: TITLESELOPTION, text: WRONGCOUNTRYORCITY, color: "danger"})
+      }
       //Comprobacion para obligar a elegir un campo autocompletado y que no exista ya
-      if((place.geometry !== undefined) && (!savedRecomendations.some(recom => (recom.coordinates.lat === place.geometry.location.lat()) && (recom.coordinates.lng === place.geometry.location.lng())))){
+      else if((place.geometry !== undefined) && (!savedRecomendations.some(recom => recom.id === place.place_id))){
 
         console.log("Place selected")
         console.log(place)
-
         var selectedPlace = {}
 
         selectedPlace.name = place.address_components[0].long_name
         selectedPlace.address = place.formatted_address
         selectedPlace.coordinates = {lat: place.geometry.location.lat(), lng: place.geometry.location.lng()}
         selectedPlace.numOfRecomendations = 1
+        selectedPlace.id = place.place_id
 
         //Para añadir un marcador en el sitio que se seleccione (no tiene mas consecuencias)
         setSelectedPlace(selectedPlace)
@@ -68,14 +91,14 @@ function MapWithSearch({cityCoordinates, currRecomendations, savedRecomendations
         setConfigAlert({title: TITLESELOPTION, text: SELECTOPTION, color: "info"})
       }
       //Cuando el usuario ya ha recomendado esa opcion
-      else if(currRecomendations.some(recom => (recom.coordinates.lat === place.geometry.location.lat()) && (recom.coordinates.lng === place.geometry.location.lng()))){
+      else if(currRecomendations.some(recom => recom.id === place.place_id)){
         //Configuramos el texto de la alerta y el color
         setConfigAlert({title: TITLEOPTSELECTED, text: "", color: "info"})
       }
       //Cuando otro usuario ha recomendado esa opcion
-      else if(savedRecomendations.some(recom => (recom.coordinates.lat === place.geometry.location.lat()) && (recom.coordinates.lng === place.geometry.location.lng()))){
+      else if(savedRecomendations.some(recom => (recom.id === place.place_id))){
         //Cogemos la info de la recomendacion guardada
-        var existingRecomendation = savedRecomendations.filter(recom => (recom.coordinates.lat === place.geometry.location.lat()) && (recom.coordinates.lng === place.geometry.location.lng()))[0]
+        var existingRecomendation = savedRecomendations.filter(recom => recom.id === place.place_id)[0]
         //Para añadir un marcador en el sitio que se seleccione (no tiene mas consecuencias)
         setSelectedRecomen(existingRecomendation)
         setCoordinates(existingRecomendation.coordinates)

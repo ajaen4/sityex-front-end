@@ -65,7 +65,7 @@ const RecomenMapWithList = ({selectedCity, windowDimensions, updateRecomendation
          }}>
            <div style = {{
              justifyContent: "center",
-             marginBottom: "60px"
+             marginBottom: "20px"
            }}>
            { (!objectIsEmpty(selectedCity)) &&
              <MapWithSearch
@@ -73,12 +73,8 @@ const RecomenMapWithList = ({selectedCity, windowDimensions, updateRecomendation
                currRecomendations = {currRecomendations}
                savedRecomendations = {selectedCity.mapMarkers === undefined ? [] : selectedCity.mapMarkers}
                style = {{justifyContent: "center"}}
-               city = {selectedCity.cityName}
-               cityCoordinates = {{lat:selectedCity.latitude, lng: selectedCity.longitude}}
-               pushRecomendation = {pushRecomendation}
-               loadingElement = {<p>Cargando</p>}
-               containerElement = {<div style = {{ width: "100%", height : "500px", justifyContent: "center"}}/>}
-               mapElement = {<div style = {{width: "100%", height : "100%", justifyContent: "center"}}/>}/>}
+               selectedCity = {selectedCity}
+               pushRecomendation = {pushRecomendation}/>}
             </div>
             <Row style = {{
                display: "flex",
