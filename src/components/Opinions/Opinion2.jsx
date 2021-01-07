@@ -9,7 +9,7 @@ import {
 } from "reactstrap";
 
 
-const Opinion2 = ({icon, labelName, option1, option2, onChange, register, errors}) => {
+const Opinion2 = ({icon, labelName, name1, name2, option1, option2, onChange, register, errors}) => {
 
   const className = "now-ui-icons " + icon;
 
@@ -28,7 +28,7 @@ const Opinion2 = ({icon, labelName, option1, option2, onChange, register, errors
         <FormGroup check className="form-check-radio" inline>
         <Label check>
           <Input
-            defaultValue = "option1"
+            defaultValue = {name1}
             id = {labelName + "1"}
             name = {labelName}
             type="radio"
@@ -44,6 +44,7 @@ const Opinion2 = ({icon, labelName, option1, option2, onChange, register, errors
         <FormGroup check className="form-check-radio" inline>
           <Label check>
             <Input
+              defaultValue = {name2}
               id = {labelName + "2"}
               name = {labelName}
               type="radio"

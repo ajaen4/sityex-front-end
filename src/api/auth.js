@@ -16,7 +16,6 @@ export const logIn = async ({email, password}) => {
 
 export const onAuthStateChanged = (onAuthCallback) => firebase.auth().onAuthStateChanged(onAuthCallback)
 
-//Creates user with email and password
 export const createUser = async ({email, password, userName}) => {
   try{
     const resp = await firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -29,14 +28,13 @@ export const createUser = async ({email, password, userName}) => {
   }
 }
 
-//Creates user in database
-//TODO: save more info!
 export const saveUser = (userData) => {
   db.collection("users")
   .doc(userData.uid)
   .set({
     userName: userData.userName,
-    email: userData.email
+    email: userData.email,
+    id: userData.uid
   })
 }
 

@@ -20,8 +20,8 @@ const HousemateForm = ({selectedCity, onChangeCity, citiesIndex, dispatch, savin
 
 const mapStateToProps = state => ({
   savingExpState: state.experiences.state,
-  auth: state.authUser.data,
-  isAuthResolved: state.authUser.isAuthResolved
+  auth: state.auth.data,
+  isAuthResolved: state.auth.isAuthResolved
 })
 
 export default connect(mapStateToProps)(HousemateForm)

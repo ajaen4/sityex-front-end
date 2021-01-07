@@ -9,9 +9,7 @@ import {
   Container,
   Form,
   FormGroup,
-  Input,
   Button,
-  FormFeedback,
   Alert
 } from "reactstrap"
 
@@ -27,6 +25,7 @@ import CitiesDropDown from "components/DropDownList/CitiesDropDown"
 import RecomenMapWithList from "components/GoogleMaps/RecomenMapWithList"
 import CenteredLoadingSpinner from 'components/Spinner/CenteredLoadingSpinner'
 import ActionModal from 'components/Modals/ActionModal'
+import TextArea from "components/TextArea/TextArea"
 
 const ExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowDimensions, dispatch, auth}) => {
 
@@ -58,6 +57,8 @@ const ExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowDime
       setNoRecomendations(true)
     }
     else {
+      if(data.residencePrice === undefined)
+        data.residencePrice = 0
       data.userName = auth.userName
       setIsFetching(true)
       dispatch(addExperience(selectedCity.name, data, currRecomendations))
@@ -76,9 +77,10 @@ const ExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowDime
   }
 
   const onChangeHousing = event => {
-    if(event.target.value === 'option1'){
+    debugger
+    if(event.target.value === 'apartment'){
       setDisablePrice(true)
-      setValue('residencePrice', 0)
+      setValue('residencePrice', "0")
     }
     else{
       setDisablePrice(false)
@@ -153,6 +155,8 @@ const ExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowDime
                   labelName = "Apartamento o residencia"
                   option1 = "Apartamento"
                   option2 = "Residencia"
+                  name1 = "apartment"
+                  name2 = "residence"
                   icon = "shopping_shop"
                   register = {register}
                   errors = {errors}
@@ -221,31 +225,11 @@ const ExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowDime
                     de revolut para ahorrar en el cambio de moneda! - Patricia Arrieta</p>
                   </div>
                 </label>
-                <Input
-                  style = {{
-                    fontSize: "large"
-                  }}
+                <TextArea
                   name = "advice"
-                  bsSize="lg"
-                  id="textArea"
-                  rows="5"
-                  type="textarea"
-                  invalid = {errors.advice !== undefined}
-                  innerRef={
-                    register({
-                      required: true,
-                      maxLength: 300,
-                      pattern: /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u
-                    })}/>
-                  {errors.advice && errors.advice.type === 'required' &&
-                  <FormFeedback>Se debe introducir al menos un consejo</FormFeedback>
-                  }
-                  {errors.advice && errors.advice.type === 'maxLength' &&
-                  <FormFeedback>El consejo puede tener como maximo 300 caracteres</FormFeedback>
-                  }
-                  {errors.advice && errors.advice.type === 'pattern' &&
-                  <FormFeedback>Existen caracteres no permitidos</FormFeedback>
-                  }
+                  displayName = "consejo"
+                  register = {register}
+                  errors = {errors}/>
               </FormGroup>
              </Row>
           <Button style = {{

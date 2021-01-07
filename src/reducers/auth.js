@@ -6,7 +6,7 @@ import {
   JUST_LOGGED_IN,
   SET_AUTH_USER_ERROR } from 'types'
 
-const initAuthUser = () => {
+const initAuth = () => {
 
   const data = (state = null, action) => {
     switch(action.type){
@@ -58,6 +58,6 @@ const initAuthUser = () => {
 
 }
 
-const authUser = initAuthUser()
+const auth = initAuth()
 
-export default authUser
+export default auth

@@ -19,7 +19,7 @@ const store = initStore()
 
 store.subscribe(() => {
   const stateToSave = {}
-  stateToSave.authUser = store.getState().authUser
+  stateToSave.auth = store.getState().auth
   saveState(stateToSave)
 })
 

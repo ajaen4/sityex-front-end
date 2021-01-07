@@ -50,7 +50,7 @@ const ProfilePage = ({userData}) => {
 }
 
 const mapStateToProps = state => ({
-  userData: state.authUser
+  userData: state.auth
 })
 
 export default connect(mapStateToProps)(withAuth(ProfilePage))

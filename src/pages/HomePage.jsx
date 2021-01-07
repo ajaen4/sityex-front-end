@@ -217,7 +217,7 @@ const HomePage = ({citiesIndex, isFetching, authUser}) => {
 
 const mapStateToProps = state => ({
   citiesIndex: state.citiesIndex.data,
-  authUser: state.authUser,
+  authUser: state.auth,
   isFetching: state.citiesIndex.isFetching,
   savedExperience: state.experiences.message
 })

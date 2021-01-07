@@ -20,8 +20,8 @@ const withoutAuth = Component => {
 
   const mapStateToProps = state => {
     return {
-      auth: state.authUser.data,
-      isAuthResolved: state.authUser.isAuthResolved
+      auth: state.auth.data,
+      isAuthResolved: state.auth.isAuthResolved
     }
   }
 

@@ -10,9 +10,7 @@ import {
   Container,
   Form,
   FormGroup,
-  Input,
-  Button,
-  FormFeedback
+  Button
 } from "reactstrap"
 
 //Custom functionality
@@ -27,7 +25,7 @@ import CitiesDropDown from "components/DropDownList/CitiesDropDown"
 import CenteredLoadingSpinner from 'components/Spinner/CenteredLoadingSpinner'
 import ActionModal from 'components/Modals/ActionModal'
 import DateRange from "components/Inputs/DateRange"
-
+import TextArea from "components/TextArea/TextArea"
 
 //const DEFAULT_CENTER = {lat: 50.77603, lng: 6.08723}
 
@@ -205,31 +203,11 @@ const HouseMateFormBase = ({selectedCity, onChangeCity, citiesIndex, savingExpSt
                     <p>Me gusta viajar mucho y no soy la persona mas fiestera del mundo. Mi plan favorito es ir a comer al centro de la ciudad y luego tomar un cafe en alguna terraza. - Patricia Arrieta</p>
                   </div>
                 </label>
-                <Input
-                  style = {{
-                    fontSize: "large"
-                  }}
+                <TextArea
                   name = "comment"
-                  bsSize="lg"
-                  id="textArea"
-                  rows="5"
-                  type="textarea"
-                  invalid = {errors.comment !== undefined}
-                  innerRef={
-                    register({
-                      required: true,
-                      maxLength: 300,
-                      pattern: /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u
-                    })}/>
-                  {errors.comment && errors.comment.type === 'required' &&
-                  <FormFeedback>Se debe introducir al menos un consejo</FormFeedback>
-                  }
-                  {errors.comment && errors.comment.type === 'maxLength' &&
-                  <FormFeedback>El consejo puede tener como maximo 300 caracteres</FormFeedback>
-                  }
-                  {errors.comment && errors.comment.type === 'pattern' &&
-                  <FormFeedback>Existen caracteres no permitidos</FormFeedback>
-                  }
+                  displayName = "comentario"
+                  register = {register}
+                  errors = {errors}/>
               </FormGroup>
              </Row>
           <Button style = {{

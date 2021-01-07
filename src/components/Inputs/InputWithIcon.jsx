@@ -15,7 +15,6 @@ import {
 const InputWithIcon = ({name, title, placeHolder, iconName, disabled, register, errors}) => {
 
   return (
-     <>
        <Container style = {{marginTop: "40px"}}>
          <h5>{title}</h5>
          <Row style = {{
@@ -45,14 +44,14 @@ const InputWithIcon = ({name, title, placeHolder, iconName, disabled, register, 
                  </InputGroupText>
                </InputGroupAddon>
              </InputGroup>
-            {disabled === false && errors[name] && errors[name].type === 'required' &&
+            {errors[name] && errors[name].type === 'required' &&
             <div
               style = {{
                 fontSize: "small",
                 color: "red"
               }}>Se debe rellenar</div>
             }
-            {disabled === false && errors[name] && errors[name].type === 'isANumber' &&
+            {errors[name] && errors[name].type === 'isANumber' &&
             <div
               style = {{
                 fontSize: "small",
@@ -62,7 +61,6 @@ const InputWithIcon = ({name, title, placeHolder, iconName, disabled, register, 
            </FormGroup>
          </Row>
       </Container>
-    </>
     )
   }
 

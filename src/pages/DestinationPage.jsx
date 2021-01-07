@@ -68,7 +68,7 @@ const DestinationPage = ({selectedCity, dispatch}) => {
 
   return (
     <>
-        <DestinationPageHeader cityName = {selectedCity.displayName} countryName = {selectedCity.countryName} numExp = {experiences.length}/>
+        <DestinationPageHeader cityName = {selectedCity.displayName} countryName = {selectedCity.countryName} numExp = {experiences.length} numHousemates = {housemates.length}/>
         <div className="mySection">
           <Container>
             <div className="button-container">
