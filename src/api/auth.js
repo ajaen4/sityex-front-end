@@ -44,19 +44,9 @@ export const getUserData = (uid) =>
   .get()
   .then(snapshot => snapshot.data())
 
-//Signs out user
-export const signOut = async () => {
-  try{
-    await firebase.auth().signOut()
-    return Promise.resolve()
-  }
-  catch (error) {
-    return Promise.reject(error.message)
-  }
-}
+export const signOut = () => firebase.auth().signOut()
 
 //Sends and email to reset the password
 export const resetPassword = email => firebase.auth().sendPasswordResetEmail(email)
 
-//Updates the users password
 export const updatePassword = password => firebase.auth().currentUser.updatePassword(password)

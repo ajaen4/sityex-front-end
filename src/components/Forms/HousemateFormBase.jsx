@@ -1,7 +1,7 @@
 
 import React, {useState, useRef} from "react"
 import { useForm } from 'react-hook-form'
-import { Redirect } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 //reactstrap components
 import {
@@ -34,15 +34,17 @@ const HouseMateFormBase = ({selectedCity, onChangeCity, citiesIndex, savingExpSt
   const {register, handleSubmit, errors, getValues, reset} = useForm()
 
   let dateContainer = useRef(null)
+  const history = useHistory()
 
   //const circleLocation = useRef({lat: 0, lng: 0})
 
   //const [circleRadius, setCircleRadius] = useState("1 km")
   const [isFetching, setIsFetching] = useState(false)
   const [modalMessage, setModalMessage] = useState("")
-  const [goToDestinations, setGoToDestinations] = useState(false)
   const [dateRange, setDateRange] = useState({startDate: null, endDate: null})
   const [errorDateRange, setErrorDateRange] = useState(false)
+
+  const goToDestinations = () => history.push(`/home`)
 
   const resetForm = () => {
     setModalMessage("")
@@ -79,7 +81,7 @@ const HouseMateFormBase = ({selectedCity, onChangeCity, citiesIndex, savingExpSt
         setIsFetching(false)
         setModalMessage("Su peticion se ha guardado correctamente")
         setTimeout(() => {
-          setGoToDestinations(true)
+          goToDestinations()
         }, 2500);
       })
       .catch(err => {
@@ -89,7 +91,6 @@ const HouseMateFormBase = ({selectedCity, onChangeCity, citiesIndex, savingExpSt
     }
   }
 
-  if(!goToDestinations){
     return (
       <>
         <Form
@@ -159,7 +160,7 @@ const HouseMateFormBase = ({selectedCity, onChangeCity, citiesIndex, savingExpSt
                 justifyContent: "center",
                 textAlign: "center"
                 }}>
-                <Col lg = "4" md = "4" style = {{marginTop: "40px"}}>
+                <Col lg = "4" md = "6" style = {{marginTop: "40px"}}>
                   <DateRange
                     label = "Tiempo de estancia:"
                     onChangeDates = {onChangeDates}
@@ -222,10 +223,6 @@ const HouseMateFormBase = ({selectedCity, onChangeCity, citiesIndex, savingExpSt
       {modalMessage !== "" && <ActionModal show = {true} title = "" message = {modalMessage} action = {resetForm}/>}
     </>
   )
-  }
-  else {
-    return <Redirect to = "/home" />
-  }
 }
 
 export default HouseMateFormBase

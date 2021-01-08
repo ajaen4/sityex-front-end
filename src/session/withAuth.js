@@ -7,12 +7,8 @@ const withAuth = Component => {
   class WithAuth extends React.Component {
     render() {
       if(this.props.isAuthResolved)
-        return (
-          <Component {...this.props} />
-          )
-      else return(
-          <Redirect to = "/login" />
-          )
+        return (<Component {...this.props} />)
+      else return(<Redirect to = "/login" />)
     }
   }
 

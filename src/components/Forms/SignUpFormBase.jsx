@@ -1,7 +1,6 @@
 
 import React, { useState } from 'react'
 
-import { withRouter } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 
 //Custom functionality
@@ -22,7 +21,7 @@ import{
 import LoadingSpinner from 'components/Spinner/LoadingSpinner.jsx'
 import StandarModal from 'components/Modals/StandarModal'
 
-const SignUpFormBase = ({history, dispatch}) => {
+const SignUpFormBase = ({dispatch}) => {
 
   const {register, handleSubmit, errors, getValues} = useForm()
 
@@ -174,6 +173,4 @@ const SignUpFormBase = ({history, dispatch}) => {
   )
 }
 
-const SignUpForm = withRouter(SignUpFormBase)
-
-export default SignUpForm
+export default SignUpFormBase

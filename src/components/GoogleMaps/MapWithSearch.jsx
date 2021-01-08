@@ -20,7 +20,7 @@ const TITLEOPTSELECTED = "Ya ha recomendado esta localizacion."
 const OPTIONEXISTS = "La localizacion buscada ya ha sido recomendada por otros usuarios. Por favor, seleccionela en el mapa y haga click en 'Recomendar'"
 const TITLEOPTEXISTS = "La localizacion ya existe. "
 
-const DUMMYRECOM = {coordinates: {lat: 0, lng: 0}, name: "", address: "" }
+const DUMMYRECOM = {coordinates: {lat: 0, lng: 0}, name: "", address: "", id: null }
 
 const ICONSELECTED = { url: require("assets/icons/pin_red.png"), scaledSize: { width: 38, height: 38 } }
 const ICONSAVEDREC = { url: require("assets/icons/pin_blue.png"), scaledSize: { width: 38, height: 38 } }
@@ -35,7 +35,6 @@ function MapWithSearch({selectedCity, currRecomendations, savedRecomendations, p
   const [isPlaceSelected, setIsPlaceSelected] = useState(false)
   const [configAlert, setConfigAlert] = useState(null)
   const [autocomplete, setAutocomplete] = useState(null)
-
 
   useEffect(() => setCoordinates({lat: selectedCity.latitude, lng: selectedCity.longitude}), [selectedCity])
 
@@ -71,7 +70,7 @@ function MapWithSearch({selectedCity, currRecomendations, savedRecomendations, p
 
         console.log("Place selected")
         console.log(place)
-        var selectedPlace = {}
+        let selectedPlace = {}
 
         selectedPlace.name = place.address_components[0].long_name
         selectedPlace.address = place.formatted_address
@@ -107,13 +106,9 @@ function MapWithSearch({selectedCity, currRecomendations, savedRecomendations, p
     }
   }
 
-  const addRecommendation = (place) => {
-    pushRecomendation(place)
-  }
+  const addRecommendation = (place) => pushRecomendation(place)
 
-  const increaseRecomendation = (recomendation) => {
-    incrementRecomendation(recomendation)
-  }
+  const increaseRecomendation = (recomendation) => incrementRecomendation(recomendation)
 
   const onLoad = (autocomplete) => setAutocomplete(autocomplete)
 
@@ -133,19 +128,17 @@ function MapWithSearch({selectedCity, currRecomendations, savedRecomendations, p
               draggable = {false}
               position = {recomendation.coordinates}
               icon = {ICONSAVEDREC}
-              onClick = {() => {setSelectedRecomen(recomendation)}}
+              onClick = {() => setSelectedRecomen(recomendation)}
             >
             {
               //Solo enseñar en caso de que la recomendacion elegida sea la actual
-              ((recomendation.coordinates.lat === selectedRecomen.coordinates.lat) && (recomendation.coordinates.lng === selectedRecomen.coordinates.lng)) &&
+              (recomendation.id === selectedRecomen.id) &&
               <InfoWindow
-                onCloseClick={() => {
-                  setSelectedRecomen(DUMMYRECOM)
-                }}
+                onCloseClick={() => setSelectedRecomen(DUMMYRECOM)}
                 position={selectedRecomen.coordinates}>
                 <div style = {{padding: "5px"}}>
-                  {(!currRecomendations.some(currRec => (currRec.coordinates.lat === selectedRecomen.coordinates.lat) && (currRec.coordinates.lng === selectedRecomen.coordinates.lng))) &&
-                    <Button color = "success" onClick = {() => {increaseRecomendation(selectedRecomen)}}>Recomendar</Button>}
+                  {(!currRecomendations.some(currRec => currRec.id === selectedRecomen.id)) &&
+                    <Button color = "success" onClick = {() => increaseRecomendation(selectedRecomen)}>Recomendar</Button>}
                   <div><b>Nombre: </b> {selectedRecomen.name}</div>
                   <div><b># de recomendaciones: </b>{selectedRecomen.numOfRecomendations}</div>
                   <div><b>Direccion: </b> {selectedRecomen.address}</div>
@@ -156,26 +149,24 @@ function MapWithSearch({selectedCity, currRecomendations, savedRecomendations, p
           )}
           {
             //Marcadores de las recomendaciones guardadas por el usuario actual
-            currRecomendations.filter(currRec => !savedRecomendations.some(savedRec => (savedRec.coordinates.lat === currRec.coordinates.lat) && (savedRec.coordinates.lng === currRec.coordinates.lng))).map(recomendation =>
+            currRecomendations.filter(currRec => !savedRecomendations.some(savedRec => savedRec.id === currRec.id)).map(recomendation =>
             <Marker
               key = {recomendation.name}
               name = {recomendation.name}
               draggable = {false}
               position = {recomendation.coordinates}
-              icon={ICONCURRREC}
-              onClick={() => {setSelectedRecomen(recomendation)}}
+              icon = {ICONCURRREC}
+              onClick={() => setSelectedRecomen(recomendation)}
             >
             {
               //Solo enseñar en caso de que la recomendacion elegida sea la actual
-              ((recomendation.coordinates.lat === selectedRecomen.coordinates.lat) && (recomendation.coordinates.lng === selectedRecomen.coordinates.lng)) &&
+              (recomendation.id === selectedRecomen.id) &&
               <InfoWindow
-                onCloseClick={() => {
-                  setSelectedRecomen(DUMMYRECOM)
-                }}
+                onCloseClick={() => setSelectedRecomen(DUMMYRECOM)}
                 position={selectedRecomen.coordinates}>
                 <div style = {{padding: "5px"}}>
-                  {(!currRecomendations.some(currRec => (currRec.coordinates.lat === selectedRecomen.coordinates.lat) && (currRec.coordinates.lng === selectedRecomen.coordinates.lng))) &&
-                    <Button color = "success" onClick = {() => {incrementRecomendation(selectedRecomen)}}>Recomendar</Button>}
+                  {(!currRecomendations.some(currRec => currRec.id === selectedRecomen.id)) &&
+                    <Button color = "success" onClick = {() => incrementRecomendation(selectedRecomen)}>Recomendar</Button>}
                   <div><b>Nombre: </b> {selectedRecomen.name}</div>
                   <div><b># de recomendaciones: </b>{selectedRecomen.numOfRecomendations}</div>
                   <div><b>Direccion: </b> {selectedRecomen.address}</div>
@@ -192,16 +183,16 @@ function MapWithSearch({selectedCity, currRecomendations, savedRecomendations, p
               name = {selectedPlace.name}
               draggable = {false}
               position = {selectedPlace.coordinates}
-              icon={ICONSELECTED}
-              onClick={() => {setIsPlaceSelected(true)}}
+              icon = {ICONSELECTED}
+              onClick={() => setIsPlaceSelected(true)}
             >
             {(isPlaceSelected) &&
               <InfoWindow style = {{padding: "5px"}}
-                onCloseClick={() => {setIsPlaceSelected(false)}}
+                onCloseClick={() => setIsPlaceSelected(false)}
                 position={selectedPlace.coordinates}>
                 <div>
                 {(!currRecomendations.some(recom => recom.name === selectedPlace.name)) &&
-                  <Button color = "success" onClick = {() => {addRecommendation(selectedPlace)}}>Recomendar</Button>}
+                  <Button color = "success" onClick = {() => addRecommendation(selectedPlace)}>Recomendar</Button>}
                   <div><b>Nombre: </b> {selectedPlace.name}</div>
                   <div><b># de recomendaciones: </b>{selectedPlace.numOfRecomendations}</div>
                   <div><b>Direccion: </b> {selectedPlace.address}</div>
@@ -244,7 +235,7 @@ function MapWithSearch({selectedCity, currRecomendations, savedRecomendations, p
                 type = "button"
                 className = "close"
                 aria-label = "Close"
-                onClick = {() => {setConfigAlert(null)}}
+                onClick = {() => setConfigAlert(null)}
               >
                 <span aria-hidden="true">
                   <i className="now-ui-icons ui-1_simple-remove"></i>

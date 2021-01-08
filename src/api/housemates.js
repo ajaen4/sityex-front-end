@@ -3,7 +3,7 @@ import db from 'db'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 
-export const doGetHousemates = (city) => {
+export const getHousemates = (city) => {
   return db.collection("cities")
   .doc(city)
   .collection("housemates")
@@ -18,7 +18,7 @@ export const doGetHousemates = (city) => {
 }
 
 
-export const doAddHousemate = (cityName, housemate) => {
+export const addHousemate = (cityName, housemate) => {
   const housematesRef = db.collection("cities").doc(cityName).collection("housemates").doc()
   const id = housematesRef.path.split("/").pop()
 

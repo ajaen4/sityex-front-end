@@ -1,7 +1,6 @@
 
 import React, { useState } from 'react'
 
-import { withRouter } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 
 //Custom functionality
@@ -20,7 +19,7 @@ import{
 import LoadingSpinner from 'components/Spinner/LoadingSpinner.jsx'
 import StandarModal from 'components/Modals/StandarModal'
 
-const LogInFormBase = ({history, dispatch}) => {
+const LogInFormBase = ({dispatch}) => {
 
   const {register, handleSubmit, errors} = useForm()
 
@@ -124,4 +123,4 @@ const LogInFormBase = ({history, dispatch}) => {
   )
 }
 
-export default withRouter(LogInFormBase)
+export default LogInFormBase

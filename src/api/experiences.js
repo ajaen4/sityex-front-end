@@ -2,9 +2,8 @@
 import db from 'db'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
-import {round} from 'helpers/usefulFunctions'
 
-export const doGetExperiences = (city) => {
+export const getExperiences = (city) => {
   return db.collection("cities")
   .doc(city)
   .collection("experiences")
@@ -22,14 +21,13 @@ const updateOriginalMarkers = (originalMarkers, newMarkers) => {
 
   let auxMarkerObject = [...originalMarkers]
   let markerExists = false
-  const ROUND_PRESCISION = 3
 
+  debugger
   for(var indexNewM in newMarkers){
     for(var singleMarker in auxMarkerObject){
-        const coordinates1 = auxMarkerObject[singleMarker].coordinates
-        const coordinates2 = newMarkers[indexNewM].coordinates
-      if((round(coordinates1.lat, ROUND_PRESCISION) === round(coordinates2.lat, ROUND_PRESCISION)) &&
-          (round(coordinates1.lng, ROUND_PRESCISION) === round(coordinates2.lng, ROUND_PRESCISION))){
+        const orgMarker = auxMarkerObject[singleMarker]
+        const newMarker = newMarkers[indexNewM]
+      if(orgMarker.id === newMarker.id){
         auxMarkerObject[singleMarker].numOfRecomendations++
         markerExists = true
         break
@@ -44,7 +42,7 @@ const updateOriginalMarkers = (originalMarkers, newMarkers) => {
   return auxMarkerObject
 }
 
-export const doAddExperience = (cityName, experience, markers) => {
+export const addExperience = (cityName, experience, markers) => {
   const experiencesRef = db.collection("cities").doc(cityName).collection("experiences")
   const cityRef = db.collection("cities").doc(cityName)
   return db.runTransaction(t => {

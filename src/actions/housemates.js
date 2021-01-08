@@ -5,9 +5,9 @@ import {
   SAVING_HOUSEMATE
 } from 'types'
 
-export const getHousemates = cityName => api.doGetHousemates(cityName)
+export const getHousemates = cityName => api.getHousemates(cityName)
 
 export const addHousemate = (cityName, housemateData) => (dispatch, getState) =>  {
   dispatch({type: SAVING_HOUSEMATE})
-  return api.doAddHousemate(cityName, housemateData)
+  return api.addHousemate(cityName, housemateData)
 }

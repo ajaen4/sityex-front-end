@@ -147,8 +147,7 @@ const NavbarErasmus = ({ history, auth, isAuthResolved }) => {
                 </DropdownToggle>
                 <DropdownMenu aria-labelledby="navbarDropdownMenuLink">
                   <DropdownItem
-                    href="#pablo"
-                    onClick={e => e.preventDefault()}
+                    href="/chat"
                   >
                   <b>Chat</b>
                   </DropdownItem>
@@ -171,8 +170,7 @@ const NavbarErasmus = ({ history, auth, isAuthResolved }) => {
                     Ayuda
                   </DropdownItem>
                   <DropdownItem
-                    href="#pablo"
-                    onClick={e => signOutUser()}
+                    onClick = {e => signOutUser(auth.id)}
                   >
                     Cerrar sesion
                   </DropdownItem>

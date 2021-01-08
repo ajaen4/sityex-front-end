@@ -1,16 +1,8 @@
 
 import db from 'db'
 
-//Saves city information without merge (overwrites data)
-export const doSaveCity = (cityData) => {
-  db.collection("cities").doc(cityData["name"]).set(cityData)
-}
-
-//Saves city merging with existing data
-export const doSaveWithMergeCity = (cityData) => db.collection("cities").doc(cityData["name"]).set(cityData, {merge: true})
-
 //Fetches city data
-export const doGetCity = (city) => {
+export const getCity = (city) => {
     return db.collection("cities").doc(city).get()
     .then(doc => {
       if (!doc.exists) {
@@ -25,7 +17,7 @@ export const doGetCity = (city) => {
     })
 }
 
-export const doGetCitiesIndex = () => {
+export const getCitiesIndex = () => {
   return db.collection("cities").doc("_Index").get()
     .then( doc => {
       if (!doc.exists) {

@@ -1,6 +1,6 @@
 import React, {useState, useRef} from "react"
 import { useForm } from 'react-hook-form'
-import { Redirect } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 //reactstrap components
 import {
@@ -30,6 +30,7 @@ import TextArea from "components/TextArea/TextArea"
 const ExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowDimensions, dispatch, auth}) => {
 
   const {register, handleSubmit, errors, setValue, reset} = useForm()
+  const history = useHistory()
 
   let mapContainer = useRef(null)
 
@@ -38,11 +39,10 @@ const ExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowDime
   const [currRecomendations, setCurrRecomendations] = useState([])
   const [isFetching, setIsFetching] = useState(false)
   const [modalMessage, setModalMessage] = useState("")
-  const [goToDestinations, setGoToDestinations] = useState(false)
 
-  const updateRecomendations = recomendations => {
-    setCurrRecomendations(recomendations)
-  }
+  const goToDestinations = () => history.push(`/home`)
+
+  const updateRecomendations = recomendations => setCurrRecomendations(recomendations)
 
   const resetForm = () => {
     setModalMessage("")
@@ -66,7 +66,7 @@ const ExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowDime
         setIsFetching(false)
         setModalMessage("Su experiencia se ha guardado correctamente")
         setTimeout(() => {
-          setGoToDestinations(true)
+          goToDestinations()
         }, 2500);
       })
       .catch(err => {
@@ -77,7 +77,6 @@ const ExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowDime
   }
 
   const onChangeHousing = event => {
-    debugger
     if(event.target.value === 'apartment'){
       setDisablePrice(true)
       setValue('residencePrice', "0")
@@ -88,7 +87,6 @@ const ExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowDime
     }
   }
 
-  if(!goToDestinations){
     return (
       <>
         <Form
@@ -244,10 +242,6 @@ const ExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowDime
       {modalMessage !== "" && <ActionModal show = {true} title = "" message = {modalMessage} action = {resetForm}/>}
     </>
   )
-  }
-  else {
-    return <Redirect to = "/home" />
-  }
 }
 
 export default ExperienceFormBase

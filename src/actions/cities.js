@@ -13,7 +13,7 @@ export const fetchCitiesIndex = () => (dispatch, getState) => {
   if(!objectIsEmpty(getState().citiesIndex.data)) { return Promise.resolve() }
   //Dispatch so "isFetching" is true
   dispatch({type: REQUESTING_CITIES_INDEX})
-  return api.doGetCitiesIndex()
+  return api.getCitiesIndex()
         .then(data => {
           dispatch({
             type: FETCH_CITIES_INDEX_SUCCESS,
@@ -23,11 +23,11 @@ export const fetchCitiesIndex = () => (dispatch, getState) => {
 }
 
 export const fetchCity = cityName => (dispatch, getState) => {
-
+  
   if(getState().selectedCity.data !== null && getState().selectedCity.data.name === cityName) { return Promise.resolve() }
 
   dispatch({type: REQUESTING_CITY})
-  return api.doGetCity(cityName)
+  return api.getCity(cityName)
         .then(data => {
           dispatch({
             type: FETCH_CITY_SUCCESS,

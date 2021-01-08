@@ -12,11 +12,18 @@ import 'react-dates/initialize'
 
 //Custom fuctionality
 import ErasmusApp from './ErasmusApp'
-import { onAuthStateChanged, storeAuthUser, fetchCitiesIndex } from 'actions'
+
+import {
+  onAuthStateChanged,
+  storeAuthUser,
+  fetchCitiesIndex,
+  checkUserConnection } from 'actions'
+
 import {saveState} from "localStorage/localStorage"
 
 const store = initStore()
 
+//Persist user info, no refresh
 store.subscribe(() => {
   const stateToSave = {}
   stateToSave.auth = store.getState().auth
@@ -35,12 +42,18 @@ class App extends Component {
     }
   }
 
+
   componentDidMount() {
     this.unsuscribeAuth = onAuthStateChanged(authUser => {
       store.dispatch(storeAuthUser(authUser))
+
+      if (authUser)
+          checkUserConnection(authUser.uid)
     })
+
     if(store.getState().citiesIndex.data === null)
       store.dispatch(fetchCitiesIndex())
+
   }
 
   componentWillUnmount() {

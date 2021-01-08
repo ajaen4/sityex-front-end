@@ -11,7 +11,8 @@ import {
   DestinationPage,
   ExperiencePage,
   ProfilePage,
-  HousematePage } from 'pages'
+  HousematePage,
+  ChatPage} from 'pages'
 
 import * as ROUTES from 'constants/routes'
 
@@ -25,6 +26,7 @@ const Routes = () =>
     <Route path={ROUTES.NEW_EXPERIENCE} render={(props) => <ExperiencePage {...props}  />} />
     <Route path={ROUTES.NEW_HOUSEMATE} render={(props) => <HousematePage {...props}  />} />
     <Route exact path={ROUTES.PROFILE} render={(props) => <ProfilePage {...props}  />} />
+    <Route exact path={ROUTES.CHAT} render={(props) => <ChatPage {...props}  />} />
   </div>
 
 export default Routes
