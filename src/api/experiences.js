@@ -19,27 +19,26 @@ export const getExperiences = (city) => {
 
 const updateOriginalMarkers = (originalMarkers, newMarkers) => {
 
-  let auxMarkerObject = [...originalMarkers]
+  let consolidatedMarkers = [...originalMarkers]
   let markerExists = false
 
-  debugger
   for(var indexNewM in newMarkers){
-    for(var singleMarker in auxMarkerObject){
-        const orgMarker = auxMarkerObject[singleMarker]
+    for(var singleMarker in consolidatedMarkers){
+        const orgMarker = consolidatedMarkers[singleMarker]
         const newMarker = newMarkers[indexNewM]
       if(orgMarker.id === newMarker.id){
-        auxMarkerObject[singleMarker].numOfRecomendations++
+        consolidatedMarkers[singleMarker].numOfRecomendations++
         markerExists = true
         break
       }
     }
     if(!markerExists){
-      auxMarkerObject.push(newMarkers[indexNewM])
+      consolidatedMarkers.push(newMarkers[indexNewM])
     }
     markerExists = false
   }
 
-  return auxMarkerObject
+  return consolidatedMarkers
 }
 
 export const addExperience = (cityName, experience, markers) => {

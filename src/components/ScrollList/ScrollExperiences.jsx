@@ -5,28 +5,28 @@ import React from "react"
 import ReactList from 'react-list'
 import Experience from 'components/Experiences/Experience.jsx'
 import LoadingSpinner from 'components/Spinner/LoadingSpinner.jsx'
+import EmptyList from 'components/EmptyFill/EmptyList.jsx'
 
 function ScrollExperiences({ experiences, isFetching }){
 
-  const renderItem = (index, key) => {
-
-      return  <div className ="rowDirection" key = {index}>
-                <Experience data = {experiences[index]}/>
-              </div>
-        }
+  const renderItem = (index, key) => <Experience data = {experiences[index]} key = {index}/>
 
   if(!isFetching){
     return (
       <>
-      <div style = {{overflow: 'auto', height: "600px", justifyContent: "center"}}>
-        <ReactList style = {{
-          display: "flex",
-          justifyContent: "center"
-        }}
-          itemRenderer = {renderItem}
-          length = {experiences.length}
-          type = 'uniform'/>
-      </div>
+      {(experiences.length !== 0) &&
+      <ReactList style = {{
+        display: "flex",
+        justifyContent: "center",
+        overflow: 'auto',
+        height: "600px"}}
+        itemRenderer = {renderItem}
+        length = {experiences.length}
+        type = 'uniform'/>
+      }
+      {(experiences.length === 0) &&
+        <EmptyList name = "experiencias"/>
+      }
       </>
     )
   }

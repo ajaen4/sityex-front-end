@@ -72,7 +72,7 @@ function MapWithSearch({selectedCity, currRecomendations, savedRecomendations, p
         console.log(place)
         let selectedPlace = {}
 
-        selectedPlace.name = place.address_components[0].long_name
+        selectedPlace.name = place.name
         selectedPlace.address = place.formatted_address
         selectedPlace.coordinates = {lat: place.geometry.location.lat(), lng: place.geometry.location.lng()}
         selectedPlace.numOfRecomendations = 1

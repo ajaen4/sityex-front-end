@@ -5,7 +5,9 @@ import{
   Container,
   Card,
   CardBody,
-  CardTitle
+  CardTitle,
+  Col,
+  Row
 } from "reactstrap"
 
 //Custom functionality
@@ -18,22 +20,24 @@ const LogInPageBase = () => {
 
   return (
     <>
-    <Container style = {{
-      marginTop: "100px",
-      textAlign: "center",
-      justifyContent: "center"
-    }}>
-      <Card style={{
-        width: "40%",
-        minWidth: "300px"
-        }} >
-        <CardBody>
-          <CardTitle style={{
-            color: "grey"
-          }}>Bienvenido!</CardTitle>
-          <LogInForm/>
-        </CardBody>
-      </Card>
+      <Container style = {{
+        marginTop: "100px"
+      }}>
+        <Row style = {{
+          textAlign: "center",
+          justifyContent: "center"
+        }}>
+          <Col lg = "5" md = "8" sm = "12" xs = "12">
+            <Card>
+              <CardBody>
+                <CardTitle style={{
+                  color: "grey"
+                }}>Bienvenido!</CardTitle>
+                <LogInForm/>
+              </CardBody>
+            </Card>
+          </Col>
+        </Row>
     </Container>
   </>
   )

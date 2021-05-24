@@ -16,6 +16,9 @@ import {
   Container
 } from "reactstrap"
 
+//Custom components
+import NotificationsDropDown from "components/DropDownList/NotificationsDropDown"
+
 //Custom functionality
 import * as ROUTES from 'constants/routes'
 import { signOutUser } from 'actions'
@@ -32,9 +35,21 @@ const chooseNavbarColor = (history) => {
 }
 
 const NavbarErasmus = ({ history, auth, isAuthResolved }) => {
+  
+  const CHANGE_NOTIFICATIONS_POSITION = 400
 
   const [navbarColor, setNavbarColor] = React.useState(chooseNavbarColor(history))
   const [collapseOpen, setCollapseOpen] = React.useState(false)
+
+  const [windowDimensions, setWindowDimensions] = React.useState(window.innerWidth)
+  //const [isOpen, setIsOpen] = React.useState(false)
+
+  /*const toggleIsOpen = () => {
+    setIsOpen(!isOpen)
+  }*/
+
+  //Updates the window dimensions (width) when this changes
+  const updateWindowDimensions = () => setWindowDimensions(window.innerWidth)
 
   useEffect(() => {
     const updateNavbarColor = () => {
@@ -51,6 +66,7 @@ const NavbarErasmus = ({ history, auth, isAuthResolved }) => {
         setNavbarColor(chooseNavbarColor(history))
       }
     }
+    window.addEventListener("resize", updateWindowDimensions)
 
     window.addEventListener("scroll", updateNavbarColor)
     document.body.classList.add("sidebar-collapse")
@@ -58,6 +74,8 @@ const NavbarErasmus = ({ history, auth, isAuthResolved }) => {
     return function cleanup() {
       window.removeEventListener("scroll", updateNavbarColor)
       document.body.classList.remove("sidebar-collapse")
+      window.removeEventListener("resize", updateWindowDimensions)
+
     }
   // eslint-disable-next-line
   }, [])
@@ -81,6 +99,7 @@ const NavbarErasmus = ({ history, auth, isAuthResolved }) => {
       <Navbar className = "fixed-top" color = {navbarColor} expand="lg">
         <Container>
           <div className="navbar-translate">
+            {((windowDimensions < CHANGE_NOTIFICATIONS_POSITION) && auth) && <NotificationsDropDown messages = {auth.messages !== undefined ? auth.messages : []} windowDimensions = {windowDimensions}/>}
             <NavbarBrand
               target="_blank"
               id="navbar-brand"
@@ -108,23 +127,26 @@ const NavbarErasmus = ({ history, auth, isAuthResolved }) => {
           >
             <Nav navbar>
               { isAuthResolved &&
-              <NavItem>
-                <NavLink to="/new-housemate" tag={Link}>
-                  Comparte apartamento
-                </NavLink>
-              </NavItem>}
-              { isAuthResolved &&
-              <NavItem>
-                <NavLink to="/new-experience" tag={Link}>
-                  Nueva opinion
-                </NavLink>
-              </NavItem>}
-              { isAuthResolved &&
-              <NavItem>
-                <NavLink to="/Home" tag={Link}>
-                  Destinos
-                </NavLink>
-              </NavItem>
+                <React.Fragment>
+                  <NavItem>
+                    <NavLink to="/new-housemate" tag={Link}>
+                      Comparte apartamento
+                    </NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink to="/new-experience" tag={Link}>
+                      Nueva opinion
+                    </NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink to="/Home" tag={Link}>
+                      Destinos
+                    </NavLink>
+                  </NavItem>
+                  <NavItem>
+                    {((windowDimensions > CHANGE_NOTIFICATIONS_POSITION) && auth) && <NotificationsDropDown messages = {auth.messages !== undefined ? auth.messages : []} windowDimensions = {windowDimensions}/>}
+                  </NavItem>
+                </React.Fragment>
               }
               <NavItem>
                 <NavLink href="#">
@@ -132,49 +154,49 @@ const NavbarErasmus = ({ history, auth, isAuthResolved }) => {
                 </NavLink>
               </NavItem>
               { isAuthResolved &&
-              <UncontrolledDropdown nav>
-                <DropdownToggle
-                  aria-haspopup={true}
-                  caret
-                  color="default"
-                  data-toggle="dropdown"
-                  href="#pablo"
-                  id="navbarDropdownMenuLink"
-                  nav
-                  onClick={e => e.preventDefault()}
-                >
-                  {" " + auth.userName + " "}
-                </DropdownToggle>
-                <DropdownMenu aria-labelledby="navbarDropdownMenuLink">
-                  <DropdownItem
-                    href="/chat"
-                  >
-                  <b>Chat</b>
-                  </DropdownItem>
-                  <DropdownItem
+                <UncontrolledDropdown nav>
+                  <DropdownToggle
+                    aria-haspopup={true}
+                    caret
+                    color="default"
+                    data-toggle="dropdown"
                     href="#pablo"
+                    id="navbarDropdownMenuLink"
+                    nav
                     onClick={e => e.preventDefault()}
                   >
-                  <b>Mis destinos</b>
-                  </DropdownItem>
-                  <DropdownItem divider></DropdownItem>
-                  <DropdownItem
-                    href="/profile"
-                  >
-                  Perfil
-                  </DropdownItem>
-                  <DropdownItem
-                    href="#pablo"
-                    onClick={e => e.preventDefault()}
-                  >
-                    Ayuda
-                  </DropdownItem>
-                  <DropdownItem
-                    onClick = {e => signOutUser(auth.id)}
-                  >
-                    Cerrar sesion
-                  </DropdownItem>
-                </DropdownMenu>
+                    {" " + auth.userName + " "}
+                  </DropdownToggle>
+                  <DropdownMenu aria-labelledby="navbarDropdownMenuLink">
+                    <DropdownItem
+                      href="/chat"
+                    >
+                      <b>Chat</b>
+                    </DropdownItem>
+                    <DropdownItem
+                      href="#pablo"
+                      onClick={e => e.preventDefault()}
+                    >
+                      <b>Mis destinos</b>
+                    </DropdownItem>
+                    <DropdownItem divider></DropdownItem>
+                    <DropdownItem
+                      href="/profile"
+                    >
+                      Perfil
+                    </DropdownItem>
+                    <DropdownItem
+                      href="#pablo"
+                      onClick={e => e.preventDefault()}
+                    >
+                      Ayuda
+                    </DropdownItem>
+                    <DropdownItem
+                      onClick = {e => signOutUser(auth.id)}
+                    >
+                      Cerrar sesion
+                    </DropdownItem>
+                  </DropdownMenu>
               </UncontrolledDropdown>
             }
             </Nav>

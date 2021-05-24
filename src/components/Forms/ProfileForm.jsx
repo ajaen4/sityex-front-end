@@ -22,7 +22,7 @@ const ProfileForm = ({userData}) => {
     return (
       <>
         <Form>
-          <Container >
+          <Container>
           <Row style = {{
             justifyContent: "center",
             marginTop: "40px"

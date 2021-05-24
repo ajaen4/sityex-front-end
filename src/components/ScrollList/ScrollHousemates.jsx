@@ -4,29 +4,30 @@ import React from "react"
 //Custom UI components
 import ReactList from 'react-list'
 import Housemate from 'components/Housemate/Housemate.jsx'
+import EmptyList from 'components/EmptyFill/EmptyList.jsx'
 import LoadingSpinner from 'components/Spinner/LoadingSpinner.jsx'
 
-function ScrollHousemates({ housemates, isFetching }){
+function ScrollHousemates({ housemates, auth, isFetching }){
 
-  const renderItem = (index, key) => {
-
-      return  <div className ="rowDirection" key = {index}>
-                <Housemate data = {housemates[index]}/>
-              </div>
-        }
+  const renderItem = (index, key) => <Housemate housemateData = {housemates[index]} key = {index} auth = {auth}/>
 
   if(!isFetching){
     return (
       <>
-      <div style = {{overflow: 'auto', height: "600px", justifyContent: "center"}}>
-        <ReactList style = {{
-          display: "flex",
-          justifyContent: "center"
-        }}
-          itemRenderer = {renderItem}
-          length = {housemates.length}
-          type = 'uniform'/>
-      </div>
+      {(housemates.length !== 0) &&
+      <ReactList style = {{
+        display: "flex",
+        justifyContent: "center",
+        overflow: 'auto',
+        height: "600px"
+      }}
+        itemRenderer = {renderItem}
+        length = {housemates.length}
+        type = 'uniform'/>
+      }
+      {(housemates.length === 0) &&
+        <EmptyList name = "peticiones de apartamento"/>
+      }
       </>
     )
   }

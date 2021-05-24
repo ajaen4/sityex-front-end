@@ -17,7 +17,7 @@ const DropCircleRadius = ({onChange}) => {
     setText(value)
     onChange(value)
   }
-
+  
   return (
           <UncontrolledDropdown style = {{textAlign: "center"}}>
             <DropdownToggle

@@ -67,67 +67,67 @@ const RecomenMapWithList = ({selectedCity, windowDimensions, updateRecomendation
              justifyContent: "center",
              marginBottom: "20px"
            }}>
-           { (!objectIsEmpty(selectedCity)) &&
-             <MapWithSearch
-               incrementRecomendation = {incrementRecomendation}
-               currRecomendations = {currRecomendations}
-               savedRecomendations = {selectedCity.mapMarkers === undefined ? [] : selectedCity.mapMarkers}
-               style = {{justifyContent: "center"}}
-               selectedCity = {selectedCity}
-               pushRecomendation = {pushRecomendation}/>}
-            </div>
-            <Row style = {{
+             { (!objectIsEmpty(selectedCity)) &&
+               <MapWithSearch
+                 incrementRecomendation = {incrementRecomendation}
+                 currRecomendations = {currRecomendations}
+                 savedRecomendations = {selectedCity.mapMarkers === undefined ? [] : selectedCity.mapMarkers}
+                 style = {{justifyContent: "center"}}
+                 selectedCity = {selectedCity}
+                 pushRecomendation = {pushRecomendation}/>}
+           </div>
+           <Row style = {{
                display: "flex",
                flexDirection: "row",
                justifyContent: "center",
                alignItems: "center",
-               textAlign: "center"}}>
-                 <img  alt = "selected place icon" src = {require("assets/icons/pin_red.png")} style = {{
-                   height: "30px"
-                 }}></img>
-                 <div style = {{
-                   textAlign: "center",
-                   marginLeft: "5px",
-                   marginTop: "3px",
-                   fontSize: "0.9em"
-                 }}>
-                   Ultima busqueda (Pendiente de recomendar)
-                 </div>
-             </Row>
-             <Row style = {{
-               display: "flex",
-               flexDirection: "row",
-               justifyContent: "center",
-               alignItems: "center",
-               textAlign: "center"
-               }}>
-                 <img  alt = "my recomendation icon" src = {require("assets/icons/pin_outline_blue.png")} style = {{
-                   height: "30px"
-                 }}></img>
-                 <div style = {{
-                   textAlign: "center",
-                   marginLeft: "5px",
-                   marginTop: "3px",
-                   fontSize: "0.9em"
-                 }}>
-                   Tus recomendaciones
-                 </div>
-             </Row>
-             <Row style = {{
+           textAlign: "center"}}>
+             <img  alt = "selected place icon" src = {require("assets/icons/pin_red.png")} style = {{
+               height: "30px"
+             }}></img>
+             <div style = {{
+               textAlign: "center",
+               marginLeft: "5px",
+               marginTop: "3px",
+               fontSize: "2vh"
+             }}>
+               Ultima busqueda (Pendiente de recomendar)
+             </div>
+           </Row>
+           <Row style = {{
                display: "flex",
                flexDirection: "row",
                justifyContent: "center",
                alignItems: "center",
                textAlign: "center"
-               }}>
-                 <img  alt = "other users recomendations icon" src = {require("assets/icons/pin_blue.png")} style = {{
-                   height: "30px"
-                 }}></img>
-                 <div style = {{
-                   textAlign: "center",
-                   marginLeft: "5px",
-                   marginTop: "3px",
-                   fontSize: "0.9em"
+           }}>
+             <img  alt = "my recomendation icon" src = {require("assets/icons/pin_outline_blue.png")} style = {{
+               height: "30px"
+             }}></img>
+             <div style = {{
+               textAlign: "center",
+               marginLeft: "5px",
+               marginTop: "3px",
+               fontSize: "2vh"
+             }}>
+               Tus recomendaciones
+             </div>
+           </Row>
+           <Row style = {{
+               display: "flex",
+               flexDirection: "row",
+               justifyContent: "center",
+               alignItems: "center",
+               textAlign: "center"
+           }}>
+             <img  alt = "other users recomendations icon" src = {require("assets/icons/pin_blue.png")} style = {{
+               height: "30px"
+             }}></img>
+             <div style = {{
+               textAlign: "center",
+               marginLeft: "5px",
+               marginTop: "3px",
+               fontSize: "2vh"
                  }}>
                    Recomendaciones de los demas usuarios
                  </div>

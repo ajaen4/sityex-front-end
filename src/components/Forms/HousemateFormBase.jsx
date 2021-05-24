@@ -75,6 +75,7 @@ const HouseMateFormBase = ({selectedCity, onChangeCity, citiesIndex, savingExpSt
       //data.circleRadius = circleRadius
       data.startDate = dateRange.startDate.toDate()
       data.endDate = dateRange.endDate.toDate()
+      data.userId = auth.id
       setIsFetching(true)
       dispatch(addHousemate(selectedCity.name, data))
       .then(() => {

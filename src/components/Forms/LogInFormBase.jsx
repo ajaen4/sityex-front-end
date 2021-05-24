@@ -58,19 +58,19 @@ const LogInFormBase = ({dispatch}) => {
                   required: true,
                   //eslint-disable-next-line
                   pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-                  })}
+                })}
               name = "email"
               placeholder="Email..."
               type="email"
             ></Input>
             {errors.email && errors.email.type === 'required' &&
-            <FormFeedback>Se debe introducir el email</FormFeedback>
+              <FormFeedback>Se debe introducir el email</FormFeedback>
             }
             {errors.email && errors.email.type === 'pattern' &&
-            <FormFeedback>El formato del email no es valido</FormFeedback>
+              <FormFeedback>El formato del email no es valido</FormFeedback>
             }
-        </InputGroup>
-        <InputGroup
+          </InputGroup>
+          <InputGroup
             className = "no-border input-lg input-group-focus"
           >
             <InputGroupAddon addonType="prepend">
@@ -83,30 +83,30 @@ const LogInFormBase = ({dispatch}) => {
               innerRef={
                 register({
                   required: true,
-                  minLength: 4})}
+                minLength: 4})}
               name = "password"
               placeholder="Password..."
               type="password"
             ></Input>
             {errors.password && errors.password.type === 'required' &&
-            <FormFeedback>Se debe introducir la contraseña</FormFeedback>
+              <FormFeedback>Se debe introducir la contraseña</FormFeedback>
             }
             {errors.password && errors.password.type === 'minLength' &&
-            <FormFeedback>La contraseña debe tener como minimo 8 caracteres</FormFeedback>
+              <FormFeedback>La contraseña debe tener como minimo 8 caracteres</FormFeedback>
             }
-        </InputGroup>
-        <Button
-          disabled = {Object.keys(errors).length !== 0}
-          color = "success"
-          style = {{ margin: "2%" }}
-          type = "submit"
-        >
-          Log In
-        </Button>
-        <Button
-          color="white"
-          href="signup"
-          style={{ margin: "2%" }}
+          </InputGroup>
+          <Button
+            disabled = {Object.keys(errors).length !== 0}
+            color = "success"
+            style = {{ margin: "2%" }}
+            type = "submit"
+          >
+            Log In
+          </Button>
+          <Button
+            color = "white"
+            href = "signup"
+            style = {{ margin: "2%" }}
         >
           Crea una cuenta
         </Button>

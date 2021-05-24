@@ -26,10 +26,16 @@ export const SAVING_EXPERIENCE_ERROR = 'SAVING_EXPERIENCE_ERROR'
 
 //--------------------EXPERIENCES END
 
-//--------------------HOUSEMATE
+//--------------------HOUSEMATES
 
 export const SAVING_HOUSEMATE = 'SAVING_HOUSEMATE'
 export const SAVING_HOUSEMATE_SUCCESS = 'SAVING_HOUSEMATE_SUCCESS'
 export const SAVING_HOUSEMATE_ERROR = 'SAVING_HOUSEMATE_ERROR'
 
-//--------------------HOUSEMATE END
+//--------------------HOUSEMATES END
+
+//--------------------HOUSEMATES
+
+export const FETCH_USER_MESSAGES_SUCCESS = 'FETCH_USER_MESSAGES_SUCCESS'
+
+//--------------------HOUSEMATES END

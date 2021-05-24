@@ -99,83 +99,83 @@ class CityInfo extends Component {
 
       const yearAvgTemp = (sum / 12).toFixed(2)
 
+      const fontSizeSmall = "2vmin"
+
       return (
         <Container className = "centerText" style = {{
-          fontSize: "17px",
+          fontSize: "2.2vh",
           padding: "0px"
         }}>
           <div className = "rowMainCharact">
-          <i className="now-ui-icons users_single-02" style = {{
-            marginTop: "3px",
-            marginRight: "7px",
-          }}></i>
-          <div>{cityName} tiene <b>{population} habitantes</b></div>
+            <i className="now-ui-icons users_single-02" style = {{
+              marginTop: "3px",
+              marginRight: "7px",
+            }}></i>
+            <div>{cityName} tiene <b>{population} habitantes</b></div>
           </div>
           {(rent && rent !== "0") && <div className = "rowMainCharact" >
-          <i className="now-ui-icons shopping_shop" style = {{
-            marginTop: "3px",
-            marginRight: "6px"
-          }}></i>
-          <div>Precio de alquiler medio <b>{rent + " " + currencySymbol}</b></div>
+            <i className="now-ui-icons shopping_shop" style = {{
+              marginTop: "3px",
+              marginRight: "6px"
+            }}></i>
+            <div>Precio de alquiler medio <b>{rent + " " + currencySymbol}</b></div>
           </div>}
           {(yearAvgTemp) && <div className = "rowMainCharact">
-          <img alt = "temperature icon" src = {require("assets/icons/temperature.png")} style = {{
-            marginTop:"2px",
-            marginRight: "4px",
-            marginLeft: "5px",
-            height: "20px"
-          }}></img>
-          <div>Temperatura media (año) <b>{new Intl.NumberFormat("es-418").format(yearAvgTemp)} ºC</b></div>
+            <img alt = "temperature icon" src = {require("assets/icons/temperature.png")} style = {{
+              marginTop:"2px",
+              marginRight: "4px",
+              marginLeft: "5px",
+              height: "20px"
+            }}></img>
+            <div>Temperatura media (año) <b>{new Intl.NumberFormat("es-418").format(yearAvgTemp)} ºC</b></div>
           </div>}
           <i className = {"now-ui-icons" + (isOpen ? " arrows-1_minimal-up" : " arrows-1_minimal-down")} onClick={this.toggle} style={{
             marginTop: '30px',
             marginBottom: "0px"
           }}></i>
-          <Collapse isOpen={isOpen} style = {{
-            marginLeft: "0px !important"
-          }}>
+          <Collapse isOpen={isOpen}>
             <Card>
               <CardBody className = "rowDirection rowWrap">
                 {checkPrices !== 0 && <Container style = {{
                   width:"49%",
                   minWidth: "330px"
                 }}>
-                <div className = "rowMainCharact">
-                  <i className="now-ui-icons business_money-coins" style = {{
-                    marginTop: "7px",
-                    marginRight: "5px"
-                  }}></i>
-                  <h5 className="bold" style = {{
-                    marginBottom: "0px"
-                  }}>Precios</h5>
-                </div>
-                <div style = {{
-                  fontSize: "13px",
-                  marginBottom: "15px"
-                }}>(Los precios están calculados en euros aunque la moneda local sea distinta)</div>
+                  <div className = "rowMainCharact">
+                    <i className="now-ui-icons business_money-coins" style = {{
+                      marginTop: "7px",
+                      marginRight: "5px"
+                    }}></i>
+                    <h5 className="bold" style = {{
+                      marginBottom: "0px"
+                    }}>Precios</h5>
+                  </div>
+                  <div style = {{
+                    fontSize: fontSizeSmall,
+                    marginBottom: "15px"
+                  }}>(Los precios están calculados en euros aunque la moneda local sea distinta)</div>
                   <div className = "extraBotMargin">{(apartmentCost && apartmentCost !== "0") && ("Agua, electricidad, tasas de basura: " + apartmentCost + " " + currencySymbol)}</div>
                   <div className = "extraBotMargin">{(internetCost && internetCost !== "0") && ("Tarifa internet para el apartamento: " + internetCost + " " + currencySymbol)}</div>
                   <div className = "extraBotMargin">{(salaryAvg && salaryAvg !== "0") && ("Salario medio neto: " + salaryAvg + " " + currencySymbol)}</div>
                   <div className = "extraBotMargin">{(mobileFee && mobileFee !== "0") && ("Un minuto de tarifa de movil prepago: " + mobileFee + " " + currencySymbol)}</div>
                   <div className = "extraBotMargin">{(costOfCinema && costOfCinema !== "0") && ("Una entrada de cine: " + costOfCinema + " " + currencySymbol)}</div>
                   {checkSupermarket !== 0 && <Container>
-                  <div className = "rowMainCharact" style ={{
-                    marginTop:"22px",
-                    marginBottom:"10px"
-                  }}>
-                    <i className="now-ui-icons shopping_cart-simple" style = {{
-                      marginTop: "0px",
-                      marginRight: "5px"
-                    }}></i>
-                    <h6 className="bold">Bolsa de la compra</h6>
-                </div>
-                <div className = "extraBotMargin">{(costOfApples && costOfApples !== "0") && ("1 kg de manzanas: " + costOfApples + " " + currencySymbol)}</div>
-                <div className = "extraBotMargin">{(costOfEggs && costOfEggs !== "0") && ("1 docena de huevos: " + costOfEggs + " " + currencySymbol)}</div>
-                <div className = "extraBotMargin">{(costOfChicken && costOfChicken !== "0") && ("1 kg de pollo: " + costOfChicken + " " + currencySymbol)}</div>
-                <div className = "extraBotMargin">{(costOfBeer && costOfBeer !== "0") && ("1/2 L de cerveza local: " + costOfBeer + " " + currencySymbol)}</div>
-                <div className = "extraBotMargin">{(costOfMilk && costOfMilk !== "0") && ("1/2 L de leche: " + costOfMilk + " " + currencySymbol)}</div>
-                </Container>
-                }
+                    <div className = "rowMainCharact" style ={{
+                      marginTop:"22px",
+                      marginBottom:"10px"
+                    }}>
+                      <i className="now-ui-icons shopping_cart-simple" style = {{
+                        marginTop: "0px",
+                        marginRight: "5px"
+                      }}></i>
+                      <h6 className="bold">Bolsa de la compra</h6>
+                    </div>
+                    <div className = "extraBotMargin">{(costOfApples && costOfApples !== "0") && ("1 kg de manzanas: " + costOfApples + " " + currencySymbol)}</div>
+                    <div className = "extraBotMargin">{(costOfEggs && costOfEggs !== "0") && ("1 docena de huevos: " + costOfEggs + " " + currencySymbol)}</div>
+                    <div className = "extraBotMargin">{(costOfChicken && costOfChicken !== "0") && ("1 kg de pollo: " + costOfChicken + " " + currencySymbol)}</div>
+                    <div className = "extraBotMargin">{(costOfBeer && costOfBeer !== "0") && ("1/2 L de cerveza local: " + costOfBeer + " " + currencySymbol)}</div>
+                    <div className = "extraBotMargin">{(costOfMilk && costOfMilk !== "0") && ("1/2 L de leche: " + costOfMilk + " " + currencySymbol)}</div>
+                  </Container>
+                  }
                 </Container>
                 }
                 <Container style = {{
@@ -194,24 +194,24 @@ class CityInfo extends Component {
                     }} >Tiempo</h5>
                   </div>
                   <div style = {{
-                    fontSize: "13px",
+                    fontSize: fontSizeSmall,
                     marginBottom: "15px"
                   }}>(Temperatura media / Salida del sol)</div>
                   {
                     histAvgTempIds.map(number =>
-                    <div key = {number.id} className = "extraBotMargin rowDirection">
-                      <div className = "RightText" style = {{
-                        minWidth: "105px"
-                      }}><b>{months[number.value]}</b>
-                      </div>
-                      <img alt = "temperature icon" src = {require("assets/icons/temperature.png")} style = {{
-                        marginTop: "2px",
-                        marginRight: "1%",
-                        marginLeft: "1%",
-                        height: "20px"
-                      }}></img>
-                      <div className = "LeftText" style = {{
-                        minWidth: "70px"
+                      <div key = {number.id} className = "extraBotMargin rowDirection">
+                        <div className = "RightText" style = {{
+                          minWidth: "110px"
+                        }}><b>{months[number.value]}</b>
+                        </div>
+                        <img alt = "temperature icon" src = {require("assets/icons/temperature.png")} style = {{
+                          marginTop: "2px",
+                          marginRight: "1%",
+                          marginLeft: "1%",
+                          height: "20px"
+                        }}></img>
+                        <div className = "LeftText" style = {{
+                          minWidth: "80px"
                       }}> {new Intl.NumberFormat("es-418").format(histAvgTemp[number.value]) + " ºC"}
                       </div>
                       <img alt = "sunset icon" src = {require("assets/icons/sunset.png")} style = {{

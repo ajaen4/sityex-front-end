@@ -17,7 +17,8 @@ import {
   onAuthStateChanged,
   storeAuthUser,
   fetchCitiesIndex,
-  checkUserConnection } from 'actions'
+  checkUserConnection,
+  subscribeToMessages} from 'actions'
 
 import {saveState} from "localStorage/localStorage"
 
@@ -42,13 +43,16 @@ class App extends Component {
     }
   }
 
-
   componentDidMount() {
     this.unsuscribeAuth = onAuthStateChanged(authUser => {
       store.dispatch(storeAuthUser(authUser))
 
-      if (authUser)
+      if (authUser){
           checkUserConnection(authUser.uid)
+          this.unsuscribeMessages = store.dispatch(subscribeToMessages(authUser.uid))
+        }
+      else
+        this.unsuscribeMessages()
     })
 
     if(store.getState().citiesIndex.data === null)
@@ -58,6 +62,7 @@ class App extends Component {
 
   componentWillUnmount() {
     this.unsuscribeAuth()
+    this.unsuscribeMessages()
   }
 
   render(){

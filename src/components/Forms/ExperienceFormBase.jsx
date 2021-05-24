@@ -60,6 +60,7 @@ const ExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowDime
       if(data.residencePrice === undefined)
         data.residencePrice = 0
       data.userName = auth.userName
+      data.userId = auth.id
       setIsFetching(true)
       dispatch(addExperience(selectedCity.name, data, currRecomendations))
       .then(() => {
@@ -90,11 +91,11 @@ const ExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowDime
     return (
       <>
         <Form
-        onSubmit = {handleSubmit(handleForm)}
-        style = {{
-          marginTop: "20px",
-          textAlign: "center"
-        }}>
+          onSubmit = {handleSubmit(handleForm)}
+          style = {{
+            marginTop: "20px",
+            textAlign: "center"
+          }}>
           {isFetching && <CenteredLoadingSpinner/>}
           <Container style = {{
             marginTop: "20px",
@@ -105,8 +106,8 @@ const ExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowDime
             <Row style = {{
               justifyContent: "center",
               textAlign: "center"
-              }}>
-              <Col lg = "6" md = "6" sm = "12" xs = "12">
+            }}>
+              <Col lg = "6" md = "6" sm = "12" xs = "12" style = {{paddingLeft: "0px", paddingRight: "0px"}}>
                 <Opinion5
                   fieldName = "weather"
                   labelName = "Clima"

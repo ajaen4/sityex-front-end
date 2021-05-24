@@ -62,8 +62,8 @@ const HomePage = ({citiesIndex, isFetching, authUser}) => {
       }}>
         <div className="nav-align-center">
           <Nav
-          className="nav-pills-info nav-pills-just-icons"
-          pills
+            className="nav-pills-info nav-pills-just-icons"
+            pills
           role="tablist">
             <NavItem>
               <NavLink
@@ -95,115 +95,116 @@ const HomePage = ({citiesIndex, isFetching, authUser}) => {
           <TabPane tabId="pills1">
             <Row style ={{marginTop: "50px", justifyContent: "center"}}>
               <Col lg = "6" md = "9">
-              <Card>
-                <CardBody>
-                <CardTitle style={{
-                  color: "grey",
-                  fontSize: "2em",
-                  marginTop: "0px",
-                }}>Introduce un destino</CardTitle>
-                <InputGroup
-                  className = "form-control-lg input-group-focus"
-                  >
-                  <InputGroupAddon addonType = "prepend">
-                    <InputGroupText>
-                      <i className = "now-ui-icons location_world"></i>
-                    </InputGroupText>
-                  </InputGroupAddon>
-                  <Input
-                      name = "location"
-                      placeholder = {"Ej. Turin..."}
-                      type = "text"
-                      value = {city}
-                      onChange = {onSearchChange}
-                  ></Input>
-                </InputGroup>
-                </CardBody>
-              </Card>
+                <Card>
+                  <CardBody>
+                    <CardTitle style={{
+                      color: "grey",
+                      fontSize: "2em",
+                      marginTop: "0px",
+                    }}>Introduce un destino</CardTitle>
+                    <InputGroup
+                      className = "form-control-lg input-group-focus"
+                    >
+                      <InputGroupAddon addonType = "prepend">
+                        <InputGroupText>
+                          <i className = "now-ui-icons location_world"></i>
+                        </InputGroupText>
+                      </InputGroupAddon>
+                      <Input
+                        name = "location"
+                        placeholder = {"Ej. Turin..."}
+                        type = "text"
+                        value = {city}
+                        onChange = {onSearchChange}
+                      ></Input>
+                    </InputGroup>
+                  </CardBody>
+                </Card>
               </Col>
             </Row>
             <Row style ={{justifyContent: "center"}}>
               <Col lg = "6" md = "9">
-              <Card style = {{
-                minHeight: "300px"
-              }}>
-                <CardBody>
-                <CardTitle style={{
-                  color: "grey",
-                  fontSize: "25px"
-                }}>Destinos</CardTitle>
-                </CardBody>
-                <ScrollDestinations isFetching = {isFetching}
-                  destinations = { citiesIndex !== null && Object.values(citiesIndex).filter(item => item.name.toLowerCase().includes(city.toLowerCase())).sort((a,b) => a.name.localeCompare(b.name))}/>
-              </Card>
-            </Col>
-          </Row>
-        </TabPane>
-        <TabPane tabId="pills2">
-          <Row style ={{marginTop: "50px", marginLeft: "20px", marginRight: "20px", justifyContent: "center"}}>
-            <DestinationsMap
-            windowWidth = {windowWidth}
-            style = {{justifyContent: "center"}}
-            citiesIndex = {objectIsEmpty(citiesIndex) ? {} : citiesIndex}/>
-          </Row>
-          <Row style = {{
+                <Card style = {{
+                  minHeight: "300px"
+                }}>
+                  <CardBody>
+                    <CardTitle style={{
+                      color: "grey",
+                      fontSize: "25px"
+                    }}>Destinos</CardTitle>
+                  </CardBody>
+                  <ScrollDestinations isFetching = {isFetching}
+                    destinations = { citiesIndex !== null && Object.values(citiesIndex).filter(item => item.name.toLowerCase().includes(city.toLowerCase())).sort((a,b) => a.name.localeCompare(b.name))}/>
+                </Card>
+              </Col>
+            </Row>
+          </TabPane>
+          <TabPane tabId="pills2">
+            <Row style ={{marginTop: "50px", marginLeft: "2px", marginRight: "2px", justifyContent: "center"}}>
+              <DestinationsMap
+                windowWidth = {windowWidth}
+                style = {{justifyContent: "center"}}
+                citiesIndex = {objectIsEmpty(citiesIndex) ? {} : citiesIndex}/>
+            </Row>
+            <Row style = {{
               display: "flex",
               flexDirection: "row",
               justifyContent: "center",
               alignItems: "center",
               textAlign: "center",
               marginTop: "15px"
-              }}>
-            <img  alt = "selected place icon" src = {require('assets/icons/pin_green.png')} style = {{
-              height: "30px"
-            }}></img>
-            <div style = {{
-              textAlign: "center",
-              marginLeft: "10px",
-              marginTop: "3px",
-              fontSize: "0.9em"
             }}>
-              Ciudades con mas de un millon de habitantes
-            </div>
-          </Row>
-          <Row style = {{
+              <img  alt = "selected place icon" src = {require('assets/icons/pin_green.png')} style = {{
+                height: "30px"
+              }}></img>
+              <div style = {{
+                textAlign: "center",
+                marginLeft: "10px",
+                marginTop: "3px",
+                fontSize: "1.8vh"
+              }}>
+                Ciudades con mas de un millon de habitantes
+              </div>
+            </Row>
+            <Row style = {{
               display: "flex",
               flexDirection: "row",
               justifyContent: "center",
               alignItems: "center",
               textAlign: "center",
               marginTop: "10px"
-              }}>
-            <img  alt = "my recomendation icon" src = {require("assets/icons/pin_blue.png")} style = {{
-              height: "30px"
-            }}></img>
-            <div style = {{
-              textAlign: "center",
-              marginLeft: "10px",
-              marginTop: "3px",
-              fontSize: "0.9em"
             }}>
-              Ciudades con habitantes entre 800 y 300 mil
-            </div>
-          </Row>
-          <Row style = {{
+              <img  alt = "my recomendation icon" src = {require("assets/icons/pin_blue.png")} style = {{
+                height: "30px"
+              }}></img>
+              <div style = {{
+                textAlign: "center",
+                marginLeft: "10px",
+                marginTop: "3px",
+                fontSize: "1.8vh"
+              }}>
+                Ciudades con habitantes entre 800 y 300 mil
+              </div>
+            </Row>
+            <Row style = {{
               display: "flex",
               flexDirection: "row",
               justifyContent: "center",
               alignItems: "center",
               textAlign: "center",
               marginTop: "10px",
-              marginBottom: "10px"
-              }}>
-            <img  alt = "other users recomendations icon" src = {require("assets/icons/pin_orange.png")} style = {{
-              height: "30px"
-            }}></img>
-            <div style = {{
-              textAlign: "center",
-              marginLeft: "10px",
-              marginTop: "3px",
-              fontSize: "0.9em"
+              marginBottom: "10px",
+              flexWrap: "nowrap"
             }}>
+              <img  alt = "other users recomendations icon" src = {require("assets/icons/pin_orange.png")} style = {{
+                height: "30px"
+              }}></img>
+              <div style = {{
+                textAlign: "center",
+                marginLeft: "10px",
+                marginTop: "3px",
+                fontSize: "1.8vh"
+              }}>
               Ciudades con menos de 300 mil habitantes
             </div>
           </Row>
