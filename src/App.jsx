@@ -10,7 +10,6 @@ import {LoadScript} from '@react-google-maps/api'
 
 import 'react-dates/initialize'
 
-//Custom fuctionality
 import ErasmusApp from './ErasmusApp'
 
 import {
@@ -39,11 +38,13 @@ class App extends Component {
     super(props)
 
     this.state = {
-      authUser: null
+      authUser: null,
+      componentMounted: false
     }
   }
 
   componentDidMount() {
+    this.setState({componentMounted: true})
     this.unsuscribeAuth = onAuthStateChanged(authUser => {
       store.dispatch(storeAuthUser(authUser))
 

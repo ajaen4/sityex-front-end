@@ -14,19 +14,19 @@ function ScrollHousemates({ housemates, auth, isFetching }){
   if(!isFetching){
     return (
       <>
-      {(housemates.length !== 0) &&
-      <ReactList style = {{
-        display: "flex",
-        justifyContent: "center",
-        overflow: 'auto',
-        height: "600px"
-      }}
-        itemRenderer = {renderItem}
-        length = {housemates.length}
-        type = 'uniform'/>
-      }
-      {(housemates.length === 0) &&
-        <EmptyList name = "peticiones de apartamento"/>
+        {(housemates.length !== 0) &&
+          <ReactList style = {{
+            display: "flex",
+            justifyContent: "center",
+            overflow: 'auto',
+            height: "600px"
+          }}
+            itemRenderer = {renderItem}
+            length = {housemates.length}
+          type = 'uniform'/>
+        }
+        {(housemates.length === 0) &&
+          <EmptyList message = "Aun no hay peticiones de apartamento, se el primero en rellenar una!"/>
       }
       </>
     )

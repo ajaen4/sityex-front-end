@@ -7,25 +7,25 @@ import Experience from 'components/Experiences/Experience.jsx'
 import LoadingSpinner from 'components/Spinner/LoadingSpinner.jsx'
 import EmptyList from 'components/EmptyFill/EmptyList.jsx'
 
-function ScrollExperiences({ experiences, isFetching }){
+function ScrollUserDestinations({ destinations, isFetching }){
 
-  const renderItem = (index, key) => <Experience data = {experiences[index]} key = {index}/>
+  const renderItem = (index, key) => <Experience data = {destinations[index]} key = {index}/>
 
   if(!isFetching){
     return (
       <>
-        {(experiences.length !== 0) &&
+        {(destinations.length !== 0) &&
           <ReactList style = {{
             display: "flex",
             justifyContent: "center",
             overflow: 'auto',
           height: "600px"}}
             itemRenderer = {renderItem}
-            length = {experiences.length}
+            length = {destinations.length}
           type = 'uniform'/>
         }
-        {(experiences.length === 0) &&
-          <EmptyList message = "Aun no hay experiencias, se el primero en rellenar una!"/>
+        {(destinations.length === 0) &&
+          <EmptyList message = "No hay destinos seleccionados"/>
       }
       </>
     )
@@ -36,4 +36,4 @@ function ScrollExperiences({ experiences, isFetching }){
 
 }
 
-export default ScrollExperiences
+export default ScrollUserDestinations

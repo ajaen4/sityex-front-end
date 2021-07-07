@@ -7,13 +7,13 @@ import {
   CardBody
 } from "reactstrap"
 
-const EmptyList = ({ name }) => {
+const EmptyList = ({ message }) => {
 
   return(
     <Container style = {{justifyContent: "center", textAlign: "center"}}>
       <Card>
         <CardBody>
-          <p>{"Aun no hay " + name + ", se el primero en rellenar una!"}</p>
+          <p>{message}</p>
         </CardBody>
       </Card>
     </Container>

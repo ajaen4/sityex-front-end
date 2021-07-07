@@ -19,34 +19,33 @@ const InputIconLeft = ({register, errors, orgValue, fieldName, label}) => {
   return (
     <>
       <label htmlFor = {fieldName} style = {{fontSize: "1.2em"}}>{label}</label>
-       <InputGroup
-         className = "input-lg input-group-focus"
-       >
-            <InputGroupAddon addonType="prepend">
-           <InputGroupText>
-           {((fieldName === "name") || (fieldName === "surname")) &&
-             <i className="now-ui-icons users_circle-08"></i>
-             }
-           {(fieldName === "email") &&
-            <i className="now-ui-icons ui-1_email-85"></i>
+      <InputGroup
+        className = "input-lg input-group-focus"
+      >
+        <InputGroupAddon addonType="prepend" >
+          <InputGroupText>
+            {((fieldName === "name") || (fieldName === "surname")) &&
+              <i className="now-ui-icons users_circle-08"></i>
+            }
+            {(fieldName === "email") &&
+              <i className="now-ui-icons ui-1_email-85"></i>
             }
             {(fieldName === "city") &&
-            <img alt = "city icon" src = {require("assets/icons/city.png")} style = {{
-              height: "18px"
-            }}></img>
-             }
-           {(fieldName === "country") &&
-           <i className="now-ui-icons business_globe"></i>
+              <img alt = "city icon" src = {require("assets/icons/city.png")} style = {{
+                height: "18px"
+              }}></img>
             }
-           </InputGroupText>
-         </InputGroupAddon>
-         <Input
-           readOnly
-           style = {{
-             fontSize: "1em"
-           }}
-           invalid={errors.name !== undefined}
-           innerRef={
+            {(fieldName === "country") &&
+              <i className="now-ui-icons business_globe"></i>
+            }
+          </InputGroupText>
+        </InputGroupAddon>
+        <Input
+          style = {{
+            fontSize: "1em"
+          }}s
+          invalid={errors.name !== undefined}
+          innerRef={
              register({
                required: true,
                pattern: /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u

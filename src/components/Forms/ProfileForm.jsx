@@ -23,35 +23,35 @@ const ProfileForm = ({userData}) => {
       <>
         <Form>
           <Container>
-          <Row style = {{
-            justifyContent: "center",
-            marginTop: "40px"
-          }}>
-            <Col lg = "4" md = "4">
-              <InputIconLeft
-                register = {register}
-                handleSubmit = {handleSubmit}
-                errors = {errors}
-                orgValue = {userData.userName}
-                fieldName = "name"
+            <Row style = {{
+              justifyContent: "center",
+              marginTop: "40px"
+            }}>
+              <Col lg = "4" md = "4">
+                <InputIconLeft
+                  register = {register}
+                  handleSubmit = {handleSubmit}
+                  errors = {errors}
+                  orgValue = {userData.userName}
+                  fieldName = "name"
                 label = "Nombre:"/>
-            </Col>
-            <Col lg = "4" md = "4">
-              <InputIconLeft
-                register = {register}
-                handleSubmit = {handleSubmit}
-                errors = {errors}
-                orgValue = {userData.userName}
-                fieldName = "surname"
+              </Col>
+              <Col lg = "4" md = "4">
+                <InputIconLeft
+                  register = {register}
+                  handleSubmit = {handleSubmit}
+                  errors = {errors}
+                  orgValue = {userData.userName}
+                  fieldName = "surname"
                 label = "Apellido:"/>
-            </Col>
-            <Col lg = "4" md = "4">
-              <InputIconLeft
-                register = {register}
-                handleSubmit = {handleSubmit}
-                errors = {errors}
-                orgValue = {userData.email}
-                fieldName = "email"
+              </Col>
+              <Col lg = "4" md = "4">
+                <InputIconLeft
+                  register = {register}
+                  handleSubmit = {handleSubmit}
+                  errors = {errors}
+                  orgValue = {userData.email}
+                  fieldName = "email"
                 label = "Email:"/>
             </Col>
             <Col lg = "4" md = "4" style = {{marginTop: "6px"}}>

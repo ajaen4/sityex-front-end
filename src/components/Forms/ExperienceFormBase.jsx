@@ -127,7 +127,7 @@ const ExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowDime
             <Row style = {{
               justifyContent: "center",
               textAlign: "center"
-              }} >
+            }} >
               <Col lg = "6" md = "6">
                 <Opinion5
                   fieldName = "party"
@@ -148,7 +148,7 @@ const ExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowDime
             <Row style = {{
               justifyContent: "center",
               textAlign: "center"
-              }} >
+            }} >
               <Col lg = "6" md = "6">
                 <Opinion2
                   labelName = "Apartamento o residencia"
@@ -180,7 +180,7 @@ const ExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowDime
             textAlign: "center",
             marginLeft: "20px",
             marginRight: "20px"
-            }}
+          }}
             ref = {mapContainer}
           >
             <h3 className = "bold"> Recomiendanos sitios! </h3>
@@ -188,20 +188,20 @@ const ExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowDime
               selectedCity = {selectedCity}
               windowDimensions = {windowDimensions}
               updateRecomendations = {updateRecomendations}/>
-           </div>
-           {noRecomendations && <Alert color = "danger" isOpen = {true} style = {{padding: "20px"}}>
-              <div className="container">
-                  <img  alt = "warning" src = {require("assets/icons/warning.png")} style = {{
-                    height: "30px",
-                    marginRight: "50px"
-                  }}></img>
-                <strong>Por favor, elige al menos una recomendacion</strong>
-                <button
-                  type = "button"
-                  className = "close"
-                  aria-label = "Close"
-                  onClick = {() => {setNoRecomendations(false)}}
-                >
+          </div>
+          {noRecomendations && <Alert color = "danger" isOpen = {true} style = {{padding: "20px"}}>
+            <div className="container">
+              <img  alt = "warning" src = {require("assets/icons/warning.png")} style = {{
+                height: "30px",
+                marginRight: "50px"
+              }}></img>
+              <strong>Por favor, elige al menos una recomendacion</strong>
+              <button
+                type = "button"
+                className = "close"
+                aria-label = "Close"
+                onClick = {() => {setNoRecomendations(false)}}
+              >
                   <span aria-hidden="true">
                     <i className="now-ui-icons ui-1_simple-remove"></i>
                   </span>

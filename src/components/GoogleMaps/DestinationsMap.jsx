@@ -8,7 +8,7 @@ import { Link } from "react-router-dom"
 import { Button } from "reactstrap"
 
 
-const CENTER = {lat: 52.520008, lng: 9.993682}
+const CENTER = {lat: 46.37783368972618, lng: 4.62754074832646}
 const POPULATIONBIG = 1000000
 const POPULATIONSMALL = 300000
 
@@ -27,7 +27,7 @@ function DestinationsMap({citiesIndex, windowWidth}){
       <GoogleMap
         style = {{width: "100%", height : "100%", justifyContent: "center"}}
         mapContainerStyle = {{ width: "100%", height : windowWidth > 800 ? "600px" : "450px", justifyContent: "center"}}
-        zoom = {4}
+        zoom = {5}
         center = {CENTER}>
           {arrayCitiesIndex.map( city =>
             <Marker
