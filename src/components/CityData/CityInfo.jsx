@@ -1,16 +1,20 @@
 
-import React, {Component} from "react"
+import React, { Component } from "react"
 
-// reactstrap components
-import {
-  Container,
-  Collapse,
-  Card,
-  CardBody
-} from "reactstrap"
+// Material-UI components
+import Container from '@mui/material/Container'
+import Paper from '@mui/material/Paper'
+import Collapse from '@mui/material/Collapse'
+import IconButton from '@mui/material/IconButton'
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
+import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp'
+import Typography from "@mui/material/Typography"
+import PriceChangeIcon from '@mui/icons-material/PriceChange'
+import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore'
+import WbSunnyIcon from '@mui/icons-material/WbSunny'
+import { Grid } from "@mui/material"
 
 const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
-
 
 class CityInfo extends Component {
 
@@ -26,7 +30,7 @@ class CityInfo extends Component {
         }
   }
 
-  toggle = () => this.setState({isOpen: !this.state.isOpen})
+  toggle = () => this.setState({ isOpen: !this.state.isOpen })
 
   render() {
 
@@ -99,140 +103,76 @@ class CityInfo extends Component {
 
       const yearAvgTemp = (sum / 12).toFixed(2)
 
-      const fontSizeSmall = "2vmin"
-
       return (
-        <Container className = "centerText" style = {{
-          fontSize: "2.2vh",
-          padding: "0px"
-        }}>
-          <div className = "rowMainCharact">
-            <i className="now-ui-icons users_single-02" style = {{
-              marginTop: "3px",
-              marginRight: "7px",
-            }}></i>
-            <div>{cityName} tiene <b>{population} habitantes</b></div>
-          </div>
-          {(rent && rent !== "0") && <div className = "rowMainCharact" >
-            <i className="now-ui-icons shopping_shop" style = {{
-              marginTop: "3px",
-              marginRight: "6px"
-            }}></i>
-            <div>Precio de alquiler medio <b>{rent + " " + currencySymbol}</b></div>
-          </div>}
-          {(yearAvgTemp) && <div className = "rowMainCharact">
-            <img alt = "temperature icon" src = {require("assets/icons/temperature.png")} style = {{
-              marginTop:"2px",
-              marginRight: "4px",
-              marginLeft: "5px",
-              height: "20px"
-            }}></img>
-            <div>Temperatura media (año) <b>{new Intl.NumberFormat("es-418").format(yearAvgTemp)} ºC</b></div>
-          </div>}
-          <i className = {"now-ui-icons" + (isOpen ? " arrows-1_minimal-up" : " arrows-1_minimal-down")} onClick={this.toggle} style={{
-            marginTop: '30px',
-            marginBottom: "0px"
-          }}></i>
-          <Collapse isOpen={isOpen}>
-            <Card>
-              <CardBody className = "rowDirection rowWrap">
-                {checkPrices !== 0 && <Container style = {{
-                  width:"49%",
-                  minWidth: "330px"
-                }}>
-                  <div className = "rowMainCharact">
-                    <i className="now-ui-icons business_money-coins" style = {{
-                      marginTop: "7px",
-                      marginRight: "5px"
-                    }}></i>
-                    <h5 className="bold" style = {{
-                      marginBottom: "0px"
-                    }}>Precios</h5>
-                  </div>
-                  <div style = {{
-                    fontSize: fontSizeSmall,
-                    marginBottom: "15px"
-                  }}>(Los precios están calculados en euros aunque la moneda local sea distinta)</div>
-                  <div className = "extraBotMargin">{(apartmentCost && apartmentCost !== "0") && ("Agua, electricidad, tasas de basura: " + apartmentCost + " " + currencySymbol)}</div>
-                  <div className = "extraBotMargin">{(internetCost && internetCost !== "0") && ("Tarifa internet para el apartamento: " + internetCost + " " + currencySymbol)}</div>
-                  <div className = "extraBotMargin">{(salaryAvg && salaryAvg !== "0") && ("Salario medio neto: " + salaryAvg + " " + currencySymbol)}</div>
-                  <div className = "extraBotMargin">{(mobileFee && mobileFee !== "0") && ("Un minuto de tarifa de movil prepago: " + mobileFee + " " + currencySymbol)}</div>
-                  <div className = "extraBotMargin">{(costOfCinema && costOfCinema !== "0") && ("Una entrada de cine: " + costOfCinema + " " + currencySymbol)}</div>
+        <Container>
+          <Typography variant="h6" sx={{my: "8px"}}>
+            {cityName} tiene {population} habitantes
+          </Typography>
+          {(rent && rent !== "0") && 
+            <Typography variant="h6" sx={{my: "8px"}}>
+            Precio de alquiler medio {rent + " " + currencySymbol}
+            </Typography>}
+          {(yearAvgTemp) &&
+            <Typography variant="h6" sx={{my: "8px"}}>
+            Temperatura media (año) {new Intl.NumberFormat("es-418").format(yearAvgTemp)} ºC
+            </Typography>}
+          <IconButton onClick={this.toggle} style={{ marginTop: '30px', marginBottom: '0px' }}>
+            {isOpen ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
+          </IconButton>
+          <Collapse in={isOpen}>
+            <Paper style={{ padding: "30px" }}>
+                <Grid container>
+                  <Grid item xs={12} md={6} lg={6}>
+                  {checkPrices !== 0 && 
+                  <Container>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <PriceChangeIcon style={{ marginLeft: '8px', marginRight: '4px' }} />
+                      <Typography variant="h5"><strong>Precios</strong></Typography>
+                    </div>
+                    <Typography variant="caption" sx={{my: "2px"}}>Los precios están calculados en euros aunque la moneda local sea distinta</Typography>
+                    <Typography variant="body1" sx={{my: "4px"}}>{(apartmentCost && apartmentCost !== "0") && ("Agua, electricidad, tasas de basura: " + apartmentCost + " " + currencySymbol)}</Typography>
+                    <Typography variant="body1" sx={{my: "4px"}}>{(internetCost && internetCost !== "0") && ("Tarifa internet para el apartamento: " + internetCost + " " + currencySymbol)}</Typography>
+                    <Typography variant="body1" sx={{my: "4px"}}>{(salaryAvg && salaryAvg !== "0") && ("Salario medio neto: " + salaryAvg + " " + currencySymbol)}</Typography>
+                    <Typography variant="body1" sx={{my: "4px"}}>{(mobileFee && mobileFee !== "0") && ("Un minuto de tarifa de movil prepago: " + mobileFee + " " + currencySymbol)}</Typography>
+                    <Typography variant="body1" sx={{my: "4px"}}>{(costOfCinema && costOfCinema !== "0") && ("Una entrada de cine: " + costOfCinema + " " + currencySymbol)}</Typography>
+                    </Container>}
                   {checkSupermarket !== 0 && <Container>
-                    <div className = "rowMainCharact" style ={{
-                      marginTop:"22px",
-                      marginBottom:"10px"
-                    }}>
-                      <i className="now-ui-icons shopping_cart-simple" style = {{
-                        marginTop: "0px",
-                        marginRight: "5px"
-                      }}></i>
-                      <h6 className="bold">Bolsa de la compra</h6>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: "20px", marginBottom: "10px" }}>
+                    <LocalGroceryStoreIcon style={{ marginLeft: '8px', marginRight: '4px' }} />
+                    <Typography variant="h5"><strong>Bolsa de la compra</strong></Typography>
                     </div>
-                    <div className = "extraBotMargin">{(costOfApples && costOfApples !== "0") && ("1 kg de manzanas: " + costOfApples + " " + currencySymbol)}</div>
-                    <div className = "extraBotMargin">{(costOfEggs && costOfEggs !== "0") && ("1 docena de huevos: " + costOfEggs + " " + currencySymbol)}</div>
-                    <div className = "extraBotMargin">{(costOfChicken && costOfChicken !== "0") && ("1 kg de pollo: " + costOfChicken + " " + currencySymbol)}</div>
-                    <div className = "extraBotMargin">{(costOfBeer && costOfBeer !== "0") && ("1/2 L de cerveza local: " + costOfBeer + " " + currencySymbol)}</div>
-                    <div className = "extraBotMargin">{(costOfMilk && costOfMilk !== "0") && ("1/2 L de leche: " + costOfMilk + " " + currencySymbol)}</div>
+                    <Typography variant="body1" sx={{my: "4px"}}>{(costOfApples && costOfApples !== "0") && ("1 kg de manzanas: " + costOfApples + " " + currencySymbol)}</Typography>
+                    <Typography variant="body1" sx={{my: "4px"}}>{(costOfEggs && costOfEggs !== "0") && ("1 docena de huevos: " + costOfEggs + " " + currencySymbol)}</Typography>
+                    <Typography variant="body1" sx={{my: "4px"}}>{(costOfChicken && costOfChicken !== "0") && ("1 kg de pollo: " + costOfChicken + " " + currencySymbol)}</Typography>
+                    <Typography variant="body1" sx={{my: "4px"}}>{(costOfBeer && costOfBeer !== "0") && ("1/2 L de cerveza local: " + costOfBeer + " " + currencySymbol)}</Typography>
+                    <Typography variant="body1" sx={{my: "4px"}}>{(costOfMilk && costOfMilk !== "0") && ("1/2 L de leche: " + costOfMilk + " " + currencySymbol)}</Typography>
+                  </Container>}
+                </Grid>
+                <Grid item xs={12} md={6} lg={6}>
+                  <Container>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <WbSunnyIcon style={{ marginLeft: '8px', marginRight: '4px' }} />
+                      <Typography display="inline" variant="h5"><strong>Tiempo</strong></Typography>
+                    </div>
+                    <Typography variant="caption" sx={{my: "2px"}}>(Temperatura media / Salida del sol)</Typography>
+                    {
+                      histAvgTempIds.map(number =>
+                      <Typography key = {number.id} sx={{mh:"4px", my:"4px"}} style = {{
+                        display: 'flex', alignItems: 'center', justifyContent: 'center', minWidth: "110px"
+                      }}>
+                        <b style = {{paddingLeft: "10px", paddingRight: "10px"}}>{months[number.value]}</b>
+                        {new Intl.NumberFormat("es-418").format(histAvgTemp[number.value]) + "ºC "}
+                        {histSunset[number.value].firstSunset}
+                      </Typography>
+                    )}
                   </Container>
-                  }
-                </Container>
-                }
-                <Container style = {{
-                  width: "49%",
-                  minWidth: "330px"
-                }}>
-                  <div className = "rowMainCharact">
-                    <img alt = "sun icon" src = {require("assets/icons/sun.png")} style = {{
-                      marginTop:"5px",
-                      marginRight: "5px",
-                      marginLeft: "5px",
-                      height: "20px"
-                    }}></img>
-                    <h5 className="bold" style = {{
-                      marginBottom: "0px"
-                    }} >Tiempo</h5>
-                  </div>
-                  <div style = {{
-                    fontSize: fontSizeSmall,
-                    marginBottom: "15px"
-                  }}>(Temperatura media / Salida del sol)</div>
-                  {
-                    histAvgTempIds.map(number =>
-                      <div key = {number.id} className = "extraBotMargin rowDirection">
-                        <div className = "RightText" style = {{
-                          minWidth: "110px"
-                        }}><b>{months[number.value]}</b>
-                        </div>
-                        <img alt = "temperature icon" src = {require("assets/icons/temperature.png")} style = {{
-                          marginTop: "2px",
-                          marginRight: "1%",
-                          marginLeft: "1%",
-                          height: "20px"
-                        }}></img>
-                        <div className = "LeftText" style = {{
-                          minWidth: "80px"
-                      }}> {new Intl.NumberFormat("es-418").format(histAvgTemp[number.value]) + " ºC"}
-                      </div>
-                      <img alt = "sunset icon" src = {require("assets/icons/sunset.png")} style = {{
-                        marginTop:"0px",
-                        marginRight: "1%",
-                        marginLeft: "1%",
-                        height: "20px"
-                      }}></img>
-                      <div className = "LeftText" style = {{
-                        minWidth: "85px"
-                      }}> {histSunset[number.value].firstSunset}
-                      </div>
-                    </div>
-                  )}
-                </Container>
-              </CardBody>
-            </Card>
+                </Grid>
+              </Grid>
+            </Paper>
           </Collapse>
         </Container>
       )
-  } else return null
+    } else return null
 
   }
 }

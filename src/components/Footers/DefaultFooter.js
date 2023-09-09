@@ -1,62 +1,48 @@
 /*eslint-disable*/
-import React from "react";
-
-// reactstrap components
-import { Container } from "reactstrap";
-
-// core components
+import React from "react"
+import { Container, Box, Typography, Link } from "@mui/material"
 
 function DefaultFooter() {
   return (
     <>
-      <footer className="footer footer-default">
+      <Box component="footer" className="footer footer-default" sx={{ backgroundColor: 'grey.100' }}>
         <Container>
           <nav>
-            <ul>
-              <li>
-                <a
-                  target="_blank"
-                >
-                  ERASMUSPROJECT
-                </a>
+            <ul style={{ listStyleType: "none", padding: 0 }}>
+              <li style={{ display: "inline", marginRight: "10px" }}>
+                <Link href="#" target="_blank">
+                  SITYEX
+                </Link>
               </li>
-              <li>
-                <a
-                  target="_blank"
-                >
+              <li style={{ display: "inline", marginRight: "10px" }}>
+                <Link href="#" target="_blank">
                   About Us
-                </a>
+                </Link>
               </li>
-              <li>
-                <a
-                  target="_blank"
-                >
+              <li style={{ display: "inline", marginRight: "10px" }}>
+                <Link href="#" target="_blank">
                   Blog
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>
           <div className="copyright" id="copyright">
-            © {new Date().getFullYear()}, Designed by{" "}
-            <a
-              href=""
-              target="_blank"
-            >
-              ERASMUSPROJECT
-            </a>
-            . Coded by{" "}
-            <a
-              href=""
-              target="_blank"
-            >
-              Alberto Jaen
-            </a>
-            .
+            <Typography variant="body2">
+              © {new Date().getFullYear()}, Designed by{" "}
+              <Link href="#" target="_blank">
+                SITYEX
+              </Link>
+              . Coded by{" "}
+              <Link href="#" target="_blank">
+                Alberto Jaen
+              </Link>
+              .
+            </Typography>
           </div>
         </Container>
-      </footer>
+      </Box>
     </>
-  );
+  )
 }
 
-export default DefaultFooter;
+export default DefaultFooter

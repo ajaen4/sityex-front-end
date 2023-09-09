@@ -5,7 +5,6 @@ import auth from 'reducers/auth'
 import citiesIndex from 'reducers/citiesIndex'
 import selectedCity from 'reducers/selectedCity'
 import experiences from 'reducers/experiences'
-import housemates from 'reducers/housemates'
 
 
 const serviceApp = combineReducers({
@@ -13,7 +12,6 @@ const serviceApp = combineReducers({
   citiesIndex,
   selectedCity,
   experiences,
-  housemates
 })
 
 export default serviceApp

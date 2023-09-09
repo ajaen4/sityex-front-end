@@ -1,15 +1,12 @@
 
-import React, {useState, useEffect} from "react"
+import React, { useState, useEffect } from "react"
 
-import {
-  Button,
-  Alert} from "reactstrap"
+import { GoogleMap, Marker, InfoWindow, Autocomplete } from '@react-google-maps/api'
 
-import {
-  GoogleMap,
-  Marker,
-  InfoWindow,
-  Autocomplete} from '@react-google-maps/api'
+import Button from '@mui/material/Button'
+import Alert from '@mui/material/Alert'
+import AlertTitle from '@mui/material/AlertTitle'
+import Stack from '@mui/material/Stack'
 
 //import Autocomplete from 'react-google-autocomplete'
 
@@ -68,8 +65,6 @@ function MapWithSearch({selectedCity, currRecomendations, savedRecomendations, p
       //Comprobacion para obligar a elegir un campo autocompletado y que no exista ya
       else if((place.geometry !== undefined) && (!savedRecomendations.some(recom => recom.id === place.place_id))){
 
-        console.log("Place selected")
-        console.log(place)
         let selectedPlace = {}
 
         selectedPlace.name = place.name
@@ -114,8 +109,8 @@ function MapWithSearch({selectedCity, currRecomendations, savedRecomendations, p
 
   return (
     <>
+      <Stack style = {{width: "100%", height : "100%", justifyContent: "center"}}>
         <GoogleMap
-          style = {{width: "100%", height : "100%", justifyContent: "center"}}
           mapContainerStyle = {{ width: "100%", height : "500px", justifyContent: "center"}}
           zoom = {12}
           center = {coordinates}>
@@ -201,49 +196,46 @@ function MapWithSearch({selectedCity, currRecomendations, savedRecomendations, p
             }
             </Marker>
           }
-          </GoogleMap>
-          <Autocomplete
-            onLoad={onLoad}
-            onPlaceChanged={onPlaceSelected}
+        </GoogleMap>
+        <Autocomplete
+          onLoad={onLoad}
+          onPlaceChanged={onPlaceSelected}
+        >
+          <input
+            type="text"
+            placeholder="Introduce una ubicacion"
+            style={{
+              boxSizing: `border-box`,
+              border: `1px solid transparent`,
+              width: `100%`,
+              height: `32px`,
+              padding: `0 12px`,
+              borderRadius: `3px`,
+              boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
+              fontSize: `14px`,
+              outline: `none`,
+              textOverflow: `ellipses`,
+              position: "relative"
+            }}
+          />
+        </Autocomplete>
+      </Stack>
+      {(configAlert) &&
+        <Alert severity={configAlert.color} style={{ padding: "20px" }}>
+          <AlertTitle>{configAlert.title}</AlertTitle>
+          {configAlert.text}
+          <button
+            type="button"
+            className="close"
+            aria-label="Close"
+            onClick={() => setConfigAlert(null)}
           >
-            <input
-              type="text"
-              placeholder="Introduce una ubicacion"
-              style={{
-                boxSizing: `border-box`,
-                border: `1px solid transparent`,
-                width: `100%`,
-                height: `32px`,
-                padding: `0 12px`,
-                borderRadius: `3px`,
-                boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
-                fontSize: `14px`,
-                outline: `none`,
-                textOverflow: `ellipses`,
-                position: "relative"
-              }}
-            />
-          </Autocomplete>
-         {(configAlert) && <Alert color= {configAlert.color} isOpen={true} style = {{padding: "20px"}}>
-            <div className="container">
-                <img  alt = "warning" src = {require("assets/icons/warning.png")} style = {{
-                  height: "30px",
-                  marginRight: "50px"
-                }}></img>
-              <strong>{configAlert.title}</strong>{configAlert.text}
-              <button
-                type = "button"
-                className = "close"
-                aria-label = "Close"
-                onClick = {() => setConfigAlert(null)}
-              >
-                <span aria-hidden="true">
-                  <i className="now-ui-icons ui-1_simple-remove"></i>
-                </span>
-              </button>
-            </div>
-          </Alert>
-        }
+            <span aria-hidden="true">
+              <i className="now-ui-icons ui-1_simple-remove"></i>
+            </span>
+          </button>
+        </Alert>
+      }
     </>
   )
 }

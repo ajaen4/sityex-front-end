@@ -5,7 +5,9 @@ import {
   Marker,
   InfoWindow } from '@react-google-maps/api'
 import { Link } from "react-router-dom"
-import { Button } from "reactstrap"
+import pinOrange from "assets/icons/pin_orange.png"
+import pinBlue from "assets/icons/pin_blue.png"
+import pinGreen from "assets/icons/pin_green.png"
 
 
 const CENTER = {lat: 46.37783368972618, lng: 4.62754074832646}
@@ -13,9 +15,9 @@ const POPULATIONBIG = 1000000
 const POPULATIONSMALL = 300000
 
 const DUMMYCITY = {latitude: 0, longitude: 0, name: "", population: "" }
-const ICONSMALLTOWN = { url: require("assets/icons/pin_orange.png"), scaledSize: { width: 30, height: 30 } }
-const ICONMEDCITY = { url: require("assets/icons/pin_blue.png"), scaledSize: { width: 30, height: 30 } }
-const ICONBIGCITY = { url: require("assets/icons/pin_green.png"), scaledSize: { width: 30, height: 30 } }
+const ICONSMALLTOWN = { url: pinOrange, scaledSize: { width: 30, height: 30 } }
+const ICONMEDCITY = { url: pinBlue, scaledSize: { width: 30, height: 30 } }
+const ICONBIGCITY = { url: pinGreen, scaledSize: { width: 30, height: 30 } }
 
 function DestinationsMap({citiesIndex, windowWidth}){
 
@@ -32,27 +34,8 @@ function DestinationsMap({citiesIndex, windowWidth}){
           {arrayCitiesIndex.map( city =>
             <Marker
               key = {city.name}
-              name = {city.name}
-              draggable = {false}
               position = {{lat: city.latitude, lng: city.longitude}}
-              icon = {city.population >= POPULATIONBIG ? ICONBIGCITY : city.population >= POPULATIONSMALL ? ICONMEDCITY : ICONSMALLTOWN}
-              onClick={() => {setSelectedCity(city)}}
             >
-            {((city.latitude === selectedCity.latitude) && (city.longitude === selectedCity.longitude)) &&
-              <InfoWindow
-                onCloseClick={() => {
-                  setSelectedCity(DUMMYCITY)
-                }}
-                position={{lat: selectedCity.latitude, lng: selectedCity.longitude}}>
-                <div style = {{padding: "5px"}}>
-                  <div><b>{selectedCity.name.toUpperCase()}</b></div>
-                  <div>{new Intl.NumberFormat("es-418").format(selectedCity.population) + " habitantes"}</div>
-                  <Link to = {"destination/" + selectedCity.name}>
-                    <Button color = "success" >Mas informacion</Button>
-                  </Link>
-                </div>
-              </InfoWindow>
-            }
             </Marker>
           )}
       </GoogleMap>

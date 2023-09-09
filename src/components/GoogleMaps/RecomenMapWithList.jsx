@@ -1,15 +1,12 @@
 import React from "react"
+import Grid from '@mui/material/Grid'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
 
-//Custom functionality
+// Custom functionality
 import { objectIsEmpty } from 'helpers/usefulFunctions'
 
-// reactstrap components
-import {
-  Row,
-  Col
-} from "reactstrap"
-
-//Custom UI components
+// Custom UI components
 import MapWithSearch from "components/GoogleMaps/MapWithSearch"
 import ScrollRecomendations from "components/ScrollList/ScrollRecomendations"
 
@@ -19,8 +16,7 @@ const RecomenMapWithList = ({selectedCity, windowDimensions, updateRecomendation
   const [currRecomendations, setCurrRecomendations] = React.useState([])
 
   const incrementRecomendation = (recomendation) => {
-    console.log("Recomendation incremented")
-    console.log(recomendation)
+
     if(!currRecomendations.some(recom => recom.name === recomendation.name)){
       var aux = {}
       Object.assign(aux, recomendation)
@@ -56,93 +52,60 @@ const RecomenMapWithList = ({selectedCity, windowDimensions, updateRecomendation
   }
 
   return (
-       <Row style = {{
-         marginTop: "25px",
-         justifyContent: "center"
-       }}>
-         <Col sm = "12" md = "8" lg = "8" style = {{
-           marginBottom: "20px"
-         }}>
-           <div style = {{
-             justifyContent: "center",
-             marginBottom: "20px"
-           }}>
-             { (!objectIsEmpty(selectedCity)) &&
-               <MapWithSearch
-                 incrementRecomendation = {incrementRecomendation}
-                 currRecomendations = {currRecomendations}
-                 savedRecomendations = {selectedCity.mapMarkers === undefined ? [] : selectedCity.mapMarkers}
-                 style = {{justifyContent: "center"}}
-                 selectedCity = {selectedCity}
-                 pushRecomendation = {pushRecomendation}/>}
-           </div>
-           <Row style = {{
-               display: "flex",
-               flexDirection: "row",
-               justifyContent: "center",
-               alignItems: "center",
-           textAlign: "center"}}>
-             <img  alt = "selected place icon" src = {require("assets/icons/pin_red.png")} style = {{
-               height: "30px"
-             }}></img>
-             <div style = {{
-               textAlign: "center",
-               marginLeft: "5px",
-               marginTop: "3px",
-               fontSize: "2vh"
-             }}>
-               Ultima busqueda (Pendiente de recomendar)
-             </div>
-           </Row>
-           <Row style = {{
-               display: "flex",
-               flexDirection: "row",
-               justifyContent: "center",
-               alignItems: "center",
-               textAlign: "center"
-           }}>
-             <img  alt = "my recomendation icon" src = {require("assets/icons/pin_outline_blue.png")} style = {{
-               height: "30px"
-             }}></img>
-             <div style = {{
-               textAlign: "center",
-               marginLeft: "5px",
-               marginTop: "3px",
-               fontSize: "2vh"
-             }}>
-               Tus recomendaciones
-             </div>
-           </Row>
-           <Row style = {{
-               display: "flex",
-               flexDirection: "row",
-               justifyContent: "center",
-               alignItems: "center",
-               textAlign: "center"
-           }}>
-             <img  alt = "other users recomendations icon" src = {require("assets/icons/pin_blue.png")} style = {{
-               height: "30px"
-             }}></img>
-             <div style = {{
-               textAlign: "center",
-               marginLeft: "5px",
-               marginTop: "3px",
-               fontSize: "2vh"
-                 }}>
-                   Recomendaciones de los demas usuarios
-                 </div>
-             </Row>
-         </Col>
-         <Col sm = "12" md = "4" lg = "4" >
-           <div>
-             <h5><b>
-               Recomendaciones
-             </b></h5>
-             <ScrollRecomendations currRecomendations = {currRecomendations} windowWidth = {windowDimensions} deleteRec = {deleteRec}/>
-           </div>
-         </Col>
-     </Row>
-    )
-  }
+    <Grid container spacing={3} style={{ marginTop: "25px", justifyContent: "center" }}>
+      <Grid item sm={12} md={8} lg={8} style={{ marginBottom: "20px" }}>
+        <Box display="flex" justifyContent="center" marginBottom="20px">
+          {(!objectIsEmpty(selectedCity)) && (
+            <MapWithSearch
+              incrementRecomendation={incrementRecomendation}
+              currRecomendations={currRecomendations}
+              savedRecomendations={selectedCity.mapMarkers === undefined ? [] : selectedCity.mapMarkers}
+              style={{ justifyContent: "center" }}
+              selectedCity={selectedCity}
+              pushRecomendation={pushRecomendation}
+            />
+          )}
+        </Box>
+        <Grid container spacing={1} style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+          textAlign: "center", 
+          marginTop: "10px"
+        }}>
+          <img alt="selected place icon" src={require("assets/icons/pin_red.png")} style={{ height: "30px" }}></img>
+          <Typography variant="body1" style={{ textAlign: "center", marginLeft: "5px" }}>Ultima busqueda (Pendiente de recomendar)</Typography>
+        </Grid>
+        <Grid container spacing={1} style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+          textAlign: "center", 
+          marginTop: "10px"
+        }}>
+          <img alt="my recomendation icon" src={require("assets/icons/pin_outline_blue.png")} style={{ height: "30px" }}></img>
+          <Typography variant="body1" style={{ textAlign: "center", marginLeft: "5px" }}>Tus recomendaciones</Typography>
+        </Grid>
+        <Grid container spacing={1} style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+          textAlign: "center", 
+          marginTop: "10px"
+        }}>
+          <img alt="other users recomendations icon" src={require("assets/icons/pin_blue.png")} style={{ height: "30px" }}></img>
+          <Typography variant="body1" style={{ textAlign: "center", marginLeft: "5px" }}>Recomendaciones de los demas usuarios</Typography>
+        </Grid>
+      </Grid>
+      <Grid item sm={12} md={4} lg={4}>
+        <Typography variant="h5"><b>Recomendaciones</b></Typography>
+        <ScrollRecomendations currRecomendations={currRecomendations} windowWidth={windowDimensions} deleteRec={deleteRec} />
+      </Grid>
+    </Grid>
+  )
+}
 
 export default RecomenMapWithList

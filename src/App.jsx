@@ -1,5 +1,10 @@
 import React, { Component } from 'react'
 
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+
 import {
   BrowserRouter as Router
 } from 'react-router-dom'
@@ -8,9 +13,7 @@ import { Provider } from 'react-redux'
 
 import {LoadScript} from '@react-google-maps/api'
 
-import 'react-dates/initialize'
-
-import ErasmusApp from './ErasmusApp'
+import SityExApp from './SityExApp'
 
 import {
   onAuthStateChanged,
@@ -38,26 +41,23 @@ class App extends Component {
     super(props)
 
     this.state = {
-      authUser: null,
+      auth: null,
       componentMounted: false
     }
   }
 
   componentDidMount() {
     this.setState({componentMounted: true})
+    this.unsuscribeMessages = () => {}
     this.unsuscribeAuth = onAuthStateChanged(authUser => {
       store.dispatch(storeAuthUser(authUser))
 
       if (authUser){
           checkUserConnection(authUser.uid)
           this.unsuscribeMessages = store.dispatch(subscribeToMessages(authUser.uid))
+          this.setState({auth: authUser})
         }
-      else
-        this.unsuscribeMessages()
     })
-
-    if(store.getState().citiesIndex.data === null)
-      store.dispatch(fetchCitiesIndex())
 
   }
 
@@ -66,12 +66,21 @@ class App extends Component {
     this.unsuscribeMessages()
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.auth && store.getState().citiesIndex.data === null) {
+      store.dispatch(fetchCitiesIndex())
+    }
+
+    if (!this.state.auth)
+      this.unsuscribeMessages()
+  }
+
   render(){
     return (
       <Provider store = {store}>
         <LoadScript googleMapsApiKey = {process.env.REACT_APP_GOOGLE_MAPS_API_KEY} libraries = {LIBRARIES} language = "en">
           <Router>
-            <ErasmusApp/>
+            <SityExApp/>
           </Router>
         </LoadScript>
       </Provider>

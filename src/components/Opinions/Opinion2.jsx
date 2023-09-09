@@ -1,73 +1,68 @@
-import React from "react";
-
-// reactstrap components
-import {
-  FormGroup,
-  Input,
-  Label,
-  Container
-} from "reactstrap";
-
+import React from 'react'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import Radio from '@mui/material/Radio'
+import RadioGroup from '@mui/material/RadioGroup'
+import FormControl from '@mui/material/FormControl'
+import FormLabel from '@mui/material/FormLabel'
+import Container from '@mui/material/Container'
+import FormHelperText from '@mui/material/FormHelperText'
 
 const Opinion2 = ({icon, labelName, name1, name2, option1, option2, onChange, register, errors}) => {
 
-  const className = "now-ui-icons " + icon;
+  const className = 'now-ui-icons ' + icon
 
   return (
-     <>
-       <Container style = {{marginTop: "40px"}}>
-         <div className = "rowMainCharact">
-           <i className = {className} style = {{
-             marginTop: "5px",
-             marginRight: "5px"
-           }}></i>
-           <h5 style = {{
-             marginBottom: "0px"
-           }} >{labelName}</h5>
-          </div>
-        <FormGroup check className="form-check-radio" inline>
-        <Label check>
-          <Input
-            defaultValue = {name1}
-            id = {labelName + "1"}
-            name = {labelName}
-            type="radio"
-            innerRef={
-              register({
-                required: true
-              })}
-            onChange = {onChange}
-          ></Input>
-          {option1} <span className="form-check-sign"></span>
-        </Label>
-        </FormGroup>
-        <FormGroup check className="form-check-radio" inline>
-          <Label check>
-            <Input
-              defaultValue = {name2}
-              id = {labelName + "2"}
-              name = {labelName}
-              type="radio"
-              innerRef={
-                register({
-                  required: true
-                })}
-              onChange = {onChange}
-            ></Input>
-            {option2} <span className="form-check-sign"></span>
-          </Label>
-        </FormGroup>
+    <>
+      <Container sx={{ marginTop: '40px' }}>
+        <div className="rowMainCharact">
+          <i className={className} style={{
+            marginTop: '5px',
+            marginRight: '5px'
+          }}></i>
+          <h5 style={{
+            marginBottom: '0px'
+          }}>{labelName}</h5>
+        </div>
+        <FormControl component="fieldset">
+          <FormLabel component="legend">{labelName}</FormLabel>
+          <RadioGroup
+            aria-label={labelName}
+            defaultValue={name1}
+            name={labelName}
+            onChange={onChange}
+          >
+            <FormControlLabel
+              value={name1}
+              control={
+                <Radio inputRef={
+                  register({
+                    required: true
+                  })}
+                />
+              }
+              label={option1}
+            />
+            <FormControlLabel
+              value={name2}
+              control={
+                <Radio inputRef={
+                  register({
+                    required: true
+                  })}
+                />
+              }
+              label={option2}
+            />
+          </RadioGroup>
+        </FormControl>
       </Container>
       {errors[labelName] && errors[labelName].type === 'required' &&
-      <div
-        style = {{
-          fontSize: "small",
-          color: "red"
-        }}>
-      {"Se debe introducir la opinion sobre " + labelName}</div>
+        <FormHelperText error>
+          {'Se debe introducir la opinion sobre ' + labelName}
+        </FormHelperText>
       }
-  </>
-    )
-  }
+    </>
+  )
+}
 
-export default Opinion2;
+export default Opinion2

@@ -1,22 +1,22 @@
-import firebase from 'firebase/app'
-import 'firebase/database'
+import { getDatabase, ref, onValue, serverTimestamp } from 'firebase/database';
 
-export const createFirebaseRef = (collection, id) => firebase.database().ref(`/${collection}/${id}`)
+const database = getDatabase();
+
+export const createFirebaseRef = (collection, id) => ref(database, `/${collection}/${id}`);
 
 export const isOfflineForDatabase = {
   state: 'offline',
-  last_changed: firebase.database.ServerValue.TIMESTAMP
-}
+  last_changed: serverTimestamp()
+};
 
 export const isOnlineForDatabase = {
   state: 'online',
-  last_changed: firebase.database.ServerValue.TIMESTAMP
-}
+  last_changed: serverTimestamp()
+};
 
-export const onConnectionChanged = callback =>
-  firebase
-    .database()
-    .ref('.info/connected')
-    .on('value', snapshot => {
-      callback(snapshot.val())
-    })
+export const onConnectionChanged = callback => {
+  const connectionRef = ref(database, '.info/connected');
+  onValue(connectionRef, snapshot => {
+    callback(snapshot.val());
+  });
+};

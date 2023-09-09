@@ -1,5 +1,5 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 const withAuth = Component => {
@@ -8,7 +8,7 @@ const withAuth = Component => {
     render() {
       if(this.props.isAuthResolved)
         return (<Component {...this.props} />)
-      else return(<Redirect to = "/login" />)
+      else return(<Navigate to = "/login" />)
     }
   }
 

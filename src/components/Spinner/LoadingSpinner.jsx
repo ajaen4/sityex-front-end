@@ -1,14 +1,10 @@
-
 import React from 'react'
-
-import './Spinner.css'
+import { CircularProgress } from '@mui/material'
 
 const LoadingSpinner = () => {
-
-  return  <div className = "lds-ripple">
-            <div></div>
-            <div></div>
-          </div>
+  return (
+    <CircularProgress />
+  )
 }
 
 export default LoadingSpinner
