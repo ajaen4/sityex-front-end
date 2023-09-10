@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 // Custom functionality
 import { withAuth } from 'session'
@@ -17,7 +18,9 @@ import {
   IconButton,
   Grid,
   InputAdornment,
-  Box
+  Box,
+  Autocomplete,
+  TextField
 } from '@mui/material'
 import ListIcon from '@mui/icons-material/List'
 import MapIcon from '@mui/icons-material/Map'
@@ -25,14 +28,13 @@ import TravelExploreIcon from '@mui/icons-material/TravelExplore'
 
 // Custom UI components
 import DefaultFooter from 'components/Footers/DefaultFooter'
-import ScrollDestinations from 'components/ScrollList/ScrollDestinations'
 import DestinationsMap from 'components/GoogleMaps/DestinationsMap'
 import JustLoggedInModal from 'components/Modals/JustLoggedInModal'
 import UserJustCreatedModal from 'components/Modals/UserJustCreatedModal'
 
 const HomePage = ({ citiesIndex, isFetching, authUser }) => {
   const [tabValue, setTabValue] = useState(0)
-  const [city, setCity] = useState('')
+  const navigate = useNavigate()
   const [windowWidth, setwindowWidth] = React.useState(window.innerWidth)
 
   useEffect(() => {
@@ -44,11 +46,14 @@ const HomePage = ({ citiesIndex, isFetching, authUser }) => {
     setwindowWidth(window.innerWidth)
   }
 
-  const onSearchChange = (event) => setCity(event.target.value)
+  const onSearchChange = (event, value) => navigate("/destination/" + value.cityName)
 
   const getDestinations = () => {
     if (citiesIndex !== null)
-      return Object.values(citiesIndex).filter(item => item.name.toLowerCase().includes(city.toLowerCase())).sort((a, b) => a.name.localeCompare(b.name))
+      return Object.values(citiesIndex).sort((a, b) => a.name.localeCompare(b.name)).map(cityData => ({
+        cityName: cityData.name,
+        countryCode: cityData.countryCode
+      }))
     else
       return []
   }
@@ -59,7 +64,8 @@ const HomePage = ({ citiesIndex, isFetching, authUser }) => {
       <UserJustCreatedModal userJustCreated={authUser.userJustCreated} title="Nuevo usuario" message="Se ha creado el usuario correctamente" />
       <Container style={{
         textAlign: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        minHeight: '70vh',
         }}
         sx={{my: 15}}
       >
@@ -81,28 +87,42 @@ const HomePage = ({ citiesIndex, isFetching, authUser }) => {
                 <Card>
                   <CardContent>
                     <Typography variant="h6" color="textSecondary">Introduce un destino</Typography>
-                    <InputBase
-                      startAdornment={
-                        <InputAdornment position="start">
-                          <IconButton>
-                            <TravelExploreIcon />
-                          </IconButton>
-                        </InputAdornment>
-                      }
-                      placeholder="Ej. Turin..."
-                      value={city}
+                    <Autocomplete
+                      freeSolo
+                      style={{marginTop: '20px'}}
+                      options={getDestinations()}
                       onChange={onSearchChange}
-                      fullWidth
+                      getOptionLabel={(option) => option.cityName}
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          InputProps={{
+                            ...params.InputProps,
+                            startAdornment: (
+                              <InputAdornment position="start">
+                                <IconButton>
+                                  <TravelExploreIcon />
+                                </IconButton>
+                              </InputAdornment>
+                            ),
+                          }}
+                          placeholder="Ej. Turin..."
+                          fullWidth
+                        />
+                      )}
+                      renderOption={(props, option) => (
+                        <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
+                          <img
+                            loading="lazy"
+                            width="20"
+                            src={`https://flagcdn.com/w20/${option.countryCode.toLowerCase()}.png`}
+                            srcSet={`https://flagcdn.com/w40/${option.countryCode.toLowerCase()}.png 2x`}
+                            alt=""
+                          />
+                          {option.cityName}
+                        </Box>
+                      )}
                     />
-                  </CardContent>
-                </Card>
-              </Grid>
-              <Grid item xs={11} md={7} lg={7} xl={7}>
-                <Card style={{ minHeight: '300px' }}>
-                  <CardContent>
-                    <Typography variant="h6" color="textSecondary">Destinos</Typography>
-                    <ScrollDestinations isFetching={isFetching}
-                      destinations={getDestinations()} />
                   </CardContent>
                 </Card>
               </Grid>
