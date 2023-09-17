@@ -101,7 +101,6 @@ const ExperienceFormBase = ({ selectedCity, onChangeCity, citiesIndex, dispatch,
         </div>
         {noRecomendations && <Alert severity='error'>
           <div>
-            <img alt='warning' src={require('assets/icons/warning.png')} style={{ height: '30px', marginRight: '50px' }} />
             <strong>Por favor, elige al menos una recomendacion</strong>
             <button type='button' className='close' aria-label='Close' onClick={() => { setNoRecomendations(false) }}>
               <span aria-hidden='true'>
