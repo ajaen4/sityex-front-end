@@ -1,15 +1,23 @@
-
 import React from 'react'
-
-import './Spinner.css'
+import { Box, CircularProgress } from '@mui/material'
 
 const CenteredLoadingSpinner = () => {
-  return <div className = "spinner-container">
-          <div className = "lds-ripple">
-            <div></div>
-            <div></div>
-          </div>
-         </div>
+  return (
+    <Box
+      sx={{
+        display: 'flex',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        height: '100vh',
+        width: '100vw',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <CircularProgress />
+    </Box>
+  )
 }
 
 export default CenteredLoadingSpinner

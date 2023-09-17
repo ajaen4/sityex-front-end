@@ -1,24 +1,28 @@
+import db from 'db';
+import {
+  collection,
+  onSnapshot,
+  addDoc,
+} from 'firebase/firestore';
 
-import db from 'db'
+export const subscribeToMessages = (userId, callback) => {
+  const messagesCol = collection(db, "users", userId, "messages");
+  
+  return onSnapshot(messagesCol, snapshot => {
+    const messages = snapshot.docs.map(doc => ({id: doc.id, ...doc.data()}));
+    callback(messages);
+  });
+}
 
-export const subscribeToMessages = (userId, callback) =>
-  db.collection("users")
-    .doc(userId)
-    .collection("messages")
-    .onSnapshot(snapshot => {
-      const messages = snapshot.docs.map(doc => ({id: doc.id, ...doc.data()}))
-      callback(messages)
-    }
-  )
+export const sendConnectionRequest = async (userData, type) => {
+  const messagesCol = collection(db, "users", userData.toUserId, "messages");
+  
+  const message = {
+    message: `El usuario ${userData.fromUserName} quiere conectar contigo`,
+    fromUserId: userData.fromUserId,
+    type: type
+  };
 
-export const sendConnectionRequest = (userData, type) => {
-
-  const messagesRef = db.collection("users").doc(userData.toUserId).collection("messages")
-
-  const ref = messagesRef.doc()
-  const docId = ref.path.split("/").pop()
-
-  const message = {id: docId, message: "El usuario " + userData.fromUserName + " quiere conectar contigo", fromUserId: userData.fromUserId, type: type}
-
-  return messagesRef.doc(docId).set(message)
+  const docRef = await addDoc(messagesCol, message);
+  return { ...message, id: docRef.id };
 }

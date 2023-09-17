@@ -1,46 +1,35 @@
-import React, {useState, useRef} from "react"
+import React, { useState, useRef } from 'react'
 import { useForm } from 'react-hook-form'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
-//reactstrap components
-import {
-  Row,
-  Col,
-  Container,
-  Form,
-  FormGroup,
-  Button,
-  Alert
-} from "reactstrap"
+import Container from '@mui/material/Container'
+import Grid from '@mui/material/Grid'
+import Button from '@mui/material/Button'
+import Alert from '@mui/material/Alert'
+import FormControl from '@mui/material/FormControl'
+import Typography from '@mui/material/Typography'
+import Stack from '@mui/material/Stack'
 
-//Custom functionality
 import { addExperience } from 'actions'
-
-//Custom components
-import Opinion2 from "components/Opinions/Opinion2"
-import Opinion5 from "components/Opinions/Opinion5"
-import InputWithIcon from "components/Inputs/InputWithIcon"
-import NewExpControl from "components/FormControl/NewExpControl"
-import CitiesDropDown from "components/DropDownList/CitiesDropDown"
-import RecomenMapWithList from "components/GoogleMaps/RecomenMapWithList"
+import Opinion5 from 'components/Opinions/Opinion5'
+import CitiesDropDown from 'components/DropDownList/CitiesDropDown'
+import MapWithSearch from 'components/Maps/MapWithSearch'
 import CenteredLoadingSpinner from 'components/Spinner/CenteredLoadingSpinner'
 import ActionModal from 'components/Modals/ActionModal'
-import TextArea from "components/TextArea/TextArea"
+import TextArea from 'components/TextArea/TextArea'
 
-const ExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowDimensions, dispatch, auth}) => {
-
-  const {register, handleSubmit, errors, setValue, reset} = useForm()
-  const history = useHistory()
+const ExperienceFormBase = ({ selectedCity, onChangeCity, citiesIndex, dispatch, auth }) => {
+  const { register, handleSubmit, formState: { errors }, control, reset } = useForm()
+  const navigate = useNavigate()
 
   let mapContainer = useRef(null)
 
-  const [disablePrice, setDisablePrice] = useState(false)
   const [noRecomendations, setNoRecomendations] = useState(false)
   const [currRecomendations, setCurrRecomendations] = useState([])
   const [isFetching, setIsFetching] = useState(false)
-  const [modalMessage, setModalMessage] = useState("")
+  const [modalMessage, setModalMessage] = useState('')
 
-  const goToDestinations = () => history.push(`/home`)
+  const goToDestinations = () => navigate("/home")
 
   const updateRecomendations = recomendations => setCurrRecomendations(recomendations)
 
@@ -77,170 +66,64 @@ const ExperienceFormBase = ({selectedCity, onChangeCity, citiesIndex, windowDime
     }
   }
 
-  const onChangeHousing = event => {
-    if(event.target.value === 'apartment'){
-      setDisablePrice(true)
-      setValue('residencePrice', "0")
-    }
-    else{
-      setDisablePrice(false)
-      setValue('residencePrice', "")
-    }
-  }
-
-    return (
-      <>
-        <Form
-          onSubmit = {handleSubmit(handleForm)}
-          style = {{
-            marginTop: "20px",
-            textAlign: "center"
-          }}>
-          {isFetching && <CenteredLoadingSpinner/>}
-          <Container style = {{
-            marginTop: "20px",
-            textAlign: "center"
-          }}>
-            <CitiesDropDown label = "En que ciudad has estado?" citiesList = {Object.keys(citiesIndex)} onChangeCity = {onChangeCity} />
-            <NewExpControl/>
-            <Row style = {{
-              justifyContent: "center",
-              textAlign: "center"
-            }}>
-              <Col lg = "6" md = "6" sm = "12" xs = "12" style = {{paddingLeft: "0px", paddingRight: "0px"}}>
-                <Opinion5
-                  fieldName = "weather"
-                  labelName = "Clima"
-                  icon = "sun"
-                  register = {register}
-                  errors = {errors}/>
-              </Col>
-              <Col lg = "6" md = "6" sm = "12" xs = "12">
-                <Opinion5
-                  fieldName = "food"
-                  labelName = "Comida"
-                  icon = "shopping_basket"
-                  register = {register}
-                  errors = {errors}/>
-              </Col>
-            </Row>
-            <Row style = {{
-              justifyContent: "center",
-              textAlign: "center"
-            }} >
-              <Col lg = "6" md = "6">
-                <Opinion5
-                  fieldName = "party"
-                  labelName = "Fiesta"
-                  icon = "emoticons_satisfied"
-                  register = {register}
-                  errors = {errors}/>
-              </Col>
-              <Col lg = "6" md = "6">
-                <Opinion5
-                  fieldName = "trips"
-                  labelName = "Viajes ESN"
-                  icon = "transportation_bus-front-12"
-                  register = {register}
-                  errors = {errors}/>
-              </Col>
-            </Row>
-            <Row style = {{
-              justifyContent: "center",
-              textAlign: "center"
-            }} >
-              <Col lg = "6" md = "6">
-                <Opinion2
-                  labelName = "Apartamento o residencia"
-                  option1 = "Apartamento"
-                  option2 = "Residencia"
-                  name1 = "apartment"
-                  name2 = "residence"
-                  icon = "shopping_shop"
-                  register = {register}
-                  errors = {errors}
-                  onChange = {onChangeHousing}/>
-              </Col>
-              <Col lg = "6" md = "6">
-                <InputWithIcon
-                  title = "En caso de ser residencia, aproximadamente, cuanto costaba el alquiler?"
-                  name = "residencePrice"
-                  placeHolder = "Alquiler en €"
-                  iconName = "business_money-coins"
-                  register = {register}
-                  errors = {errors}
-                  disabled = {disablePrice}/>
-              </Col>
-            </Row>
-          </Container>
-          <div style = {{
-            display: "flex",
-            flexDirection: "column",
-            marginTop: "50px",
-            textAlign: "center",
-            marginLeft: "20px",
-            marginRight: "20px"
-          }}
-            ref = {mapContainer}
-          >
-            <h3 className = "bold"> Recomiendanos sitios! </h3>
-            <RecomenMapWithList
-              selectedCity = {selectedCity}
-              windowDimensions = {windowDimensions}
-              updateRecomendations = {updateRecomendations}/>
+  return (
+    <>
+      <form onSubmit={handleSubmit(handleForm)} style={{ marginTop: '20px', textAlign: 'center' }}>
+        {isFetching && <CenteredLoadingSpinner />}
+        <Container sx={{ textAlign: 'center' }}>
+          <CitiesDropDown label='En que ciudad has estado?' citiesList={Object.keys(citiesIndex)} onChangeCity={onChangeCity} selectedCity={selectedCity ? selectedCity.name : null}/>
+          <Grid container justifyContent='center' textAlign='center' sx={{my: "5px"}}>
+            <Grid item xs={12} sm={6} md={6}>
+              <Opinion5 control={control} fieldName='weather' labelName='Clima' icon='sun' register={register} errors={errors} />
+            </Grid>
+            <Grid item xs={12} sm={6} md={6}>
+              <Opinion5 control={control} fieldName='food' labelName='Comida' icon='shopping_basket' register={register} errors={errors} />
+            </Grid>
+            <Grid item xs={12} sm={6} md={6}>
+              <Opinion5 control={control} fieldName='party' labelName='Fiesta' icon='emoticons_satisfied' register={register} errors={errors} />
+            </Grid>
+            <Grid item xs={12} sm={6} md={6}>
+              <Opinion5 control={control} fieldName='trips' labelName='Viajes ESN' icon='transportation_bus-front-12' register={register} errors={errors} />
+            </Grid>
+          </Grid>
+        </Container>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          marginTop: '50px',
+          textAlign: 'center',
+          marginLeft: '20px',
+          marginRight: '20px'
+        }}
+          ref={mapContainer}>
+          <Typography variant='h3'> Recomiendanos sitios! </Typography>
+          <MapWithSearch selectedCity={selectedCity}/>
+        </div>
+        {noRecomendations && <Alert severity='error'>
+          <div>
+            <strong>Por favor, elige al menos una recomendacion</strong>
+            <button type='button' className='close' aria-label='Close' onClick={() => { setNoRecomendations(false) }}>
+              <span aria-hidden='true'>
+                <i className='now-ui-icons ui-1_simple-remove' />
+              </span>
+            </button>
           </div>
-          {noRecomendations && <Alert color = "danger" isOpen = {true} style = {{padding: "20px"}}>
-            <div className="container">
-              <img  alt = "warning" src = {require("assets/icons/warning.png")} style = {{
-                height: "30px",
-                marginRight: "50px"
-              }}></img>
-              <strong>Por favor, elige al menos una recomendacion</strong>
-              <button
-                type = "button"
-                className = "close"
-                aria-label = "Close"
-                onClick = {() => {setNoRecomendations(false)}}
-              >
-                  <span aria-hidden="true">
-                    <i className="now-ui-icons ui-1_simple-remove"></i>
-                  </span>
-                </button>
-              </div>
-            </Alert>
-          }
-          <Container style = {{
-            textAlign: "center"
-          }}>
-            <Row style = {{marginTop: "0px"}}>
-              <FormGroup style = {{padding: "30px"}}>
-                <label>
-                  <h3 className = "bold">Danos algún consejo!</h3>
-                  <div className = "blockquote blockquote-primary">
-                    <p className = "bold" >Ejemplos</p>
-                    <p>Para ir a Linkoping hay un aeropuerto muy pequeño en Skavsta, van muy pocos vuelos pero siempre vale
-                    la pena comprobar si hay vuelos interesantes!. Si no siempre se puede volar al aeropuerto de Estocolmo - Alberto Jaen</p>
-                    <p>En el caso de ir a algun sitio de Europa que no tenga el euro, viene muy bien hacerse la tarjeta
-                    de revolut para ahorrar en el cambio de moneda! - Patricia Arrieta</p>
-                  </div>
-                </label>
-                <TextArea
-                  name = "advice"
-                  displayName = "consejo"
-                  register = {register}
-                  errors = {errors}/>
-              </FormGroup>
-             </Row>
-          <Button style = {{
-            marginBottom: "100px"}}
-            size = "lg"
-            color = "success"
-            type = "submit">
+        </Alert>}
+        <Stack style={{ textAlign: 'center', alignItems: "center" }}>
+          <FormControl style={{ padding: '30px' }}>
+            <Typography variant='h3' style={{marginBottom: "15px"}}>Danos algún consejo!</Typography>
+            <TextArea name='tips' placeHolder='Consejos...' iconName='objects_support-17' register={register} errors={errors} />
+          </FormControl>
+          <Button
+            style={{ marginBottom: '100px' }}
+            variant='contained'
+            color='primary'
+            type='submit'>
             Enviar
           </Button>
-        </Container>
-      </Form>
-      {modalMessage !== "" && <ActionModal show = {true} title = "" message = {modalMessage} action = {resetForm}/>}
+        </Stack>
+      </form>
+      {modalMessage !== '' && <ActionModal show={true} title='' message={modalMessage} action={resetForm} />}
     </>
   )
 }

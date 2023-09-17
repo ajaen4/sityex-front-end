@@ -1,52 +1,66 @@
-import firebase from 'firebase/app'
-import 'firebase/auth'
+import { 
+  getAuth, 
+  signInWithEmailAndPassword, 
+  onAuthStateChanged, 
+  createUserWithEmailAndPassword, 
+  signOut, 
+  sendPasswordResetEmail, 
+  updatePassword 
+} from 'firebase/auth';
 
-import db from 'db'
+import { 
+  doc, 
+  setDoc, 
+  getDoc, 
+} from 'firebase/firestore';
 
-export const logIn = async ({email, password}) => {
-  try{
-    const resp = await firebase.auth().signInWithEmailAndPassword(email, password)
-    const { user } = resp
-    return Promise.resolve(user)
+import db from 'db';
+
+const auth = getAuth();
+
+export const logIn = async ({ email, password }) => {
+  try {
+    const { user } = await signInWithEmailAndPassword(auth, email, password);
+    return user;
+  } catch (error) {
+    throw new Error(error.message);
   }
-  catch (error) {
-    return Promise.reject(error.message)
-  }
-}
+};
 
-export const onAuthStateChanged = (onAuthCallback) => firebase.auth().onAuthStateChanged(onAuthCallback)
+export const onAuthStateChangedCallback = (onAuthCallback) => onAuthStateChanged(auth, onAuthCallback);
 
-export const createUser = async ({email, password, userName}) => {
-  try{
-    const resp = await firebase.auth().createUserWithEmailAndPassword(email, password)
-    const { user } = resp
-    await saveUser({uid: user.uid, email, userName})
-    return Promise.resolve(user)
+export const createUser = async ({ email, password, userName }) => {
+  try {
+    const { user } = await createUserWithEmailAndPassword(auth, email, password);
+    await saveUser({ uid: user.uid, email, userName });
+    return user;
+  } catch (error) {
+    throw new Error(error.message);
   }
-  catch (error) {
-    return Promise.reject(error.message)
-  }
-}
+};
 
-export const saveUser = (userData) => {
-  db.collection("users")
-  .doc(userData.uid)
-  .set({
+export const saveUser = async (userData) => {
+  const userRef = doc(db, "users", userData.uid);
+  await setDoc(userRef, {
     userName: userData.userName,
     email: userData.email,
     id: userData.uid
-  })
-}
+  });
+};
 
-export const getUserData = (uid) =>
-  db.collection("users")
-  .doc(uid)
-  .get()
-  .then(snapshot => snapshot.data())
+export const getUserData = async (uid) => {
+  const userRef = doc(db, "users", uid);
+  const snapshot = await getDoc(userRef);
+  return snapshot.data();
+};
 
-export const signOut = () => firebase.auth().signOut()
+export const signOutUser = () => signOut(auth);
 
-//Sends and email to reset the password
-export const resetPassword = email => firebase.auth().sendPasswordResetEmail(email)
+export const resetPassword = (email) => sendPasswordResetEmail(auth, email);
 
-export const updatePassword = password => firebase.auth().currentUser.updatePassword(password)
+export const updatePasswordUser = (password) => {
+  if(auth.currentUser) {
+    return updatePassword(auth.currentUser, password);
+  }
+  throw new Error("No authenticated user");
+};

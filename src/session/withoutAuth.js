@@ -1,5 +1,5 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 const withoutAuth = Component => {
@@ -12,7 +12,7 @@ const withoutAuth = Component => {
           )
       else {
         return(
-          <Redirect to= "/home"/>
+          <Navigate to= "/home"/>
           )
         }
     }

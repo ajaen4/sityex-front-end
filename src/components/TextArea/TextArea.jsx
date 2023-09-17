@@ -1,42 +1,39 @@
-import React from "react";
-
-// reactstrap components
-import {
-  Input,
-  FormFeedback
-} from "reactstrap";
-
+import React from 'react'
+import TextField from '@mui/material/TextField'
+import FormHelperText from '@mui/material/FormHelperText'
 
 const TextArea = ({name, register, errors}) => {
 
   return (
     <>
-      <Input
-        style = {{
-          fontSize: "large"
+      <TextField
+        {...register(name, {
+          required: true,
+          maxLength: 300,
+          pattern: /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð !¡?¿:,.()'-]+$/u
+        })}
+        style={{
+          fontSize: 'large'
         }}
-        name = {name}
-        bsSize="lg"
-        id="textArea"
-        rows="5"
-        type="textarea"
-        invalid = {errors[name] !== undefined}
-        innerRef={
-          register({
-            required: true,
-            maxLength: 300,
-            pattern: /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð !¡?¿:,.()'-]+$/u
-          })}/>
-        {errors[name] && errors[name].type === 'required' &&
-        <FormFeedback>Se debe introducir al menos un consejo</FormFeedback>
-        }
-        {errors[name] && errors[name].type === 'maxLength' &&
-        <FormFeedback>{"El " + name + " puede tener como maximo 300 caracteres"}</FormFeedback>
-        }
-        {errors[name] && errors[name].type === 'pattern' && <FormFeedback>Existen caracteres no permitidos</FormFeedback>
-        }
-      </>
-    )
-  }
+        variant="outlined"
+        id={name}
+        name={name}
+        rows={5}
+        fullWidth
+        multiline
+        error={errors[name] !== undefined}
+      />
+      {errors[name] && errors[name].type === 'required' &&
+        <FormHelperText error>Se debe introducir al menos un consejo</FormHelperText>
+      }
+      {errors[name] && errors[name].type === 'maxLength' &&
+        <FormHelperText error>{'El ' + name + ' puede tener como maximo 300 caracteres'}</FormHelperText>
+      }
+      {errors[name] && errors[name].type === 'pattern' &&
+        <FormHelperText error>Existen caracteres no permitidos</FormHelperText>
+      }
+    </>
+  )
+}
 
 export default TextArea

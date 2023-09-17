@@ -1,6 +1,5 @@
-
-import firebase from 'firebase/app'
-import 'firebase/firestore'
+import { initializeApp } from 'firebase/app'
+import { getFirestore, Timestamp } from 'firebase/firestore'
 
 const config = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -11,11 +10,7 @@ const config = {
   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
 }
 
-const db = firebase
-          .initializeApp(config)
-          .firestore()
+const app = initializeApp(config)
+const db = getFirestore(app)
 
-export default db
-
-const { Timestamp } = firebase.firestore
-export { Timestamp }
+export { db as default, Timestamp }

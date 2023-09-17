@@ -1,13 +1,11 @@
+import db from 'db';
+import { doc, getDocs, collection, runTransaction, serverTimestamp } from 'firebase/firestore';
 
-import db from 'db'
-import firebase from 'firebase/app'
-import 'firebase/firestore'
+const citiesCollection = collection(db, "cities");
 
 export const getExperiences = (city) => {
-  return db.collection("cities")
-  .doc(city)
-  .collection("experiences")
-  .get()
+  const query = collection(db, `cities/${city}/experiences`);
+  return getDocs(query)
   .then(querySnapshot => {
     return querySnapshot.docs.map(doc => doc.data())
   })
@@ -18,54 +16,44 @@ export const getExperiences = (city) => {
 }
 
 const updateOriginalMarkers = (originalMarkers, newMarkers) => {
+  let consolidatedMarkers = [...originalMarkers];
 
-  let consolidatedMarkers = [...originalMarkers]
-  let markerExists = false
-
-  for(var indexNewM in newMarkers){
-    for(var singleMarker in consolidatedMarkers){
-        const orgMarker = consolidatedMarkers[singleMarker]
-        const newMarker = newMarkers[indexNewM]
-      if(orgMarker.id === newMarker.id){
-        consolidatedMarkers[singleMarker].numOfRecomendations++
-        markerExists = true
-        break
-      }
+  newMarkers.forEach(newMarker => {
+    const foundMarker = consolidatedMarkers.find(orgMarker => orgMarker.id === newMarker.id);
+    
+    if (foundMarker) {
+      foundMarker.numOfRecomendations++;
+    } else {
+      consolidatedMarkers.push(newMarker);
     }
-    if(!markerExists){
-      consolidatedMarkers.push(newMarkers[indexNewM])
-    }
-    markerExists = false
-  }
+  });
 
-  return consolidatedMarkers
+  return consolidatedMarkers;
 }
 
 export const addExperience = (cityName, experience, markers) => {
-  const experiencesRef = db.collection("cities").doc(cityName).collection("experiences")
-  const cityRef = db.collection("cities").doc(cityName)
-  return db.runTransaction(t => {
-    return t.get(cityRef)
-    .then(doc => {
-      let originalMarkers = []
-      if(doc.data().mapMarkers !== undefined){
-        originalMarkers = doc.data().mapMarkers
-      }
-      let newMarkers = markers
-      const updatedMarkers = updateOriginalMarkers(originalMarkers, newMarkers)
+  const cityDocRef = doc(citiesCollection, cityName);
+  const experiencesCollectionRef = collection(cityDocRef, "experiences");
 
-      var setObject = {
-        mapMarkers: updatedMarkers
-      }
-      t.set(cityRef, setObject, {merge: true})
+  return runTransaction(db, async t => {
+    const cityDoc = await t.get(cityDocRef);
+    const originalMarkers = cityDoc.data().mapMarkers || [];
+    
+    const updatedMarkers = updateOriginalMarkers(originalMarkers, markers);
+    
+    const setObject = {
+      mapMarkers: updatedMarkers
+    };
+    t.set(cityDocRef, setObject, { merge: true });
 
-      //Add the experience to the subcollection of the city
-      const ref = experiencesRef.doc()
-      const id = ref.path.split("/").pop()
-
-      const expTimeId = {...experience, timeStamp: firebase.firestore.FieldValue.serverTimestamp(), id: id}
-
-      t.set(ref, expTimeId)
-    })
-  })
+    // Add the experience to the subcollection of the city
+    const newExperienceDocRef = doc(experiencesCollectionRef);
+    const id = newExperienceDocRef.id;
+    const expTimeId = {
+      ...experience,
+      timeStamp: serverTimestamp(),
+      id: id
+    };
+    t.set(newExperienceDocRef, expTimeId);
+  });
 }

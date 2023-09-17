@@ -1,17 +1,29 @@
 
-import React from 'react'
+import React, {useEffect} from 'react'
 import { connect } from 'react-redux'
+import { prettyCity } from 'helpers/usefulFunctions'
+import { fetchCity } from 'actions'
 
 import ExperienceFormBase from './ExperienceFormBase'
 
-const ExperienceForm = ({selectedCity, onChangeCity, citiesIndex, windowDimensions, dispatch, auth}) => {
+const ExperienceForm = ({selectedCity, citiesIndex, dispatch, auth}) => {
+
+  const INITIALCITY = "Aachen"
+
+  useEffect(() => {
+    dispatch(fetchCity(prettyCity(INITIALCITY)))
+  }, [dispatch])
+
+  //Fetch city data if the user changes the city in the dropdown list
+  const onChangeCity = event => {
+    dispatch(fetchCity(prettyCity(event.target.value)))
+  }
 
   return (
     <ExperienceFormBase
       selectedCity = {selectedCity}
       onChangeCity = {onChangeCity}
       citiesIndex = {citiesIndex}
-      windowDimensions = {windowDimensions}
       dispatch = {dispatch}
       auth = {auth}/>
   )
