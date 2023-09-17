@@ -7,8 +7,7 @@ import { fetchCity, getExperiences } from 'actions'
 import { Container, Tab, Tabs, Box, Typography, Grid } from '@mui/material'
 
 import DestinationPageHeader from 'components/Headers/DestinationPageHeader'
-import DefaultFooter from 'components/Footers/DefaultFooter'
-import RecomenMap from 'components/GoogleMaps/RecomenMap'
+import RecomendationsMap from 'components/Maps/RecomendationsMap'
 import ScrollExperiences from 'components/ScrollList/ScrollExperiences'
 import CityInfo from 'components/CityData/CityInfo'
 import CenteredLoadingSpinner from 'components/Spinner/CenteredLoadingSpinner'
@@ -56,14 +55,13 @@ const DestinationPage = ({ selectedCity, auth, isFetchingExperiences, dispatch }
           )}
           {value === 1 && (
             <Grid container justifyContent="center">
-              <Grid item sm={12} md={12} lg={12}>
-                <RecomenMap coordinates={{ lat: selectedCity.latitude, lng: selectedCity.longitude }} recomendations={selectedCity.mapMarkers === undefined ? [] : selectedCity.mapMarkers} />
+              <Grid item sm={12} md={12} lg={12} style={{height: "400px", width: "100%"}}>
+                <RecomendationsMap selectedCity={selectedCity} />
               </Grid>
             </Grid>
           )}
         </Box>
       </Container>
-      <DefaultFooter />
     </>
   )
 }

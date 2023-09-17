@@ -16,8 +16,8 @@ import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 
-import LoadingSpinner from 'components/Spinner/LoadingSpinner.jsx'
 import StandarModal from 'components/Modals/StandarModal'
+import CenteredLoadingSpinner from 'components/Spinner/CenteredLoadingSpinner'
 
 const LogInFormBase = ({dispatch}) => {
   const {register, handleSubmit, formState: { errors }} = useForm()
@@ -38,7 +38,7 @@ const LogInFormBase = ({dispatch}) => {
   const defaultTheme = createTheme()
 
   if(isFetching)
-    return <LoadingSpinner/>
+    return <CenteredLoadingSpinner/>
   
   return (
     <ThemeProvider theme={defaultTheme}>

@@ -22,7 +22,8 @@ function DestinationPageHeader({cityName, countryName, numExp}) {
           py: 20,
           minHeight: 400,
           backgroundSize: "cover",
-          color:"#ebe8e8"
+          color:"#ebe8e8",
+          backgroundPosition: "center",
         }}
         align="center"
       >

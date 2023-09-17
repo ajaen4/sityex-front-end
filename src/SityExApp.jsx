@@ -8,17 +8,19 @@ import {
 
 //Custom components
 import AppRoutes from './Routes'
-import MainNavbar from "components/Navbars/MainNavbar.js"
+import Navbar from "components/Navbars/Navbar.js"
+import Footer from "components/Footers/Footer.js"
 
 class SityExApp extends React.Component {
 
   render(){
     return (
       <>
-        <MainNavbar auth = {this.props.auth} isAuthResolved = {this.props.isAuthResolved}/>
-        <Box mt={8.3}> 
+        <Navbar auth = {this.props.auth} isAuthResolved = {this.props.isAuthResolved}/>
+        <Box mt={0.2}> 
           <AppRoutes/>
         </Box>
+        <Footer/>
       </>
     )
   }

@@ -1,55 +1,21 @@
-import React, {useEffect} from "react"
+import React from "react"
 import { connect } from 'react-redux'
 
-//Custom functionality
 import { withAuth } from 'session'
-import { prettyCity } from 'helpers/usefulFunctions'
-import { fetchCity } from 'actions'
 
-//Custom UI components
-import DefaultFooter from "components/Footers/DefaultFooter"
 import ExperienceForm from 'components/Forms/ExperienceForm'
 
 
-const ExperiencePage = ({dispatch, selectedCity, citiesIndex}) => {
-
-  const INITIALCITY = "Aachen"
-
-  const [windowDimensions, setWindowDimensions] = React.useState(window.innerWidth)
-
-  useEffect(() => {
-    dispatch(fetchCity(prettyCity(INITIALCITY)))
-  }, [dispatch])
-
-  useEffect(() => {
-    window.addEventListener("resize", updateWindowDimensions)
-    return function cleanup() {
-      window.removeEventListener("resize", updateWindowDimensions)
-    }
-  })
-
-  //Updates the window dimensions (width) when this changes
-  const updateWindowDimensions = () => {
-    setWindowDimensions(window.innerWidth)
-  }
-
-  //Fetch city data if the user changes the city in the dropdown list
-  const onChangeCity = event => {
-    dispatch(fetchCity(prettyCity(event.target.value)))
-  }
+const ExperiencePage = ({selectedCity, citiesIndex}) => {
 
   return (
-    <>
-      <div style = {{justifyContent: "center", textAlign: "center"}}>
-        <h2 className = "bold" style = {{marginTop: "100px"}}> Rellenar experiencia </h2>
-        <ExperienceForm
-          selectedCity = {selectedCity}
-          onChangeCity = {onChangeCity}
-          citiesIndex = {citiesIndex !== null ? citiesIndex : []}
-          windowDimensions = {windowDimensions}/>
-      </div>
-      <DefaultFooter />
-    </>
+    <div style = {{justifyContent: "center", textAlign: "center"}}>
+      <h2 className = "bold" style = {{marginTop: "100px"}}> Rellenar experiencia </h2>
+      <ExperienceForm
+        selectedCity = {selectedCity ? selectedCity : {name: "Aachen", countryName: "Germany", latitude: 50.776351, longitude: 6.083862}}
+        citiesIndex = {citiesIndex !== null ? citiesIndex : []}
+      />
+    </div>
   )
 }
 

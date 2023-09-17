@@ -14,7 +14,6 @@ import {
   Card,
   CardContent,
   Typography,
-  InputBase,
   IconButton,
   Grid,
   InputAdornment,
@@ -27,10 +26,7 @@ import MapIcon from '@mui/icons-material/Map'
 import TravelExploreIcon from '@mui/icons-material/TravelExplore'
 
 // Custom UI components
-import DefaultFooter from 'components/Footers/DefaultFooter'
-import DestinationsMap from 'components/GoogleMaps/DestinationsMap'
-import JustLoggedInModal from 'components/Modals/JustLoggedInModal'
-import UserJustCreatedModal from 'components/Modals/UserJustCreatedModal'
+import DestinationsMap from 'components/Maps/DestinationsMap'
 
 const HomePage = ({ citiesIndex, isFetching, authUser }) => {
   const [tabValue, setTabValue] = useState(0)
@@ -59,107 +55,101 @@ const HomePage = ({ citiesIndex, isFetching, authUser }) => {
   }
 
   return (
-    <>
-      <JustLoggedInModal justLoggedIn={authUser.justLoggedIn} title="Inicio de sesion" message="Se ha iniciado sesion correctamente" />
-      <UserJustCreatedModal userJustCreated={authUser.userJustCreated} title="Nuevo usuario" message="Se ha creado el usuario correctamente" />
-      <Container style={{
-        textAlign: 'center',
-        justifyContent: 'center',
-        minHeight: '70vh',
-        }}
-        sx={{my: 15}}
+    <Container style={{
+      textAlign: 'center',
+      justifyContent: 'center',
+      minHeight: '76vh',
+      }}
+    >
+      <Tabs
+        value={tabValue}
+        indicatorColor="primary"
+        textColor="primary"
+        onChange={(_, newValue) => setTabValue(newValue)}
+        centered
+        sx={{my: 5}}
       >
-        <Tabs
-          value={tabValue}
-          indicatorColor="primary"
-          textColor="primary"
-          onChange={(_, newValue) => setTabValue(newValue)}
-          centered
-          sx={{my: 5}}
-        >
-          <Tab icon={<ListIcon />} />
-          <Tab icon={<MapIcon />} />
-        </Tabs>
-        <Container>
-          {tabValue === 0 && (
-            <Grid container spacing={2} sx={{ justifyContent: "center"}}>
-              <Grid item xs={11} md={7} lg={7} xl={7}>
-                <Card>
-                  <CardContent>
-                    <Typography variant="h6" color="textSecondary">Introduce un destino</Typography>
-                    <Autocomplete
-                      freeSolo
-                      style={{marginTop: '20px'}}
-                      options={getDestinations()}
-                      onChange={onSearchChange}
-                      getOptionLabel={(option) => option.cityName}
-                      renderInput={(params) => (
-                        <TextField
-                          {...params}
-                          InputProps={{
-                            ...params.InputProps,
-                            startAdornment: (
-                              <InputAdornment position="start">
-                                <IconButton>
-                                  <TravelExploreIcon />
-                                </IconButton>
-                              </InputAdornment>
-                            ),
-                          }}
-                          placeholder="Ej. Turin..."
-                          fullWidth
+        <Tab icon={<ListIcon />} />
+        <Tab icon={<MapIcon />} />
+      </Tabs>
+      <Container>
+        {tabValue === 0 && (
+          <Grid container spacing={2} sx={{ justifyContent: "center"}}>
+            <Grid item xs={11} md={7} lg={7} xl={7}>
+              <Card>
+                <CardContent>
+                  <Typography variant="h6" color="textSecondary">Introduce un destino</Typography>
+                  <Autocomplete
+                    freeSolo
+                    style={{marginTop: '20px'}}
+                    options={getDestinations()}
+                    onChange={onSearchChange}
+                    getOptionLabel={(option) => option.cityName}
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        InputProps={{
+                          ...params.InputProps,
+                          startAdornment: (
+                            <InputAdornment position="start">
+                              <IconButton>
+                                <TravelExploreIcon />
+                              </IconButton>
+                            </InputAdornment>
+                          ),
+                        }}
+                        placeholder="Ej. Turin..."
+                        fullWidth
+                      />
+                    )}
+                    renderOption={(props, option) => (
+                      <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
+                        <img
+                          loading="lazy"
+                          width="20"
+                          src={`https://flagcdn.com/w20/${option.countryCode.toLowerCase()}.png`}
+                          srcSet={`https://flagcdn.com/w40/${option.countryCode.toLowerCase()}.png 2x`}
+                          alt=""
                         />
-                      )}
-                      renderOption={(props, option) => (
-                        <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
-                          <img
-                            loading="lazy"
-                            width="20"
-                            src={`https://flagcdn.com/w20/${option.countryCode.toLowerCase()}.png`}
-                            srcSet={`https://flagcdn.com/w40/${option.countryCode.toLowerCase()}.png 2x`}
-                            alt=""
-                          />
-                          {option.cityName}
-                        </Box>
-                      )}
-                    />
-                  </CardContent>
-                </Card>
+                        {option.cityName}
+                      </Box>
+                    )}
+                  />
+                </CardContent>
+              </Card>
+            </Grid>
+          </Grid>
+        )}
+        {tabValue === 1 && (
+          <Box justifyContent="center">
+            <DestinationsMap
+              windowWidth={windowWidth}
+              citiesIndex={objectIsEmpty(citiesIndex) ? {} : citiesIndex}
+            />
+            <Grid container justifyContent="center" spacing={2} sx={{"my": "10px"}}>
+              <Grid item display="flex" justifyContent="center" xs={12}>
+                <img alt="selected place icon" src={require('assets/icons/pin_green.png')} style={{ height: '30px' }} />
+                <Typography variant="body1" style={{ marginLeft: '10px', marginTop: '3px'}}>
+                  Ciudades con mas de un millon de habitantes
+                </Typography>
+              </Grid>
+              <Grid item display="flex" justifyContent="center" xs={12}>
+                <img alt="selected place icon" src={require('assets/icons/pin_blue.png')} style={{ height: '30px' }} />
+                <Typography variant="body1" style={{ marginLeft: '10px', marginTop: '3px'}}>
+                  Ciudades con habitantes entre 800 y 300 mil
+                </Typography>
+              </Grid>
+              <Grid item display="flex" justifyContent="center" xs={12}>
+                <img alt="selected place icon" src={require('assets/icons/pin_orange.png')} style={{ height: '30px' }} />
+                <Typography variant="body1" style={{ marginLeft: '10px', marginTop: '3px'}}>
+                Ciudades con menos de 300 mil habitantes
+                </Typography>
               </Grid>
             </Grid>
-          )}
-          {tabValue === 1 && (
-              <Box justifyContent="center">
-                <DestinationsMap
-                  windowWidth={windowWidth}
-                  citiesIndex={objectIsEmpty(citiesIndex) ? {} : citiesIndex}
-                />
-                <Grid container justifyContent="center" spacing={2} sx={{"my": "10px"}}>
-                  <Grid item display="flex" justifyContent="center" xs={12}>
-                    <img alt="selected place icon" src={require('assets/icons/pin_green.png')} style={{ height: '30px' }} />
-                    <Typography variant="body1" style={{ marginLeft: '10px', marginTop: '3px'}}>
-                      Ciudades con mas de un millon de habitantes
-                    </Typography>
-                  </Grid>
-                  <Grid item display="flex" justifyContent="center" xs={12}>
-                    <img alt="selected place icon" src={require('assets/icons/pin_blue.png')} style={{ height: '30px' }} />
-                    <Typography variant="body1" style={{ marginLeft: '10px', marginTop: '3px'}}>
-                      Ciudades con habitantes entre 800 y 300 mil
-                    </Typography>
-                  </Grid>
-                  <Grid item display="flex" justifyContent="center" xs={12}>
-                    <img alt="selected place icon" src={require('assets/icons/pin_orange.png')} style={{ height: '30px' }} />
-                    <Typography variant="body1" style={{ marginLeft: '10px', marginTop: '3px'}}>
-                    Ciudades con menos de 300 mil habitantes
-                    </Typography>
-                  </Grid>
-                </Grid>
-              </Box>
-          )}
-        </Container>
+          </Box>
+        )}
       </Container>
-      <DefaultFooter />
-    </>
+    </Container>
   )
 }
 

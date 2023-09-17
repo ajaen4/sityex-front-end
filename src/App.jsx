@@ -11,8 +11,6 @@ import {
 import initStore from 'store'
 import { Provider } from 'react-redux'
 
-import {LoadScript} from '@react-google-maps/api'
-
 import SityExApp from './SityExApp'
 
 import {
@@ -33,7 +31,6 @@ store.subscribe(() => {
   saveState(stateToSave)
 })
 
-const LIBRARIES = ["places"]
 
 class App extends Component {
 
@@ -78,11 +75,9 @@ class App extends Component {
   render(){
     return (
       <Provider store = {store}>
-        <LoadScript googleMapsApiKey = {process.env.REACT_APP_GOOGLE_MAPS_API_KEY} libraries = {LIBRARIES} language = "en">
           <Router>
             <SityExApp/>
           </Router>
-        </LoadScript>
       </Provider>
     )
   }

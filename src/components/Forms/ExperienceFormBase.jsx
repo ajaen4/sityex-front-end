@@ -13,12 +13,12 @@ import Stack from '@mui/material/Stack'
 import { addExperience } from 'actions'
 import Opinion5 from 'components/Opinions/Opinion5'
 import CitiesDropDown from 'components/DropDownList/CitiesDropDown'
-import RecomenMapWithList from 'components/GoogleMaps/RecomenMapWithList'
+import MapWithSearch from 'components/Maps/MapWithSearch'
 import CenteredLoadingSpinner from 'components/Spinner/CenteredLoadingSpinner'
 import ActionModal from 'components/Modals/ActionModal'
 import TextArea from 'components/TextArea/TextArea'
 
-const ExperienceFormBase = ({ selectedCity, onChangeCity, citiesIndex, windowDimensions, dispatch, auth }) => {
+const ExperienceFormBase = ({ selectedCity, onChangeCity, citiesIndex, dispatch, auth }) => {
   const { register, handleSubmit, formState: { errors }, control, reset } = useForm()
   const navigate = useNavigate()
 
@@ -29,7 +29,7 @@ const ExperienceFormBase = ({ selectedCity, onChangeCity, citiesIndex, windowDim
   const [isFetching, setIsFetching] = useState(false)
   const [modalMessage, setModalMessage] = useState('')
 
-  const goToDestinations = () => navigate(`/home`)
+  const goToDestinations = () => navigate("/home")
 
   const updateRecomendations = recomendations => setCurrRecomendations(recomendations)
 
@@ -97,7 +97,7 @@ const ExperienceFormBase = ({ selectedCity, onChangeCity, citiesIndex, windowDim
         }}
           ref={mapContainer}>
           <Typography variant='h3'> Recomiendanos sitios! </Typography>
-          <RecomenMapWithList selectedCity={selectedCity} windowDimensions={windowDimensions} updateRecomendations={updateRecomendations} />
+          <MapWithSearch selectedCity={selectedCity}/>
         </div>
         {noRecomendations && <Alert severity='error'>
           <div>

@@ -10,7 +10,6 @@
     "@fontsource/roboto": "^5.0.5",
     "@mui/icons-material": "^5.14.1",
     "@mui/material": "^5.14.1",
-    "@react-google-maps/api": "^2.19.0",
     "@types/react": "^18.2.15",
     "firebase": "^10.1.0",
     "moment": "^2.29.1",
@@ -24,11 +23,14 @@
     "react-scripts": "^5.0.1",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "mapbox-gl": "^2.15.0",
+    "react-leaflet": "^4.2.1",
+    "react-leaflet-fullscreen": "^4.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && gulp licenses",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -53,8 +55,6 @@
     "typescript": "3.9.5"
   },
   "devDependencies": {
-    "gulp": "4.0.2",
-    "gulp-append-prepend": "1.0.8",
     "sass": "^1.64.0"
   },
   "jshintConfig": {

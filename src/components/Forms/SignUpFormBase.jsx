@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Button, TextField, FormControl, FormHelperText } from '@mui/material'
+import { Button, TextField, FormControl, FormHelperText, Grid, Link } from '@mui/material'
 
 import Avatar from '@mui/material/Avatar'
 import CssBaseline from '@mui/material/CssBaseline'
@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 
-import LoadingSpinner from 'components/Spinner/LoadingSpinner'
+import CenteredLoadingSpinner from 'components/Spinner/CenteredLoadingSpinner'
 import StandarModal from 'components/Modals/StandarModal'
 import { createUser } from 'actions'
 import { sameAs } from 'helpers/validators'
@@ -35,7 +35,7 @@ const SignUpFormBase = ({dispatch}) => {
     })
   }
 
-  if (isFetching) return <LoadingSpinner />
+  if (isFetching) return <CenteredLoadingSpinner />
 
   if (user) {
     return <StandarModal
@@ -48,9 +48,9 @@ const SignUpFormBase = ({dispatch}) => {
 
   
   return (
-      <ThemeProvider theme={defaultTheme}>
-        <Container component="main" maxWidth="xs">
-          <CssBaseline />
+    <ThemeProvider theme={defaultTheme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
           <Box
             sx={{
               marginTop: 8,
@@ -129,6 +129,18 @@ const SignUpFormBase = ({dispatch}) => {
           />
           <FormHelperText>{errors.confirmPassword?.message}</FormHelperText>
         </FormControl>
+        <Grid container sx={{my: 1}}>
+          <Grid item xs>
+            <Link href="#" variant="body2">
+              Forgot password?
+            </Link>
+          </Grid>
+          <Grid item>
+            <Link href="/login" variant="body2">
+              {"Log In"}
+            </Link>
+          </Grid>
+        </Grid>
         <Box display="flex" justifyContent="center">
           <Button
             variant="contained"
@@ -143,8 +155,8 @@ const SignUpFormBase = ({dispatch}) => {
       {(errorMessage !== null) &&
         <StandarModal title="Error" message={errorMessage} />
       }
-    </Box>
-    </Container>
+      </Box>
+      </Container>
     </ThemeProvider>
   )
 }
