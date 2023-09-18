@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
@@ -31,16 +31,6 @@ import DestinationsMap from 'components/Maps/DestinationsMap'
 const HomePage = ({ citiesIndex, isFetching, authUser }) => {
   const [tabValue, setTabValue] = useState(0)
   const navigate = useNavigate()
-  const [windowWidth, setwindowWidth] = React.useState(window.innerWidth)
-
-  useEffect(() => {
-    window.addEventListener('resize', updatewindowWidth)
-    return () => window.removeEventListener('resize', updatewindowWidth)
-  }, [])
-
-  const updatewindowWidth = () => {
-    setwindowWidth(window.innerWidth)
-  }
 
   const onSearchChange = (event, value) => navigate("/destination/" + value.cityName)
 
@@ -123,7 +113,6 @@ const HomePage = ({ citiesIndex, isFetching, authUser }) => {
         {tabValue === 1 && (
           <Box justifyContent="center">
             <DestinationsMap
-              windowWidth={windowWidth}
               citiesIndex={objectIsEmpty(citiesIndex) ? {} : citiesIndex}
             />
             <Grid container justifyContent="center" spacing={2} sx={{"my": "10px"}}>

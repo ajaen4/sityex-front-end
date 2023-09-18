@@ -9,10 +9,9 @@ import Grid from '@mui/material/Grid'
 import { Controller } from 'react-hook-form'
 
 
-const Opinion5 = ({icon, fieldName, labelName, errorName, control, errors}) => {
+const Opinion5 = ({fieldName, labelName, errorName, control, errors}) => {
 
   const style = {marginRight: '0.5em', marginLeft: '0px', padding: '0px'}
-  const className = 'now-ui-icons ' + icon
 
   return (
     <Container style={{
