@@ -74,16 +74,16 @@ const ExperienceFormBase = ({ selectedCity, onChangeCity, citiesIndex, dispatch,
           <CitiesDropDown label='En que ciudad has estado?' citiesList={Object.keys(citiesIndex)} onChangeCity={onChangeCity} selectedCity={selectedCity ? selectedCity.name : null}/>
           <Grid container justifyContent='center' textAlign='center' sx={{my: "5px"}}>
             <Grid item xs={12} sm={6} md={6}>
-              <Opinion5 control={control} fieldName='weather' labelName='Clima' icon='sun' register={register} errors={errors} />
+              <Opinion5 control={control} fieldName='weather' labelName='Clima' register={register} errors={errors} />
             </Grid>
             <Grid item xs={12} sm={6} md={6}>
-              <Opinion5 control={control} fieldName='food' labelName='Comida' icon='shopping_basket' register={register} errors={errors} />
+              <Opinion5 control={control} fieldName='food' labelName='Comida' register={register} errors={errors} />
             </Grid>
             <Grid item xs={12} sm={6} md={6}>
-              <Opinion5 control={control} fieldName='party' labelName='Fiesta' icon='emoticons_satisfied' register={register} errors={errors} />
+              <Opinion5 control={control} fieldName='party' labelName='Fiesta' register={register} errors={errors} />
             </Grid>
             <Grid item xs={12} sm={6} md={6}>
-              <Opinion5 control={control} fieldName='trips' labelName='Viajes ESN' icon='transportation_bus-front-12' register={register} errors={errors} />
+              <Opinion5 control={control} fieldName='trips' labelName='Viajes ESN' register={register} errors={errors} />
             </Grid>
           </Grid>
         </Container>

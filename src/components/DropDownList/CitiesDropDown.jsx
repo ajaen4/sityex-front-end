@@ -15,7 +15,7 @@ const CitiesDropDown = ({ label, citiesList, onChangeCity, selectedCity }) => {
 
   return (
     <Grid container justifyContent="center" style={{ textAlign: "center" }}>
-      <Grid item lg={6} xs={9}>
+      <Grid item lg={3} md={3} xs={9}>
         <FormControl fullWidth variant="outlined">
           <InputLabel id="citiesDropDown-label" htmlFor="citiesDropDown">
             {label}

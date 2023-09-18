@@ -8,7 +8,7 @@ import UpdateMapCenter from "./UpdateMapCenter"
 const TOKEN = process.env.REACT_APP_MAPS_API_KEY
 const MAP_STYLE = process.env.REACT_APP_MAPS_STYLE
 
-function MapWithSearch({selectedCity}){
+function RecommendationsMap({selectedCity}){
 
   return (
     <MapContainer center={[selectedCity.latitude, selectedCity.longitude]} zoom={12} style={{height: "400px", width: "100%"}}>
@@ -22,4 +22,4 @@ function MapWithSearch({selectedCity}){
   )
 }
 
-export default React.memo(MapWithSearch)
+export default RecommendationsMap
