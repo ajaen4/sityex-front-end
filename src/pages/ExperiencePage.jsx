@@ -10,7 +10,7 @@ const ExperiencePage = ({selectedCity, citiesIndex}) => {
 
   return (
     <div style = {{justifyContent: "center", textAlign: "center"}}>
-      <h2 className = "bold" style = {{marginTop: "100px"}}> Rellenar experiencia </h2>
+      <h2 className = "bold"> Rellenar experiencia </h2>
       <ExperienceForm
         selectedCity = {selectedCity ? selectedCity : {name: "Aachen", countryName: "Germany", latitude: 50.776351, longitude: 6.083862}}
         citiesIndex = {citiesIndex !== null ? citiesIndex : []}
