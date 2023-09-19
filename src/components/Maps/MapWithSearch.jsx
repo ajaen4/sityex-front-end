@@ -79,7 +79,6 @@ function MapWithSearch({selectedCity}){
 
   const handleRetrieve = (res) => {
     const feature = res.features[0]
-    console.log(feature)
     
     const coordinates = feature.geometry.coordinates
     let selectedPlaceCity = "" 
