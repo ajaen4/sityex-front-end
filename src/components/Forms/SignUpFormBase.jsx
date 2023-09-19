@@ -8,7 +8,6 @@ import Box from '@mui/material/Box'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
-import { createTheme, ThemeProvider } from '@mui/material/styles'
 
 import CenteredLoadingSpinner from 'components/Spinner/CenteredLoadingSpinner'
 import StandarModal from 'components/Modals/StandarModal'
@@ -43,12 +42,8 @@ const SignUpFormBase = ({dispatch}) => {
       message={"El usuario con email " + user.email + " se ha creado correctamente"}
     />
   }
-
-  const defaultTheme = createTheme()
-
   
   return (
-    <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
           <Box
@@ -69,7 +64,7 @@ const SignUpFormBase = ({dispatch}) => {
               mt: 1,
               width: "80%",
             }}>
-        <FormControl fullWidth margin="normal" error={Boolean(errors.email)}>
+        <FormControl fullWidth  error={Boolean(errors.email)}>
           <TextField
             {...register('email', {
               required: 'Se debe introducir el email',
@@ -81,10 +76,10 @@ const SignUpFormBase = ({dispatch}) => {
             label="Email"
             variant="outlined"
           />
-          <FormHelperText>{errors.email?.message}</FormHelperText>
+          <FormHelperText style={{minHeight: "30px"}}>{errors.email?.message}</FormHelperText>
         </FormControl>
         
-        <FormControl fullWidth margin="normal" error={Boolean(errors.userName)}>
+        <FormControl fullWidth error={Boolean(errors.userName)}>
           <TextField
             {...register('userName', {
               required: 'Se debe introducir el nombre de usuario'
@@ -92,10 +87,10 @@ const SignUpFormBase = ({dispatch}) => {
             label="Nombre de usuario"
             variant="outlined"
           />
-          <FormHelperText>{errors.userName?.message}</FormHelperText>
+          <FormHelperText style={{minHeight: "30px"}}>{errors.userName?.message}</FormHelperText>
         </FormControl>
 
-        <FormControl fullWidth margin="normal" error={Boolean(errors.password)}>
+        <FormControl fullWidth  error={Boolean(errors.password)}>
           <TextField
             {...register('password', {
               required: 'Se debe introducir la contraseña',
@@ -108,10 +103,10 @@ const SignUpFormBase = ({dispatch}) => {
             variant="outlined"
             type="password"
           />
-          <FormHelperText>{errors.password?.message}</FormHelperText>
+          <FormHelperText style={{minHeight: "30px"}}>{errors.password?.message}</FormHelperText>
         </FormControl>
 
-        <FormControl fullWidth margin="normal" error={Boolean(errors.confirmPassword)}>
+        <FormControl fullWidth  error={Boolean(errors.confirmPassword)}>
           <TextField
             {...register('confirmPassword', {
               required: 'Se debe introducir la contraseña',
@@ -127,7 +122,7 @@ const SignUpFormBase = ({dispatch}) => {
             variant="outlined"
             type="password"
           />
-          <FormHelperText>{errors.confirmPassword?.message}</FormHelperText>
+          <FormHelperText style={{minHeight: "30px"}}>{errors.confirmPassword?.message}</FormHelperText>
         </FormControl>
         <Grid container sx={{my: 1}}>
           <Grid item xs>
@@ -157,7 +152,6 @@ const SignUpFormBase = ({dispatch}) => {
       }
       </Box>
       </Container>
-    </ThemeProvider>
   )
 }
 

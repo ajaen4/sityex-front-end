@@ -4,17 +4,15 @@ import { logInUser } from 'actions'
 
 import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
-import CssBaseline from '@mui/material/CssBaseline'
 import TextField from '@mui/material/TextField'
-import Alert from '@mui/material/Alert'
-import Stack from '@mui/material/Stack'
 import Link from '@mui/material/Link'
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
-import { createTheme, ThemeProvider } from '@mui/material/styles'
+import FormHelperText from '@mui/material/FormHelperText'
+import FormControl from '@mui/material/FormControl'
 
 import StandarModal from 'components/Modals/StandarModal'
 import CenteredLoadingSpinner from 'components/Spinner/CenteredLoadingSpinner'
@@ -35,15 +33,11 @@ const LogInFormBase = ({dispatch}) => {
     })
   }
 
-  const defaultTheme = createTheme()
-
   if(isFetching)
     return <CenteredLoadingSpinner/>
   
   return (
-    <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
-        <CssBaseline />
         <Box
           sx={{
             marginTop: 8,
@@ -60,63 +54,50 @@ const LogInFormBase = ({dispatch}) => {
           </Typography>
           <Box component="form" onSubmit={handleSubmit(signInUser)} noValidate sx={{ 
             mt: 1,
-            width: "80%",
+            width: "83%",
           }}>
-            <TextField
-                margin="normal"
+            <FormControl fullWidth  error={Boolean(errors.email)}>
+              <TextField
+                
                 required
                 fullWidth
-                id="email"
                 label="Email Address"
-                name="email"
-                autoComplete="email"
-                error={errors.email !== undefined}
-                {...register("email", {
-                  required: true,
-                  pattern: /^(([^<>()\[\]\\.,:\s@"]+(\.[^<>()\[\]\\.,:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-                })}
                 placeholder="Email..."
                 type="email"
                 autoFocus
+                error={errors.email !== undefined}
+                {...register("email", {
+                  required: "Se debe introducir el email",
+                  pattern: {
+                    value: /^(([^<>()\[\]\\.,:\s@"]+(\.[^<>()\[\]\\.,:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                    message: "El email introducido no es válido"
+                  }
+                })}
               />
-              <Stack>
-              {errors.email && errors.email.type === 'required' &&
-                <Alert severity="error">Se debe introducir el email</Alert>
-              }
-              {errors.email && errors.email.type === 'pattern' &&
-                <Alert severity="error">El formato del email no es valido</Alert>
-              }
-              </Stack>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              error={errors.password !== undefined}
-              {...register("password", {
-                required: true,
-                minLength: 8
-              })}
-              placeholder="Password..."
+              <FormHelperText style={{minHeight: "30px"}}>{errors.email?.message}</FormHelperText>
+            </FormControl>
+            <FormControl fullWidth  error={Boolean(errors.password)}>
+              <TextField
+                fullWidth
+                label="Password"
+                type="password"
+                placeholder="Password..."
+                {...register("password", {
+                  required: 'Se debe introducir la contraseña',
+                  minLength: {
+                    value: 8,
+                    message: 'La contraseña debe tener como mínimo 8 caracteres'
+                  },
+                })}
               />
-              <Stack>
-              {errors.password && errors.password.type === 'required' &&
-                <Alert severity="error">Se debe introducir la contraseña</Alert>
-              }
-              {errors.password && errors.password.type === 'minLength' &&
-                <Alert severity="error">La contraseña debe tener como minimo 8 caracteres</Alert>
-              }
-              </Stack>
+                <FormHelperText style={{minHeight: "30px"}}>{errors.password?.message}</FormHelperText>
+            </FormControl>
             <Button
               disabled = {Object.keys(errors).length !== 0}
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mb: 2 }}
             >
               Log In
             </Button>
@@ -144,7 +125,6 @@ const LogInFormBase = ({dispatch}) => {
             />}
         </Box>
       </Container>
-    </ThemeProvider>
   )
 }
 
