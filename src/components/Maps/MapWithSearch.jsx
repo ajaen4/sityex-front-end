@@ -53,7 +53,10 @@ function MapWithSearch({selectedCity, updateRecomendations}){
   const markerRef = useRef(null)
   const markersAlreadyInDB = useRef({})
 
-  useEffect(() => setCurrRecomendations([]), [selectedCity])
+  useEffect(() => {
+    setCurrRecomendations([])
+    setSelectedPlace(EMPTY_PLACE)
+  }, [selectedCity])
 
   const setMarkerRef = element => {
     markerRef.current = element
