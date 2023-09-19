@@ -116,7 +116,7 @@ const ReviewFormBase = ({ selectedCity, onChangeCity, citiesIndex, dispatch, aut
             variant='contained'
             color='primary'
             type='submit'>
-            Enviar
+            Submit
           </Button>
         </Stack>
       </form>
