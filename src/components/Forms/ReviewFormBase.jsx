@@ -6,11 +6,14 @@ import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
 import Button from '@mui/material/Button'
 import Alert from '@mui/material/Alert'
+import AlertTitle from '@mui/material/AlertTitle'
 import FormControl from '@mui/material/FormControl'
 import Typography from '@mui/material/Typography'
 import Stack from '@mui/material/Stack'
+import IconButton from '@mui/material/IconButton'
+import CloseIcon from '@mui/icons-material/Close'
 
-import { addreview } from 'actions'
+import { addReview } from 'actions'
 import Opinion5 from 'components/Opinions/Opinion5'
 import CitiesDropDown from 'components/DropDownList/CitiesDropDown'
 import MapWithSearch from 'components/Maps/MapWithSearch'
@@ -46,12 +49,10 @@ const ReviewFormBase = ({ selectedCity, onChangeCity, citiesIndex, dispatch, aut
       setNoRecomendations(true)
     }
     else {
-      if(data.residencePrice === undefined)
-        data.residencePrice = 0
       data.userName = auth.userName
       data.userId = auth.id
       setIsFetching(true)
-      dispatch(addreview(selectedCity.name, data, currRecomendations))
+      dispatch(addReview(selectedCity.name, data, currRecomendations))
       .then(() => {
         setIsFetching(false)
         setModalMessage("Su experiencia se ha guardado correctamente")
@@ -80,7 +81,7 @@ const ReviewFormBase = ({ selectedCity, onChangeCity, citiesIndex, dispatch, aut
               <Opinion5 control={control} fieldName='food' labelName='Food' register={register} errors={errors} />
             </Grid>
             <Grid item xs={12} sm={6} md={6}>
-              <Opinion5 control={control} fieldName='party' labelName='Social' register={register} errors={errors} />
+              <Opinion5 control={control} fieldName='social' labelName='Social Atmosphere' register={register} errors={errors} />
             </Grid>
             <Grid item xs={12} sm={6} md={6}>
               <Opinion5 control={control} fieldName='trips' labelName='Accessibility' register={register} errors={errors} />
@@ -94,22 +95,31 @@ const ReviewFormBase = ({ selectedCity, onChangeCity, citiesIndex, dispatch, aut
         }}
           ref={mapContainer}>
           <Typography variant='h3' style={{marginBottom: 30, fontWeight: "bold"}}> Recommend places in city! </Typography>
-          <MapWithSearch selectedCity={selectedCity}/>
+          <MapWithSearch selectedCity={selectedCity} updateRecomendations={updateRecomendations}/>
+          <Container sx={{minHeight: "20px", marginTop: "10px"}}>
+            {noRecomendations &&
+              <Alert
+              severity="error"
+              action={
+                <IconButton
+                  aria-label="close"
+                  color="inherit"
+                  size="small"
+                  onClick={() => setNoRecomendations(false)}
+                >
+                  <CloseIcon fontSize="inherit" />
+                </IconButton>
+              }
+              >
+                <AlertTitle>Please set at least one place recommendation</AlertTitle>
+              </Alert>
+            }
+          </Container>
         </Container>
-        {noRecomendations && <Alert severity='error'>
-          <div>
-            <strong>Por favor, elige al menos una recomendacion</strong>
-            <button type='button' className='close' aria-label='Close' onClick={() => { setNoRecomendations(false) }}>
-              <span aria-hidden='true'>
-                <i className='now-ui-icons ui-1_simple-remove' />
-              </span>
-            </button>
-          </div>
-        </Alert>}
         <Stack style={{ textAlign: 'center', alignItems: "center" }}>
           <FormControl style={{ padding: '30px' }}>
             <Typography variant='h3' style={{marginBottom: "15px", fontWeight: "bold"}}>Give some advice about the city!</Typography>
-            <TextArea name='tips' placeHolder='Consejos...' iconName='objects_support-17' register={register} errors={errors} />
+            <TextArea name='advice' register={register} errors={errors} />
           </FormControl>
           <Button
             style={{ marginBottom: '100px' }}

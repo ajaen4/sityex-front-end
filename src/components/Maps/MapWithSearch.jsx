@@ -41,7 +41,7 @@ const TOKEN = process.env.REACT_APP_MAPS_API_KEY
 const MAP_STYLE = process.env.REACT_APP_MAPS_STYLE
 const DEFAULT_ZOOM = 14
 
-function MapWithSearch({selectedCity}){
+function MapWithSearch({selectedCity, updateRecomendations}){
 
   const [configAlert, setConfigAlert] = useState(null)
   const [selectedPlace, setSelectedPlace] = useState({
@@ -51,6 +51,7 @@ function MapWithSearch({selectedCity}){
   const [zoom, setZoom] = useState(DEFAULT_ZOOM)
   const [currRecomendations, setCurrRecomendations] = useState([])
   const markerRef = useRef(null)
+  const markersAlreadyInDB = useRef({})
 
   useEffect(() => setCurrRecomendations([]), [selectedCity])
 
@@ -64,57 +65,77 @@ function MapWithSearch({selectedCity}){
   }
 
   const addRecommendation = () => {
-    setCurrRecomendations([...currRecomendations, selectedPlace])
+    const newCurrRecomendations = [...currRecomendations, selectedPlace]
+    setCurrRecomendations(newCurrRecomendations)
+    updateRecomendations(newCurrRecomendations)
     setSelectedPlace(EMPTY_PLACE)
-    setZoom(12)
+    setZoom(DEFAULT_ZOOM)
   }
 
   const isSelectedPlaceInCity = (selectedPlaceCountry, selectedPlaceCity) => {
     if (selectedPlaceCountry  === selectedCity.countryName && selectedPlaceCity === selectedCity.name)
       return true
-    else
-      return false
+    
+    return false
   }
 
   const isAlreadyAdded = placeName => {
     if (currRecomendations.some(recomendation => recomendation.name === placeName))
       return true
-    else
-      return false
+    
+    return false
   }
+
+  const isAlreadyInDB = place => selectedCity.mapMarkers?.some(
+    recom => recom.coordinates.latitude === place.coordinates.latitude
+      && recom.coordinates.longitude === place.coordinates.longitude
+  )
 
   const handleRetrieve = res => {
     const feature = res.features[0]
     
     const coordinates = feature.geometry.coordinates
-    let selectedPlaceCity = "" 
 
-    if ("place" in feature.properties.context)
-      selectedPlaceCity = feature.properties.context.place.name
-    else {
+    if (!("place" in feature.properties.context)){
       setConfigAlert({title: TITLESELOPTION, text: WRONGLOCATION, color: "error"})
+      return 
+    }
+
+    const placeCity = feature.properties.context.place.name
+    const placeCountry = feature.properties.context.country.name
+    const placeName = feature.properties.name
+    const placeFullAddress = feature.properties.full_address
+    const placeCategories = feature.properties.poi_category_ids
+
+    if (isSelectedPlaceInCity(placeCountry, placeCity) && isAlreadyAdded(placeName)){
+      setConfigAlert({title: TITLESELOPTION, text: LOCATIONALREADYADDED, color: "error"})
       return
     }
 
-    const selectedPlaceCountry = feature.properties.context.country.name
-    const selectedPlaceName = feature.properties.name
-
-    if (isSelectedPlaceInCity(selectedPlaceCountry, selectedPlaceCity) && isAlreadyAdded(selectedPlaceName))
-      setConfigAlert({title: TITLESELOPTION, text: LOCATIONALREADYADDED, color: "error"})
-
-    else if(isSelectedPlaceInCity(selectedPlaceCountry, selectedPlaceCity)){
-      setSelectedPlace({
-        coordinates: [coordinates[1], coordinates[0]],
-        name: selectedPlaceName,
-      })
-    }
-
-    else {
+    if(!isSelectedPlaceInCity(placeCountry, placeCity)){
       setConfigAlert({title: TITLESELOPTION, text: WRONGCOUNTRYORCITY, color: "error"})
+      return
     }
+    const selectedPlace = {
+      coordinates: {"latitude": coordinates[1], "longitude": coordinates[0]},
+      name: placeName,
+      fullAddress: placeFullAddress,
+      categories: placeCategories,
+    }
+
+    if(isAlreadyInDB(selectedPlace)){
+      const ref = markersAlreadyInDB.current[placeName]
+      if (ref)
+        ref.openPopup()
+    }
+
+    if(isSelectedPlaceInCity(placeCountry, placeCity)){
+      setSelectedPlace(selectedPlace)
+    }
+
   }
 
-  let currentMapCenter = selectedPlace.coordinates ? selectedPlace.coordinates : [selectedCity.latitude, selectedCity.longitude]
+  let currentMapCenter = selectedPlace.coordinates ? [selectedPlace.coordinates.latitude, selectedPlace.coordinates.longitude] : [selectedCity.latitude, selectedCity.longitude]
 
   return (
     <>
@@ -126,7 +147,7 @@ function MapWithSearch({selectedCity}){
           url={`${MAP_STYLE}${TOKEN}`}
         />
         <FullscreenControl position="topright"/>
-        {selectedPlace.coordinates && 
+        {(selectedPlace.coordinates && !isAlreadyInDB(selectedPlace)) && 
           <Marker
           ref={setMarkerRef}
           key="marker"
@@ -146,9 +167,23 @@ function MapWithSearch({selectedCity}){
           <Marker 
           key={recomendation.name}
           draggable={false}
-          position={recomendation.coordinates}
+          position={[recomendation.coordinates.latitude, recomendation.coordinates.longitude]}
           icon={blueIcon}
           />
+        )}
+        {selectedCity.mapMarkers?.map(marker => 
+        <Marker
+        key={marker.name}
+        draggable={false}
+        position={[marker.coordinates.latitude, marker.coordinates.longitude]}
+        ref={(el) => { markersAlreadyInDB.current[marker.name] = el }}
+        >
+          <Popup>
+            <Container align="center" style={{height: "100"}}>
+              <Typography style={{marginTop: 10, marginBottom: 10, fontWeight: 'bold'}}>{marker.name}</Typography>
+            </Container>
+          </Popup>
+        </Marker>
         )}
       </MapContainer>
       <SearchBox

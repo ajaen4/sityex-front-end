@@ -1,9 +1,12 @@
 
 import React from "react"
-import { MapContainer, TileLayer } from 'react-leaflet'
+
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import 'react-leaflet-fullscreen/styles.css'
 import { FullscreenControl } from "react-leaflet-fullscreen"
-import UpdateMapCenter from "./UpdateMapCenter"
+
+import Container from '@mui/material/Container'
+import Typography from '@mui/material/Typography'
 
 const TOKEN = process.env.REACT_APP_MAPS_API_KEY
 const MAP_STYLE = process.env.REACT_APP_MAPS_STYLE
@@ -11,13 +14,25 @@ const MAP_STYLE = process.env.REACT_APP_MAPS_STYLE
 function RecommendationsMap({selectedCity}){
 
   return (
-    <MapContainer center={[selectedCity.latitude, selectedCity.longitude]} zoom={12} style={{height: "400px", width: "100%"}}>
-    <UpdateMapCenter center={[selectedCity.latitude, selectedCity.longitude]} />
-    <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url={`${MAP_STYLE}${TOKEN}`}
-    />
-    <FullscreenControl position="topright"/>
+    <MapContainer center={[selectedCity.latitude, selectedCity.longitude]} zoom={13} style={{height: "400px", width: "100%"}}>
+      <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url={`${MAP_STYLE}${TOKEN}`}
+      />
+      <FullscreenControl position="topright"/>
+      {selectedCity.mapMarkers?.map(marker => 
+        <Marker
+        key={marker.name}
+        draggable={false}
+        position={[marker.coordinates.latitude, marker.coordinates.longitude]}
+        >
+          <Popup>
+            <Container align="center" style={{height: "100"}}>
+              <Typography style={{marginTop: 10, marginBottom: 10, fontWeight: 'bold'}}>{marker.name}</Typography>
+            </Container>
+          </Popup>
+        </Marker>
+      )}
     </MapContainer>
   )
 }

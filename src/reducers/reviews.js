@@ -1,16 +1,16 @@
 import { combineReducers } from 'redux'
 
 import {
-  SAVING_review,
-  SAVING_review_SUCCESS } from 'types'
+  SAVING_REVIEW,
+  SAVING_REVIEW_SUCCESS } from 'types'
 
 const initreviews = () => {
 
   const isFetching = (state = false, action) => {
     switch(action.type){
-      case SAVING_review:
+      case SAVING_REVIEW:
         return true
-      case SAVING_review_SUCCESS:
+      case SAVING_REVIEW_SUCCESS:
         return false
       default: return state
     }

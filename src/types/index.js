@@ -20,9 +20,9 @@ export const SET_AUTH_USER_ERROR = 'SET_AUTH_USER_ERROR'
 
 //--------------------reviewS
 
-export const SAVING_review = 'SAVING_review'
-export const SAVING_review_SUCCESS = 'SAVING_review_SUCCESS'
-export const SAVING_review_ERROR = 'SAVING_review_ERROR'
+export const SAVING_REVIEW = 'SAVING_REVIEW'
+export const SAVING_REVIEW_SUCCESS = 'SAVING_REVIEW_SUCCESS'
+export const SAVING_REVIEW_ERROR = 'SAVING_REVIEW_ERROR'
 
 //--------------------reviewS END
 

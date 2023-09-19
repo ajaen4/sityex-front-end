@@ -3,7 +3,7 @@ import { doc, getDocs, collection, runTransaction, serverTimestamp } from 'fireb
 
 const citiesCollection = collection(db, "cities");
 
-export const getreviews = (city) => {
+export const getReviews = (city) => {
   const query = collection(db, `cities/${city}/reviews`);
   return getDocs(query)
   .then(querySnapshot => {
@@ -31,7 +31,7 @@ const updateOriginalMarkers = (originalMarkers, newMarkers) => {
   return consolidatedMarkers;
 }
 
-export const addreview = (cityName, review, markers) => {
+export const addReview = (cityName, review, markers) => {
   const cityDocRef = doc(citiesCollection, cityName);
   const reviewsCollectionRef = collection(cityDocRef, "reviews");
 

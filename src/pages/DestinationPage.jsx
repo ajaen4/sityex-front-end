@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { withAuth } from 'session'
 import { prettyCity } from 'helpers/usefulFunctions'
-import { fetchCity, getreviews } from 'actions'
+import { fetchCity, getReviews } from 'actions'
 import { Container, Tab, Tabs, Box, Typography, Grid } from '@mui/material'
 
 import DestinationPageHeader from 'components/Headers/DestinationPageHeader'
@@ -20,7 +20,7 @@ const DestinationPage = ({ selectedCity, auth, isFetchingreviews, dispatch }) =>
   useEffect(() => {
     dispatch(fetchCity(prettyCity(location)))
 
-    getreviews(prettyCity(location))
+    getReviews(prettyCity(location))
       .then(reviews => {
         setreviews(reviews.sort((a, b) => b.timeStamp - a.timeStamp))
       })
