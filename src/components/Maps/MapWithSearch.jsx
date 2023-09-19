@@ -49,14 +49,14 @@ function MapWithSearch({selectedCity}){
   const markerRef = useRef(null)
   const [currRecomendations, setCurrRecomendations] = useState([])
 
-  useEffect(() => {
-    if (markerRef.current) {
-        const marker = markerRef.current
-        marker.on('add', function() {
-            this.openPopup()
-        })
+  const setMarkerRef = element => {
+    markerRef.current = element
+    if (element) {
+      element.on('add', function() {
+        this.openPopup()
+      })
     }
-  }, [selectedPlace])
+  }
 
   const addRecommendation = () => {
     setCurrRecomendations([...currRecomendations, selectedPlace])
@@ -77,7 +77,7 @@ function MapWithSearch({selectedCity}){
       return false
   }
 
-  const handleRetrieve = (res) => {
+  const handleRetrieve = res => {
     const feature = res.features[0]
     
     const coordinates = feature.geometry.coordinates
@@ -92,17 +92,19 @@ function MapWithSearch({selectedCity}){
 
     const selectedPlaceCountry = feature.properties.context.country.name
     const selectedPlaceName = feature.properties.name
+
     if (isSelectedPlaceInCity(selectedPlaceCountry, selectedPlaceCity) && isAlreadyAdded(selectedPlaceName))
       setConfigAlert({title: TITLESELOPTION, text: LOCATIONALREADYADDED, color: "error"})
+
     else if(isSelectedPlaceInCity(selectedPlaceCountry, selectedPlaceCity)){
       setSelectedPlace({
         coordinates: [coordinates[1], coordinates[0]],
         name: selectedPlaceName,
       })
     }
+
     else {
       setConfigAlert({title: TITLESELOPTION, text: WRONGCOUNTRYORCITY, color: "error"})
-      return
     }
   }
 
@@ -119,14 +121,13 @@ function MapWithSearch({selectedCity}){
         <FullscreenControl position="topright"/>
         {selectedPlace.coordinates && 
           <Marker
-          ref={markerRef}
+          ref={setMarkerRef}
           key="marker"
           draggable={false}
           position={currentMapCenter}
           icon={greenIcon}
           >
-            <Popup
-              >
+            <Popup>
               <Container align="center" style={{height: "100"}}>
                 <Typography style={{marginTop: 10, marginBottom: 10, fontWeight: 'bold'}}>{selectedPlace.name}</Typography>
                 <Button variant="contained" onClick={addRecommendation}>Add recomendation</Button>
