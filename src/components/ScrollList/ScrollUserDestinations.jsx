@@ -3,13 +3,13 @@ import React from "react"
 
 //Custom UI components
 import ReactList from 'react-list'
-import Experience from 'components/Experiences/Experience.jsx'
+import Review from 'components/Reviews/Review.jsx'
 import LoadingSpinner from 'components/Spinner/LoadingSpinner.jsx'
 import EmptyList from 'components/EmptyFill/EmptyList.jsx'
 
 function ScrollUserDestinations({ destinations, isFetching }){
 
-  const renderItem = (index, key) => <Experience data = {destinations[index]} key = {index}/>
+  const renderItem = (index, key) => <review data = {destinations[index]} key = {index}/>
 
   if(!isFetching){
     return (

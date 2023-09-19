@@ -58,7 +58,7 @@ const Opinion2 = ({icon, labelName, name1, name2, option1, option2, onChange, re
       </Container>
       {errors[labelName] && errors[labelName].type === 'required' &&
         <FormHelperText error>
-          {'Se debe introducir la opinion sobre ' + labelName}
+          {"You must introduce the opinion about " + labelName}
         </FormHelperText>
       }
     </>

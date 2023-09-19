@@ -67,7 +67,7 @@ const SignUpFormBase = ({dispatch}) => {
         <FormControl fullWidth  error={Boolean(errors.email)}>
           <TextField
             {...register('email', {
-              required: 'Se debe introducir el email',
+              required: "The email is required",
               pattern: {
                 value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
                 message: 'El formato del email no es valido'
@@ -82,7 +82,7 @@ const SignUpFormBase = ({dispatch}) => {
         <FormControl fullWidth error={Boolean(errors.userName)}>
           <TextField
             {...register('userName', {
-              required: 'Se debe introducir el nombre de usuario'
+              required: "The username is reuquired"
             })}
             label="Nombre de usuario"
             variant="outlined"
@@ -93,10 +93,10 @@ const SignUpFormBase = ({dispatch}) => {
         <FormControl fullWidth  error={Boolean(errors.password)}>
           <TextField
             {...register('password', {
-              required: 'Se debe introducir la contraseña',
+              required: "The password is required",
               minLength: {
                 value: 8,
-                message: 'La contraseña debe tener como mínimo 8 caracteres'
+                message: "The password must have at least 8 characters"
               }
             })}
             label="Contraseña"
@@ -109,10 +109,10 @@ const SignUpFormBase = ({dispatch}) => {
         <FormControl fullWidth  error={Boolean(errors.confirmPassword)}>
           <TextField
             {...register('confirmPassword', {
-              required: 'Se debe introducir la contraseña',
+              required: "The password is required",
               minLength: {
                 value: 8,
-                message: 'La contraseña debe tener como mínimo 8 caracteres'
+                message: "The password must have at least 8 characters"
               },
               validate: {
                 sameAs: value => sameAs(getValues, 'password')(value) || 'Las contraseñas deben de ser iguales'
@@ -143,7 +143,7 @@ const SignUpFormBase = ({dispatch}) => {
             type="submit"
             style={{ margin: '2%' }}
           >
-            Crea una cuenta
+            Create account
           </Button>
         </Box>
       </Box>

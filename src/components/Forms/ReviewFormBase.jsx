@@ -10,7 +10,7 @@ import FormControl from '@mui/material/FormControl'
 import Typography from '@mui/material/Typography'
 import Stack from '@mui/material/Stack'
 
-import { addExperience } from 'actions'
+import { addreview } from 'actions'
 import Opinion5 from 'components/Opinions/Opinion5'
 import CitiesDropDown from 'components/DropDownList/CitiesDropDown'
 import MapWithSearch from 'components/Maps/MapWithSearch'
@@ -18,7 +18,7 @@ import CenteredLoadingSpinner from 'components/Spinner/CenteredLoadingSpinner'
 import ActionModal from 'components/Modals/ActionModal'
 import TextArea from 'components/TextArea/TextArea'
 
-const ExperienceFormBase = ({ selectedCity, onChangeCity, citiesIndex, dispatch, auth }) => {
+const ReviewFormBase = ({ selectedCity, onChangeCity, citiesIndex, dispatch, auth }) => {
   const { register, handleSubmit, formState: { errors }, control, reset } = useForm()
   const navigate = useNavigate()
 
@@ -51,7 +51,7 @@ const ExperienceFormBase = ({ selectedCity, onChangeCity, citiesIndex, dispatch,
       data.userName = auth.userName
       data.userId = auth.id
       setIsFetching(true)
-      dispatch(addExperience(selectedCity.name, data, currRecomendations))
+      dispatch(addreview(selectedCity.name, data, currRecomendations))
       .then(() => {
         setIsFetching(false)
         setModalMessage("Su experiencia se ha guardado correctamente")
@@ -71,34 +71,31 @@ const ExperienceFormBase = ({ selectedCity, onChangeCity, citiesIndex, dispatch,
       <form onSubmit={handleSubmit(handleForm)} style={{ marginTop: '20px', textAlign: 'center' }}>
         {isFetching && <CenteredLoadingSpinner />}
         <Container sx={{ textAlign: 'center' }}>
-          <CitiesDropDown label='En que ciudad has estado?' citiesList={Object.keys(citiesIndex)} onChangeCity={onChangeCity} selectedCity={selectedCity ? selectedCity.name : null}/>
+          <CitiesDropDown label='Which city have you lived in?' citiesList={Object.keys(citiesIndex)} onChangeCity={onChangeCity} selectedCity={selectedCity ? selectedCity.name : null}/>
           <Grid container justifyContent='center' textAlign='center' sx={{my: "5px"}}>
             <Grid item xs={12} sm={6} md={6}>
-              <Opinion5 control={control} fieldName='weather' labelName='Clima' register={register} errors={errors} />
+              <Opinion5 control={control} fieldName='weather' labelName='Weather' register={register} errors={errors} />
             </Grid>
             <Grid item xs={12} sm={6} md={6}>
-              <Opinion5 control={control} fieldName='food' labelName='Comida' register={register} errors={errors} />
+              <Opinion5 control={control} fieldName='food' labelName='Food' register={register} errors={errors} />
             </Grid>
             <Grid item xs={12} sm={6} md={6}>
-              <Opinion5 control={control} fieldName='party' labelName='Fiesta' register={register} errors={errors} />
+              <Opinion5 control={control} fieldName='party' labelName='Social' register={register} errors={errors} />
             </Grid>
             <Grid item xs={12} sm={6} md={6}>
-              <Opinion5 control={control} fieldName='trips' labelName='Viajes ESN' register={register} errors={errors} />
+              <Opinion5 control={control} fieldName='trips' labelName='Accessibility' register={register} errors={errors} />
             </Grid>
           </Grid>
         </Container>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          marginTop: '50px',
+        <Container style={{
+          marginTop: '30px',
           textAlign: 'center',
-          marginLeft: '20px',
-          marginRight: '20px'
+          width: '100%',
         }}
           ref={mapContainer}>
-          <Typography variant='h3'> Recomiendanos sitios! </Typography>
+          <Typography variant='h3' style={{marginBottom: 30, fontWeight: "bold"}}> Recommend places in city! </Typography>
           <MapWithSearch selectedCity={selectedCity}/>
-        </div>
+        </Container>
         {noRecomendations && <Alert severity='error'>
           <div>
             <strong>Por favor, elige al menos una recomendacion</strong>
@@ -111,7 +108,7 @@ const ExperienceFormBase = ({ selectedCity, onChangeCity, citiesIndex, dispatch,
         </Alert>}
         <Stack style={{ textAlign: 'center', alignItems: "center" }}>
           <FormControl style={{ padding: '30px' }}>
-            <Typography variant='h3' style={{marginBottom: "15px"}}>Danos algún consejo!</Typography>
+            <Typography variant='h3' style={{marginBottom: "15px", fontWeight: "bold"}}>Give some advice about the city!</Typography>
             <TextArea name='tips' placeHolder='Consejos...' iconName='objects_support-17' register={register} errors={errors} />
           </FormControl>
           <Button
@@ -128,4 +125,4 @@ const ExperienceFormBase = ({ selectedCity, onChangeCity, citiesIndex, dispatch,
   )
 }
 
-export default ExperienceFormBase
+export default ReviewFormBase

@@ -18,13 +18,13 @@ export const SET_AUTH_USER_ERROR = 'SET_AUTH_USER_ERROR'
 
 //--------------------AUTH END
 
-//--------------------EXPERIENCES
+//--------------------reviewS
 
-export const SAVING_EXPERIENCE = 'SAVING_EXPERIENCE'
-export const SAVING_EXPERIENCE_SUCCESS = 'SAVING_EXPERIENCE_SUCCESS'
-export const SAVING_EXPERIENCE_ERROR = 'SAVING_EXPERIENCE_ERROR'
+export const SAVING_review = 'SAVING_review'
+export const SAVING_review_SUCCESS = 'SAVING_review_SUCCESS'
+export const SAVING_review_ERROR = 'SAVING_review_ERROR'
 
-//--------------------EXPERIENCES END
+//--------------------reviewS END
 
 //--------------------USER_MESSAGES
 

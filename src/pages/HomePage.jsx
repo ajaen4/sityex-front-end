@@ -68,7 +68,7 @@ const HomePage = ({ citiesIndex, isFetching, authUser }) => {
             <Grid item xs={11} md={7} lg={7} xl={7}>
               <Card>
                 <CardContent>
-                  <Typography variant="h6" color="textSecondary">Introduce un destino</Typography>
+                  <Typography variant="h6" color="textSecondary">Introduce a destination</Typography>
                   <Autocomplete
                     freeSolo
                     style={{marginTop: '20px'}}
@@ -119,19 +119,19 @@ const HomePage = ({ citiesIndex, isFetching, authUser }) => {
               <Grid item display="flex" justifyContent="center" xs={12}>
                 <img alt="selected place icon" src={require('assets/icons/pin_green.png')} style={{ height: '30px' }} />
                 <Typography variant="body1" style={{ marginLeft: '10px', marginTop: '3px'}}>
-                  Ciudades con mas de un millon de habitantes
+                  Cities with more than 1 million inhabitants
                 </Typography>
               </Grid>
               <Grid item display="flex" justifyContent="center" xs={12}>
                 <img alt="selected place icon" src={require('assets/icons/pin_blue.png')} style={{ height: '30px' }} />
                 <Typography variant="body1" style={{ marginLeft: '10px', marginTop: '3px'}}>
-                  Ciudades con habitantes entre 800 y 300 mil
+                  Cities with inhabitants between 800 and 300 thousand
                 </Typography>
               </Grid>
               <Grid item display="flex" justifyContent="center" xs={12}>
                 <img alt="selected place icon" src={require('assets/icons/pin_orange.png')} style={{ height: '30px' }} />
                 <Typography variant="body1" style={{ marginLeft: '10px', marginTop: '3px'}}>
-                Ciudades con menos de 300 mil habitantes
+                Cities with inhabitants between 300 and 100 thousand
                 </Typography>
               </Grid>
             </Grid>
@@ -146,7 +146,7 @@ const mapStateToProps = state => ({
   citiesIndex: state.citiesIndex.data,
   authUser: state.auth,
   isFetching: state.citiesIndex.isFetching,
-  savedExperience: state.experiences.message
+  savedreview: state.reviews.message
 })
 
 export default connect(mapStateToProps)(withAuth(HomePage))

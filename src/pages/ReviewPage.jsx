@@ -3,15 +3,15 @@ import { connect } from 'react-redux'
 
 import { withAuth } from 'session'
 
-import ExperienceForm from 'components/Forms/ExperienceForm'
+import ReviewForm from 'components/Forms/ReviewForm'
 
 
-const ExperiencePage = ({selectedCity, citiesIndex}) => {
+const ReviewPage = ({selectedCity, citiesIndex}) => {
 
   return (
     <div style = {{justifyContent: "center", textAlign: "center"}}>
-      <h2 className = "bold"> Rellenar experiencia </h2>
-      <ExperienceForm
+      <h2 className = "bold"> Fill in an review </h2>
+      <ReviewForm
         selectedCity = {selectedCity ? selectedCity : {name: "Aachen", countryName: "Germany", latitude: 50.776351, longitude: 6.083862}}
         citiesIndex = {citiesIndex !== null ? citiesIndex : []}
       />
@@ -24,4 +24,4 @@ const mapStateToProps = state => ({
   selectedCity: state.selectedCity.data
 })
 
-export default connect(mapStateToProps)(withAuth(ExperiencePage))
+export default connect(mapStateToProps)(withAuth(ReviewPage))

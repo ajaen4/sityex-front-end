@@ -2,12 +2,12 @@
 import DestinationPage from './DestinationPage'
 import HomePage from './HomePage'
 import LogInPage from './LogInPage'
-import ExperiencePage from './ExperiencePage'
+import ReviewPage from './ReviewPage'
 import SignUpPage from './SignUpPage'
 
 export {
   DestinationPage,
   HomePage,
   LogInPage,
-  ExperiencePage,
+  ReviewPage,
   SignUpPage}

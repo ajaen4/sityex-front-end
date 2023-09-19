@@ -1,16 +1,16 @@
 import { combineReducers } from 'redux'
 
 import {
-  SAVING_EXPERIENCE,
-  SAVING_EXPERIENCE_SUCCESS } from 'types'
+  SAVING_review,
+  SAVING_review_SUCCESS } from 'types'
 
-const initExperiences = () => {
+const initreviews = () => {
 
   const isFetching = (state = false, action) => {
     switch(action.type){
-      case SAVING_EXPERIENCE:
+      case SAVING_review:
         return true
-      case SAVING_EXPERIENCE_SUCCESS:
+      case SAVING_review_SUCCESS:
         return false
       default: return state
     }
@@ -21,6 +21,6 @@ const initExperiences = () => {
   })
 }
 
-const experiences = initExperiences()
+const reviews = initreviews()
 
-export default experiences
+export default reviews

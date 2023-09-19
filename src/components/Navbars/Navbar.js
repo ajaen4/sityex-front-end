@@ -17,7 +17,7 @@ import AdbIcon from "@mui/icons-material/Adb"
 
 import { signOutUser } from "actions"
 
-const pages = ["New experience", "Destinations"]
+const pages = ["New review", "Destinations"]
 const settings = ["Profile", "Account", "Logout"]
 
 function NavBar({ auth, isAuthResolved }) {
@@ -30,8 +30,8 @@ function NavBar({ auth, isAuthResolved }) {
 
   const handleCloseNavMenu = (page) => {
     setAnchorElNav(null)
-    if (page === "New experience")
-      navigate("new-experience")
+    if (page === "New review")
+      navigate("new-review")
     if (page === "Destinations")
       navigate("home")
   }

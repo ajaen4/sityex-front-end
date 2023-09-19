@@ -14,7 +14,7 @@ import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore'
 import WbSunnyIcon from '@mui/icons-material/WbSunny'
 import { Grid } from "@mui/material"
 
-const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
 class CityInfo extends Component {
 
@@ -106,15 +106,15 @@ class CityInfo extends Component {
       return (
         <Container>
           <Typography variant="h6" sx={{my: "8px"}}>
-            {cityName} tiene {population} habitantes
+            {cityName} has {population} inhabitants
           </Typography>
           {(rent && rent !== "0") && 
             <Typography variant="h6" sx={{my: "8px"}}>
-            Precio de alquiler medio {rent + " " + currencySymbol}
+            Rent average cost {rent + " " + currencySymbol}
             </Typography>}
           {(yearAvgTemp) &&
             <Typography variant="h6" sx={{my: "8px"}}>
-            Temperatura media (año) {new Intl.NumberFormat("es-418").format(yearAvgTemp)} ºC
+            Average temperature (year) {new Intl.NumberFormat("es-418").format(yearAvgTemp)} ºC
             </Typography>}
           <IconButton onClick={this.toggle} style={{ marginTop: '30px', marginBottom: '0px' }}>
             {isOpen ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
@@ -127,34 +127,34 @@ class CityInfo extends Component {
                   <Container>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                       <PriceChangeIcon style={{ marginLeft: '8px', marginRight: '4px' }} />
-                      <Typography variant="h5"><strong>Precios</strong></Typography>
+                      <Typography variant="h5"><strong>Living costs</strong></Typography>
                     </div>
-                    <Typography variant="caption" sx={{my: "2px"}}>Los precios están calculados en euros aunque la moneda local sea distinta</Typography>
-                    <Typography variant="body1" sx={{my: "4px"}}>{(apartmentCost && apartmentCost !== "0") && ("Agua, electricidad, tasas de basura: " + apartmentCost + " " + currencySymbol)}</Typography>
-                    <Typography variant="body1" sx={{my: "4px"}}>{(internetCost && internetCost !== "0") && ("Tarifa internet para el apartamento: " + internetCost + " " + currencySymbol)}</Typography>
-                    <Typography variant="body1" sx={{my: "4px"}}>{(salaryAvg && salaryAvg !== "0") && ("Salario medio neto: " + salaryAvg + " " + currencySymbol)}</Typography>
-                    <Typography variant="body1" sx={{my: "4px"}}>{(mobileFee && mobileFee !== "0") && ("Un minuto de tarifa de movil prepago: " + mobileFee + " " + currencySymbol)}</Typography>
-                    <Typography variant="body1" sx={{my: "4px"}}>{(costOfCinema && costOfCinema !== "0") && ("Una entrada de cine: " + costOfCinema + " " + currencySymbol)}</Typography>
+                    <Typography variant="caption" sx={{my: "2px"}}>Costs are calculated in euros</Typography>
+                    <Typography variant="body1" sx={{my: "4px"}}>{(apartmentCost && apartmentCost !== "0") && ("Water, electricity and waste tax: " + apartmentCost + " " + currencySymbol)}</Typography>
+                    <Typography variant="body1" sx={{my: "4px"}}>{(internetCost && internetCost !== "0") && ("Wifi fee: " + internetCost + " " + currencySymbol)}</Typography>
+                    <Typography variant="body1" sx={{my: "4px"}}>{(salaryAvg && salaryAvg !== "0") && ("Average net salary: " + salaryAvg + " " + currencySymbol)}</Typography>
+                    <Typography variant="body1" sx={{my: "4px"}}>{(mobileFee && mobileFee !== "0") && ("1 minute of prepaid phone fee: " + mobileFee + " " + currencySymbol)}</Typography>
+                    <Typography variant="body1" sx={{my: "4px"}}>{(costOfCinema && costOfCinema !== "0") && ("Cinema ticket: " + costOfCinema + " " + currencySymbol)}</Typography>
                     </Container>}
                   {checkSupermarket !== 0 && <Container>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: "20px", marginBottom: "10px" }}>
                     <LocalGroceryStoreIcon style={{ marginLeft: '8px', marginRight: '4px' }} />
-                    <Typography variant="h5"><strong>Bolsa de la compra</strong></Typography>
+                    <Typography variant="h5"><strong>Shopping bag</strong></Typography>
                     </div>
-                    <Typography variant="body1" sx={{my: "4px"}}>{(costOfApples && costOfApples !== "0") && ("1 kg de manzanas: " + costOfApples + " " + currencySymbol)}</Typography>
-                    <Typography variant="body1" sx={{my: "4px"}}>{(costOfEggs && costOfEggs !== "0") && ("1 docena de huevos: " + costOfEggs + " " + currencySymbol)}</Typography>
-                    <Typography variant="body1" sx={{my: "4px"}}>{(costOfChicken && costOfChicken !== "0") && ("1 kg de pollo: " + costOfChicken + " " + currencySymbol)}</Typography>
-                    <Typography variant="body1" sx={{my: "4px"}}>{(costOfBeer && costOfBeer !== "0") && ("1/2 L de cerveza local: " + costOfBeer + " " + currencySymbol)}</Typography>
-                    <Typography variant="body1" sx={{my: "4px"}}>{(costOfMilk && costOfMilk !== "0") && ("1/2 L de leche: " + costOfMilk + " " + currencySymbol)}</Typography>
+                    <Typography variant="body1" sx={{my: "4px"}}>{(costOfApples && costOfApples !== "0") && ("1 kg of apples: " + costOfApples + " " + currencySymbol)}</Typography>
+                    <Typography variant="body1" sx={{my: "4px"}}>{(costOfEggs && costOfEggs !== "0") && ("1 dozen of eggs: " + costOfEggs + " " + currencySymbol)}</Typography>
+                    <Typography variant="body1" sx={{my: "4px"}}>{(costOfChicken && costOfChicken !== "0") && ("1 kg of chicken: " + costOfChicken + " " + currencySymbol)}</Typography>
+                    <Typography variant="body1" sx={{my: "4px"}}>{(costOfBeer && costOfBeer !== "0") && ("1/2 L of local beer: " + costOfBeer + " " + currencySymbol)}</Typography>
+                    <Typography variant="body1" sx={{my: "4px"}}>{(costOfMilk && costOfMilk !== "0") && ("1/2 L of milk: " + costOfMilk + " " + currencySymbol)}</Typography>
                   </Container>}
                 </Grid>
                 <Grid item xs={12} md={6} lg={6}>
                   <Container>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                       <WbSunnyIcon style={{ marginLeft: '8px', marginRight: '4px' }} />
-                      <Typography display="inline" variant="h5"><strong>Tiempo</strong></Typography>
+                      <Typography display="inline" variant="h5"><strong>Weather</strong></Typography>
                     </div>
-                    <Typography variant="caption" sx={{my: "2px"}}>(Temperatura media / Salida del sol)</Typography>
+                    <Typography variant="caption" sx={{my: "2px"}}>(Avg temperature / Sunrise)</Typography>
                     {
                       histAvgTempIds.map(number =>
                       <Typography key = {number.id} sx={{mh:"4px", my:"4px"}} style = {{

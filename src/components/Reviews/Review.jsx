@@ -5,7 +5,7 @@ import FastfoodIcon from '@mui/icons-material/Fastfood'
 import CelebrationIcon from '@mui/icons-material/Celebration'
 import TravelExploreIcon from '@mui/icons-material/TravelExplore'
 
-const Experience = ({ data }) => {
+const review = ({ data }) => {
 
   const avgRating = (Number(data.weather) + Number(data.food) + Number(data.party) + Number(data.trips)) / 4;
   const formattedDate = data.timeStamp.toDate().toLocaleDateString();
@@ -27,7 +27,7 @@ const Experience = ({ data }) => {
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                   <WbSunnyIcon style={{ marginLeft: '8px', marginRight: '8px' }} />
                   <Typography display="inline">
-                    <strong>Clima:</strong> {data.weather}
+                    <strong>Weather:</strong> {data.weather}
                   </Typography>
                 </div>
               </Grid>
@@ -36,7 +36,7 @@ const Experience = ({ data }) => {
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                   <FastfoodIcon style={{ marginLeft: '8px', marginRight: '8px' }}/>
                   <Typography display="inline">
-                    <strong>Comida:</strong> {data.food}
+                    <strong>Food:</strong> {data.food}
                   </Typography>
                 </div>
               </Grid>
@@ -45,7 +45,7 @@ const Experience = ({ data }) => {
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                   <CelebrationIcon style={{ marginLeft: '8px', marginRight: '8px' }}/>
                   <Typography display="inline" >
-                    <strong>Fiesta:</strong> {data.party}
+                    <strong>Social:</strong> {data.party}
                   </Typography>
                 </div>
               </Grid>
@@ -54,7 +54,7 @@ const Experience = ({ data }) => {
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                   <TravelExploreIcon style={{ marginLeft: '8px', marginRight: '8px' }}/>
                   <Typography display="inline" >
-                    <strong>Viajes ESN:</strong> {data.trips}
+                    <strong>Accessibility:</strong> {data.trips}
                   </Typography>
                 </div>
               </Grid>
@@ -71,4 +71,4 @@ const Experience = ({ data }) => {
   )
 }
 
-export default Experience
+export default review

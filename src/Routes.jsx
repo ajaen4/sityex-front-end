@@ -6,7 +6,7 @@ import {
   SignUpPage,
   HomePage,
   DestinationPage,
-  ExperiencePage,
+  ReviewPage,
 } from 'pages'
 
 import * as ROUTES_PATHS from 'constants/routes'
@@ -18,7 +18,7 @@ const AppRoutes = () => (
     <Route path={ROUTES_PATHS.LOG_IN} element={<LogInPage />} />
     <Route path={ROUTES_PATHS.HOME} element={<HomePage />} />
     <Route path={ROUTES_PATHS.DESTINATION} element={<DestinationPage />} />
-    <Route path={ROUTES_PATHS.NEW_EXPERIENCE} element={<ExperiencePage />} />
+    <Route path={ROUTES_PATHS.NEW_REVIEW} element={<ReviewPage />} />
   </Routes>
 );
 

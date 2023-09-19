@@ -24,7 +24,7 @@ const TextArea = ({name, register, errors}) => {
         error={errors[name] !== undefined}
       />
       {errors[name] && errors[name].type === 'required' &&
-        <FormHelperText error>Se debe introducir al menos un consejo</FormHelperText>
+        <FormHelperText error>You must introduce at least one advice</FormHelperText>
       }
       {errors[name] && errors[name].type === 'maxLength' &&
         <FormHelperText error>{'El ' + name + ' puede tener como maximo 300 caracteres'}</FormHelperText>

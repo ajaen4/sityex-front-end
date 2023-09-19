@@ -3,8 +3,8 @@ import { doc, getDocs, collection, runTransaction, serverTimestamp } from 'fireb
 
 const citiesCollection = collection(db, "cities");
 
-export const getExperiences = (city) => {
-  const query = collection(db, `cities/${city}/experiences`);
+export const getreviews = (city) => {
+  const query = collection(db, `cities/${city}/reviews`);
   return getDocs(query)
   .then(querySnapshot => {
     return querySnapshot.docs.map(doc => doc.data())
@@ -31,9 +31,9 @@ const updateOriginalMarkers = (originalMarkers, newMarkers) => {
   return consolidatedMarkers;
 }
 
-export const addExperience = (cityName, experience, markers) => {
+export const addreview = (cityName, review, markers) => {
   const cityDocRef = doc(citiesCollection, cityName);
-  const experiencesCollectionRef = collection(cityDocRef, "experiences");
+  const reviewsCollectionRef = collection(cityDocRef, "reviews");
 
   return runTransaction(db, async t => {
     const cityDoc = await t.get(cityDocRef);
@@ -46,14 +46,14 @@ export const addExperience = (cityName, experience, markers) => {
     };
     t.set(cityDocRef, setObject, { merge: true });
 
-    // Add the experience to the subcollection of the city
-    const newExperienceDocRef = doc(experiencesCollectionRef);
-    const id = newExperienceDocRef.id;
+    // Add the review to the subcollection of the city
+    const newreviewDocRef = doc(reviewsCollectionRef);
+    const id = newreviewDocRef.id;
     const expTimeId = {
-      ...experience,
+      ...review,
       timeStamp: serverTimestamp(),
       id: id
     };
-    t.set(newExperienceDocRef, expTimeId);
+    t.set(newreviewDocRef, expTimeId);
   });
 }

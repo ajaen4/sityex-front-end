@@ -6,5 +6,5 @@ export const ACCOUNT = '/account';
 export const ADMIN = '/admin';
 export const PASSWORD_FORGET = '/pw-forget';
 export const DESTINATION = '/destination/:location';
-export const NEW_EXPERIENCE = '/new-experience';
+export const NEW_REVIEW = '/new-review';
 export const PROFILE = '/profile';

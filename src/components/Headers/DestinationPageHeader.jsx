@@ -32,11 +32,11 @@ function DestinationPageHeader({cityName, countryName, numExp}) {
         <Grid container sx={{ justifyContent: "center" }}> 
           <Grid item xs={4} md={2} lg={2}>
             <Typography variant="h3">{numExp}</Typography>
-            <Typography variant="body1"><b>Experiencias</b></Typography>
+            <Typography variant="body1"><b>Reviews</b></Typography>
           </Grid>
           <Grid item xs={4} md={2} lg={2}>
             <Typography variant="h3">0</Typography>
-            <Typography variant="body1"><b>Personas</b></Typography>
+            <Typography variant="body1"><b>People</b></Typography>
           </Grid>
         </Grid>
     </Box>

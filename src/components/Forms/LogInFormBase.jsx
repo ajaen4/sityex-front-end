@@ -67,10 +67,10 @@ const LogInFormBase = ({dispatch}) => {
                 autoFocus
                 error={errors.email !== undefined}
                 {...register("email", {
-                  required: "Se debe introducir el email",
+                  required: "You must provide your email",
                   pattern: {
                     value: /^(([^<>()\[\]\\.,:\s@"]+(\.[^<>()\[\]\\.,:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                    message: "El email introducido no es válido"
+                    message: "The email doesn't have a valid format"
                   }
                 })}
               />
@@ -83,10 +83,10 @@ const LogInFormBase = ({dispatch}) => {
                 type="password"
                 placeholder="Password..."
                 {...register("password", {
-                  required: 'Se debe introducir la contraseña',
+                  required: "The password is required",
                   minLength: {
                     value: 8,
-                    message: 'La contraseña debe tener como mínimo 8 caracteres'
+                    message: "The password must have at least 8 characters"
                   },
                 })}
               />

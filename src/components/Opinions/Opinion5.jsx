@@ -50,7 +50,7 @@ const Opinion5 = ({fieldName, labelName, errorName, control, errors}) => {
 
       {errors[fieldName] && errors[fieldName].type === 'required' &&
         <FormHelperText error>
-          {'Se debe introducir la opinion sobre ' + (errorName === undefined ? labelName : errorName)}
+          {"You must introduce the opinion about " + (errorName === undefined ? labelName : errorName)}
         </FormHelperText>
       }
     </Container>

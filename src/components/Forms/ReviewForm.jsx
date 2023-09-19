@@ -4,9 +4,9 @@ import { connect } from 'react-redux'
 import { prettyCity } from 'helpers/usefulFunctions'
 import { fetchCity } from 'actions'
 
-import ExperienceFormBase from './ExperienceFormBase'
+import ReviewFormBase from './ReviewFormBase'
 
-const ExperienceForm = ({selectedCity, citiesIndex, dispatch, auth}) => {
+const ReviewForm = ({selectedCity, citiesIndex, dispatch, auth}) => {
 
   const INITIALCITY = "Aachen"
 
@@ -20,7 +20,7 @@ const ExperienceForm = ({selectedCity, citiesIndex, dispatch, auth}) => {
   }
 
   return (
-    <ExperienceFormBase
+    <ReviewFormBase
       selectedCity = {selectedCity}
       onChangeCity = {onChangeCity}
       citiesIndex = {citiesIndex}
@@ -30,9 +30,9 @@ const ExperienceForm = ({selectedCity, citiesIndex, dispatch, auth}) => {
 }
 
 const mapStateToProps = state => ({
-  savingExpState: state.experiences.state,
+  savingExpState: state.reviews.state,
   auth: state.auth.data,
   isAuthResolved: state.auth.isAuthResolved
 })
 
-export default connect(mapStateToProps)(ExperienceForm)
+export default connect(mapStateToProps)(ReviewForm)

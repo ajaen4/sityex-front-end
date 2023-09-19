@@ -1,6 +1,6 @@
 
 export * from './auth'
 export * from './cities'
-export * from './experiences'
+export * from './reviews'
 export * from './connection'
 export * from './messages'
