@@ -1,5 +1,5 @@
 
-import React, { useState, useRef } from "react"
+import React, { useState, useRef, useEffect } from "react"
 
 import Alert from '@mui/material/Alert'
 import AlertTitle from '@mui/material/AlertTitle'
@@ -14,6 +14,7 @@ import 'react-leaflet-fullscreen/styles.css'
 import L from 'leaflet'
 import { FullscreenControl } from "react-leaflet-fullscreen"
 import { SearchBox } from '@mapbox/search-js-react'
+import UpdateMapZoom from "components/Maps/UpdateMapZoom"
 
 import UpdateMapCenter from "components/Maps/UpdateMapCenter"
 
@@ -38,6 +39,7 @@ const EMPTY_PLACE = {
 
 const TOKEN = process.env.REACT_APP_MAPS_API_KEY
 const MAP_STYLE = process.env.REACT_APP_MAPS_STYLE
+const DEFAULT_ZOOM = 14
 
 function MapWithSearch({selectedCity}){
 
@@ -46,8 +48,11 @@ function MapWithSearch({selectedCity}){
     coordinates: null,
     name: null,
   })
-  const markerRef = useRef(null)
+  const [zoom, setZoom] = useState(DEFAULT_ZOOM)
   const [currRecomendations, setCurrRecomendations] = useState([])
+  const markerRef = useRef(null)
+
+  useEffect(() => setCurrRecomendations([]), [selectedCity])
 
   const setMarkerRef = element => {
     markerRef.current = element
@@ -61,6 +66,7 @@ function MapWithSearch({selectedCity}){
   const addRecommendation = () => {
     setCurrRecomendations([...currRecomendations, selectedPlace])
     setSelectedPlace(EMPTY_PLACE)
+    setZoom(12)
   }
 
   const isSelectedPlaceInCity = (selectedPlaceCountry, selectedPlaceCity) => {
@@ -112,8 +118,9 @@ function MapWithSearch({selectedCity}){
 
   return (
     <>
-      <MapContainer center={[selectedCity.latitude, selectedCity.longitude]} zoom={12} style={{height: "400px"}}>
+      <MapContainer center={[selectedCity.latitude, selectedCity.longitude]} zoom={DEFAULT_ZOOM} style={{height: "400px"}}>
         <UpdateMapCenter center={currentMapCenter} />
+        <UpdateMapZoom newZoom={zoom} currRecomendations={currRecomendations}/>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url={`${MAP_STYLE}${TOKEN}`}
