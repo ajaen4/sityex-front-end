@@ -20,7 +20,7 @@ import StandarModal from 'components/Modals/StandarModal'
 import CenteredLoadingSpinner from 'components/Spinner/CenteredLoadingSpinner'
 
 const LogInFormBase = ({dispatch}) => {
-  const {register, handleSubmit, formState: { errors }} = useForm()
+  const {register, handleSubmit, formState: { errors }, reset} = useForm()
   const [isFetching, setIsFetching] = useState(false)
   const [errorMessage, setErrorMessage] = useState(null)
 
@@ -28,10 +28,10 @@ const LogInFormBase = ({dispatch}) => {
     setIsFetching(true)
     dispatch(logInUser(data))
     .then(user => {
-      setIsFetching(false)
     }, errorMessage => {
       setErrorMessage(errorMessage)
       setIsFetching(false)
+      reset()
     })
   }
 
@@ -139,7 +139,8 @@ const LogInFormBase = ({dispatch}) => {
             style = {{
               marginTop: "15px"
             }}
-            message = {errorMessage}
+            title = {"Incorrect authentication. "}
+            message = {errorMessage.message}
             />}
         </Box>
       </Container>
