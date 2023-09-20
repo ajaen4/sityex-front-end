@@ -15,34 +15,35 @@ export const getReviews = (city) => {
   })
 }
 
-const updateOriginalMarkers = (originalMarkers, newMarkers) => {
-  let consolidatedMarkers = [...originalMarkers];
+const updateOriginalRecomendations = (originalRecomendations, newRecomendations) => {
+  let consolidatedRecomendations = [...originalRecomendations];
 
-  newMarkers.forEach(newMarker => {
-    const foundMarker = consolidatedMarkers.find(orgMarker => orgMarker.id === newMarker.id);
+  newRecomendations.forEach(newRecomendation => {
+    const foundRecomendation = consolidatedRecomendations.find(orgRecomendation => orgRecomendation.name === newRecomendation.name);
     
-    if (foundMarker) {
-      foundMarker.numOfRecomendations++;
+    if (foundRecomendation) {
+      foundRecomendation.numOfRecomendations++;
     } else {
-      consolidatedMarkers.push(newMarker);
+      newRecomendation.numOfRecomendations = 1;
+      consolidatedRecomendations.push(newRecomendation);
     }
   });
 
-  return consolidatedMarkers;
+  return consolidatedRecomendations;
 }
 
-export const addReview = (cityName, review, markers) => {
+export const addReview = (cityName, review, recomendations) => {
   const cityDocRef = doc(citiesCollection, cityName);
   const reviewsCollectionRef = collection(cityDocRef, "reviews");
 
   return runTransaction(db, async t => {
     const cityDoc = await t.get(cityDocRef);
-    const originalMarkers = cityDoc.data().mapMarkers || [];
+    const originalRecomendations = cityDoc.data().recomendations || [];
     
-    const updatedMarkers = updateOriginalMarkers(originalMarkers, markers);
+    const updatedRecomendations = updateOriginalRecomendations(originalRecomendations, recomendations);
     
     const setObject = {
-      mapMarkers: updatedMarkers
+      recomendations: updatedRecomendations
     };
     t.set(cityDocRef, setObject, { merge: true });
 

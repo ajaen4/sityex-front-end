@@ -50,7 +50,7 @@ function MapWithSearch({selectedCity, updateRecomendations}){
   })
   const [zoom, setZoom] = useState(DEFAULT_ZOOM)
   const [currRecomendations, setCurrRecomendations] = useState([])
-  const markerRef = useRef(null)
+  const selectedPlaceMarker = useRef(null)
   const markersAlreadyInDB = useRef({})
 
   useEffect(() => {
@@ -58,8 +58,8 @@ function MapWithSearch({selectedCity, updateRecomendations}){
     setSelectedPlace(EMPTY_PLACE)
   }, [selectedCity])
 
-  const setMarkerRef = element => {
-    markerRef.current = element
+  const setSelectedPlaceMarker = element => {
+    selectedPlaceMarker.current = element
     if (element) {
       element.on('add', function() {
         this.openPopup()
@@ -67,13 +67,16 @@ function MapWithSearch({selectedCity, updateRecomendations}){
     }
   }
 
-  const addRecommendation = () => {
-    const newCurrRecomendations = [...currRecomendations, selectedPlace]
+  const addRecommendation = (recomendation) => {
+    const newCurrRecomendations = [...currRecomendations, recomendation]
     setCurrRecomendations(newCurrRecomendations)
     updateRecomendations(newCurrRecomendations)
     setSelectedPlace(EMPTY_PLACE)
     setZoom(DEFAULT_ZOOM)
+    closeMarkersInDB()
   }
+
+  const closeMarkersInDB = () => Object.values(markersAlreadyInDB.current).forEach(marker => marker.closePopup())
 
   const isSelectedPlaceInCity = (selectedPlaceCountry, selectedPlaceCity) => {
     if (selectedPlaceCountry  === selectedCity.countryName && selectedPlaceCity === selectedCity.name)
@@ -89,10 +92,17 @@ function MapWithSearch({selectedCity, updateRecomendations}){
     return false
   }
 
-  const isAlreadyInDB = place => selectedCity.mapMarkers?.some(
+  const isAlreadyInDB = place => {
+    const some = selectedCity.recomendations?.some(
     recom => recom.coordinates.latitude === place.coordinates.latitude
       && recom.coordinates.longitude === place.coordinates.longitude
-  )
+    )
+    return some
+  }
+
+  const recsNotInDB = () => {
+    return currRecomendations.filter(recom => !isAlreadyInDB(recom))
+  }
 
   const handleRetrieve = res => {
     const feature = res.features[0]
@@ -127,9 +137,9 @@ function MapWithSearch({selectedCity, updateRecomendations}){
     }
 
     if(isAlreadyInDB(selectedPlace)){
-      const ref = markersAlreadyInDB.current[placeName]
-      if (ref)
-        ref.openPopup()
+      const markerInMap = markersAlreadyInDB.current[placeName]
+      if (markerInMap)
+        markerInMap.openPopup()
     }
 
     if(isSelectedPlaceInCity(placeCountry, placeCity)){
@@ -152,8 +162,8 @@ function MapWithSearch({selectedCity, updateRecomendations}){
         <FullscreenControl position="topright"/>
         {(selectedPlace.coordinates && !isAlreadyInDB(selectedPlace)) && 
           <Marker
-          ref={setMarkerRef}
-          key="marker"
+          ref={setSelectedPlaceMarker}
+          key="selectedPlaceMarker"
           draggable={false}
           position={currentMapCenter}
           icon={greenIcon}
@@ -161,29 +171,32 @@ function MapWithSearch({selectedCity, updateRecomendations}){
             <Popup>
               <Container align="center" style={{height: "100"}}>
                 <Typography style={{marginTop: 10, marginBottom: 10, fontWeight: 'bold'}}>{selectedPlace.name}</Typography>
-                <Button variant="contained" onClick={addRecommendation}>Add recomendation</Button>
+                <Button variant="contained" onClick={() => addRecommendation(selectedPlace)}>Add recomendation</Button>
               </Container>
             </Popup>
           </Marker>
         }
-        {currRecomendations.map( recomendation =>
-          <Marker 
+        {recsNotInDB().map( recomendation =>
+          <Marker
           key={recomendation.name}
           draggable={false}
           position={[recomendation.coordinates.latitude, recomendation.coordinates.longitude]}
           icon={blueIcon}
           />
         )}
-        {selectedCity.mapMarkers?.map(marker => 
+        {selectedCity.recomendations?.map(recomendation => 
         <Marker
-        key={marker.name}
+        key={recomendation.name}
         draggable={false}
-        position={[marker.coordinates.latitude, marker.coordinates.longitude]}
-        ref={(el) => { markersAlreadyInDB.current[marker.name] = el }}
+        position={[recomendation.coordinates.latitude, recomendation.coordinates.longitude]}
+        ref={el => { markersAlreadyInDB.current[recomendation.name] = el }}
         >
           <Popup>
             <Container align="center" style={{height: "100"}}>
-              <Typography style={{marginTop: 10, marginBottom: 10, fontWeight: 'bold'}}>{marker.name}</Typography>
+              <Typography style={{marginTop: 10, marginBottom: 5, fontWeight: 'bold'}}>{recomendation.name}</Typography>
+              <Typography style={{marginTop: 5, marginBottom: 5}}>Num of recomendations: {recomendation.numOfRecomendations}</Typography>
+              {!isAlreadyAdded(recomendation.name) && <Button variant="contained" onClick={() => addRecommendation(recomendation)}>Add recomendation</Button>}
+              {isAlreadyAdded(recomendation.name) && <Typography style={{marginTop: 2, marginBottom: 2}}>(Already added)</Typography>}
             </Container>
           </Popup>
         </Marker>

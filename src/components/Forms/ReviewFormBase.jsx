@@ -47,24 +47,24 @@ const ReviewFormBase = ({ selectedCity, onChangeCity, citiesIndex, dispatch, aut
     if(currRecomendations.length === 0){
       window.scrollTo(0, mapContainer.current.offsetTop)
       setNoRecomendations(true)
+      return
     }
-    else {
-      data.userName = auth.userName
-      data.userId = auth.id
-      setIsFetching(true)
-      dispatch(addReview(selectedCity.name, data, currRecomendations))
-      .then(() => {
-        setIsFetching(false)
-        setModalMessage("Su experiencia se ha guardado correctamente")
-        setTimeout(() => {
-          goToDestinations()
-        }, 2500);
-      })
-      .catch(err => {
-        setIsFetching(false)
-        setModalMessage("Ha ocurrido un problema. Por favor, vuelva a intentarlo")
-      })
-    }
+
+    data.userName = auth.userName
+    data.userId = auth.id
+    setIsFetching(true)
+    dispatch(addReview(selectedCity.name, data, currRecomendations))
+    .then(() => {
+      setIsFetching(false)
+      setModalMessage("Su experiencia se ha guardado correctamente")
+      setTimeout(() => {
+        goToDestinations()
+      }, 2500);
+    })
+    .catch(err => {
+      setIsFetching(false)
+      setModalMessage("Ha ocurrido un problema. Por favor, vuelva a intentarlo")
+    })
   }
 
   return (

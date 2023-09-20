@@ -7,7 +7,7 @@ import {
 
 export const getReviews = cityName => api.getReviews(cityName)
 
-export const addReview = (cityName, review, markers) => (dispatch, _) =>  {
+export const addReview = (cityName, review, recomendations) => (dispatch, _) =>  {
   dispatch({type: SAVING_REVIEW})
-  return api.addReview(cityName, review, markers)
+  return api.addReview(cityName, review, recomendations)
 }

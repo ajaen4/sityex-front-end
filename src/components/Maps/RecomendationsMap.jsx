@@ -20,15 +20,17 @@ function RecommendationsMap({selectedCity}){
           url={`${MAP_STYLE}${TOKEN}`}
       />
       <FullscreenControl position="topright"/>
-      {selectedCity.mapMarkers?.map(marker => 
+      {selectedCity.recomendations?.map(recomendation => 
         <Marker
-        key={marker.name}
+        key={recomendation.name}
         draggable={false}
-        position={[marker.coordinates.latitude, marker.coordinates.longitude]}
+        position={[recomendation.coordinates.latitude, recomendation.coordinates.longitude]}
         >
           <Popup>
             <Container align="center" style={{height: "100"}}>
-              <Typography style={{marginTop: 10, marginBottom: 10, fontWeight: 'bold'}}>{marker.name}</Typography>
+              <Typography style={{marginTop: 10, marginBottom: 10, fontWeight: 'bold'}}>{recomendation.name}</Typography>
+              <Typography style={{marginTop: 5, marginBottom: 5}}>Type: {recomendation.categories[0]}</Typography>
+              <Typography style={{marginTop: 5, marginBottom: 5}}>Num of recomendations: {recomendation.numOfRecomendations}</Typography>
             </Container>
           </Popup>
         </Marker>
