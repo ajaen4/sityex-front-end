@@ -15,6 +15,7 @@ import L from 'leaflet'
 import { FullscreenControl } from "react-leaflet-fullscreen"
 import { SearchBox } from '@mapbox/search-js-react'
 import UpdateMapZoom from "components/Maps/UpdateMapZoom"
+import PlaceIcon from "@mui/icons-material/Place"
 
 import UpdateMapCenter from "components/Maps/UpdateMapCenter"
 
@@ -22,15 +23,6 @@ const TITLESELOPTION = "Incorrect location. "
 const WRONGCOUNTRYORCITY = "The location is not in the specified city"
 const WRONGLOCATION = "Please select a concrete location"
 const LOCATIONALREADYADDED = "You have already added this location"
-
-const greenIcon = L.icon({
-  iconUrl: require("assets/icons/pin_green.png"),
-  iconSize: [40, 41],
-})
-const blueIcon = L.icon({
-  iconUrl: require("assets/icons/pin_blue.png"),
-  iconSize: [40, 41],
-})
 
 const EMPTY_PLACE = {
   coordinates: null,
@@ -57,6 +49,15 @@ function MapWithSearch({selectedCity, updateRecomendations}){
     setCurrRecomendations([])
     setSelectedPlace(EMPTY_PLACE)
   }, [selectedCity])
+
+  const createMuiMarkerIcon = (color) => {
+    return L.divIcon({
+      className: 'custom-icon',
+      html: `<span class="MuiSvgIcon-root" style="font-size: 2rem; color: ${color};"><svg>${PlaceIcon().props.children[0].props.d}</svg></span>`,
+      iconSize: [30, 30],
+      iconAnchor: [15, 30],
+    });
+  };
 
   const setSelectedPlaceMarker = element => {
     selectedPlaceMarker.current = element
@@ -153,7 +154,7 @@ function MapWithSearch({selectedCity, updateRecomendations}){
           key="selectedPlaceMarker"
           draggable={false}
           position={currentMapCenter}
-          icon={greenIcon}
+          icon={createMuiMarkerIcon("green")}
           >
             <Popup>
               <Container align="center" style={{height: "100"}}>
@@ -168,7 +169,7 @@ function MapWithSearch({selectedCity, updateRecomendations}){
           key={recomendation.name}
           draggable={false}
           position={[recomendation.coordinates.latitude, recomendation.coordinates.longitude]}
-          icon={blueIcon}
+          icon={createMuiMarkerIcon("blue")}
           />
         )}
         {selectedCity.recomendations?.map(recomendation => 
