@@ -78,31 +78,18 @@ function MapWithSearch({selectedCity, updateRecomendations}){
 
   const closeMarkersInDB = () => Object.values(markersAlreadyInDB.current).forEach(marker => marker.closePopup())
 
-  const isSelectedPlaceInCity = (selectedPlaceCountry, selectedPlaceCity) => {
-    if (selectedPlaceCountry  === selectedCity.countryName && selectedPlaceCity === selectedCity.name)
-      return true
-    
-    return false
-  }
+  const isSelectedPlaceInCity = (selectedPlaceCountry, selectedPlaceCity) => (
+    selectedPlaceCountry  === selectedCity.countryName && selectedPlaceCity === selectedCity.name
+  )
 
-  const isAlreadyAdded = placeName => {
-    if (currRecomendations.some(recomendation => recomendation.name === placeName))
-      return true
-    
-    return false
-  }
+  const isAlreadyAdded = placeName => currRecomendations.some(recomendation => recomendation.name === placeName)
 
-  const isAlreadyInDB = place => {
-    const some = selectedCity.recomendations?.some(
+  const isAlreadyInDB = place => selectedCity.recomendations?.some(
     recom => recom.coordinates.latitude === place.coordinates.latitude
       && recom.coordinates.longitude === place.coordinates.longitude
-    )
-    return some
-  }
+  )
 
-  const recsNotInDB = () => {
-    return currRecomendations.filter(recom => !isAlreadyInDB(recom))
-  }
+  const recsNotInDB = () => currRecomendations.filter(recom => !isAlreadyInDB(recom))
 
   const handleRetrieve = res => {
     const feature = res.features[0]
