@@ -12,7 +12,7 @@ import ScrollReviews from 'components/ScrollList/ScrollReviews'
 import CityInfo from 'components/CityData/CityInfo'
 import CenteredLoadingSpinner from 'components/Spinner/CenteredLoadingSpinner'
 
-const DestinationPage = ({ selectedCity, auth, isFetchingreviews, dispatch }) => {
+const DestinationPage = ({ selectedCity, auth, isFetchingReviews, dispatch }) => {
   const [value, setValue] = useState(0)
   const [reviews, setreviews] = useState([])
   const { location } = useParams()
@@ -49,7 +49,7 @@ const DestinationPage = ({ selectedCity, auth, isFetchingreviews, dispatch }) =>
           {value === 0 && (
             <Grid container align="center">
               <Grid item sm={12} md={12} lg={12}>
-                <ScrollReviews reviews={reviews} isFetching={isFetchingreviews} />
+                <ScrollReviews reviews={reviews} isFetching={isFetchingReviews} />
               </Grid>
             </Grid>
           )}
@@ -69,7 +69,7 @@ const DestinationPage = ({ selectedCity, auth, isFetchingreviews, dispatch }) =>
 const mapStateToProps = state => ({
   selectedCity: state.selectedCity.data,
   auth: state.auth.data,
-  isFetchingreviews: state.reviews.isFetching,
+  isFetchingReviews: state.reviews.isFetching,
 })
 
 export default connect(mapStateToProps)(withAuth(DestinationPage))

@@ -4,7 +4,7 @@ import {
   SAVING_REVIEW,
   SAVING_REVIEW_SUCCESS } from 'types'
 
-const initreviews = () => {
+const initReviews = () => {
 
   const isFetching = (state = false, action) => {
     switch(action.type){
@@ -21,6 +21,6 @@ const initreviews = () => {
   })
 }
 
-const reviews = initreviews()
+const reviews = initReviews()
 
 export default reviews
