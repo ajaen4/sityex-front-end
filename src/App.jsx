@@ -1,17 +1,16 @@
 import React, { Component } from 'react'
 
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
-
 import {
   BrowserRouter as Router
 } from 'react-router-dom'
 import initStore from 'store'
 import { Provider } from 'react-redux'
 
-import SityExApp from './SityExApp'
+import Routes from 'routes/'
+import ScrollTop from "components/ScrollControl/ScrollTop"
+import { CssBaseline, StyledEngineProvider } from '@mui/material'
+import { ThemeProvider } from '@mui/material/styles'
+import theme from "theme"
 
 import {
   onAuthStateChanged,
@@ -76,7 +75,14 @@ class App extends Component {
     return (
       <Provider store = {store}>
           <Router>
-            <SityExApp/>
+            <ScrollTop>
+              <StyledEngineProvider injectFirst>
+                <ThemeProvider theme={theme()}>
+                  <CssBaseline/>
+                  <Routes/>
+                </ThemeProvider>
+              </StyledEngineProvider>
+            </ScrollTop>
           </Router>
       </Provider>
     )

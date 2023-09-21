@@ -2,7 +2,6 @@
 import React from "react"
 import { createRoot } from 'react-dom/client'
 import { StrictMode } from 'react'
-import CssBaseline from '@mui/material/CssBaseline'
 
 //Cache data in order to work offline
 import * as serviceWorker from './serviceWorker'
@@ -14,7 +13,6 @@ const root = createRoot(container)
 
 root.render(
     <StrictMode>
-      <CssBaseline />
       <App />
     </StrictMode>
 );

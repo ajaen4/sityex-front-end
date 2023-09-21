@@ -82,6 +82,7 @@ const LogInFormBase = ({dispatch}) => {
                 label="Password"
                 type="password"
                 placeholder="Password..."
+                autocomplete="current-password"
                 {...register("password", {
                   required: "The password is required",
                   minLength: {

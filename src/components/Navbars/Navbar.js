@@ -1,5 +1,6 @@
 import * as React from "react"
 import { useNavigate } from "react-router-dom"
+import { connect } from 'react-redux'
 
 import AppBar from "@mui/material/AppBar"
 import Box from "@mui/material/Box"
@@ -167,4 +168,12 @@ function NavBar({ auth, isAuthResolved }) {
     </AppBar>
   )
 }
-export default NavBar
+
+const mapStateToProps = state => {
+  return {
+    auth: state.auth.data,
+    isAuthResolved: state.auth.isAuthResolved
+  }
+}
+
+export default connect(mapStateToProps)(NavBar)
