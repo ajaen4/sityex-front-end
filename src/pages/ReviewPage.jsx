@@ -9,8 +9,8 @@ import ReviewForm from 'components/Forms/ReviewForm'
 const ReviewPage = ({selectedCity, citiesIndex}) => {
 
   return (
-    <div style = {{justifyContent: "center", textAlign: "center"}}>
-      <h2 className = "bold"> Fill in an review </h2>
+    <div style = {{justifyContent: "center", textAlign: "center", marginTop: "50px"}}>
+      <h2 className = "bold"> Fill in a review </h2>
       <ReviewForm
         selectedCity = {selectedCity ? selectedCity : {name: "Aachen", countryName: "Germany", latitude: 50.776351, longitude: 6.083862}}
         citiesIndex = {citiesIndex !== null ? citiesIndex : []}

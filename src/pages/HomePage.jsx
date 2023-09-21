@@ -68,7 +68,7 @@ const HomePage = ({ citiesIndex, isFetching, authUser }) => {
             <Grid item xs={11} md={7} lg={7} xl={7}>
               <Card>
                 <CardContent>
-                  <Typography variant="h6" color="textSecondary">Introduce a destination</Typography>
+                  <Typography variant="h2" color="textSecondary">Introduce a destination</Typography>
                   <Autocomplete
                     freeSolo
                     style={{marginTop: '20px'}}

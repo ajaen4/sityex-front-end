@@ -10,9 +10,7 @@ import LogInForm from "components/Forms/LogInForm.jsx"
 const LogInPageBase = () => {
 
   return (
-    <Container style={{minHeight: "73vh"}}>
       <LogInForm/>
-    </Container>
   )
 }
 

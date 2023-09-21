@@ -1,6 +1,5 @@
 import { useRoutes } from 'react-router-dom';
 
-// routes
 import WithAuthRoutes from 'routes/WithAuthRoutes';
 import WithoutAuthRoutes from 'routes/WithoutAuthRoutes';
 
