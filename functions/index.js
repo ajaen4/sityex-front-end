@@ -3,21 +3,20 @@ const admin = require("firebase-admin");
 admin.initializeApp();
 const firestore = admin.firestore();
 
+exports.onUserStatusChanged = functions.database
+  .ref("/status/{uid}")
+  .onUpdate(async (change, context) => {
+    const eventStatus = change.after.val();
 
-exports.onUserStatusChanged = functions.database.ref("/status/{uid}").onUpdate(
-    async (change, context) => {
-      const eventStatus = change.after.val();
+    const userFirestoreRef = firestore.doc(`/users/${context.params.uid}`);
 
-      const userFirestoreRef = firestore.doc(`/users/${context.params.uid}`);
+    const statusSnapshot = await change.after.ref.once("value");
+    const status = statusSnapshot.val();
 
-      const statusSnapshot = await change.after.ref.once("value");
-      const status = statusSnapshot.val();
+    if (status.last_changed > eventStatus.last_changed) {
+      return null;
+    }
 
-      if (status.last_changed > eventStatus.last_changed) {
-        return null;
-      }
-
-      eventStatus.last_changed = new Date(eventStatus.last_changed);
-      return userFirestoreRef.update(eventStatus);
-    },
-);
+    eventStatus.last_changed = new Date(eventStatus.last_changed);
+    return userFirestoreRef.update(eventStatus);
+  });

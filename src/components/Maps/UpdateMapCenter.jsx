@@ -1,9 +1,9 @@
-import { useMap } from 'react-leaflet'
+import { useMap } from "react-leaflet";
 
 function UpdateMapCenter({ center }) {
-    const map = useMap()
-    map.setView(center)
-    return null
-  }
+  const map = useMap();
+  map.setView(center);
+  return null;
+}
 
-export default UpdateMapCenter
+export default UpdateMapCenter;

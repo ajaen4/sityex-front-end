@@ -1,36 +1,36 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from "redux";
 
-import { FETCH_CITIES_INDEX_SUCCESS, REQUESTING_CITIES_INDEX } from 'types'
+import { FETCH_CITIES_INDEX_SUCCESS, REQUESTING_CITIES_INDEX } from "types";
 
-const INITIAL_STATE = null
+const INITIAL_STATE = null;
 
 const initCitiesIndex = () => {
-
   const data = (state = INITIAL_STATE, action) => {
-    switch(action.type){
+    switch (action.type) {
       case FETCH_CITIES_INDEX_SUCCESS:
-        return action.citiesIndex
-      default: return state
+        return action.citiesIndex;
+      default:
+        return state;
     }
-  }
+  };
 
   const isFetching = (state = false, action) => {
-    switch(action.type){
+    switch (action.type) {
       case REQUESTING_CITIES_INDEX:
-        return true
+        return true;
       case FETCH_CITIES_INDEX_SUCCESS:
-        return false
-      default: return state
+        return false;
+      default:
+        return state;
     }
-  }
+  };
 
   return combineReducers({
     data,
-    isFetching
-  })
+    isFetching,
+  });
+};
 
-}
+const citiesIndex = initCitiesIndex();
 
-const citiesIndex = initCitiesIndex()
-
-export default citiesIndex
+export default citiesIndex;

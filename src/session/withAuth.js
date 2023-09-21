@@ -1,8 +1,8 @@
-import React from 'react';
-import { Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import React from "react";
+import { Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-import * as ROUTES_PATHS from 'routes/paths'
+import * as ROUTES_PATHS from "routes/paths";
 
 const withAuth = (Component) => {
   return (props) => {
@@ -14,6 +14,6 @@ const withAuth = (Component) => {
       return <Navigate to={ROUTES_PATHS.LOG_IN} />;
     }
   };
-}
+};
 
 export default withAuth;

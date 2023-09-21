@@ -1,16 +1,14 @@
+import React from "react";
+import { connect } from "react-redux";
 
-import React from 'react'
-import { connect } from 'react-redux'
+import SignUpFormBase from "./SignUpFormBase";
 
-import SignUpFormBase from './SignUpFormBase'
-
-const SignUpForm = ({dispatch}) => {
-
+const SignUpForm = ({ dispatch }) => {
   return (
     <>
-      <SignUpFormBase dispatch = {dispatch}/>
+      <SignUpFormBase dispatch={dispatch} />
     </>
-  )
-}
+  );
+};
 
-export default connect()(SignUpForm)
+export default connect()(SignUpForm);

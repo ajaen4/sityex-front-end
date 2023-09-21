@@ -1,18 +1,23 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React from "react";
+import { connect } from "react-redux";
 
-import { justLoggedInShown } from 'actions'
+import { justLoggedInShown } from "actions";
 
-import ActionModal from './ActionModal'
+import ActionModal from "./ActionModal";
 
 const JustLoggedInModal = ({ title, message, justLoggedIn, dispatch }) => {
   const action = () => {
-    dispatch(justLoggedInShown())
-  }
+    dispatch(justLoggedInShown());
+  };
 
   return (
-    <ActionModal title={title} message={message} show={justLoggedIn} action={action} />
-  )
-}
+    <ActionModal
+      title={title}
+      message={message}
+      show={justLoggedIn}
+      action={action}
+    />
+  );
+};
 
-export default connect()(JustLoggedInModal)
+export default connect()(JustLoggedInModal);

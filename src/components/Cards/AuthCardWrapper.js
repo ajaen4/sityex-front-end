@@ -1,19 +1,18 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import { Box } from '@mui/material';
+import { Box } from "@mui/material";
 
-import MainCard from 'components/Cards/MainCard';
-
+import MainCard from "components/Cards/MainCard";
 
 const AuthCardWrapper = ({ children, ...other }) => (
   <MainCard
     sx={{
       maxWidth: { xs: 400, lg: 475 },
       margin: { xs: 2.5, md: 3 },
-      '& > *': {
+      "& > *": {
         flexGrow: 1,
-        flexBasis: '50%'
-      }
+        flexBasis: "50%",
+      },
     }}
     content={false}
     {...other}
@@ -23,7 +22,7 @@ const AuthCardWrapper = ({ children, ...other }) => (
 );
 
 AuthCardWrapper.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
 };
 
 export default AuthCardWrapper;

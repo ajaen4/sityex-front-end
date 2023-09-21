@@ -1,12 +1,8 @@
-import MainLayout from 'Layouts/MainLayout'
+import MainLayout from "Layouts/MainLayout";
 
-import {
-  HomePage,
-  DestinationPage,
-  ReviewPage,
-} from 'pages'
+import { HomePage, DestinationPage, ReviewPage } from "pages";
 
-import * as ROUTES_PATHS from 'routes/paths'
+import * as ROUTES_PATHS from "routes/paths";
 
 const WithAuthRoutes = {
   path: "/",
@@ -14,26 +10,26 @@ const WithAuthRoutes = {
   children: [
     {
       path: "/",
-      element: <HomePage />
+      element: <HomePage />,
     },
     {
       path: ROUTES_PATHS.HOME,
-      element: <HomePage />
+      element: <HomePage />,
     },
     {
       path: ROUTES_PATHS.DESTINATION,
       children: [
         {
           path: ":location",
-          element: <DestinationPage />
-        }
-      ]
+          element: <DestinationPage />,
+        },
+      ],
     },
     {
       path: ROUTES_PATHS.NEW_REVIEW,
-      element: <ReviewPage />
-    }
-  ]
+      element: <ReviewPage />,
+    },
+  ],
 };
 
-export default WithAuthRoutes
+export default WithAuthRoutes;

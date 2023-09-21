@@ -1,12 +1,12 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme } from "@mui/material/styles";
 
 // assets
-import colors from 'assets/scss/_themes-vars.module.scss';
+import colors from "assets/scss/_themes-vars.module.scss";
 
 // project imports
-import componentStyleOverrides from './compStyleOverride';
-import themePalette from './palette';
-import themeTypography from './typography';
+import componentStyleOverrides from "./compStyleOverride";
+import themePalette from "./palette";
+import themeTypography from "./typography";
 
 export const theme = () => {
   const color = colors;
@@ -14,7 +14,7 @@ export const theme = () => {
   const customization = {
     fontFamily: `'Poppins', sans-serif`,
     borderRadius: 12,
-  }
+  };
 
   const themeOption = {
     colors: color,
@@ -28,22 +28,22 @@ export const theme = () => {
     menuSelected: color.secondaryDark,
     menuSelectedBack: color.secondaryLight,
     divider: color.grey200,
-    customization
+    customization,
   };
 
   const themeOptions = {
-    direction: 'ltr',
+    direction: "ltr",
     palette: themePalette(themeOption),
     mixins: {
       toolbar: {
-        minHeight: '48px',
-        padding: '16px',
-        '@media (min-width: 600px)': {
-          minHeight: '48px'
-        }
-      }
+        minHeight: "48px",
+        padding: "16px",
+        "@media (min-width: 600px)": {
+          minHeight: "48px",
+        },
+      },
     },
-    typography: themeTypography(themeOption)
+    typography: themeTypography(themeOption),
   };
 
   const themes = createTheme(themeOptions);

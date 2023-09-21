@@ -1,52 +1,49 @@
-import * as React from "react"
-import { useNavigate } from "react-router-dom"
-import { connect } from 'react-redux'
+import * as React from "react";
+import { useNavigate } from "react-router-dom";
+import { connect } from "react-redux";
 
-import AppBar from "@mui/material/AppBar"
-import Box from "@mui/material/Box"
-import Toolbar from "@mui/material/Toolbar"
-import IconButton from "@mui/material/IconButton"
-import Typography from "@mui/material/Typography"
-import Menu from "@mui/material/Menu"
-import MenuIcon from "@mui/icons-material/Menu"
-import Container from "@mui/material/Container"
-import Avatar from "@mui/material/Avatar"
-import Button from "@mui/material/Button"
-import Tooltip from "@mui/material/Tooltip"
-import MenuItem from "@mui/material/MenuItem"
-import AdbIcon from "@mui/icons-material/Adb"
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Menu from "@mui/material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
+import Container from "@mui/material/Container";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
+import MenuItem from "@mui/material/MenuItem";
+import AdbIcon from "@mui/icons-material/Adb";
 
-import { signOutUser } from "actions"
+import { signOutUser } from "actions";
 
-const pages = ["New review", "Destinations"]
-const settings = ["Profile", "Account", "Logout"]
+const pages = ["New review", "Destinations"];
+const settings = ["Profile", "Account", "Logout"];
 
 function NavBar({ auth, isAuthResolved }) {
-  const [anchorElNav, setAnchorElNav] = React.useState(null)
-  const [anchorElUser, setAnchorElUser] = React.useState(null)
-  const navigate = useNavigate()
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const navigate = useNavigate();
 
-  const handleOpenNavMenu = (event) => setAnchorElNav(event.currentTarget)
-  const handleOpenUserMenu = (event) => setAnchorElUser(event.currentTarget)
+  const handleOpenNavMenu = (event) => setAnchorElNav(event.currentTarget);
+  const handleOpenUserMenu = (event) => setAnchorElUser(event.currentTarget);
 
   const handleCloseNavMenu = (page) => {
-    setAnchorElNav(null)
-    if (page === "New review")
-      navigate("new-review")
-    if (page === "Destinations")
-      navigate("home")
-  }
+    setAnchorElNav(null);
+    if (page === "New review") navigate("new-review");
+    if (page === "Destinations") navigate("home");
+  };
 
   const handleCloseUserMenu = (setting) => {
-    setAnchorElUser(null)
-    if (setting === "Logout")
-      signOutUser(auth.id)
-  }
+    setAnchorElUser(null);
+    if (setting === "Logout") signOutUser(auth.id);
+  };
 
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
-        <Toolbar style={{padding: 0}}>
+        <Toolbar style={{ padding: 0 }}>
           <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography
             variant="h6"
@@ -95,11 +92,12 @@ function NavBar({ auth, isAuthResolved }) {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {isAuthResolved && pages.map((page) => (
-                <MenuItem key={page} onClick={() => handleCloseNavMenu(page)}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
+              {isAuthResolved &&
+                pages.map((page) => (
+                  <MenuItem key={page} onClick={() => handleCloseNavMenu(page)}>
+                    <Typography textAlign="center">{page}</Typography>
+                  </MenuItem>
+                ))}
             </Menu>
           </Box>
           <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
@@ -121,22 +119,28 @@ function NavBar({ auth, isAuthResolved }) {
           >
             SityEx
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex"}, ml: 30 }}>
-            {isAuthResolved && pages.map((page) => (
-              <Button
-                key={page}
-                onClick={() => handleCloseNavMenu(page)}
-                sx={{ my: 2, mx: 5, color: "white", display: "block" }}
-              >
-                {page}
-              </Button>
-            ))}
+          <Box
+            sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, ml: 30 }}
+          >
+            {isAuthResolved &&
+              pages.map((page) => (
+                <Button
+                  key={page}
+                  onClick={() => handleCloseNavMenu(page)}
+                  sx={{ my: 2, mx: 5, color: "white", display: "block" }}
+                >
+                  {page}
+                </Button>
+              ))}
           </Box>
-          {isAuthResolved &&
+          {isAuthResolved && (
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y" />
+                  <Avatar
+                    alt="Remy Sharp"
+                    src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
+                  />
                 </IconButton>
               </Tooltip>
               <Menu
@@ -156,24 +160,27 @@ function NavBar({ auth, isAuthResolved }) {
                 onClose={handleCloseUserMenu}
               >
                 {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={() => handleCloseUserMenu(setting)}>
+                  <MenuItem
+                    key={setting}
+                    onClick={() => handleCloseUserMenu(setting)}
+                  >
                     <Typography textAlign="center">{setting}</Typography>
                   </MenuItem>
                 ))}
               </Menu>
             </Box>
-          }
+          )}
         </Toolbar>
       </Container>
     </AppBar>
-  )
+  );
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     auth: state.auth.data,
-    isAuthResolved: state.auth.isAuthResolved
-  }
-}
+    isAuthResolved: state.auth.isAuthResolved,
+  };
+};
 
-export default connect(mapStateToProps)(NavBar)
+export default connect(mapStateToProps)(NavBar);

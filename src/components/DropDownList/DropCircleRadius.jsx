@@ -1,30 +1,35 @@
-import React, { useState } from "react"
-import Button from "@mui/material/Button"
-import Menu from "@mui/material/Menu"
-import MenuItem from "@mui/material/MenuItem"
+import React, { useState } from "react";
+import Button from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 
 const DropCircleRadius = ({ onChange }) => {
-  const [text, setText] = useState("Elige un radio")
-  const [anchorEl, setAnchorEl] = useState(null)
+  const [text, setText] = useState("Elige un radio");
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const onClick = (event) => {
-    const value = event.target.textContent
-    setText(value)
-    onChange(value)
-    handleClose()
-  }
+    const value = event.target.textContent;
+    setText(value);
+    onChange(value);
+    handleClose();
+  };
 
   const handleClick = (event) => {
-    setAnchorEl(event.currentTarget)
-  }
+    setAnchorEl(event.currentTarget);
+  };
 
   const handleClose = () => {
-    setAnchorEl(null)
-  }
+    setAnchorEl(null);
+  };
 
   return (
     <div style={{ textAlign: "center" }}>
-      <Button color="info" onClick={handleClick} variant="contained" style={{ marginTop: "8px" }}>
+      <Button
+        color="info"
+        onClick={handleClick}
+        variant="contained"
+        style={{ marginTop: "8px" }}
+      >
         {text}
       </Button>
       <Menu
@@ -39,7 +44,7 @@ const DropCircleRadius = ({ onChange }) => {
         <MenuItem onClick={onClick}>2 km</MenuItem>
       </Menu>
     </div>
-  )
-}
+  );
+};
 
-export default DropCircleRadius
+export default DropCircleRadius;

@@ -1,18 +1,16 @@
-import React from "react"
+import React from "react";
 
 // MUI v5 components
-import Grid from "@mui/material/Grid"
-import FormControl from "@mui/material/FormControl"
-import InputLabel from "@mui/material/InputLabel"
-import Select from "@mui/material/Select"
-import MenuItem from "@mui/material/MenuItem"
+import Grid from "@mui/material/Grid";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
 
 // Custom functionality
-import { prettyCity } from "helpers/usefulFunctions"
+import { prettyCity } from "helpers/usefulFunctions";
 
 const CitiesDropDown = ({ label, citiesList, onChangeCity, selectedCity }) => {
-
-
   return (
     <Grid container justifyContent="center" style={{ textAlign: "center" }}>
       <Grid item lg={3} md={3} xs={9}>
@@ -37,7 +35,7 @@ const CitiesDropDown = ({ label, citiesList, onChangeCity, selectedCity }) => {
         </FormControl>
       </Grid>
     </Grid>
-  )
-}
+  );
+};
 
-export default CitiesDropDown
+export default CitiesDropDown;

@@ -1,20 +1,16 @@
-import { 
-  getAuth, 
-  signInWithEmailAndPassword, 
-  onAuthStateChanged, 
-  createUserWithEmailAndPassword, 
-  signOut, 
-  sendPasswordResetEmail, 
-  updatePassword 
-} from 'firebase/auth';
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  createUserWithEmailAndPassword,
+  signOut,
+  sendPasswordResetEmail,
+  updatePassword,
+} from "firebase/auth";
 
-import { 
-  doc, 
-  setDoc, 
-  getDoc, 
-} from 'firebase/firestore';
+import { doc, setDoc, getDoc } from "firebase/firestore";
 
-import db from 'db';
+import db from "db";
 
 const auth = getAuth();
 
@@ -27,11 +23,16 @@ export const logIn = async ({ email, password }) => {
   }
 };
 
-export const onAuthStateChangedCallback = (onAuthCallback) => onAuthStateChanged(auth, onAuthCallback);
+export const onAuthStateChangedCallback = (onAuthCallback) =>
+  onAuthStateChanged(auth, onAuthCallback);
 
 export const createUser = async ({ email, password, userName }) => {
   try {
-    const { user } = await createUserWithEmailAndPassword(auth, email, password);
+    const { user } = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password,
+    );
     await saveUser({ uid: user.uid, email, userName });
     return user;
   } catch (error) {
@@ -44,7 +45,7 @@ export const saveUser = async (userData) => {
   await setDoc(userRef, {
     userName: userData.userName,
     email: userData.email,
-    id: userData.uid
+    id: userData.uid,
   });
 };
 
@@ -59,7 +60,7 @@ export const signOutUser = () => signOut(auth);
 export const resetPassword = (email) => sendPasswordResetEmail(auth, email);
 
 export const updatePasswordUser = (password) => {
-  if(auth.currentUser) {
+  if (auth.currentUser) {
     return updatePassword(auth.currentUser, password);
   }
   throw new Error("No authenticated user");
