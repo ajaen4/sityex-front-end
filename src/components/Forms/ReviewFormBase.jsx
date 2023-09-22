@@ -157,41 +157,25 @@ const ReviewFormBase = ({
           <MapWithSearch
             selectedCity={selectedCity}
             updateRecomendations={updateRecomendations}
+            noRecomendations={noRecomendations}
+            setNoRecomendations={setNoRecomendations}
           />
-          <Container sx={{ minHeight: "20px", marginTop: "10px" }}>
-            {noRecomendations && (
-              <Alert
-                severity="error"
-                action={
-                  <IconButton
-                    aria-label="close"
-                    color="inherit"
-                    size="small"
-                    onClick={() => setNoRecomendations(false)}
-                  >
-                    <CloseIcon fontSize="inherit" />
-                  </IconButton>
-                }
-              >
-                <AlertTitle>
-                  Please set at least one place recommendation
-                </AlertTitle>
-              </Alert>
-            )}
-          </Container>
         </Container>
         <Stack style={{ textAlign: "center", alignItems: "center" }}>
-          <FormControl style={{ padding: "30px" }}>
+          <FormControl style={{ padding: "30px", width: "80%" }}>
             <Typography
               variant="h3"
               style={{ marginBottom: "15px", fontWeight: "bold" }}
             >
               Give some advice about the city!
             </Typography>
-            <TextArea name="advice" register={register} errors={errors} />
+            <TextArea
+              name="advice"
+              register={register}
+              errors={errors} />
           </FormControl>
           <Button
-            style={{ marginBottom: "100px" }}
+            style={{ marginBottom: "20px" }}
             variant="contained"
             color="primary"
             type="submit"

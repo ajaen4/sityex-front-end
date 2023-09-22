@@ -5,10 +5,11 @@ import { Container, Box, Typography, Link } from "@mui/material";
 function Footer() {
   return (
     <Box
-      component="footer"
       sx={{
         backgroundColor: "grey.100",
         width: "100%",
+        minHeight: "70px",
+        py: "5px",
       }}
     >
       <Container>
