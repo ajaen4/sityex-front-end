@@ -1,13 +1,10 @@
 {
-    "extends": [
-      "prettier"
-    ],
-    "parserOptions": {
-      "ecmaVersion": 2020,
-      "sourceType": "module",
-      "ecmaFeatures": {
-        "jsx": true
-      }
+  "extends": ["prettier"],
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
     }
   }
-  
+}
