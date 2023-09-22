@@ -48,6 +48,7 @@ const LogInForm = ({ dispatch }) => {
       },
     );
   };
+
   const googleHandler = async () => {
     console.log("Login");
   };

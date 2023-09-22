@@ -1,16 +1,85 @@
 import React from "react";
-import { Container } from "@mui/material";
+import { Link } from "react-router-dom";
+
+import { useTheme } from "@mui/material/styles";
+import {
+  Grid,
+  Stack,
+  Typography,
+  Container,
+  Box,
+  Card,
+} from "@mui/material";
 
 import { withoutAuth } from "session";
 
 import SignUpForm from "components/Forms/SignUpForm.jsx";
 
-const SignUpPageBase = () => {
+const SignUpPage = () => {
+  const theme = useTheme();
+
   return (
-    <Container style={{ minHeight: "73vh" }}>
-      <SignUpForm />
-    </Container>
+    <Box sx={{ backgroundColor: theme.palette.primary.light }}>
+      <Container
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          minHeight: "calc(100vh - 68px)",
+        }}
+      > 
+        <Card
+          sx={{
+            maxWidth: { xs: 400, lg: 475 },
+            margin: { xs: 2.5, md: 3 },
+            border: "1px solid",
+            borderColor: theme.palette.primary[200] + 25,
+            ":hover": {
+              boxShadow: "inherit",
+            },
+            p: { xs: 2, sm: 3, xl: 5 }
+          }}
+        >
+          <Grid
+            container
+            spacing={2}
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Grid item sx={{ mb: 3 }}>
+              <Link to="#"></Link>
+            </Grid>
+            <Grid item xs={12}>
+              <Container
+                sx={{
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Stack alignItems="center" justifyContent="center" spacing={1}>
+                  <Typography
+                    color={theme.palette.secondary.main}
+                    gutterBottom
+                    variant="h3"
+                  >
+                    Sign Up
+                  </Typography>
+                  <Typography
+                    variant="caption"
+                    fontSize="16px"
+                    textAlign="center"
+                  >
+                    Enter your credentials to continue
+                  </Typography>
+                </Stack>
+              </Container>
+            </Grid>
+            <SignUpForm />
+          </Grid>
+        </Card>
+      </Container>
+    </Box>
   );
 };
 
-export default withoutAuth(SignUpPageBase);
+export default withoutAuth(SignUpPage);
