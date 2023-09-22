@@ -1,8 +1,6 @@
 import React from "react";
 
-//Custom UI components
 import ReactList from "react-list";
-import Review from "components/Reviews/Review.jsx";
 import LoadingSpinner from "components/Spinner/LoadingSpinner.jsx";
 import EmptyList from "components/EmptyFill/EmptyList.jsx";
 

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 
-// Material-UI components
 import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
 import Collapse from "@mui/material/Collapse";
@@ -51,8 +50,6 @@ class CityInfo extends Component {
       const population = new Intl.NumberFormat("es-418").format(
         cityData.population,
       );
-
-      //Extract prices from document
 
       const rent = new Intl.NumberFormat("es-418").format(
         prices["Apartment (1 bedroom) Outside of Centre"].replace(",", ""),

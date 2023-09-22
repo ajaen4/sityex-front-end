@@ -1,13 +1,11 @@
 import React from "react";
 
-// MUI v5 components
 import Grid from "@mui/material/Grid";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 
-// Custom functionality
 import { prettyCity } from "helpers/usefulFunctions";
 
 const CitiesDropDown = ({ label, citiesList, onChangeCity, selectedCity }) => {

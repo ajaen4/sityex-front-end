@@ -55,7 +55,6 @@ const ReviewFormBase = ({
     reset();
   };
 
-  //Stop form from submitting in a standar way (problems with the Autocomplete Google Maps function when pressing enter)
   const handleForm = (data) => {
     if (currRecomendations.length === 0) {
       window.scrollTo(0, mapContainer.current.offsetTop);

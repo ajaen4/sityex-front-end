@@ -2,11 +2,9 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-// Custom functionality
 import { withAuth } from "session";
 import { objectIsEmpty } from "helpers/usefulFunctions";
 
-// Material-UI components
 import {
   Container,
   Tab,
@@ -25,7 +23,6 @@ import ListIcon from "@mui/icons-material/List";
 import MapIcon from "@mui/icons-material/Map";
 import TravelExploreIcon from "@mui/icons-material/TravelExplore";
 
-// Custom UI components
 import DestinationsMap from "components/Maps/DestinationsMap";
 
 const HomePage = ({ citiesIndex, isFetching, authUser }) => {

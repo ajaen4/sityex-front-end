@@ -34,7 +34,7 @@ export const justLoggedInShown = () => (dispatch, getState) => {
 export const signOutUser = (uid) => {
   api.signOutUser().then(() => {
     const userStatusDatabaseRef = api.createFirebaseRef("status", uid);
-    return set(userStatusDatabaseRef, api.isOfflineForDatabase); // Corrected this line
+    return set(userStatusDatabaseRef, api.isOfflineForDatabase);
   });
 };
 

@@ -12,7 +12,6 @@ export const fetchCitiesIndex = () => (dispatch, getState) => {
   if (!objectIsEmpty(getState().citiesIndex.data)) {
     return Promise.resolve();
   }
-  //Dispatch so "isFetching" is true
   dispatch({ type: REQUESTING_CITIES_INDEX });
   return api.getCitiesIndex().then((data) => {
     dispatch({

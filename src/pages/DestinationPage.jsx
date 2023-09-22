@@ -29,8 +29,6 @@ const DestinationPage = ({
     getReviews(prettyCity(location)).then((reviews) => {
       setreviews(reviews.sort((a, b) => b.timeStamp - a.timeStamp));
     });
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, location]);
 
   if (selectedCity === null || selectedCity.name !== prettyCity(location))

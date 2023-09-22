@@ -1,7 +1,6 @@
 import { collection, doc, getDoc } from "firebase/firestore";
 import db from "db";
 
-//Fetches city data
 export const getCity = async (city) => {
   try {
     const cityDoc = await getDoc(doc(collection(db, "cities"), city));

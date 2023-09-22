@@ -61,7 +61,6 @@ export const addReview = (cityName, review, recomendations) => {
     };
     t.set(cityDocRef, setObject, { merge: true });
 
-    // Add the review to the subcollection of the city
     const newreviewDocRef = doc(reviewsCollectionRef);
     const id = newreviewDocRef.id;
     const expTimeId = {

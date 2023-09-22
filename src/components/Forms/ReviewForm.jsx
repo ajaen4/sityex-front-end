@@ -12,7 +12,6 @@ const ReviewForm = ({ selectedCity, citiesIndex, dispatch, auth }) => {
     dispatch(fetchCity(prettyCity(INITIALCITY)));
   }, [dispatch]);
 
-  //Fetch city data if the user changes the city in the dropdown list
   const onChangeCity = (event) => {
     dispatch(fetchCity(prettyCity(event.target.value)));
   };
