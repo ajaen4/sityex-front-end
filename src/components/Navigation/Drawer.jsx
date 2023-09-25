@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { styled, useTheme } from '@mui/material/styles';
 import { useMediaQuery } from "@mui/material";
 import Box from '@mui/material/Box';
-import MuiDrawer from '@mui/material/Drawer';
+import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
@@ -28,17 +28,19 @@ const openedMixin = (theme) => ({
   overflowX: 'hidden',
 });
 
-const closedMixin = (theme) => ({
-  transition: theme.transitions.create('width', {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  overflowX: 'hidden',
-  width: `calc(${theme.spacing(7)} + 1px)`,
-  [theme.breakpoints.up('sm')]: {
-    width: `calc(${theme.spacing(8)} + 1px)`,
-  },
-});
+const closedMixin = (theme, drawerType) => {
+
+  const spacing = theme.breakpoints.up('sm') ? 8 : 7
+
+  return {
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    overflowX: 'hidden',
+    width: drawerType === "persistent" ? 0 : `calc(${theme.spacing(spacing)})`,
+  };
+};
 
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -49,35 +51,26 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   ...theme.mixins.toolbar,
 }));
 
-const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
-  ({ theme, open }) => ({
-    width: drawerWidth,
-    flexShrink: 0,
-    whiteSpace: 'nowrap',
-    boxSizing: 'border-box',
-    ...(open && {
-      ...openedMixin(theme),
-      '& .MuiDrawer-paper': openedMixin(theme),
-    }),
-    ...(!open && {
-      ...closedMixin(theme),
-      '& .MuiDrawer-paper': closedMixin(theme),
-    }),
-  }),
-);
-
 export default function MiniDrawer({isOpenDrawer, handleChangeDrawer, outlet}) {
   const theme = useTheme();
   const { pathname } = useLocation();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
   const drawerType = isSmallScreen ? "persistent" : "permanent";
 
+  const drawerStyles = {
+    width: drawerWidth,
+    flexShrink: 0,
+    whiteSpace: 'nowrap',
+    boxSizing: 'border-box',
+    ...(isOpenDrawer ? openedMixin(theme) : closedMixin(theme, drawerType)),
+    '& .MuiDrawer-paper': isOpenDrawer ? openedMixin(theme) : closedMixin(theme, drawerType)
+  };
+
   return (
     <Box sx={{ display: 'flex' }}>
-      {pathname.includes("destination") &&
-      <Drawer variant={drawerType} open={isOpenDrawer}>
+      <Drawer variant={drawerType} open={isOpenDrawer} sx={drawerStyles}>
         <DrawerHeader>
-          <IconButton onClick={() => handleChangeDrawer(false)}>
+          <IconButton onClick={() => handleChangeDrawer(!isOpenDrawer)}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </DrawerHeader>
@@ -88,26 +81,25 @@ export default function MiniDrawer({isOpenDrawer, handleChangeDrawer, outlet}) {
               <ListItemButton
                 sx={{
                   minHeight: 48,
-                  justifyContent: isOpenDrawer ? 'initial' : 'center',
                   px: 2.5,
                 }}
               >
                 <ListItemIcon
                   sx={{
                     minWidth: 0,
-                    mr: isOpenDrawer ? 3 : 'auto',
+                    mr: 3,
                     justifyContent: 'center',
                   }}
                 >
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                 </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: isOpenDrawer ? 1 : 0 }} />
+                <ListItemText primary={text} />
               </ListItemButton>
             </ListItem>
           ))}
         </List>
-      </Drawer>}
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      </Drawer>
+      <Box component="main" sx={{ flexGrow: 1, p: 3, width: '100%', margin: '0 auto' }}>
         <DrawerHeader />
         {outlet}
       </Box>
