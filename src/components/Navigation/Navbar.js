@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { connect } from "react-redux";
+import { useMediaQuery } from "@mui/material";
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -29,10 +30,17 @@ const drawerWidth = 240;
 function NavBar({ auth, isAuthResolved, outlet }) {
   const [isOpenUserMenu, setIsOpenUserMenu] = React.useState(false);
   const [isOpenDrawer, setIsOpenDrawer] = React.useState(false);
-  const navigate = useNavigate();
-  const { pathname } = useLocation();
+
   const theme = useTheme();
   const userSettingsRef = React.useRef(null);
+
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+  const isDestinationPage = pathname.includes("destination");
+  const drawerType =
+    isSmallScreen || !isDestinationPage ? "persistent" : "permanent";
+  const needsMenuIcon = isSmallScreen || isDestinationPage;
 
   const toggleUserMenu = () => {
     setIsOpenUserMenu(!isOpenUserMenu);
@@ -82,7 +90,7 @@ function NavBar({ auth, isAuthResolved, outlet }) {
             <img src={logo} alt="SityEx logo" width={90} height={25} />
           </Box>
           <Box sx={{ display: { xs: "flex", md: "flex" } }}>
-            {
+            {needsMenuIcon && (
               <IconButton
                 color="inherit"
                 aria-label="open drawer"
@@ -94,7 +102,7 @@ function NavBar({ auth, isAuthResolved, outlet }) {
               >
                 <MenuIcon />
               </IconButton>
-            }
+            )}
           </Box>
           <Box
             sx={{
@@ -161,7 +169,9 @@ function NavBar({ auth, isAuthResolved, outlet }) {
       <MiniDrawer
         isOpenDrawer={isOpenDrawer}
         handleChangeDrawer={handleChangeDrawer}
+        drawer
         outlet={outlet}
+        drawerType={drawerType}
       />
     </>
   );
