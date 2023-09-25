@@ -22,7 +22,6 @@ const DestinationPage = ({
   const [reviews, setreviews] = useState([]);
   const { location } = useParams();
 
-  console.log(selectedCity);
   useEffect(() => {
     dispatch(fetchCity(prettyCity(location)));
 
@@ -35,55 +34,8 @@ const DestinationPage = ({
     return <CenteredLoadingSpinner />;
 
   return (
-    <>
-      <DestinationPageHeader
-        cityName={selectedCity.displayName}
-        countryName={selectedCity.countryName}
-        numExp={reviews.length}
-      />
-      <Container align="center">
-        <Typography variant="h4" sx={{ my: 5 }}>
-          Characteristics
-        </Typography>
-        <CityInfo cityData={selectedCity} />
-        <Typography variant="h4" sx={{ my: 5 }}>
-          Areas
-        </Typography>
-        <Tabs
-          value={value}
-          onChange={(e, newValue) => setValue(newValue)}
-          centered
-        >
-          <Tab label="reviews" />
-          <Tab label="Map" />
-        </Tabs>
-        <Box>
-          {value === 0 && (
-            <Grid container align="center">
-              <Grid item sm={12} md={12} lg={12}>
-                <ScrollReviews
-                  reviews={reviews}
-                  isFetching={isFetchingReviews}
-                />
-              </Grid>
-            </Grid>
-          )}
-          {value === 1 && (
-            <Grid container justifyContent="center">
-              <Grid
-                item
-                sm={12}
-                md={12}
-                lg={12}
-                style={{ height: "400px", width: "100%" }}
-              >
-                <RecomendationsMap selectedCity={selectedCity} />
-              </Grid>
-            </Grid>
-          )}
-        </Box>
-      </Container>
-    </>
+    <Box>
+    </Box>
   );
 };
 

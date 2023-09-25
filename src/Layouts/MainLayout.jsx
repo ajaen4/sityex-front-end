@@ -2,17 +2,17 @@ import { Outlet } from "react-router-dom";
 
 import { Box } from "@mui/material";
 
-import Navbar from "components/Navbars/Navbar.js";
-import Footer from "components/Footers/Footer.js";
+import Navbar from "components/Navigation/Navbar";
+import Footer from "components/Footers/Footer";
 
-const MainLayout = () => (
-  <Box style={{minHeight: "100vh"}}>
-    <Navbar />
-    <Box mt={0.2}>
-      <Outlet />
+const MainLayout = () => {
+  
+  return (
+    <Box style={{minHeight: "100vh"}}>
+      <Navbar outlet={<Outlet />}/>
+      <Footer/>
     </Box>
-    <Footer />
-  </Box>
-);
+  );
+};
 
 export default MainLayout;

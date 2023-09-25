@@ -1,4 +1,3 @@
-/*eslint-disable*/
 import React from "react";
 import { Container, Box, Typography, Link } from "@mui/material";
 
