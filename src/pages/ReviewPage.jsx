@@ -6,7 +6,6 @@ import { withAuth } from "session";
 import ReviewForm from "components/Forms/ReviewForm";
 
 const ReviewPage = ({ selectedCity, citiesIndex }) => {
-
   useEffect(() => {
     document.title = "Review Page";
   }, []);

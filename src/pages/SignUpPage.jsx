@@ -2,14 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { useTheme } from "@mui/material/styles";
-import {
-  Grid,
-  Stack,
-  Typography,
-  Container,
-  Box,
-  Card,
-} from "@mui/material";
+import { Grid, Stack, Typography, Container, Box, Card } from "@mui/material";
 
 import { withoutAuth } from "session";
 
@@ -31,7 +24,7 @@ const SignUpPage = () => {
           alignItems: "center",
           minHeight: "calc(100vh - 68px)",
         }}
-      > 
+      >
         <Card
           sx={{
             maxWidth: { xs: 400, lg: 475 },
@@ -41,7 +34,7 @@ const SignUpPage = () => {
             ":hover": {
               boxShadow: "inherit",
             },
-            p: { xs: 2, sm: 3, xl: 5 }
+            p: { xs: 2, sm: 3, xl: 5 },
           }}
         >
           <Grid

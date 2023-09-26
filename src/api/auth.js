@@ -44,7 +44,7 @@ export const createUser = async ({ email, password, userName }) => {
     const { user } = await createUserWithEmailAndPassword(
       auth,
       email,
-      password
+      password,
     );
     await saveUser({ uid: user.uid, email, userName });
     return user;
