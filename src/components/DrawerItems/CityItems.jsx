@@ -16,13 +16,14 @@ import ConnectWithoutContactIcon from "@mui/icons-material/ConnectWithoutContact
 
 import * as ROUTES_PATHS from "routes/paths";
 
-const CityItems = () => {
+const CityItems = ({ handleChangeDrawer }) => {
   const navigate = useNavigate();
   const selectedCity = useSelector((state) => state.selectedCity.data);
 
   const itemSelected = (event) => {
     const path = event.currentTarget.getAttribute("data-path");
     navigate(`destination/${selectedCity.name}/${path}`);
+    handleChangeDrawer(false);
   };
 
   return (
@@ -117,6 +118,8 @@ const CityItems = () => {
             minHeight: 48,
             px: 2.5,
           }}
+          onClick={itemSelected}
+          data-path={ROUTES_PATHS.CITY_ACCESSIBILITY}
         >
           <ListItemIcon
             sx={{
@@ -124,8 +127,6 @@ const CityItems = () => {
               mr: 3,
               justifyContent: "center",
             }}
-            onClick={itemSelected}
-            data-path={ROUTES_PATHS.CITY_ACCESSIBILITY}
           >
             <ConnectingAirportsIcon />
           </ListItemIcon>

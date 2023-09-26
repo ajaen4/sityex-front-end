@@ -17,14 +17,14 @@ import Paper from "@mui/material/Paper";
 import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 import { Grid } from "@mui/material";
 
-const CostOfLiving = () => {
+const CostOfLivingPage = () => {
   const { location } = useParams();
   const dispatch = useDispatch();
   const selectedCity = useSelector((state) => state.selectedCity.data);
   const auth = useSelector((state) => state.auth.data);
 
   useEffect(() => {
-    document.title = "Community Page";
+    document.title = "Cost of Living Page";
   }, []);
 
   useEffect(() => {
@@ -34,13 +34,54 @@ const CostOfLiving = () => {
   function createData(name, unit, cost) {
     return { name, unit, cost };
   }
-
+  const prices = selectedCity.prices;
+  const rent = new Intl.NumberFormat("es-418").format(
+    prices["Apartment (1 bedroom) Outside of Centre"].replace(",", ""),
+  );
+  const apartmentCost = new Intl.NumberFormat("es-418").format(
+    prices[
+      "Basic (Electricity, Heating, Cooling, Water, Garbage) for 85m2 Apartment"
+    ],
+  );
+  const internetCost = new Intl.NumberFormat("es-418").format(
+    prices["Internet (60 Mbps or More, Unlimited Data, Cable/ADSL)"],
+  );
+  const salaryAvg = new Intl.NumberFormat("es-418").format(
+    prices["Average Monthly Net Salary (After Tax)"].replace(",", ""),
+  );
+  const mobileFee = new Intl.NumberFormat("es-418").format(
+    prices["1 min. of Prepaid Mobile Tariff Local (No Discounts or Plans)"],
+  );
+  const costOfCinema = new Intl.NumberFormat("es-418").format(
+    prices["Cinema, International Release, 1 Seat"],
+  );
+  const costOfApples = new Intl.NumberFormat("es-418").format(
+    prices["Apples (1kg)"],
+  );
+  const costOfEggs = new Intl.NumberFormat("es-418").format(
+    prices["Eggs (regular) (12)"],
+  );
+  const costOfChicken = new Intl.NumberFormat("es-418").format(
+    prices["Chicken Breasts (Boneless, Skinless), (1kg)"],
+  );
+  const costOfBeer = new Intl.NumberFormat("es-418").format(
+    prices["Domestic Beer (0.5 liter bottle)"],
+  );
+  const costOfMilk = new Intl.NumberFormat("es-418").format(
+    prices["Milk (regular), (1 liter)"],
+  );
   const rows = [
-    createData("Frozen yoghurt", "1 month", 159),
-    createData("Ice cream sandwich", "1kg", 237),
-    createData("Eclair", "1 unit", 262),
-    createData("Cupcake", "1 unit", 300),
-    createData("Gingerbread", "5 units", 356),
+    createData("Rent", "1 month", rent),
+    createData("Apartment costs", "1 month", apartmentCost),
+    createData("Internet", "1 month", internetCost),
+    createData("Salary", "1 month", salaryAvg),
+    createData("Mobile fee", "1 month", mobileFee),
+    createData("Cinema", "1 ticket", costOfCinema),
+    createData("Apples", "1 kg", costOfApples),
+    createData("Eggs", "12 units", costOfEggs),
+    createData("Chicken", "1 kg", costOfChicken),
+    createData("Beer", "0.5 liters", costOfBeer),
+    createData("Milk", "1 liter", costOfMilk),
   ];
 
   if (selectedCity === null || selectedCity.name !== prettyCity(location))
@@ -79,4 +120,4 @@ const CostOfLiving = () => {
   );
 };
 
-export default withAuth(CostOfLiving);
+export default withAuth(CostOfLivingPage);

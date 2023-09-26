@@ -4,6 +4,9 @@ import HomePage from "./HomePage";
 import LogInPage from "./LogInPage";
 import ReviewPage from "./ReviewPage";
 import SignUpPage from "./SignUpPage";
+import WeatherPage from "./WeatherPage";
+import AccessibilityPage from "./AccessibilityPage";
+import DemographicsPage from "./DemographicsPage";
 
 export {
   CommunityPage,
@@ -12,4 +15,7 @@ export {
   ReviewPage,
   SignUpPage,
   CostOfLivingPage,
+  WeatherPage,
+  AccessibilityPage,
+  DemographicsPage,
 };
