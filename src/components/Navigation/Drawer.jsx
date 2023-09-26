@@ -86,7 +86,7 @@ export default function MiniDrawer({
         {drawerType === "persistent" && (
           <>
             <Divider>Navigation</Divider>
-            <MainItems />
+            <MainItems handleChangeDrawer={handleChangeDrawer} />
           </>
         )}
         <Divider />

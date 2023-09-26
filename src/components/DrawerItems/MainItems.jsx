@@ -11,12 +11,13 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 
 import * as ROUTES_PATHS from "routes/paths";
 
-const MainItems = () => {
+const MainItems = ({ handleChangeDrawer }) => {
   const navigate = useNavigate();
 
   const itemSelected = (event) => {
     const path = event.currentTarget.getAttribute("data-path");
     navigate(path);
+    handleChangeDrawer(false);
   };
 
   return (
