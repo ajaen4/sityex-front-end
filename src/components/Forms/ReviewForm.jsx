@@ -1,12 +1,15 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
 import { prettyCity } from "helpers/usefulFunctions";
 import { fetchCity } from "actions";
 
 import ReviewFormBase from "./ReviewFormBase";
 
-const ReviewForm = ({ selectedCity, citiesIndex, dispatch, auth }) => {
+const ReviewForm = ({ selectedCity, citiesIndex }) => {
   const INITIALCITY = "Aachen";
+  const auth = useSelector((state) => state.auth.data);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchCity(prettyCity(INITIALCITY)));
@@ -27,10 +30,4 @@ const ReviewForm = ({ selectedCity, citiesIndex, dispatch, auth }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  savingExpState: state.reviews.state,
-  auth: state.auth.data,
-  isAuthResolved: state.auth.isAuthResolved,
-});
-
-export default connect(mapStateToProps)(ReviewForm);
+export default ReviewForm;

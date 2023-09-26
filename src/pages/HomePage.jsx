@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { withAuth } from "session";
@@ -25,16 +25,20 @@ import TravelExploreIcon from "@mui/icons-material/TravelExplore";
 
 import DestinationsMap from "components/Maps/DestinationsMap";
 
-const HomePage = ({ citiesIndex, isFetching, authUser }) => {
+const HomePage = () => {
   const [tabValue, setTabValue] = useState(0);
   const navigate = useNavigate();
+
+  const citiesIndex = useSelector((state) => state.citiesIndex.data);
+  const isFetching = useSelector((state) => state.citiesIndex.isFetching);
+  const authUser = useSelector((state) => state.auth.data);
 
   useEffect(() => {
     document.title = "Home Page";
   }, []);
 
   const onSearchChange = (event, value) =>
-    navigate("/destination/" + value.cityName);
+    navigate("/destination/" + value.cityName + "/community");
 
   const getDestinations = () => {
     if (citiesIndex !== null)
@@ -68,8 +72,8 @@ const HomePage = ({ citiesIndex, isFetching, authUser }) => {
       </Tabs>
       <Container>
         {tabValue === 0 && (
-          <Grid container spacing={2} sx={{ justifyContent: "center" }}>
-            <Grid item xs={11} md={7} lg={7} xl={7}>
+          <Grid container spacing={1} sx={{ justifyContent: "center" }}>
+            <Grid item xs={12} md={6}>
               <Card>
                 <CardContent>
                   <Typography variant="h2" color="textSecondary">
@@ -178,11 +182,4 @@ const HomePage = ({ citiesIndex, isFetching, authUser }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  citiesIndex: state.citiesIndex.data,
-  authUser: state.auth,
-  isFetching: state.citiesIndex.isFetching,
-  savedreview: state.reviews.message,
-});
-
-export default connect(mapStateToProps)(withAuth(HomePage));
+export default withAuth(HomePage);

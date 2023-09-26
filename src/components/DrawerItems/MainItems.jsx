@@ -9,6 +9,8 @@ import ListItemText from "@mui/material/ListItemText";
 import GradingIcon from "@mui/icons-material/Grading";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 
+import * as ROUTES_PATHS from "routes/paths";
+
 const MainItems = () => {
   const navigate = useNavigate();
 
@@ -26,7 +28,7 @@ const MainItems = () => {
             px: 2.5,
           }}
           onClick={itemSelected}
-          data-path="new-review"
+          data-path={ROUTES_PATHS.NEW_REVIEW}
         >
           <ListItemIcon
             sx={{
@@ -46,7 +48,7 @@ const MainItems = () => {
             minHeight: 48,
             px: 2.5,
           }}
-          data-path="home"
+          data-path={ROUTES_PATHS.HOME}
           onClick={itemSelected}
         >
           <ListItemIcon

@@ -63,7 +63,7 @@ function DestinationsMap({ citiesIndex }) {
                   " habitantes"}
               </div>
               <Link
-                to={"/destination/" + city.name}
+                to={"/destination/" + city.name + "/community"}
                 style={{ marginBottom: "5px" }}
               >
                 <Button variant="contained">Mas informacion</Button>

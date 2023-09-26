@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -13,7 +14,18 @@ import GroupsIcon from "@mui/icons-material/Groups";
 import ConnectingAirportsIcon from "@mui/icons-material/ConnectingAirports";
 import ConnectWithoutContactIcon from "@mui/icons-material/ConnectWithoutContact";
 
-const CityItems = () => {
+import * as ROUTES_PATHS from "routes/paths";
+
+const CityItems = ({ handleChangeDrawer }) => {
+  const navigate = useNavigate();
+  const selectedCity = useSelector((state) => state.selectedCity.data);
+
+  const itemSelected = (event) => {
+    const path = event.currentTarget.getAttribute("data-path");
+    navigate(`destination/${selectedCity.name}/${path}`);
+    handleChangeDrawer(false);
+  };
+
   return (
     <List>
       <ListItem disablePadding sx={{ display: "block" }}>
@@ -22,6 +34,8 @@ const CityItems = () => {
             minHeight: 48,
             px: 2.5,
           }}
+          onClick={itemSelected}
+          data-path={ROUTES_PATHS.CITY_COMMUNITY}
         >
           <ListItemIcon
             sx={{
@@ -41,6 +55,8 @@ const CityItems = () => {
             minHeight: 48,
             px: 2.5,
           }}
+          onClick={itemSelected}
+          data-path={ROUTES_PATHS.CITY_COST_OF_LIVING}
         >
           <ListItemIcon
             sx={{
@@ -60,6 +76,8 @@ const CityItems = () => {
             minHeight: 48,
             px: 2.5,
           }}
+          onClick={itemSelected}
+          data-path={ROUTES_PATHS.CITY_WEATHER}
         >
           <ListItemIcon
             sx={{
@@ -79,6 +97,8 @@ const CityItems = () => {
             minHeight: 48,
             px: 2.5,
           }}
+          onClick={itemSelected}
+          data-path={ROUTES_PATHS.CITY_DEMOGRAPHICS}
         >
           <ListItemIcon
             sx={{
@@ -98,6 +118,8 @@ const CityItems = () => {
             minHeight: 48,
             px: 2.5,
           }}
+          onClick={itemSelected}
+          data-path={ROUTES_PATHS.CITY_ACCESSIBILITY}
         >
           <ListItemIcon
             sx={{
