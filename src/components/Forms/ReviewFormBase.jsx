@@ -169,10 +169,7 @@ const ReviewFormBase = ({
             >
               Give some advice about the city!
             </Typography>
-            <TextArea
-              name="advice"
-              register={register}
-              errors={errors} />
+            <TextArea name="advice" register={register} errors={errors} />
           </FormControl>
           <Button
             style={{ marginBottom: "20px" }}

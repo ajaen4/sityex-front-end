@@ -40,7 +40,12 @@ const TOKEN = process.env.REACT_APP_MAPS_API_KEY;
 const MAP_STYLE = process.env.REACT_APP_MAPS_STYLE;
 const DEFAULT_ZOOM = 14;
 
-function MapWithSearch({ selectedCity, updateRecomendations, noRecomendations, setNoRecomendations }) {
+function MapWithSearch({
+  selectedCity,
+  updateRecomendations,
+  noRecomendations,
+  setNoRecomendations,
+}) {
   const [configAlert, setConfigAlert] = useState(null);
   const [selectedPlace, setSelectedPlace] = useState({
     coordinates: null,
@@ -282,23 +287,23 @@ function MapWithSearch({ selectedCity, updateRecomendations, noRecomendations, s
           </Alert>
         )}
         {noRecomendations && (
-              <Alert
-                severity="error"
-                action={
-                  <IconButton
-                    aria-label="close"
-                    color="inherit"
-                    size="small"
-                    onClick={() => setNoRecomendations(false)}
-                  >
-                    <CloseIcon fontSize="inherit" />
-                  </IconButton>
-                }
+          <Alert
+            severity="error"
+            action={
+              <IconButton
+                aria-label="close"
+                color="inherit"
+                size="small"
+                onClick={() => setNoRecomendations(false)}
               >
-                <AlertTitle>
-                  Please set at least one place recommendation
-                </AlertTitle>
-              </Alert>
+                <CloseIcon fontSize="inherit" />
+              </IconButton>
+            }
+          >
+            <AlertTitle>
+              Please set at least one place recommendation
+            </AlertTitle>
+          </Alert>
         )}
       </Container>
     </>
