@@ -1,28 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { withAuth } from "session";
 import { prettyCity } from "helpers/usefulFunctions";
-import { fetchCity, getReviews } from "actions";
+import { fetchCity } from "actions";
 
-import { Box, Grid } from "@mui/material";
-import SingleDataCard from "cards/SingleDataCard";
-import RecommendationsMap from "components/Maps/RecommendationsMap";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
 import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
-
-import GroupsIcon from "@mui/icons-material/Groups";
-import GradingIcon from "@mui/icons-material/Grading";
-import PlaceIcon from "@mui/icons-material/Place";
 
 const CostOfLiving = ({
   selectedCity,
   auth,
-  isFetchingReviews,
   dispatch,
 }) => {
-  const [reviews, setreviews] = useState([]);
   const { location } = useParams();
 
   useEffect(() => {
@@ -31,43 +29,59 @@ const CostOfLiving = ({
 
   useEffect(() => {
     dispatch(fetchCity(prettyCity(location)));
-
-    getReviews(prettyCity(location)).then((reviews) => {
-      setreviews(reviews.sort((a, b) => b.timeStamp - a.timeStamp));
-    });
   }, [dispatch, location]);
+
+  function createData(
+    name,
+    unit,
+    cost,
+  ) {
+    return { name, unit, cost };
+  }
+  
+  const rows = [
+    createData('Frozen yoghurt', "1 month", 159),
+    createData('Ice cream sandwich', "1kg", 237),
+    createData('Eclair', "1 unit", 262),
+    createData('Cupcake', "1 unit", 300),
+    createData('Gingerbread', "5 units", 356),
+  ];
 
   if (selectedCity === null || selectedCity.name !== prettyCity(location))
     return <CenteredLoadingSpinner />;
 
-  return (
-    <Box>
-      <Grid container spacing={2} sx={{ py: 1 }} justifyContent="center">
-        <Grid item xs={12} md={3}>
-          <SingleDataCard title="Users" number="553" icon={<GroupsIcon />} />
-        </Grid>
-        <Grid item xs={12} md={3}>
-          <SingleDataCard title="Reviews" number="345" icon={<GradingIcon />} />
-        </Grid>
-        <Grid item xs={12} md={3}>
-          <SingleDataCard
-            title="Recommended places"
-            number="128"
-            icon={<PlaceIcon />}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <RecommendationsMap selectedCity={selectedCity} />
-        </Grid>
-      </Grid>
-    </Box>
-  );
+    return (
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>Item</TableCell>
+                <TableCell align="right">Unit</TableCell>
+                <TableCell align="right">Cost</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows.map((row) => (
+                <TableRow
+                  key={row.name}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row">
+                    {row.name}
+                  </TableCell>
+                  <TableCell align="right">{row.unit}</TableCell>
+                  <TableCell align="right">{row.cost}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      );
 };
 
 const mapStateToProps = (state) => ({
   selectedCity: state.selectedCity.data,
   auth: state.auth.data,
-  isFetchingReviews: state.reviews.isFetching,
 });
 
 export default connect(mapStateToProps)(withAuth(CostOfLiving));
