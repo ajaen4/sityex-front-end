@@ -1,26 +1,19 @@
-import React from 'react'
-import { Navigate } from 'react-router-dom'
-import { connect } from 'react-redux'
+import React from "react";
+import { Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-const withAuth = Component => {
+import * as ROUTES_PATHS from "routes/paths";
 
-  class WithAuth extends React.Component {
-    render() {
-      if(this.props.isAuthResolved)
-        return (<Component {...this.props} />)
-      else return(<Navigate to = "/login" />)
+const withAuth = (Component) => {
+  return (props) => {
+    const isAuthResolved = useSelector((state) => state.auth.isAuthResolved);
+
+    if (isAuthResolved) {
+      return <Component {...props} />;
+    } else {
+      return <Navigate to={ROUTES_PATHS.LOG_IN} />;
     }
-  }
+  };
+};
 
-  const mapStateToProps = state => {
-    return {
-      auth: state.auth.data,
-      isAuthResolved: state.auth.isAuthResolved
-    }
-  }
-
-  return connect(mapStateToProps)(WithAuth)
-
-}
-
-export default withAuth
+export default withAuth;

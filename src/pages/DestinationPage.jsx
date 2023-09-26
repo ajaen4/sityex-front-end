@@ -1,75 +1,70 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { connect } from 'react-redux'
-import { withAuth } from 'session'
-import { prettyCity } from 'helpers/usefulFunctions'
-import { fetchCity, getReviews } from 'actions'
-import { Container, Tab, Tabs, Box, Typography, Grid } from '@mui/material'
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { connect } from "react-redux";
 
-import DestinationPageHeader from 'components/Headers/DestinationPageHeader'
-import RecomendationsMap from 'components/Maps/RecomendationsMap'
-import ScrollReviews from 'components/ScrollList/ScrollReviews'
-import CityInfo from 'components/CityData/CityInfo'
-import CenteredLoadingSpinner from 'components/Spinner/CenteredLoadingSpinner'
 
-const DestinationPage = ({ selectedCity, auth, isFetchingReviews, dispatch }) => {
-  const [value, setValue] = useState(0)
-  const [reviews, setreviews] = useState([])
-  const { location } = useParams()
+import { withAuth } from "session";
+import { prettyCity } from "helpers/usefulFunctions";
+import { fetchCity, getReviews } from "actions";
+
+import { Box, Grid } from "@mui/material";
+import SingleDataCard from "cards/SingleDataCard";
+import RecommendationsMap from 'components/Maps/RecommendationsMap'
+
+import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
+
+import GroupsIcon from '@mui/icons-material/Groups';
+import GradingIcon from '@mui/icons-material/Grading';
+import PlaceIcon from '@mui/icons-material/Place';
+
+const DestinationPage = ({
+  selectedCity,
+  auth,
+  isFetchingReviews,
+  dispatch,
+}) => {
+  const [reviews, setreviews] = useState([]);
+  const { location } = useParams();
 
   useEffect(() => {
-    dispatch(fetchCity(prettyCity(location)))
+    document.title = "Destination Page";
+  }, []);
 
-    getReviews(prettyCity(location))
-      .then(reviews => {
-        setreviews(reviews.sort((a, b) => b.timeStamp - a.timeStamp))
-      })
-  
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, location])
+  useEffect(() => {
+    dispatch(fetchCity(prettyCity(location)));
 
-  if (selectedCity === null || (selectedCity.name !== prettyCity(location))) return <CenteredLoadingSpinner />
+    getReviews(prettyCity(location)).then((reviews) => {
+      setreviews(reviews.sort((a, b) => b.timeStamp - a.timeStamp));
+    });
+  }, [dispatch, location]);
+
+  if (selectedCity === null || selectedCity.name !== prettyCity(location))
+    return <CenteredLoadingSpinner />;
 
   return (
-    <>
-      <DestinationPageHeader cityName={selectedCity.displayName} countryName={selectedCity.countryName} numExp={reviews.length} />
-      <Container align="center">
-        <Typography variant="h4" sx={{my: 5}}>Characteristics</Typography>
-        <CityInfo cityData={selectedCity} />
-        <Typography variant="h4" sx={{my: 5}}>Areas</Typography>
-        <Tabs
-          value={value}
-          onChange={(e, newValue) => setValue(newValue)}
-          centered
-        >
-          <Tab label="reviews"/>
-          <Tab label="Map" />
-        </Tabs>
-        <Box>
-          {value === 0 && (
-            <Grid container align="center">
-              <Grid item sm={12} md={12} lg={12}>
-                <ScrollReviews reviews={reviews} isFetching={isFetchingReviews} />
-              </Grid>
-            </Grid>
-          )}
-          {value === 1 && (
-            <Grid container justifyContent="center">
-              <Grid item sm={12} md={12} lg={12} style={{height: "400px", width: "100%"}}>
-                <RecomendationsMap selectedCity={selectedCity} />
-              </Grid>
-            </Grid>
-          )}
-        </Box>
-      </Container>
-    </>
-  )
-}
+    <Box>
+      <Grid container spacing={2} sx={{py: 1}} justifyContent="center">
+        <Grid item xs={12} md={3}>
+          <SingleDataCard title="Users" number="553" icon={<GroupsIcon/>}/>
+        </Grid>
+        <Grid item xs={12} md={3} >
+        <SingleDataCard title="Reviews" number="345" icon={<GradingIcon/>}/>
+        </Grid>
+        <Grid item xs={12} md={3}>
+        <SingleDataCard title="Recommended places" number="128" icon={<PlaceIcon/>}/>
+        </Grid>
+        <Grid item xs={12}>
+          <RecommendationsMap selectedCity={selectedCity} />
+        </Grid>
+      </Grid>
+    </Box>
+  );
+};
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   selectedCity: state.selectedCity.data,
   auth: state.auth.data,
   isFetchingReviews: state.reviews.isFetching,
-})
+});
 
-export default connect(mapStateToProps)(withAuth(DestinationPage))
+export default connect(mapStateToProps)(withAuth(DestinationPage));

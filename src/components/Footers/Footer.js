@@ -1,13 +1,16 @@
-/*eslint-disable*/
-import React from "react"
-import { Container, Box, Typography, Link } from "@mui/material"
+import React from "react";
+import { Container, Box, Typography, Link } from "@mui/material";
 
 function Footer() {
   return (
-    <Box component="footer" sx={{ 
-      backgroundColor: 'grey.100',
-      width: '100%'
-    }}>
+    <Box
+      sx={{
+        backgroundColor: "grey.100",
+        width: "100%",
+        minHeight: "70px",
+        py: "5px",
+      }}
+    >
       <Container>
         <nav>
           <ul style={{ listStyleType: "none", padding: 0 }}>
@@ -43,7 +46,7 @@ function Footer() {
         </div>
       </Container>
     </Box>
-  )
+  );
 }
 
-export default Footer
+export default Footer;

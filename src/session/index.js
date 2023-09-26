@@ -1,5 +1,5 @@
-import withAuth from './withAuth'
-import withoutAuth from './withoutAuth'
+import withAuth from "./withAuth";
+import withoutAuth from "./withoutAuth";
 
-export { withAuth }
-export { withoutAuth }
+export { withAuth };
+export { withoutAuth };
