@@ -80,7 +80,7 @@ export default function MiniDrawer({
         {isDestinationPage && (
           <>
             <Divider>City</Divider>
-            <CityItems handleChangeDrawer={handleChangeDrawer}/>
+            <CityItems handleChangeDrawer={handleChangeDrawer} />
           </>
         )}
         {drawerType === "persistent" && (

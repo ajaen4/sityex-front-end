@@ -8,7 +8,7 @@ import ReviewFormBase from "./ReviewFormBase";
 
 const ReviewForm = ({ selectedCity, citiesIndex }) => {
   const INITIALCITY = "Aachen";
-  const auth = useSelector(state => state.auth.data);
+  const auth = useSelector((state) => state.auth.data);
   const dispatch = useDispatch();
 
   useEffect(() => {

@@ -6,7 +6,6 @@ import { withAuth } from "session";
 import ReviewForm from "components/Forms/ReviewForm";
 
 const ReviewPage = () => {
-
   const selectedCity = useSelector((state) => state.selectedCity.data);
   const citiesIndex = useSelector((state) => state.citiesIndex.data);
 

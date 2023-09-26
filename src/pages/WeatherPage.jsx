@@ -8,7 +8,7 @@ import { fetchCity } from "actions";
 
 import { Grid } from "@mui/material";
 import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
-import { LineChart, Line, CartesianGrid, XAxis, YAxis } from 'recharts';
+import { LineChart, Line, CartesianGrid, XAxis, YAxis } from "recharts";
 
 const months = [
   "January",
@@ -34,8 +34,8 @@ const WeatherPage = () => {
 
   const selectedCity = useSelector((state) => state.selectedCity.data);
 
-  let data = []
-  if (selectedCity){
+  let data = [];
+  if (selectedCity) {
     const weather = selectedCity.weather;
     const histAvgTemp = weather.avgTemp;
     let sum = 0;
@@ -60,7 +60,11 @@ const WeatherPage = () => {
       { id: "twelth", value: 11 },
     ];
 
-    data = histAvgTempIds.map(number => ({"monthName": months[number.value], "avgTemp": parseFloat(histAvgTemp[number.value]), "sunset": histSunset[number.value].firstSunset }))
+    data = histAvgTempIds.map((number) => ({
+      monthName: months[number.value],
+      avgTemp: parseFloat(histAvgTemp[number.value]),
+      sunset: histSunset[number.value].firstSunset,
+    }));
   }
 
   useEffect(() => {
@@ -68,13 +72,13 @@ const WeatherPage = () => {
 
     if (chartContainerRef.current) {
       setContainerWidth(chartContainerRef.current.offsetWidth);
-  
+
       const resizeObserver = new ResizeObserver(() => {
         setContainerWidth(chartContainerRef.current.offsetWidth);
       });
-  
+
       resizeObserver.observe(chartContainerRef.current);
-  
+
       // Clean up the observer when the component is unmounted
       return () => {
         resizeObserver.disconnect();
@@ -90,7 +94,7 @@ const WeatherPage = () => {
     return <CenteredLoadingSpinner />;
 
   return (
-    <Grid container justifyContent="center" sx={{py: 2}}>
+    <Grid container justifyContent="center" sx={{ py: 2 }}>
       <Grid item xs={12} md={6} ref={chartContainerRef}>
         <LineChart width={containerWidth} height={300} data={data}>
           <Line type="monotone" dataKey="avgTemp" stroke="#8884d8" />

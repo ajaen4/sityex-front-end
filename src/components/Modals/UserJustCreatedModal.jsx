@@ -5,11 +5,7 @@ import { userJustCreatedShown } from "actions";
 
 import ActionModal from "./ActionModal";
 
-const UserJustCreatedModal = ({
-  title,
-  message,
-  userJustCreated,
-}) => {
+const UserJustCreatedModal = ({ title, message, userJustCreated }) => {
   const dispatch = useDispatch();
   const action = () => {
     dispatch(userJustCreatedShown());
