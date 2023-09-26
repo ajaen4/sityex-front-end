@@ -54,7 +54,7 @@ const SignUpForm = () => {
     );
   };
 
-  const googleHandler = async () => {
+  const signUpUserGoogle = async () => {
     dispatch(logInUserWithGoogle()).then(
       (user) => {},
       (error) => {
@@ -73,7 +73,7 @@ const SignUpForm = () => {
             <Button
               disableElevation
               fullWidth
-              onClick={googleHandler}
+              onClick={signUpUserGoogle}
               size="large"
               variant="outlined"
               sx={{

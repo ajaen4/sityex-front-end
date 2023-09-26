@@ -1,56 +1,67 @@
 name: Build and Deploy
+
 on:
   push:
     branches:
       - dev
+      - main
 
 jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    env:
+      REACT_APP_PROJECT_ID: ${{ github.ref == 'refs/heads/dev' && secrets.REACT_APP_PROJECT_ID_DEV || secrets.REACT_APP_PROJECT_ID }}
+      REACT_APP_API_KEY: ${{ github.ref == 'refs/heads/dev' && secrets.REACT_APP_API_KEY_DEV || secrets.REACT_APP_API_KEY }}
+      REACT_APP_AUTH_DOMAIN: ${{ github.ref == 'refs/heads/dev' && secrets.REACT_APP_AUTH_DOMAIN_DEV || secrets.REACT_APP_AUTH_DOMAIN }}
+      REACT_APP_DATABASE_URL: ${{ github.ref == 'refs/heads/dev' && secrets.REACT_APP_DATABASE_URL_DEV || secrets.REACT_APP_DATABASE_URL }}
+      REACT_APP_STORAGE_BUCKET: ${{ github.ref == 'refs/heads/dev' && secrets.REACT_APP_STORAGE_BUCKET_DEV || secrets.REACT_APP_STORAGE_BUCKET }}
+      REACT_APP_MESSAGING_SENDER_ID: ${{ github.ref == 'refs/heads/dev' && secrets.REACT_APP_MESSAGING_SENDER_ID_DEV || secrets.REACT_APP_MESSAGING_SENDER_ID }}
+      REACT_APP_APP_ID: ${{ github.ref == 'refs/heads/dev' && secrets.REACT_APP_APP_ID_DEV || secrets.REACT_APP_APP_ID }}
+      REACT_APP_MEASUREMENT_ID: ${{ github.ref == 'refs/heads/dev' && secrets.REACT_APP_MEASUREMENT_ID_DEV || secrets.REACT_APP_MEASUREMENT_ID }}
+      REACT_APP_MAPS_API_KEY: ${{ secrets.REACT_APP_MAPS_API_KEY }}
+      REACT_APP_MAPS_STYLE: ${{ secrets.REACT_APP_MAPS_STYLE }}
+      CI: ""
+
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4.0.0
+
       - name: Install Dependencies
         run: npm install
-        env:
-          CI: ""
+
       - name: Build
         run: npm run build
-        env:
-          CI: ""
-          REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
-          REACT_APP_AUTH_DOMAIN: ${{ secrets.REACT_APP_AUTH_DOMAIN }}
-          REACT_APP_DATABASE_URL: ${{ secrets.REACT_APP_DATABASE_URL }}
-          REACT_APP_PROJECT_ID: ${{ secrets.REACT_APP_PROJECT_ID }}
-          REACT_APP_STORAGE_BUCKET: ${{ secrets.REACT_APP_STORAGE_BUCKET }}
-          REACT_APP_MESSAGING_SENDER_ID: ${{ secrets.REACT_APP_MESSAGING_SENDER_ID }}
-          REACT_APP_MAPS_API_KEY: ${{ secrets.REACT_APP_MAPS_API_KEY }}
-          REACT_APP_MAPS_STYLE: ${{ secrets.REACT_APP_MAPS_STYLE }}
-          REACT_APP_APP_ID: ${{ secrets.REACT_APP_APP_ID }}
-          REACT_APP_MEASUREMENT_ID: ${{ secrets.REACT_APP_MEASUREMENT_ID }}
+
       - name: Archive Production Artifact
         uses: actions/upload-artifact@v3.1.3
         with:
           name: build
           path: build
+
   deploy:
     name: Deploy
     needs: build
     runs-on: ubuntu-latest
+    env:
+      REACT_APP_PROJECT_ID: ${{ github.ref == 'refs/heads/dev' && secrets.REACT_APP_PROJECT_ID_DEV || secrets.REACT_APP_PROJECT_ID }}
+      CI: ""
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4.0.0
+
       - name: Download Artifact
         uses: actions/download-artifact@v2.1.1
         with:
           name: build
           path: build
+
       - name: Install functions dependencies
         run: npm i -D
+
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@v12.4.0
         with:
-          args: deploy
+          args: deploy --project ${{ env.REACT_APP_PROJECT_ID }}
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
