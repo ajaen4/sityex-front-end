@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -28,6 +28,10 @@ import DestinationsMap from "components/Maps/DestinationsMap";
 const HomePage = ({ citiesIndex, isFetching, authUser }) => {
   const [tabValue, setTabValue] = useState(0);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = "Home Page";
+  }, []);
 
   const onSearchChange = (event, value) =>
     navigate("/destination/" + value.cityName);

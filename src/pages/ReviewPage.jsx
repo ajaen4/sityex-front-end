@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import { withAuth } from "session";
@@ -6,6 +6,11 @@ import { withAuth } from "session";
 import ReviewForm from "components/Forms/ReviewForm";
 
 const ReviewPage = ({ selectedCity, citiesIndex }) => {
+
+  useEffect(() => {
+    document.title = "Review Page";
+  }, []);
+
   return (
     <div
       style={{

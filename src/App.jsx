@@ -18,6 +18,8 @@ import {
   subscribeToMessages,
 } from "actions";
 
+import { logAnalyticsEvent } from "api";
+
 import { saveState } from "localStorage/localStorage";
 
 const store = initStore();
@@ -66,6 +68,11 @@ class App extends Component {
     }
 
     if (!this.state.auth) this.unsuscribeMessages();
+
+    logAnalyticsEvent("page_view", {
+      page_title: document.title,
+      page_location: window.location.href,
+    })
   }
 
   render() {

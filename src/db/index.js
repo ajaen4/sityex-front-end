@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, Timestamp } from "firebase/firestore";
-import { getAnalytics } from "firebase/analytics";
+import { initializeAnalytics } from "firebase/analytics";
 
 const config = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -15,6 +15,6 @@ const config = {
 
 const app = initializeApp(config);
 const db = getFirestore(app);
-const analytics = getAnalytics(app);
+const analytics = initializeAnalytics(app, { send_page_view: false });
 
-export { db as default, Timestamp };
+export { db as default, analytics, Timestamp };

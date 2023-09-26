@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { useTheme } from "@mui/material/styles";
@@ -17,6 +17,10 @@ import LogInForm from "components/Forms/LogInForm.jsx";
 
 const LogInPage = () => {
   const theme = useTheme();
+
+  useEffect(() => {
+    document.title = "Log In Page";
+  }, []);
 
   return (
     <Box sx={{ backgroundColor: theme.palette.primary.light }}>
