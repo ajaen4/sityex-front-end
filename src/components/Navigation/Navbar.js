@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { useMediaQuery } from "@mui/material";
 
 import AppBar from "@mui/material/AppBar";
@@ -27,9 +27,12 @@ const settings = ["Account", "Logout"];
 
 const drawerWidth = 240;
 
-function NavBar({ auth, isAuthResolved, outlet }) {
+function NavBar({ outlet }) {
   const [isOpenUserMenu, setIsOpenUserMenu] = React.useState(false);
   const [isOpenDrawer, setIsOpenDrawer] = React.useState(false);
+
+  const auth = useSelector((state) => state.auth);
+  const isAuthResolved = useSelector((state) => state.auth.isAuthResolved);
 
   const theme = useTheme();
   const userSettingsRef = React.useRef(null);
@@ -177,11 +180,4 @@ function NavBar({ auth, isAuthResolved, outlet }) {
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    auth: state.auth.data,
-    isAuthResolved: state.auth.isAuthResolved,
-  };
-};
-
-export default connect(mapStateToProps)(NavBar);
+export default NavBar;

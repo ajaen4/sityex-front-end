@@ -17,7 +17,6 @@ import ConnectWithoutContactIcon from "@mui/icons-material/ConnectWithoutContact
 import * as ROUTES_PATHS from "routes/paths";
 
 const CityItems = () => {
-
   const navigate = useNavigate();
   const selectedCity = useSelector((state) => state.selectedCity.data);
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import { withAuth } from "session";
 import { prettyCity } from "helpers/usefulFunctions";
@@ -16,14 +16,15 @@ import GroupsIcon from "@mui/icons-material/Groups";
 import GradingIcon from "@mui/icons-material/Grading";
 import PlaceIcon from "@mui/icons-material/Place";
 
-const CommunityPage = ({
-  selectedCity,
-  auth,
-  isFetchingReviews,
-  dispatch,
-}) => {
+const CommunityPage = () => {
   const [reviews, setreviews] = useState([]);
   const { location } = useParams();
+
+  const selectedCity = useSelector((state) => state.selectedCity.data);
+  const auth = useSelector((state) => state.auth.data);
+  const isFetchingReviews = useSelector((state) => state.reviews.isFetching);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     document.title = "Community Page";
@@ -64,10 +65,4 @@ const CommunityPage = ({
   );
 };
 
-const mapStateToProps = (state) => ({
-  selectedCity: state.selectedCity.data,
-  auth: state.auth.data,
-  isFetchingReviews: state.reviews.isFetching,
-});
-
-export default connect(mapStateToProps)(withAuth(CommunityPage));
+export default withAuth(CommunityPage);

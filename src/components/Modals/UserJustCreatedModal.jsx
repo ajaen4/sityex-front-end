@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { userJustCreatedShown } from "actions";
 
@@ -9,8 +9,8 @@ const UserJustCreatedModal = ({
   title,
   message,
   userJustCreated,
-  dispatch,
 }) => {
+  const dispatch = useDispatch();
   const action = () => {
     dispatch(userJustCreatedShown());
   };
@@ -25,4 +25,4 @@ const UserJustCreatedModal = ({
   );
 };
 
-export default connect()(UserJustCreatedModal);
+export default UserJustCreatedModal;
