@@ -34,7 +34,7 @@ const HomePage = ({ citiesIndex, isFetching, authUser }) => {
   }, []);
 
   const onSearchChange = (event, value) =>
-    navigate("/destination/" + value.cityName);
+    navigate("/destination/" + value.cityName + "/community");
 
   const getDestinations = () => {
     if (citiesIndex !== null)

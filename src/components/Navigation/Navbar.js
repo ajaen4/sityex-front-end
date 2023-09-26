@@ -23,7 +23,7 @@ import MiniDrawer from "components/Navigation/Drawer";
 import logo from "assets/img/icons/logo.png";
 
 const pages = ["New review", "Destinations"];
-const settings = ["Profile", "Account", "Logout"];
+const settings = ["Account", "Logout"];
 
 const drawerWidth = 240;
 

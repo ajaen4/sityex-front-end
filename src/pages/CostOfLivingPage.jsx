@@ -16,7 +16,7 @@ import GroupsIcon from "@mui/icons-material/Groups";
 import GradingIcon from "@mui/icons-material/Grading";
 import PlaceIcon from "@mui/icons-material/Place";
 
-const DestinationPage = ({
+const CostOfLiving = ({
   selectedCity,
   auth,
   isFetchingReviews,
@@ -26,7 +26,7 @@ const DestinationPage = ({
   const { location } = useParams();
 
   useEffect(() => {
-    document.title = "Destination Page";
+    document.title = "Community Page";
   }, []);
 
   useEffect(() => {
@@ -70,4 +70,4 @@ const mapStateToProps = (state) => ({
   isFetchingReviews: state.reviews.isFetching,
 });
 
-export default connect(mapStateToProps)(withAuth(DestinationPage));
+export default connect(mapStateToProps)(withAuth(CostOfLiving));
