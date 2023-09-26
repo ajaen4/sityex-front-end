@@ -16,7 +16,7 @@ import {
   Link,
 } from "@mui/material";
 
-import { logInUser } from "actions";
+import { logInUser, logInUserWithGoogle } from "actions";
 
 import StandarModal from "components/Modals/StandarModal";
 import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
@@ -50,7 +50,12 @@ const LogInForm = ({ dispatch }) => {
   };
 
   const googleHandler = async () => {
-    console.log("Login");
+    dispatch(logInUserWithGoogle()).then(
+      (user) => {},
+      (errorMessage) => {
+        setErrorMessage(errorMessage);
+      },
+    );
   };
 
   if (isFetching) return <CenteredLoadingSpinner />;

@@ -6,6 +6,8 @@ import {
   signOut,
   sendPasswordResetEmail,
   updatePassword,
+  signInWithPopup,
+  GoogleAuthProvider,
 } from "firebase/auth";
 
 import { doc, setDoc, getDoc } from "firebase/firestore";
@@ -13,6 +15,7 @@ import { doc, setDoc, getDoc } from "firebase/firestore";
 import db from "db";
 
 const auth = getAuth();
+const provider = new GoogleAuthProvider();
 
 export const logIn = async ({ email, password }) => {
   try {
@@ -23,6 +26,16 @@ export const logIn = async ({ email, password }) => {
   }
 };
 
+export const logInWithGoogle = async () => {
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      return result.user;
+    })
+    .catch((error) => {
+      throw new Error(error.message);
+    });
+};
+
 export const onAuthStateChangedCallback = (onAuthCallback) =>
   onAuthStateChanged(auth, onAuthCallback);
 
@@ -31,7 +44,7 @@ export const createUser = async ({ email, password, userName }) => {
     const { user } = await createUserWithEmailAndPassword(
       auth,
       email,
-      password,
+      password
     );
     await saveUser({ uid: user.uid, email, userName });
     return user;

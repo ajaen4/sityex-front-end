@@ -20,7 +20,7 @@ import Google from "assets/img/icons/social-google.svg";
 
 import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 import StandarModal from "components/Modals/StandarModal";
-import { createUser } from "actions";
+import { createUser, logInUserWithGoogle } from "actions";
 import { sameAs } from "helpers/validators";
 
 import * as ROUTES_PATHS from "routes/paths";
@@ -37,14 +37,12 @@ const SignUpForm = ({ dispatch }) => {
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
 
   const [isFetching, setIsFetching] = useState(false);
-  const [user, setUser] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
 
   const signUpUser = (data) => {
     setIsFetching(true);
     dispatch(createUser(data)).then(
       (user) => {
-        setUser(user);
         setIsFetching(false);
       },
       (error) => {
@@ -55,21 +53,15 @@ const SignUpForm = ({ dispatch }) => {
   };
 
   const googleHandler = async () => {
-    console.log("Login");
+    dispatch(logInUserWithGoogle()).then(
+      (user) => {},
+      (error) => {
+        setErrorMessage(error);
+      },
+    );
   };
 
   if (isFetching) return <CenteredLoadingSpinner />;
-
-  if (user) {
-    return (
-      <StandarModal
-        title="User created successfully"
-        message={
-          "The user with email " + user.email + " has been successfully created"
-        }
-      />
-    );
-  }
 
   return (
     <>
@@ -173,6 +165,7 @@ const SignUpForm = ({ dispatch }) => {
                   })}
                   label="Nombre de usuario"
                   variant="outlined"
+                  autoComplete="username"
                 />
                 <FormHelperText style={{ minHeight: "20px" }}>
                   {errors.userName?.message}
@@ -191,6 +184,7 @@ const SignUpForm = ({ dispatch }) => {
                   label="Contraseña"
                   variant="outlined"
                   type="password"
+                  autoComplete="new-password"
                 />
                 <FormHelperText style={{ minHeight: "20px" }}>
                   {errors.password?.message}
@@ -214,6 +208,7 @@ const SignUpForm = ({ dispatch }) => {
                   label="Confirmación de Contraseña"
                   variant="outlined"
                   type="password"
+                  autoComplete="new-password"
                 />
                 <FormHelperText style={{ minHeight: "20px" }}>
                   {errors.confirmPassword?.message}
