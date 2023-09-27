@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { useForm } from "react-hook-form";
 import { useTheme } from "@mui/material/styles";
@@ -25,7 +25,8 @@ import Google from "assets/img/icons/social-google.svg";
 
 import * as ROUTES_PATHS from "routes/paths";
 
-const LogInForm = ({ dispatch }) => {
+const LogInForm = () => {
+  const dispatch = useDispatch();
   const theme = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const {
@@ -219,4 +220,4 @@ const LogInForm = ({ dispatch }) => {
   );
 };
 
-export default connect()(LogInForm);
+export default LogInForm;

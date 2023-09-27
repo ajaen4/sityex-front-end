@@ -1,6 +1,14 @@
 import MainLayout from "Layouts/MainLayout";
 
-import { HomePage, DestinationPage, ReviewPage } from "pages";
+import {
+  HomePage,
+  CommunityPage,
+  CostOfLivingPage,
+  ReviewPage,
+  WeatherPage,
+  AccessibilityPage,
+  DemographicsPage,
+} from "pages";
 
 import * as ROUTES_PATHS from "routes/paths";
 
@@ -20,8 +28,24 @@ const WithAuthRoutes = {
       path: ROUTES_PATHS.DESTINATION,
       children: [
         {
-          path: ":location",
-          element: <DestinationPage />,
+          path: ROUTES_PATHS.CITY_COMMUNITY,
+          element: <CommunityPage />,
+        },
+        {
+          path: ROUTES_PATHS.CITY_COST_OF_LIVING,
+          element: <CostOfLivingPage />,
+        },
+        {
+          path: ROUTES_PATHS.CITY_WEATHER,
+          element: <WeatherPage />,
+        },
+        {
+          path: ROUTES_PATHS.CITY_DEMOGRAPHICS,
+          element: <DemographicsPage />,
+        },
+        {
+          path: ROUTES_PATHS.CITY_ACCESSIBILITY,
+          element: <AccessibilityPage />,
         },
       ],
     },

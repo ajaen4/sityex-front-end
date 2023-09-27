@@ -1,14 +1,15 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { justLoggedInShown } from "actions";
 
 import ActionModal from "./ActionModal";
 
-const JustLoggedInModal = ({ title, message, justLoggedIn, dispatch }) => {
+const JustLoggedInModal = ({ title, message, justLoggedIn }) => {
   const action = () => {
     dispatch(justLoggedInShown());
   };
+  const dispatch = useDispatch();
 
   return (
     <ActionModal
@@ -20,4 +21,4 @@ const JustLoggedInModal = ({ title, message, justLoggedIn, dispatch }) => {
   );
 };
 
-export default connect()(JustLoggedInModal);
+export default JustLoggedInModal;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { useForm } from "react-hook-form";
 import {
@@ -25,13 +25,15 @@ import { sameAs } from "helpers/validators";
 
 import * as ROUTES_PATHS from "routes/paths";
 
-const SignUpForm = ({ dispatch }) => {
+const SignUpForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
     getValues,
   } = useForm();
+
+  const dispatch = useDispatch();
 
   const theme = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
@@ -52,7 +54,7 @@ const SignUpForm = ({ dispatch }) => {
     );
   };
 
-  const googleHandler = async () => {
+  const signUpUserGoogle = async () => {
     dispatch(logInUserWithGoogle()).then(
       (user) => {},
       (error) => {
@@ -71,7 +73,7 @@ const SignUpForm = ({ dispatch }) => {
             <Button
               disableElevation
               fullWidth
-              onClick={googleHandler}
+              onClick={signUpUserGoogle}
               size="large"
               variant="outlined"
               sx={{
@@ -257,4 +259,4 @@ const SignUpForm = ({ dispatch }) => {
   );
 };
 
-export default connect()(SignUpForm);
+export default SignUpForm;

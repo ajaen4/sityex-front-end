@@ -1,11 +1,14 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 
 import { withAuth } from "session";
 
 import ReviewForm from "components/Forms/ReviewForm";
 
-const ReviewPage = ({ selectedCity, citiesIndex }) => {
+const ReviewPage = () => {
+  const selectedCity = useSelector((state) => state.selectedCity.data);
+  const citiesIndex = useSelector((state) => state.citiesIndex.data);
+
   useEffect(() => {
     document.title = "Review Page";
   }, []);
@@ -36,9 +39,4 @@ const ReviewPage = ({ selectedCity, citiesIndex }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  citiesIndex: state.citiesIndex.data,
-  selectedCity: state.selectedCity.data,
-});
-
-export default connect(mapStateToProps)(withAuth(ReviewPage));
+export default withAuth(ReviewPage);

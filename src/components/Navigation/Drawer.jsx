@@ -77,9 +77,19 @@ export default function MiniDrawer({
             )}
           </IconButton>
         </DrawerHeader>
+        {isDestinationPage && (
+          <>
+            <Divider>City</Divider>
+            <CityItems handleChangeDrawer={handleChangeDrawer} />
+          </>
+        )}
+        {drawerType === "persistent" && (
+          <>
+            <Divider>Navigation</Divider>
+            <MainItems handleChangeDrawer={handleChangeDrawer} />
+          </>
+        )}
         <Divider />
-        {isDestinationPage && <CityItems />}
-        {!isDestinationPage && <MainItems />}
       </Drawer>
       <Box
         component="main"
