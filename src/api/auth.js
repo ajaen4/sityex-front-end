@@ -27,13 +27,17 @@ export const logIn = async ({ email, password }) => {
 };
 
 export const logInWithGoogle = async () => {
-  signInWithPopup(auth, provider)
-    .then((result) => {
-      return result.user;
-    })
-    .catch((error) => {
-      throw new Error(error.message);
+  try {
+    const { user } = await signInWithPopup(auth, provider);
+    await saveUser({
+      uid: user.uid,
+      email: user.email,
+      userName: user.displayName,
     });
+    return user;
+  } catch (error) {
+    throw new Error(error.message);
+  }
 };
 
 export const onAuthStateChangedCallback = (onAuthCallback) =>

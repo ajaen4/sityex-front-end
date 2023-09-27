@@ -23,9 +23,3 @@ export const SAVING_REVIEW_SUCCESS = "SAVING_REVIEW_SUCCESS";
 export const SAVING_REVIEW_ERROR = "SAVING_REVIEW_ERROR";
 
 //--------------------reviewS END
-
-//--------------------USER_MESSAGES
-
-export const FETCH_USER_MESSAGES_SUCCESS = "FETCH_USER_MESSAGES_SUCCESS";
-
-//--------------------USER_MESSAGES END

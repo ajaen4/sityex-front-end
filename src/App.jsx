@@ -15,7 +15,6 @@ import {
   storeAuthUser,
   fetchCitiesIndex,
   checkUserConnection,
-  subscribeToMessages,
 } from "actions";
 
 import { logAnalyticsEvent } from "api";
@@ -43,15 +42,11 @@ class App extends Component {
 
   componentDidMount() {
     this.setState({ componentMounted: true });
-    this.unsuscribeMessages = () => {};
     this.unsuscribeAuth = onAuthStateChanged((authUser) => {
       store.dispatch(storeAuthUser(authUser));
 
       if (authUser) {
         checkUserConnection(authUser.uid);
-        this.unsuscribeMessages = store.dispatch(
-          subscribeToMessages(authUser.uid),
-        );
         this.setState({ auth: authUser });
       }
     });
@@ -59,15 +54,12 @@ class App extends Component {
 
   componentWillUnmount() {
     this.unsuscribeAuth();
-    this.unsuscribeMessages();
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.auth && store.getState().citiesIndex.data === null) {
       store.dispatch(fetchCitiesIndex());
     }
-
-    if (!this.state.auth) this.unsuscribeMessages();
 
     logAnalyticsEvent("page_view", {
       page_title: document.title,

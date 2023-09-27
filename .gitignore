@@ -26,3 +26,4 @@ yarn-error.log*
 comandos
 .eslintcache
 .firebase
+.github/push_to_dev.json
