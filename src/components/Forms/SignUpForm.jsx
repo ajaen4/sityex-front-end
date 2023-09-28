@@ -248,9 +248,6 @@ const SignUpForm = () => {
       {errorMessage !== null && (
         <StandarModal
           color="error"
-          style={{
-            marginTop: "15px",
-          }}
           title={"Incorrect authentication. "}
           message={errorMessage.message}
         />

@@ -88,7 +88,7 @@ const CostOfLivingPage = () => {
     return <CenteredLoadingSpinner />;
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} sx={{ mt: 2 }}>
       <Grid container justifyContent="center">
         <Grid item xs={12} md={6}>
           <Table size="small">

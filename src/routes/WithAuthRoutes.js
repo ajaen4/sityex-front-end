@@ -1,7 +1,9 @@
+import { Search } from "@mui/icons-material";
 import MainLayout from "Layouts/MainLayout";
 
 import {
-  HomePage,
+  SearchPage,
+  MapPage,
   CommunityPage,
   CostOfLivingPage,
   ReviewPage,
@@ -18,12 +20,17 @@ const WithAuthRoutes = {
   children: [
     {
       path: "/",
-      element: <HomePage />,
+      element: <SearchPage />,
     },
     {
-      path: ROUTES_PATHS.HOME,
-      element: <HomePage />,
+      path: ROUTES_PATHS.SEARCH,
+      element: <SearchPage />,
     },
+    {
+      path: ROUTES_PATHS.MAP,
+      element: <MapPage />,
+    },
+    ,
     {
       path: ROUTES_PATHS.DESTINATION,
       children: [

@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 
+import { Box } from "@mui/material";
+
 import { withAuth } from "session";
 
 import ReviewForm from "components/Forms/ReviewForm";
@@ -14,11 +16,11 @@ const ReviewPage = () => {
   }, []);
 
   return (
-    <div
+    <Box
       style={{
         justifyContent: "center",
         textAlign: "center",
-        marginTop: "50px",
+        marginTop: 50,
       }}
     >
       <h2 className="bold"> Fill in a review </h2>
@@ -35,7 +37,7 @@ const ReviewPage = () => {
         }
         citiesIndex={citiesIndex !== null ? citiesIndex : []}
       />
-    </div>
+    </Box>
   );
 };
 
