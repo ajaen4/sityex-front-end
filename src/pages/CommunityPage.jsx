@@ -7,7 +7,7 @@ import { prettyCity } from "helpers/usefulFunctions";
 import { fetchCity, getReviews } from "actions";
 
 import { Box, Grid } from "@mui/material";
-import SingleDataCard from "cards/SingleDataCard";
+import SingleDataCard from "components/Cards/SingleDataCard";
 import RecommendationsMap from "components/Maps/RecommendationsMap";
 
 import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
@@ -42,7 +42,7 @@ const CommunityPage = () => {
     return <CenteredLoadingSpinner />;
 
   return (
-    <Box>
+    <Box sx={{ mt: 2 }}>
       <Grid container spacing={2} sx={{ py: 1 }} justifyContent="center">
         <Grid item xs={12} md={3}>
           <SingleDataCard title="Users" number="553" icon={<GroupsIcon />} />

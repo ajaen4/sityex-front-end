@@ -8,6 +8,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import GradingIcon from "@mui/icons-material/Grading";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import SearchIcon from "@mui/icons-material/Search";
 
 import * as ROUTES_PATHS from "routes/paths";
 
@@ -49,7 +50,28 @@ const MainItems = ({ handleChangeDrawer }) => {
             minHeight: 48,
             px: 2.5,
           }}
-          data-path={ROUTES_PATHS.HOME}
+          data-path={ROUTES_PATHS.SEARCH}
+          onClick={itemSelected}
+        >
+          <ListItemIcon
+            sx={{
+              minWidth: 0,
+              mr: 3,
+              justifyContent: "center",
+            }}
+          >
+            <SearchIcon />
+          </ListItemIcon>
+          <ListItemText primary="Search" />
+        </ListItemButton>
+      </ListItem>
+      <ListItem disablePadding sx={{ display: "block" }}>
+        <ListItemButton
+          sx={{
+            minHeight: 48,
+            px: 2.5,
+          }}
+          data-path={ROUTES_PATHS.MAP}
           onClick={itemSelected}
         >
           <ListItemIcon
@@ -61,7 +83,7 @@ const MainItems = ({ handleChangeDrawer }) => {
           >
             <LocationOnIcon />
           </ListItemIcon>
-          <ListItemText primary="Destinations" />
+          <ListItemText primary="Map" />
         </ListItemButton>
       </ListItem>
     </List>

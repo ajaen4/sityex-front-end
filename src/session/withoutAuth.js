@@ -11,7 +11,7 @@ const withoutAuth = (Component) => {
     if (!isAuthResolved) {
       return <Component {...props} />;
     } else {
-      return <Navigate to={ROUTES_PATHS.HOME} />;
+      return <Navigate to={ROUTES_PATHS.SEARCH} />;
     }
   };
 };
