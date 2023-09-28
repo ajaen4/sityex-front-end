@@ -30,7 +30,8 @@
     "redux-thunk": "^2.3.0",
     "react-perfect-scrollbar": "^1.5.8",
     "react-device-detect": "2.2.3",
-    "recharts": "2.8.0"
+    "recharts": "2.8.0",
+    "leaflet.markercluster": "1.5.3"
   },
   "scripts": {
     "start": "react-scripts start",

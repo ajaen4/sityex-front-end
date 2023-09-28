@@ -1,6 +1,7 @@
 import CommunityPage from "./CommunityPage";
 import CostOfLivingPage from "./CostOfLivingPage";
-import HomePage from "./HomePage";
+import SearchPage from "./SearchPage";
+import MapPage from "./MapPage";
 import LogInPage from "./LogInPage";
 import ReviewPage from "./ReviewPage";
 import SignUpPage from "./SignUpPage";
@@ -10,7 +11,8 @@ import DemographicsPage from "./DemographicsPage";
 
 export {
   CommunityPage,
-  HomePage,
+  SearchPage,
+  MapPage,
   LogInPage,
   ReviewPage,
   SignUpPage,

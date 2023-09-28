@@ -22,7 +22,7 @@ import MiniDrawer from "components/Navigation/Drawer";
 
 import logo from "assets/img/icons/logo.png";
 
-const pages = ["New review", "Destinations"];
+const pages = ["New review", "Search", "Map"];
 const settings = ["Account", "Logout"];
 
 const drawerWidth = 240;
@@ -60,7 +60,8 @@ function NavBar({ outlet }) {
 
   const handleClickNavMenu = (page) => {
     if (page === "New review") navigate("new-review");
-    if (page === "Destinations") navigate("home");
+    if (page === "Search") navigate("search");
+    if (page === "Map") navigate("map");
   };
 
   return (

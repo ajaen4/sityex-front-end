@@ -44,7 +44,7 @@ const ReviewFormBase = ({
   const [isFetching, setIsFetching] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
 
-  const goToDestinations = () => navigate("/home");
+  const goToDestinations = () => navigate("/search");
 
   const updateRecomendations = (recomendations) =>
     setCurrRecomendations(recomendations);
@@ -83,10 +83,7 @@ const ReviewFormBase = ({
 
   return (
     <>
-      <form
-        onSubmit={handleSubmit(handleForm)}
-        style={{ marginTop: "20px", textAlign: "center" }}
-      >
+      <form onSubmit={handleSubmit(handleForm)} style={{ textAlign: "center" }}>
         {isFetching && <CenteredLoadingSpinner />}
         <Container sx={{ textAlign: "center" }}>
           <CitiesDropDown

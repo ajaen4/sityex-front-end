@@ -77,23 +77,25 @@ export default function MiniDrawer({
             )}
           </IconButton>
         </DrawerHeader>
-        {isDestinationPage && (
-          <>
-            <Divider>City</Divider>
-            <CityItems handleChangeDrawer={handleChangeDrawer} />
-          </>
-        )}
-        {drawerType === "persistent" && (
-          <>
-            <Divider>Navigation</Divider>
-            <MainItems handleChangeDrawer={handleChangeDrawer} />
-          </>
-        )}
-        <Divider />
+        <Box sx={{ mt: 1 }}>
+          {isDestinationPage && (
+            <>
+              <Divider>City</Divider>
+              <CityItems handleChangeDrawer={handleChangeDrawer} />
+            </>
+          )}
+          {drawerType === "persistent" && (
+            <>
+              <Divider>Navigation</Divider>
+              <MainItems handleChangeDrawer={handleChangeDrawer} />
+            </>
+          )}
+          <Divider />
+        </Box>
       </Drawer>
       <Box
         component="main"
-        sx={{ flexGrow: 1, p: 3, width: "100%", margin: "0 auto" }}
+        sx={{ flexGrow: 1, width: "100%", margin: "0 auto" }}
       >
         <DrawerHeader />
         {outlet}
