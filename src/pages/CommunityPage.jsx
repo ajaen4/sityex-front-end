@@ -44,21 +44,18 @@ const CommunityPage = () => {
   return (
     <Box sx={{ mt: 2 }}>
       <Grid container spacing={2} sx={{ py: 1 }} justifyContent="center">
-        <Grid item xs={12} md={3}>
+        <Grid item xs={10} md={3}>
           <SingleDataCard title="Users" number="553" icon={<GroupsIcon />} />
         </Grid>
-        <Grid item xs={12} md={3}>
+        <Grid item xs={10} md={3}>
           <SingleDataCard title="Reviews" number="345" icon={<GradingIcon />} />
         </Grid>
-        <Grid item xs={12} md={3}>
+        <Grid item xs={10} md={3}>
           <SingleDataCard
             title="Recommended places"
             number="128"
             icon={<PlaceIcon />}
           />
-        </Grid>
-        <Grid item xs={12}>
-          <RecommendationsMap selectedCity={selectedCity} />
         </Grid>
       </Grid>
     </Box>
