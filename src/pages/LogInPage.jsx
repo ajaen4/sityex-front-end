@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
 
 import { useTheme } from "@mui/material/styles";
 import { Grid, Stack, Typography, Container, Box, Card } from "@mui/material";
@@ -7,6 +6,7 @@ import { Grid, Stack, Typography, Container, Box, Card } from "@mui/material";
 import { withoutAuth } from "session";
 
 import LogInForm from "components/Forms/LogInForm.jsx";
+import Logo from "assets/img/icons/logo_black.png";
 
 const LogInPage = () => {
   const theme = useTheme();
@@ -43,33 +43,43 @@ const LogInPage = () => {
             alignItems="center"
             justifyContent="center"
           >
-            <Grid item sx={{ mb: 3 }}>
-              <Link to="#"></Link>
-            </Grid>
-            <Grid item xs={12}>
-              <Container
+            <Grid
+              item
+              xs={12}
+              sx={{ display: "flex", justifyContent: "center" }}
+            >
+              <Box
                 sx={{
-                  alignItems: "center",
+                  width: 160,
                   justifyContent: "center",
+                  alignItems: "center",
+                  display: "flex",
                 }}
               >
-                <Stack alignItems="center" justifyContent="center" spacing={1}>
-                  <Typography
-                    color={theme.palette.secondary.main}
-                    gutterBottom
-                    variant="h3"
-                  >
-                    Hi, Welcome Back
-                  </Typography>
-                  <Typography
-                    variant="caption"
-                    fontSize="16px"
-                    textAlign="center"
-                  >
-                    Enter your credentials to continue
-                  </Typography>
-                </Stack>
-              </Container>
+                <img src={Logo} alt="SityEx" width={150} height={35} />
+              </Box>
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              sx={{ display: "flex", justifyContent: "center" }}
+            >
+              <Stack alignItems="center" justifyContent="center" spacing={1}>
+                <Typography
+                  color={theme.palette.secondary.main}
+                  gutterBottom
+                  variant="h3"
+                >
+                  Hi, Welcome Back
+                </Typography>
+                <Typography
+                  variant="caption"
+                  fontSize="16px"
+                  textAlign="center"
+                >
+                  Enter your credentials to continue
+                </Typography>
+              </Stack>
             </Grid>
             <LogInForm />
           </Grid>

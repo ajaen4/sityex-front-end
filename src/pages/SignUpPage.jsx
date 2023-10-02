@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
 
 import { useTheme } from "@mui/material/styles";
 import { Grid, Stack, Typography, Container, Box, Card } from "@mui/material";
@@ -7,6 +6,7 @@ import { Grid, Stack, Typography, Container, Box, Card } from "@mui/material";
 import { withoutAuth } from "session";
 
 import SignUpForm from "components/Forms/SignUpForm.jsx";
+import Logo from "assets/img/icons/logo_black.png";
 
 const SignUpPage = () => {
   const theme = useTheme();
@@ -22,7 +22,6 @@ const SignUpPage = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          minHeight: "calc(100vh - 68px)",
         }}
       >
         <Card
@@ -43,8 +42,21 @@ const SignUpPage = () => {
             alignItems="center"
             justifyContent="center"
           >
-            <Grid item sx={{ mb: 3 }}>
-              <Link to="#"></Link>
+            <Grid
+              item
+              xs={12}
+              sx={{ display: "flex", justifyContent: "center" }}
+            >
+              <Box
+                sx={{
+                  width: 160,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  display: "flex",
+                }}
+              >
+                <img src={Logo} alt="SityEx" width={150} height={35} />
+              </Box>
             </Grid>
             <Grid item xs={12}>
               <Container

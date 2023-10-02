@@ -6,10 +6,11 @@ import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import MainItems from "components/DrawerItems/MainItems";
 import CityItems from "components/DrawerItems/CityItems";
+
+import MenuIcon from '@mui/icons-material/Menu';
+import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 
 const drawerWidth = 240;
 
@@ -68,16 +69,14 @@ export default function MiniDrawer({
   return (
     <Box sx={{ display: "flex" }}>
       <Drawer variant={drawerType} open={isOpenDrawer} sx={drawerStyles}>
-        <DrawerHeader>
-          <IconButton onClick={() => handleChangeDrawer(!isOpenDrawer)}>
-            {theme.direction === "rtl" ? (
-              <ChevronRightIcon />
-            ) : (
-              <ChevronLeftIcon />
-            )}
-          </IconButton>
-        </DrawerHeader>
-        <Box sx={{ mt: 1 }}>
+      <DrawerHeader />
+        <Box>
+          <Box sx={{display: "flex", justifyContent: "center", width: "100%", my: 1}}>
+          <IconButton onClick={() => handleChangeDrawer(!isOpenDrawer)}  alt="expand">
+          {(isOpenDrawer && drawerType === "permanent") && <MenuOpenIcon />}
+          {(!isOpenDrawer && drawerType === "permanent") && <MenuIcon/>}
+        </IconButton>
+        </Box>
           {isDestinationPage && (
             <>
               <Divider>City</Divider>
