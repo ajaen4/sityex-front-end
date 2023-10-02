@@ -170,6 +170,7 @@ function MapWithSearch({
         center={[selectedCity.latitude, selectedCity.longitude]}
         zoom={DEFAULT_ZOOM}
         style={{ height: "400px" }}
+        scrollWheelZoom={false}
       >
         <UpdateMapCenter center={currentMapCenter} />
         <UpdateMapZoom newZoom={zoom} currRecomendations={currRecomendations} />

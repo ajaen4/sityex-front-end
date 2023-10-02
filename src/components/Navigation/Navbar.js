@@ -43,7 +43,6 @@ function NavBar({ outlet }) {
   const isDestinationPage = pathname.includes("destination");
   const drawerType =
     isSmallScreen || !isDestinationPage ? "persistent" : "permanent";
-  const needsMenuIcon = isSmallScreen || isDestinationPage;
 
   const toggleUserMenu = () => {
     setIsOpenUserMenu(!isOpenUserMenu);
@@ -70,17 +69,6 @@ function NavBar({ outlet }) {
         position="fixed"
         sx={{
           zIndex: theme.zIndex.drawer + 1,
-          transition: theme.transitions.create(["width", "margin"], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-          }),
-          ...(isOpenDrawer && {
-            width: `calc(100% - ${drawerWidth}px)`,
-            transition: theme.transitions.create(["width", "margin"], {
-              easing: theme.transitions.easing.sharp,
-              duration: theme.transitions.duration.enteringScreen,
-            }),
-          }),
         }}
       >
         <Toolbar style={{ padding: 0, marginLeft: 20, marginRight: 20 }}>
@@ -94,15 +82,12 @@ function NavBar({ outlet }) {
             <img src={logo} alt="SityEx logo" width={90} height={25} />
           </Box>
           <Box sx={{ display: { xs: "flex", md: "flex" } }}>
-            {needsMenuIcon && (
+            {isSmallScreen && (
               <IconButton
                 color="inherit"
                 aria-label="open drawer"
-                onClick={() => handleChangeDrawer(true)}
+                onClick={() => handleChangeDrawer(!isOpenDrawer)}
                 edge="start"
-                sx={{
-                  ...(isOpenDrawer && { display: "none" }),
-                }}
               >
                 <MenuIcon />
               </IconButton>
