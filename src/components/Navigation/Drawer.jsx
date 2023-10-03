@@ -2,6 +2,7 @@ import * as React from "react";
 import { useLocation } from "react-router-dom";
 
 import { styled, useTheme } from "@mui/material/styles";
+import { useMediaQuery } from "@mui/material";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Divider from "@mui/material/Divider";
@@ -54,8 +55,11 @@ export default function MiniDrawer({
   const theme = useTheme();
   const { pathname } = useLocation();
   const isDestinationPage = pathname.includes("destination");
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const drawerStyles = {
+    position: isSmallScreen ? "fixed" : "relative",
+    zIndex: theme.zIndex.drawer + 999,
     width: drawerWidth,
     flexShrink: 0,
     whiteSpace: "nowrap",
