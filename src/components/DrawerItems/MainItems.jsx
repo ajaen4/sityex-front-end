@@ -7,7 +7,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import GradingIcon from "@mui/icons-material/Grading";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
+import MapIcon from '@mui/icons-material/Map';
 import SearchIcon from "@mui/icons-material/Search";
 
 import * as ROUTES_PATHS from "routes/paths";
@@ -29,27 +29,6 @@ const MainItems = ({ handleChangeDrawer }) => {
             minHeight: 48,
             px: 2.5,
           }}
-          onClick={itemSelected}
-          data-path={ROUTES_PATHS.NEW_REVIEW}
-        >
-          <ListItemIcon
-            sx={{
-              minWidth: 0,
-              mr: 3,
-              justifyContent: "center",
-            }}
-          >
-            <GradingIcon />
-          </ListItemIcon>
-          <ListItemText primary="New Review" />
-        </ListItemButton>
-      </ListItem>
-      <ListItem disablePadding sx={{ display: "block" }}>
-        <ListItemButton
-          sx={{
-            minHeight: 48,
-            px: 2.5,
-          }}
           data-path={ROUTES_PATHS.SEARCH}
           onClick={itemSelected}
         >
@@ -62,7 +41,7 @@ const MainItems = ({ handleChangeDrawer }) => {
           >
             <SearchIcon />
           </ListItemIcon>
-          <ListItemText primary="Search" />
+          <ListItemText primary="Search City" />
         </ListItemButton>
       </ListItem>
       <ListItem disablePadding sx={{ display: "block" }}>
@@ -81,9 +60,30 @@ const MainItems = ({ handleChangeDrawer }) => {
               justifyContent: "center",
             }}
           >
-            <LocationOnIcon />
+            <MapIcon />
           </ListItemIcon>
-          <ListItemText primary="Map" />
+          <ListItemText primary="Destinations Map" />
+        </ListItemButton>
+      </ListItem>
+      <ListItem disablePadding sx={{ display: "block" }}>
+        <ListItemButton
+          sx={{
+            minHeight: 48,
+            px: 2.5,
+          }}
+          onClick={itemSelected}
+          data-path={ROUTES_PATHS.NEW_REVIEW}
+        >
+          <ListItemIcon
+            sx={{
+              minWidth: 0,
+              mr: 3,
+              justifyContent: "center",
+            }}
+          >
+            <GradingIcon />
+          </ListItemIcon>
+          <ListItemText primary="New Review" />
         </ListItemButton>
       </ListItem>
     </List>

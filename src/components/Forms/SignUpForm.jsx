@@ -107,7 +107,7 @@ const SignUpForm = () => {
                 variant="outlined"
                 sx={{
                   cursor: "unset",
-                  m: 2,
+                  m: 1,
                   py: 0.5,
                   px: 7,
                   borderColor: `${theme.palette.grey[100]} !important`,

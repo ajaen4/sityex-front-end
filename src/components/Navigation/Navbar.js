@@ -16,16 +16,18 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { useTheme } from "@mui/material/styles";
 
+import GradingIcon from "@mui/icons-material/Grading";
+import MapIcon from "@mui/icons-material/Map";
+import SearchIcon from "@mui/icons-material/Search";
+
 import { signOutUser } from "actions";
 
 import MiniDrawer from "components/Navigation/Drawer";
 
 import logo from "assets/img/icons/logo.png";
 
-const pages = ["New review", "Search", "Map"];
+const pages = ["Search City", "Destinations Map", "New review"];
 const settings = ["Account", "Logout"];
-
-const drawerWidth = 240;
 
 function NavBar({ outlet }) {
   const [isOpenUserMenu, setIsOpenUserMenu] = React.useState(false);
@@ -43,7 +45,6 @@ function NavBar({ outlet }) {
   const isDestinationPage = pathname.includes("destination");
   const drawerType =
     isSmallScreen || !isDestinationPage ? "persistent" : "permanent";
-  const needsMenuIcon = isSmallScreen || isDestinationPage;
 
   const toggleUserMenu = () => {
     setIsOpenUserMenu(!isOpenUserMenu);
@@ -60,63 +61,53 @@ function NavBar({ outlet }) {
 
   const handleClickNavMenu = (page) => {
     if (page === "New review") navigate("new-review");
-    if (page === "Search") navigate("search");
-    if (page === "Map") navigate("map");
+    if (page === "Search City") navigate("search");
+    if (page === "Destinations Map") navigate("map");
   };
+
+  const clickedLogo = () => navigate("/");
 
   return (
     <>
       <AppBar
         position="fixed"
         sx={{
-          zIndex: theme.zIndex.drawer + 1,
-          transition: theme.transitions.create(["width", "margin"], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-          }),
-          ...(isOpenDrawer && {
-            width: `calc(100% - ${drawerWidth}px)`,
-            transition: theme.transitions.create(["width", "margin"], {
-              easing: theme.transitions.easing.sharp,
-              duration: theme.transitions.duration.enteringScreen,
-            }),
-          }),
+          zIndex: theme.zIndex.drawer + 1000,
         }}
       >
         <Toolbar style={{ padding: 0, marginLeft: 20, marginRight: 20 }}>
-          <Box
+          <IconButton
             sx={{
               display: { xs: "none", md: "flex" },
               mr: { xs: 1, sm: 2 },
               marginTop: 1,
             }}
+            onClick={clickedLogo}
           >
             <img src={logo} alt="SityEx logo" width={90} height={25} />
-          </Box>
+          </IconButton>
           <Box sx={{ display: { xs: "flex", md: "flex" } }}>
-            {needsMenuIcon && (
+            {isSmallScreen && (
               <IconButton
                 color="inherit"
                 aria-label="open drawer"
-                onClick={() => handleChangeDrawer(true)}
+                onClick={() => handleChangeDrawer(!isOpenDrawer)}
                 edge="start"
-                sx={{
-                  ...(isOpenDrawer && { display: "none" }),
-                }}
               >
                 <MenuIcon />
               </IconButton>
             )}
           </Box>
-          <Box
+          <IconButton
             sx={{
               display: { xs: "flex", md: "none" },
               marginTop: 1,
               flexGrow: 1,
             }}
+            onClick={clickedLogo}
           >
             <img src={logo} alt="SityEx logo" width={90} height={25} />
-          </Box>
+          </IconButton>
           <Box
             sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, ml: 30 }}
           >
