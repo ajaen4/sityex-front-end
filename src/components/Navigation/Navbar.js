@@ -141,7 +141,7 @@ function NavBar({ outlet }) {
                 </IconButton>
               </Tooltip>
               <Menu
-                sx={{ mt: "45px" }}
+                sx={{ mt: "45px", zIndex: theme.zIndex.drawer + 1000 }}
                 id="menu-appbar"
                 anchorEl={userSettingsRef.current}
                 anchorOrigin={{
