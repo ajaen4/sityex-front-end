@@ -22,6 +22,7 @@ const SignUpPage = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          minHeight: "100vh",
         }}
       >
         <Card
