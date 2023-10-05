@@ -10,15 +10,22 @@ import GradingIcon from "@mui/icons-material/Grading";
 import MapIcon from '@mui/icons-material/Map';
 import SearchIcon from "@mui/icons-material/Search";
 
+import { useMediaQuery } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+
 import * as ROUTES_PATHS from "routes/paths";
 
 const MainItems = ({ handleChangeDrawer }) => {
   const navigate = useNavigate();
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const itemSelected = (event) => {
     const path = event.currentTarget.getAttribute("data-path");
     navigate(path);
-    handleChangeDrawer(false);
+
+    if (isSmallScreen)
+      handleChangeDrawer(false);
   };
 
   return (
