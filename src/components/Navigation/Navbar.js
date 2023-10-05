@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useMediaQuery } from "@mui/material";
@@ -45,6 +45,10 @@ function NavBar({ outlet }) {
   const isDestinationPage = pathname.includes("destination");
   const drawerType =
     isSmallScreen || !isDestinationPage ? "persistent" : "permanent";
+
+  useEffect(() => {
+    if (!location.pathname.includes("destination")) setIsOpenDrawer(false);
+  }, [pathname]);
 
   const toggleUserMenu = () => {
     setIsOpenUserMenu(!isOpenUserMenu);
@@ -109,7 +113,11 @@ function NavBar({ outlet }) {
             <img src={logo} alt="SityEx logo" width={90} height={25} />
           </IconButton>
           <Box
-            sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, ml: 30 }}
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+              justifyContent: { md: "space-evenly", lg: "center" },
+            }}
           >
             {isAuthResolved &&
               pages.map((page) => (
