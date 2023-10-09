@@ -27,7 +27,7 @@ const SearchPage = () => {
   }, []);
 
   const onSearchChange = (event, value) =>
-    navigate("/destination/" + value.cityName + "/community");
+    navigate("/destination/" + value.cityName + "/info");
 
   const getDestinations = () => {
     if (citiesIndex !== null)

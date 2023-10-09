@@ -17,14 +17,14 @@ import Paper from "@mui/material/Paper";
 import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 import { Grid } from "@mui/material";
 
-const CostOfLivingPage = () => {
+const CityPlacesPage = () => {
   const { location } = useParams();
   const dispatch = useDispatch();
   const selectedCity = useSelector((state) => state.selectedCity.data);
   const auth = useSelector((state) => state.auth.data);
 
   useEffect(() => {
-    document.title = "Cost of Living Page";
+    document.title = "City Places Page";
   }, []);
 
   useEffect(() => {
@@ -120,4 +120,4 @@ const CostOfLivingPage = () => {
   );
 };
 
-export default withAuth(CostOfLivingPage);
+export default withAuth(CityPlacesPage);

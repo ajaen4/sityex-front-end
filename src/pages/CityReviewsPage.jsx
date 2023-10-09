@@ -25,7 +25,7 @@ const months = [
   "December",
 ];
 
-const WeatherPage = () => {
+const CityReviewsPage = () => {
   const { location } = useParams();
   const dispatch = useDispatch();
 
@@ -68,7 +68,7 @@ const WeatherPage = () => {
   }
 
   useEffect(() => {
-    document.title = "Weather Page";
+    document.title = "City Reviews Page";
 
     if (chartContainerRef.current) {
       setContainerWidth(chartContainerRef.current.offsetWidth);
@@ -107,4 +107,4 @@ const WeatherPage = () => {
   );
 };
 
-export default withAuth(WeatherPage);
+export default withAuth(CityReviewsPage);

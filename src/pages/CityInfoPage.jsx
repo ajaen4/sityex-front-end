@@ -8,7 +8,6 @@ import { fetchCity, getReviews } from "actions";
 
 import { Box, Grid } from "@mui/material";
 import SingleDataCard from "components/Cards/SingleDataCard";
-import RecommendationsMap from "components/Maps/RecommendationsMap";
 
 import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 
@@ -16,26 +15,20 @@ import GroupsIcon from "@mui/icons-material/Groups";
 import GradingIcon from "@mui/icons-material/Grading";
 import PlaceIcon from "@mui/icons-material/Place";
 
-const CommunityPage = () => {
-  const [reviews, setreviews] = useState([]);
+const CityInfoPage = () => {
   const { location } = useParams();
 
   const selectedCity = useSelector((state) => state.selectedCity.data);
   const auth = useSelector((state) => state.auth.data);
-  const isFetchingReviews = useSelector((state) => state.reviews.isFetching);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    document.title = "Community Page";
+    document.title = "City Info Page";
   }, []);
 
   useEffect(() => {
     dispatch(fetchCity(prettyCity(location)));
-
-    getReviews(prettyCity(location)).then((reviews) => {
-      setreviews(reviews.sort((a, b) => b.timeStamp - a.timeStamp));
-    });
   }, [dispatch, location]);
 
   if (selectedCity === null || selectedCity.name !== prettyCity(location))
@@ -62,4 +55,4 @@ const CommunityPage = () => {
   );
 };
 
-export default withAuth(CommunityPage);
+export default withAuth(CityInfoPage);

@@ -3,15 +3,17 @@ import { useLocation } from "react-router-dom";
 
 import { styled, useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
+
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import MenuOpenIcon from "@mui/icons-material/MenuOpen";
+
 import MainItems from "components/DrawerItems/MainItems";
 import CityItems from "components/DrawerItems/CityItems";
-
-import MenuIcon from '@mui/icons-material/Menu';
-import MenuOpenIcon from '@mui/icons-material/MenuOpen';
+import CityTabs from "components/Tab/CityTabs";
 
 const drawerWidth = 240;
 
@@ -73,15 +75,25 @@ export default function MiniDrawer({
   return (
     <Box sx={{ display: "flex" }}>
       <Drawer variant={drawerType} open={isOpenDrawer} sx={drawerStyles}>
-      <DrawerHeader />
+        <DrawerHeader />
         <Box>
-          <Box sx={{display: "flex", justifyContent: "center", width: "100%", my: 1}}>
-          <IconButton onClick={() => handleChangeDrawer(!isOpenDrawer)}  alt="expand">
-          {(isOpenDrawer && drawerType === "permanent") && <MenuOpenIcon />}
-          {(!isOpenDrawer && drawerType === "permanent") && <MenuIcon/>}
-        </IconButton>
-        </Box>
-          {isDestinationPage && (
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              width: "100%",
+              my: 1,
+            }}
+          >
+            <IconButton
+              onClick={() => handleChangeDrawer(!isOpenDrawer)}
+              alt="expand"
+            >
+              {isOpenDrawer && drawerType === "permanent" && <MenuOpenIcon />}
+              {!isOpenDrawer && drawerType === "permanent" && <MenuIcon />}
+            </IconButton>
+          </Box>
+          {isDestinationPage && !isSmallScreen && (
             <>
               <Divider>City</Divider>
               <CityItems handleChangeDrawer={handleChangeDrawer} />
@@ -90,7 +102,7 @@ export default function MiniDrawer({
           {drawerType === "persistent" && (
             <>
               <Divider>Navigation</Divider>
-              <MainItems handleChangeDrawer={handleChangeDrawer} />
+              <MainItems />
             </>
           )}
           <Divider />
@@ -101,6 +113,11 @@ export default function MiniDrawer({
         sx={{ flexGrow: 1, width: "100%", margin: "0 auto" }}
       >
         <DrawerHeader />
+        {isDestinationPage && isSmallScreen && (
+          <Box sx={{ display: "flex", justifyContent: "center", padding: 1.2 }}>
+            <CityTabs />
+          </Box>
+        )}
         {outlet}
       </Box>
     </Box>

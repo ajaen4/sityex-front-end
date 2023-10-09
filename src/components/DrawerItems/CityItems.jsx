@@ -8,11 +8,9 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 
-import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
-import WbSunnyIcon from "@mui/icons-material/WbSunny";
-import GroupsIcon from "@mui/icons-material/Groups";
-import ConnectingAirportsIcon from "@mui/icons-material/ConnectingAirports";
-import ConnectWithoutContactIcon from "@mui/icons-material/ConnectWithoutContact";
+import CityIcon from "@mui/icons-material/LocationCity";
+import GradingIcon from "@mui/icons-material/Grading";
+import PlaceIcon from "@mui/icons-material/Place";
 
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
@@ -28,9 +26,8 @@ const CityItems = ({ handleChangeDrawer }) => {
   const itemSelected = (event) => {
     const path = event.currentTarget.getAttribute("data-path");
     navigate(`destination/${selectedCity.name}/${path}`);
-    
-    if (isSmallScreen)
-      handleChangeDrawer(false);
+
+    if (isSmallScreen) handleChangeDrawer(false);
   };
 
   return (
@@ -42,7 +39,7 @@ const CityItems = ({ handleChangeDrawer }) => {
             px: 2.5,
           }}
           onClick={itemSelected}
-          data-path={ROUTES_PATHS.CITY_COMMUNITY}
+          data-path={ROUTES_PATHS.CITY_INFO}
         >
           <ListItemIcon
             sx={{
@@ -51,9 +48,9 @@ const CityItems = ({ handleChangeDrawer }) => {
               justifyContent: "center",
             }}
           >
-            <ConnectWithoutContactIcon />
+            <CityIcon />
           </ListItemIcon>
-          <ListItemText primary="Community" />
+          <ListItemText primary="Info" />
         </ListItemButton>
       </ListItem>
       <ListItem disablePadding sx={{ display: "block" }}>
@@ -63,7 +60,7 @@ const CityItems = ({ handleChangeDrawer }) => {
             px: 2.5,
           }}
           onClick={itemSelected}
-          data-path={ROUTES_PATHS.CITY_COST_OF_LIVING}
+          data-path={ROUTES_PATHS.CITY_PLACES}
         >
           <ListItemIcon
             sx={{
@@ -72,9 +69,9 @@ const CityItems = ({ handleChangeDrawer }) => {
               justifyContent: "center",
             }}
           >
-            <AttachMoneyIcon />
+            <PlaceIcon />
           </ListItemIcon>
-          <ListItemText primary="Cost of living" />
+          <ListItemText primary="Places" />
         </ListItemButton>
       </ListItem>
       <ListItem disablePadding sx={{ display: "block" }}>
@@ -84,7 +81,7 @@ const CityItems = ({ handleChangeDrawer }) => {
             px: 2.5,
           }}
           onClick={itemSelected}
-          data-path={ROUTES_PATHS.CITY_WEATHER}
+          data-path={ROUTES_PATHS.CITY_REVIEWS}
         >
           <ListItemIcon
             sx={{
@@ -93,51 +90,9 @@ const CityItems = ({ handleChangeDrawer }) => {
               justifyContent: "center",
             }}
           >
-            <WbSunnyIcon />
+            <GradingIcon />
           </ListItemIcon>
-          <ListItemText primary="Weather" />
-        </ListItemButton>
-      </ListItem>
-      <ListItem disablePadding sx={{ display: "block" }}>
-        <ListItemButton
-          sx={{
-            minHeight: 48,
-            px: 2.5,
-          }}
-          onClick={itemSelected}
-          data-path={ROUTES_PATHS.CITY_DEMOGRAPHICS}
-        >
-          <ListItemIcon
-            sx={{
-              minWidth: 0,
-              mr: 3,
-              justifyContent: "center",
-            }}
-          >
-            <GroupsIcon />
-          </ListItemIcon>
-          <ListItemText primary="Demographics" />
-        </ListItemButton>
-      </ListItem>
-      <ListItem disablePadding sx={{ display: "block" }}>
-        <ListItemButton
-          sx={{
-            minHeight: 48,
-            px: 2.5,
-          }}
-          onClick={itemSelected}
-          data-path={ROUTES_PATHS.CITY_ACCESSIBILITY}
-        >
-          <ListItemIcon
-            sx={{
-              minWidth: 0,
-              mr: 3,
-              justifyContent: "center",
-            }}
-          >
-            <ConnectingAirportsIcon />
-          </ListItemIcon>
-          <ListItemText primary="Accessibility" />
+          <ListItemText primary="Reviews" />
         </ListItemButton>
       </ListItem>
     </List>
