@@ -1,23 +1,19 @@
-import CommunityPage from "./CommunityPage";
-import CostOfLivingPage from "./CostOfLivingPage";
+import CityInfoPage from "./CityInfoPage";
+import CityPlacesPage from "./CityPlacesPage";
+import CityReviewsPage from "./CityReviewsPage";
 import SearchPage from "./SearchPage";
 import MapPage from "./MapPage";
 import LogInPage from "./LogInPage";
 import ReviewPage from "./ReviewPage";
 import SignUpPage from "./SignUpPage";
-import WeatherPage from "./WeatherPage";
-import AccessibilityPage from "./AccessibilityPage";
-import DemographicsPage from "./DemographicsPage";
 
 export {
-  CommunityPage,
+  CityInfoPage,
   SearchPage,
   MapPage,
   LogInPage,
   ReviewPage,
   SignUpPage,
-  CostOfLivingPage,
-  WeatherPage,
-  AccessibilityPage,
-  DemographicsPage,
+  CityPlacesPage,
+  CityReviewsPage,
 };

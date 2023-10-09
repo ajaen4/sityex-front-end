@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React from "react";
 import { Outlet } from "react-router-dom";
 
 import { Box } from "@mui/material";
@@ -11,7 +11,7 @@ const MainLayout = () => {
     <Box style={{ minHeight: "100vh" }}>
       <Navbar
         outlet={
-          <Box style={{ minHeight: "76vh" }}>
+          <Box>
             <Outlet />
           </Box>
         }
