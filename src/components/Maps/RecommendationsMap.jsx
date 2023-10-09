@@ -15,7 +15,7 @@ function RecommendationsMap({ selectedCity }) {
     <MapContainer
       center={[selectedCity.latitude, selectedCity.longitude]}
       zoom={13}
-      style={{ height: "70vh", width: "100%" }}
+      style={{ height: "100vh", width: "100%" }}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import { withAuth } from "session";
 import { prettyCity } from "helpers/usefulFunctions";
-import { fetchCity, getReviews } from "actions";
+import { fetchCity } from "actions";
 
 import { Box, Grid } from "@mui/material";
 import SingleDataCard from "components/Cards/SingleDataCard";
