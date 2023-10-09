@@ -3,7 +3,7 @@ import { useTheme } from "@mui/material/styles";
 
 import { Typography, Grid, Card, Avatar } from "@mui/material";
 
-const SingleDataCard = ({ title, number, icon }) => {
+const SingleDataCard = ({ title, text, number, icon }) => {
   const theme = useTheme();
 
   const cardStyle = {
@@ -59,7 +59,7 @@ const SingleDataCard = ({ title, number, icon }) => {
         </Grid>
         <Grid item xs={9}>
           <Typography
-            sx={{ fontSize: 14, color: theme.palette.grey[50] }}
+            sx={{ fontSize: 25, color: theme.palette.grey[50] }}
             color="text.secondary"
             gutterBottom
           >
@@ -67,8 +67,9 @@ const SingleDataCard = ({ title, number, icon }) => {
           </Typography>
           <Typography
             variant="body2"
-            sx={{ fontSize: 30, color: theme.palette.grey[50] }}
+            sx={{ fontSize: 15, color: theme.palette.grey[50] }}
           >
+            {text}
             {number}
           </Typography>
         </Grid>
