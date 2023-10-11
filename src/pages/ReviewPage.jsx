@@ -29,13 +29,16 @@ const ReviewPage = () => {
           selectedCity
             ? selectedCity
             : {
-                name: "Aachen",
-                countryName: "Germany",
-                latitude: 50.776351,
-                longitude: 6.083862,
+                name: "Acheng",
+                country_2_code: "CN",
+                city_id: "2038679",
+                coordinates: {
+                  latitude: 50.776351,
+                  longitude: 6.083862,
+                }
               }
         }
-        citiesIndex={citiesIndex !== null ? citiesIndex : []}
+        citiesIndex={citiesIndex !== null ? citiesIndex.cities : []}
       />
     </Box>
   );
