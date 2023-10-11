@@ -14,7 +14,6 @@ const TOKEN = process.env.REACT_APP_MAPS_API_KEY;
 const MAP_STYLE = process.env.REACT_APP_MAPS_STYLE;
 
 function DestinationsMap({ citiesIndex }) {
-  const citiesIndexValues = Object.values(citiesIndex);
 
   return (
     <MapContainer
@@ -26,7 +25,7 @@ function DestinationsMap({ citiesIndex }) {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url={`${MAP_STYLE}${TOKEN}`}
       />
-      <CitiesMarkerCluster citiesIndexValues={citiesIndexValues} />
+      <CitiesMarkerCluster citiesIndex={citiesIndex} />
       <FullscreenControl position="topright" />
     </MapContainer>
   );

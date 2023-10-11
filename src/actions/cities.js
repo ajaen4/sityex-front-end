@@ -21,16 +21,16 @@ export const fetchCitiesIndex = () => (dispatch, getState) => {
   });
 };
 
-export const fetchCity = (cityName) => (dispatch, getState) => {
+export const fetchCity = (city_id) => (dispatch, getState) => {
   if (
     getState().selectedCity.data !== null &&
-    getState().selectedCity.data.name === cityName
+    getState().selectedCity.data.city_id === city_id
   ) {
     return Promise.resolve();
   }
 
   dispatch({ type: REQUESTING_CITY });
-  return api.getCity(cityName).then((data) => {
+  return api.getCity(city_id).then((data) => {
     dispatch({
       type: FETCH_CITY_SUCCESS,
       cityData: data,

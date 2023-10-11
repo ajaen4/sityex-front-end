@@ -65,7 +65,7 @@ const ReviewFormBase = ({
     data.userName = auth.userName;
     data.userId = auth.id;
     setIsFetching(true);
-    dispatch(addReview(selectedCity.name, data, currRecomendations))
+    dispatch(addReview(selectedCity.city_id, data, currRecomendations))
       .then(() => {
         setIsFetching(false);
         setModalMessage("Su experiencia se ha guardado correctamente");
@@ -90,7 +90,7 @@ const ReviewFormBase = ({
             label="Which city have you lived in?"
             citiesList={Object.keys(citiesIndex)}
             onChangeCity={onChangeCity}
-            selectedCity={selectedCity ? selectedCity.name : null}
+            selectedCity={selectedCity ? selectedCity.city_id : null}
           />
           <Grid
             container
