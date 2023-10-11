@@ -18,7 +18,7 @@ function DestinationsMap({ citiesIndex }) {
     <MapContainer
       center={[CENTER["lat"], CENTER["lng"]]}
       zoom={4}
-      style={{ height: "100vh" }}
+      style={{ height: "91.8vh" }}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

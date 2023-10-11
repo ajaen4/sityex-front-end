@@ -8,7 +8,7 @@ import Footer from "components/Footers/Footer";
 
 const MainLayout = () => {
   return (
-    <Box style={{ minHeight: "100vh" }}>
+    <Box>
       <Navbar
         outlet={
           <Box>

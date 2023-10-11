@@ -32,7 +32,6 @@ const CityPlacesPage = () => {
       style={{
         textAlign: "center",
         justifyContent: "center",
-        minHeight: "100vh",
       }}
     >
       <RecommendationsMap selectedCity={selectedCity} />
