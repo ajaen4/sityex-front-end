@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useTheme } from "@mui/material/styles";
 
 import { withAuth } from "session";
 import { objectIsEmpty } from "helpers/usefulFunctions";
@@ -25,7 +24,7 @@ const MapPage = () => {
       }}
     >
       <DestinationsMap
-        citiesIndex={objectIsEmpty(citiesIndex) ? {} : citiesIndex}
+        citiesIndex={!objectIsEmpty(citiesIndex) && citiesIndex.hasOwnProperty("cities") ? citiesIndex.cities: [] }
       />
     </Box>
   );

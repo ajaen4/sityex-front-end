@@ -25,7 +25,7 @@ const CityItems = ({ handleChangeDrawer }) => {
 
   const itemSelected = (event) => {
     const path = event.currentTarget.getAttribute("data-path");
-    navigate(`destination/${selectedCity.name}/${path}`);
+    navigate(`destination/${selectedCity.city_id}/${path}`);
 
     if (isSmallScreen) handleChangeDrawer(false);
   };

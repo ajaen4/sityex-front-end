@@ -18,7 +18,7 @@ export default function IconTabs() {
   const itemSelected = (event, value) => {
     setValue(value);
     const path = event.currentTarget.getAttribute("data-path");
-    navigate(`destination/${selectedCity.name}/${path}`);
+    navigate(`destination/${selectedCity.city_id}/${path}`);
   };
 
   return (

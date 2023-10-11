@@ -17,6 +17,8 @@ import {
 } from "@mui/material";
 import TravelExploreIcon from "@mui/icons-material/TravelExplore";
 
+import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
+
 const SearchPage = () => {
   const navigate = useNavigate();
 
@@ -27,18 +29,22 @@ const SearchPage = () => {
   }, []);
 
   const onSearchChange = (event, value) =>
-    navigate("/destination/" + value.cityName + "/info");
+    navigate("/destination/" + value.cityId + "/info");
 
   const getDestinations = () => {
     if (citiesIndex !== null)
-      return Object.values(citiesIndex)
+      return citiesIndex.cities
         .sort((a, b) => a.name.localeCompare(b.name))
         .map((cityData) => ({
           cityName: cityData.name,
-          countryCode: cityData.countryCode,
+          cityId: cityData.city_id,
+          countryCode: cityData.country_2_code,
         }));
     else return [];
   };
+
+  if (citiesIndex === null)
+    return <CenteredLoadingSpinner />;
 
   return (
     <Box
@@ -60,7 +66,7 @@ const SearchPage = () => {
                 style={{ marginTop: "20px" }}
                 options={getDestinations()}
                 onChange={onSearchChange}
-                getOptionLabel={(option) => option.cityName}
+                getOptionLabel={(option) => String(option.cityId)}
                 renderInput={(params) => (
                   <TextField
                     {...params}

@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import { withAuth } from "session";
-import { prettyCity } from "helpers/usefulFunctions";
 import { fetchCity } from "actions";
 
 import { Box, Grid } from "@mui/material";
@@ -19,7 +18,7 @@ import MoneyOffIcon from '@mui/icons-material/MoneyOff';
 import LiquorIcon from '@mui/icons-material/Liquor';
 
 const CityInfoPage = () => {
-  const { location } = useParams();
+  const { city_id } = useParams();
 
   const selectedCity = useSelector((state) => state.selectedCity.data);
   const auth = useSelector((state) => state.auth.data);
@@ -31,10 +30,10 @@ const CityInfoPage = () => {
   }, []);
 
   useEffect(() => {
-    dispatch(fetchCity(prettyCity(location)));
-  }, [dispatch, location]);
+    dispatch(fetchCity(city_id));
+  }, [dispatch, city_id]);
 
-  if (selectedCity === null || selectedCity.name !== prettyCity(location))
+  if (selectedCity === null || selectedCity.city_id !== city_id)
     return <CenteredLoadingSpinner />;
 
   return (

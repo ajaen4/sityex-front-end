@@ -6,32 +6,34 @@ import "leaflet.markercluster/dist/MarkerCluster.css";
 import "leaflet.markercluster/dist/MarkerCluster.Default.css";
 import { MarkerClusterGroup } from "leaflet.markercluster";
 
-function CitiesMarkerCluster({ citiesIndexValues }) {
+function CitiesMarkerCluster({ citiesIndex }) {
   const map = useMap();
 
   useEffect(() => {
     const markers = new MarkerClusterGroup();
+    
+    if (citiesIndex.length !== 0) {
+      citiesIndex.forEach((city) => {
+        const marker = L.marker([city.coordinates.latitude, city.coordinates.longitude]);
 
-    citiesIndexValues.forEach((city) => {
-      const marker = L.marker([city.latitude, city.longitude]);
+        const popupContent = `<div style="text-align:center;">
+            <div style="margin-bottom:5px;"><b>${city.name.toUpperCase()}</b></div>
+            <a href="/destination/${city.city_id}/info" style="margin-bottom:5px;">
+              <button>More info</button>
+            </a>
+          </div>`;
 
-      const popupContent = `<div style="text-align:center;">
-          <div style="margin-bottom:5px;"><b>${city.name.toUpperCase()}</b></div>
-          <a href="/destination/${city.name}/info" style="margin-bottom:5px;">
-            <button>More info</button>
-          </a>
-        </div>`;
+        marker.bindPopup(popupContent);
+        markers.addLayer(marker);
+      });
 
-      marker.bindPopup(popupContent);
-      markers.addLayer(marker);
-    });
+      map.addLayer(markers);
 
-    map.addLayer(markers);
-
-    return () => {
-      map.removeLayer(markers);
-    };
-  }, [map, citiesIndexValues]);
+      return () => {
+        map.removeLayer(markers);
+      };
+    }
+  }, [map, citiesIndex]);
 
   return null;
 }

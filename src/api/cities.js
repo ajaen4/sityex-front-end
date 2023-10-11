@@ -18,9 +18,12 @@ export const getCity = async (city) => {
 
 export const getCitiesIndex = async () => {
   try {
-    const indexDoc = await getDoc(doc(collection(db, "cities"), "_Index"));
+    const document_name = "_index";
+    const indexDoc = await getDoc(doc(collection(db, "cities"), document_name));
     if (!indexDoc.exists()) {
-      console.log('No such document "Index" in collection cities!');
+      console.log(
+        "No such document " + document_name + " in collection cities!"
+      );
       return {};
     } else {
       return indexDoc.data();
