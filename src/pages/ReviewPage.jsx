@@ -35,7 +35,7 @@ const ReviewPage = () => {
                 coordinates: {
                   latitude: 50.776351,
                   longitude: 6.083862,
-                }
+                },
               }
         }
         citiesIndex={citiesIndex !== null ? citiesIndex.cities : []}

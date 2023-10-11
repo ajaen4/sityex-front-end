@@ -13,7 +13,7 @@ const ReviewForm = ({ selectedCity, citiesIndex }) => {
     dispatch(fetchCity("2038679"));
   }, [dispatch]);
 
-  const onChangeCity = (selectedCity) => {
+  const onChangeCity = (event, selectedCity) => {
     dispatch(fetchCity(selectedCity.city_id));
   };
 
