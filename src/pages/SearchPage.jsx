@@ -28,7 +28,6 @@ const SearchPage = () => {
       style={{
         textAlign: "center",
         justifyContent: "center",
-        minHeight: "76vh",
       }}
     >
       <Grid container spacing={1} sx={{ justifyContent: "center", my: 5 }}>
