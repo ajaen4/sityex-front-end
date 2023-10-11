@@ -5,13 +5,9 @@ import { useNavigate } from "react-router-dom";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
-import Alert from "@mui/material/Alert";
-import AlertTitle from "@mui/material/AlertTitle";
 import FormControl from "@mui/material/FormControl";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
-import IconButton from "@mui/material/IconButton";
-import CloseIcon from "@mui/icons-material/Close";
 
 import { addReview } from "actions";
 import Opinion5 from "components/Opinions/Opinion5";
@@ -87,10 +83,9 @@ const ReviewFormBase = ({
         {isFetching && <CenteredLoadingSpinner />}
         <Container sx={{ textAlign: "center" }}>
           <CitiesDropDown
-            label="Which city have you lived in?"
-            citiesList={Object.keys(citiesIndex)}
+            citiesList={citiesIndex}
             onChangeCity={onChangeCity}
-            selectedCity={selectedCity ? selectedCity.city_id : null}
+            selectedCity={selectedCity ? selectedCity : null}
           />
           <Grid
             container

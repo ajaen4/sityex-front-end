@@ -6,8 +6,6 @@ import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 
-import { prettyCity } from "helpers/usefulFunctions";
-
 const CitiesDropDown = ({ label, citiesList, onChangeCity, selectedCity }) => {
   return (
     <Grid container justifyContent="center" style={{ textAlign: "center" }}>
@@ -21,12 +19,12 @@ const CitiesDropDown = ({ label, citiesList, onChangeCity, selectedCity }) => {
             id="citiesDropDown"
             onChange={onChangeCity}
             label={label}
-            value={citiesList && citiesList.length > 0 ? selectedCity : ""}
+            value={citiesList && citiesList.length > 0 ? selectedCity.city_id : ""}
           >
             {citiesList !== null &&
               citiesList.sort().map((item) => (
-                <MenuItem value={item} key={item}>
-                  {prettyCity(item)}
+                <MenuItem value={item.city_id} key={item.city_id}>
+                  {item.name}
                 </MenuItem>
               ))}
           </Select>
