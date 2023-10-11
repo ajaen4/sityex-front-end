@@ -11,14 +11,19 @@ function CitiesMarkerCluster({ citiesIndex }) {
 
   useEffect(() => {
     const markers = new MarkerClusterGroup();
-    
+
     if (citiesIndex.length !== 0) {
       citiesIndex.forEach((city) => {
-        const marker = L.marker([city.coordinates.latitude, city.coordinates.longitude]);
+        const marker = L.marker([
+          city.coordinates.latitude,
+          city.coordinates.longitude,
+        ]);
 
         const popupContent = `<div style="text-align:center;">
             <div style="margin-bottom:5px;"><b>${city.name.toUpperCase()}</b></div>
-            <a href="/destination/${city.city_id}/info" style="margin-bottom:5px;">
+            <a href="/destination/${
+              city.city_id
+            }/info" style="margin-bottom:5px;">
               <button>More info</button>
             </a>
           </div>`;

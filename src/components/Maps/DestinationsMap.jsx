@@ -14,7 +14,6 @@ const TOKEN = process.env.REACT_APP_MAPS_API_KEY;
 const MAP_STYLE = process.env.REACT_APP_MAPS_STYLE;
 
 function DestinationsMap({ citiesIndex }) {
-
   return (
     <MapContainer
       center={[CENTER["lat"], CENTER["lng"]]}

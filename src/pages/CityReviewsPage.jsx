@@ -6,9 +6,7 @@ import { withAuth } from "session";
 const CityReviewsPage = () => {
   const { city_id } = useParams();
 
-  return (
-    <div>No data yet</div>
-  )
+  return <div>No data yet</div>;
 };
 
 export default withAuth(CityReviewsPage);

@@ -24,7 +24,11 @@ const MapPage = () => {
       }}
     >
       <DestinationsMap
-        citiesIndex={!objectIsEmpty(citiesIndex) && citiesIndex.hasOwnProperty("cities") ? citiesIndex.cities: [] }
+        citiesIndex={
+          !objectIsEmpty(citiesIndex) && citiesIndex.hasOwnProperty("cities")
+            ? citiesIndex.cities
+            : []
+        }
       />
     </Box>
   );

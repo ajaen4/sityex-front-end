@@ -13,7 +13,10 @@ const MAP_STYLE = process.env.REACT_APP_MAPS_STYLE;
 function RecommendationsMap({ selectedCity }) {
   return (
     <MapContainer
-      center={[selectedCity.coordinates.latitude, selectedCity.coordinates.longitude]}
+      center={[
+        selectedCity.coordinates.latitude,
+        selectedCity.coordinates.longitude,
+      ]}
       zoom={13}
       style={{ height: "100vh", width: "100%" }}
     >

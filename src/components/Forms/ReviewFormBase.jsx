@@ -11,7 +11,7 @@ import Stack from "@mui/material/Stack";
 
 import { addReview } from "actions";
 import Opinion5 from "components/Opinions/Opinion5";
-import CitiesDropDown from "components/DropDownList/CitiesDropDown";
+import CitiesAutocomplete from "components/Autocomplete/CitiesAutocomplete";
 import MapWithSearch from "components/Maps/MapWithSearch";
 import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 import ActionModal from "components/Modals/ActionModal";
@@ -82,11 +82,20 @@ const ReviewFormBase = ({
       <form onSubmit={handleSubmit(handleForm)} style={{ textAlign: "center" }}>
         {isFetching && <CenteredLoadingSpinner />}
         <Container sx={{ textAlign: "center" }}>
-          <CitiesDropDown
-            citiesList={citiesIndex}
-            onChangeCity={onChangeCity}
-            selectedCity={selectedCity ? selectedCity : null}
-          />
+          <Grid
+            container
+            justifyContent="center"
+            textAlign="center"
+            sx={{ my: "5px" }}
+          >
+            <Grid item xs={8} md={4}>
+              <CitiesAutocomplete
+                selectedCity={selectedCity}
+                citiesIndex={citiesIndex !== null ? citiesIndex : []}
+                onChangeCity={onChangeCity}
+              />
+            </Grid>
+          </Grid>
           <Grid
             container
             justifyContent="center"

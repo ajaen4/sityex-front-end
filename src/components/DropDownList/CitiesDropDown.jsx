@@ -19,7 +19,9 @@ const CitiesDropDown = ({ label, citiesList, onChangeCity, selectedCity }) => {
             id="citiesDropDown"
             onChange={onChangeCity}
             label={label}
-            value={citiesList && citiesList.length > 0 ? selectedCity.city_id : ""}
+            value={
+              citiesList && citiesList.length > 0 ? selectedCity.city_id : ""
+            }
           >
             {citiesList !== null &&
               citiesList.sort().map((item) => (

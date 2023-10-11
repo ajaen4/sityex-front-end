@@ -4,47 +4,24 @@ import { useNavigate } from "react-router-dom";
 
 import { withAuth } from "session";
 
-import {
-  Card,
-  CardContent,
-  Typography,
-  IconButton,
-  Grid,
-  InputAdornment,
-  Box,
-  Autocomplete,
-  TextField,
-} from "@mui/material";
-import TravelExploreIcon from "@mui/icons-material/TravelExplore";
+import { Card, CardContent, Typography, Grid, Box } from "@mui/material";
 
 import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
+import CitiesAutocomplete from "components/Autocomplete/CitiesAutocomplete";
 
 const SearchPage = () => {
-  const navigate = useNavigate();
-
   const citiesIndex = useSelector((state) => state.citiesIndex.data);
+  const navigate = useNavigate();
 
   useEffect(() => {
     document.title = "Search Page";
   }, []);
 
-  const onSearchChange = (event, value) =>
-    navigate("/destination/" + value.cityId + "/info");
-
-  const getDestinations = () => {
-    if (citiesIndex !== null)
-      return citiesIndex.cities
-        .sort((a, b) => a.name.localeCompare(b.name))
-        .map((cityData) => ({
-          cityName: cityData.name,
-          cityId: cityData.city_id,
-          countryCode: cityData.country_2_code,
-        }));
-    else return [];
+  const onChangeCity = (event, value) => {
+    navigate("/destination/" + value.city_id + "/info");
   };
 
-  if (citiesIndex === null)
-    return <CenteredLoadingSpinner />;
+  if (citiesIndex === null) return <CenteredLoadingSpinner />;
 
   return (
     <Box
@@ -61,45 +38,9 @@ const SearchPage = () => {
               <Typography variant="h2" color="textSecondary">
                 Introduce a destination
               </Typography>
-              <Autocomplete
-                freeSolo
-                style={{ marginTop: "20px" }}
-                options={getDestinations()}
-                onChange={onSearchChange}
-                getOptionLabel={(option) => String(option.cityId)}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    InputProps={{
-                      ...params.InputProps,
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <IconButton>
-                            <TravelExploreIcon />
-                          </IconButton>
-                        </InputAdornment>
-                      ),
-                    }}
-                    placeholder="Ej. Turin..."
-                    fullWidth
-                  />
-                )}
-                renderOption={(props, option) => (
-                  <Box
-                    component="li"
-                    sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
-                    {...props}
-                  >
-                    <img
-                      loading="lazy"
-                      width="20"
-                      src={`https://flagcdn.com/w20/${option.countryCode.toLowerCase()}.png`}
-                      srcSet={`https://flagcdn.com/w40/${option.countryCode.toLowerCase()}.png 2x`}
-                      alt=""
-                    />
-                    {option.cityName}
-                  </Box>
-                )}
+              <CitiesAutocomplete
+                citiesIndex={citiesIndex !== null ? citiesIndex.cities : []}
+                onChangeCity={onChangeCity}
               />
             </CardContent>
           </Card>
