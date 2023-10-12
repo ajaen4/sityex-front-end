@@ -11,9 +11,7 @@ const MainLayout = () => {
     <Box>
       <Navbar
         outlet={
-          <Box>
-            <Outlet />
-          </Box>
+          <Outlet />
         }
       />
       {/* <Footer /> */}

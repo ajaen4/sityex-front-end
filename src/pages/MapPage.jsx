@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 
 import { withAuth } from "session";
 import { objectIsEmpty } from "helpers/usefulFunctions";
+import { logAnalyticsEvent } from "api";
 
 import { Box } from "@mui/material";
 
@@ -12,7 +13,10 @@ const MapPage = () => {
   const citiesIndex = useSelector((state) => state.citiesIndex.data);
 
   useEffect(() => {
-    document.title = "Map Page";
+    logAnalyticsEvent("page_view", {
+      page_title: "Map Page",
+      page_location: window.location.href,
+    });
   }, []);
 
   return (

@@ -27,7 +27,10 @@ const WithAuthRoutes = {
       path: ROUTES_PATHS.MAP,
       element: <MapPage />,
     },
-    ,
+    {
+      path: ROUTES_PATHS.NEW_REVIEW,
+      element: <ReviewPage />,
+    },
     {
       path: ROUTES_PATHS.DESTINATION,
       children: [
@@ -44,10 +47,6 @@ const WithAuthRoutes = {
           element: <CityReviewsPage />,
         },
       ],
-    },
-    {
-      path: ROUTES_PATHS.NEW_REVIEW,
-      element: <ReviewPage />,
     },
   ],
 };

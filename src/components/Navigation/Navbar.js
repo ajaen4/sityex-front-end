@@ -16,10 +16,6 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { useTheme } from "@mui/material/styles";
 
-import GradingIcon from "@mui/icons-material/Grading";
-import MapIcon from "@mui/icons-material/Map";
-import SearchIcon from "@mui/icons-material/Search";
-
 import { signOutUser } from "actions";
 
 import MiniDrawer from "components/Navigation/Drawer";
@@ -79,7 +75,7 @@ function NavBar({ outlet }) {
           zIndex: theme.zIndex.drawer + 1000,
         }}
       >
-        <Toolbar style={{ padding: 0, marginLeft: 20, marginRight: 20 }}>
+        <Toolbar style={{ padding: 0, marginLeft: 20, marginRight: 5 }}>
           <IconButton
             sx={{
               display: { xs: "none", md: "flex" },
