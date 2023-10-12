@@ -17,8 +17,6 @@ import {
   checkUserConnection,
 } from "actions";
 
-import { logAnalyticsEvent } from "api";
-
 import { saveState } from "localStorage/localStorage";
 
 const store = initStore();
@@ -60,11 +58,6 @@ class App extends Component {
     if (this.state.auth && store.getState().citiesIndex.data === null) {
       store.dispatch(fetchCitiesIndex());
     }
-
-    logAnalyticsEvent("page_view", {
-      page_title: document.title,
-      page_location: window.location.href,
-    });
   }
 
   render() {

@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { withAuth } from "session";
 import { fetchCity } from "actions";
+import { logAnalyticsEvent } from "api";
 
 import { Box, Grid } from "@mui/material";
 import SingleDataCard from "components/Cards/SingleDataCard";
@@ -26,7 +27,10 @@ const CityInfoPage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    document.title = "City Info Page";
+    logAnalyticsEvent("page_view", {
+      page_title: "City Info Page",
+      page_location: window.location.href,
+    });
   }, []);
 
   useEffect(() => {

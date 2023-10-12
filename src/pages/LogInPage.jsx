@@ -4,6 +4,7 @@ import { useTheme } from "@mui/material/styles";
 import { Grid, Stack, Typography, Container, Box, Card } from "@mui/material";
 
 import { withoutAuth } from "session";
+import { logAnalyticsEvent } from "api";
 
 import LogInForm from "components/Forms/LogInForm.jsx";
 import Logo from "assets/img/icons/logo_black.png";
@@ -12,7 +13,10 @@ const LogInPage = () => {
   const theme = useTheme();
 
   useEffect(() => {
-    document.title = "Log In Page";
+    logAnalyticsEvent("page_view", {
+      page_title: "Log In Page",
+      page_location: window.location.href,
+    });
   }, []);
 
   return (

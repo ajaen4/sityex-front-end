@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { withAuth } from "session";
 import { fetchCity } from "actions";
+import { logAnalyticsEvent } from "api";
 
 import { Box } from "@mui/material";
 
@@ -17,7 +18,10 @@ const CityPlacesPage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    document.title = "City Places Page";
+    logAnalyticsEvent("page_view", {
+      page_title: "City Places Page",
+      page_location: window.location.href,
+    });
   }, []);
 
   useEffect(() => {

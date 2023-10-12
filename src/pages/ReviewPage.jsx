@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { Box } from "@mui/material";
 
 import { withAuth } from "session";
+import { logAnalyticsEvent } from "api";
 
 import ReviewForm from "components/Forms/ReviewForm";
 
@@ -12,7 +13,10 @@ const ReviewPage = () => {
   const citiesIndex = useSelector((state) => state.citiesIndex.data);
 
   useEffect(() => {
-    document.title = "Review Page";
+    logAnalyticsEvent("page_view", {
+      page_title: "Review Page",
+      page_location: window.location.href,
+    });
   }, []);
 
   return (

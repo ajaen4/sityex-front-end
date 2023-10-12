@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { withAuth } from "session";
+import { logAnalyticsEvent } from "api";
 
 import { Card, CardContent, Typography, Grid, Box } from "@mui/material";
 
@@ -14,7 +15,10 @@ const SearchPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    document.title = "Search Page";
+    logAnalyticsEvent("page_view", {
+      page_title: "Search Page",
+      page_location: window.location.href,
+    });
   }, []);
 
   const onChangeCity = (event, value) => {
