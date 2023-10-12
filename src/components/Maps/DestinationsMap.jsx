@@ -19,7 +19,7 @@ function DestinationsMap({ citiesIndex }) {
         height: {
           xs: "86vh",
           md: "82.5vh",
-          lg: "91.5vh",
+          lg: "90vh",
           xl: "93vh",
         },
         width: "100%",
