@@ -1,4 +1,3 @@
-import { Search } from "@mui/icons-material";
 import MainLayout from "Layouts/MainLayout";
 
 import {
@@ -8,8 +7,6 @@ import {
   CityPlacesPage,
   ReviewPage,
   CityReviewsPage,
-  AccessibilityPage,
-  DemographicsPage,
 } from "pages";
 
 import * as ROUTES_PATHS from "routes/paths";
