@@ -23,7 +23,7 @@ function RecommendationsMap({ selectedCity }) {
         height: {
           xs: "77.5vh",
           md: "82.5vh",
-          lg: "91.5vh",
+          lg: "90vh",
           xl: "93vh",
         },
         width: "100%",
