@@ -14,17 +14,6 @@ const MAP_STYLE = process.env.REACT_APP_MAPS_STYLE;
 
 function DestinationsMap({ citiesIndex }) {
   return (
-    <Box
-      sx={{
-        height: {
-          xs: "86vh",
-          md: "82.5vh",
-          lg: "90vh",
-          xl: "93vh",
-        },
-        width: "100%",
-      }}
-    >
       <MapContainer
         center={[CENTER["lat"], CENTER["lng"]]}
         zoom={4}
@@ -38,7 +27,6 @@ function DestinationsMap({ citiesIndex }) {
         />
         <CitiesMarkerCluster citiesIndex={citiesIndex} />
       </MapContainer>
-    </Box>
   );
 }
 

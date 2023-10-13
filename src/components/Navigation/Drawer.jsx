@@ -14,6 +14,7 @@ import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import MainItems from "components/DrawerItems/MainItems";
 import CityItems from "components/DrawerItems/CityItems";
 import DrawerHeader from "components/Navigation/DrawerHeader";
+
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -25,24 +26,25 @@ const openedMixin = (theme) => ({
   overflowX: "hidden",
 });
 
-const closedMixin = (theme, drawerType) => {
-  const spacing = theme.breakpoints.up("sm") ? 8 : 7;
+const closedMixin = (theme) => ({
+  transition: theme.transitions.create("width", {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  overflowX: "hidden",
+  width: `calc(${theme.spacing(7)} + 1px)`,
+  [theme.breakpoints.up("sm")]: {
+    width: `calc(${theme.spacing(8)} + 1px)`,
+  },
+});
 
-  return {
-    transition: theme.transitions.create("width", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    overflowX: "hidden",
-    width: drawerType === "persistent" ? 0 : `calc(${theme.spacing(spacing)})`,
-  };
-};
-
-export default function Drawer({ isOpenDrawer, setIsOpenDrawer, drawerType }) {
+export default function Drawer({ isOpenDrawer, setIsOpenDrawer }) {
   const theme = useTheme();
   const { pathname } = useLocation();
   const isDestinationPage = pathname.includes("destination");
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+  const drawerType =
+    isSmallScreen || !isDestinationPage ? "persistent" : "permanent";
 
   const drawerStyles = {
     position: isSmallScreen ? "fixed" : "relative",
@@ -58,41 +60,38 @@ export default function Drawer({ isOpenDrawer, setIsOpenDrawer, drawerType }) {
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
-      <MUIDrawer variant={drawerType} open={isOpenDrawer} sx={drawerStyles}>
-        <DrawerHeader />
-        <Box>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              width: "100%",
-              my: 1,
-            }}
+    <MUIDrawer variant={drawerType} open={isOpenDrawer} sx={drawerStyles}>
+      <DrawerHeader />
+      <Box>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            my: 1,
+          }}
+        >
+          <IconButton
+            onClick={() => setIsOpenDrawer(!isOpenDrawer)}
+            alt="expand"
           >
-            <IconButton
-              onClick={() => setIsOpenDrawer(!isOpenDrawer)}
-              alt="expand"
-            >
-              {isOpenDrawer && drawerType === "permanent" && <MenuOpenIcon />}
-              {!isOpenDrawer && drawerType === "permanent" && <MenuIcon />}
-            </IconButton>
-          </Box>
-          {isDestinationPage && !isSmallScreen && (
-            <>
-              <Divider>City</Divider>
-              <CityItems setIsOpenDrawer={setIsOpenDrawer} />
-            </>
-          )}
-          {drawerType === "persistent" && (
-            <>
-              <Divider>Navigation</Divider>
-              <MainItems setIsOpenDrawer={setIsOpenDrawer} />
-            </>
-          )}
-          <Divider />
+            {isOpenDrawer && drawerType === "permanent" && <MenuOpenIcon />}
+            {!isOpenDrawer && drawerType === "permanent" && <MenuIcon />}
+          </IconButton>
         </Box>
-      </MUIDrawer>
-    </Box>
+        {isDestinationPage && !isSmallScreen && (
+          <>
+            <Divider>City</Divider>
+            <CityItems setIsOpenDrawer={setIsOpenDrawer} />
+          </>
+        )}
+        {drawerType === "persistent" && (
+          <>
+            <Divider>Navigation</Divider>
+            <MainItems setIsOpenDrawer={setIsOpenDrawer} />
+          </>
+        )}
+        <Divider />
+      </Box>
+    </MUIDrawer>
   );
 }

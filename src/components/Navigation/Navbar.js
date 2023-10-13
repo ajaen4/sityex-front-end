@@ -20,10 +20,9 @@ import { signOutUser } from "actions";
 
 import logo from "assets/img/icons/logo.png";
 
-const pages = ["Search City", "Destinations Map", "New review"];
-const settings = ["Account", "Logout"];
+import { navBarHeights, pages, settings } from "constants/constants.js";
 
-function NavBar({ setIsOpenDrawer }) {
+function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
   const [isOpenUserMenu, setIsOpenUserMenu] = React.useState(false);
 
   const auth = useSelector((state) => state.auth);
@@ -60,9 +59,9 @@ function NavBar({ setIsOpenDrawer }) {
   return (
     <>
       <AppBar
-        position="fixed"
         sx={{
           zIndex: theme.zIndex.drawer + 1000,
+          height: { ...navBarHeights },
         }}
       >
         <Toolbar style={{ padding: 0, marginLeft: 20, marginRight: 5 }}>
