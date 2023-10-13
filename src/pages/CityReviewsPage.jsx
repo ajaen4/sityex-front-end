@@ -9,7 +9,6 @@ import Grid from "@mui/material/Grid";
 import ScrollReviews from "components/ScrollList/ScrollReviews";
 
 const CityReviewsPage = () => {
-
   useEffect(() => {
     logAnalyticsEvent("page_view", {
       page_title: "City Reviews Page",

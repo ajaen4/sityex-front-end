@@ -9,7 +9,7 @@ function CitiesMarkerCluster({ citiesIndex }) {
   const map = useMap();
 
   useEffect(() => {
-    const markers = new MarkerClusterGroup();
+    const markers = new MarkerClusterGroup({ showCoverageOnHover: false });
 
     if (citiesIndex.length !== 0) {
       citiesIndex.forEach((city) => {

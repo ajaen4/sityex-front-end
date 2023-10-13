@@ -32,15 +32,18 @@ const CityPage = () => {
     return <CenteredLoadingSpinner />;
 
   return (
-    <Box sx={{display: "flex", flexDirection: "column", height: "100%"}}>
-      <Typography variant="h1" sx={{ textAlign: "center", mt: 3, mb: {md: 1, lg: 3} }}>
-          {selectedCity.name}
-        </Typography>
-        {isDestinationPage && isSmallScreen && (
-          <Box sx={{ p: 1.5, display: "flex", justifyContent: "center" }}>
-            <CityTabs />
-          </Box>
-        )}
+    <Box sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
+      <Typography
+        variant="h1"
+        sx={{ textAlign: "center", mt: 3, mb: { md: 1, lg: 3 } }}
+      >
+        {selectedCity.name}
+      </Typography>
+      {isDestinationPage && isSmallScreen && (
+        <Box sx={{ p: 1.5, display: "flex", justifyContent: "center" }}>
+          <CityTabs />
+        </Box>
+      )}
       <Outlet />
     </Box>
   );
