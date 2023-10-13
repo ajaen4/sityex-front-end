@@ -20,7 +20,7 @@ import { signOutUser } from "actions";
 
 import logo from "assets/img/icons/logo.png";
 
-import { navBarHeights, pages, settings } from "constants/constants.js";
+import { pages, settings } from "constants/constants.js";
 
 function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
   const [isOpenUserMenu, setIsOpenUserMenu] = React.useState(false);
@@ -61,7 +61,6 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
       <AppBar
         sx={{
           zIndex: theme.zIndex.drawer + 1000,
-          height: { ...navBarHeights },
         }}
       >
         <Toolbar style={{ padding: 0, marginLeft: 20, marginRight: 5 }}>
