@@ -24,7 +24,7 @@ const ReviewPage = () => {
       style={{
         justifyContent: "center",
         textAlign: "center",
-        marginTop: 50,
+        marginTop: 20,
       }}
     >
       <h2 className="bold"> Fill in a review </h2>
