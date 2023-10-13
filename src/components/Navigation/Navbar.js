@@ -18,16 +18,13 @@ import { useTheme } from "@mui/material/styles";
 
 import { signOutUser } from "actions";
 
-import MiniDrawer from "components/Navigation/Drawer";
-
 import logo from "assets/img/icons/logo.png";
 
 const pages = ["Search City", "Destinations Map", "New review"];
 const settings = ["Account", "Logout"];
 
-function NavBar({ outlet }) {
+function NavBar({ setIsOpenDrawer }) {
   const [isOpenUserMenu, setIsOpenUserMenu] = React.useState(false);
-  const [isOpenDrawer, setIsOpenDrawer] = React.useState(false);
 
   const auth = useSelector((state) => state.auth);
   const isAuthResolved = useSelector((state) => state.auth.isAuthResolved);
@@ -38,9 +35,6 @@ function NavBar({ outlet }) {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
-  const isDestinationPage = pathname.includes("destination");
-  const drawerType =
-    isSmallScreen || !isDestinationPage ? "persistent" : "permanent";
 
   useEffect(() => {
     if (!location.pathname.includes("destination")) setIsOpenDrawer(false);
@@ -53,10 +47,6 @@ function NavBar({ outlet }) {
   const handleCloseUserMenu = (setting) => {
     setIsOpenUserMenu(false);
     if (setting === "Logout") signOutUser(auth.id);
-  };
-
-  const handleChangeDrawer = (isOpen) => {
-    setIsOpenDrawer(isOpen);
   };
 
   const handleClickNavMenu = (page) => {
@@ -91,7 +81,7 @@ function NavBar({ outlet }) {
               <IconButton
                 color="inherit"
                 aria-label="open drawer"
-                onClick={() => handleChangeDrawer(!isOpenDrawer)}
+                onClick={() => setIsOpenDrawer(!isOpenDrawer)}
                 edge="start"
               >
                 <MenuIcon />
@@ -165,13 +155,6 @@ function NavBar({ outlet }) {
           )}
         </Toolbar>
       </AppBar>
-      <MiniDrawer
-        isOpenDrawer={isOpenDrawer}
-        handleChangeDrawer={handleChangeDrawer}
-        drawer
-        outlet={outlet}
-        drawerType={drawerType}
-      />
     </>
   );
 }
