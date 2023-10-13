@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useTheme } from "@mui/material/styles";
 
 import { withAuth } from "session";
 import { objectIsEmpty } from "helpers/usefulFunctions";
+import { logAnalyticsEvent } from "api";
 
 import { Box } from "@mui/material";
 
@@ -13,7 +13,10 @@ const MapPage = () => {
   const citiesIndex = useSelector((state) => state.citiesIndex.data);
 
   useEffect(() => {
-    document.title = "Map Page";
+    logAnalyticsEvent("page_view", {
+      page_title: "Map Page",
+      page_location: window.location.href,
+    });
   }, []);
 
   return (
@@ -21,11 +24,16 @@ const MapPage = () => {
       style={{
         textAlign: "center",
         justifyContent: "center",
-        minHeight: "100vh",
+        width: "100%",
+        height: "100%",
       }}
     >
       <DestinationsMap
-        citiesIndex={objectIsEmpty(citiesIndex) ? {} : citiesIndex}
+        citiesIndex={
+          !objectIsEmpty(citiesIndex) && citiesIndex.hasOwnProperty("cities")
+            ? citiesIndex.cities
+            : []
+        }
       />
     </Box>
   );

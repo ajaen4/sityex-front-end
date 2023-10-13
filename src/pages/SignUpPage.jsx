@@ -4,6 +4,7 @@ import { useTheme } from "@mui/material/styles";
 import { Grid, Stack, Typography, Container, Box, Card } from "@mui/material";
 
 import { withoutAuth } from "session";
+import { logAnalyticsEvent } from "api";
 
 import SignUpForm from "components/Forms/SignUpForm.jsx";
 import Logo from "assets/img/icons/logo_black.png";
@@ -12,7 +13,10 @@ const SignUpPage = () => {
   const theme = useTheme();
 
   useEffect(() => {
-    document.title = "Sign Up Page";
+    logAnalyticsEvent("page_view", {
+      page_title: "Sign Up Page",
+      page_location: window.location.href,
+    });
   }, []);
 
   return (
@@ -22,6 +26,7 @@ const SignUpPage = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          minHeight: "100vh",
         }}
       >
         <Card

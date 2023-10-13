@@ -7,7 +7,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import GradingIcon from "@mui/icons-material/Grading";
-import MapIcon from '@mui/icons-material/Map';
+import MapIcon from "@mui/icons-material/Map";
 import SearchIcon from "@mui/icons-material/Search";
 
 import { useMediaQuery } from "@mui/material";
@@ -15,7 +15,7 @@ import { useTheme } from "@mui/material/styles";
 
 import * as ROUTES_PATHS from "routes/paths";
 
-const MainItems = ({ handleChangeDrawer }) => {
+const MainItems = ({ setIsOpenDrawer }) => {
   const navigate = useNavigate();
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -24,8 +24,7 @@ const MainItems = ({ handleChangeDrawer }) => {
     const path = event.currentTarget.getAttribute("data-path");
     navigate(path);
 
-    if (isSmallScreen)
-      handleChangeDrawer(false);
+    if (isSmallScreen) setIsOpenDrawer(false);
   };
 
   return (

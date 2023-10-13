@@ -1,27 +1,35 @@
 import React from "react";
 
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  ZoomControl,
+} from "react-leaflet";
 import "react-leaflet-fullscreen/styles.css";
-import { FullscreenControl } from "react-leaflet-fullscreen";
-
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 
 const TOKEN = process.env.REACT_APP_MAPS_API_KEY;
 const MAP_STYLE = process.env.REACT_APP_MAPS_STYLE;
 
-function RecommendationsMap({ selectedCity }) {
+function CityPlacesMap({ selectedCity }) {
   return (
     <MapContainer
-      center={[selectedCity.latitude, selectedCity.longitude]}
+      center={[
+        selectedCity.coordinates.latitude,
+        selectedCity.coordinates.longitude,
+      ]}
       zoom={13}
-      style={{ height: "70vh", width: "100%" }}
+      style={{ height: "100%", width: "100%" }}
+      zoomControl={false}
     >
+      <ZoomControl position="topright" />
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url={`${MAP_STYLE}${TOKEN}`}
       />
-      <FullscreenControl position="topright" />
       {selectedCity.recomendations?.map((recomendation) => (
         <Marker
           key={recomendation.name}
@@ -34,7 +42,11 @@ function RecommendationsMap({ selectedCity }) {
           <Popup>
             <Container align="center" style={{ height: "100" }}>
               <Typography
-                style={{ marginTop: 10, marginBottom: 10, fontWeight: "bold" }}
+                style={{
+                  marginTop: 10,
+                  marginBottom: 10,
+                  fontWeight: "bold",
+                }}
               >
                 {recomendation.name}
               </Typography>
@@ -52,4 +64,4 @@ function RecommendationsMap({ selectedCity }) {
   );
 }
 
-export default RecommendationsMap;
+export default CityPlacesMap;

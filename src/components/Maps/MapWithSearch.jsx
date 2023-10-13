@@ -162,12 +162,15 @@ function MapWithSearch({
 
   let currentMapCenter = selectedPlace.coordinates
     ? [selectedPlace.coordinates.latitude, selectedPlace.coordinates.longitude]
-    : [selectedCity.latitude, selectedCity.longitude];
+    : [selectedCity.coordinates.latitude, selectedCity.coordinates.longitude];
 
   return (
     <>
       <MapContainer
-        center={[selectedCity.latitude, selectedCity.longitude]}
+        center={[
+          selectedCity.coordinates.latitude,
+          selectedCity.coordinates.longitude,
+        ]}
         zoom={DEFAULT_ZOOM}
         style={{ height: "400px" }}
         scrollWheelZoom={false}

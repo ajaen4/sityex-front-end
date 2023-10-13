@@ -1,22 +1,20 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { prettyCity } from "helpers/usefulFunctions";
 import { fetchCity } from "actions";
 
 import ReviewFormBase from "./ReviewFormBase";
 
 const ReviewForm = ({ selectedCity, citiesIndex }) => {
-  const INITIALCITY = "Aachen";
   const auth = useSelector((state) => state.auth.data);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchCity(prettyCity(INITIALCITY)));
+    dispatch(fetchCity("2038679"));
   }, [dispatch]);
 
-  const onChangeCity = (event) => {
-    dispatch(fetchCity(prettyCity(event.target.value)));
+  const onChangeCity = (event, selectedCity) => {
+    dispatch(fetchCity(selectedCity.city_id));
   };
 
   return (

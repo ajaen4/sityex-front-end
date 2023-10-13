@@ -5,17 +5,13 @@ import { useNavigate } from "react-router-dom";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
-import Alert from "@mui/material/Alert";
-import AlertTitle from "@mui/material/AlertTitle";
 import FormControl from "@mui/material/FormControl";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
-import IconButton from "@mui/material/IconButton";
-import CloseIcon from "@mui/icons-material/Close";
 
 import { addReview } from "actions";
 import Opinion5 from "components/Opinions/Opinion5";
-import CitiesDropDown from "components/DropDownList/CitiesDropDown";
+import CitiesAutocomplete from "components/Autocomplete/CitiesAutocomplete";
 import MapWithSearch from "components/Maps/MapWithSearch";
 import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 import ActionModal from "components/Modals/ActionModal";
@@ -65,7 +61,7 @@ const ReviewFormBase = ({
     data.userName = auth.userName;
     data.userId = auth.id;
     setIsFetching(true);
-    dispatch(addReview(selectedCity.name, data, currRecomendations))
+    dispatch(addReview(selectedCity.city_id, data, currRecomendations))
       .then(() => {
         setIsFetching(false);
         setModalMessage("Su experiencia se ha guardado correctamente");
@@ -86,12 +82,20 @@ const ReviewFormBase = ({
       <form onSubmit={handleSubmit(handleForm)} style={{ textAlign: "center" }}>
         {isFetching && <CenteredLoadingSpinner />}
         <Container sx={{ textAlign: "center" }}>
-          <CitiesDropDown
-            label="Which city have you lived in?"
-            citiesList={Object.keys(citiesIndex)}
-            onChangeCity={onChangeCity}
-            selectedCity={selectedCity ? selectedCity.name : null}
-          />
+          <Grid
+            container
+            justifyContent="center"
+            textAlign="center"
+            sx={{ my: "5px" }}
+          >
+            <Grid item xs={8} md={4}>
+              <CitiesAutocomplete
+                selectedCity={selectedCity}
+                citiesIndex={citiesIndex !== null ? citiesIndex : []}
+                onChangeCity={onChangeCity}
+              />
+            </Grid>
+          </Grid>
           <Grid
             container
             justifyContent="center"
