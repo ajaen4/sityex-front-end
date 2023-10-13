@@ -10,7 +10,7 @@ import PlaceIcon from "@mui/icons-material/Place";
 
 import * as ROUTES_PATHS from "routes/paths";
 
-export default function IconTabs() {
+export default function CityTabs() {
   const [value, setValue] = React.useState(0);
   const navigate = useNavigate();
   const selectedCity = useSelector((state) => state.selectedCity.data);

@@ -8,8 +8,8 @@ import { logAnalyticsEvent } from "api";
 
 import { Box } from "@mui/material";
 
-import RecommendationsMap from "components/Maps/RecommendationsMap";
 import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
+import CityPlacesMap from "components/Maps/CityPlacesMap";
 
 const CityPlacesPage = () => {
   const { city_id } = useParams();
@@ -33,12 +33,13 @@ const CityPlacesPage = () => {
 
   return (
     <Box
-      style={{
-        textAlign: "center",
-        justifyContent: "center",
+      sx={{
+        width: "100%",
+        display: "flex",
+        flexGrow: 1,
       }}
     >
-      <RecommendationsMap selectedCity={selectedCity} />
+      <CityPlacesMap selectedCity={selectedCity} />
     </Box>
   );
 };
