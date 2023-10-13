@@ -14,19 +14,19 @@ const MAP_STYLE = process.env.REACT_APP_MAPS_STYLE;
 
 function DestinationsMap({ citiesIndex }) {
   return (
-      <MapContainer
-        center={[CENTER["lat"], CENTER["lng"]]}
-        zoom={4}
-        style={{ height: "100%", width: "100%" }}
-        zoomControl={false}
-      >
-        <ZoomControl position="topright" />
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url={`${MAP_STYLE}${TOKEN}`}
-        />
-        <CitiesMarkerCluster citiesIndex={citiesIndex} />
-      </MapContainer>
+    <MapContainer
+      center={[CENTER["lat"], CENTER["lng"]]}
+      zoom={4}
+      style={{ height: "100%", width: "100%" }}
+      zoomControl={false}
+    >
+      <ZoomControl position="topright" />
+      <TileLayer
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        url={`${MAP_STYLE}${TOKEN}`}
+      />
+      <CitiesMarkerCluster citiesIndex={citiesIndex} />
+    </MapContainer>
   );
 }
 

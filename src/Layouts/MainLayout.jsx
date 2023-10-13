@@ -7,7 +7,6 @@ import { useTheme } from "@mui/material/styles";
 
 import Navbar from "components/Navigation/Navbar";
 import Drawer from "components/Navigation/Drawer";
-import CityTabs from "components/Tab/CityTabs";
 import DrawerHeader from "components/Navigation/DrawerHeader";
 
 const MainLayout = () => {
@@ -24,19 +23,17 @@ const MainLayout = () => {
     isSmallScreen || !isDestinationPage ? "persistent" : "permanent";
 
   useEffect(() => {
-
     if (!isSmallScreen && isDestinationPage && isOpenDrawer) {
       setDrawerWidth(240);
       return;
     }
-    
+
     if (!isSmallScreen && isDestinationPage && !isOpenDrawer) {
       setDrawerWidth(65);
       return;
     }
 
     setDrawerWidth(0);
-  
   }, [isSmallScreen, isOpenDrawer, pathname]);
 
   useEffect(() => {
@@ -44,15 +41,21 @@ const MainLayout = () => {
       setViewportHeight(window.innerHeight);
     };
 
-    window.addEventListener('resize', handleResize);
-    
+    window.addEventListener("resize", handleResize);
+
     // Clean up the event listener when the component unmounts
-    return () => window.removeEventListener('resize', handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", height: `${viewportHeight}px`, overflow: "hidden" }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        height: `${viewportHeight}px`,
+        overflow: "hidden",
+      }}
+    >
       <Navbar isOpenDrawer={isOpenDrawer} setIsOpenDrawer={setIsOpenDrawer} />
       <Drawer
         isOpenDrawer={isOpenDrawer}
@@ -70,11 +73,6 @@ const MainLayout = () => {
         }}
       >
         <DrawerHeader />
-        {isDestinationPage && isSmallScreen && (
-          <Box sx={{ p: 1.5, display: "flex", justifyContent: "center" }}>
-            <CityTabs />
-          </Box>
-        )}
         <Outlet />
       </Box>
     </Box>

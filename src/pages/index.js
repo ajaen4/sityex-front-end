@@ -1,3 +1,4 @@
+import CityPage from "./CityPage";
 import CityInfoPage from "./CityInfoPage";
 import CityPlacesPage from "./CityPlacesPage";
 import CityReviewsPage from "./CityReviewsPage";
@@ -8,12 +9,13 @@ import ReviewPage from "./ReviewPage";
 import SignUpPage from "./SignUpPage";
 
 export {
-  CityInfoPage,
   SearchPage,
   MapPage,
   LogInPage,
   ReviewPage,
   SignUpPage,
+  CityPage,
+  CityInfoPage,
   CityPlacesPage,
   CityReviewsPage,
 };

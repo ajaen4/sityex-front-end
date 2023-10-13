@@ -43,8 +43,8 @@ const updateOriginalRecomendations = (
   return consolidatedRecomendations;
 };
 
-export const addReview = (cityName, review, recomendations) => {
-  const cityDocRef = doc(citiesCollection, cityName);
+export const addReview = (city_id, review, recomendations) => {
+  const cityDocRef = doc(citiesCollection, city_id);
   const reviewsCollectionRef = collection(cityDocRef, "reviews");
 
   return runTransaction(db, async (t) => {
