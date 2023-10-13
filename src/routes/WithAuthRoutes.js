@@ -3,9 +3,10 @@ import MainLayout from "Layouts/MainLayout";
 import {
   SearchPage,
   MapPage,
+  ReviewPage,
+  CityPage,
   CityInfoPage,
   CityPlacesPage,
-  ReviewPage,
   CityReviewsPage,
 } from "pages";
 
@@ -33,6 +34,7 @@ const WithAuthRoutes = {
     },
     {
       path: ROUTES_PATHS.DESTINATION,
+      element: <CityPage />,
       children: [
         {
           path: ROUTES_PATHS.CITY_INFO,
