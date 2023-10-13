@@ -61,8 +61,8 @@ const SingleDataCard = ({ title, text, number, icon, backgroundColor }) => {
         </Grid>
         <Grid item xs={7}>
           <Typography
-            sx={{ fontSize: 25, color: theme.palette.grey[50] }}
-            color="text.secondary"
+            sx={{ fontSize: 20, color: theme.palette.grey[50] }}
+            color="text.primary"
             gutterBottom
           >
             {title}
