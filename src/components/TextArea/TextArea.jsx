@@ -1,6 +1,7 @@
 import React from "react";
 import TextField from "@mui/material/TextField";
 import FormHelperText from "@mui/material/FormHelperText";
+import { Box } from "@mui/material";
 
 const TextArea = ({ name, register, errors }) => {
   return (
@@ -23,6 +24,7 @@ const TextArea = ({ name, register, errors }) => {
         multiline
         error={errors[name] !== undefined}
       />
+      <Box sx={{minHeight: 40}}>
       {errors[name] && errors[name].type === "required" && (
         <FormHelperText error>
           You must introduce at least one advice
@@ -30,12 +32,13 @@ const TextArea = ({ name, register, errors }) => {
       )}
       {errors[name] && errors[name].type === "maxLength" && (
         <FormHelperText error>
-          {"El " + name + " puede tener como maximo 300 caracteres"}
+          {"The " + name + " can have max 300 characters"}
         </FormHelperText>
       )}
       {errors[name] && errors[name].type === "pattern" && (
-        <FormHelperText error>Existen caracteres no permitidos</FormHelperText>
+        <FormHelperText error>Delete non allowed characters</FormHelperText>
       )}
+      </Box>
     </>
   );
 };

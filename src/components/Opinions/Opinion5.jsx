@@ -9,32 +9,21 @@ import Grid from "@mui/material/Grid";
 import { Controller } from "react-hook-form";
 
 const Opinion5 = ({ fieldName, labelName, errorName, control, errors }) => {
-  const style = { marginRight: "0.5em", marginLeft: "0px", padding: "0px" };
+  const style = { padding: "0px" };
 
   return (
-    <Container
-      style={{
-        marginTop: "30px",
-        marginRight: "0px",
-        marginLeft: "0px",
-        paddingLeft: "0px",
-        paddingRight: "0px",
-      }}
-    >
+    <Container>
       <div>
         <h5
           style={{
             marginBottom: "0px",
+            fontSize: "1em",
           }}
         >
           {labelName}
         </h5>
       </div>
-      <Grid
-        container
-        justifyContent="center"
-        style={{ marginLeft: "0px", marginRight: "0px" }}
-      >
+      <Grid container justifyContent="center">
         <FormControl component="fieldset" style={style}>
           <Controller
             name={fieldName}

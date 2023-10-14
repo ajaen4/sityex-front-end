@@ -7,7 +7,6 @@ import {
   Autocomplete,
   TextField,
 } from "@mui/material";
-import TravelExploreIcon from "@mui/icons-material/TravelExplore";
 import { createFilterOptions } from "@mui/material/Autocomplete";
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
@@ -30,7 +29,6 @@ const CitiesAutocomplete = ({ selectedCity, citiesIndex, onChangeCity }) => {
   return (
     <Autocomplete
       freeSolo
-      style={{ marginTop: "20px" }}
       options={getDestinations()}
       onChange={onChangeCity}
       getOptionLabel={(option) => option.name}
@@ -42,8 +40,8 @@ const CitiesAutocomplete = ({ selectedCity, citiesIndex, onChangeCity }) => {
             ...params.InputProps,
             startAdornment: (
               <InputAdornment position="start">
-                <IconButton>
-                  {selectedCity !== undefined ? (
+                {selectedCity ? 
+                  <IconButton>
                     <img
                       loading="lazy"
                       width="20"
@@ -51,16 +49,21 @@ const CitiesAutocomplete = ({ selectedCity, citiesIndex, onChangeCity }) => {
                       srcSet={`https://flagcdn.com/w40/${selectedCity.country_2_code.toLowerCase()}.png 2x`}
                       alt=""
                     />
-                  ) : (
-                    <TravelExploreIcon />
-                  )}
-                </IconButton>
+                  </IconButton>
+                : <IconButton>
+                <img
+                  loading="lazy"
+                  width="20"
+                  src={`https://flagcdn.com/w20/cn.png`}
+                  srcSet={`https://flagcdn.com/w40/cn.png 2x`}
+                  alt=""
+                />
+              </IconButton>
+              }
               </InputAdornment>
             ),
           }}
-          placeholder={
-            selectedCity !== undefined ? selectedCity.name : "Ej. Turin..."
-          }
+          placeholder={selectedCity ? selectedCity.name : "Acheng"}
           fullWidth
         />
       )}

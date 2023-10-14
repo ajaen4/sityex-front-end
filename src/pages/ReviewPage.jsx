@@ -1,16 +1,16 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { Box } from "@mui/material";
 
 import { withAuth } from "session";
 import { logAnalyticsEvent } from "api";
+import { fetchCity } from "actions";
 
 import ReviewForm from "components/Forms/ReviewForm";
 
 const ReviewPage = () => {
-  const selectedCity = useSelector((state) => state.selectedCity.data);
-  const citiesIndex = useSelector((state) => state.citiesIndex.data);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     logAnalyticsEvent("page_view", {
@@ -18,6 +18,10 @@ const ReviewPage = () => {
       page_location: window.location.href,
     });
   }, []);
+
+  useEffect(() => {
+    dispatch(fetchCity("2038679")); // Fetch Acheng (First city alphabetically)
+  }, [dispatch]);
 
   return (
     <Box
@@ -27,23 +31,7 @@ const ReviewPage = () => {
         marginTop: 20,
       }}
     >
-      <h2 className="bold"> Fill in a review </h2>
-      <ReviewForm
-        selectedCity={
-          selectedCity
-            ? selectedCity
-            : {
-                name: "Acheng",
-                country_2_code: "CN",
-                city_id: "2038679",
-                coordinates: {
-                  latitude: 50.776351,
-                  longitude: 6.083862,
-                },
-              }
-        }
-        citiesIndex={citiesIndex !== null ? citiesIndex.cities : []}
-      />
+      <ReviewForm />
     </Box>
   );
 };
