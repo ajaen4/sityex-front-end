@@ -36,7 +36,14 @@ const CityPage = () => {
       <Typography variant="h1" sx={{ textAlign: "center", mt: 3, mb: 3 }}>
         {selectedCity.name}
       </Typography>
-      <Box sx={{ flex: 1, display: "flex", justifyContent: "center", overflow: "hidden"}}>
+      <Box
+        sx={{
+          flex: 1,
+          display: "flex",
+          justifyContent: "center",
+          overflow: "hidden",
+        }}
+      >
         <Outlet />
       </Box>
       {isDestinationPage && isSmallScreen && (

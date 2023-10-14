@@ -36,7 +36,7 @@ const SignUpForm = () => {
   const dispatch = useDispatch();
 
   const theme = useTheme();
-  const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const [isFetching, setIsFetching] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -88,7 +88,7 @@ const SignUpForm = () => {
                   alt="google"
                   width={16}
                   height={16}
-                  style={{ marginRight: matchDownSM ? 8 : 16 }}
+                  style={{ marginRight: isSmallScreen ? 8 : 16 }}
                 />
               </Box>
               Sign Up with Google

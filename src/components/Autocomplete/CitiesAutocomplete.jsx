@@ -40,7 +40,7 @@ const CitiesAutocomplete = ({ selectedCity, citiesIndex, onChangeCity }) => {
             ...params.InputProps,
             startAdornment: (
               <InputAdornment position="start">
-                {selectedCity ? 
+                {selectedCity ? (
                   <IconButton>
                     <img
                       loading="lazy"
@@ -50,16 +50,17 @@ const CitiesAutocomplete = ({ selectedCity, citiesIndex, onChangeCity }) => {
                       alt=""
                     />
                   </IconButton>
-                : <IconButton>
-                <img
-                  loading="lazy"
-                  width="20"
-                  src={`https://flagcdn.com/w20/cn.png`}
-                  srcSet={`https://flagcdn.com/w40/cn.png 2x`}
-                  alt=""
-                />
-              </IconButton>
-              }
+                ) : (
+                  <IconButton>
+                    <img
+                      loading="lazy"
+                      width="20"
+                      src={`https://flagcdn.com/w20/cn.png`}
+                      srcSet={`https://flagcdn.com/w40/cn.png 2x`}
+                      alt=""
+                    />
+                  </IconButton>
+                )}
               </InputAdornment>
             ),
           }}
