@@ -24,20 +24,20 @@ const TextArea = ({ name, register, errors }) => {
         multiline
         error={errors[name] !== undefined}
       />
-      <Box sx={{minHeight: 40}}>
-      {errors[name] && errors[name].type === "required" && (
-        <FormHelperText error>
-          You must introduce at least one advice
-        </FormHelperText>
-      )}
-      {errors[name] && errors[name].type === "maxLength" && (
-        <FormHelperText error>
-          {"The " + name + " can have max 300 characters"}
-        </FormHelperText>
-      )}
-      {errors[name] && errors[name].type === "pattern" && (
-        <FormHelperText error>Delete non allowed characters</FormHelperText>
-      )}
+      <Box sx={{ minHeight: 40 }}>
+        {errors[name] && errors[name].type === "required" && (
+          <FormHelperText error>
+            You must introduce at least one advice
+          </FormHelperText>
+        )}
+        {errors[name] && errors[name].type === "maxLength" && (
+          <FormHelperText error>
+            {"The " + name + " can have max 300 characters"}
+          </FormHelperText>
+        )}
+        {errors[name] && errors[name].type === "pattern" && (
+          <FormHelperText error>Delete non allowed characters</FormHelperText>
+        )}
       </Box>
     </>
   );

@@ -172,7 +172,6 @@ function MapWithSearch({
         zoom={DEFAULT_ZOOM}
         style={{ height: "400px" }}
         scrollWheelZoom={false}
-        touchZoom={false}
       >
         <UpdateMapCenter center={currentMapCenter} />
         <UpdateMapZoom newZoom={zoom} currRecomendations={currRecomendations} />
