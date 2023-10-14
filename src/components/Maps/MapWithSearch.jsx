@@ -5,6 +5,7 @@ import AlertTitle from "@mui/material/AlertTitle";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
@@ -31,14 +32,10 @@ const blueIcon = L.icon({
   iconSize: [40, 41],
 });
 
-const EMPTY_PLACE = {
-  coordinates: null,
-  name: null,
-};
-
 const TOKEN = process.env.REACT_APP_MAPS_API_KEY;
 const MAP_STYLE = process.env.REACT_APP_MAPS_STYLE;
 const DEFAULT_ZOOM = 14;
+const DEFAULT_CENTER = [45.54558, 126.95191];
 
 function MapWithSearch({
   selectedCity,
@@ -47,10 +44,7 @@ function MapWithSearch({
   setNoRecomendations,
 }) {
   const [configAlert, setConfigAlert] = useState(null);
-  const [selectedPlace, setSelectedPlace] = useState({
-    coordinates: null,
-    name: null,
-  });
+  const [selectedPlace, setSelectedPlace] = useState(null);
   const [zoom, setZoom] = useState(DEFAULT_ZOOM);
   const [currRecomendations, setCurrRecomendations] = useState([]);
   const selectedPlaceMarker = useRef(null);
@@ -58,7 +52,7 @@ function MapWithSearch({
 
   useEffect(() => {
     setCurrRecomendations([]);
-    setSelectedPlace(EMPTY_PLACE);
+    setSelectedPlace(null);
   }, [selectedCity]);
 
   const setSelectedPlaceMarker = (element) => {
@@ -74,7 +68,7 @@ function MapWithSearch({
     const newCurrRecomendations = [...currRecomendations, recomendation];
     setCurrRecomendations(newCurrRecomendations);
     updateRecomendations(newCurrRecomendations);
-    setSelectedPlace(EMPTY_PLACE);
+    setSelectedPlace(null);
     setZoom(DEFAULT_ZOOM);
     closeMarkersInDB();
   };
@@ -85,8 +79,8 @@ function MapWithSearch({
     );
 
   const isSelectedPlaceInCity = (selectedPlaceCountry, selectedPlaceCity) =>
-    selectedPlaceCountry === selectedCity.countryName &&
-    selectedPlaceCity === selectedCity.name;
+    selectedPlaceCountry === selectedCity?.countryName &&
+    selectedPlaceCity === selectedCity?.name;
 
   const isAlreadyAdded = (placeName) =>
     currRecomendations.some(
@@ -94,7 +88,7 @@ function MapWithSearch({
     );
 
   const isAlreadyInDB = (place) =>
-    selectedCity.recomendations?.some(
+    selectedCity?.recomendations?.some(
       (recom) =>
         recom.coordinates.latitude === place.coordinates.latitude &&
         recom.coordinates.longitude === place.coordinates.longitude,
@@ -160,20 +154,25 @@ function MapWithSearch({
     }
   };
 
-  let currentMapCenter = selectedPlace.coordinates
-    ? [selectedPlace.coordinates.latitude, selectedPlace.coordinates.longitude]
-    : [selectedCity.coordinates.latitude, selectedCity.coordinates.longitude];
+  let currentMapCenter =
+    (selectedPlace && [
+      selectedPlace.coordinates.latitude,
+      selectedPlace.coordinates.longitude,
+    ]) ||
+    (selectedCity && [
+      selectedCity.coordinates.latitude,
+      selectedCity.coordinates.longitude,
+    ]) ||
+    DEFAULT_CENTER;
 
   return (
     <>
       <MapContainer
-        center={[
-          selectedCity.coordinates.latitude,
-          selectedCity.coordinates.longitude,
-        ]}
+        center={currentMapCenter}
         zoom={DEFAULT_ZOOM}
         style={{ height: "400px" }}
         scrollWheelZoom={false}
+        touchZoom={false}
       >
         <UpdateMapCenter center={currentMapCenter} />
         <UpdateMapZoom newZoom={zoom} currRecomendations={currRecomendations} />
@@ -182,7 +181,7 @@ function MapWithSearch({
           url={`${MAP_STYLE}${TOKEN}`}
         />
         <FullscreenControl position="topright" />
-        {selectedPlace.coordinates && !isAlreadyInDB(selectedPlace) && (
+        {selectedPlace && !isAlreadyInDB(selectedPlace) && (
           <Marker
             ref={setSelectedPlaceMarker}
             key="selectedPlaceMarker"
@@ -222,7 +221,7 @@ function MapWithSearch({
             icon={blueIcon}
           />
         ))}
-        {selectedCity.recomendations?.map((recomendation) => (
+        {selectedCity?.recomendations?.map((recomendation) => (
           <Marker
             key={recomendation.name}
             draggable={false}
@@ -270,7 +269,7 @@ function MapWithSearch({
         value=""
         onRetrieve={handleRetrieve}
       />
-      <Container sx={{ minHeight: "50px", marginTop: "10px" }}>
+      <Box sx={{ minHeight: "70px", marginTop: "5px" }}>
         {configAlert && (
           <Alert
             severity={configAlert.color}
@@ -304,12 +303,10 @@ function MapWithSearch({
               </IconButton>
             }
           >
-            <AlertTitle>
-              Please set at least one place recommendation
-            </AlertTitle>
+            <AlertTitle>Set at least one place recommendation</AlertTitle>
           </Alert>
         )}
-      </Container>
+      </Box>
     </>
   );
 }

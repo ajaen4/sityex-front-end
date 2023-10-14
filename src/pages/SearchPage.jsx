@@ -25,7 +25,7 @@ const SearchPage = () => {
     navigate("/destination/" + value.city_id + "/info");
   };
 
-  if (citiesIndex === null) return <CenteredLoadingSpinner />;
+  if (!citiesIndex) return <CenteredLoadingSpinner />;
 
   return (
     <Box
@@ -38,11 +38,11 @@ const SearchPage = () => {
         <Grid item xs={11} md={5} lg={4}>
           <Card>
             <CardContent>
-              <Typography variant="h2" color="textSecondary">
+              <Typography variant="h2" color="textSecondary" sx={{ mb: 3 }}>
                 Introduce a destination
               </Typography>
               <CitiesAutocomplete
-                citiesIndex={citiesIndex !== null ? citiesIndex.cities : []}
+                citiesIndex={citiesIndex ? citiesIndex.cities : null}
                 onChangeCity={onChangeCity}
               />
             </CardContent>

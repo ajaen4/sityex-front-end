@@ -28,13 +28,7 @@ const MapPage = () => {
         height: "100%",
       }}
     >
-      <DestinationsMap
-        citiesIndex={
-          !objectIsEmpty(citiesIndex) && citiesIndex.hasOwnProperty("cities")
-            ? citiesIndex.cities
-            : []
-        }
-      />
+      <DestinationsMap citiesIndex={citiesIndex ? citiesIndex.cities : []} />
     </Box>
   );
 };
