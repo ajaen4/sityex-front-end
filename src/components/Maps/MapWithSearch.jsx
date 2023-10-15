@@ -18,6 +18,8 @@ import UpdateMapZoom from "components/Maps/UpdateMapZoom";
 import UpdateMapCenter from "components/Maps/UpdateMapCenter";
 import MapsAutocomplete from "components/Autocomplete/MapsAutocomplete";
 
+import { getCityPlaces } from "actions";
+
 const TITLESELOPTION = "Incorrect location. ";
 const WRONGCOUNTRYORCITY = "The location is not in the specified city";
 const WRONGLOCATION = "Please select a concrete location";
@@ -39,20 +41,27 @@ const DEFAULT_CENTER = [45.54558, 126.95191];
 
 function MapWithSearch({
   selectedCity,
-  updateRecomendations,
-  noRecomendations,
-  setNoRecomendations,
+  updatePlaces,
+  noPlaces,
+  setNoPlaces,
 }) {
   const [configAlert, setConfigAlert] = useState(null);
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [zoom, setZoom] = useState(DEFAULT_ZOOM);
-  const [currRecomendations, setCurrRecomendations] = useState([]);
+  const [currPlaces, setCurrPlaces] = useState([]);
+  const [places, setPlaces] = useState([]);
+
   const selectedPlaceMarker = useRef(null);
   const markersAlreadyInDB = useRef({});
 
   useEffect(() => {
-    setCurrRecomendations([]);
+    setCurrPlaces([]);
     setSelectedPlace(null);
+    if (selectedCity){
+      getCityPlaces(selectedCity.city_id).then((places) => {
+        if (places) setPlaces(places);
+      });
+    }
   }, [selectedCity]);
 
   const setSelectedPlaceMarker = (element) => {
@@ -64,10 +73,10 @@ function MapWithSearch({
     }
   };
 
-  const addRecommendation = (recomendation) => {
-    const newCurrRecomendations = [...currRecomendations, recomendation];
-    setCurrRecomendations(newCurrRecomendations);
-    updateRecomendations(newCurrRecomendations);
+  const addPlace = (recomendation) => {
+    const newCurrPlaces = [...currPlaces, recomendation];
+    setCurrPlaces(newCurrPlaces);
+    updatePlaces(newCurrPlaces);
     setSelectedPlace(null);
     setZoom(DEFAULT_ZOOM);
     closeMarkersInDB();
@@ -89,17 +98,17 @@ function MapWithSearch({
   };
 
   const isAlreadyAdded = (placeId) =>
-    currRecomendations.some(
+    currPlaces.some(
       (recomendation) => recomendation.placeId === placeId,
     );
 
   const isAlreadyInDB = (place) =>
-    selectedCity?.recomendations?.some(
+    places.some(
       (recom) => recom.placeId === place.placeId,
     );
 
   const recsNotInDB = () =>
-    currRecomendations.filter((recom) => !isAlreadyInDB(recom));
+    currPlaces.filter((recom) => !isAlreadyInDB(recom));
 
   const handleRetrieve = (placeInfo) => {
     const placeCountry2Code = placeInfo.address_components.find((component) =>
@@ -197,7 +206,7 @@ function MapWithSearch({
         scrollWheelZoom={false}
       >
         <UpdateMapCenter center={currentMapCenter} />
-        <UpdateMapZoom newZoom={zoom} currRecomendations={currRecomendations} />
+        <UpdateMapZoom newZoom={zoom} currPlaces={currPlaces} />
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url={`${MAP_STYLE}${TOKEN}`}
@@ -224,7 +233,7 @@ function MapWithSearch({
                 </Typography>
                 <Button
                   variant="contained"
-                  onClick={() => addRecommendation(selectedPlace)}
+                  onClick={() => addPlace(selectedPlace)}
                 >
                   Add recomendation
                 </Button>
@@ -243,7 +252,7 @@ function MapWithSearch({
             icon={blueIcon}
           />
         ))}
-        {selectedCity?.recomendations?.map((recomendation) => (
+        {places.map((recomendation) => (
           <Marker
             key={recomendation.name}
             draggable={false}
@@ -263,12 +272,12 @@ function MapWithSearch({
                   {recomendation.name}
                 </Typography>
                 <Typography style={{ marginTop: 5, marginBottom: 5 }}>
-                  Num of recomendations: {recomendation.numOfRecomendations}
+                  Num of recomendations: {recomendation.numOfPlaces}
                 </Typography>
                 {!isAlreadyAdded(recomendation.placeId) && (
                   <Button
                     variant="contained"
-                    onClick={() => addRecommendation(recomendation)}
+                    onClick={() => addPlace(recomendation)}
                   >
                     Add recomendation
                   </Button>
@@ -306,7 +315,7 @@ function MapWithSearch({
             </AlertTitle>
           </Alert>
         )}
-        {noRecomendations && (
+        {noPlaces && (
           <Alert
             severity="error"
             action={
@@ -314,7 +323,7 @@ function MapWithSearch({
                 aria-label="close"
                 color="inherit"
                 size="small"
-                onClick={() => setNoRecomendations(false)}
+                onClick={() => setNoPlaces(false)}
               >
                 <CloseIcon fontSize="inherit" />
               </IconButton>

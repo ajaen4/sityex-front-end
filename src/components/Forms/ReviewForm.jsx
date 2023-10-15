@@ -30,8 +30,8 @@ const ReviewForm = () => {
 
   let mapContainer = useRef(null);
 
-  const [noRecomendations, setNoRecomendations] = useState(false);
-  const [currRecomendations, setCurrRecomendations] = useState([]);
+  const [noPlaces, setNoPlaces] = useState(false);
+  const [currPlaces, setCurrPlaces] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
 
@@ -45,29 +45,29 @@ const ReviewForm = () => {
 
   const goToDestinations = () => navigate("/search");
 
-  const updateRecomendations = (recomendations) =>
-    setCurrRecomendations(recomendations);
+  const updatePlaces = (places) =>
+    setCurrPlaces(places);
 
   const resetForm = () => {
     setModalMessage("");
-    setCurrRecomendations([]);
+    setCurrPlaces([]);
     reset();
   };
 
   const handleForm = (data) => {
-    if (currRecomendations.length === 0) {
+    if (currPlaces.length === 0) {
       window.scrollTo(0, mapContainer.current.offsetTop);
-      setNoRecomendations(true);
+      setNoPlaces(true);
       return;
     }
 
     data.userName = auth.userName;
     data.userId = auth.id;
     setIsFetching(true);
-    dispatch(addReview(selectedCity.city_id, data, currRecomendations))
+    dispatch(addReview(selectedCity.city_id, data, currPlaces))
       .then(() => {
         setIsFetching(false);
-        setModalMessage("Su experiencia se ha guardado correctamente");
+        setModalMessage("Your review has been successfully uploaded!");
         setTimeout(() => {
           goToDestinations();
         }, 2500);
@@ -75,7 +75,7 @@ const ReviewForm = () => {
       .catch((err) => {
         setIsFetching(false);
         setModalMessage(
-          "Ha ocurrido un problema. Por favor, vuelva a intentarlo",
+          "There was an error. Please try again",
         );
       });
   };
@@ -164,9 +164,9 @@ const ReviewForm = () => {
           <Grid item xs={11} md={8}>
             <MapWithSearch
               selectedCity={selectedCity ? selectedCity : null}
-              updateRecomendations={updateRecomendations}
-              noRecomendations={noRecomendations}
-              setNoRecomendations={setNoRecomendations}
+              updatePlaces={updatePlaces}
+              noPlaces={noPlaces}
+              setNoPlaces={setNoPlaces}
             />
           </Grid>
         </Grid>
