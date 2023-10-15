@@ -39,12 +39,7 @@ const MAP_STYLE = process.env.REACT_APP_MAPS_STYLE;
 const DEFAULT_ZOOM = 14;
 const DEFAULT_CENTER = [45.54558, 126.95191];
 
-function MapWithSearch({
-  selectedCity,
-  updatePlaces,
-  noPlaces,
-  setNoPlaces,
-}) {
+function MapWithSearch({ selectedCity, updatePlaces, noPlaces, setNoPlaces }) {
   const [configAlert, setConfigAlert] = useState(null);
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [zoom, setZoom] = useState(DEFAULT_ZOOM);
@@ -57,7 +52,7 @@ function MapWithSearch({
   useEffect(() => {
     setCurrPlaces([]);
     setSelectedPlace(null);
-    if (selectedCity){
+    if (selectedCity) {
       getCityPlaces(selectedCity.city_id).then((places) => {
         if (places) setPlaces(places);
       });
@@ -98,17 +93,12 @@ function MapWithSearch({
   };
 
   const isAlreadyAdded = (placeId) =>
-    currPlaces.some(
-      (recomendation) => recomendation.placeId === placeId,
-    );
+    currPlaces.some((recomendation) => recomendation.placeId === placeId);
 
   const isAlreadyInDB = (place) =>
-    places.some(
-      (recom) => recom.placeId === place.placeId,
-    );
+    places.some((recom) => recom.placeId === place.placeId);
 
-  const recsNotInDB = () =>
-    currPlaces.filter((recom) => !isAlreadyInDB(recom));
+  const recsNotInDB = () => currPlaces.filter((recom) => !isAlreadyInDB(recom));
 
   const handleRetrieve = (placeInfo) => {
     const placeCountry2Code = placeInfo.address_components.find((component) =>

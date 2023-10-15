@@ -14,6 +14,7 @@ const MainLayout = () => {
   const [drawerWidth, setDrawerWidth] = useState(0);
 
   const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
+  const test = viewportHeight - 10;
 
   const theme = useTheme();
   const { pathname } = useLocation();
@@ -53,7 +54,7 @@ const MainLayout = () => {
         display: "flex",
         flexDirection: "column",
         height: `${viewportHeight}px`,
-        overflow: "hidden",
+        overflowY: "hidden",
       }}
     >
       <Navbar isOpenDrawer={isOpenDrawer} setIsOpenDrawer={setIsOpenDrawer} />
@@ -68,8 +69,8 @@ const MainLayout = () => {
           flexGrow: 1,
           display: "flex",
           flexDirection: "column",
-          overflowY: "auto",
           marginLeft: `${drawerWidth}px`,
+          overflow: "hidden",
         }}
       >
         <DrawerHeader />

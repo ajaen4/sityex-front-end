@@ -32,11 +32,11 @@ export const addReview = async (city_id, review, recomendations) => {
   const orgPlacesIds = orgPlaces.map((place) => place.placeId);
 
   const newPlaces = recomendations.filter(
-    (place) => !orgPlacesIds.includes(place.placeId)
+    (place) => !orgPlacesIds.includes(place.placeId),
   );
 
   const orgPlacesInRecs = recomendations.filter((place) =>
-    orgPlacesIds.includes(place.placeId)
+    orgPlacesIds.includes(place.placeId),
   );
 
   const batch = writeBatch(db);

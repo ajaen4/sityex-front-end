@@ -20,14 +20,7 @@ function ScrollReviews({ reviews, isFetching }) {
   }
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        width: "100%",
-        height: "100%",
-      }}
-    >
+    <Box>
       {reviews.length !== 0 && (
         <List>{reviews.map((review, index) => renderItem(review, index))}</List>
       )}

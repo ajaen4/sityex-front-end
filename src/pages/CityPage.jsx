@@ -32,7 +32,14 @@ const CityPage = () => {
     return <CenteredLoadingSpinner />;
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
+        overflow: "hidden",
+      }}
+    >
       <Typography variant="h1" sx={{ textAlign: "center", my: 2 }}>
         {selectedCity.name}
       </Typography>
@@ -41,7 +48,7 @@ const CityPage = () => {
           flex: 1,
           display: "flex",
           justifyContent: "center",
-          overflow: "hidden",
+          overflowY: "hidden",
         }}
       >
         <Outlet />

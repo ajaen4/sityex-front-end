@@ -35,9 +35,9 @@ const CityReviewsPage = () => {
         flexGrow: 1,
       }}
     >
-      <Grid container sx={{ justifyContent: "center", height: "100%" }}>
+      <Grid container sx={{ justifyContent: "center" }}>
         <Grid item xs={12} md={6} sx={{ height: "100%", overflowY: "auto" }}>
-          <ScrollReviews reviews={reviews.concat(reviews)} isFetching={false} />
+          <ScrollReviews reviews={reviews} isFetching={false} />
         </Grid>
       </Grid>
     </Box>
