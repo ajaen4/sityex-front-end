@@ -16,10 +16,18 @@ export const SET_AUTH_USER_ERROR = "SET_AUTH_USER_ERROR";
 
 //--------------------AUTH END
 
-//--------------------reviewS
+//--------------------REVIEWS
 
 export const SAVING_REVIEW = "SAVING_REVIEW";
 export const SAVING_REVIEW_SUCCESS = "SAVING_REVIEW_SUCCESS";
 export const SAVING_REVIEW_ERROR = "SAVING_REVIEW_ERROR";
 
-//--------------------reviewS END
+//--------------------REVIEWS END
+
+//--------------------PLACES
+
+export const SAVING_PLACE = "SAVING_PLACE";
+export const SAVING_PLACE_SUCCESS = "SAVING_PLACE_SUCCESS";
+export const SAVING_PLACE_ERROR = "SAVING_PLACE_ERROR";
+
+//--------------------PLACES END

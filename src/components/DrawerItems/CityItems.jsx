@@ -8,9 +8,9 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 
-import CityIcon from "@mui/icons-material/LocationCity";
-import GradingIcon from "@mui/icons-material/Grading";
-import PlaceIcon from "@mui/icons-material/Place";
+import CityIcon from "@mui/icons-material/LocationCityOutlined";
+import GradingIcon from "@mui/icons-material/GradingOutlined";
+import PlaceIcon from "@mui/icons-material/PlaceOutlined";
 
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";

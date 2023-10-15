@@ -8,8 +8,8 @@ import Box from "@mui/material/Box";
 import { Drawer as MUIDrawer } from "@mui/material";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import MenuOpenIcon from "@mui/icons-material/MenuOpen";
+import MenuIcon from "@mui/icons-material/MenuOutlined";
+import MenuOpenIcon from "@mui/icons-material/MenuOpenOutlined";
 
 import MainItems from "components/DrawerItems/MainItems";
 import CityItems from "components/DrawerItems/CityItems";

@@ -6,9 +6,9 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import GradingIcon from "@mui/icons-material/Grading";
-import MapIcon from "@mui/icons-material/Map";
-import SearchIcon from "@mui/icons-material/Search";
+import GradingIcon from "@mui/icons-material/GradingOutlined";
+import MapIcon from "@mui/icons-material/MapOutlined";
+import SearchIcon from "@mui/icons-material/SearchOutlined";
 
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";

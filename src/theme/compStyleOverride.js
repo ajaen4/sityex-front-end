@@ -10,9 +10,6 @@ export default function componentStyleOverrides(theme) {
       },
     },
     MuiPaper: {
-      defaultProps: {
-        elevation: 0,
-      },
       styleOverrides: {
         root: {
           backgroundImage: "none",

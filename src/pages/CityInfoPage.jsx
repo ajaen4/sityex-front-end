@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useTheme } from "@mui/material/styles";
 
@@ -9,16 +8,14 @@ import { logAnalyticsEvent } from "api";
 import { Box, Grid } from "@mui/material";
 import SingleDataCard from "components/Cards/SingleDataCard";
 
-import GroupsIcon from "@mui/icons-material/Groups";
-import WbSunnyIcon from "@mui/icons-material/WbSunny";
-import WorkIcon from "@mui/icons-material/Work";
-import MoneyIcon from "@mui/icons-material/AttachMoney";
-import MoneyOffIcon from "@mui/icons-material/MoneyOff";
-import LiquorIcon from "@mui/icons-material/Liquor";
+import GroupsIcon from "@mui/icons-material/GroupsOutlined";
+import WbSunnyIcon from "@mui/icons-material/WbSunnyOutlined";
+import WorkIcon from "@mui/icons-material/WorkOutlined";
+import MoneyIcon from "@mui/icons-material/AttachMoneyOutlined";
+import MoneyOffIcon from "@mui/icons-material/MoneyOffOutlined";
+import LiquorIcon from "@mui/icons-material/LiquorOutlined";
 
 const CityInfoPage = () => {
-  const { city_id } = useParams();
-
   const selectedCity = useSelector((state) => state.selectedCity.data);
   const auth = useSelector((state) => state.auth.data);
 

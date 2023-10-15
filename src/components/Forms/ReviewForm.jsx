@@ -17,7 +17,7 @@ import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 import ActionModal from "components/Modals/ActionModal";
 import TextArea from "components/TextArea/TextArea";
 
-const ReviewForm = ({ auth }) => {
+const ReviewForm = () => {
   const {
     register,
     handleSubmit,
@@ -37,6 +37,7 @@ const ReviewForm = ({ auth }) => {
 
   const selectedCity = useSelector((state) => state.selectedCity.data);
   const citiesIndex = useSelector((state) => state.citiesIndex.data);
+  const auth = useSelector((state) => state.auth.data);
 
   const onChangeCity = (event, selectedCity) => {
     dispatch(fetchCity(selectedCity.city_id));
