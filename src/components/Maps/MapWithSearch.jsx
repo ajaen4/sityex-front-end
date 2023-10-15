@@ -82,16 +82,6 @@ function MapWithSearch({ selectedCity, updatePlaces, noPlaces, setNoPlaces }) {
       marker.closePopup(),
     );
 
-  const isSelectedPlaceInCity = (
-    selectedPlaceCountry2Code,
-    selectedPlaceCity,
-  ) => {
-    return (
-      selectedPlaceCountry2Code === selectedCity.country_2_code &&
-      selectedPlaceCity === selectedCity.name
-    );
-  };
-
   const isAlreadyAdded = (placeId) =>
     currPlaces.some((recomendation) => recomendation.placeId === placeId);
 
@@ -133,21 +123,11 @@ function MapWithSearch({ selectedCity, updatePlaces, noPlaces, setNoPlaces }) {
     const placeId = placeInfo.place_id;
 
     if (
-      isSelectedPlaceInCity(placeCountry2Code, administrativeLevel2) &&
       isAlreadyAdded(placeId)
     ) {
       setConfigAlert({
         title: TITLESELOPTION,
         text: LOCATIONALREADYADDED,
-        color: "error",
-      });
-      return;
-    }
-
-    if (!isSelectedPlaceInCity(placeCountry2Code, administrativeLevel2)) {
-      setConfigAlert({
-        title: TITLESELOPTION,
-        text: WRONGCOUNTRYORCITY,
         color: "error",
       });
       return;

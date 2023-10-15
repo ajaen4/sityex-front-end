@@ -14,7 +14,6 @@ const MainLayout = () => {
   const [drawerWidth, setDrawerWidth] = useState(0);
 
   const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
-  const test = viewportHeight - 10;
 
   const theme = useTheme();
   const { pathname } = useLocation();

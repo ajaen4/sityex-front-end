@@ -1,4 +1,5 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useState, useMemo } from "react";
+import { useSelector } from "react-redux";
 
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -9,45 +10,52 @@ import Typography from "@mui/material/Typography";
 import { debounce } from "@mui/material/utils";
 
 import parse from "autosuggest-highlight/parse";
+import { Loader } from "@googlemaps/js-api-loader";
 
-const GOOGLE_MAPS_API_KEY = process.env.REACT_APP_PLACES_API_KEY;
+import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 
-const autocompleteService = { current: null };
-const placesService = { current: null };
 
-function loadScript(src, callback) {
-  const script = document.createElement("script");
-  script.setAttribute("async", "");
-  script.setAttribute("id", "google-maps");
-  script.src = src;
-  script.onload = callback;
-  document.body.appendChild(script);
-}
+const loader = new Loader({
+  apiKey: process.env.REACT_APP_PLACES_API_KEY,
+  version: "weekly",
+  libraries: ["places", "geometry"],
+});
+
+const RADIUS = 60000;
 
 export default function MapsAutocomplete({ onSelectedPlace }) {
-  const [value, setValue] = React.useState(null);
-  const [inputValue, setInputValue] = React.useState("");
-  const [options, setOptions] = React.useState([]);
+  const [value, setValue] = useState(null);
+  const [inputValue, setInputValue] = useState("");
+  const [options, setOptions] = useState([]);
+  const [autocompleteService, setAutocompleteService] = useState(null);
+  const [placesService, setPlacesService] = useState(null);
+  const [isFetching, setIsFetching] = useState(true);
+  const selectedCity = useSelector((state) => state.selectedCity.data);
 
   useEffect(() => {
-    if (!document.querySelector("#google-maps")) {
-      loadScript(
-        `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=places&language=en`,
-        () => {
-          autocompleteService.current =
-            new window.google.maps.places.AutocompleteService();
-          placesService.current = new window.google.maps.places.PlacesService(
+    setIsFetching(true);
+    loader
+      .load()
+      .then(() => {
+        setIsFetching(false);
+        setAutocompleteService(
+          new window.google.maps.places.AutocompleteService(),
+        );
+        setPlacesService(
+          new window.google.maps.places.PlacesService(
             document.createElement("div"),
-          );
-        },
-      );
-    }
+          ),
+        );
+      })
+      .catch((error) => {
+        console.log("Error loading Google Maps:", error);
+      });
   }, []);
 
   const fetch = useMemo(
     () =>
       debounce((request, callback) => {
-        autocompleteService.current.getPlacePredictions(request, callback);
+        autocompleteService?.getPlacePredictions(request, callback);
       }, 400),
     [],
   );
@@ -55,7 +63,7 @@ export default function MapsAutocomplete({ onSelectedPlace }) {
   useEffect(() => {
     let active = true;
 
-    if (!autocompleteService.current) {
+    if (!autocompleteService) {
       return undefined;
     }
 
@@ -63,22 +71,39 @@ export default function MapsAutocomplete({ onSelectedPlace }) {
       setOptions(value ? [value] : []);
       return undefined;
     }
-
-    fetch({ input: inputValue }, (results) => {
-      if (active) {
-        let newOptions = [];
-
-        if (value) {
-          newOptions = [value];
+    
+    fetch(
+      {
+        input: inputValue,
+        locationBias: {
+          center: {
+            lat: selectedCity.coordinates.latitude,
+            lng: selectedCity.coordinates.longitude,
+          },
+          radius: RADIUS,
+        },
+      },
+      (results, status) => {
+        if (status !== window.google.maps.places.PlacesServiceStatus.OK) {
+          console.error("Error with getPlacePredictions:", status);
+          setOptions([]);
+          return;
         }
+        if (active) {
+          let newOptions = [];
 
-        if (results) {
-          newOptions = [...newOptions, ...results];
+          if (value) {
+            newOptions = [value];
+          }
+
+          if (results) {
+            newOptions = [...newOptions, ...results];
+          }
+
+          setOptions(newOptions);
         }
-
-        setOptions(newOptions);
-      }
-    });
+      },
+    );
 
     return () => {
       active = false;
@@ -89,8 +114,8 @@ export default function MapsAutocomplete({ onSelectedPlace }) {
     setOptions(newValue ? [newValue, ...options] : options);
     setValue(newValue);
 
-    if (newValue && newValue.place_id && placesService.current) {
-      placesService.current.getDetails(
+    if (newValue && newValue.place_id && placesService) {
+      placesService.getDetails(
         { placeId: newValue.place_id },
         (place, status) => {
           if (status === window.google.maps.places.PlacesServiceStatus.OK) {
@@ -100,6 +125,8 @@ export default function MapsAutocomplete({ onSelectedPlace }) {
       );
     }
   };
+
+  if (isFetching) return <CenteredLoadingSpinner />;
 
   return (
     <Autocomplete
