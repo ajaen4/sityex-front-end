@@ -4,9 +4,9 @@ import { useSelector } from "react-redux";
 
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import CityIcon from "@mui/icons-material/LocationCity";
-import GradingIcon from "@mui/icons-material/Grading";
-import PlaceIcon from "@mui/icons-material/Place";
+import CityIcon from "@mui/icons-material/LocationCityOutlined";
+import GradingIcon from "@mui/icons-material/GradingOutlined";
+import PlaceIcon from "@mui/icons-material/PlaceOutlined";
 import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
 

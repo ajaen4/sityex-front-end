@@ -33,7 +33,7 @@ const CityPage = () => {
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
-      <Typography variant="h1" sx={{ textAlign: "center", mt: 3, mb: 3 }}>
+      <Typography variant="h1" sx={{ textAlign: "center", my: 2 }}>
         {selectedCity.name}
       </Typography>
       <Box

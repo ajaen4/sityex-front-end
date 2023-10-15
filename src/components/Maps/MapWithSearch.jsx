@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 import IconButton from "@mui/material/IconButton";
-import CloseIcon from "@mui/icons-material/Close";
+import CloseIcon from "@mui/icons-material/CloseOutlined";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -13,10 +13,10 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "react-leaflet-fullscreen/styles.css";
 import L from "leaflet";
 import { FullscreenControl } from "react-leaflet-fullscreen";
-import { SearchBox } from "@mapbox/search-js-react";
-import UpdateMapZoom from "components/Maps/UpdateMapZoom";
 
+import UpdateMapZoom from "components/Maps/UpdateMapZoom";
 import UpdateMapCenter from "components/Maps/UpdateMapCenter";
+import MapsAutocomplete from "components/Autocomplete/MapsAutocomplete";
 
 const TITLESELOPTION = "Incorrect location. ";
 const WRONGCOUNTRYORCITY = "The location is not in the specified city";
@@ -78,31 +78,35 @@ function MapWithSearch({
       marker.closePopup(),
     );
 
-  const isSelectedPlaceInCity = (selectedPlaceCountry, selectedPlaceCity) =>
-    selectedPlaceCountry === selectedCity?.countryName &&
-    selectedPlaceCity === selectedCity?.name;
+  const isSelectedPlaceInCity = (
+    selectedPlaceCountry2Code,
+    selectedPlaceCity,
+  ) => {
+    return (
+      selectedPlaceCountry2Code === selectedCity.country_2_code &&
+      selectedPlaceCity === selectedCity.name
+    );
+  };
 
-  const isAlreadyAdded = (placeName) =>
+  const isAlreadyAdded = (placeId) =>
     currRecomendations.some(
-      (recomendation) => recomendation.name === placeName,
+      (recomendation) => recomendation.placeId === placeId,
     );
 
   const isAlreadyInDB = (place) =>
     selectedCity?.recomendations?.some(
-      (recom) =>
-        recom.coordinates.latitude === place.coordinates.latitude &&
-        recom.coordinates.longitude === place.coordinates.longitude,
+      (recom) => recom.placeId === place.placeId,
     );
 
   const recsNotInDB = () =>
     currRecomendations.filter((recom) => !isAlreadyInDB(recom));
 
-  const handleRetrieve = (res) => {
-    const feature = res.features[0];
+  const handleRetrieve = (placeInfo) => {
+    const placeCountry2Code = placeInfo.address_components.find((component) =>
+      component.types.includes("country"),
+    ).short_name;
 
-    const coordinates = feature.geometry.coordinates;
-
-    if (!("place" in feature.properties.context)) {
+    if (selectedCity.country_2_code !== placeCountry2Code) {
       setConfigAlert({
         title: TITLESELOPTION,
         text: WRONGLOCATION,
@@ -111,15 +115,27 @@ function MapWithSearch({
       return;
     }
 
-    const placeCity = feature.properties.context.place.name;
-    const placeCountry = feature.properties.context.country.name;
-    const placeName = feature.properties.name;
-    const placeFullAddress = feature.properties.full_address;
-    const placeCategories = feature.properties.poi_category_ids;
+    const coordinates = {
+      latitude: placeInfo.geometry.location.lat(),
+      longitude: placeInfo.geometry.location.lng(),
+    };
+    const countryName = placeInfo.address_components.find((component) =>
+      component.types.includes("country"),
+    ).long_name;
+    const administrativeLevel1 = placeInfo.address_components.find(
+      (component) => component.types.includes("administrative_area_level_1"),
+    ).long_name;
+    const administrativeLevel2 = placeInfo.address_components.find(
+      (component) => component.types.includes("administrative_area_level_2"),
+    ).long_name;
+    const placeName = placeInfo.name;
+    const placeFullAddress = placeInfo.formatted_address;
+    const placeCategories = placeInfo.types;
+    const placeId = placeInfo.place_id;
 
     if (
-      isSelectedPlaceInCity(placeCountry, placeCity) &&
-      isAlreadyAdded(placeName)
+      isSelectedPlaceInCity(placeCountry2Code, administrativeLevel2) &&
+      isAlreadyAdded(placeId)
     ) {
       setConfigAlert({
         title: TITLESELOPTION,
@@ -129,7 +145,7 @@ function MapWithSearch({
       return;
     }
 
-    if (!isSelectedPlaceInCity(placeCountry, placeCity)) {
+    if (!isSelectedPlaceInCity(placeCountry2Code, administrativeLevel2)) {
       setConfigAlert({
         title: TITLESELOPTION,
         text: WRONGCOUNTRYORCITY,
@@ -137,9 +153,17 @@ function MapWithSearch({
       });
       return;
     }
+
     const selectedPlace = {
-      coordinates: { latitude: coordinates[1], longitude: coordinates[0] },
+      coordinates,
       name: placeName,
+      countryName,
+      country2Code: placeCountry2Code,
+      placeId,
+      adminLevels: {
+        administrativeLevel1,
+        administrativeLevel2,
+      },
       fullAddress: placeFullAddress,
       categories: placeCategories,
     };
@@ -147,11 +171,10 @@ function MapWithSearch({
     if (isAlreadyInDB(selectedPlace)) {
       const markerInMap = markersAlreadyInDB.current[placeName];
       if (markerInMap) markerInMap.openPopup();
+      return;
     }
 
-    if (isSelectedPlaceInCity(placeCountry, placeCity)) {
-      setSelectedPlace(selectedPlace);
-    }
+    setSelectedPlace(selectedPlace);
   };
 
   let currentMapCenter =
@@ -242,7 +265,7 @@ function MapWithSearch({
                 <Typography style={{ marginTop: 5, marginBottom: 5 }}>
                   Num of recomendations: {recomendation.numOfRecomendations}
                 </Typography>
-                {!isAlreadyAdded(recomendation.name) && (
+                {!isAlreadyAdded(recomendation.placeId) && (
                   <Button
                     variant="contained"
                     onClick={() => addRecommendation(recomendation)}
@@ -250,7 +273,7 @@ function MapWithSearch({
                     Add recomendation
                   </Button>
                 )}
-                {isAlreadyAdded(recomendation.name) && (
+                {isAlreadyAdded(recomendation.placeId) && (
                   <Typography style={{ marginTop: 2, marginBottom: 2 }}>
                     (Already added)
                   </Typography>
@@ -260,14 +283,9 @@ function MapWithSearch({
           </Marker>
         ))}
       </MapContainer>
-      <SearchBox
-        accessToken={TOKEN}
-        placeholder="Start typing your address, e.g. 123 Main..."
-        options={{ language: "en" }}
-        marker={true}
-        value=""
-        onRetrieve={handleRetrieve}
-      />
+      <Box sx={{ my: 1 }}>
+        <MapsAutocomplete onSelectedPlace={handleRetrieve} />
+      </Box>
       <Box sx={{ minHeight: "70px", marginTop: "5px" }}>
         {configAlert && (
           <Alert

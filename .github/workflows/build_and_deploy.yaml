@@ -20,6 +20,7 @@ jobs:
       REACT_APP_APP_ID: ${{ github.ref == 'refs/heads/dev' && secrets.REACT_APP_APP_ID_DEV || secrets.REACT_APP_APP_ID }}
       REACT_APP_MEASUREMENT_ID: ${{ github.ref == 'refs/heads/dev' && secrets.REACT_APP_MEASUREMENT_ID_DEV || secrets.REACT_APP_MEASUREMENT_ID }}
       REACT_APP_MAPS_API_KEY: ${{ secrets.REACT_APP_MAPS_API_KEY }}
+      REACT_APP_PLACES_API_KEY: ${{ github.ref == 'refs/heads/dev' && secrets.REACT_APP_PLACES_API_KEY_DEV || secrets.REACT_APP_PLACES_API_KEY }}
       REACT_APP_MAPS_STYLE: ${{ secrets.REACT_APP_MAPS_STYLE }}
       CI: ""
 
