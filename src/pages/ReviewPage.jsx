@@ -29,6 +29,7 @@ const ReviewPage = () => {
         justifyContent: "center",
         textAlign: "center",
         marginTop: 20,
+        overflowY: "auto",
       }}
     >
       <ReviewForm />

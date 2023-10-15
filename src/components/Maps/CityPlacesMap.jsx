@@ -17,7 +17,6 @@ const TOKEN = process.env.REACT_APP_MAPS_API_KEY;
 const MAP_STYLE = process.env.REACT_APP_MAPS_STYLE;
 
 function CityPlacesMap({ selectedCity }) {
-
   const [places, setPlaces] = useState([]);
 
   useEffect(() => {
@@ -45,10 +44,7 @@ function CityPlacesMap({ selectedCity }) {
         <Marker
           key={place.name}
           draggable={false}
-          position={[
-            place.coordinates.latitude,
-            place.coordinates.longitude,
-          ]}
+          position={[place.coordinates.latitude, place.coordinates.longitude]}
         >
           <Popup>
             <Container align="center" style={{ height: "100" }}>

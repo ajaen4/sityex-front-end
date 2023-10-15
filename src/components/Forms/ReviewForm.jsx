@@ -45,8 +45,7 @@ const ReviewForm = () => {
 
   const goToDestinations = () => navigate("/search");
 
-  const updatePlaces = (places) =>
-    setCurrPlaces(places);
+  const updatePlaces = (places) => setCurrPlaces(places);
 
   const resetForm = () => {
     setModalMessage("");
@@ -74,9 +73,7 @@ const ReviewForm = () => {
       })
       .catch((err) => {
         setIsFetching(false);
-        setModalMessage(
-          "There was an error. Please try again",
-        );
+        setModalMessage("There was an error. Please try again");
       });
   };
 

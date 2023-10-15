@@ -28,7 +28,8 @@
     "redux-thunk": "^2.3.0",
     "recharts": "2.8.0",
     "leaflet.markercluster": "1.5.3",
-    "autosuggest-highlight": "3.3.4"
+    "autosuggest-highlight": "3.3.4",
+    "@googlemaps/js-api-loader": "1.16.2"
   },
   "scripts": {
     "start": "react-scripts start",
