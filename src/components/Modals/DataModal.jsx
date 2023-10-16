@@ -23,10 +23,10 @@ const DataModal = ({ isOpenModal, setisOpenModal, title, data }) => {
       <DialogTitle sx={{ display: "flex", justifyContent: "center" }}>{title}</DialogTitle>
       <DialogContent sx={{width: "100%", p: 0}}>
       <TableContainer component={Paper}>
-      <Table aria-label="cost table">
+      <Table aria-label="cost table" size="small">
         <TableHead>
           <TableRow >
-            <TableCell align="right" sx={{fontSize: fontSize}} >Category</TableCell>
+            {/* <TableCell align="right" sx={{fontSize: fontSize}} >Category</TableCell> */}
             <TableCell align="right" sx={{fontSize: fontSize}} >Subcategory</TableCell>
             <TableCell align="right"sx={{fontSize: fontSize}} >Cost</TableCell>
             <TableCell align="right" sx={{fontSize: fontSize}} >Currency</TableCell>
@@ -38,10 +38,10 @@ const DataModal = ({ isOpenModal, setisOpenModal, title, data }) => {
               key={row.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell component="th" scope="row" sx={{fontSize: fontSize}}>
+              {/* <TableCell component="th" scope="row" sx={{fontSize: fontSize}}>
                 {row.category}
-              </TableCell>
-              <TableCell align="right" sx={{fontSize: fontSize}}>{row.subcategories.replace(/\[|\]|'/g, '\n').replace(" ", "")}</TableCell>
+              </TableCell> */}
+              <TableCell align="right" sx={{fontSize: fontSize}}>{row.subcategories.replace(/\[|\]|'/g, '\n')}</TableCell>
               <TableCell align="right" sx={{fontSize: fontSize}}>{row.price}</TableCell>
               <TableCell align="right" sx={{fontSize: fontSize}}>$</TableCell>
             </TableRow>
