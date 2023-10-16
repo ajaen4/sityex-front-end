@@ -14,15 +14,15 @@ import MoneyOffIcon from "@mui/icons-material/MoneyOffOutlined";
 import LiquorIcon from "@mui/icons-material/LiquorOutlined";
 
 import SingleDataCard from "components/Cards/SingleDataCard";
-import DataModal from "components/Modals/DataModal";
+import PriceDataModal from "components/Modals/PriceDataModal";
+import DemographicDataModal from "components/Modals/DemographicDataModal";
 
 import { getMap } from "actions";
 
 const CityInfoPage = () => {
   const selectedCity = useSelector((state) => state.selectedCity.data);
   const selectedCountry = useSelector((state) => state.selectedCountry.data);
-  const [isOpenModal, setisOpenModal] = useState(false);
-  const [modalTitle, setModalTitle] = useState("");
+  const [openedModal, setOpenedModal] = useState(false);
   const [citiesCostMap, setCitiesCostMap] = useState(null);
   const [countriesCostMap, setCountriesCostMap] = useState(null);
 
@@ -75,13 +75,12 @@ const CityInfoPage = () => {
   }, [cityHasPrices, countryHasPrices]);
 
   const onClickData = (title) => {
-    setisOpenModal(true);
-    setModalTitle(title);
+    setOpenedModal(title);
   };
 
   const extractPrice = (prices, name) => {
-    return prices?.filter(price => price.name === name)[0]?.price
-  }
+    return prices?.filter((price) => price.name === name)[0]?.price;
+  };
 
   return (
     <Box sx={{ overflowY: "scroll", my: 0.5, mx: 1.5 }}>
@@ -92,7 +91,7 @@ const CityInfoPage = () => {
             text="Population: "
             number={selectedCity.population}
             icon={<GroupsIcon />}
-            onClickData={() => {}}
+            onClickData={onClickData}
             backgroundColor={theme.palette.orange}
           />
         </Grid>
@@ -101,7 +100,10 @@ const CityInfoPage = () => {
             title="Employment"
             text="Avg monthly net salary: "
             units="$"
-            number={extractPrice(prices, "salaries_and_financing_average_monthly_net_salary")}
+            number={extractPrice(
+              prices,
+              "salaries_and_financing_average_monthly_net_salary"
+            )}
             icon={<WorkIcon />}
             onClickData={onClickData}
             backgroundColor={theme.palette.secondary}
@@ -114,7 +116,7 @@ const CityInfoPage = () => {
             number="20"
             units="Cº"
             icon={<WbSunnyIcon />}
-            onClickData={() => {}}
+            onClickData={onClickData}
             backgroundColor={theme.palette.primary}
           />
         </Grid>
@@ -136,7 +138,7 @@ const CityInfoPage = () => {
             number="39.4"
             units="%"
             icon={<MoneyOffIcon />}
-            onClickData={() => {}}
+            onClickData={onClickData}
             backgroundColor={theme.palette.error}
           />
         </Grid>
@@ -152,11 +154,19 @@ const CityInfoPage = () => {
           />
         </Grid>
       </Grid>
-      <DataModal
-        title={modalTitle}
-        isOpenModal={isOpenModal}
-        setisOpenModal={setisOpenModal}
+      <PriceDataModal
+        openedModal={openedModal}
+        setOpenedModal={setOpenedModal}
         data={prices}
+      />
+      <DemographicDataModal
+        openedModal={openedModal}
+        setOpenedModal={setOpenedModal}
+        data={
+          selectedCountry
+            ? { ...selectedCountry, population: selectedCity?.population }
+            : null
+        }
       />
     </Box>
   );

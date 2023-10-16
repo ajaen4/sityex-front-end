@@ -12,9 +12,10 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
-const DataModal = ({ isOpenModal, setisOpenModal, title, data }) => {
-  const onClickClose = () => setisOpenModal(false);
+const DataModal = ({ openedModal, setOpenedModal, data }) => {
+  const onClickClose = () => setOpenedModal(false);
   const fontSize = "0.9em";
+  const isOpen = ["Employment", "Month costs", "Social"].includes(openedModal);
 
   const titleCategories = {
     Employment: ["salaries and financing"],
@@ -31,14 +32,17 @@ const DataModal = ({ isOpenModal, setisOpenModal, title, data }) => {
   const filteredCosts = [];
   for (const cost of data) {
     const category = cost.category.toLowerCase();
-    const categories = titleCategories[title];
+    const categories = titleCategories[openedModal];
     if (categories?.includes(category)) filteredCosts.push(cost);
   }
 
   return (
-    <Dialog open={isOpenModal} onClose={onClickClose} sx={{ my: 5 }}>
-      <DialogTitle variant="h3" sx={{ display: "flex", justifyContent: "center" }}>
-        {title}
+    <Dialog open={isOpen} onClose={onClickClose} sx={{ my: 5 }}>
+      <DialogTitle
+        variant="h3"
+        sx={{ display: "flex", justifyContent: "center" }}
+      >
+        {openedModal}
       </DialogTitle>
       <DialogContent sx={{ width: "100%", p: 0 }}>
         <TableContainer component={Paper} sx={{ borderRadius: 0 }}>
