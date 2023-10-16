@@ -97,7 +97,7 @@ const CityInfoPage = () => {
             text="Avg net salary: "
             number="3.450 $"
             icon={<WorkIcon />}
-            onClickData={() => {}}
+            onClickData={onClickData}
             backgroundColor={theme.palette.secondary}
           />
         </Grid>
@@ -137,7 +137,7 @@ const CityInfoPage = () => {
             text="Local beer: "
             number="3.45 $"
             icon={<LiquorIcon />}
-            onClickData={() => {}}
+            onClickData={onClickData}
             backgroundColor={theme.palette.pink}
           />
         </Grid>
