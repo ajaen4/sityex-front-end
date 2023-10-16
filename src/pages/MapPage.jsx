@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Suspense } from "react";
 import { useSelector } from "react-redux";
 
 import { withAuth } from "session";
@@ -6,7 +6,9 @@ import { logAnalyticsEvent } from "api";
 
 import { Box } from "@mui/material";
 
-import DestinationsMap from "components/Maps/DestinationsMap";
+import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
+
+const DestinationsMap = React.lazy(() => import("components/Maps/DestinationsMap"));
 
 const MapPage = () => {
   const citiesIndex = useSelector((state) => state.citiesIndex.data);
@@ -27,7 +29,9 @@ const MapPage = () => {
         height: "100%"
       }}
     >
+      <Suspense fallback={<CenteredLoadingSpinner/>}>
       <DestinationsMap citiesIndex={citiesIndex ? citiesIndex.cities : []} />
+      </Suspense>
     </Box>
   );
 };
