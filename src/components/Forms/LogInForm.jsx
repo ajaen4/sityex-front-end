@@ -13,7 +13,7 @@ import {
   TextField,
   FormHelperText,
   FormControl,
-  Link,
+  Link
 } from "@mui/material";
 
 import { logInUser, logInUserWithGoogle } from "actions";
@@ -33,7 +33,7 @@ const LogInForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
+    reset
   } = useForm();
   const [isFetching, setIsFetching] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -46,7 +46,7 @@ const LogInForm = () => {
         setErrorMessage(errorMessage);
         setIsFetching(false);
         reset();
-      },
+      }
     );
   };
 
@@ -55,7 +55,7 @@ const LogInForm = () => {
       (user) => {},
       (errorMessage) => {
         setErrorMessage(errorMessage);
-      },
+      }
     );
   };
 
@@ -75,7 +75,7 @@ const LogInForm = () => {
               sx={{
                 color: "grey.700",
                 backgroundColor: theme.palette.grey[50],
-                borderColor: theme.palette.grey[100],
+                borderColor: theme.palette.grey[100]
               }}
             >
               <Box sx={{ mr: { xs: 1, sm: 2, width: 20 } }}>
@@ -94,7 +94,7 @@ const LogInForm = () => {
             <Box
               sx={{
                 alignItems: "center",
-                display: "flex",
+                display: "flex"
               }}
             >
               <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
@@ -109,7 +109,7 @@ const LogInForm = () => {
                   borderColor: `${theme.palette.grey[100]} !important`,
                   color: `${theme.palette.grey[900]}!important`,
                   fontWeight: 500,
-                  borderRadius: "14px",
+                  borderRadius: "14px"
                 }}
                 disableRipple
                 disabled
@@ -136,7 +136,7 @@ const LogInForm = () => {
               noValidate
               sx={{
                 mt: 1,
-                width: "83%",
+                width: "83%"
               }}
             >
               <FormControl fullWidth error={Boolean(errors.email)}>
@@ -153,8 +153,8 @@ const LogInForm = () => {
                     pattern: {
                       value:
                         /^(([^<>()\[\]\\.,:\s@"]+(\.[^<>()\[\]\\.,:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                      message: "The email doesn't have a valid format",
-                    },
+                      message: "The email doesn't have a valid format"
+                    }
                   })}
                 />
                 <FormHelperText style={{ minHeight: "30px" }}>
@@ -171,8 +171,8 @@ const LogInForm = () => {
                     required: "The password is required",
                     minLength: {
                       value: 8,
-                      message: "The password must have at least 8 characters",
-                    },
+                      message: "The password must have at least 8 characters"
+                    }
                   })}
                 />
                 <FormHelperText style={{ minHeight: "30px" }}>

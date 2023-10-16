@@ -27,11 +27,11 @@ const LOCATIONALREADYADDED = "You have already added this location";
 
 const greenIcon = L.icon({
   iconUrl: require("assets/icons/pin_green.png"),
-  iconSize: [40, 41],
+  iconSize: [40, 41]
 });
 const blueIcon = L.icon({
   iconUrl: require("assets/icons/pin_blue.png"),
-  iconSize: [40, 41],
+  iconSize: [40, 41]
 });
 
 const TOKEN = process.env.REACT_APP_MAPS_API_KEY;
@@ -79,7 +79,7 @@ function MapWithSearch({ selectedCity, updatePlaces, noPlaces, setNoPlaces }) {
 
   const closeMarkersInDB = () =>
     Object.values(markersAlreadyInDB.current).forEach((marker) =>
-      marker.closePopup(),
+      marker.closePopup()
     );
 
   const isAlreadyAdded = (placeId) =>
@@ -92,43 +92,41 @@ function MapWithSearch({ selectedCity, updatePlaces, noPlaces, setNoPlaces }) {
 
   const handleRetrieve = (placeInfo) => {
     const placeCountry2Code = placeInfo.address_components.find((component) =>
-      component.types.includes("country"),
+      component.types.includes("country")
     ).short_name;
 
     if (selectedCity.country_2_code !== placeCountry2Code) {
       setConfigAlert({
         title: TITLESELOPTION,
         text: WRONGLOCATION,
-        color: "error",
+        color: "error"
       });
       return;
     }
 
     const coordinates = {
       latitude: placeInfo.geometry.location.lat(),
-      longitude: placeInfo.geometry.location.lng(),
+      longitude: placeInfo.geometry.location.lng()
     };
     const countryName = placeInfo.address_components.find((component) =>
-      component.types.includes("country"),
+      component.types.includes("country")
     ).long_name;
     const administrativeLevel1 = placeInfo.address_components.find(
-      (component) => component.types.includes("administrative_area_level_1"),
+      (component) => component.types.includes("administrative_area_level_1")
     ).long_name;
     const administrativeLevel2 = placeInfo.address_components.find(
-      (component) => component.types.includes("administrative_area_level_2"),
+      (component) => component.types.includes("administrative_area_level_2")
     ).long_name;
     const placeName = placeInfo.name;
     const placeFullAddress = placeInfo.formatted_address;
     const placeCategories = placeInfo.types;
     const placeId = placeInfo.place_id;
 
-    if (
-      isAlreadyAdded(placeId)
-    ) {
+    if (isAlreadyAdded(placeId)) {
       setConfigAlert({
         title: TITLESELOPTION,
         text: LOCATIONALREADYADDED,
-        color: "error",
+        color: "error"
       });
       return;
     }
@@ -141,10 +139,10 @@ function MapWithSearch({ selectedCity, updatePlaces, noPlaces, setNoPlaces }) {
       placeId,
       adminLevels: {
         administrativeLevel1,
-        administrativeLevel2,
+        administrativeLevel2
       },
       fullAddress: placeFullAddress,
-      categories: placeCategories,
+      categories: placeCategories
     };
 
     if (isAlreadyInDB(selectedPlace)) {
@@ -159,11 +157,11 @@ function MapWithSearch({ selectedCity, updatePlaces, noPlaces, setNoPlaces }) {
   let currentMapCenter =
     (selectedPlace && [
       selectedPlace.coordinates.latitude,
-      selectedPlace.coordinates.longitude,
+      selectedPlace.coordinates.longitude
     ]) ||
     (selectedCity && [
       selectedCity.coordinates.latitude,
-      selectedCity.coordinates.longitude,
+      selectedCity.coordinates.longitude
     ]) ||
     DEFAULT_CENTER;
 
@@ -196,7 +194,7 @@ function MapWithSearch({ selectedCity, updatePlaces, noPlaces, setNoPlaces }) {
                   style={{
                     marginTop: 10,
                     marginBottom: 10,
-                    fontWeight: "bold",
+                    fontWeight: "bold"
                   }}
                 >
                   {selectedPlace.name}
@@ -217,7 +215,7 @@ function MapWithSearch({ selectedCity, updatePlaces, noPlaces, setNoPlaces }) {
             draggable={false}
             position={[
               recomendation.coordinates.latitude,
-              recomendation.coordinates.longitude,
+              recomendation.coordinates.longitude
             ]}
             icon={blueIcon}
           />
@@ -228,7 +226,7 @@ function MapWithSearch({ selectedCity, updatePlaces, noPlaces, setNoPlaces }) {
             draggable={false}
             position={[
               recomendation.coordinates.latitude,
-              recomendation.coordinates.longitude,
+              recomendation.coordinates.longitude
             ]}
             ref={(el) => {
               markersAlreadyInDB.current[recomendation.name] = el;

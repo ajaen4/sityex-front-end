@@ -7,6 +7,13 @@ export const REQUESTING_CITY = "REQUESTING_CITY";
 
 //--------------------CITIES END
 
+//--------------------COUNTRIES
+
+export const FETCH_COUNTRY_SUCCESS = "FETCH_COUNTRY_SUCCESS";
+export const REQUESTING_COUNTRY = "REQUESTING_COUNTRY";
+
+//--------------------CITIES END
+
 //--------------------AUTH
 
 export const SET_AUTH_USER = "SET_AUTH_USER";

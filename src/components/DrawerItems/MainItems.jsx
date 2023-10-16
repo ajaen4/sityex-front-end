@@ -33,7 +33,7 @@ const MainItems = ({ setIsOpenDrawer }) => {
         <ListItemButton
           sx={{
             minHeight: 48,
-            px: 2.5,
+            px: 2.5
           }}
           data-path={ROUTES_PATHS.SEARCH}
           onClick={itemSelected}
@@ -42,7 +42,7 @@ const MainItems = ({ setIsOpenDrawer }) => {
             sx={{
               minWidth: 0,
               mr: 3,
-              justifyContent: "center",
+              justifyContent: "center"
             }}
           >
             <SearchIcon />
@@ -54,7 +54,7 @@ const MainItems = ({ setIsOpenDrawer }) => {
         <ListItemButton
           sx={{
             minHeight: 48,
-            px: 2.5,
+            px: 2.5
           }}
           data-path={ROUTES_PATHS.MAP}
           onClick={itemSelected}
@@ -63,7 +63,7 @@ const MainItems = ({ setIsOpenDrawer }) => {
             sx={{
               minWidth: 0,
               mr: 3,
-              justifyContent: "center",
+              justifyContent: "center"
             }}
           >
             <MapIcon />
@@ -75,7 +75,7 @@ const MainItems = ({ setIsOpenDrawer }) => {
         <ListItemButton
           sx={{
             minHeight: 48,
-            px: 2.5,
+            px: 2.5
           }}
           onClick={itemSelected}
           data-path={ROUTES_PATHS.NEW_REVIEW}
@@ -84,7 +84,7 @@ const MainItems = ({ setIsOpenDrawer }) => {
             sx={{
               minWidth: 0,
               mr: 3,
-              justifyContent: "center",
+              justifyContent: "center"
             }}
           >
             <GradingIcon />

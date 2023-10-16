@@ -4,7 +4,7 @@ import {
   SET_AUTH_USER,
   USER_JUST_CREATED,
   JUST_LOGGED_IN,
-  SET_AUTH_USER_ERROR,
+  SET_AUTH_USER_ERROR
 } from "types";
 
 const initAuth = () => {
@@ -58,7 +58,7 @@ const initAuth = () => {
     justLoggedIn,
     userJustCreated,
     isAuthResolved,
-    errorMessage,
+    errorMessage
   });
 };
 

@@ -60,7 +60,7 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
     <>
       <AppBar
         sx={{
-          zIndex: theme.zIndex.drawer + 1000,
+          zIndex: theme.zIndex.drawer + 1000
         }}
       >
         <Toolbar style={{ padding: 0, marginLeft: 20, marginRight: 5 }}>
@@ -68,7 +68,7 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
             sx={{
               display: { xs: "none", md: "flex" },
               mr: { xs: 1, sm: 2 },
-              marginTop: 1,
+              marginTop: 1
             }}
             onClick={clickedLogo}
           >
@@ -90,7 +90,7 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
             sx={{
               display: { xs: "flex", md: "none" },
               marginTop: 1,
-              flexGrow: 1,
+              flexGrow: 1
             }}
             onClick={clickedLogo}
           >
@@ -100,7 +100,7 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
             sx={{
               flexGrow: 1,
               display: { xs: "none", md: "flex" },
-              justifyContent: { md: "space-evenly", lg: "center" },
+              justifyContent: { md: "space-evenly", lg: "center" }
             }}
           >
             {isAuthResolved &&
@@ -130,11 +130,11 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
                 anchorEl={userSettingsRef.current}
                 anchorOrigin={{
                   vertical: "top",
-                  horizontal: "right",
+                  horizontal: "right"
                 }}
                 transformOrigin={{
                   vertical: "top",
-                  horizontal: "right",
+                  horizontal: "right"
                 }}
                 keepMounted
                 open={isOpenUserMenu}

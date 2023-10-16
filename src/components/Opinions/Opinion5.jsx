@@ -17,7 +17,7 @@ const Opinion5 = ({ fieldName, labelName, errorName, control, errors }) => {
         <h5
           style={{
             marginBottom: "0px",
-            fontSize: "1em",
+            fontSize: "1em"
           }}
         >
           {labelName}

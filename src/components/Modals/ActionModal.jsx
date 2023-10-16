@@ -19,7 +19,7 @@ const ActionModal = ({ show, title, message, action }) => {
       <DialogContent>{message}</DialogContent>
       <DialogActions>
         <Button variant="contained" color="primary" onClick={toggle}>
-          Aceptar
+          Ok
         </Button>
       </DialogActions>
     </Dialog>

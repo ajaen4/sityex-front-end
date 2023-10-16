@@ -14,7 +14,7 @@ const CityPlacesPage = () => {
   useEffect(() => {
     logAnalyticsEvent("page_view", {
       page_title: "City Places Page",
-      page_location: window.location.href,
+      page_location: window.location.href
     });
   }, []);
 
@@ -23,7 +23,7 @@ const CityPlacesPage = () => {
       sx={{
         width: "100%",
         display: "flex",
-        flexGrow: 1,
+        flexGrow: 1
       }}
     >
       <CityPlacesMap selectedCity={selectedCity} />

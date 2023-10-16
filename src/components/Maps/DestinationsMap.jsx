@@ -3,7 +3,6 @@ import React from "react";
 import { MapContainer, TileLayer, ZoomControl } from "react-leaflet";
 import "leaflet.markercluster/dist/MarkerCluster.css";
 import "leaflet.markercluster/dist/MarkerCluster.Default.css";
-import { Box } from "@mui/material";
 
 import CitiesMarkerCluster from "components/Maps/CitiesMarkerCluster";
 
@@ -30,4 +29,4 @@ function DestinationsMap({ citiesIndex }) {
   );
 }
 
-export default DestinationsMap;
+export default React.memo(DestinationsMap);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 import Box from "@mui/material/Box";
@@ -12,13 +12,10 @@ import { debounce } from "@mui/material/utils";
 import parse from "autosuggest-highlight/parse";
 import { Loader } from "@googlemaps/js-api-loader";
 
-import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
-
-
 const loader = new Loader({
   apiKey: process.env.REACT_APP_PLACES_API_KEY,
   version: "weekly",
-  libraries: ["places", "geometry"],
+  libraries: ["places", "geometry"]
 });
 
 const RADIUS = 60000;
@@ -29,22 +26,19 @@ export default function MapsAutocomplete({ onSelectedPlace }) {
   const [options, setOptions] = useState([]);
   const [autocompleteService, setAutocompleteService] = useState(null);
   const [placesService, setPlacesService] = useState(null);
-  const [isFetching, setIsFetching] = useState(true);
   const selectedCity = useSelector((state) => state.selectedCity.data);
 
   useEffect(() => {
-    setIsFetching(true);
     loader
       .load()
       .then(() => {
-        setIsFetching(false);
         setAutocompleteService(
-          new window.google.maps.places.AutocompleteService(),
+          new window.google.maps.places.AutocompleteService()
         );
         setPlacesService(
           new window.google.maps.places.PlacesService(
-            document.createElement("div"),
-          ),
+            document.createElement("div")
+          )
         );
       })
       .catch((error) => {
@@ -52,13 +46,11 @@ export default function MapsAutocomplete({ onSelectedPlace }) {
       });
   }, []);
 
-  const fetch = useMemo(
-    () =>
-      debounce((request, callback) => {
-        autocompleteService?.getPlacePredictions(request, callback);
-      }, 400),
-    [],
-  );
+  const fetch = debounce((request, callback) => {
+    if (autocompleteService) {
+      autocompleteService.getPlacePredictions(request, callback);
+    }
+  }, 400);
 
   useEffect(() => {
     let active = true;
@@ -71,17 +63,17 @@ export default function MapsAutocomplete({ onSelectedPlace }) {
       setOptions(value ? [value] : []);
       return undefined;
     }
-    
+
     fetch(
       {
         input: inputValue,
-        locationBias: {
+        locationRestriction: {
           center: {
             lat: selectedCity.coordinates.latitude,
-            lng: selectedCity.coordinates.longitude,
+            lng: selectedCity.coordinates.longitude
           },
-          radius: RADIUS,
-        },
+          radius: RADIUS
+        }
       },
       (results, status) => {
         if (status !== window.google.maps.places.PlacesServiceStatus.OK) {
@@ -102,13 +94,13 @@ export default function MapsAutocomplete({ onSelectedPlace }) {
 
           setOptions(newOptions);
         }
-      },
+      }
     );
 
     return () => {
       active = false;
     };
-  }, [value, inputValue, fetch]);
+  }, [value, inputValue]);
 
   const handlePlaceChange = (event, newValue) => {
     setOptions(newValue ? [newValue, ...options] : options);
@@ -121,12 +113,10 @@ export default function MapsAutocomplete({ onSelectedPlace }) {
           if (status === window.google.maps.places.PlacesServiceStatus.OK) {
             onSelectedPlace(place);
           }
-        },
+        }
       );
     }
   };
-
-  if (isFetching) return <CenteredLoadingSpinner />;
 
   return (
     <Autocomplete
@@ -145,14 +135,14 @@ export default function MapsAutocomplete({ onSelectedPlace }) {
         setInputValue(newInputValue);
       }}
       renderInput={(params) => (
-        <TextField {...params} label="Add a location" fullWidth />
+        <TextField {...params} label="Add a place recommendation!" fullWidth />
       )}
       renderOption={(props, option) => {
         const matches =
           option.structured_formatting.main_text_matched_substrings || [];
         const parts = parse(
           option.structured_formatting.main_text,
-          matches.map((match) => [match.offset, match.offset + match.length]),
+          matches.map((match) => [match.offset, match.offset + match.length])
         );
 
         return (

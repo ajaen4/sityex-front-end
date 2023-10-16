@@ -8,7 +8,7 @@ export const addReview = (city_id, review, recomendations) => (dispatch, _) => {
   dispatch({ type: SAVING_REVIEW });
   return api.addReview(city_id, review, recomendations).then((_) => {
     dispatch({
-      type: SAVING_REVIEW_SUCCESS,
+      type: SAVING_REVIEW_SUCCESS
     });
   });
 };

@@ -4,7 +4,7 @@ import {
   getDocs,
   collection,
   writeBatch,
-  increment,
+  increment
 } from "firebase/firestore";
 
 import { getCityPlaces } from "api/places.js";
@@ -32,11 +32,11 @@ export const addReview = async (city_id, review, recomendations) => {
   const orgPlacesIds = orgPlaces.map((place) => place.placeId);
 
   const newPlaces = recomendations.filter(
-    (place) => !orgPlacesIds.includes(place.placeId),
+    (place) => !orgPlacesIds.includes(place.placeId)
   );
 
   const orgPlacesInRecs = recomendations.filter((place) =>
-    orgPlacesIds.includes(place.placeId),
+    orgPlacesIds.includes(place.placeId)
   );
 
   const batch = writeBatch(db);
@@ -45,7 +45,7 @@ export const addReview = async (city_id, review, recomendations) => {
     const placeDocRef = doc(placesCollectionRef, place.placeId);
     batch.set(placeDocRef, {
       ...place,
-      numRec: 1,
+      numRec: 1
     });
   }
 

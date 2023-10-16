@@ -27,7 +27,7 @@ const initSelectedCity = () => {
 
   return combineReducers({
     data,
-    isFetching,
+    isFetching
   });
 };
 

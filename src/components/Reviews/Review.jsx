@@ -91,7 +91,7 @@ const review = ({ data }) => {
                 border: "1px solid #B3D4FF",
                 borderRadius: "5px",
                 padding: "10px",
-                maxHeight: "200px",
+                maxHeight: "200px"
               }}
             >
               <strong style={{ fontSize: "0.9rem" }}>Advice</strong>

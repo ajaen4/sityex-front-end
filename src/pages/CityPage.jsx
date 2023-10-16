@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 import { useMediaQuery } from "@mui/material";
 
 import { withAuth } from "session";
-import { fetchCity } from "actions";
+import { fetchCity, fetchCountry } from "actions";
 
 import { Box, Typography } from "@mui/material";
 
@@ -26,7 +26,12 @@ const CityPage = () => {
 
   useEffect(() => {
     dispatch(fetchCity(city_id));
-  }, [dispatch, city_id]);
+  }, [city_id]);
+
+  useEffect(() => {
+    if (selectedCity)
+      dispatch(fetchCountry(selectedCity.country_3_code));
+  }, [selectedCity]);
 
   if (selectedCity === null || selectedCity.city_id !== city_id)
     return <CenteredLoadingSpinner />;
@@ -37,7 +42,7 @@ const CityPage = () => {
         display: "flex",
         flexDirection: "column",
         height: "100%",
-        overflow: "hidden",
+        overflow: "hidden"
       }}
     >
       <Typography variant="h1" sx={{ textAlign: "center", my: 2 }}>
@@ -48,7 +53,7 @@ const CityPage = () => {
           flex: 1,
           display: "flex",
           justifyContent: "center",
-          overflowY: "hidden",
+          overflowY: "hidden"
         }}
       >
         <Outlet />
@@ -58,7 +63,7 @@ const CityPage = () => {
           sx={{
             display: "flex",
             justifyContent: "center",
-            backgroundColor: theme.palette.primary.main,
+            backgroundColor: theme.palette.primary.main
           }}
         >
           <CityTabs />

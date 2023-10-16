@@ -12,7 +12,7 @@ import {
   useMediaQuery,
   Divider,
   Typography,
-  Box,
+  Box
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
@@ -30,7 +30,7 @@ const SignUpForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-    getValues,
+    getValues
   } = useForm();
 
   const dispatch = useDispatch();
@@ -50,7 +50,7 @@ const SignUpForm = () => {
       (error) => {
         setErrorMessage(error);
         setIsFetching(false);
-      },
+      }
     );
   };
 
@@ -59,7 +59,7 @@ const SignUpForm = () => {
       (user) => {},
       (error) => {
         setErrorMessage(error);
-      },
+      }
     );
   };
 
@@ -79,7 +79,7 @@ const SignUpForm = () => {
               sx={{
                 color: "grey.700",
                 backgroundColor: theme.palette.grey[50],
-                borderColor: theme.palette.grey[100],
+                borderColor: theme.palette.grey[100]
               }}
             >
               <Box sx={{ mr: { xs: 1, sm: 2, width: 20 } }}>
@@ -98,7 +98,7 @@ const SignUpForm = () => {
             <Box
               sx={{
                 alignItems: "center",
-                display: "flex",
+                display: "flex"
               }}
             >
               <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
@@ -113,7 +113,7 @@ const SignUpForm = () => {
                   borderColor: `${theme.palette.grey[100]} !important`,
                   color: `${theme.palette.grey[900]}!important`,
                   fontWeight: 500,
-                  borderRadius: "14px",
+                  borderRadius: "14px"
                 }}
                 disableRipple
                 disabled
@@ -140,7 +140,7 @@ const SignUpForm = () => {
               noValidate
               sx={{
                 mt: 1,
-                width: "80%",
+                width: "80%"
               }}
             >
               <FormControl fullWidth error={Boolean(errors.email)}>
@@ -150,8 +150,8 @@ const SignUpForm = () => {
                     pattern: {
                       value:
                         /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-                      message: "El formato del email no es valido",
-                    },
+                      message: "El formato del email no es valido"
+                    }
                   })}
                   label="Email"
                   variant="outlined"
@@ -164,7 +164,7 @@ const SignUpForm = () => {
               <FormControl fullWidth error={Boolean(errors.userName)}>
                 <TextField
                   {...register("userName", {
-                    required: "The username is reuquired",
+                    required: "The username is reuquired"
                   })}
                   label="Nombre de usuario"
                   variant="outlined"
@@ -181,8 +181,8 @@ const SignUpForm = () => {
                     required: "The password is required",
                     minLength: {
                       value: 8,
-                      message: "The password must have at least 8 characters",
-                    },
+                      message: "The password must have at least 8 characters"
+                    }
                   })}
                   label="Contraseña"
                   variant="outlined"
@@ -200,13 +200,13 @@ const SignUpForm = () => {
                     required: "The password is required",
                     minLength: {
                       value: 8,
-                      message: "The password must have at least 8 characters",
+                      message: "The password must have at least 8 characters"
                     },
                     validate: {
                       sameAs: (value) =>
                         sameAs(getValues, "password")(value) ||
-                        "Las contraseñas deben de ser iguales",
-                    },
+                        "Las contraseñas deben de ser iguales"
+                    }
                   })}
                   label="Confirmación de Contraseña"
                   variant="outlined"
