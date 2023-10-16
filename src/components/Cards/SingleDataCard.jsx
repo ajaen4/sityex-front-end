@@ -43,7 +43,7 @@ const SingleDataCard = ({
   };
 
   return (
-    <Card sx={{ ...cardStyle, padding: 1 }}>
+    <Card sx={{ ...cardStyle, padding: 1, height: "100%" }}>
       <Grid container sx={{ alignItems: "center" }}>
         <Grid
           item
