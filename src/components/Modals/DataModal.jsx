@@ -18,11 +18,25 @@ const DataModal = ({ isOpenModal, setisOpenModal, title, data }) => {
   const onClickClose = () => setisOpenModal(false);
   const fontSize = "0.9em";
 
+  const titleCategories = {
+    "Employment": ["salaries and financing",],
+    "Month costs": ["markets", "utilities (monthly)", "rent per month", "childcare", "transportation"],
+    "Social": ["restaurants", "sports and leisure"]
+  }
+
+  const filteredCosts = [];
+  for (const cost of data){
+    const category = cost.category.toLowerCase()
+    const categories = titleCategories[title]
+    if (categories?.includes(category))
+      filteredCosts.push(cost);
+  }
+
   return (
     <Dialog open={isOpenModal} onClose={onClickClose} sx={{my: 5}}>
       <DialogTitle sx={{ display: "flex", justifyContent: "center" }}>{title}</DialogTitle>
       <DialogContent sx={{width: "100%", p: 0}}>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} sx={{ borderRadius: 0 }}>
       <Table aria-label="cost table" size="small">
         <TableHead>
           <TableRow >
@@ -33,7 +47,7 @@ const DataModal = ({ isOpenModal, setisOpenModal, title, data }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data?.map((row) => (
+          {filteredCosts?.map((row) => (
             <TableRow
               key={row.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -41,7 +55,7 @@ const DataModal = ({ isOpenModal, setisOpenModal, title, data }) => {
               {/* <TableCell component="th" scope="row" sx={{fontSize: fontSize}}>
                 {row.category}
               </TableCell> */}
-              <TableCell align="right" sx={{fontSize: fontSize}}>{row.subcategories.replace(/\[|\]|'/g, '\n')}</TableCell>
+              <TableCell align="right" sx={{fontSize: fontSize}}>{row.subcategories.replace(/\[|\]|'/g, '')}</TableCell>
               <TableCell align="right" sx={{fontSize: fontSize}}>{row.price}</TableCell>
               <TableCell align="right" sx={{fontSize: fontSize}}>$</TableCell>
             </TableRow>
