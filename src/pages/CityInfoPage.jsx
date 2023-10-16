@@ -25,11 +25,19 @@ const CityInfoPage = () => {
   const [modalTitle, setModalTitle] = useState("");
   const [citiesCostMap, setCitiesCostMap] = useState(null);
   const [countriesCostMap, setCountriesCostMap] = useState(null);
-  const [cityPrices, setCityPrices] = useState(null);
-  const [countryPrices, setCountryPrices] = useState(null);
   
-  const cityHasPrices = selectedCity?.prices !== undefined ? true: false;
-  const countryHasPrices = selectedCountry?.prices !== undefined ? true: false;
+  const cityHasPrices = selectedCity?.prices !== undefined ? true : false;
+  const countryHasPrices = selectedCountry?.prices !== undefined ? true : false;
+
+  const cityPrices = cityHasPrices && citiesCostMap ? Object.fromEntries(
+    Object.entries(selectedCity.prices).map(([id, price]) => [
+      id, { price, ...citiesCostMap[id], id }
+    ])) : null;
+  const countryPrices = countryHasPrices && countriesCostMap ? Object.fromEntries(
+    Object.entries(selectedCountry.prices).map(([id, price]) => [
+      id, { price, ...countriesCostMap[id], id }
+    ])) : null;
+  
   const prices = (cityPrices && Object.values(cityPrices)) || (countryPrices && Object.values(countryPrices)) || [];
 
   const theme = useTheme();
@@ -53,33 +61,13 @@ const CityInfoPage = () => {
       );
   }, [cityHasPrices, countryHasPrices]);
 
-  useEffect(() => {
-    
-    if (cityHasPrices && citiesCostMap) {
-      setCityPrices(Object.fromEntries(
-        Object.entries(selectedCity.prices).map(([id, price]) => [
-          id, { price, ...citiesCostMap[id], id }
-        ])
-      ));
-    }
-
-    if (countryHasPrices && countriesCostMap) {
-      setCountryPrices(Object.fromEntries(
-        Object.entries(selectedCountry.prices).map(([id, price]) => [
-          id, { price, ...countriesCostMap[id], id }
-        ])
-      ));
-    }
-
-  }, [selectedCity, selectedCountry, citiesCostMap, countriesCostMap]);
-
   const onClickData = (title) => {
     setisOpenModal(true);
     setModalTitle(title);
   }
 
   return (
-    <Box sx={{ mx: 0 }}>
+    <Box sx={{ overflowY: "scroll", my: 0.5 }}>
       <Grid container spacing={1} justifyContent="center">
         <Grid item xs={11} md={4}>
           <SingleDataCard
