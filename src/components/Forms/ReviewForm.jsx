@@ -45,7 +45,6 @@ const ReviewForm = () => {
     dispatch(fetchCity(selectedCity.city_id));
   };
 
-  const goToDestinations = () => navigate(ROUTES_PATHS.NEW_REVIEW);
 
   const updatePlaces = (places) => setCurrPlaces(places);
 
@@ -70,7 +69,7 @@ const ReviewForm = () => {
         setIsFetching(false);
         setModalMessage("Your review has been successfully uploaded!");
         setTimeout(() => {
-          goToDestinations();
+          window.location.reload();
         }, 2500);
       })
       .catch((err) => {
@@ -82,8 +81,7 @@ const ReviewForm = () => {
   return (
     <>
       <Typography variant="h2" color="textSecondary" sx={{ my: 3 }}>
-        {" "}
-        Fill in a review{" "}
+        Fill in a review
       </Typography>
       <form onSubmit={handleSubmit(handleForm)} style={{ textAlign: "center" }}>
         {isFetching && <CenteredLoadingSpinner />}
@@ -93,7 +91,7 @@ const ReviewForm = () => {
           textAlign="center"
           sx={{ my: 1 }}
         >
-          <Grid item xs={8} md={2}>
+          <Grid item xs={8} md={3} lg={2}>
             <CitiesAutocomplete
               selectedCity={selectedCity ? selectedCity : null}
               citiesIndex={citiesIndex ? citiesIndex.cities : null}

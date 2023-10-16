@@ -26,8 +26,8 @@ export default function Drawer(props) {
     <Box
       component="nav"
       sx={{
-        width: props.isOpenDrawer ? { lg: drawerWidth } : 0,
-        flexShrink: { lg: 0 }
+        width: props.isOpenDrawer ? { md: drawerWidth } : 0,
+        flexShrink: { md: 0 }
       }}
       aria-label="mailbox folders"
     >
@@ -40,7 +40,7 @@ export default function Drawer(props) {
           keepMounted: true
         }}
         sx={{
-          display: { md: "block", lg: "none" },
+          display: { xs: "block", md: "none" },
           "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth }
         }}
       >
@@ -51,7 +51,7 @@ export default function Drawer(props) {
       <MUIDrawer
         variant="permanent"
         sx={{
-          display: { md: "none", lg: "block" },
+          display: { xs: "none", md: "block" },
           "& .MuiDrawer-paper": {
             boxSizing: "border-box",
             width: props.isOpenDrawer ? drawerWidth : 0

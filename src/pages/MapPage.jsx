@@ -8,7 +8,9 @@ import { Box } from "@mui/material";
 
 import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 
-const DestinationsMap = React.lazy(() => import("components/Maps/DestinationsMap"));
+const DestinationsMap = React.lazy(() =>
+  import("components/Maps/DestinationsMap")
+);
 
 const MapPage = () => {
   const citiesIndex = useSelector((state) => state.citiesIndex.data);
@@ -29,8 +31,8 @@ const MapPage = () => {
         height: "100%"
       }}
     >
-      <Suspense fallback={<CenteredLoadingSpinner/>}>
-      <DestinationsMap citiesIndex={citiesIndex ? citiesIndex.cities : []} />
+      <Suspense fallback={<CenteredLoadingSpinner />}>
+        <DestinationsMap citiesIndex={citiesIndex ? citiesIndex.cities : []} />
       </Suspense>
     </Box>
   );
