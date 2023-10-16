@@ -129,7 +129,7 @@ export default function MapsAutocomplete({ onSelectedPlace }) {
       includeInputInList
       filterSelectedOptions
       value={value}
-      noOptionsText="No locations"
+      noOptionsText="Start writting to get suggestions"
       onChange={handlePlaceChange}
       onInputChange={(event, newInputValue) => {
         setInputValue(newInputValue);

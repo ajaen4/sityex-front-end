@@ -25,20 +25,33 @@ const CityInfoPage = () => {
   const [modalTitle, setModalTitle] = useState("");
   const [citiesCostMap, setCitiesCostMap] = useState(null);
   const [countriesCostMap, setCountriesCostMap] = useState(null);
-  
+
   const cityHasPrices = selectedCity?.prices !== undefined ? true : false;
   const countryHasPrices = selectedCountry?.prices !== undefined ? true : false;
 
-  const cityPrices = cityHasPrices && citiesCostMap ? Object.fromEntries(
-    Object.entries(selectedCity.prices).map(([id, price]) => [
-      id, { price, ...citiesCostMap[id], id }
-    ])) : null;
-  const countryPrices = countryHasPrices && countriesCostMap ? Object.fromEntries(
-    Object.entries(selectedCountry.prices).map(([id, price]) => [
-      id, { price, ...countriesCostMap[id], id }
-    ])) : null;
-  
-  const prices = (cityPrices && Object.values(cityPrices)) || (countryPrices && Object.values(countryPrices)) || [];
+  const cityPrices =
+    cityHasPrices && citiesCostMap
+      ? Object.fromEntries(
+          Object.entries(selectedCity.prices).map(([id, price]) => [
+            id,
+            { price, ...citiesCostMap[id], id }
+          ])
+        )
+      : null;
+  const countryPrices =
+    countryHasPrices && countriesCostMap
+      ? Object.fromEntries(
+          Object.entries(selectedCountry.prices).map(([id, price]) => [
+            id,
+            { price, ...countriesCostMap[id], id }
+          ])
+        )
+      : null;
+
+  const prices =
+    (cityPrices && Object.values(cityPrices)) ||
+    (countryPrices && Object.values(countryPrices)) ||
+    [];
 
   const theme = useTheme();
 
@@ -51,30 +64,34 @@ const CityInfoPage = () => {
 
   useEffect(() => {
     if (cityHasPrices)
-      getMap("cities_cost_map").then(
-        (citiesCostMap) => setCitiesCostMap(citiesCostMap)
+      getMap("cities_cost_map").then((citiesCostMap) =>
+        setCitiesCostMap(citiesCostMap)
       );
 
     if (countryHasPrices)
-      getMap("countries_cost_map").then(
-        (countriesCostMap) => setCountriesCostMap(countriesCostMap)
+      getMap("countries_cost_map").then((countriesCostMap) =>
+        setCountriesCostMap(countriesCostMap)
       );
   }, [cityHasPrices, countryHasPrices]);
 
   const onClickData = (title) => {
     setisOpenModal(true);
     setModalTitle(title);
+  };
+
+  const extractPrice = (prices, name) => {
+    return prices?.filter(price => price.name === name)[0]?.price
   }
 
   return (
-    <Box sx={{ overflowY: "scroll", my: 0.5 }}>
+    <Box sx={{ overflowY: "scroll", my: 0.5, mx: 1.5 }}>
       <Grid container spacing={1} justifyContent="center">
         <Grid item xs={11} md={4}>
           <SingleDataCard
             title="Demographics"
             text="Population: "
             number={selectedCity.population}
-            icon={<GroupsIcon/>}
+            icon={<GroupsIcon />}
             onClickData={() => {}}
             backgroundColor={theme.palette.orange}
           />
@@ -82,8 +99,9 @@ const CityInfoPage = () => {
         <Grid item xs={11} md={4}>
           <SingleDataCard
             title="Employment"
-            text="Avg net salary: "
-            number="3.450 $"
+            text="Avg monthly net salary: "
+            units="$"
+            number={extractPrice(prices, "salaries_and_financing_average_monthly_net_salary")}
             icon={<WorkIcon />}
             onClickData={onClickData}
             backgroundColor={theme.palette.secondary}
@@ -93,7 +111,8 @@ const CityInfoPage = () => {
           <SingleDataCard
             title="Weather"
             text="Mean temperature: "
-            number="20 °C"
+            number="20"
+            units="Cº"
             icon={<WbSunnyIcon />}
             onClickData={() => {}}
             backgroundColor={theme.palette.primary}
@@ -103,7 +122,8 @@ const CityInfoPage = () => {
           <SingleDataCard
             title="Month costs"
             text="Shopping cart: "
-            number="450 $"
+            number="450"
+            units="$"
             icon={<MoneyIcon />}
             onClickData={onClickData}
             backgroundColor={theme.palette.success}
@@ -111,9 +131,10 @@ const CityInfoPage = () => {
         </Grid>
         <Grid item xs={11} md={4}>
           <SingleDataCard
-            title="Taxes"
+            title="Taxes & Indicators"
             text="Income tax: "
-            number="39.4 %"
+            number="39.4"
+            units="%"
             icon={<MoneyOffIcon />}
             onClickData={() => {}}
             backgroundColor={theme.palette.error}
@@ -123,14 +144,20 @@ const CityInfoPage = () => {
           <SingleDataCard
             title="Social"
             text="Local beer: "
-            number="3.45 $"
+            number={extractPrice(prices, "restaurants_domestic_beer")}
+            units="$"
             icon={<LiquorIcon />}
             onClickData={onClickData}
             backgroundColor={theme.palette.pink}
           />
         </Grid>
       </Grid>
-      <DataModal title={modalTitle} isOpenModal={isOpenModal} setisOpenModal={setisOpenModal} data={prices}/>
+      <DataModal
+        title={modalTitle}
+        isOpenModal={isOpenModal}
+        setisOpenModal={setisOpenModal}
+        data={prices}
+      />
     </Box>
   );
 };

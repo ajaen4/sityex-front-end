@@ -10,26 +10,22 @@ import Drawer from "components/Navigation/Drawer";
 import DrawerHeader from "components/Navigation/DrawerHeader";
 
 const MainLayout = () => {
-  const [isOpenDrawer, setIsOpenDrawer] = useState(false);
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+
+  const [isOpenDrawer, setIsOpenDrawer] = useState(!isSmallScreen);
   const [drawerWidth, setDrawerWidth] = useState(0);
 
   const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
 
-  const theme = useTheme();
   const { pathname } = useLocation();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
   const isDestinationPage = pathname.split("/").includes("destination");
   const drawerType =
     isSmallScreen || !isDestinationPage ? "persistent" : "permanent";
 
   useEffect(() => {
-    if (!isSmallScreen && isDestinationPage && isOpenDrawer) {
+    if (!isSmallScreen && isDestinationPage) {
       setDrawerWidth(240);
-      return;
-    }
-
-    if (!isSmallScreen && isDestinationPage && !isOpenDrawer) {
-      setDrawerWidth(65);
       return;
     }
 

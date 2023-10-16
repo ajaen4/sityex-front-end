@@ -8,6 +8,7 @@ const SingleDataCard = ({
   title,
   text,
   number,
+  units,
   icon,
   backgroundColor,
   onClickData
@@ -43,7 +44,7 @@ const SingleDataCard = ({
 
   return (
     <Card sx={{ ...cardStyle, padding: 1 }}>
-      <Grid container>
+      <Grid container sx={{ alignItems: "center" }}>
         <Grid
           item
           xs={3}
@@ -66,21 +67,23 @@ const SingleDataCard = ({
             {icon}
           </Avatar>
         </Grid>
-        <Grid item xs={7}>
+        <Grid item xs={7} >
           <Typography
             sx={{ fontSize: 20, color: theme.palette.grey[50] }}
-            color="text.primary"
             gutterBottom
           >
             {title}
           </Typography>
-          <Typography
-            variant="body2"
-            sx={{ fontSize: 15, color: theme.palette.grey[50] }}
-          >
-            {text}
-            {number}
-          </Typography>
+          {text && number && (
+            <Typography
+              variant="body2"
+              sx={{ fontSize: 15, color: theme.palette.grey[50] }}
+            >
+              {text}
+              {new Intl.NumberFormat('es-ES').format(number)}
+              {units && ` ${units}`}
+            </Typography>
+          )}
         </Grid>
         <Grid
           item

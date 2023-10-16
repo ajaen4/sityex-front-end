@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
@@ -7,9 +8,6 @@ import { useMediaQuery } from "@mui/material";
 import Box from "@mui/material/Box";
 import { Drawer as MUIDrawer } from "@mui/material";
 import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/MenuOutlined";
-import MenuOpenIcon from "@mui/icons-material/MenuOpenOutlined";
 
 import MainItems from "components/DrawerItems/MainItems";
 import CityItems from "components/DrawerItems/CityItems";
@@ -39,6 +37,9 @@ const closedMixin = (theme) => ({
 });
 
 export default function Drawer({ isOpenDrawer, setIsOpenDrawer }) {
+
+  const selectedCity = useSelector((state) => state.selectedCity.data);
+
   const theme = useTheme();
   const { pathname } = useLocation();
   const isDestinationPage = pathname.includes("destination");
@@ -70,17 +71,10 @@ export default function Drawer({ isOpenDrawer, setIsOpenDrawer }) {
             my: 1
           }}
         >
-          <IconButton
-            onClick={() => setIsOpenDrawer(!isOpenDrawer)}
-            alt="expand"
-          >
-            {isOpenDrawer && drawerType === "permanent" && <MenuOpenIcon />}
-            {!isOpenDrawer && drawerType === "permanent" && <MenuIcon />}
-          </IconButton>
         </Box>
         {isDestinationPage && !isSmallScreen && (
           <>
-            <Divider>City</Divider>
+            <Divider>{selectedCity?.name}</Divider>
             <CityItems setIsOpenDrawer={setIsOpenDrawer} />
           </>
         )}

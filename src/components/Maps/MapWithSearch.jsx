@@ -21,9 +21,8 @@ import MapsAutocomplete from "components/Autocomplete/MapsAutocomplete";
 import { getCityPlaces } from "actions";
 
 const TITLESELOPTION = "Incorrect location. ";
-const WRONGCOUNTRYORCITY = "The location is not in the specified city";
-const WRONGLOCATION = "Please select a concrete location";
-const LOCATIONALREADYADDED = "You have already added this location";
+const WRONGLOCATION = "Please select a concrete location.";
+const LOCATIONALREADYADDED = "You have already added this location.";
 
 const greenIcon = L.icon({
   iconUrl: require("assets/icons/pin_green.png"),
@@ -72,15 +71,17 @@ function MapWithSearch({ selectedCity, updatePlaces, noPlaces, setNoPlaces }) {
     const newCurrPlaces = [...currPlaces, recomendation];
     setCurrPlaces(newCurrPlaces);
     updatePlaces(newCurrPlaces);
-    setSelectedPlace(null);
-    setZoom(DEFAULT_ZOOM);
+    selectedPlaceMarker.current.closePopup();
     closeMarkersInDB();
   };
 
-  const closeMarkersInDB = () =>
-    Object.values(markersAlreadyInDB.current).forEach((marker) =>
-      marker.closePopup()
-    );
+  const closeMarkersInDB = () => {
+    if (markersAlreadyInDB) {
+      Object.values(markersAlreadyInDB.current).forEach((marker) =>
+        marker.closePopup()
+      );
+    }
+  };
 
   const isAlreadyAdded = (placeId) =>
     currPlaces.some((recomendation) => recomendation.placeId === placeId);
