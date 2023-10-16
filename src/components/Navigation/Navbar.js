@@ -39,10 +39,12 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
   useEffect(() => {
     if (!location.pathname.includes("destination")) {
       setIsOpenDrawer(false);
+      return;
     }
 
     if (location.pathname.includes("destination") && !isSmallScreen) {
       setIsOpenDrawer(true);
+      return;
     }
   }, [pathname]);
 

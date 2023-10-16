@@ -17,17 +17,14 @@ import { useTheme } from "@mui/material/styles";
 
 import * as ROUTES_PATHS from "routes/paths";
 
-const CityItems = ({ setIsOpenDrawer }) => {
+const CityItems = () => {
   const navigate = useNavigate();
   const selectedCity = useSelector((state) => state.selectedCity.data);
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const itemSelected = (event) => {
     const path = event.currentTarget.getAttribute("data-path");
     navigate(`destination/${selectedCity.city_id}/${path}`);
-
-    if (isSmallScreen) setIsOpenDrawer(false);
   };
 
   return (
