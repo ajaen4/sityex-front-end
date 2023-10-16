@@ -17,6 +17,8 @@ import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 import ActionModal from "components/Modals/ActionModal";
 import TextArea from "components/TextArea/TextArea";
 
+import * as ROUTES_PATHS from "routes/paths";
+
 const ReviewForm = () => {
   const {
     register,
@@ -43,7 +45,7 @@ const ReviewForm = () => {
     dispatch(fetchCity(selectedCity.city_id));
   };
 
-  const goToDestinations = () => navigate("/search");
+  const goToDestinations = () => navigate(ROUTES_PATHS.NEW_REVIEW);
 
   const updatePlaces = (places) => setCurrPlaces(places);
 
@@ -79,7 +81,7 @@ const ReviewForm = () => {
 
   return (
     <>
-      <h2 className="bold"> Fill in a review </h2>
+      <Typography variant="h2" color="textSecondary" sx={{ my: 3 }}> Fill in a review </Typography>
       <form onSubmit={handleSubmit(handleForm)} style={{ textAlign: "center" }}>
         {isFetching && <CenteredLoadingSpinner />}
         <Grid
@@ -153,6 +155,7 @@ const ReviewForm = () => {
           <Grid item xs={12} md={12}>
             <Typography
               variant="h3"
+              color="textSecondary"
               style={{ marginBottom: 30, fontWeight: "bold" }}
             >
               Recommend places in city!
@@ -169,7 +172,7 @@ const ReviewForm = () => {
         </Grid>
         <Stack>
           <FormControl>
-            <Typography variant="h3" style={{ fontWeight: "bold" }}>
+            <Typography variant="h3" color="textSecondary" style={{ fontWeight: "bold" }}>
               Give some advice about the city!
             </Typography>
 

@@ -37,7 +37,7 @@ const DataModal = ({ isOpenModal, setisOpenModal, title, data }) => {
 
   return (
     <Dialog open={isOpenModal} onClose={onClickClose} sx={{ my: 5 }}>
-      <DialogTitle sx={{ display: "flex", justifyContent: "center" }}>
+      <DialogTitle variant="h3" sx={{ display: "flex", justifyContent: "center" }}>
         {title}
       </DialogTitle>
       <DialogContent sx={{ width: "100%", p: 0 }}>
@@ -45,13 +45,13 @@ const DataModal = ({ isOpenModal, setisOpenModal, title, data }) => {
           <Table aria-label="cost table" size="small">
             <TableHead>
               <TableRow>
-                <TableCell align="right" sx={{ fontSize: fontSize }}>
+                <TableCell align="left" sx={{ fontSize: fontSize }}>
                   Subcategory
                 </TableCell>
-                <TableCell align="right" sx={{ fontSize: fontSize }}>
+                <TableCell align="left" sx={{ fontSize: fontSize }}>
                   Cost
                 </TableCell>
-                <TableCell align="right" sx={{ fontSize: fontSize }}>
+                <TableCell align="left" sx={{ fontSize: fontSize }}>
                   Currency
                 </TableCell>
               </TableRow>
@@ -62,16 +62,13 @@ const DataModal = ({ isOpenModal, setisOpenModal, title, data }) => {
                   key={row.id}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
-                  {/* <TableCell component="th" scope="row" sx={{fontSize: fontSize}}>
-                {row.category}
-              </TableCell> */}
-                  <TableCell align="right" sx={{ fontSize: fontSize }}>
+                  <TableCell align="left" sx={{ fontSize: fontSize }}>
                     {row.subcategories.replace(/\[|\]|'/g, "")}
                   </TableCell>
-                  <TableCell align="right" sx={{ fontSize: fontSize }}>
+                  <TableCell align="left" sx={{ fontSize: fontSize }}>
                     {row.price}
                   </TableCell>
-                  <TableCell align="right" sx={{ fontSize: fontSize }}>
+                  <TableCell align="left" sx={{ fontSize: fontSize }}>
                     $
                   </TableCell>
                 </TableRow>

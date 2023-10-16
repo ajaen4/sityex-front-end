@@ -1,40 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, Outlet } from "react-router-dom";
-import { useMediaQuery } from "@mui/material";
+import { Outlet } from "react-router-dom";
 
 import { Box } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
+import Toolbar from '@mui/material/Toolbar';
 
 import Navbar from "components/Navigation/Navbar";
 import Drawer from "components/Navigation/Drawer";
-import DrawerHeader from "components/Navigation/DrawerHeader";
+
+import { drawerWidth } from "constants/constants";
 
 const MainLayout = () => {
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);
-  const [drawerWidth, setDrawerWidth] = useState(0);
-
   const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
-
-  const theme = useTheme();
-  const { pathname } = useLocation();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
-  const isDestinationPage = pathname.split("/").includes("destination");
-  const drawerType =
-    isSmallScreen || !isDestinationPage ? "persistent" : "permanent";
-
-  useEffect(() => {
-    if (!isSmallScreen && isDestinationPage && isOpenDrawer) {
-      setDrawerWidth(240);
-      return;
-    }
-
-    if (!isSmallScreen && isDestinationPage && !isOpenDrawer) {
-      setDrawerWidth(65);
-      return;
-    }
-
-    setDrawerWidth(0);
-  }, [isSmallScreen, isOpenDrawer, pathname]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -43,7 +20,6 @@ const MainLayout = () => {
 
     window.addEventListener("resize", handleResize);
 
-    // Clean up the event listener when the component unmounts
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
@@ -51,7 +27,6 @@ const MainLayout = () => {
     <Box
       sx={{
         display: "flex",
-        flexDirection: "column",
         height: `${viewportHeight}px`,
         overflowY: "hidden"
       }}
@@ -60,7 +35,6 @@ const MainLayout = () => {
       <Drawer
         isOpenDrawer={isOpenDrawer}
         setIsOpenDrawer={setIsOpenDrawer}
-        drawerType={drawerType}
       />
       <Box
         component="main"
@@ -68,11 +42,11 @@ const MainLayout = () => {
           flexGrow: 1,
           display: "flex",
           flexDirection: "column",
-          marginLeft: `${drawerWidth}px`,
+          width: { sm: `calc(100% - ${drawerWidth}px)` },
           overflow: "hidden"
         }}
       >
-        <DrawerHeader />
+        <Toolbar/>
         <Outlet />
       </Box>
     </Box>

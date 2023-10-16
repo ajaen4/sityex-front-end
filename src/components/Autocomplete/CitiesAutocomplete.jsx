@@ -17,7 +17,7 @@ const CitiesAutocomplete = ({ selectedCity, citiesIndex, onChangeCity }) => {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const filterOptions = createFilterOptions({
-    limit: isSmallScreen ? 50 : 1000
+    limit: isSmallScreen ? 20 : 50
   });
 
   const getDestinations = () => {
