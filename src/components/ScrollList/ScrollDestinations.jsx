@@ -17,7 +17,7 @@ function ScrollDestinations({ destinations, isFetching }) {
             <img
               alt="country flag"
               src={require(
-                "assets/img/flags/" + destination.countryCode + ".png",
+                "assets/img/flags/" + destination.countryCode + ".png"
               )}
               style={{ marginRight: "10px", marginTop: "6px" }}
             />

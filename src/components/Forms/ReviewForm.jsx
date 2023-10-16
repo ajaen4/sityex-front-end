@@ -23,7 +23,7 @@ const ReviewForm = () => {
     handleSubmit,
     formState: { errors },
     control,
-    reset,
+    reset
   } = useForm();
   const navigate = useNavigate();
   const dispatch = useDispatch();

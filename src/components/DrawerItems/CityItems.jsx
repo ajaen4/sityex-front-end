@@ -36,7 +36,7 @@ const CityItems = ({ setIsOpenDrawer }) => {
         <ListItemButton
           sx={{
             minHeight: 48,
-            px: 2.5,
+            px: 2.5
           }}
           onClick={itemSelected}
           data-path={ROUTES_PATHS.CITY_INFO}
@@ -45,7 +45,7 @@ const CityItems = ({ setIsOpenDrawer }) => {
             sx={{
               minWidth: 0,
               mr: 3,
-              justifyContent: "center",
+              justifyContent: "center"
             }}
           >
             <CityIcon />
@@ -57,7 +57,7 @@ const CityItems = ({ setIsOpenDrawer }) => {
         <ListItemButton
           sx={{
             minHeight: 48,
-            px: 2.5,
+            px: 2.5
           }}
           onClick={itemSelected}
           data-path={ROUTES_PATHS.CITY_PLACES}
@@ -66,7 +66,7 @@ const CityItems = ({ setIsOpenDrawer }) => {
             sx={{
               minWidth: 0,
               mr: 3,
-              justifyContent: "center",
+              justifyContent: "center"
             }}
           >
             <PlaceIcon />
@@ -78,7 +78,7 @@ const CityItems = ({ setIsOpenDrawer }) => {
         <ListItemButton
           sx={{
             minHeight: 48,
-            px: 2.5,
+            px: 2.5
           }}
           onClick={itemSelected}
           data-path={ROUTES_PATHS.CITY_REVIEWS}
@@ -87,7 +87,7 @@ const CityItems = ({ setIsOpenDrawer }) => {
             sx={{
               minWidth: 0,
               mr: 3,
-              justifyContent: "center",
+              justifyContent: "center"
             }}
           >
             <GradingIcon />

@@ -32,7 +32,7 @@ export default function CityTabs() {
       aria-label="city-navigations"
       sx={{
         "& .MuiTabs-indicator": { backgroundColor: theme.palette.grey[100] },
-        "& .Mui-selected": { color: theme.palette.grey[100] },
+        "& .Mui-selected": { color: theme.palette.grey[100] }
       }}
     >
       <Tab

@@ -7,7 +7,7 @@ import {
   CityPage,
   CityInfoPage,
   CityPlacesPage,
-  CityReviewsPage,
+  CityReviewsPage
 } from "pages";
 
 import * as ROUTES_PATHS from "routes/paths";
@@ -18,19 +18,19 @@ const WithAuthRoutes = {
   children: [
     {
       path: "/",
-      element: <SearchPage />,
+      element: <SearchPage />
     },
     {
       path: ROUTES_PATHS.SEARCH,
-      element: <SearchPage />,
+      element: <SearchPage />
     },
     {
       path: ROUTES_PATHS.MAP,
-      element: <MapPage />,
+      element: <MapPage />
     },
     {
       path: ROUTES_PATHS.NEW_REVIEW,
-      element: <ReviewPage />,
+      element: <ReviewPage />
     },
     {
       path: ROUTES_PATHS.DESTINATION,
@@ -38,19 +38,19 @@ const WithAuthRoutes = {
       children: [
         {
           path: ROUTES_PATHS.CITY_INFO,
-          element: <CityInfoPage />,
+          element: <CityInfoPage />
         },
         {
           path: ROUTES_PATHS.CITY_PLACES,
-          element: <CityPlacesPage />,
+          element: <CityPlacesPage />
         },
         {
           path: ROUTES_PATHS.CITY_REVIEWS,
-          element: <CityReviewsPage />,
-        },
-      ],
-    },
-  ],
+          element: <CityReviewsPage />
+        }
+      ]
+    }
+  ]
 };
 
 export default WithAuthRoutes;

@@ -37,7 +37,7 @@ const CityPage = () => {
         display: "flex",
         flexDirection: "column",
         height: "100%",
-        overflow: "hidden",
+        overflow: "hidden"
       }}
     >
       <Typography variant="h1" sx={{ textAlign: "center", my: 2 }}>
@@ -48,7 +48,7 @@ const CityPage = () => {
           flex: 1,
           display: "flex",
           justifyContent: "center",
-          overflowY: "hidden",
+          overflowY: "hidden"
         }}
       >
         <Outlet />
@@ -58,7 +58,7 @@ const CityPage = () => {
           sx={{
             display: "flex",
             justifyContent: "center",
-            backgroundColor: theme.palette.primary.main,
+            backgroundColor: theme.palette.primary.main
           }}
         >
           <CityTabs />

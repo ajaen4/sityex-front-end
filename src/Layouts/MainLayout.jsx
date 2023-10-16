@@ -53,7 +53,7 @@ const MainLayout = () => {
         display: "flex",
         flexDirection: "column",
         height: `${viewportHeight}px`,
-        overflowY: "hidden",
+        overflowY: "hidden"
       }}
     >
       <Navbar isOpenDrawer={isOpenDrawer} setIsOpenDrawer={setIsOpenDrawer} />
@@ -69,7 +69,7 @@ const MainLayout = () => {
           display: "flex",
           flexDirection: "column",
           marginLeft: `${drawerWidth}px`,
-          overflow: "hidden",
+          overflow: "hidden"
         }}
       >
         <DrawerHeader />

@@ -17,7 +17,7 @@ const CityReviewsPage = () => {
   useEffect(() => {
     logAnalyticsEvent("page_view", {
       page_title: "City Reviews Page",
-      page_location: window.location.href,
+      page_location: window.location.href
     });
   }, []);
 
@@ -32,7 +32,7 @@ const CityReviewsPage = () => {
       sx={{
         width: "100%",
         display: "flex",
-        flexGrow: 1,
+        flexGrow: 1
       }}
     >
       <Grid container sx={{ justifyContent: "center" }}>

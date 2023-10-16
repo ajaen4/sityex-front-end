@@ -15,13 +15,13 @@ const ReviewPage = () => {
   useEffect(() => {
     logAnalyticsEvent("page_view", {
       page_title: "Review Page",
-      page_location: window.location.href,
+      page_location: window.location.href
     });
   }, []);
 
   useEffect(() => {
-    dispatch(fetchCity("2038679")); // Fetch Acheng (First city alphabetically)
-  }, [dispatch]);
+    dispatch(fetchCity("78428")); // Fetch Amran (First city alphabetically)
+  }, []);
 
   return (
     <Box
@@ -29,7 +29,7 @@ const ReviewPage = () => {
         justifyContent: "center",
         textAlign: "center",
         marginTop: 20,
-        overflowY: "auto",
+        overflowY: "auto"
       }}
     >
       <ReviewForm />

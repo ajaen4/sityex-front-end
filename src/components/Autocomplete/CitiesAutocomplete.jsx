@@ -5,7 +5,7 @@ import {
   InputAdornment,
   Box,
   Autocomplete,
-  TextField,
+  TextField
 } from "@mui/material";
 import { createFilterOptions } from "@mui/material/Autocomplete";
 import { useMediaQuery } from "@mui/material";
@@ -17,7 +17,7 @@ const CitiesAutocomplete = ({ selectedCity, citiesIndex, onChangeCity }) => {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const filterOptions = createFilterOptions({
-    limit: isSmallScreen ? 50 : 1000,
+    limit: isSmallScreen ? 50 : 1000
   });
 
   const getDestinations = () => {
@@ -40,7 +40,7 @@ const CitiesAutocomplete = ({ selectedCity, citiesIndex, onChangeCity }) => {
             ...params.InputProps,
             startAdornment: (
               <InputAdornment position="start">
-                {selectedCity ? (
+                {selectedCity && (
                   <IconButton>
                     <img
                       loading="lazy"
@@ -50,21 +50,11 @@ const CitiesAutocomplete = ({ selectedCity, citiesIndex, onChangeCity }) => {
                       alt=""
                     />
                   </IconButton>
-                ) : (
-                  <IconButton>
-                    <img
-                      loading="lazy"
-                      width="20"
-                      src={`https://flagcdn.com/w20/cn.png`}
-                      srcSet={`https://flagcdn.com/w40/cn.png 2x`}
-                      alt=""
-                    />
-                  </IconButton>
                 )}
               </InputAdornment>
-            ),
+            )
           }}
-          placeholder={selectedCity ? selectedCity.name : "Acheng"}
+          placeholder={selectedCity && selectedCity.name}
           fullWidth
         />
       )}

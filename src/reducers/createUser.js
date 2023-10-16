@@ -3,7 +3,7 @@ import { combineReducers } from "redux";
 import {
   REQUESTING_CREATE_USER,
   CREATE_USER_SUCCESS,
-  CREATE_USER_ERROR,
+  CREATE_USER_ERROR
 } from "types";
 
 const initCreateUser = () => {
@@ -50,7 +50,7 @@ const initCreateUser = () => {
   return combineReducers({
     data,
     isFetching,
-    errorMessage,
+    errorMessage
   });
 };
 

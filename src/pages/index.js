@@ -17,5 +17,5 @@ export {
   CityPage,
   CityInfoPage,
   CityPlacesPage,
-  CityReviewsPage,
+  CityReviewsPage
 };

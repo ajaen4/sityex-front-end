@@ -25,7 +25,7 @@ const MinLayout = () => {
         display: "flex",
         height: `${viewportHeight}px`,
         width: "100%",
-        backgroundColor: theme.palette.primary.light,
+        backgroundColor: theme.palette.primary.light
       }}
     >
       <Outlet />

@@ -27,7 +27,7 @@ const initCitiesIndex = () => {
 
   return combineReducers({
     data,
-    isFetching,
+    isFetching
   });
 };
 

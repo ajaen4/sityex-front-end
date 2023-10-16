@@ -15,7 +15,7 @@ function CitiesMarkerCluster({ citiesIndex }) {
       citiesIndex.forEach((city) => {
         const marker = L.marker([
           city.coordinates.latitude,
-          city.coordinates.longitude,
+          city.coordinates.longitude
         ]);
 
         const popupContent = `<div style="text-align:center;">

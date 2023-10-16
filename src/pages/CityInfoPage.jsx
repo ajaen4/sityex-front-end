@@ -24,7 +24,7 @@ const CityInfoPage = () => {
   useEffect(() => {
     logAnalyticsEvent("page_view", {
       page_title: "City Info Page",
-      page_location: window.location.href,
+      page_location: window.location.href
     });
   }, []);
 

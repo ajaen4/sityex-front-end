@@ -20,7 +20,7 @@ const SingleDataCard = ({ title, text, number, icon, backgroundColor }) => {
       background: `linear-gradient(210.04deg, ${backgroundColor[200]} -50.94%, rgba(144, 202, 249, 0) 83.49%)`,
       borderRadius: "50%",
       top: -30,
-      right: -180,
+      right: -180
     },
     "&:before": {
       content: '""',
@@ -30,8 +30,8 @@ const SingleDataCard = ({ title, text, number, icon, backgroundColor }) => {
       background: `linear-gradient(140.9deg, ${backgroundColor[200]} -14.02%, rgba(144, 202, 249, 0) 77.58%)`,
       borderRadius: "50%",
       top: -160,
-      right: -130,
-    },
+      right: -130
+    }
   };
 
   return (
@@ -43,7 +43,7 @@ const SingleDataCard = ({ title, text, number, icon, backgroundColor }) => {
           sx={{
             display: "flex",
             alignItems: "center",
-            justifyContent: "center",
+            justifyContent: "center"
           }}
         >
           <Avatar
@@ -53,7 +53,7 @@ const SingleDataCard = ({ title, text, number, icon, backgroundColor }) => {
               ...theme.typography.largeAvatar,
               backgroundColor: backgroundColor.pastel,
               color: "#fff",
-              pointerEvents: "none",
+              pointerEvents: "none"
             }}
           >
             {icon}
@@ -81,7 +81,7 @@ const SingleDataCard = ({ title, text, number, icon, backgroundColor }) => {
           sx={{
             display: "flex",
             alignItems: "center",
-            justifyContent: "center",
+            justifyContent: "center"
           }}
         >
           <Avatar
@@ -90,7 +90,7 @@ const SingleDataCard = ({ title, text, number, icon, backgroundColor }) => {
               ...theme.typography.commonAvatar,
               ...theme.typography.largeAvatar,
               backgroundColor: backgroundColor[800],
-              color: "#fff",
+              color: "#fff"
             }}
           >
             <AddIcon />

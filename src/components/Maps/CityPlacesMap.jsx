@@ -5,7 +5,7 @@ import {
   TileLayer,
   Marker,
   Popup,
-  ZoomControl,
+  ZoomControl
 } from "react-leaflet";
 import "react-leaflet-fullscreen/styles.css";
 import Container from "@mui/material/Container";
@@ -29,7 +29,7 @@ function CityPlacesMap({ selectedCity }) {
     <MapContainer
       center={[
         selectedCity.coordinates.latitude,
-        selectedCity.coordinates.longitude,
+        selectedCity.coordinates.longitude
       ]}
       zoom={13}
       style={{ height: "100%", width: "100%" }}
@@ -52,7 +52,7 @@ function CityPlacesMap({ selectedCity }) {
                 style={{
                   marginTop: 10,
                   marginBottom: 10,
-                  fontWeight: "bold",
+                  fontWeight: "bold"
                 }}
               >
                 {place.name}

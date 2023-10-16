@@ -12,7 +12,7 @@ export const theme = () => {
 
   const customization = {
     fontFamily: `'Poppins', sans-serif`,
-    borderRadius: 12,
+    borderRadius: 12
   };
 
   const themeOption = {
@@ -27,13 +27,13 @@ export const theme = () => {
     menuSelected: color.secondaryDark,
     menuSelectedBack: color.secondaryLight,
     divider: color.grey200,
-    customization,
+    customization
   };
 
   const themeOptions = {
     direction: "ltr",
     palette: themePalette(themeOption),
-    typography: themeTypography(themeOption),
+    typography: themeTypography(themeOption)
   };
 
   const themes = createTheme(themeOptions);

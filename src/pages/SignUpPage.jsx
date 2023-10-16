@@ -15,7 +15,7 @@ const SignUpPage = () => {
   useEffect(() => {
     logAnalyticsEvent("page_view", {
       page_title: "Sign Up Page",
-      page_location: window.location.href,
+      page_location: window.location.href
     });
   }, []);
 
@@ -24,7 +24,7 @@ const SignUpPage = () => {
       sx={{
         display: "flex",
         justifyContent: "center",
-        alignItems: "center",
+        alignItems: "center"
       }}
     >
       <Card
@@ -33,9 +33,9 @@ const SignUpPage = () => {
           border: "1px solid",
           borderColor: theme.palette.primary[200] + 25,
           ":hover": {
-            boxShadow: "inherit",
+            boxShadow: "inherit"
           },
-          p: { xs: 2, sm: 3, xl: 5 },
+          p: { xs: 2, sm: 3, xl: 5 }
         }}
       >
         <Grid container spacing={1} alignItems="center" justifyContent="center">
@@ -45,7 +45,7 @@ const SignUpPage = () => {
                 width: 160,
                 justifyContent: "center",
                 alignItems: "center",
-                display: "flex",
+                display: "flex"
               }}
             >
               <img src={Logo} alt="SityEx" width={150} height={35} />
@@ -55,7 +55,7 @@ const SignUpPage = () => {
             <Container
               sx={{
                 alignItems: "center",
-                justifyContent: "center",
+                justifyContent: "center"
               }}
             >
               <Stack alignItems="center" justifyContent="center" spacing={1}>

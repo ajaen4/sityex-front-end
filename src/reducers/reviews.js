@@ -15,7 +15,7 @@ const initReviews = () => {
   };
 
   return combineReducers({
-    isFetching,
+    isFetching
   });
 };
 

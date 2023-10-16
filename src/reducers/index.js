@@ -9,7 +9,7 @@ const serviceApp = combineReducers({
   auth,
   citiesIndex,
   selectedCity,
-  reviews,
+  reviews
 });
 
 export default serviceApp;

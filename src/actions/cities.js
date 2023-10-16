@@ -2,7 +2,7 @@ import {
   REQUESTING_CITIES_INDEX,
   FETCH_CITIES_INDEX_SUCCESS,
   REQUESTING_CITY,
-  FETCH_CITY_SUCCESS,
+  FETCH_CITY_SUCCESS
 } from "types";
 
 import { objectIsEmpty } from "helpers/usefulFunctions";
@@ -16,7 +16,7 @@ export const fetchCitiesIndex = () => (dispatch, getState) => {
   return api.getCitiesIndex().then((data) => {
     dispatch({
       type: FETCH_CITIES_INDEX_SUCCESS,
-      citiesIndex: data,
+      citiesIndex: data
     });
   });
 };
@@ -33,7 +33,7 @@ export const fetchCity = (city_id) => (dispatch, getState) => {
   return api.getCity(city_id).then((data) => {
     dispatch({
       type: FETCH_CITY_SUCCESS,
-      cityData: data,
+      cityData: data
     });
   });
 };
