@@ -79,7 +79,7 @@ const CityInfoPage = () => {
   }
 
   return (
-    <Box sx={{ mx: { md: 2 } }}>
+    <Box sx={{ mx: 0 }}>
       <Grid container spacing={1} justifyContent="center">
         <Grid item xs={11} md={4}>
           <SingleDataCard
