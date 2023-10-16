@@ -4,7 +4,14 @@ import { useTheme } from "@mui/material/styles";
 import { Typography, Grid, Card, Avatar } from "@mui/material";
 import AddIcon from "@mui/icons-material/AddOutlined";
 
-const SingleDataCard = ({ title, text, number, icon, backgroundColor, onClickData }) => {
+const SingleDataCard = ({
+  title,
+  text,
+  number,
+  icon,
+  backgroundColor,
+  onClickData
+}) => {
   const theme = useTheme();
 
   const cardStyle = {

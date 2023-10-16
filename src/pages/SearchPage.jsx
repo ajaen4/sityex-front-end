@@ -36,7 +36,7 @@ const SearchPage = () => {
     >
       <Grid container spacing={1} sx={{ justifyContent: "center", my: 5 }}>
         <Grid item xs={11} md={5} lg={4}>
-          <Card elevation={0} >
+          <Card elevation={0}>
             <CardContent>
               <Typography variant="h2" color="textSecondary" sx={{ mb: 3 }}>
                 Introduce a destination

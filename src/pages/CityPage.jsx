@@ -29,8 +29,7 @@ const CityPage = () => {
   }, [city_id]);
 
   useEffect(() => {
-    if (selectedCity)
-      dispatch(fetchCountry(selectedCity.country_3_code));
+    if (selectedCity) dispatch(fetchCountry(selectedCity.country_3_code));
   }, [selectedCity]);
 
   if (selectedCity === null || selectedCity.city_id !== city_id)
@@ -45,9 +44,23 @@ const CityPage = () => {
         overflow: "hidden"
       }}
     >
-      <Typography variant="h1" sx={{ textAlign: "center", my: 2 }}>
-        {selectedCity.name}
-      </Typography>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          my: 2
+        }}
+      >
+        <img
+          loading="lazy"
+          width="40"
+          src={`https://flagcdn.com/w160/${selectedCity.country_2_code.toLowerCase()}.png`}
+          alt="City Image"
+          style={{ marginRight: "10px" }}
+        />
+        <Typography variant="h1">{selectedCity.name}</Typography>
+      </Box>
       <Box
         sx={{
           flex: 1,
