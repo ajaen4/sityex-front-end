@@ -81,7 +81,10 @@ const ReviewForm = () => {
 
   return (
     <>
-      <Typography variant="h2" color="textSecondary" sx={{ my: 3 }}> Fill in a review </Typography>
+      <Typography variant="h2" color="textSecondary" sx={{ my: 3 }}>
+        {" "}
+        Fill in a review{" "}
+      </Typography>
       <form onSubmit={handleSubmit(handleForm)} style={{ textAlign: "center" }}>
         {isFetching && <CenteredLoadingSpinner />}
         <Grid
@@ -172,7 +175,11 @@ const ReviewForm = () => {
         </Grid>
         <Stack>
           <FormControl>
-            <Typography variant="h3" color="textSecondary" style={{ fontWeight: "bold" }}>
+            <Typography
+              variant="h3"
+              color="textSecondary"
+              style={{ fontWeight: "bold" }}
+            >
               Give some advice about the city!
             </Typography>
 

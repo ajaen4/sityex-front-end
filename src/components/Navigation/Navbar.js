@@ -34,7 +34,7 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
 
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("lg"));
 
   useEffect(() => {
     if (!location.pathname.includes("destination")) {

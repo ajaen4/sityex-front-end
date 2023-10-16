@@ -59,7 +59,9 @@ const CityPage = () => {
           alt="City Image"
           style={{ marginRight: "10px" }}
         />
-        <Typography color="textSecondary" variant="h1">{selectedCity.name}</Typography>
+        <Typography color="textSecondary" variant="h1">
+          {selectedCity.name}
+        </Typography>
       </Box>
       <Box
         sx={{

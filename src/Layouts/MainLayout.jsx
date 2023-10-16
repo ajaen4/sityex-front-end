@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 
 import { Box } from "@mui/material";
-import Toolbar from '@mui/material/Toolbar';
+import Toolbar from "@mui/material/Toolbar";
 
 import Navbar from "components/Navigation/Navbar";
 import Drawer from "components/Navigation/Drawer";
@@ -32,10 +32,7 @@ const MainLayout = () => {
       }}
     >
       <Navbar isOpenDrawer={isOpenDrawer} setIsOpenDrawer={setIsOpenDrawer} />
-      <Drawer
-        isOpenDrawer={isOpenDrawer}
-        setIsOpenDrawer={setIsOpenDrawer}
-      />
+      <Drawer isOpenDrawer={isOpenDrawer} setIsOpenDrawer={setIsOpenDrawer} />
       <Box
         component="main"
         sx={{
@@ -46,7 +43,7 @@ const MainLayout = () => {
           overflow: "hidden"
         }}
       >
-        <Toolbar/>
+        <Toolbar />
         <Outlet />
       </Box>
     </Box>
