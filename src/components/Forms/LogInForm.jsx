@@ -147,6 +147,9 @@ const LogInForm = () => {
                   placeholder="Email..."
                   type="email"
                   autoFocus
+                  InputProps={{
+                    style: { fontSize: 16 }
+                  }}
                   error={errors.email !== undefined}
                   {...register("email", {
                     required: "You must provide your email",
@@ -167,6 +170,9 @@ const LogInForm = () => {
                   label="Password"
                   type="password"
                   placeholder="Password..."
+                  InputProps={{
+                    style: { fontSize: 16 }
+                  }}
                   {...register("password", {
                     required: "The password is required",
                     minLength: {

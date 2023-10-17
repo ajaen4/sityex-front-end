@@ -155,6 +155,9 @@ const SignUpForm = () => {
                   })}
                   label="Email"
                   variant="outlined"
+                  InputProps={{
+                    style: { fontSize: 16 }
+                  }}
                 />
                 <FormHelperText style={{ minHeight: "20px" }}>
                   {errors.email?.message}
@@ -169,6 +172,9 @@ const SignUpForm = () => {
                   label="Nombre de usuario"
                   variant="outlined"
                   autoComplete="username"
+                  InputProps={{
+                    style: { fontSize: 16 }
+                  }}
                 />
                 <FormHelperText style={{ minHeight: "20px" }}>
                   {errors.userName?.message}
@@ -184,10 +190,13 @@ const SignUpForm = () => {
                       message: "The password must have at least 8 characters"
                     }
                   })}
-                  label="Contraseña"
+                  label="password"
                   variant="outlined"
                   type="password"
                   autoComplete="new-password"
+                  InputProps={{
+                    style: { fontSize: 16 }
+                  }}
                 />
                 <FormHelperText style={{ minHeight: "20px" }}>
                   {errors.password?.message}
@@ -205,13 +214,16 @@ const SignUpForm = () => {
                     validate: {
                       sameAs: (value) =>
                         sameAs(getValues, "password")(value) ||
-                        "Las contraseñas deben de ser iguales"
+                        "The passwords must match"
                     }
                   })}
-                  label="Confirmación de Contraseña"
+                  label="Password confirmation"
                   variant="outlined"
                   type="password"
                   autoComplete="new-password"
+                  InputProps={{
+                    style: { fontSize: 16 }
+                  }}
                 />
                 <FormHelperText style={{ minHeight: "20px" }}>
                   {errors.confirmPassword?.message}

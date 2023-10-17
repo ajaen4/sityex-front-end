@@ -23,6 +23,9 @@ const TextArea = ({ name, register, errors }) => {
         fullWidth
         multiline
         error={errors[name] !== undefined}
+        InputProps={{
+          style: { fontSize: 16 }
+        }}
       />
       <Box sx={{ minHeight: 40 }}>
         {errors[name] && errors[name].type === "required" && (

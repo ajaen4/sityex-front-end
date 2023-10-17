@@ -11,22 +11,33 @@ import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
+import { tableFontSize } from "constants/constants";
+
 const DemographicDataModal = ({ openedModal, setOpenedModal, data }) => {
-  const onClickClose = () => setOpenedModal(false);
-  const fontSize = "0.9em";
   const isOpen = ["Demographics"].includes(openedModal);
 
   const areaSize = data?.area_size.split(" ");
+  const onClickClose = () => setOpenedModal(false);
 
   return (
-    <Dialog open={isOpen} onClose={onClickClose} sx={{ my: 5 }}>
+    <Dialog
+      open={isOpen}
+      onClose={onClickClose}
+      sx={{
+        "& .MuiPaper-root": {
+          margin: 0
+        },
+        my: 5,
+        mx: 1
+      }}
+    >
       <DialogTitle
         variant="h3"
         sx={{ display: "flex", justifyContent: "center" }}
       >
         {openedModal}
       </DialogTitle>
-      <DialogContent sx={{ width: "100%", p: 0 }}>
+      <DialogContent sx={{ p: 0 }}>
         <TableContainer component={Paper} sx={{ borderRadius: 0 }}>
           <Table aria-label="cost table" size="small">
             <TableBody>
@@ -34,10 +45,10 @@ const DemographicDataModal = ({ openedModal, setOpenedModal, data }) => {
                 key="population"
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell align="left" sx={{ fontSize: fontSize }}>
+                <TableCell align="left" sx={{ fontSize: tableFontSize }}>
                   Population
                 </TableCell>
-                <TableCell align="left" sx={{ fontSize: fontSize }}>
+                <TableCell align="left" sx={{ fontSize: tableFontSize }}>
                   {`${new Intl.NumberFormat("es-ES").format(data?.population)}`}
                 </TableCell>
               </TableRow>
@@ -45,10 +56,10 @@ const DemographicDataModal = ({ openedModal, setOpenedModal, data }) => {
                 key="currency_code"
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell align="left" sx={{ fontSize: fontSize }}>
+                <TableCell align="left" sx={{ fontSize: tableFontSize }}>
                   Currency
                 </TableCell>
-                <TableCell align="left" sx={{ fontSize: fontSize }}>
+                <TableCell align="left" sx={{ fontSize: tableFontSize }}>
                   {`${data?.currency_code}`}
                 </TableCell>
               </TableRow>
@@ -56,10 +67,10 @@ const DemographicDataModal = ({ openedModal, setOpenedModal, data }) => {
                 key="country_name"
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell align="left" sx={{ fontSize: fontSize }}>
+                <TableCell align="left" sx={{ fontSize: tableFontSize }}>
                   Country name
                 </TableCell>
-                <TableCell align="left" sx={{ fontSize: fontSize }}>
+                <TableCell align="left" sx={{ fontSize: tableFontSize }}>
                   {data?.name}
                 </TableCell>
               </TableRow>
@@ -67,10 +78,10 @@ const DemographicDataModal = ({ openedModal, setOpenedModal, data }) => {
                 key="area_size"
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell align="left" sx={{ fontSize: fontSize }}>
+                <TableCell align="left" sx={{ fontSize: tableFontSize }}>
                   Country area size
                 </TableCell>
-                <TableCell align="left" sx={{ fontSize: fontSize }}>
+                <TableCell align="left" sx={{ fontSize: tableFontSize }}>
                   {areaSize &&
                     `${new Intl.NumberFormat("es-ES").format(areaSize[0])} ${
                       areaSize[1]
@@ -81,10 +92,10 @@ const DemographicDataModal = ({ openedModal, setOpenedModal, data }) => {
                 key="continent_name"
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell align="left" sx={{ fontSize: fontSize }}>
+                <TableCell align="left" sx={{ fontSize: tableFontSize }}>
                   Continent
                 </TableCell>
-                <TableCell align="left" sx={{ fontSize: fontSize }}>
+                <TableCell align="left" sx={{ fontSize: tableFontSize }}>
                   {`${data?.continent_name}`}
                 </TableCell>
               </TableRow>

@@ -14,8 +14,9 @@ import MoneyOffIcon from "@mui/icons-material/MoneyOffOutlined";
 import LiquorIcon from "@mui/icons-material/LiquorOutlined";
 
 import SingleDataCard from "components/Cards/SingleDataCard";
-import PriceDataModal from "components/Modals/PriceDataModal";
+import StandardDataModal from "components/Modals/StandardDataModal";
 import DemographicDataModal from "components/Modals/DemographicDataModal";
+import TaxesDataModal from "components/Modals/TaxesDataModal";
 
 import { getMap } from "actions";
 
@@ -154,7 +155,7 @@ const CityInfoPage = () => {
           />
         </Grid>
       </Grid>
-      <PriceDataModal
+      <StandardDataModal
         openedModal={openedModal}
         setOpenedModal={setOpenedModal}
         data={prices}
@@ -167,6 +168,11 @@ const CityInfoPage = () => {
             ? { ...selectedCountry, population: selectedCity?.population }
             : null
         }
+      />
+      <TaxesDataModal
+        openedModal={openedModal}
+        setOpenedModal={setOpenedModal}
+        data={selectedCountry ? selectedCountry : null}
       />
     </Box>
   );
