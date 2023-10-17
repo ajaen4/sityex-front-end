@@ -2,12 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 
 import { Box } from "@mui/material";
-import Toolbar from "@mui/material/Toolbar";
 
 import Navbar from "components/Navigation/Navbar";
 import Drawer from "components/Navigation/Drawer";
 
-import { drawerWidth } from "constants/constants";
+import { drawerWidth, minNavbarHeights } from "constants/constants";
 
 const MainLayout = () => {
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);
@@ -43,7 +42,7 @@ const MainLayout = () => {
           overflow: "hidden"
         }}
       >
-        <Toolbar />
+        <Box sx={{ minHeight: minNavbarHeights }} />
         <Outlet />
       </Box>
     </Box>

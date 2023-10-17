@@ -21,6 +21,7 @@ const CityPage = () => {
   const { pathname } = useLocation();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
   const isDestinationPage = pathname.split("/").includes("destination");
+  const isCityPlacesPage = pathname.split("/").includes("places");
 
   const dispatch = useDispatch();
 
@@ -41,28 +42,32 @@ const CityPage = () => {
         display: "flex",
         flexDirection: "column",
         height: "100%",
-        overflow: "hidden"
+        overflow: "hidden",
+        backgroundColor: "grey.100"
       }}
     >
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          my: 2
-        }}
-      >
-        <img
-          loading="lazy"
-          width="40"
-          src={`https://flagcdn.com/w160/${selectedCity.country_2_code.toLowerCase()}.png`}
-          alt="City Image"
-          style={{ marginRight: "10px" }}
-        />
-        <Typography color="textSecondary" variant="h1">
-          {selectedCity.name}
-        </Typography>
-      </Box>
+      {!isCityPlacesPage && (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            my: 2
+          }}
+        >
+          <img
+            loading="lazy"
+            width="30"
+            src={`https://flagcdn.com/w160/${selectedCity.country_2_code.toLowerCase()}.png`}
+            alt="City Image"
+            style={{ marginRight: "10px" }}
+          />
+
+          <Typography color="textSecondary" variant="h2">
+            {selectedCity.name}
+          </Typography>
+        </Box>
+      )}
       <Box
         sx={{
           flex: 1,

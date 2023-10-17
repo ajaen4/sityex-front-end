@@ -1,105 +1,56 @@
 import React from "react";
 
-import { Card, Container, Grid, Typography } from "@mui/material";
-import WbSunnyIcon from "@mui/icons-material/WbSunnyOutlined";
-import FastfoodIcon from "@mui/icons-material/FastfoodOutlined";
-import CelebrationIcon from "@mui/icons-material/CelebrationOutlined";
-import ModeOfTravelIcon from "@mui/icons-material/ModeOfTravelOutlined";
-
-import { useTheme } from "@mui/material/styles";
+import { Card, Grid, Typography, Stack, Avatar } from "@mui/material";
 
 const review = ({ data }) => {
-  const theme = useTheme();
-
-  const avgRating =
-    (Number(data.weather) +
-      Number(data.food) +
-      Number(data.social) +
-      Number(data.trips)) /
-    4;
-
   return (
-    <Card sx={{ width: "100%", padding: 2, zIndex: theme.zIndex.drawer }}>
-      <Container style={{ padding: 2 }}>
-        <Grid container spacing={2}>
-          <Grid item xs={12} style={{ padding: 7 }}>
-            <Typography variant="h6" component="span">
-              {data.userName}
-            </Typography>
-            <span style={{ paddingLeft: "10px", fontWeight: "bold" }}>
-              Average:
-            </span>
-            <span style={{ paddingLeft: "5px" }}>{avgRating}</span>
-            <Grid
-              container
-              spacing={2}
-              justifyContent="center"
-              style={{ padding: 10 }}
-            >
-              <Grid item lg={3} md={3} sm={6} xs={6}>
-                <div style={{ display: "flex", alignItems: "center" }}>
-                  <WbSunnyIcon
-                    style={{ marginLeft: "8px", marginRight: "8px" }}
-                  />
-                  <Typography display="inline">
-                    <strong>Weather:</strong> {data.weather}
-                  </Typography>
-                </div>
-              </Grid>
-
-              <Grid item lg={3} md={3} sm={6} xs={6}>
-                <div style={{ display: "flex", alignItems: "center" }}>
-                  <FastfoodIcon
-                    style={{ marginLeft: "8px", marginRight: "8px" }}
-                  />
-                  <Typography display="inline">
-                    <strong>Food:</strong> {data.food}
-                  </Typography>
-                </div>
-              </Grid>
-
-              <Grid item lg={3} md={3} sm={6} xs={6}>
-                <div style={{ display: "flex", alignItems: "center" }}>
-                  <CelebrationIcon
-                    style={{ marginLeft: "8px", marginRight: "8px" }}
-                  />
-                  <Typography display="inline">
-                    <strong>Social:</strong> {data.social}
-                  </Typography>
-                </div>
-              </Grid>
-
-              <Grid item lg={3} md={3} sm={6} xs={6}>
-                <div style={{ display: "flex", alignItems: "center" }}>
-                  <ModeOfTravelIcon
-                    style={{ marginLeft: "8px", marginRight: "8px" }}
-                  />
-                  <Typography display="inline">
-                    <strong>Accessibility:</strong> {data.trips}
-                  </Typography>
-                </div>
-              </Grid>
-            </Grid>
-
-            <Typography
-              component="div"
-              style={{
-                marginTop: "15px",
-                marginRight: "15px",
-                marginLeft: "10px",
-                marginBottom: "0px",
-                border: "1px solid #B3D4FF",
-                borderRadius: "5px",
-                padding: "10px",
-                maxHeight: "200px"
+    <Card sx={{ width: "100%", padding: 1, minHeight: "200px" }}>
+      <Stack container spacing={2}>
+        <Grid container xs={12}>
+          <Grid item xs={2} md={1}>
+            <Avatar
+              alt="Remy Sharp"
+              src="https://i.pravatar.cc/150"
+              sx={{
+                m: 0,
+                p: 0
               }}
-            >
-              <strong style={{ fontSize: "0.9rem" }}>Advice</strong>
-              <p style={{ fontSize: "0.8rem" }}>{data.advice}</p>
+            />
+          </Grid>
+          <Grid item xs={10} md={11}>
+            <Stack>
+              <Typography variant="h5" sx={{ mx: 1 }}>
+                {data.userName}
+              </Typography>
+              <Typography sx={{ mx: 1, fontSize: "0.9em" }}>
+                Home city
+              </Typography>
+              <Typography sx={{ mx: 1, fontSize: "0.8em" }}>
+                07/10/2021
+              </Typography>
+            </Stack>
+          </Grid>
+        </Grid>
+        <Grid container>
+          <Grid item md={3} xs={6}>
+            <Typography align="center">☀️ Weather: {data.weather}</Typography>
+          </Grid>
+          <Grid item md={3} xs={6}>
+            <Typography align="center">🍲 Food: {data.food}</Typography>
+          </Grid>
+          <Grid item md={3} xs={6}>
+            <Typography align="center">🍹 Social: {data.social}</Typography>
+          </Grid>
+          <Grid item md={3} xs={6}>
+            <Typography align="center">
+              🧳 Accessibility: {data.trips}
             </Typography>
           </Grid>
         </Grid>
-      </Container>
+        <Grid container xs={12} sx={{ pl: 1 }}>
+          {data.advice}
+        </Grid>
+      </Stack>
     </Card>
   );
 };

@@ -11,6 +11,7 @@ import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
 
 import * as ROUTES_PATHS from "routes/paths";
+import { mobileTabMinHeight } from "constants/constants";
 
 export default function CityTabs() {
   const [value, setValue] = React.useState(0);
@@ -36,7 +37,7 @@ export default function CityTabs() {
         "& .MuiButtonBase-root, & .MuiTab-root": {
           paddingTop: "1 !important",
           paddingBottom: "0 !important",
-          minHeight: "auto !important"
+          minHeight: "0 !important"
         }
       }}
     >

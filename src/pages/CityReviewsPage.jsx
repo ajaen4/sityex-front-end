@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import { withAuth } from "session";
 import { logAnalyticsEvent } from "api";
@@ -36,7 +36,7 @@ const CityReviewsPage = () => {
       }}
     >
       <Grid container sx={{ justifyContent: "center" }}>
-        <Grid item xs={12} md={6} sx={{ height: "100%", overflowY: "auto" }}>
+        <Grid item xs={12} md={4} sx={{ height: "100%", overflowY: "auto" }}>
           <ScrollReviews reviews={reviews} isFetching={false} />
         </Grid>
       </Grid>

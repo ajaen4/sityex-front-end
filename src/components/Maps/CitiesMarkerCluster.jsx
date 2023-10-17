@@ -30,7 +30,9 @@ function CitiesMarkerCluster({ citiesIndex }) {
                 style="margin-right: 1px; margin-bottom: 2px; vertical-align: middle;" />
               <b>${city.name.toUpperCase()}</b>
             </div>
-            <a href="/destination/${city.city_id}/info" style="margin-bottom:5px;">
+            <a href="/destination/${
+              city.city_id
+            }/info" style="margin-bottom:5px;">
               <button>More info</button>
             </a>
           </div>`;
