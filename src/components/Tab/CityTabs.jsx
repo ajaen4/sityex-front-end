@@ -32,21 +32,30 @@ export default function CityTabs() {
       aria-label="city-navigations"
       sx={{
         "& .MuiTabs-indicator": { backgroundColor: theme.palette.grey[100] },
-        "& .Mui-selected": { color: theme.palette.grey[100] }
+        "& .Mui-selected": { color: theme.palette.grey[100] },
+        "& .MuiButtonBase-root, & .MuiTab-root": {
+          paddingTop: "1 !important",
+          paddingBottom: "0 !important",
+          minHeight: "auto !important"
+        }
       }}
     >
       <Tab
-        icon={<CityIcon sx={{ color: theme.palette.grey[100] }} />}
+        icon={<CityIcon sx={{ color: theme.palette.grey[100], width: 20 }} />}
         aria-label="city-info"
         label={
-          <Typography variant="caption" color={theme.palette.grey[100]}>
+          <Typography
+            variant="caption"
+            color={theme.palette.grey[100]}
+            style={{ margin: 0, padding: 0 }}
+          >
             Info
           </Typography>
         }
         data-path={ROUTES_PATHS.CITY_INFO}
       />
       <Tab
-        icon={<PlaceIcon sx={{ color: theme.palette.grey[100] }} />}
+        icon={<PlaceIcon sx={{ color: theme.palette.grey[100], width: 20 }} />}
         aria-label="places"
         label={
           <Typography variant="caption" color={theme.palette.grey[100]}>
@@ -56,7 +65,9 @@ export default function CityTabs() {
         data-path={ROUTES_PATHS.CITY_PLACES}
       />
       <Tab
-        icon={<GradingIcon sx={{ color: theme.palette.grey[100] }} />}
+        icon={
+          <GradingIcon sx={{ color: theme.palette.grey[100], width: 20 }} />
+        }
         aria-label="reviews"
         label={
           <Typography variant="caption" color={theme.palette.grey[100]}>

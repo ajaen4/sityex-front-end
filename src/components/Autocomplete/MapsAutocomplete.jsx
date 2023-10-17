@@ -135,7 +135,14 @@ export default function MapsAutocomplete({ onSelectedPlace }) {
         setInputValue(newInputValue);
       }}
       renderInput={(params) => (
-        <TextField {...params} label="Add a place recommendation!" fullWidth />
+        <TextField
+          {...params}
+          label="Add a place recommendation!"
+          fullWidth
+          InputProps={{
+            style: { fontSize: 16 }
+          }}
+        />
       )}
       renderOption={(props, option) => {
         const matches =

@@ -12,10 +12,15 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
+import { tableFontSize } from "constants/constants";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
+
 const DataModal = ({ openedModal, setOpenedModal, data }) => {
-  const onClickClose = () => setOpenedModal(false);
-  const fontSize = "0.9em";
   const isOpen = ["Employment", "Month costs", "Social"].includes(openedModal);
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const titleCategories = {
     Employment: ["salaries and financing"],
@@ -23,11 +28,11 @@ const DataModal = ({ openedModal, setOpenedModal, data }) => {
       "markets",
       "utilities (monthly)",
       "rent per month",
-      "childcare",
-      "transportation"
     ],
     Social: ["restaurants", "sports and leisure"]
   };
+
+  const onClickClose = () => setOpenedModal(false);
 
   const filteredCosts = [];
   for (const cost of data) {
@@ -37,25 +42,37 @@ const DataModal = ({ openedModal, setOpenedModal, data }) => {
   }
 
   return (
-    <Dialog open={isOpen} onClose={onClickClose} sx={{ my: 5 }}>
+    <Dialog
+      open={isOpen}
+      maxWidth={isMobile ? "xs" : "xl"}
+      fullWidth={isMobile ? null : true}
+      onClose={onClickClose}
+      sx={{
+        "& .MuiPaper-root": {
+          margin: 0
+        },
+        my: 5,
+        mx: 1
+      }}
+    >
       <DialogTitle
         variant="h3"
         sx={{ display: "flex", justifyContent: "center" }}
       >
         {openedModal}
       </DialogTitle>
-      <DialogContent sx={{ width: "100%", p: 0 }}>
+      <DialogContent sx={{ p: 0 }}>
         <TableContainer component={Paper} sx={{ borderRadius: 0 }}>
           <Table aria-label="cost table" size="small">
             <TableHead>
               <TableRow>
-                <TableCell align="left" sx={{ fontSize: fontSize }}>
+                <TableCell align="left" sx={{ fontSize: tableFontSize }}>
                   Subcategory
                 </TableCell>
-                <TableCell align="left" sx={{ fontSize: fontSize }}>
+                <TableCell align="left" sx={{ fontSize: tableFontSize }}>
                   Cost
                 </TableCell>
-                <TableCell align="left" sx={{ fontSize: fontSize }}>
+                <TableCell align="left" sx={{ fontSize: tableFontSize }}>
                   Currency
                 </TableCell>
               </TableRow>
@@ -66,13 +83,16 @@ const DataModal = ({ openedModal, setOpenedModal, data }) => {
                   key={row.id}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
-                  <TableCell align="left" sx={{ fontSize: fontSize }}>
+                  <TableCell
+                    align="left"
+                    sx={{ fontSize: tableFontSize, flex: 2 }}
+                  >
                     {row.subcategories.replace(/\[|\]|'/g, "")}
                   </TableCell>
-                  <TableCell align="left" sx={{ fontSize: fontSize }}>
+                  <TableCell align="left" sx={{ fontSize: tableFontSize }}>
                     {row.price}
                   </TableCell>
-                  <TableCell align="left" sx={{ fontSize: fontSize }}>
+                  <TableCell align="left" sx={{ fontSize: tableFontSize }}>
                     $
                   </TableCell>
                 </TableRow>
