@@ -15,10 +15,10 @@ import { Loader } from "@googlemaps/js-api-loader";
 const loader = new Loader({
   apiKey: process.env.REACT_APP_PLACES_API_KEY,
   version: "weekly",
-  libraries: ["places", "geometry"]
+  libraries: ["places"]
 });
 
-const RADIUS = 60000;
+const RADIUS = 50000;
 
 export default function MapsAutocomplete({ onSelectedPlace }) {
   const [value, setValue] = useState(null);

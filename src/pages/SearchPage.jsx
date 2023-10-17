@@ -22,7 +22,7 @@ const SearchPage = () => {
   }, []);
 
   const onChangeCity = (event, value) => {
-    navigate("/destination/" + value.city_id + "/info");
+    if (value) navigate("/destination/" + value.city_id + "/info");
   };
 
   if (!citiesIndex) return <CenteredLoadingSpinner />;
