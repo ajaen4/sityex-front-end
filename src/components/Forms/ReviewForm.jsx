@@ -1,6 +1,5 @@
 import React, { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import Grid from "@mui/material/Grid";
@@ -17,8 +16,6 @@ import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 import ActionModal from "components/Modals/ActionModal";
 import TextArea from "components/TextArea/TextArea";
 
-import * as ROUTES_PATHS from "routes/paths";
-
 const ReviewForm = () => {
   const {
     register,
@@ -27,12 +24,12 @@ const ReviewForm = () => {
     control,
     reset
   } = useForm();
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   let mapContainer = useRef(null);
 
   const [noPlaces, setNoPlaces] = useState(false);
+  const [placesInDB, setplacesInDB] = useState([]);
   const [currPlaces, setCurrPlaces] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
@@ -42,9 +39,8 @@ const ReviewForm = () => {
   const auth = useSelector((state) => state.auth.data);
 
   const onChangeCity = (event, selectedCity) => {
-    dispatch(fetchCity(selectedCity.city_id));
+    if (selectedCity) dispatch(fetchCity(selectedCity.city_id));
   };
-
 
   const updatePlaces = (places) => setCurrPlaces(places);
 
@@ -89,7 +85,7 @@ const ReviewForm = () => {
           container
           justifyContent="center"
           textAlign="center"
-          sx={{ my: 1 }}
+          sx={{ my: 4 }}
         >
           <Grid item xs={8} md={3} lg={2}>
             <CitiesAutocomplete
@@ -103,7 +99,7 @@ const ReviewForm = () => {
           container
           justifyContent="center"
           textAlign="center"
-          sx={{ mt: 3 }}
+          sx={{ my: 4 }}
         >
           <Grid item xs={12} md={8}>
             <Grid container justifyContent="center" textAlign="center">
@@ -150,7 +146,7 @@ const ReviewForm = () => {
           container
           justifyContent="center"
           textAlign="center"
-          sx={{ mt: 6, mb: 3 }}
+          sx={{ my: 4 }}
           ref={mapContainer}
         >
           <Grid item xs={12} md={12}>
@@ -165,7 +161,7 @@ const ReviewForm = () => {
           <Grid item xs={11} md={8}>
             <MapWithSearch
               selectedCity={selectedCity ? selectedCity : null}
-              updatePlaces={updatePlaces}
+              updateFormPlaces={updatePlaces}
               noPlaces={noPlaces}
               setNoPlaces={setNoPlaces}
             />

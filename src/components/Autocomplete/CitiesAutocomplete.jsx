@@ -52,7 +52,8 @@ const CitiesAutocomplete = ({ selectedCity, citiesIndex, onChangeCity }) => {
                   </IconButton>
                 )}
               </InputAdornment>
-            )
+            ),
+            style: { fontSize: 16 }
           }}
           placeholder={selectedCity && selectedCity.name}
           fullWidth
@@ -63,7 +64,7 @@ const CitiesAutocomplete = ({ selectedCity, citiesIndex, onChangeCity }) => {
           component="li"
           sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
           {...props}
-          key={option.city_id}
+          key={option?.city_id}
         >
           <img
             loading="lazy"

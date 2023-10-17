@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 
 import Alert from "@mui/material/Alert";
-import AlertTitle from "@mui/material/AlertTitle";
+import Snackbar from "@mui/material/Snackbar";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/CloseOutlined";
 import Container from "@mui/material/Container";
@@ -14,14 +14,12 @@ import "react-leaflet-fullscreen/styles.css";
 import L from "leaflet";
 import { FullscreenControl } from "react-leaflet-fullscreen";
 
-import UpdateMapZoom from "components/Maps/UpdateMapZoom";
 import UpdateMapCenter from "components/Maps/UpdateMapCenter";
 import MapsAutocomplete from "components/Autocomplete/MapsAutocomplete";
 
 import { getCityPlaces } from "actions";
 
 const TITLESELOPTION = "Incorrect location. ";
-const WRONGLOCATION = "Please select a concrete location.";
 const LOCATIONALREADYADDED = "You have already added this location.";
 
 const greenIcon = L.icon({
@@ -36,25 +34,38 @@ const blueIcon = L.icon({
 const TOKEN = process.env.REACT_APP_MAPS_API_KEY;
 const MAP_STYLE = process.env.REACT_APP_MAPS_STYLE;
 const DEFAULT_ZOOM = 14;
-const DEFAULT_CENTER = [45.54558, 126.95191];
+const DEFAULT_CENTER = [15.6594, 43.94385];
 
-function MapWithSearch({ selectedCity, updatePlaces, noPlaces, setNoPlaces }) {
+function MapWithSearch({
+  selectedCity,
+  updateFormPlaces,
+  noPlaces,
+  setNoPlaces
+}) {
   const [configAlert, setConfigAlert] = useState(null);
   const [selectedPlace, setSelectedPlace] = useState(null);
-  const [zoom, setZoom] = useState(DEFAULT_ZOOM);
+  const [currentMapCenter, setCurrentMapCenter] = useState(
+    selectedCity
+      ? [selectedCity.coordinates.latitude, selectedCity.coordinates.longitude]
+      : DEFAULT_CENTER
+  );
   const [currPlaces, setCurrPlaces] = useState([]);
-  const [places, setPlaces] = useState([]);
+  const [placesInDB, setPlacesInDB] = useState([]);
 
   const selectedPlaceMarker = useRef(null);
-  const markersAlreadyInDB = useRef({});
+  const markersInDB = useRef({});
 
   useEffect(() => {
     setCurrPlaces([]);
     setSelectedPlace(null);
     if (selectedCity) {
-      getCityPlaces(selectedCity.city_id).then((places) => {
-        if (places) setPlaces(places);
+      getCityPlaces(selectedCity.city_id).then((placesInDB) => {
+        if (placesInDB) setPlacesInDB(placesInDB);
       });
+      setCurrentMapCenter([
+        selectedCity.coordinates.latitude,
+        selectedCity.coordinates.longitude
+      ]);
     }
   }, [selectedCity]);
 
@@ -70,14 +81,15 @@ function MapWithSearch({ selectedCity, updatePlaces, noPlaces, setNoPlaces }) {
   const addPlace = (recomendation) => {
     const newCurrPlaces = [...currPlaces, recomendation];
     setCurrPlaces(newCurrPlaces);
-    updatePlaces(newCurrPlaces);
-    selectedPlaceMarker.current.closePopup();
+    updateFormPlaces(newCurrPlaces);
+    selectedPlaceMarker.current?.closePopup();
     closeMarkersInDB();
+    setCurrentMapCenter(null);
   };
 
   const closeMarkersInDB = () => {
-    if (markersAlreadyInDB) {
-      Object.values(markersAlreadyInDB.current).forEach((marker) =>
+    if (markersInDB.current) {
+      Object.values(markersInDB.current).forEach((marker) =>
         marker.closePopup()
       );
     }
@@ -87,7 +99,7 @@ function MapWithSearch({ selectedCity, updatePlaces, noPlaces, setNoPlaces }) {
     currPlaces.some((recomendation) => recomendation.placeId === placeId);
 
   const isAlreadyInDB = (place) =>
-    places.some((recom) => recom.placeId === place.placeId);
+    placesInDB.some((recom) => recom.placeId === place.placeId);
 
   const recsNotInDB = () => currPlaces.filter((recom) => !isAlreadyInDB(recom));
 
@@ -95,15 +107,6 @@ function MapWithSearch({ selectedCity, updatePlaces, noPlaces, setNoPlaces }) {
     const placeCountry2Code = placeInfo.address_components.find((component) =>
       component.types.includes("country")
     ).short_name;
-
-    if (selectedCity.country_2_code !== placeCountry2Code) {
-      setConfigAlert({
-        title: TITLESELOPTION,
-        text: WRONGLOCATION,
-        color: "error"
-      });
-      return;
-    }
 
     const coordinates = {
       latitude: placeInfo.geometry.location.lat(),
@@ -114,10 +117,10 @@ function MapWithSearch({ selectedCity, updatePlaces, noPlaces, setNoPlaces }) {
     ).long_name;
     const administrativeLevel1 = placeInfo.address_components.find(
       (component) => component.types.includes("administrative_area_level_1")
-    ).long_name;
+    )?.long_name;
     const administrativeLevel2 = placeInfo.address_components.find(
       (component) => component.types.includes("administrative_area_level_2")
-    ).long_name;
+    )?.long_name;
     const placeName = placeInfo.name;
     const placeFullAddress = placeInfo.formatted_address;
     const placeCategories = placeInfo.types;
@@ -126,8 +129,7 @@ function MapWithSearch({ selectedCity, updatePlaces, noPlaces, setNoPlaces }) {
     if (isAlreadyAdded(placeId)) {
       setConfigAlert({
         title: TITLESELOPTION,
-        text: LOCATIONALREADYADDED,
-        color: "error"
+        text: LOCATIONALREADYADDED
       });
       return;
     }
@@ -138,33 +140,25 @@ function MapWithSearch({ selectedCity, updatePlaces, noPlaces, setNoPlaces }) {
       countryName,
       country2Code: placeCountry2Code,
       placeId,
-      adminLevels: {
-        administrativeLevel1,
-        administrativeLevel2
-      },
+      adminLevels: {},
       fullAddress: placeFullAddress,
       categories: placeCategories
     };
 
+    if (administrativeLevel1)
+      selectedPlace.adminLevels.administrativeLevel1 = administrativeLevel1;
+    if (administrativeLevel2)
+      selectedPlace.adminLevels.administrativeLevel2 = administrativeLevel2;
+
     if (isAlreadyInDB(selectedPlace)) {
-      const markerInMap = markersAlreadyInDB.current[placeName];
+      const markerInMap = markersInDB.current[placeName];
       if (markerInMap) markerInMap.openPopup();
       return;
     }
 
     setSelectedPlace(selectedPlace);
+    setCurrentMapCenter([coordinates.latitude, coordinates.longitude]);
   };
-
-  let currentMapCenter =
-    (selectedPlace && [
-      selectedPlace.coordinates.latitude,
-      selectedPlace.coordinates.longitude
-    ]) ||
-    (selectedCity && [
-      selectedCity.coordinates.latitude,
-      selectedCity.coordinates.longitude
-    ]) ||
-    DEFAULT_CENTER;
 
   return (
     <>
@@ -175,7 +169,6 @@ function MapWithSearch({ selectedCity, updatePlaces, noPlaces, setNoPlaces }) {
         scrollWheelZoom={false}
       >
         <UpdateMapCenter center={currentMapCenter} />
-        <UpdateMapZoom newZoom={zoom} currPlaces={currPlaces} />
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url={`${MAP_STYLE}${TOKEN}`}
@@ -186,7 +179,10 @@ function MapWithSearch({ selectedCity, updatePlaces, noPlaces, setNoPlaces }) {
             ref={setSelectedPlaceMarker}
             key="selectedPlaceMarker"
             draggable={false}
-            position={currentMapCenter}
+            position={[
+              selectedPlace.coordinates.latitude,
+              selectedPlace.coordinates.longitude
+            ]}
             icon={greenIcon}
           >
             <Popup>
@@ -221,7 +217,7 @@ function MapWithSearch({ selectedCity, updatePlaces, noPlaces, setNoPlaces }) {
             icon={blueIcon}
           />
         ))}
-        {places.map((recomendation) => (
+        {placesInDB.map((recomendation) => (
           <Marker
             key={recomendation.name}
             draggable={false}
@@ -230,7 +226,7 @@ function MapWithSearch({ selectedCity, updatePlaces, noPlaces, setNoPlaces }) {
               recomendation.coordinates.longitude
             ]}
             ref={(el) => {
-              markersAlreadyInDB.current[recomendation.name] = el;
+              markersInDB.current[recomendation.name] = el;
             }}
           >
             <Popup>
@@ -241,7 +237,7 @@ function MapWithSearch({ selectedCity, updatePlaces, noPlaces, setNoPlaces }) {
                   {recomendation.name}
                 </Typography>
                 <Typography style={{ marginTop: 5, marginBottom: 5 }}>
-                  Num of recomendations: {recomendation.numOfPlaces}
+                  Num of recomendations: {recomendation.numRec}
                 </Typography>
                 {!isAlreadyAdded(recomendation.placeId) && (
                   <Button
@@ -264,44 +260,34 @@ function MapWithSearch({ selectedCity, updatePlaces, noPlaces, setNoPlaces }) {
       <Box sx={{ my: 1 }}>
         <MapsAutocomplete onSelectedPlace={handleRetrieve} />
       </Box>
-      <Box sx={{ minHeight: "70px", marginTop: "5px" }}>
-        {configAlert && (
-          <Alert
-            severity={configAlert.color}
-            action={
-              <IconButton
-                aria-label="close"
-                color="inherit"
-                size="small"
-                onClick={() => setConfigAlert(null)}
-              >
-                <CloseIcon fontSize="inherit" />
-              </IconButton>
-            }
-          >
-            <AlertTitle>
-              {configAlert.title} {configAlert.text}
-            </AlertTitle>
-          </Alert>
-        )}
-        {noPlaces && (
-          <Alert
-            severity="error"
-            action={
-              <IconButton
-                aria-label="close"
-                color="inherit"
-                size="small"
-                onClick={() => setNoPlaces(false)}
-              >
-                <CloseIcon fontSize="inherit" />
-              </IconButton>
-            }
-          >
-            <AlertTitle>Set at least one place recommendation</AlertTitle>
-          </Alert>
-        )}
-      </Box>
+      <Snackbar
+        open={configAlert ? true : false}
+        autoHideDuration={5000}
+        onClose={() => setConfigAlert(null)}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      >
+        <Alert
+          onClose={() => setConfigAlert(null)}
+          severity="error"
+          sx={{ width: "100%" }}
+        >
+          {configAlert?.title} {configAlert?.text}
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        open={noPlaces}
+        autoHideDuration={5000}
+        onClose={() => setNoPlaces(false)}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      >
+        <Alert
+          onClose={() => setNoPlaces(false)}
+          severity="error"
+          sx={{ width: "100%" }}
+        >
+          Set at least one place recommendation
+        </Alert>
+      </Snackbar>
     </>
   );
 }
