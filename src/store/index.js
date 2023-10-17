@@ -17,7 +17,7 @@ const initStore = () => {
   const store = createStore(
     serviceApp,
     loadState(),
-    composeEnhancers(applyMiddleware(...middlewares)),
+    composeEnhancers(applyMiddleware(...middlewares))
   );
 
   return store;

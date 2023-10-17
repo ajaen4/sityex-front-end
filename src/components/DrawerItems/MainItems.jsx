@@ -6,25 +6,22 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import GradingIcon from "@mui/icons-material/Grading";
-import MapIcon from "@mui/icons-material/Map";
-import SearchIcon from "@mui/icons-material/Search";
+import GradingIcon from "@mui/icons-material/GradingOutlined";
+import MapIcon from "@mui/icons-material/MapOutlined";
+import SearchIcon from "@mui/icons-material/SearchOutlined";
 
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
 import * as ROUTES_PATHS from "routes/paths";
 
-const MainItems = ({ setIsOpenDrawer }) => {
+const MainItems = () => {
   const navigate = useNavigate();
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const itemSelected = (event) => {
     const path = event.currentTarget.getAttribute("data-path");
     navigate(path);
-
-    if (isSmallScreen) setIsOpenDrawer(false);
   };
 
   return (
@@ -33,7 +30,7 @@ const MainItems = ({ setIsOpenDrawer }) => {
         <ListItemButton
           sx={{
             minHeight: 48,
-            px: 2.5,
+            px: 2.5
           }}
           data-path={ROUTES_PATHS.SEARCH}
           onClick={itemSelected}
@@ -42,7 +39,7 @@ const MainItems = ({ setIsOpenDrawer }) => {
             sx={{
               minWidth: 0,
               mr: 3,
-              justifyContent: "center",
+              justifyContent: "center"
             }}
           >
             <SearchIcon />
@@ -54,7 +51,7 @@ const MainItems = ({ setIsOpenDrawer }) => {
         <ListItemButton
           sx={{
             minHeight: 48,
-            px: 2.5,
+            px: 2.5
           }}
           data-path={ROUTES_PATHS.MAP}
           onClick={itemSelected}
@@ -63,7 +60,7 @@ const MainItems = ({ setIsOpenDrawer }) => {
             sx={{
               minWidth: 0,
               mr: 3,
-              justifyContent: "center",
+              justifyContent: "center"
             }}
           >
             <MapIcon />
@@ -75,7 +72,7 @@ const MainItems = ({ setIsOpenDrawer }) => {
         <ListItemButton
           sx={{
             minHeight: 48,
-            px: 2.5,
+            px: 2.5
           }}
           onClick={itemSelected}
           data-path={ROUTES_PATHS.NEW_REVIEW}
@@ -84,7 +81,7 @@ const MainItems = ({ setIsOpenDrawer }) => {
             sx={{
               minWidth: 0,
               mr: 3,
-              justifyContent: "center",
+              justifyContent: "center"
             }}
           >
             <GradingIcon />

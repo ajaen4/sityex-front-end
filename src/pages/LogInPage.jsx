@@ -15,81 +15,61 @@ const LogInPage = () => {
   useEffect(() => {
     logAnalyticsEvent("page_view", {
       page_title: "Log In Page",
-      page_location: window.location.href,
+      page_location: window.location.href
     });
   }, []);
 
   return (
-    <Box sx={{ backgroundColor: theme.palette.primary.light }}>
-      <Container
+    <Container
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
+      }}
+    >
+      <Card
         sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          minHeight: "100vh",
+          maxWidth: { xs: 400, lg: 475 },
+          margin: { xs: 2.5, md: 3 },
+          border: "1px solid",
+          borderColor: theme.palette.primary[200] + 25,
+          ":hover": {
+            boxShadow: "inherit"
+          },
+          p: { xs: 2, sm: 3, xl: 5 }
         }}
       >
-        <Card
-          sx={{
-            maxWidth: { xs: 400, lg: 475 },
-            margin: { xs: 2.5, md: 3 },
-            border: "1px solid",
-            borderColor: theme.palette.primary[200] + 25,
-            ":hover": {
-              boxShadow: "inherit",
-            },
-            p: { xs: 2, sm: 3, xl: 5 },
-          }}
-        >
-          <Grid
-            container
-            spacing={2}
-            alignItems="center"
-            justifyContent="center"
-          >
-            <Grid
-              item
-              xs={12}
-              sx={{ display: "flex", justifyContent: "center" }}
+        <Grid container spacing={2} alignItems="center" justifyContent="center">
+          <Grid item xs={12} sx={{ display: "flex", justifyContent: "center" }}>
+            <Box
+              sx={{
+                width: 160,
+                justifyContent: "center",
+                alignItems: "center",
+                display: "flex"
+              }}
             >
-              <Box
-                sx={{
-                  width: 160,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  display: "flex",
-                }}
-              >
-                <img src={Logo} alt="SityEx" width={150} height={35} />
-              </Box>
-            </Grid>
-            <Grid
-              item
-              xs={12}
-              sx={{ display: "flex", justifyContent: "center" }}
-            >
-              <Stack alignItems="center" justifyContent="center" spacing={1}>
-                <Typography
-                  color={theme.palette.secondary.main}
-                  gutterBottom
-                  variant="h3"
-                >
-                  Hi, Welcome Back
-                </Typography>
-                <Typography
-                  variant="caption"
-                  fontSize="16px"
-                  textAlign="center"
-                >
-                  Enter your credentials to continue
-                </Typography>
-              </Stack>
-            </Grid>
-            <LogInForm />
+              <img src={Logo} alt="SityEx" width={150} height={35} />
+            </Box>
           </Grid>
-        </Card>
-      </Container>
-    </Box>
+          <Grid item xs={12} sx={{ display: "flex", justifyContent: "center" }}>
+            <Stack alignItems="center" justifyContent="center" spacing={1}>
+              <Typography
+                color={theme.palette.secondary.main}
+                gutterBottom
+                variant="h3"
+              >
+                Hi, Welcome Back
+              </Typography>
+              <Typography variant="caption" fontSize="16px" textAlign="center">
+                Enter your credentials to continue
+              </Typography>
+            </Stack>
+          </Grid>
+          <LogInForm />
+        </Grid>
+      </Card>
+    </Container>
   );
 };
 

@@ -14,7 +14,7 @@ import {
   onAuthStateChanged,
   storeAuthUser,
   fetchCitiesIndex,
-  checkUserConnection,
+  checkUserConnection
 } from "actions";
 
 import { saveState } from "localStorage/localStorage";
@@ -34,7 +34,7 @@ class App extends Component {
 
     this.state = {
       auth: null,
-      componentMounted: false,
+      componentMounted: false
     };
   }
 

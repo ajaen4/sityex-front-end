@@ -6,35 +6,22 @@ import FormControl from "@mui/material/FormControl";
 import Container from "@mui/material/Container";
 import FormHelperText from "@mui/material/FormHelperText";
 import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
 import { Controller } from "react-hook-form";
 
 const Opinion5 = ({ fieldName, labelName, errorName, control, errors }) => {
-  const style = { marginRight: "0.5em", marginLeft: "0px", padding: "0px" };
+  const style = { padding: "0px" };
 
   return (
-    <Container
-      style={{
-        marginTop: "30px",
-        marginRight: "0px",
-        marginLeft: "0px",
-        paddingLeft: "0px",
-        paddingRight: "0px",
-      }}
-    >
-      <div>
-        <h5
-          style={{
-            marginBottom: "0px",
-          }}
-        >
-          {labelName}
-        </h5>
-      </div>
-      <Grid
-        container
-        justifyContent="center"
-        style={{ marginLeft: "0px", marginRight: "0px" }}
+    <Container sx={{ my: 1 }}>
+      <Typography
+        variant="h4"
+        color="textSecondary"
+        style={{ fontWeight: "bold" }}
       >
+        {labelName}
+      </Typography>
+      <Grid container justifyContent="center">
         <FormControl component="fieldset" style={style}>
           <Controller
             name={fieldName}

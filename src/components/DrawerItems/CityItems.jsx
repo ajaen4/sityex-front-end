@@ -8,26 +8,23 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 
-import CityIcon from "@mui/icons-material/LocationCity";
-import GradingIcon from "@mui/icons-material/Grading";
-import PlaceIcon from "@mui/icons-material/Place";
+import CityIcon from "@mui/icons-material/LocationCityOutlined";
+import GradingIcon from "@mui/icons-material/GradingOutlined";
+import PlaceIcon from "@mui/icons-material/PlaceOutlined";
 
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
 import * as ROUTES_PATHS from "routes/paths";
 
-const CityItems = ({ setIsOpenDrawer }) => {
+const CityItems = () => {
   const navigate = useNavigate();
   const selectedCity = useSelector((state) => state.selectedCity.data);
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const itemSelected = (event) => {
     const path = event.currentTarget.getAttribute("data-path");
     navigate(`destination/${selectedCity.city_id}/${path}`);
-
-    if (isSmallScreen) setIsOpenDrawer(false);
   };
 
   return (
@@ -36,7 +33,7 @@ const CityItems = ({ setIsOpenDrawer }) => {
         <ListItemButton
           sx={{
             minHeight: 48,
-            px: 2.5,
+            px: 2.5
           }}
           onClick={itemSelected}
           data-path={ROUTES_PATHS.CITY_INFO}
@@ -45,7 +42,7 @@ const CityItems = ({ setIsOpenDrawer }) => {
             sx={{
               minWidth: 0,
               mr: 3,
-              justifyContent: "center",
+              justifyContent: "center"
             }}
           >
             <CityIcon />
@@ -57,7 +54,7 @@ const CityItems = ({ setIsOpenDrawer }) => {
         <ListItemButton
           sx={{
             minHeight: 48,
-            px: 2.5,
+            px: 2.5
           }}
           onClick={itemSelected}
           data-path={ROUTES_PATHS.CITY_PLACES}
@@ -66,7 +63,7 @@ const CityItems = ({ setIsOpenDrawer }) => {
             sx={{
               minWidth: 0,
               mr: 3,
-              justifyContent: "center",
+              justifyContent: "center"
             }}
           >
             <PlaceIcon />
@@ -78,7 +75,7 @@ const CityItems = ({ setIsOpenDrawer }) => {
         <ListItemButton
           sx={{
             minHeight: 48,
-            px: 2.5,
+            px: 2.5
           }}
           onClick={itemSelected}
           data-path={ROUTES_PATHS.CITY_REVIEWS}
@@ -87,7 +84,7 @@ const CityItems = ({ setIsOpenDrawer }) => {
             sx={{
               minWidth: 0,
               mr: 3,
-              justifyContent: "center",
+              justifyContent: "center"
             }}
           >
             <GradingIcon />

@@ -7,6 +7,7 @@ $primaryMain: #2196f3;
 $primaryDark: #1e88e5;
 $primary200: #90caf9;
 $primary800: #1565c0;
+$primaryPastel: mix(white, #2196f3, 15%);
 
 // secondary
 $secondaryLight: #ede7f6;
@@ -14,22 +15,37 @@ $secondaryMain: #673ab7;
 $secondaryDark: #5e35b1;
 $secondary200: #b39ddb;
 $secondary800: #4527a0;
+$secondaryPastel: mix(white, $secondaryDark, 15%);
 
 // success Colors
 $successLight: #b9f6ca;
 $success200: #69f0ae;
 $successMain: #00e676;
 $successDark: #00c853;
+$success800: #00b747;
+$successPastel: mix(white, $successDark, 15%);
 
 // error
 $errorLight: #ef9a9a;
 $errorMain: #f44336;
 $errorDark: #c62828;
+$error800: #b02222;
+$errorPastel: mix(white, $errorDark, 15%);
 
 // orange
-$orangeLight: #fbe9e7;
-$orangeMain: #ffab91;
-$orangeDark: #d84315;
+$orangeLight: #ffecb3;
+$orangeMain: #ff9800;
+$orangeDark: #f57c00;
+$orange200: #ffcc80;
+$orange800: #ef6c00;
+$orangePastel: mix(white, $orangeDark, 15%);
+
+$pinkLight: #ffcdd2;
+$pinkMain: #e91e63;
+$pinkDark: #c2185b;
+$pink200: #f48fb1;
+$pink800: #ad1457;
+$pinkPastel: mix(white, $pinkDark, 15%);
 
 // warning
 $warningLight: #fff8e1;
@@ -86,6 +102,7 @@ $darkTextSecondary: #8492c4;
   primary200: $primary200;
   primaryMain: $primaryMain;
   primaryDark: $primaryDark;
+  primaryPastel: $primaryPastel;
   primary800: $primary800;
 
   // secondary
@@ -93,6 +110,7 @@ $darkTextSecondary: #8492c4;
   secondary200: $secondary200;
   secondaryMain: $secondaryMain;
   secondaryDark: $secondaryDark;
+  secondaryPastel: $secondaryPastel;
   secondary800: $secondary800;
 
   // success
@@ -100,16 +118,31 @@ $darkTextSecondary: #8492c4;
   success200: $success200;
   successMain: $successMain;
   successDark: $successDark;
+  successPastel: $successPastel;
+  success800: $success800;
 
   // error
   errorLight: $errorLight;
   errorMain: $errorMain;
   errorDark: $errorDark;
+  errorPastel: $errorPastel;
+  error800: $error800;
 
   // orange
   orangeLight: $orangeLight;
+  orange200: $orange200;
   orangeMain: $orangeMain;
   orangeDark: $orangeDark;
+  orangePastel: $orangePastel;
+  orange800: $orange800;
+
+  // pink
+  pinkLight: $pinkLight;
+  pink200: $pink200;
+  pinkMain: $pinkMain;
+  pinkDark: $pinkDark;
+  pinkPastel: $pinkPastel;
+  pink800: $pink800;
 
   // warning
   warningLight: $warningLight;

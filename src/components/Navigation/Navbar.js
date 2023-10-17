@@ -20,6 +20,7 @@ import { signOutUser } from "actions";
 
 import logo from "assets/img/icons/logo.png";
 
+import * as ROUTES_PATHS from "routes/paths";
 import { pages, settings } from "constants/constants.js";
 
 function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
@@ -36,7 +37,15 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   useEffect(() => {
-    if (!location.pathname.includes("destination")) setIsOpenDrawer(false);
+    if (!location.pathname.includes("destination")) {
+      setIsOpenDrawer(false);
+      return;
+    }
+
+    if (location.pathname.includes("destination") && !isSmallScreen) {
+      setIsOpenDrawer(true);
+      return;
+    }
   }, [pathname]);
 
   const toggleUserMenu = () => {
@@ -49,26 +58,25 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
   };
 
   const handleClickNavMenu = (page) => {
-    if (page === "New review") navigate("new-review");
-    if (page === "Search City") navigate("search");
-    if (page === "Destinations Map") navigate("map");
+    if (page === "New review") navigate(ROUTES_PATHS.NEW_REVIEW);
+    if (page === "Search City") navigate(ROUTES_PATHS.SEARCH);
+    if (page === "Destinations Map") navigate(ROUTES_PATHS.MAP);
   };
 
-  const clickedLogo = () => navigate("/");
+  const clickedLogo = () => navigate(ROUTES_PATHS.ROOT);
 
   return (
     <>
       <AppBar
         sx={{
-          zIndex: theme.zIndex.drawer + 1000,
+          zIndex: theme.zIndex.drawer + 1000
         }}
       >
         <Toolbar style={{ padding: 0, marginLeft: 20, marginRight: 5 }}>
           <IconButton
             sx={{
               display: { xs: "none", md: "flex" },
-              mr: { xs: 1, sm: 2 },
-              marginTop: 1,
+              mr: { xs: 1, sm: 2 }
             }}
             onClick={clickedLogo}
           >
@@ -89,8 +97,9 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
           <IconButton
             sx={{
               display: { xs: "flex", md: "none" },
-              marginTop: 1,
               flexGrow: 1,
+              alignItems: "center",
+              mt: 1
             }}
             onClick={clickedLogo}
           >
@@ -100,7 +109,7 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
             sx={{
               flexGrow: 1,
               display: { xs: "none", md: "flex" },
-              justifyContent: { md: "space-evenly", lg: "center" },
+              justifyContent: { md: "space-evenly", lg: "center" }
             }}
           >
             {isAuthResolved &&
@@ -108,7 +117,12 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
                 <Button
                   key={page}
                   onClick={() => handleClickNavMenu(page)}
-                  sx={{ my: 2, mx: 5, color: "white", display: "block" }}
+                  sx={{
+                    mx: 5,
+                    color: "white",
+                    display: "block",
+                    fontSize: "1.1em"
+                  }}
                 >
                   {page}
                 </Button>
@@ -120,7 +134,11 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
                 <IconButton onClick={toggleUserMenu}>
                   <Avatar
                     alt="Remy Sharp"
-                    src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
+                    src="https://i.pravatar.cc/150"
+                    sx={{
+                      width: { xs: 35, md: 40 },
+                      height: { xs: 35, md: 40 }
+                    }}
                   />
                 </IconButton>
               </Tooltip>
@@ -130,11 +148,11 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
                 anchorEl={userSettingsRef.current}
                 anchorOrigin={{
                   vertical: "top",
-                  horizontal: "right",
+                  horizontal: "right"
                 }}
                 transformOrigin={{
                   vertical: "top",
-                  horizontal: "right",
+                  horizontal: "right"
                 }}
                 keepMounted
                 open={isOpenUserMenu}

@@ -17,32 +17,32 @@ const SearchPage = () => {
   useEffect(() => {
     logAnalyticsEvent("page_view", {
       page_title: "Search Page",
-      page_location: window.location.href,
+      page_location: window.location.href
     });
   }, []);
 
   const onChangeCity = (event, value) => {
-    navigate("/destination/" + value.city_id + "/info");
+    if (value) navigate("/destination/" + value.city_id + "/info");
   };
 
-  if (citiesIndex === null) return <CenteredLoadingSpinner />;
+  if (!citiesIndex) return <CenteredLoadingSpinner />;
 
   return (
     <Box
       style={{
         textAlign: "center",
-        justifyContent: "center",
+        justifyContent: "center"
       }}
     >
       <Grid container spacing={1} sx={{ justifyContent: "center", my: 5 }}>
         <Grid item xs={11} md={5} lg={4}>
-          <Card>
+          <Card elevation={0}>
             <CardContent>
-              <Typography variant="h2" color="textSecondary">
+              <Typography variant="h2" color="textSecondary" sx={{ mb: 3 }}>
                 Introduce a destination
               </Typography>
               <CitiesAutocomplete
-                citiesIndex={citiesIndex !== null ? citiesIndex.cities : []}
+                citiesIndex={citiesIndex ? citiesIndex.cities : null}
                 onChangeCity={onChangeCity}
               />
             </CardContent>

@@ -18,7 +18,7 @@ const StandarModal = ({ title, message }) => {
       </DialogContent>
       <DialogActions>
         <Button onClick={toggle} color="primary">
-          Aceptar
+          Ok
         </Button>
       </DialogActions>
     </Dialog>

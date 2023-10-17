@@ -10,13 +10,13 @@ const WithoutAuthRoutes = {
   children: [
     {
       path: ROUTES_PATHS.LOG_IN,
-      element: <LogInPage />,
+      element: <LogInPage />
     },
     {
       path: ROUTES_PATHS.SIGN_UP,
-      element: <SignUpPage />,
-    },
-  ],
+      element: <SignUpPage />
+    }
+  ]
 };
 
 export default WithoutAuthRoutes;

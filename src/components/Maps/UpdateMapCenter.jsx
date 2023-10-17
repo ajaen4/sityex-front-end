@@ -2,7 +2,7 @@ import { useMap } from "react-leaflet";
 
 function UpdateMapCenter({ center }) {
   const map = useMap();
-  map.setView(center);
+  if (center) map.setView(center);
   return null;
 }
 

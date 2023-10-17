@@ -3,14 +3,16 @@ import {
   doc,
   getDocs,
   collection,
-  runTransaction,
-  serverTimestamp,
+  writeBatch,
+  increment
 } from "firebase/firestore";
+
+import { getCityPlaces } from "api/places.js";
 
 const citiesCollection = collection(db, "cities");
 
-export const getReviews = (city) => {
-  const query = collection(db, `cities/${city}/reviews`);
+export const getReviews = (city_id) => {
+  const query = collection(db, `cities/${city_id}/reviews`);
   return getDocs(query)
     .then((querySnapshot) => {
       return querySnapshot.docs.map((doc) => doc.data());
@@ -21,53 +23,39 @@ export const getReviews = (city) => {
     });
 };
 
-const updateOriginalRecomendations = (
-  originalRecomendations,
-  newRecomendations,
-) => {
-  let consolidatedRecomendations = [...originalRecomendations];
-
-  newRecomendations.forEach((newRecomendation) => {
-    const foundRecomendation = consolidatedRecomendations.find(
-      (orgRecomendation) => orgRecomendation.name === newRecomendation.name,
-    );
-
-    if (foundRecomendation) {
-      foundRecomendation.numOfRecomendations++;
-    } else {
-      newRecomendation.numOfRecomendations = 1;
-      consolidatedRecomendations.push(newRecomendation);
-    }
-  });
-
-  return consolidatedRecomendations;
-};
-
-export const addReview = (cityName, review, recomendations) => {
-  const cityDocRef = doc(citiesCollection, cityName);
+export const addReview = async (city_id, review, recomendations) => {
+  const cityDocRef = doc(citiesCollection, city_id);
   const reviewsCollectionRef = collection(cityDocRef, "reviews");
+  const placesCollectionRef = collection(cityDocRef, "places");
 
-  return runTransaction(db, async (t) => {
-    const cityDoc = await t.get(cityDocRef);
-    const originalRecomendations = cityDoc.data().recomendations || [];
+  const orgPlaces = await getCityPlaces(city_id);
+  const orgPlacesIds = orgPlaces.map((place) => place.placeId);
 
-    const updatedRecomendations = updateOriginalRecomendations(
-      originalRecomendations,
-      recomendations,
-    );
+  const newPlaces = recomendations.filter(
+    (place) => !orgPlacesIds.includes(place.placeId)
+  );
 
-    const setObject = {
-      recomendations: updatedRecomendations,
-    };
-    t.set(cityDocRef, setObject, { merge: true });
+  const orgPlacesInRecs = recomendations.filter((place) =>
+    orgPlacesIds.includes(place.placeId)
+  );
 
-    const newreviewDocRef = doc(reviewsCollectionRef);
-    const id = newreviewDocRef.id;
-    const expTimeId = {
-      ...review,
-      timeStamp: serverTimestamp(),
-      id: id,
-    };
-    t.set(newreviewDocRef, expTimeId);
-  });
+  const batch = writeBatch(db);
+
+  for (const place of newPlaces) {
+    const placeDocRef = doc(placesCollectionRef, place.placeId);
+    batch.set(placeDocRef, {
+      ...place,
+      numRec: 1
+    });
+  }
+
+  for (const place of orgPlacesInRecs) {
+    const placeDocRef = doc(placesCollectionRef, place.placeId);
+    batch.update(placeDocRef, { numRec: increment(1) });
+  }
+
+  const newReviewDocRef = doc(reviewsCollectionRef);
+  batch.set(newReviewDocRef, review);
+
+  return await batch.commit();
 };

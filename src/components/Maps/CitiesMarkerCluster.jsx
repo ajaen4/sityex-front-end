@@ -9,13 +9,13 @@ function CitiesMarkerCluster({ citiesIndex }) {
   const map = useMap();
 
   useEffect(() => {
-    const markers = new MarkerClusterGroup();
+    const markers = new MarkerClusterGroup({ showCoverageOnHover: false });
 
     if (citiesIndex.length !== 0) {
       citiesIndex.forEach((city) => {
         const marker = L.marker([
           city.coordinates.latitude,
-          city.coordinates.longitude,
+          city.coordinates.longitude
         ]);
 
         const popupContent = `<div style="text-align:center;">

@@ -4,38 +4,65 @@ import { useSelector } from "react-redux";
 
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import CityIcon from "@mui/icons-material/LocationCity";
-import GradingIcon from "@mui/icons-material/Grading";
-import PlaceIcon from "@mui/icons-material/Place";
+import CityIcon from "@mui/icons-material/LocationCityOutlined";
+import GradingIcon from "@mui/icons-material/GradingOutlined";
+import PlaceIcon from "@mui/icons-material/PlaceOutlined";
+import Typography from "@mui/material/Typography";
+import { useTheme } from "@mui/material/styles";
 
 import * as ROUTES_PATHS from "routes/paths";
 
 export default function CityTabs() {
   const [value, setValue] = React.useState(0);
-  const navigate = useNavigate();
   const selectedCity = useSelector((state) => state.selectedCity.data);
+
+  const theme = useTheme();
+  const navigate = useNavigate();
 
   const itemSelected = (event, value) => {
     setValue(value);
     const path = event.currentTarget.getAttribute("data-path");
-    navigate(`destination/${selectedCity.city_id}/${path}`);
+    navigate(`/destination/${selectedCity.city_id}/${path}`);
   };
 
   return (
-    <Tabs value={value} onChange={itemSelected} aria-label="city-navigations">
+    <Tabs
+      value={value}
+      onChange={itemSelected}
+      aria-label="city-navigations"
+      sx={{
+        "& .MuiTabs-indicator": { backgroundColor: theme.palette.grey[100] },
+        "& .Mui-selected": { color: theme.palette.grey[100] }
+      }}
+    >
       <Tab
-        icon={<CityIcon />}
+        icon={<CityIcon sx={{ color: theme.palette.grey[100] }} />}
         aria-label="city-info"
+        label={
+          <Typography variant="caption" color={theme.palette.grey[100]}>
+            Info
+          </Typography>
+        }
         data-path={ROUTES_PATHS.CITY_INFO}
       />
       <Tab
-        icon={<PlaceIcon />}
+        icon={<PlaceIcon sx={{ color: theme.palette.grey[100] }} />}
         aria-label="places"
+        label={
+          <Typography variant="caption" color={theme.palette.grey[100]}>
+            Places
+          </Typography>
+        }
         data-path={ROUTES_PATHS.CITY_PLACES}
       />
       <Tab
-        icon={<GradingIcon />}
+        icon={<GradingIcon sx={{ color: theme.palette.grey[100] }} />}
         aria-label="reviews"
+        label={
+          <Typography variant="caption" color={theme.palette.grey[100]}>
+            Reviews
+          </Typography>
+        }
         data-path={ROUTES_PATHS.CITY_REVIEWS}
       />
     </Tabs>

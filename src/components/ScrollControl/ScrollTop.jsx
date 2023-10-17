@@ -10,7 +10,7 @@ const ScrollTop = ({ children }) => {
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: "smooth",
+      behavior: "smooth"
     });
   }, [pathname]);
 
@@ -18,7 +18,7 @@ const ScrollTop = ({ children }) => {
 };
 
 ScrollTop.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.node
 };
 
 export default ScrollTop;

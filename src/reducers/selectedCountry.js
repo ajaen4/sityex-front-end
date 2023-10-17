@@ -1,14 +1,14 @@
 import { combineReducers } from "redux";
 
-import { FETCH_CITIES_INDEX_SUCCESS, REQUESTING_CITIES_INDEX } from "types";
+import { FETCH_COUNTRY_SUCCESS, REQUESTING_COUNTRY } from "types";
 
 const INITIAL_STATE = null;
 
-const initCitiesIndex = () => {
+const initSelectedCountry = () => {
   const data = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-      case FETCH_CITIES_INDEX_SUCCESS:
-        return action.citiesIndex;
+      case FETCH_COUNTRY_SUCCESS:
+        return action.countryData;
       default:
         return state;
     }
@@ -16,9 +16,9 @@ const initCitiesIndex = () => {
 
   const isFetching = (state = false, action) => {
     switch (action.type) {
-      case REQUESTING_CITIES_INDEX:
+      case REQUESTING_COUNTRY:
         return true;
-      case FETCH_CITIES_INDEX_SUCCESS:
+      case FETCH_COUNTRY_SUCCESS:
         return false;
       default:
         return state;
@@ -31,6 +31,6 @@ const initCitiesIndex = () => {
   });
 };
 
-const citiesIndex = initCitiesIndex();
+const selectedCountry = initSelectedCountry();
 
-export default citiesIndex;
+export default selectedCountry;

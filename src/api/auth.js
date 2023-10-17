@@ -7,7 +7,7 @@ import {
   sendPasswordResetEmail,
   updatePassword,
   signInWithPopup,
-  GoogleAuthProvider,
+  GoogleAuthProvider
 } from "firebase/auth";
 
 import { doc, setDoc, getDoc } from "firebase/firestore";
@@ -32,7 +32,7 @@ export const logInWithGoogle = async () => {
     await saveUser({
       uid: user.uid,
       email: user.email,
-      userName: user.displayName,
+      userName: user.displayName
     });
     return user;
   } catch (error) {
@@ -48,7 +48,7 @@ export const createUser = async ({ email, password, userName }) => {
     const { user } = await createUserWithEmailAndPassword(
       auth,
       email,
-      password,
+      password
     );
     await saveUser({ uid: user.uid, email, userName });
     return user;
@@ -62,7 +62,7 @@ export const saveUser = async (userData) => {
   await setDoc(userRef, {
     userName: userData.userName,
     email: userData.email,
-    id: userData.uid,
+    id: userData.uid
   });
 };
 
