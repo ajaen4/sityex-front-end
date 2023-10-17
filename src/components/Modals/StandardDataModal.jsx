@@ -24,11 +24,7 @@ const DataModal = ({ openedModal, setOpenedModal, data }) => {
 
   const titleCategories = {
     Employment: ["salaries and financing"],
-    "Month costs": [
-      "markets",
-      "utilities (monthly)",
-      "rent per month",
-    ],
+    "Month costs": ["markets", "utilities (monthly)", "rent per month"],
     Social: ["restaurants", "sports and leisure"]
   };
 

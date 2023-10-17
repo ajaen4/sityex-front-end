@@ -10,7 +10,10 @@ import EmptyList from "components/EmptyFill/EmptyList.jsx";
 
 function ScrollReviews({ reviews, isFetching }) {
   const renderItem = (data, index) => (
-    <ListItem key={index} sx={{ justifyContent: "center" }}>
+    <ListItem
+      key={index}
+      sx={{ justifyContent: "center", marginY: 0.5, py: 0 }}
+    >
       <Review data={data} />
     </ListItem>
   );

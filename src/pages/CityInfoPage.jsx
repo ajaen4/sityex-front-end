@@ -6,12 +6,6 @@ import { withAuth } from "session";
 import { logAnalyticsEvent } from "api";
 
 import { Box, Grid } from "@mui/material";
-import GroupsIcon from "@mui/icons-material/GroupsOutlined";
-import WbSunnyIcon from "@mui/icons-material/WbSunnyOutlined";
-import WorkIcon from "@mui/icons-material/WorkOutlined";
-import MoneyIcon from "@mui/icons-material/AttachMoneyOutlined";
-import MoneyOffIcon from "@mui/icons-material/MoneyOffOutlined";
-import LiquorIcon from "@mui/icons-material/LiquorOutlined";
 
 import SingleDataCard from "components/Cards/SingleDataCard";
 import StandardDataModal from "components/Modals/StandardDataModal";
@@ -86,72 +80,69 @@ const CityInfoPage = () => {
   return (
     <Box sx={{ overflowY: "scroll", my: 0.5, mx: 1.5 }}>
       <Grid container spacing={1} justifyContent="center">
-        <Grid item xs={11} md={4}>
+        <Grid item xs={12} md={4}>
           <SingleDataCard
             title="Demographics"
             text="Population: "
             number={selectedCity.population}
-            icon={<GroupsIcon />}
+            icon="🧑‍🤝‍🧑"
             onClickData={onClickData}
-            backgroundColor={theme.palette.orange}
+            backgroundColor={theme.palette.primary}
           />
         </Grid>
-        <Grid item xs={11} md={4}>
+        <Grid item xs={12} md={4}>
           <SingleDataCard
             title="Employment"
             text="Avg monthly net salary: "
             units="$"
-            number={extractPrice(
-              prices,
-              "salaries_and_financing_average_monthly_net_salary"
-            )}
-            icon={<WorkIcon />}
+            number={"100"}
+            icon="💼"
             onClickData={onClickData}
-            backgroundColor={theme.palette.secondary}
+            backgroundColor={theme.palette.primary}
           />
         </Grid>
-        <Grid item xs={11} md={4}>
+        <Grid item xs={12} md={4}>
           <SingleDataCard
             title="Weather"
             text="Mean temperature: "
             number="20"
             units="Cº"
-            icon={<WbSunnyIcon />}
+            icon="☀️"
             onClickData={onClickData}
             backgroundColor={theme.palette.primary}
           />
         </Grid>
-        <Grid item xs={11} md={4}>
+        <Grid item xs={12} md={4}>
           <SingleDataCard
             title="Month costs"
             text="Shopping cart: "
             number="450"
             units="$"
-            icon={<MoneyIcon />}
+            icon="💸"
             onClickData={onClickData}
-            backgroundColor={theme.palette.success}
+            backgroundColor={theme.palette.primary}
           />
         </Grid>
-        <Grid item xs={11} md={4}>
+        <Grid item xs={12} md={4}>
           <SingleDataCard
             title="Taxes & Indicators"
             text="Income tax: "
             number="39.4"
             units="%"
-            icon={<MoneyOffIcon />}
+            icon="🧾"
             onClickData={onClickData}
-            backgroundColor={theme.palette.error}
+            backgroundColor={theme.palette.primary}
           />
         </Grid>
-        <Grid item xs={11} md={4}>
+        <Grid item xs={12} md={4}>
           <SingleDataCard
             title="Social"
             text="Local beer: "
             number={extractPrice(prices, "restaurants_domestic_beer")}
             units="$"
-            icon={<LiquorIcon />}
+            icon="🍹"
             onClickData={onClickData}
-            backgroundColor={theme.palette.pink}
+            backgroundColor={theme.palette.primary}
           />
         </Grid>
       </Grid>

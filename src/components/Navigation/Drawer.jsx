@@ -4,12 +4,11 @@ import { useSelector } from "react-redux";
 import Box from "@mui/material/Box";
 import { Drawer as MUIDrawer } from "@mui/material";
 import Divider from "@mui/material/Divider";
-import Toolbar from "@mui/material/Toolbar";
 
 import MainItems from "components/DrawerItems/MainItems";
 import CityItems from "components/DrawerItems/CityItems";
 
-import { drawerWidth } from "constants/constants";
+import { drawerWidth, minNavbarHeights } from "constants/constants";
 
 export default function Drawer(props) {
   const { window } = props;
@@ -44,7 +43,7 @@ export default function Drawer(props) {
           "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth }
         }}
       >
-        <Toolbar />
+        <Box sx={{ minHeight: minNavbarHeights }} />
         <Divider sx={{ mt: 3 }}>Navigation</Divider>
         <MainItems />
       </MUIDrawer>
@@ -59,7 +58,7 @@ export default function Drawer(props) {
           width: props.isOpenDrawer ? drawerWidth : 0
         }}
       >
-        <Toolbar />
+        <Box sx={{ minHeight: minNavbarHeights }} />
         <Divider sx={{ mt: 3 }}>{selectedCity?.name}</Divider>
         <CityItems />
       </MUIDrawer>
