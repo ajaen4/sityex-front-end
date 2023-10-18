@@ -7,7 +7,8 @@ import {
   sendPasswordResetEmail,
   updatePassword,
   signInWithPopup,
-  GoogleAuthProvider
+  GoogleAuthProvider,
+  sendEmailVerification
 } from "firebase/auth";
 
 import { doc, setDoc, getDoc } from "firebase/firestore";
@@ -20,6 +21,9 @@ const provider = new GoogleAuthProvider();
 export const logIn = async ({ email, password }) => {
   try {
     const { user } = await signInWithEmailAndPassword(auth, email, password);
+    if (!user.emailVerified) {
+      throw new Error("Please verify your email before logging in.");
+    }
     return user;
   } catch (error) {
     throw new Error(error.message);
@@ -50,6 +54,7 @@ export const createUser = async ({ email, password, userName }) => {
       email,
       password
     );
+    await sendEmailVerification(user);
     await saveUser({ uid: user.uid, email, userName });
     return user;
   } catch (error) {

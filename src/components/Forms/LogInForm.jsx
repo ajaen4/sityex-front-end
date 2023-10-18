@@ -40,14 +40,15 @@ const LogInForm = () => {
 
   const signInUser = (data) => {
     setIsFetching(true);
-    dispatch(logInUser(data)).then(
-      (user) => {},
-      (errorMessage) => {
+    dispatch(logInUser(data))
+      .then((user) => {
+        console.log(user);
+      })
+      .catch((errorMessage) => {
         setErrorMessage(errorMessage);
         setIsFetching(false);
         reset();
-      }
-    );
+      });
   };
 
   const googleHandler = async () => {
@@ -146,6 +147,7 @@ const LogInForm = () => {
                   label="Email Address"
                   placeholder="Email..."
                   type="email"
+                  autoComplete="email"
                   autoFocus
                   InputProps={{
                     style: { fontSize: 16 }
@@ -170,6 +172,7 @@ const LogInForm = () => {
                   label="Password"
                   type="password"
                   placeholder="Password..."
+                  autoComplete="current-password"
                   InputProps={{
                     style: { fontSize: 16 }
                   }}
