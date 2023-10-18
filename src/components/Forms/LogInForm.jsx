@@ -13,30 +13,32 @@ import {
   TextField,
   FormHelperText,
   FormControl,
-  Link
+  Link,
+  InputAdornment,
+  IconButton
 } from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
-import { logInUser, logInUserWithGoogle } from "actions";
+import { logInUser, logInUserWithGoogle, logInUserWithFacebook } from "actions";
 
 import StandarModal from "components/Modals/StandarModal";
-import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 
 import Google from "assets/img/icons/social-google.svg";
+import Facebook from "assets/img/icons/facebook.png";
 
 import * as ROUTES_PATHS from "routes/paths";
 
-const LogInForm = () => {
+const LogInForm = ({ setIsFetching }) => {
   const dispatch = useDispatch();
   const theme = useTheme();
-  const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset
   } = useForm();
-  const [isFetching, setIsFetching] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
 
   const signInUser = (data) => {
     setIsFetching(true);
@@ -51,16 +53,16 @@ const LogInForm = () => {
       });
   };
 
-  const googleHandler = async () => {
-    dispatch(logInUserWithGoogle()).then(
-      (user) => {},
-      (errorMessage) => {
-        setErrorMessage(errorMessage);
-      }
-    );
+  const providerHandler = (providerAction) => {
+    return async () => {
+      dispatch(providerAction()).then(
+        (user) => {},
+        (errorMessage) => {
+          setErrorMessage(errorMessage);
+        }
+      );
+    };
   };
-
-  if (isFetching) return <CenteredLoadingSpinner />;
 
   return (
     <>
@@ -70,7 +72,7 @@ const LogInForm = () => {
             <Button
               disableElevation
               fullWidth
-              onClick={googleHandler}
+              onClick={providerHandler(logInUserWithGoogle)}
               size="large"
               variant="outlined"
               sx={{
@@ -79,16 +81,39 @@ const LogInForm = () => {
                 borderColor: theme.palette.grey[100]
               }}
             >
-              <Box sx={{ mr: { xs: 1, sm: 2, width: 20 } }}>
+              <Box sx={{ mr: { xs: 1, sm: 2 } }}>
                 <img
                   src={Google}
                   alt="google"
                   width={16}
-                  height={16}
-                  style={{ marginRight: matchDownSM ? 8 : 16 }}
+                  style={{ marginTop: 6 }}
                 />
               </Box>
               Sign in with Google
+            </Button>
+          </Grid>
+          <Grid item xs={12}>
+            <Button
+              disableElevation
+              fullWidth
+              onClick={providerHandler(logInUserWithFacebook)}
+              size="large"
+              variant="outlined"
+              sx={{
+                color: "grey.700",
+                backgroundColor: theme.palette.grey[50],
+                borderColor: theme.palette.grey[100]
+              }}
+            >
+              <Box sx={{ mr: { xs: 1, sm: 2 } }}>
+                <img
+                  src={Facebook}
+                  alt="facebook"
+                  width={20}
+                  style={{ marginTop: 6 }}
+                />
+              </Box>
+              Sign in with Facebook
             </Button>
           </Grid>
           <Grid item xs={12}>
@@ -170,11 +195,21 @@ const LogInForm = () => {
                 <TextField
                   fullWidth
                   label="Password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   placeholder="Password..."
                   autoComplete="current-password"
                   InputProps={{
-                    style: { fontSize: 16 }
+                    style: { fontSize: 16 },
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          edge="end"
+                          onClick={() => setShowPassword(!showPassword)}
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    )
                   }}
                   {...register("password", {
                     required: "The password is required",

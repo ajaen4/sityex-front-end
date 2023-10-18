@@ -16,8 +16,8 @@ import { tableFontSize } from "constants/constants";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme, styled } from "@mui/material/styles";
 
-const DataModal = ({ openedModal, setOpenedModal, data }) => {
-  const isOpen = ["Employment", "Month costs", "Social"].includes(openedModal);
+const DataModal = ({ openedModal, modalType, onClose, data }) => {
+  const isOpen = openedModal === modalType;
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -32,27 +32,12 @@ const DataModal = ({ openedModal, setOpenedModal, data }) => {
     }
   }));
 
-  const titleCategories = {
-    Employment: ["salaries and financing"],
-    "Month costs": ["markets", "utilities (monthly)", "rent per month"],
-    Social: ["restaurants", "sports and leisure"]
-  };
-
-  const onClickClose = () => setOpenedModal(false);
-
-  const filteredCosts = [];
-  for (const cost of data) {
-    const category = cost.category.toLowerCase();
-    const categories = titleCategories[openedModal];
-    if (categories?.includes(category)) filteredCosts.push(cost);
-  }
-
   return (
     <Dialog
       open={isOpen}
       maxWidth={isMobile ? "xs" : "xl"}
       fullWidth={isMobile ? null : true}
-      onClose={onClickClose}
+      onClose={onClose}
       sx={{
         "& .MuiPaper-root": {
           margin: 0
@@ -87,7 +72,7 @@ const DataModal = ({ openedModal, setOpenedModal, data }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {filteredCosts?.map((row) => (
+              {data?.map((row) => (
                 <TableRow
                   key={row.id}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -111,7 +96,7 @@ const DataModal = ({ openedModal, setOpenedModal, data }) => {
         </TableContainer>
       </DialogContent>
       <DialogActions sx={{ display: "flex", justifyContent: "center" }}>
-        <Button onClick={onClickClose} variant="contained">
+        <Button onClick={onClose} variant="contained">
           Close
         </Button>
       </DialogActions>

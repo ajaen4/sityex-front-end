@@ -1,15 +1,32 @@
 import { useEffect } from "react";
+
 import { useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet.markercluster/dist/MarkerCluster.css";
 import "leaflet.markercluster/dist/MarkerCluster.Default.css";
 import { MarkerClusterGroup } from "leaflet.markercluster";
 
+import { useTheme } from "@mui/material/styles";
+
 function CitiesMarkerCluster({ citiesIndex }) {
   const map = useMap();
+  const theme = useTheme();
 
   useEffect(() => {
-    const markers = new MarkerClusterGroup({ showCoverageOnHover: false });
+    const markers = new MarkerClusterGroup({
+      showCoverageOnHover: false,
+      iconCreateFunction: function(cluster) {
+        const count = cluster.getChildCount();
+        return L.divIcon({
+          html: `
+            <div style="background-color: ${theme.palette.primary.light}; width: 50px; height: 50px; border-radius: 50%; position: relative;">
+              <div style="background-color: ${theme.palette.primary[200]}; color: black; text-align: center; border-radius: 50%; width: 40px; height: 40px; line-height: 40px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">${count}</div>
+            </div>`,
+          className: 'custom-cluster-icon',
+          iconSize: new L.Point(50, 50),
+        });
+      }
+    });
 
     if (citiesIndex.length !== 0) {
       citiesIndex.forEach((city) => {

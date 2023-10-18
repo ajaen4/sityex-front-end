@@ -54,7 +54,7 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
 
   const handleCloseUserMenu = (setting) => {
     setIsOpenUserMenu(false);
-    if (setting === "Logout") signOutUser(auth.id);
+    if (setting === "Logout") signOutUser(auth.data.id);
   };
 
   const handleClickNavMenu = (page) => {
@@ -150,14 +150,16 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
                     p: 0
                   }}
                 >
-                  <Avatar
-                    alt="Remy Sharp"
-                    src="https://i.pravatar.cc/150"
-                    sx={{
-                      m: 0,
-                      p: 0
-                    }}
-                  />
+                  {!auth.data.photoURL && (
+                    <Avatar
+                      alt="Remy Sharp"
+                      src="https://i.pravatar.cc/150"
+                      sx={{
+                        m: 0,
+                        p: 0
+                      }}
+                    />
+                  )}
                 </IconButton>
               </Tooltip>
               <Menu

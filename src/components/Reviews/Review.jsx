@@ -1,5 +1,4 @@
 import React from "react";
-
 import {
   Card,
   Grid,
@@ -10,11 +9,11 @@ import {
   Box
 } from "@mui/material";
 
-const review = ({ data }) => {
+const Review = ({ data }) => {
   return (
     <Card sx={{ width: "100%", padding: 1, minHeight: "200px" }}>
-      <Stack container spacing={2}>
-        <Grid container xs={12}>
+      <Stack spacing={2}>
+        <Grid container>
           <Grid
             item
             xs={2}
@@ -34,58 +33,78 @@ const review = ({ data }) => {
                 Home city
               </Typography>
               <Typography sx={{ mx: 1, fontSize: "0.8em" }}>
-                07/10/2021
+                {data.timestamp.toDate().toLocaleDateString()}
               </Typography>
             </Stack>
           </Grid>
         </Grid>
         <Grid container>
           <Grid item md={6} xs={6}>
-            <Box display="flex" alignItems="center" sx={{ pl: 1 }}>
-              <Typography sx={{ mx: 0.5, fontSize: "1.3em" }}>☀️</Typography>
-              <Box
-                sx={{ display: { xs: "none", md: "flex" }, fontSize: "1em" }}
+            <Box display="flex" alignItems="flex-end" sx={{ pl: 1 }}>
+              <Typography sx={{ mx: 0.5, fontSize: "1.1em" }}>☀️</Typography>
+              <Typography
+                sx={{
+                  display: { xs: "none", md: "block" },
+                  fontSize: "1em",
+                  mr: 1
+                }}
               >
                 Weather:
-              </Box>
-              <Rating name="weather" value={data.weather} readOnly />
+              </Typography>
+              <Rating name="weather" value={Number(data.weather)} readOnly />
             </Box>
           </Grid>
           <Grid item md={6} xs={6}>
-            <Box display="flex" alignItems="center" sx={{ pl: 1 }}>
-              <Typography sx={{ mx: 0.5, fontSize: "1.3em" }}>🍲</Typography>
-              <Box
-                sx={{ display: { xs: "none", md: "flex" }, fontSize: "1em" }}
+            <Box display="flex" alignItems="flex-end" sx={{ pl: 1 }}>
+              <Typography sx={{ mx: 0.5, fontSize: "1.1em" }}>🍲</Typography>
+              <Typography
+                sx={{
+                  display: { xs: "none", md: "block" },
+                  fontSize: "1em",
+                  mr: 1
+                }}
               >
                 Food:
-              </Box>
-              <Rating name="food" value={data.food} readOnly />
+              </Typography>
+              <Rating name="food" value={Number(data.food)} readOnly />
             </Box>
           </Grid>
           <Grid item md={6} xs={6}>
-            <Box display="flex" alignItems="center" sx={{ pl: 1 }}>
-              <Typography sx={{ mx: 0.5, fontSize: "1.3em" }}>🍹</Typography>
-              <Box
-                sx={{ display: { xs: "none", md: "flex" }, fontSize: "1em" }}
+            <Box display="flex" alignItems="flex-end" sx={{ pl: 1 }}>
+              <Typography sx={{ mx: 0.5, fontSize: "1.1em" }}>🍹</Typography>
+              <Typography
+                sx={{
+                  display: { xs: "none", md: "block" },
+                  fontSize: "1em",
+                  mr: 1
+                }}
               >
                 Social:
-              </Box>
-              <Rating name="social" value={data.social} readOnly />
+              </Typography>
+              <Rating name="social" value={Number(data.social)} readOnly />
             </Box>
           </Grid>
           <Grid item md={6} xs={6}>
-            <Box display="flex" alignItems="center" sx={{ pl: 1 }}>
-              <Typography sx={{ mx: 0.5, fontSize: "1.3em" }}>🧳</Typography>
-              <Box
-                sx={{ display: { xs: "none", md: "flex" }, fontSize: "1em" }}
+            <Box display="flex" alignItems="flex-end" sx={{ pl: 1 }}>
+              <Typography sx={{ mx: 0.5, fontSize: "1.1em" }}>🧳</Typography>
+              <Typography
+                sx={{
+                  display: { xs: "none", md: "block" },
+                  fontSize: "1em",
+                  mr: 1
+                }}
               >
-                Accessibility
-              </Box>
-              <Rating name="social" value={data.trips} readOnly />
+                Accessibility:
+              </Typography>
+              <Rating
+                name="accessibility"
+                value={Number(data.trips)}
+                readOnly
+              />
             </Box>
           </Grid>
         </Grid>
-        <Grid container xs={12} sx={{ pl: 1 }}>
+        <Grid container sx={{ pl: 1 }}>
           <Typography sx={{ fontSize: "1em" }}>{data.advice}</Typography>
         </Grid>
       </Stack>
@@ -93,4 +112,4 @@ const review = ({ data }) => {
   );
 };
 
-export default review;
+export default Review;

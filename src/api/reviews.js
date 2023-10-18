@@ -4,7 +4,8 @@ import {
   getDocs,
   collection,
   writeBatch,
-  increment
+  increment,
+  serverTimestamp
 } from "firebase/firestore";
 
 import { getCityPlaces } from "api/places.js";
@@ -55,7 +56,10 @@ export const addReview = async (city_id, review, recomendations) => {
   }
 
   const newReviewDocRef = doc(reviewsCollectionRef);
-  batch.set(newReviewDocRef, review);
+  batch.set(newReviewDocRef, {
+    ...review,
+    timestamp: serverTimestamp()
+  });
 
   return await batch.commit();
 };
