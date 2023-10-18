@@ -27,11 +27,11 @@ const SingleDataCard = ({
             justifyContent: "center"
           }}
         >
-          <span style={{ fontSize: "3em" }}>{icon}</span>
+          <span style={{ fontSize: "2em" }}>{icon}</span>
         </Grid>
         <Grid item xs={8}>
           <Typography
-            sx={{ fontSize: 20, color: theme.palette.grey[900] }}
+            sx={{ fontSize: "1.2em", color: theme.palette.grey[900] }}
             gutterBottom
           >
             {title}
@@ -39,11 +39,10 @@ const SingleDataCard = ({
           {text && number && (
             <Typography
               variant="body2"
-              sx={{ fontSize: 15, color: theme.palette.grey[900] }}
+              sx={{ fontSize: "1em", color: theme.palette.grey[900] }}
             >
               {text}
-              {new Intl.NumberFormat("es-ES").format(number)}
-              {units && ` ${units}`}
+              {number}
             </Typography>
           )}
         </Grid>
@@ -61,7 +60,7 @@ const SingleDataCard = ({
             sx={{
               ...theme.typography.commonAvatar,
               ...theme.typography.largeAvatar,
-              backgroundColor: backgroundColor[800],
+              backgroundColor: theme.palette.primary.main,
               color: "#fff"
             }}
             onClick={() => onClickData(title)}

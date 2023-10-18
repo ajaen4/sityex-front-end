@@ -8,7 +8,11 @@ import Divider from "@mui/material/Divider";
 import MainItems from "components/DrawerItems/MainItems";
 import CityItems from "components/DrawerItems/CityItems";
 
-import { drawerWidth, tabletDrawerWidth, minNavbarHeights } from "constants/constants";
+import {
+  drawerWidth,
+  tabletDrawerWidth,
+  minNavbarHeights
+} from "constants/constants";
 
 export default function Drawer(props) {
   const { window } = props;
@@ -25,7 +29,9 @@ export default function Drawer(props) {
     <Box
       component="nav"
       sx={{
-        width: props.isOpenDrawer ? { md: tabletDrawerWidth, lg: drawerWidth } : 0,
+        width: props.isOpenDrawer
+          ? { md: tabletDrawerWidth, lg: drawerWidth }
+          : 0,
         flexShrink: { md: 0 }
       }}
       aria-label="mailbox folders"
@@ -40,7 +46,10 @@ export default function Drawer(props) {
         }}
         sx={{
           display: { xs: "block", md: "none" },
-          "& .MuiDrawer-paper": { boxSizing: "border-box", width: { md: tabletDrawerWidth, lg: drawerWidth } }
+          "& .MuiDrawer-paper": {
+            boxSizing: "border-box",
+            width: { md: tabletDrawerWidth, lg: drawerWidth }
+          }
         }}
       >
         <Box sx={{ minHeight: minNavbarHeights }} />
@@ -53,9 +62,13 @@ export default function Drawer(props) {
           display: { xs: "none", md: "block" },
           "& .MuiDrawer-paper": {
             boxSizing: "border-box",
-            width: props.isOpenDrawer ? { md: tabletDrawerWidth, lg: drawerWidth } : 0
+            width: props.isOpenDrawer
+              ? { md: tabletDrawerWidth, lg: drawerWidth }
+              : 0
           },
-          width: props.isOpenDrawer ? { md: tabletDrawerWidth, lg: drawerWidth } : 0
+          width: props.isOpenDrawer
+            ? { md: tabletDrawerWidth, lg: drawerWidth }
+            : 0
         }}
       >
         <Box sx={{ minHeight: minNavbarHeights }} />
