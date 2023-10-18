@@ -13,8 +13,11 @@ import {
   TextField,
   FormHelperText,
   FormControl,
-  Link
+  Link,
+  InputAdornment,
+  IconButton,
 } from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 import { logInUser, logInUserWithGoogle } from "actions";
 
@@ -37,6 +40,7 @@ const LogInForm = () => {
   } = useForm();
   const [isFetching, setIsFetching] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
 
   const signInUser = (data) => {
     setIsFetching(true);
@@ -170,11 +174,21 @@ const LogInForm = () => {
                 <TextField
                   fullWidth
                   label="Password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   placeholder="Password..."
                   autoComplete="current-password"
                   InputProps={{
-                    style: { fontSize: 16 }
+                    style: { fontSize: 16 },
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          edge="end"
+                          onClick={() => setShowPassword(!showPassword)}
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    )
                   }}
                   {...register("password", {
                     required: "The password is required",

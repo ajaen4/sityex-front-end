@@ -63,7 +63,7 @@ const review = ({ data }) => {
             </Box>
           </Grid>
           <Grid item md={6} xs={6}>
-            <Box display="flex" alignItems="center" sx={{ pl: 1 }}>
+            <Box display="flex" sx={{ pl: 1 }}>
               <Typography sx={{ mx: 0.5, fontSize: "1.3em" }}>🍹</Typography>
               <Box
                 sx={{ display: { xs: "none", md: "flex" }, fontSize: "1em" }}

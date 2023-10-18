@@ -12,8 +12,11 @@ import {
   useMediaQuery,
   Divider,
   Typography,
-  Box
+  Box,
+  InputAdornment,
+  IconButton,
 } from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
 
 import Google from "assets/img/icons/social-google.svg";
@@ -41,13 +44,14 @@ const SignUpForm = () => {
   const [isFetching, setIsFetching] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const [signedUpMessage, setSignedUpMessage] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
 
   const signUpUser = (data) => {
     setIsFetching(true);
     dispatch(createUser(data)).then(
       (user) => {
         setIsFetching(false);
-        setSignedUpMessage("Verify your email to be able to log in.");
+        setSignedUpMessage("Verify your email to be able to log in. Remember to check your spam folder!");
       },
       (error) => {
         setErrorMessage(error);
@@ -195,10 +199,20 @@ const SignUpForm = () => {
                   })}
                   label="password"
                   variant="outlined"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   autoComplete="new-password"
                   InputProps={{
-                    style: { fontSize: 16 }
+                    style: { fontSize: 16 },
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          edge="end"
+                          onClick={() => setShowPassword(!showPassword)}
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    )
                   }}
                 />
                 <FormHelperText style={{ minHeight: "20px" }}>
@@ -222,10 +236,20 @@ const SignUpForm = () => {
                   })}
                   label="Password confirmation"
                   variant="outlined"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   autoComplete="new-password"
                   InputProps={{
-                    style: { fontSize: 16 }
+                    style: { fontSize: 16 },
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          edge="end"
+                          onClick={() => setShowPassword(!showPassword)}
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    )
                   }}
                 />
                 <FormHelperText style={{ minHeight: "20px" }}>
