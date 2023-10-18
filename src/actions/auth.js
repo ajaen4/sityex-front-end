@@ -29,6 +29,12 @@ export const logInUserWithGoogle = () => (dispatch, getState) => {
     .then((user) => dispatch({ type: JUST_LOGGED_IN, justLoggedIn: true }));
 };
 
+export const logInUserWithFacebook = () => (dispatch, getState) => {
+  return api
+    .logInWithFacebook()
+    .then((user) => dispatch({ type: JUST_LOGGED_IN, justLoggedIn: true }));
+};
+
 export const signOutUser = (uid) => {
   api.signOutUser().then(() => {
     const userStatusDatabaseRef = api.createFirebaseRef("status", uid);

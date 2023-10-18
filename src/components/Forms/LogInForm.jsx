@@ -19,12 +19,13 @@ import {
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 
-import { logInUser, logInUserWithGoogle } from "actions";
+import { logInUser, logInUserWithGoogle, logInUserWithFacebook } from "actions";
 
 import StandarModal from "components/Modals/StandarModal";
 import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 
 import Google from "assets/img/icons/social-google.svg";
+import Facebook from "assets/img/icons/facebook.png";
 
 import * as ROUTES_PATHS from "routes/paths";
 
@@ -55,14 +56,16 @@ const LogInForm = () => {
       });
   };
 
-  const googleHandler = async () => {
-    dispatch(logInUserWithGoogle()).then(
-      (user) => {},
-      (errorMessage) => {
-        setErrorMessage(errorMessage);
-      }
-    );
-  };
+  const providerHandler = (providerAction) => {
+    return async () => {
+      dispatch(providerAction()).then(
+        (user) => {},
+        (errorMessage) => {
+          setErrorMessage(errorMessage);
+        }
+      );
+    };
+  }
 
   if (isFetching) return <CenteredLoadingSpinner />;
 
@@ -74,7 +77,7 @@ const LogInForm = () => {
             <Button
               disableElevation
               fullWidth
-              onClick={googleHandler}
+              onClick={providerHandler(logInUserWithGoogle)}
               size="large"
               variant="outlined"
               sx={{
@@ -83,16 +86,39 @@ const LogInForm = () => {
                 borderColor: theme.palette.grey[100]
               }}
             >
-              <Box sx={{ mr: { xs: 1, sm: 2, width: 20 } }}>
+              <Box sx={{ mr: { xs: 1, sm: 2 } }}>
                 <img
                   src={Google}
                   alt="google"
                   width={16}
-                  height={16}
-                  style={{ marginRight: matchDownSM ? 8 : 16 }}
+                  style={{ marginTop: 6 }}
                 />
               </Box>
               Sign in with Google
+            </Button>
+          </Grid>
+          <Grid item xs={12}>
+            <Button
+              disableElevation
+              fullWidth
+              onClick={providerHandler(logInUserWithFacebook)}
+              size="large"
+              variant="outlined"
+              sx={{
+                color: "grey.700",
+                backgroundColor: theme.palette.grey[50],
+                borderColor: theme.palette.grey[100]
+              }}
+            >
+              <Box sx={{ mr: { xs: 1, sm: 2 } }}>
+                <img
+                  src={Facebook}
+                  alt="facebook"
+                  width={20}
+                  style={{ marginTop: 6 }}
+                />
+              </Box>
+              Sign in with Facebook
             </Button>
           </Grid>
           <Grid item xs={12}>
