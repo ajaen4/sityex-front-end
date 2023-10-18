@@ -161,7 +161,7 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
                 </IconButton>
               </Tooltip>
               <Menu
-                sx={{ mt: "45px", zIndex: theme.zIndex.drawer + 1000 }}
+                sx={{ mt: "33px", zIndex: theme.zIndex.drawer + 1000 }}
                 id="menu-appbar"
                 anchorEl={userSettingsRef.current}
                 anchorOrigin={{

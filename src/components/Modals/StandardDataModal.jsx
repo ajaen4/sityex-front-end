@@ -6,7 +6,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
@@ -14,13 +14,23 @@ import Paper from "@mui/material/Paper";
 
 import { tableFontSize } from "constants/constants";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTheme } from "@mui/material/styles";
+import { useTheme, styled } from "@mui/material/styles";
 
 const DataModal = ({ openedModal, setOpenedModal, data }) => {
   const isOpen = ["Employment", "Month costs", "Social"].includes(openedModal);
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+  const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: theme.palette.secondary[200],
+      color: theme.palette.common.white
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14
+    }
+  }));
 
   const titleCategories = {
     Employment: ["salaries and financing"],
@@ -57,20 +67,23 @@ const DataModal = ({ openedModal, setOpenedModal, data }) => {
       >
         {openedModal}
       </DialogTitle>
-      <DialogContent sx={{ p: 0 }}>
-        <TableContainer component={Paper} sx={{ borderRadius: 0 }}>
-          <Table aria-label="cost table" size="small">
+      <DialogContent sx={{ p: 0, overflowY: "hidden" }}>
+        <TableContainer
+          component={Paper}
+          sx={{ borderRadius: 0, overflowY: "auto", maxHeight: "450px" }}
+        >
+          <Table stickyHeader aria-label="cost table" size="small">
             <TableHead>
               <TableRow>
-                <TableCell align="left" sx={{ fontSize: tableFontSize }}>
+                <StyledTableCell align="left" sx={{ fontSize: tableFontSize }}>
                   Subcategory
-                </TableCell>
-                <TableCell align="left" sx={{ fontSize: tableFontSize }}>
+                </StyledTableCell>
+                <StyledTableCell align="left" sx={{ fontSize: tableFontSize }}>
                   Cost
-                </TableCell>
-                <TableCell align="left" sx={{ fontSize: tableFontSize }}>
+                </StyledTableCell>
+                <StyledTableCell align="left" sx={{ fontSize: tableFontSize }}>
                   Currency
-                </TableCell>
+                </StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>

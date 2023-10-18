@@ -39,7 +39,10 @@ const DemographicDataModal = ({ openedModal, setOpenedModal, data }) => {
         {openedModal}
       </DialogTitle>
       <DialogContent sx={{ p: 0 }}>
-        <TableContainer component={Paper} sx={{ borderRadius: 0 }}>
+        <TableContainer
+          component={Paper}
+          sx={{ borderRadius: 0, overflowY: "auto", maxHeight: "800px" }}
+        >
           <Table aria-label="cost table" size="small">
             <TableBody>
               {indicators &&

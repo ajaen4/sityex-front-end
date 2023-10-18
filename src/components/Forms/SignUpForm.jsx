@@ -40,12 +40,14 @@ const SignUpForm = () => {
 
   const [isFetching, setIsFetching] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [signedUpMessage, setSignedUpMessage] = useState(null);
 
   const signUpUser = (data) => {
     setIsFetching(true);
     dispatch(createUser(data)).then(
       (user) => {
         setIsFetching(false);
+        setSignedUpMessage("Verify your email to be able to log in.");
       },
       (error) => {
         setErrorMessage(error);
@@ -155,6 +157,7 @@ const SignUpForm = () => {
                   })}
                   label="Email"
                   variant="outlined"
+                  autoComplete="email"
                   InputProps={{
                     style: { fontSize: 16 }
                   }}
@@ -257,6 +260,13 @@ const SignUpForm = () => {
           </Link>
         </Grid>
       </Grid>
+      {signedUpMessage !== null && (
+        <StandarModal
+          color="success"
+          title={"User creation success. "}
+          message={signedUpMessage}
+        />
+      )}
       {errorMessage !== null && (
         <StandarModal
           color="error"

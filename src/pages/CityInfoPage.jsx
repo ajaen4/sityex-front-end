@@ -83,8 +83,8 @@ const CityInfoPage = () => {
         <Grid item xs={12} md={4}>
           <SingleDataCard
             title="Demographics"
-            text="Population: "
-            number={selectedCity.population}
+            text="City size: "
+            number="Top 3.4 %"
             icon="🧑‍🤝‍🧑"
             onClickData={onClickData}
             backgroundColor={theme.palette.primary}
@@ -93,9 +93,8 @@ const CityInfoPage = () => {
         <Grid item xs={12} md={4}>
           <SingleDataCard
             title="Employment"
-            text="Avg monthly net salary: "
-            units="$"
-            number={"100"}
+            text="Net salary: "
+            number="Top 15 %"
             icon="💼"
             onClickData={onClickData}
             backgroundColor={theme.palette.primary}
@@ -105,8 +104,7 @@ const CityInfoPage = () => {
           <SingleDataCard
             title="Weather"
             text="Mean temperature: "
-            number="20"
-            units="Cº"
+            number="20 ºC"
             icon="☀️"
             onClickData={onClickData}
             backgroundColor={theme.palette.primary}
@@ -116,8 +114,7 @@ const CityInfoPage = () => {
           <SingleDataCard
             title="Month costs"
             text="Shopping cart: "
-            number="450"
-            units="$"
+            number="Top 20 %"
             icon="💸"
             onClickData={onClickData}
             backgroundColor={theme.palette.primary}
@@ -127,8 +124,7 @@ const CityInfoPage = () => {
           <SingleDataCard
             title="Taxes & Indicators"
             text="Income tax: "
-            number="39.4"
-            units="%"
+            number="Top 22.5 %"
             icon="🧾"
             onClickData={onClickData}
             backgroundColor={theme.palette.primary}
@@ -137,9 +133,8 @@ const CityInfoPage = () => {
         <Grid item xs={12} md={4}>
           <SingleDataCard
             title="Social"
-            text="Local beer: "
-            number={extractPrice(prices, "restaurants_domestic_beer")}
-            units="$"
+            text="1 meal out: "
+            number="Top 35 %"
             icon="🍹"
             onClickData={onClickData}
             backgroundColor={theme.palette.primary}
