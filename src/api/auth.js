@@ -38,7 +38,8 @@ export const logInWithGoogle = async () => {
     await saveUser({
       uid: user.uid,
       email: user.email,
-      userName: user.displayName
+      userName: user.displayName,
+      photoURL: user.photoURL
     });
     return user;
   } catch (error) {
@@ -91,7 +92,8 @@ export const saveUser = async (userData) => {
   await setDoc(userRef, {
     userName: userData.userName,
     email: userData.email,
-    id: userData.uid
+    id: userData.uid,
+    photoURL: userData.photoURL || null
   });
 };
 

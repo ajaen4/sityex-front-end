@@ -15,31 +15,28 @@ import {
   FormControl,
   Link,
   InputAdornment,
-  IconButton,
+  IconButton
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 import { logInUser, logInUserWithGoogle, logInUserWithFacebook } from "actions";
 
 import StandarModal from "components/Modals/StandarModal";
-import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 
 import Google from "assets/img/icons/social-google.svg";
 import Facebook from "assets/img/icons/facebook.png";
 
 import * as ROUTES_PATHS from "routes/paths";
 
-const LogInForm = () => {
+const LogInForm = ({ setIsFetching }) => {
   const dispatch = useDispatch();
   const theme = useTheme();
-  const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset
   } = useForm();
-  const [isFetching, setIsFetching] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -65,9 +62,7 @@ const LogInForm = () => {
         }
       );
     };
-  }
-
-  if (isFetching) return <CenteredLoadingSpinner />;
+  };
 
   return (
     <>

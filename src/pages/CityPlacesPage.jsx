@@ -37,7 +37,7 @@ const CityPlacesPage = () => {
           top: 10,
           left: "50%",
           transform: "translateX(-50%)",
-          zIndex: 1000,
+          zIndex: 400,
           background: "rgba(255, 255, 255, 0.7)",
           borderRadius: 5,
           padding: "0.5rem"

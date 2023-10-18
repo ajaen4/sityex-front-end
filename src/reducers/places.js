@@ -1,19 +1,19 @@
 import { combineReducers } from "redux";
 
 import {
-  SAVING_REVIEW,
-  SAVING_REVIEW_SUCCESS,
-  FETCHING_REVIEWS_SUCCESS
+  SAVING_PLACE,
+  SAVING_PLACE_SUCCESS,
+  FETCHING_PLACES_SUCCESS
 } from "types";
 
-const INITIAL_STATE = { reviews: [], city_id: null };
+const INITIAL_STATE = { places: [], city_id: null };
 
 const initReviews = () => {
   const isFetching = (state = false, action) => {
     switch (action.type) {
-      case SAVING_REVIEW:
+      case SAVING_PLACE:
         return true;
-      case SAVING_REVIEW_SUCCESS:
+      case SAVING_PLACE_SUCCESS:
         return false;
       default:
         return state;
@@ -22,8 +22,8 @@ const initReviews = () => {
 
   const data = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-      case FETCHING_REVIEWS_SUCCESS:
-        return { reviews: action.reviews, city_id: action.city_id };
+      case FETCHING_PLACES_SUCCESS:
+        return { places: action.places, city_id: action.city_id };
       default:
         return state;
     }
@@ -35,6 +35,6 @@ const initReviews = () => {
   });
 };
 
-const reviews = initReviews();
+const places = initReviews();
 
-export default reviews;
+export default places;

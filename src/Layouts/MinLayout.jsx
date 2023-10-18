@@ -23,9 +23,11 @@ const MinLayout = () => {
     <Box
       sx={{
         display: "flex",
+        flexDirection: "column",
         height: `${viewportHeight}px`,
         width: "100%",
-        backgroundColor: theme.palette.primary.light
+        backgroundColor: theme.palette.primary.light,
+        overflowY: "auto",
       }}
     >
       <Outlet />

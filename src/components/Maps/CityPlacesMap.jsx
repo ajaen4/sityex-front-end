@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import {
   MapContainer,
   TileLayer,
   Marker,
   Popup,
-  ZoomControl
+  ZoomControl,
 } from "react-leaflet";
 import "react-leaflet-fullscreen/styles.css";
 import Container from "@mui/material/Container";
@@ -17,12 +18,12 @@ const TOKEN = process.env.REACT_APP_MAPS_API_KEY;
 const MAP_STYLE = process.env.REACT_APP_MAPS_STYLE;
 
 function CityPlacesMap({ selectedCity }) {
-  const [places, setPlaces] = useState([]);
+  const places = useSelector((state) => state.places.data.places);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    getCityPlaces(selectedCity.city_id).then((places) => {
-      if (places) setPlaces(places);
-    });
+    dispatch(getCityPlaces(selectedCity.city_id));
   }, [selectedCity]);
 
   return (
@@ -46,7 +47,7 @@ function CityPlacesMap({ selectedCity }) {
           draggable={false}
           position={[place.coordinates.latitude, place.coordinates.longitude]}
         >
-          <Popup>
+          <Popup className="custom-popup">
             <Container align="center" style={{ height: "100" }}>
               <Typography
                 style={{

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useTheme } from "@mui/material/styles";
 import { Grid, Stack, Typography, Container, Box, Card } from "@mui/material";
@@ -6,11 +6,15 @@ import { Grid, Stack, Typography, Container, Box, Card } from "@mui/material";
 import { withoutAuth } from "session";
 import { logAnalyticsEvent } from "api";
 
+import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 import LogInForm from "components/Forms/LogInForm.jsx";
+
 import Logo from "assets/img/icons/logo_black.png";
 
 const LogInPage = () => {
   const theme = useTheme();
+
+  const [isFetching, setIsFetching] = useState(false);
 
   useEffect(() => {
     logAnalyticsEvent("page_view", {
@@ -18,6 +22,8 @@ const LogInPage = () => {
       page_location: window.location.href
     });
   }, []);
+
+  if (isFetching) return <CenteredLoadingSpinner />;
 
   return (
     <Container
@@ -66,7 +72,7 @@ const LogInPage = () => {
               </Typography>
             </Stack>
           </Grid>
-          <LogInForm />
+          <LogInForm setIsFetching={setIsFetching} />
         </Grid>
       </Card>
     </Container>

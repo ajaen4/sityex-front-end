@@ -5,13 +5,15 @@ import citiesIndex from "reducers/citiesIndex";
 import selectedCity from "reducers/selectedCity";
 import selectedCountry from "reducers/selectedCountry";
 import reviews from "reducers/reviews";
+import places from "reducers/places";
 
 const serviceApp = combineReducers({
   auth,
   citiesIndex,
   selectedCity,
   selectedCountry,
-  reviews
+  reviews,
+  places
 });
 
 export default serviceApp;

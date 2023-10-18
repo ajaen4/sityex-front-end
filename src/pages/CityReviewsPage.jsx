@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import { withAuth } from "session";
 import { logAnalyticsEvent } from "api";
@@ -11,8 +11,10 @@ import Grid from "@mui/material/Grid";
 import ScrollReviews from "components/ScrollList/ScrollReviews";
 
 const CityReviewsPage = () => {
-  const [reviews, setReviews] = useState([]);
   const selectedCity = useSelector((state) => state.selectedCity.data);
+  const reviews = useSelector((state) => state.reviews.data.reviews);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     logAnalyticsEvent("page_view", {
@@ -22,9 +24,7 @@ const CityReviewsPage = () => {
   }, []);
 
   useEffect(() => {
-    getReviews(selectedCity.city_id).then((reviews) => {
-      if (reviews) setReviews(reviews);
-    });
+    dispatch(getReviews(selectedCity.city_id));
   }, [selectedCity]);
 
   return (

@@ -1,9 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import Alert from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";
-import IconButton from "@mui/material/IconButton";
-import CloseIcon from "@mui/icons-material/CloseOutlined";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -50,7 +49,9 @@ function MapWithSearch({
       : DEFAULT_CENTER
   );
   const [currPlaces, setCurrPlaces] = useState([]);
-  const [placesInDB, setPlacesInDB] = useState([]);
+  const placesInDB = useSelector((state) => state.places.data.places);
+  
+  const dispatch = useDispatch();
 
   const selectedPlaceMarker = useRef(null);
   const markersInDB = useRef({});
@@ -59,9 +60,7 @@ function MapWithSearch({
     setCurrPlaces([]);
     setSelectedPlace(null);
     if (selectedCity) {
-      getCityPlaces(selectedCity.city_id).then((placesInDB) => {
-        if (placesInDB) setPlacesInDB(placesInDB);
-      });
+      dispatch(getCityPlaces(selectedCity.city_id));
       setCurrentMapCenter([
         selectedCity.coordinates.latitude,
         selectedCity.coordinates.longitude

@@ -13,6 +13,7 @@ $primaryPastel: mix(white, #2196f3, 15%);
 $secondaryLight: #ede7f6;
 $secondaryMain: #673ab7;
 $secondaryDark: #5e35b1;
+$secondary100: #d0c2ed;
 $secondary200: #b39ddb;
 $secondary800: #4527a0;
 $secondaryPastel: mix(white, $secondaryDark, 15%);
@@ -107,6 +108,7 @@ $darkTextSecondary: #8492c4;
 
   // secondary
   secondaryLight: $secondaryLight;
+  secondary100: $secondary100;
   secondary200: $secondary200;
   secondaryMain: $secondaryMain;
   secondaryDark: $secondaryDark;

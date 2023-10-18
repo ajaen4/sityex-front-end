@@ -77,6 +77,22 @@ const CityInfoPage = () => {
     return prices?.filter((price) => price.name === name)[0]?.price;
   };
 
+  const titleCategories = {
+    Employment: ["salaries and financing"],
+    "Month costs": ["markets", "utilities (monthly)", "rent per month"],
+    Social: ["restaurants", "sports and leisure"]
+  };
+
+  const filterCosts = (data, modalType) => {
+    const filteredCosts = [];
+    for (const cost of data) {
+      const category = cost.category.toLowerCase();
+      const categories = titleCategories[modalType];
+      if (categories?.includes(category)) filteredCosts.push(cost);
+    }
+    return filteredCosts;
+  };
+
   return (
     <Box sx={{ overflowY: "scroll", my: 0.5, mx: 1.5 }}>
       <Grid container spacing={1} justifyContent="center">
@@ -143,8 +159,21 @@ const CityInfoPage = () => {
       </Grid>
       <StandardDataModal
         openedModal={openedModal}
-        setOpenedModal={setOpenedModal}
-        data={prices}
+        modalType="Employment"
+        onClose={() => setOpenedModal(false)}
+        data={filterCosts(prices, "Employment")}
+      />
+      <StandardDataModal
+        openedModal={openedModal}
+        modalType="Month costs"
+        onClose={() => setOpenedModal(false)}
+        data={filterCosts(prices, "Month costs")}
+      />
+      <StandardDataModal
+        openedModal={openedModal}
+        modalType="Social"
+        onClose={() => setOpenedModal(false)}
+        data={filterCosts(prices, "Social")}
       />
       <DemographicDataModal
         openedModal={openedModal}
