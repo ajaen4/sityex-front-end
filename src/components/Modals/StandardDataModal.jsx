@@ -35,7 +35,7 @@ const DataModal = ({ openedModal, modalType, onClose, data }) => {
   return (
     <Dialog
       open={isOpen}
-      maxWidth={isMobile ? "xs" : "xl"}
+      maxWidth={isMobile ? "xs" : "md"}
       fullWidth={isMobile ? null : true}
       onClose={onClose}
       sx={{
