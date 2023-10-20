@@ -39,7 +39,7 @@ const SingleDataCard = ({
           {text && number && (
             <Typography
               variant="body2"
-              sx={{ fontSize: "0.9em", color: theme.palette.grey[900] }}
+              sx={{ fontSize: "1em", color: theme.palette.grey[900] }}
             >
               {text}
               {number}
