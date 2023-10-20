@@ -27,7 +27,7 @@ function CitiesMarkerCluster({ citiesIndex }) {
     Object.keys(citiesByCountry).forEach(countryCode => {
       const markers = new MarkerClusterGroup({
         showCoverageOnHover: false,
-        maxClusterRadius: 120,
+        maxClusterRadius: 80,
         iconCreateFunction: function(cluster) {
           const count = cluster.getChildCount();
           return L.divIcon({
