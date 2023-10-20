@@ -45,7 +45,7 @@ function CitiesMarkerCluster({ citiesIndex }) {
         const customIcon = L.divIcon({
           className: 'custom-icon',
           html: `
-            <div style="background-color: ${theme.palette.primary.light}; border-radius: 5px; padding: 5px 10px; display: flex; align-items: center; position: relative;">
+            <div style="background-color: rgba(255, 255, 255, 0.7); border-radius: 5px; padding: 5px 10px; display: flex; align-items: center; position: relative;">
               <img 
                 width="20" 
                 src="https://flagcdn.com/w20/${city.country_2_code.toLowerCase()}.png" 
@@ -55,7 +55,7 @@ function CitiesMarkerCluster({ citiesIndex }) {
               <span>${city.name}</span>
             </div>
           `,
-          iconSize: [null, null], // Let it adjust to the content
+          iconSize: [null, null],
         });
 
         const marker = L.marker(
