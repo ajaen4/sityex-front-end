@@ -27,11 +27,11 @@ const SingleDataCard = ({
             justifyContent: "center"
           }}
         >
-          <span style={{ fontSize: "2em" }}>{icon}</span>
+          <span style={{ fontSize: "1.6em" }}>{icon}</span>
         </Grid>
         <Grid item xs={8}>
           <Typography
-            sx={{ fontSize: "1.2em", color: theme.palette.grey[900] }}
+            sx={{ fontSize: "1.1em", color: theme.palette.grey[900] }}
             gutterBottom
           >
             {title}
@@ -39,7 +39,7 @@ const SingleDataCard = ({
           {text && number && (
             <Typography
               variant="body2"
-              sx={{ fontSize: "1em", color: theme.palette.grey[900] }}
+              sx={{ fontSize: "0.9em", color: theme.palette.grey[900] }}
             >
               {text}
               {number}
