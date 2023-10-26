@@ -8,7 +8,7 @@ import {
 
 const INITIAL_STATE = { places: [], city_id: null };
 
-const initReviews = () => {
+const initPlaces = () => {
   const isFetching = (state = false, action) => {
     switch (action.type) {
       case SAVING_PLACE:
@@ -35,6 +35,6 @@ const initReviews = () => {
   });
 };
 
-const places = initReviews();
+const places = initPlaces();
 
 export default places;

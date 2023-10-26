@@ -7,7 +7,5 @@ export const ACCOUNT = "/account";
 export const ADMIN = "/admin";
 export const PASSWORD_FORGET = "/pw-forget";
 export const DESTINATION = "/destination/:city_id";
-export const NEW_REVIEW = "/new-review";
 export const CITY_INFO = "info";
 export const CITY_PLACES = "places";
-export const CITY_REVIEWS = "reviews";

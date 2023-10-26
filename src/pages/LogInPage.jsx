@@ -9,7 +9,7 @@ import { logAnalyticsEvent } from "api";
 import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 import LogInForm from "components/Forms/LogInForm.jsx";
 
-import Logo from "assets/img/icons/logo_black.png";
+import Logo from "assets/img/icons/big_logo_blue.png";
 
 const LogInPage = () => {
   const theme = useTheme();

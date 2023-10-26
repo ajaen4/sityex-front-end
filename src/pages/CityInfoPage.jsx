@@ -11,6 +11,7 @@ import SingleDataCard from "components/Cards/SingleDataCard";
 import StandardDataModal from "components/Modals/StandardDataModal";
 import DemographicDataModal from "components/Modals/DemographicDataModal";
 import TaxesDataModal from "components/Modals/TaxesDataModal";
+import WeatherDataModal from "components/Modals/WeatherDataModal";
 
 import { getMap } from "actions";
 
@@ -175,6 +176,12 @@ const CityInfoPage = () => {
         onClose={() => setOpenedModal(false)}
         data={filterCosts(prices, "Social")}
       />
+      <WeatherDataModal
+        openedModal={openedModal}
+        modalType="Weather"
+        onClose={() => setOpenedModal(false)}
+        data={selectedCity?.weather}
+      WeatherDataModal/>
       <DemographicDataModal
         openedModal={openedModal}
         setOpenedModal={setOpenedModal}

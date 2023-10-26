@@ -18,7 +18,7 @@ import { useTheme } from "@mui/material/styles";
 
 import { signOutUser } from "actions";
 
-import logo from "assets/img/icons/logo.png";
+import logo from "assets/img/icons/big_logo_white.png";
 
 import * as ROUTES_PATHS from "routes/paths";
 import { pages, settings, minNavbarHeights } from "constants/constants.js";
@@ -58,7 +58,6 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
   };
 
   const handleClickNavMenu = (page) => {
-    if (page === "New review") navigate(ROUTES_PATHS.NEW_REVIEW);
     if (page === "Search City") navigate(ROUTES_PATHS.SEARCH);
     if (page === "Destinations Map") navigate(ROUTES_PATHS.MAP);
   };
