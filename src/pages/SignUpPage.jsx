@@ -9,7 +9,7 @@ import { logAnalyticsEvent } from "api";
 import SignUpForm from "components/Forms/SignUpForm.jsx";
 import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 
-import Logo from "assets/img/icons/logo_black.png";
+import Logo from "assets/img/icons/big_logo_blue.png";
 
 const SignUpPage = () => {
   const theme = useTheme();

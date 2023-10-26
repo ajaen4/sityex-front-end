@@ -18,7 +18,7 @@ import { useTheme } from "@mui/material/styles";
 
 import { signOutUser } from "actions";
 
-import logo from "assets/img/icons/logo.png";
+import logo from "assets/img/icons/big_logo_white.png";
 
 import * as ROUTES_PATHS from "routes/paths";
 import { pages, settings, minNavbarHeights } from "constants/constants.js";
