@@ -132,13 +132,13 @@ const WeatherDataModal = ({ openedModal, modalType, onClose, data }) => {
                     align="left"
                     sx={{ fontSize: tableFontSize, flex: 2 }}
                   >
-                    {data[key].avg_sunrise_hour + ":" + data[key].avg_sunrise_minute + ":" + data[key].avg_sunrise_second}
+                    {data[key].avg_sunrise_hour.padStart(2, "0") + ":" + data[key].avg_sunrise_minute.padStart(2, "0") + ":" + data[key].avg_sunrise_second.padStart(2, "0")}
                   </TableCell>
                   <TableCell
                     align="left"
                     sx={{ fontSize: tableFontSize, flex: 2 }}
                   >
-                    {data[key].avg_sunset_hour + ":" + data[key].avg_sunset_minute + ":" + data[key].avg_sunset_second}
+                    {data[key].avg_sunset_hour.padStart(2, "0") + ":" + data[key].avg_sunset_minute.padStart(2, "0") + ":" + data[key].avg_sunset_second.padStart(2, "0")}
                   </TableCell>
                 </TableRow>
               ))}
