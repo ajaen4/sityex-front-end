@@ -6,16 +6,12 @@ import { withAuth } from "session";
 import { logAnalyticsEvent } from "api";
 
 import { Box, Grid } from "@mui/material";
-import GroupsIcon from "@mui/icons-material/GroupsOutlined";
-import WbSunnyIcon from "@mui/icons-material/WbSunnyOutlined";
-import WorkIcon from "@mui/icons-material/WorkOutlined";
-import MoneyIcon from "@mui/icons-material/AttachMoneyOutlined";
-import MoneyOffIcon from "@mui/icons-material/MoneyOffOutlined";
-import LiquorIcon from "@mui/icons-material/LiquorOutlined";
 
 import SingleDataCard from "components/Cards/SingleDataCard";
-import PriceDataModal from "components/Modals/PriceDataModal";
+import StandardDataModal from "components/Modals/StandardDataModal";
 import DemographicDataModal from "components/Modals/DemographicDataModal";
+import TaxesDataModal from "components/Modals/TaxesDataModal";
+import WeatherDataModal from "components/Modals/WeatherDataModal";
 
 import { getMap } from "actions";
 
@@ -82,83 +78,110 @@ const CityInfoPage = () => {
     return prices?.filter((price) => price.name === name)[0]?.price;
   };
 
+  const titleCategories = {
+    Employment: ["salaries and financing"],
+    "Month costs": ["markets", "utilities (monthly)", "rent per month"],
+    Social: ["restaurants", "sports and leisure"]
+  };
+
+  const filterCosts = (data, modalType) => {
+    const filteredCosts = [];
+    for (const cost of data) {
+      const category = cost.category.toLowerCase();
+      const categories = titleCategories[modalType];
+      if (categories?.includes(category)) filteredCosts.push(cost);
+    }
+    return filteredCosts;
+  };
+
   return (
     <Box sx={{ overflowY: "scroll", my: 0.5, mx: 1.5 }}>
       <Grid container spacing={1} justifyContent="center">
-        <Grid item xs={11} md={4}>
+        <Grid item xs={12} md={4}>
           <SingleDataCard
             title="Demographics"
-            text="Population: "
-            number={selectedCity.population}
-            icon={<GroupsIcon />}
-            onClickData={onClickData}
-            backgroundColor={theme.palette.orange}
-          />
-        </Grid>
-        <Grid item xs={11} md={4}>
-          <SingleDataCard
-            title="Employment"
-            text="Avg monthly net salary: "
-            units="$"
-            number={extractPrice(
-              prices,
-              "salaries_and_financing_average_monthly_net_salary"
-            )}
-            icon={<WorkIcon />}
-            onClickData={onClickData}
-            backgroundColor={theme.palette.secondary}
-          />
-        </Grid>
-        <Grid item xs={11} md={4}>
-          <SingleDataCard
-            title="Weather"
-            text="Mean temperature: "
-            number="20"
-            units="Cº"
-            icon={<WbSunnyIcon />}
+            text="City size: "
+            number="Top 3.4 %"
+            icon="🧑‍🤝‍🧑"
             onClickData={onClickData}
             backgroundColor={theme.palette.primary}
           />
         </Grid>
-        <Grid item xs={11} md={4}>
+        <Grid item xs={12} md={4}>
+          <SingleDataCard
+            title="Employment"
+            text="Net salary: "
+            number="Top 15 %"
+            icon="💼"
+            onClickData={onClickData}
+            backgroundColor={theme.palette.primary}
+          />
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <SingleDataCard
+            title="Weather"
+            text="Mean temperature: "
+            number="20 ºC"
+            icon="☀️"
+            onClickData={onClickData}
+            backgroundColor={theme.palette.primary}
+          />
+        </Grid>
+        <Grid item xs={12} md={4}>
           <SingleDataCard
             title="Month costs"
             text="Shopping cart: "
-            number="450"
-            units="$"
-            icon={<MoneyIcon />}
+            number="Top 20 %"
+            icon="💸"
             onClickData={onClickData}
-            backgroundColor={theme.palette.success}
+            backgroundColor={theme.palette.primary}
           />
         </Grid>
-        <Grid item xs={11} md={4}>
+        <Grid item xs={12} md={4}>
           <SingleDataCard
             title="Taxes & Indicators"
             text="Income tax: "
-            number="39.4"
-            units="%"
-            icon={<MoneyOffIcon />}
+            number="Top 22.5 %"
+            icon="🧾"
             onClickData={onClickData}
-            backgroundColor={theme.palette.error}
+            backgroundColor={theme.palette.primary}
           />
         </Grid>
-        <Grid item xs={11} md={4}>
+        <Grid item xs={12} md={4}>
           <SingleDataCard
             title="Social"
-            text="Local beer: "
-            number={extractPrice(prices, "restaurants_domestic_beer")}
-            units="$"
-            icon={<LiquorIcon />}
+            text="1 meal out: "
+            number="Top 35 %"
+            icon="🍹"
             onClickData={onClickData}
-            backgroundColor={theme.palette.pink}
+            backgroundColor={theme.palette.primary}
           />
         </Grid>
       </Grid>
-      <PriceDataModal
+      <StandardDataModal
         openedModal={openedModal}
-        setOpenedModal={setOpenedModal}
-        data={prices}
+        modalType="Employment"
+        onClose={() => setOpenedModal(false)}
+        data={filterCosts(prices, "Employment")}
       />
+      <StandardDataModal
+        openedModal={openedModal}
+        modalType="Month costs"
+        onClose={() => setOpenedModal(false)}
+        data={filterCosts(prices, "Month costs")}
+      />
+      <StandardDataModal
+        openedModal={openedModal}
+        modalType="Social"
+        onClose={() => setOpenedModal(false)}
+        data={filterCosts(prices, "Social")}
+      />
+      <WeatherDataModal
+        openedModal={openedModal}
+        modalType="Weather"
+        onClose={() => setOpenedModal(false)}
+        data={selectedCity?.weather}
+      WeatherDataModal/>
       <DemographicDataModal
         openedModal={openedModal}
         setOpenedModal={setOpenedModal}
@@ -167,6 +190,11 @@ const CityInfoPage = () => {
             ? { ...selectedCountry, population: selectedCity?.population }
             : null
         }
+      />
+      <TaxesDataModal
+        openedModal={openedModal}
+        setOpenedModal={setOpenedModal}
+        data={selectedCountry ? selectedCountry : null}
       />
     </Box>
   );

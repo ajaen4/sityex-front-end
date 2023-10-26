@@ -2,12 +2,15 @@ import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 
 import { Box } from "@mui/material";
-import Toolbar from "@mui/material/Toolbar";
 
 import Navbar from "components/Navigation/Navbar";
 import Drawer from "components/Navigation/Drawer";
 
-import { drawerWidth } from "constants/constants";
+import {
+  drawerWidth,
+  tabletDrawerWidth,
+  minNavbarHeights
+} from "constants/constants";
 
 const MainLayout = () => {
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);
@@ -39,11 +42,14 @@ const MainLayout = () => {
           flexGrow: 1,
           display: "flex",
           flexDirection: "column",
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
+          width: {
+            md: `calc(100% - ${tabletDrawerWidth}px)`,
+            lg: `calc(100% - ${drawerWidth}px)`
+          },
           overflow: "hidden"
         }}
       >
-        <Toolbar />
+        <Box sx={{ minHeight: minNavbarHeights }} />
         <Outlet />
       </Box>
     </Box>

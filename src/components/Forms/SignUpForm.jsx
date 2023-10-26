@@ -12,20 +12,23 @@ import {
   useMediaQuery,
   Divider,
   Typography,
-  Box
+  Box,
+  InputAdornment,
+  IconButton
 } from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
 
 import Google from "assets/img/icons/social-google.svg";
+import Facebook from "assets/img/icons/facebook.png";
 
-import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 import StandarModal from "components/Modals/StandarModal";
-import { createUser, logInUserWithGoogle } from "actions";
+import { createUser, logInUserWithGoogle, logInUserWithFacebook } from "actions";
 import { sameAs } from "helpers/validators";
 
 import * as ROUTES_PATHS from "routes/paths";
 
-const SignUpForm = () => {
+const SignUpForm = ({ setIsFetching }) => {
   const {
     register,
     handleSubmit,
@@ -38,14 +41,18 @@ const SignUpForm = () => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
-  const [isFetching, setIsFetching] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [signedUpMessage, setSignedUpMessage] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
 
   const signUpUser = (data) => {
     setIsFetching(true);
     dispatch(createUser(data)).then(
       (user) => {
         setIsFetching(false);
+        setSignedUpMessage(
+          "Verify your email to be able to log in. Remember to check your spam folder!"
+        );
       },
       (error) => {
         setErrorMessage(error);
@@ -54,16 +61,16 @@ const SignUpForm = () => {
     );
   };
 
-  const signUpUserGoogle = async () => {
-    dispatch(logInUserWithGoogle()).then(
-      (user) => {},
-      (error) => {
-        setErrorMessage(error);
-      }
-    );
+  const providerHandler = (providerAction) => {
+    return async () => {
+      dispatch(providerAction()).then(
+        (user) => {},
+        (errorMessage) => {
+          setErrorMessage(errorMessage);
+        }
+      );
+    };
   };
-
-  if (isFetching) return <CenteredLoadingSpinner />;
 
   return (
     <>
@@ -73,7 +80,7 @@ const SignUpForm = () => {
             <Button
               disableElevation
               fullWidth
-              onClick={signUpUserGoogle}
+              onClick={providerHandler(logInUserWithGoogle)}
               size="large"
               variant="outlined"
               sx={{
@@ -95,6 +102,30 @@ const SignUpForm = () => {
             </Button>
           </Grid>
           <Grid item xs={12}>
+            <Button
+              disableElevation
+              fullWidth
+              onClick={providerHandler(logInUserWithFacebook)}
+              size="large"
+              variant="outlined"
+              sx={{
+                color: "grey.700",
+                backgroundColor: theme.palette.grey[50],
+                borderColor: theme.palette.grey[100]
+              }}
+            >
+              <Box sx={{ mr: { xs: 1, sm: 2 } }}>
+                <img
+                  src={Facebook}
+                  alt="facebook"
+                  width={20}
+                  style={{ marginTop: 6 }}
+                />
+              </Box>
+              Sign in with Facebook
+            </Button>
+          </Grid>
+          <Grid item xs={12}>
             <Box
               sx={{
                 alignItems: "center",
@@ -107,7 +138,6 @@ const SignUpForm = () => {
                 variant="outlined"
                 sx={{
                   cursor: "unset",
-                  m: 1,
                   py: 0.5,
                   px: 7,
                   borderColor: `${theme.palette.grey[100]} !important`,
@@ -150,13 +180,17 @@ const SignUpForm = () => {
                     pattern: {
                       value:
                         /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-                      message: "El formato del email no es valido"
+                      message: "The email's format is not valid"
                     }
                   })}
                   label="Email"
                   variant="outlined"
+                  autoComplete="email"
+                  InputProps={{
+                    style: { fontSize: 16 }
+                  }}
                 />
-                <FormHelperText style={{ minHeight: "20px" }}>
+                <FormHelperText style={{ minHeight: "25px" }}>
                   {errors.email?.message}
                 </FormHelperText>
               </FormControl>
@@ -164,14 +198,34 @@ const SignUpForm = () => {
               <FormControl fullWidth error={Boolean(errors.userName)}>
                 <TextField
                   {...register("userName", {
-                    required: "The username is reuquired"
+                    required: "The username is required"
                   })}
-                  label="Nombre de usuario"
+                  label="User name"
                   variant="outlined"
                   autoComplete="username"
+                  InputProps={{
+                    style: { fontSize: 16 }
+                  }}
                 />
-                <FormHelperText style={{ minHeight: "20px" }}>
+                <FormHelperText style={{ minHeight: "25px" }}>
                   {errors.userName?.message}
+                </FormHelperText>
+              </FormControl>
+
+              <FormControl fullWidth error={Boolean(errors.homeCountry)}>
+                <TextField
+                  {...register("homeCountry", {
+                    required: "The home country is required"
+                  })}
+                  label="Home country"
+                  variant="outlined"
+                  autoComplete="country"
+                  InputProps={{
+                    style: { fontSize: 16 }
+                  }}
+                />
+                <FormHelperText style={{ minHeight: "25px" }}>
+                  {errors.homeCountry?.message}
                 </FormHelperText>
               </FormControl>
 
@@ -184,12 +238,25 @@ const SignUpForm = () => {
                       message: "The password must have at least 8 characters"
                     }
                   })}
-                  label="Contraseña"
+                  label="password"
                   variant="outlined"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   autoComplete="new-password"
+                  InputProps={{
+                    style: { fontSize: 16 },
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          edge="end"
+                          onClick={() => setShowPassword(!showPassword)}
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    )
+                  }}
                 />
-                <FormHelperText style={{ minHeight: "20px" }}>
+                <FormHelperText style={{ minHeight: "25px" }}>
                   {errors.password?.message}
                 </FormHelperText>
               </FormControl>
@@ -205,15 +272,28 @@ const SignUpForm = () => {
                     validate: {
                       sameAs: (value) =>
                         sameAs(getValues, "password")(value) ||
-                        "Las contraseñas deben de ser iguales"
+                        "The passwords must match"
                     }
                   })}
-                  label="Confirmación de Contraseña"
+                  label="Password confirmation"
                   variant="outlined"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   autoComplete="new-password"
+                  InputProps={{
+                    style: { fontSize: 16 },
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          edge="end"
+                          onClick={() => setShowPassword(!showPassword)}
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    )
+                  }}
                 />
-                <FormHelperText style={{ minHeight: "20px" }}>
+                <FormHelperText style={{ minHeight: "10px" }}>
                   {errors.confirmPassword?.message}
                 </FormHelperText>
               </FormControl>
@@ -245,6 +325,13 @@ const SignUpForm = () => {
           </Link>
         </Grid>
       </Grid>
+      {signedUpMessage !== null && (
+        <StandarModal
+          color="success"
+          title={"User creation success. "}
+          message={signedUpMessage}
+        />
+      )}
       {errorMessage !== null && (
         <StandarModal
           color="error"

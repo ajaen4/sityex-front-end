@@ -11,7 +11,7 @@ const initAuth = () => {
   const data = (state = null, action) => {
     switch (action.type) {
       case SET_AUTH_USER:
-        return action.user;
+        return action.user || state;
       default:
         return state;
     }

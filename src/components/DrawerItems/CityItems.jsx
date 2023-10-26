@@ -71,27 +71,6 @@ const CityItems = () => {
           <ListItemText primary="Places" />
         </ListItemButton>
       </ListItem>
-      <ListItem disablePadding sx={{ display: "block" }}>
-        <ListItemButton
-          sx={{
-            minHeight: 48,
-            px: 2.5
-          }}
-          onClick={itemSelected}
-          data-path={ROUTES_PATHS.CITY_REVIEWS}
-        >
-          <ListItemIcon
-            sx={{
-              minWidth: 0,
-              mr: 3,
-              justifyContent: "center"
-            }}
-          >
-            <GradingIcon />
-          </ListItemIcon>
-          <ListItemText primary="Reviews" />
-        </ListItemButton>
-      </ListItem>
     </List>
   );
 };

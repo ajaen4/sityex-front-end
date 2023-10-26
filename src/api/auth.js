@@ -7,7 +7,9 @@ import {
   sendPasswordResetEmail,
   updatePassword,
   signInWithPopup,
-  GoogleAuthProvider
+  GoogleAuthProvider,
+  sendEmailVerification,
+  FacebookAuthProvider
 } from "firebase/auth";
 
 import { doc, setDoc, getDoc } from "firebase/firestore";
@@ -15,11 +17,15 @@ import { doc, setDoc, getDoc } from "firebase/firestore";
 import db from "db";
 
 const auth = getAuth();
-const provider = new GoogleAuthProvider();
+const googleProvider = new GoogleAuthProvider();
+const facebookProvider = new FacebookAuthProvider();
 
 export const logIn = async ({ email, password }) => {
   try {
     const { user } = await signInWithEmailAndPassword(auth, email, password);
+    if (!user.emailVerified) {
+      throw new Error("Please verify your email before logging in.");
+    }
     return user;
   } catch (error) {
     throw new Error(error.message);
@@ -28,16 +34,39 @@ export const logIn = async ({ email, password }) => {
 
 export const logInWithGoogle = async () => {
   try {
-    const { user } = await signInWithPopup(auth, provider);
+    const { user } = await signInWithPopup(auth, googleProvider);
     await saveUser({
       uid: user.uid,
       email: user.email,
-      userName: user.displayName
+      userName: user.displayName,
+      photoURL: user.photoURL
     });
     return user;
   } catch (error) {
     throw new Error(error.message);
   }
+};
+
+export const logInWithFacebook = async () => {
+  signInWithPopup(auth, facebookProvider)
+    .then(async (result) => {
+      const user = result.user;
+      const credential = FacebookAuthProvider.credentialFromResult(result);
+
+      await saveUser({
+        uid: user.uid,
+        email: user.email,
+        userName: user.displayName
+      });
+      return user;
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      const email = error.customData.email;
+      const credential = FacebookAuthProvider.credentialFromError(error);
+      throw new Error(errorMessage);
+    });
 };
 
 export const onAuthStateChangedCallback = (onAuthCallback) =>
@@ -50,6 +79,7 @@ export const createUser = async ({ email, password, userName }) => {
       email,
       password
     );
+    await sendEmailVerification(user);
     await saveUser({ uid: user.uid, email, userName });
     return user;
   } catch (error) {
@@ -62,7 +92,8 @@ export const saveUser = async (userData) => {
   await setDoc(userRef, {
     userName: userData.userName,
     email: userData.email,
-    id: userData.uid
+    id: userData.uid,
+    photoURL: userData.photoURL || null
   });
 };
 

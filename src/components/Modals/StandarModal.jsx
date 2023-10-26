@@ -12,7 +12,7 @@ const StandarModal = ({ title, message }) => {
 
   return (
     <Dialog open={showModal} onClose={toggle}>
-      <DialogTitle>{title}</DialogTitle>
+      <DialogTitle style={{ fontSize: "1.1em" }}>{title}</DialogTitle>
       <DialogContent>
         <DialogContentText>{message}</DialogContentText>
       </DialogContent>

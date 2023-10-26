@@ -17,10 +17,6 @@ export const createUser = (signUpData) => (dispatch, getState) => {
     );
 };
 
-export const userJustCreatedShown = () => (dispatch, getState) => {
-  dispatch({ type: USER_JUST_CREATED, userJustCreated: false });
-};
-
 export const logInUser = (logInData) => (dispatch, getState) => {
   return api
     .logIn(logInData)
@@ -33,8 +29,10 @@ export const logInUserWithGoogle = () => (dispatch, getState) => {
     .then((user) => dispatch({ type: JUST_LOGGED_IN, justLoggedIn: true }));
 };
 
-export const justLoggedInShown = () => (dispatch, getState) => {
-  dispatch({ type: JUST_LOGGED_IN, justLoggedIn: false });
+export const logInUserWithFacebook = () => (dispatch, getState) => {
+  return api
+    .logInWithFacebook()
+    .then((user) => dispatch({ type: JUST_LOGGED_IN, justLoggedIn: true }));
 };
 
 export const signOutUser = (uid) => {
@@ -48,7 +46,7 @@ export const onAuthStateChanged = (onAuthCallback) =>
   api.onAuthStateChangedCallback(onAuthCallback);
 
 export const storeAuthUser = (authUser) => (dispatch, getState) => {
-  if (authUser) {
+  if (authUser && authUser.emailVerified) {
     api.getUserData(authUser.uid).then(
       (user) =>
         dispatch({ type: SET_AUTH_USER, user: user, isAuthResolved: true }),

@@ -11,6 +11,7 @@ import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
 
 import * as ROUTES_PATHS from "routes/paths";
+import { mobileTabMinHeight } from "constants/constants";
 
 export default function CityTabs() {
   const [value, setValue] = React.useState(0);
@@ -32,21 +33,30 @@ export default function CityTabs() {
       aria-label="city-navigations"
       sx={{
         "& .MuiTabs-indicator": { backgroundColor: theme.palette.grey[100] },
-        "& .Mui-selected": { color: theme.palette.grey[100] }
+        "& .Mui-selected": { color: theme.palette.grey[100] },
+        "& .MuiButtonBase-root, & .MuiTab-root": {
+          paddingTop: "1 !important",
+          paddingBottom: "0 !important",
+          minHeight: "0 !important"
+        }
       }}
     >
       <Tab
-        icon={<CityIcon sx={{ color: theme.palette.grey[100] }} />}
+        icon={<CityIcon sx={{ color: theme.palette.grey[100], width: 20 }} />}
         aria-label="city-info"
         label={
-          <Typography variant="caption" color={theme.palette.grey[100]}>
+          <Typography
+            variant="caption"
+            color={theme.palette.grey[100]}
+            style={{ margin: 0, padding: 0 }}
+          >
             Info
           </Typography>
         }
         data-path={ROUTES_PATHS.CITY_INFO}
       />
       <Tab
-        icon={<PlaceIcon sx={{ color: theme.palette.grey[100] }} />}
+        icon={<PlaceIcon sx={{ color: theme.palette.grey[100], width: 20 }} />}
         aria-label="places"
         label={
           <Typography variant="caption" color={theme.palette.grey[100]}>
@@ -54,16 +64,6 @@ export default function CityTabs() {
           </Typography>
         }
         data-path={ROUTES_PATHS.CITY_PLACES}
-      />
-      <Tab
-        icon={<GradingIcon sx={{ color: theme.palette.grey[100] }} />}
-        aria-label="reviews"
-        label={
-          <Typography variant="caption" color={theme.palette.grey[100]}>
-            Reviews
-          </Typography>
-        }
-        data-path={ROUTES_PATHS.CITY_REVIEWS}
       />
     </Tabs>
   );

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useTheme } from "@mui/material/styles";
 import { Grid, Stack, Typography, Container, Box, Card } from "@mui/material";
@@ -7,10 +7,14 @@ import { withoutAuth } from "session";
 import { logAnalyticsEvent } from "api";
 
 import SignUpForm from "components/Forms/SignUpForm.jsx";
-import Logo from "assets/img/icons/logo_black.png";
+import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
+
+import Logo from "assets/img/icons/big_logo_blue.png";
 
 const SignUpPage = () => {
   const theme = useTheme();
+
+  const [isFetching, setIsFetching] = useState(false);
 
   useEffect(() => {
     logAnalyticsEvent("page_view", {
@@ -19,23 +23,28 @@ const SignUpPage = () => {
     });
   }, []);
 
+  if (isFetching) return <CenteredLoadingSpinner />;
+
   return (
     <Container
       sx={{
         display: "flex",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
       }}
     >
       <Card
         sx={{
+          display: "flex",
           maxWidth: { xs: 400, lg: 475 },
           border: "1px solid",
           borderColor: theme.palette.primary[200] + 25,
           ":hover": {
             boxShadow: "inherit"
           },
-          p: { xs: 2, sm: 3, xl: 5 }
+          p: { xs: 2, sm: 3, xl: 5 },
+          marginTop: 3,
+          marginBottom: 3
         }}
       >
         <Grid container spacing={1} alignItems="center" justifyContent="center">
@@ -76,7 +85,7 @@ const SignUpPage = () => {
               </Stack>
             </Container>
           </Grid>
-          <SignUpForm />
+          <SignUpForm setIsFetching={setIsFetching} />
         </Grid>
       </Card>
     </Container>

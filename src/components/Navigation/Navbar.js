@@ -18,10 +18,10 @@ import { useTheme } from "@mui/material/styles";
 
 import { signOutUser } from "actions";
 
-import logo from "assets/img/icons/logo.png";
+import logo from "assets/img/icons/big_logo_white.png";
 
 import * as ROUTES_PATHS from "routes/paths";
-import { pages, settings } from "constants/constants.js";
+import { pages, settings, minNavbarHeights } from "constants/constants.js";
 
 function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
   const [isOpenUserMenu, setIsOpenUserMenu] = React.useState(false);
@@ -54,11 +54,10 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
 
   const handleCloseUserMenu = (setting) => {
     setIsOpenUserMenu(false);
-    if (setting === "Logout") signOutUser(auth.id);
+    if (setting === "Logout") signOutUser(auth.data.id);
   };
 
   const handleClickNavMenu = (page) => {
-    if (page === "New review") navigate(ROUTES_PATHS.NEW_REVIEW);
     if (page === "Search City") navigate(ROUTES_PATHS.SEARCH);
     if (page === "Destinations Map") navigate(ROUTES_PATHS.MAP);
   };
@@ -72,7 +71,16 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
           zIndex: theme.zIndex.drawer + 1000
         }}
       >
-        <Toolbar style={{ padding: 0, marginLeft: 20, marginRight: 5 }}>
+        <Toolbar
+          style={{
+            padding: 0,
+            marginLeft: 20,
+            marginRight: 5
+          }}
+          sx={{
+            minHeight: minNavbarHeights
+          }}
+        >
           <IconButton
             sx={{
               display: { xs: "none", md: "flex" },
@@ -80,7 +88,7 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
             }}
             onClick={clickedLogo}
           >
-            <img src={logo} alt="SityEx logo" width={90} height={25} />
+            <img src={logo} alt="SityEx logo" width={90} />
           </IconButton>
           <Box sx={{ display: { xs: "flex", md: "flex" } }}>
             {isSmallScreen && (
@@ -89,6 +97,7 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
                 aria-label="open drawer"
                 onClick={() => setIsOpenDrawer(!isOpenDrawer)}
                 edge="start"
+                sx={{ my: 0, py: 0 }}
               >
                 <MenuIcon />
               </IconButton>
@@ -99,11 +108,13 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
               alignItems: "center",
-              mt: 1
+              m: 0,
+              mt: 1,
+              p: 0
             }}
             onClick={clickedLogo}
           >
-            <img src={logo} alt="SityEx logo" width={90} height={25} />
+            <img src={logo} alt="SityEx logo" width={90} />
           </IconButton>
           <Box
             sx={{
@@ -131,19 +142,25 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
           {isAuthResolved && (
             <Box sx={{ marginLeft: "auto" }} ref={userSettingsRef}>
               <Tooltip title="Open settings" id="user-settings">
-                <IconButton onClick={toggleUserMenu}>
+                <IconButton
+                  onClick={toggleUserMenu}
+                  sx={{
+                    m: 0,
+                    p: 0
+                  }}
+                >
                   <Avatar
                     alt="Remy Sharp"
                     src="https://i.pravatar.cc/150"
                     sx={{
-                      width: { xs: 35, md: 40 },
-                      height: { xs: 35, md: 40 }
+                      m: 0,
+                      p: 0
                     }}
                   />
                 </IconButton>
               </Tooltip>
               <Menu
-                sx={{ mt: "45px", zIndex: theme.zIndex.drawer + 1000 }}
+                sx={{ mt: "33px", zIndex: theme.zIndex.drawer + 1000 }}
                 id="menu-appbar"
                 anchorEl={userSettingsRef.current}
                 anchorOrigin={{
