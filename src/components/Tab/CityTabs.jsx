@@ -65,18 +65,6 @@ export default function CityTabs() {
         }
         data-path={ROUTES_PATHS.CITY_PLACES}
       />
-      <Tab
-        icon={
-          <GradingIcon sx={{ color: theme.palette.grey[100], width: 20 }} />
-        }
-        aria-label="reviews"
-        label={
-          <Typography variant="caption" color={theme.palette.grey[100]}>
-            Reviews
-          </Typography>
-        }
-        data-path={ROUTES_PATHS.CITY_REVIEWS}
-      />
     </Tabs>
   );
 }

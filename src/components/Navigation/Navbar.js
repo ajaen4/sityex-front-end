@@ -58,7 +58,6 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
   };
 
   const handleClickNavMenu = (page) => {
-    if (page === "New review") navigate(ROUTES_PATHS.NEW_REVIEW);
     if (page === "Search City") navigate(ROUTES_PATHS.SEARCH);
     if (page === "Destinations Map") navigate(ROUTES_PATHS.MAP);
   };

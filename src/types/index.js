@@ -23,16 +23,6 @@ export const SET_AUTH_USER_ERROR = "SET_AUTH_USER_ERROR";
 
 //--------------------AUTH END
 
-//--------------------REVIEWS
-
-export const FETCHING_REVIEWS = "FETCHING_REVIEWS";
-export const FETCHING_REVIEWS_SUCCESS = "FETCHING_REVIEWS_SUCCESS";
-export const SAVING_REVIEW = "SAVING_REVIEW";
-export const SAVING_REVIEW_SUCCESS = "SAVING_REVIEW_SUCCESS";
-export const SAVING_REVIEW_ERROR = "SAVING_REVIEW_ERROR";
-
-//--------------------REVIEWS END
-
 //--------------------PLACES
 
 export const SAVING_PLACE = "SAVING_PLACE";

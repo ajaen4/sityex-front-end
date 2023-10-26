@@ -3,11 +3,9 @@ import MainLayout from "Layouts/MainLayout";
 import {
   SearchPage,
   MapPage,
-  ReviewPage,
   CityPage,
   CityInfoPage,
-  CityPlacesPage,
-  CityReviewsPage
+  CityPlacesPage
 } from "pages";
 
 import * as ROUTES_PATHS from "routes/paths";
@@ -29,10 +27,6 @@ const WithAuthRoutes = {
       element: <MapPage />
     },
     {
-      path: ROUTES_PATHS.NEW_REVIEW,
-      element: <ReviewPage />
-    },
-    {
       path: ROUTES_PATHS.DESTINATION,
       element: <CityPage />,
       children: [
@@ -43,10 +37,6 @@ const WithAuthRoutes = {
         {
           path: ROUTES_PATHS.CITY_PLACES,
           element: <CityPlacesPage />
-        },
-        {
-          path: ROUTES_PATHS.CITY_REVIEWS,
-          element: <CityReviewsPage />
         }
       ]
     }

@@ -68,27 +68,6 @@ const MainItems = () => {
           <ListItemText primary="Destinations Map" />
         </ListItemButton>
       </ListItem>
-      <ListItem disablePadding sx={{ display: "block" }}>
-        <ListItemButton
-          sx={{
-            minHeight: 48,
-            px: 2.5
-          }}
-          onClick={itemSelected}
-          data-path={ROUTES_PATHS.NEW_REVIEW}
-        >
-          <ListItemIcon
-            sx={{
-              minWidth: 0,
-              mr: 3,
-              justifyContent: "center"
-            }}
-          >
-            <GradingIcon />
-          </ListItemIcon>
-          <ListItemText primary="New Review" />
-        </ListItemButton>
-      </ListItem>
     </List>
   );
 };
