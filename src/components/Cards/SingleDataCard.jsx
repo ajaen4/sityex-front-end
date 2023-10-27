@@ -31,20 +31,13 @@ const SingleDataCard = ({
         </Grid>
         <Grid item xs={8}>
           <Typography
-            sx={{ fontSize: "1.1em", color: theme.palette.grey[900] }}
-            gutterBottom
+            sx={{
+              fontSize: "1.1em",
+              color: theme.palette.grey[900],
+          }}
           >
             {title}
           </Typography>
-          {text && number && (
-            <Typography
-              variant="body2"
-              sx={{ fontSize: "1em", color: theme.palette.grey[900] }}
-            >
-              {text}
-              {number}
-            </Typography>
-          )}
         </Grid>
         <Grid
           item
