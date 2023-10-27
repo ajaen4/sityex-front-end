@@ -70,7 +70,7 @@ const WeatherDataModal = ({ openedModal, modalType, onClose, data }) => {
                   Avg cloud cover (%)
                 </StyledTableCell>
                 <StyledTableCell align="left" sx={{ fontSize: tableFontSize }}>
-                  Avg precipitation (hours)
+                  Avg daily precipitation (hours)
                 </StyledTableCell>
                 <StyledTableCell align="left" sx={{ fontSize: tableFontSize }}>
                   Avg humidity (%)

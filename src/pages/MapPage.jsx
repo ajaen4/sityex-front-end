@@ -1,7 +1,6 @@
 import React, { useEffect, Suspense } from "react";
 import { useSelector } from "react-redux";
 
-import { withAuth } from "session";
 import { logAnalyticsEvent } from "api";
 
 import { Box } from "@mui/material";
@@ -38,4 +37,4 @@ const MapPage = () => {
   );
 };
 
-export default withAuth(MapPage);
+export default MapPage;
