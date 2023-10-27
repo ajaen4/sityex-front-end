@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 
-import { withAuth } from "session";
 import { logAnalyticsEvent } from "api";
 
 import { Box, Typography } from "@mui/material";
@@ -65,4 +64,4 @@ const CityPlacesPage = () => {
   );
 };
 
-export default withAuth(CityPlacesPage);
+export default CityPlacesPage;

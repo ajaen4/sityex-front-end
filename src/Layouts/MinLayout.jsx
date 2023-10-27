@@ -23,14 +23,22 @@ const MinLayout = () => {
     <Box
       sx={{
         display: "flex",
-        flexDirection: "column",
         height: `${viewportHeight}px`,
-        width: "100%",
-        backgroundColor: theme.palette.primary.light,
-        overflowY: "auto",
+        overflowY: "hidden"
       }}
     >
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          display: "flex",
+          flexDirection: "column",
+        overflow: "auto",
+          backgroundColor: theme.palette.primary.light,
+        }}
+      >
       <Outlet />
+      </Box>
     </Box>
   );
 };

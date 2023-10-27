@@ -55,7 +55,7 @@ class App extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.auth && store.getState().citiesIndex.data === null) {
+    if (store.getState().citiesIndex.data === null) {
       store.dispatch(fetchCitiesIndex());
     }
   }

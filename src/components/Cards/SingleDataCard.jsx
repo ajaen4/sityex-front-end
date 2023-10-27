@@ -2,7 +2,7 @@ import React from "react";
 import { useTheme } from "@mui/material/styles";
 
 import { Typography, Grid, Card, Avatar } from "@mui/material";
-import AddIcon from "@mui/icons-material/AddOutlined";
+import { Visibility } from "@mui/icons-material";
 
 const SingleDataCard = ({
   title,
@@ -65,7 +65,7 @@ const SingleDataCard = ({
             }}
             onClick={() => onClickData(title)}
           >
-            <AddIcon />
+            <Visibility />
           </Avatar>
         </Grid>
       </Grid>

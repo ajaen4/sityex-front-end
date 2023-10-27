@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useMediaQuery } from "@mui/material";
 
@@ -27,26 +27,12 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
   const [isOpenUserMenu, setIsOpenUserMenu] = React.useState(false);
 
   const auth = useSelector((state) => state.auth);
-  const isAuthResolved = useSelector((state) => state.auth.isAuthResolved);
 
   const theme = useTheme();
   const userSettingsRef = React.useRef(null);
 
   const navigate = useNavigate();
-  const { pathname } = useLocation();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
-
-  useEffect(() => {
-    if (!location.pathname.includes("destination")) {
-      setIsOpenDrawer(false);
-      return;
-    }
-
-    if (location.pathname.includes("destination") && !isSmallScreen) {
-      setIsOpenDrawer(true);
-      return;
-    }
-  }, [pathname]);
 
   const toggleUserMenu = () => {
     setIsOpenUserMenu(!isOpenUserMenu);
@@ -123,23 +109,22 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
               justifyContent: { md: "space-evenly", lg: "center" }
             }}
           >
-            {isAuthResolved &&
-              pages.map((page) => (
-                <Button
-                  key={page}
-                  onClick={() => handleClickNavMenu(page)}
-                  sx={{
-                    mx: 5,
-                    color: "white",
-                    display: "block",
-                    fontSize: "1.1em"
-                  }}
-                >
-                  {page}
-                </Button>
-              ))}
+            {pages.map((page) => (
+              <Button
+                key={page}
+                onClick={() => handleClickNavMenu(page)}
+                sx={{
+                  mx: 5,
+                  color: "white",
+                  display: "block",
+                  fontSize: "1.1em"
+                }}
+              >
+                {page}
+              </Button>
+            ))}
           </Box>
-          {isAuthResolved && (
+          {auth?.isAuthResolved && (
             <Box sx={{ marginLeft: "auto" }} ref={userSettingsRef}>
               <Tooltip title="Open settings" id="user-settings">
                 <IconButton
@@ -151,7 +136,10 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
                 >
                   <Avatar
                     alt="Remy Sharp"
-                    src="https://i.pravatar.cc/150"
+                    src={`https://eu.ui-avatars.com/api/?name=${auth.data.userName.replace(
+                      " ",
+                      "+"
+                    )}&size=250`}
                     sx={{
                       m: 0,
                       p: 0
@@ -184,6 +172,17 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
                   </MenuItem>
                 ))}
               </Menu>
+            </Box>
+          )}
+          {!auth?.isAuthResolved && (
+            <Box sx={{ marginRight: 1 }}>
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={() => navigate(ROUTES_PATHS.SIGN_UP)}
+              >
+                Sign up
+              </Button>
             </Box>
           )}
         </Toolbar>
