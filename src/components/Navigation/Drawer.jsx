@@ -1,9 +1,12 @@
-import * as React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 import Box from "@mui/material/Box";
 import { Drawer as MUIDrawer } from "@mui/material";
 import Divider from "@mui/material/Divider";
+import { useMediaQuery } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 import MainItems from "components/DrawerItems/MainItems";
 import CityItems from "components/DrawerItems/CityItems";
@@ -16,7 +19,30 @@ import {
 
 export default function Drawer(props) {
   const { window } = props;
+  const { pathname } = useLocation();
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+
   const selectedCity = useSelector((state) => state.selectedCity.data);
+
+  useEffect(() => {
+    const paths = ["destination"];
+
+    if (isSmallScreen) {
+      props.setIsOpenDrawer(false);
+      return;
+    }
+
+    if (!paths.some(path => location.pathname.includes(path))) {
+      props.setIsOpenDrawer(false);
+      return;
+    }
+
+    if (paths.some(path => location.pathname.includes(path))) {
+      props.setIsOpenDrawer(true);
+      return;
+    }
+  }, [pathname]);
 
   const handleDrawerToggle = () => {
     props.setIsOpenDrawer(!props.isOpenDrawer);

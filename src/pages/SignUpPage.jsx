@@ -31,6 +31,7 @@ const SignUpPage = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        flex: "100%",
       }}
     >
       <Card
@@ -44,7 +45,7 @@ const SignUpPage = () => {
           },
           p: { xs: 2, sm: 3, xl: 5 },
           marginTop: 3,
-          marginBottom: 3
+          marginBottom: 3,
         }}
       >
         <Grid container spacing={1} alignItems="center" justifyContent="center">

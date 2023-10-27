@@ -30,11 +30,14 @@ const LogInPage = () => {
       sx={{
         display: "flex",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        height: "100%",
+        overflow: "auto"
       }}
     >
       <Card
         sx={{
+          display: "flex",
           maxWidth: { xs: 400, lg: 475 },
           margin: { xs: 2.5, md: 3 },
           border: "1px solid",

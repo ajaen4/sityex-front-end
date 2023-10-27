@@ -5,7 +5,6 @@ import { useTheme } from "@mui/material/styles";
 import { useLocation } from "react-router-dom";
 import { useMediaQuery } from "@mui/material";
 
-import { withAuth } from "session";
 import { fetchCity, fetchCountry } from "actions";
 
 import { Box, Typography } from "@mui/material";
@@ -93,4 +92,4 @@ const CityPage = () => {
   );
 };
 
-export default withAuth(CityPage);
+export default CityPage;

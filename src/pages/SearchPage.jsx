@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { withAuth } from "session";
 import { logAnalyticsEvent } from "api";
 
 import { Card, CardContent, Typography, Grid, Box } from "@mui/material";
@@ -53,4 +52,4 @@ const SearchPage = () => {
   );
 };
 
-export default withAuth(SearchPage);
+export default SearchPage;

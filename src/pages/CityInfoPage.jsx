@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useTheme } from "@mui/material/styles";
 
-import { withAuth } from "session";
 import { logAnalyticsEvent } from "api";
 
 import { Box, Grid } from "@mui/material";
@@ -200,4 +199,4 @@ const CityInfoPage = () => {
   );
 };
 
-export default withAuth(CityInfoPage);
+export default CityInfoPage;
