@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useMediaQuery } from "@mui/material";
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -32,7 +31,6 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
   const userSettingsRef = React.useRef(null);
 
   const navigate = useNavigate();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const toggleUserMenu = () => {
     setIsOpenUserMenu(!isOpenUserMenu);
@@ -51,143 +49,134 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
   const clickedLogo = () => navigate(ROUTES_PATHS.ROOT);
 
   return (
-    <>
-      <AppBar
+    <AppBar
+      sx={{
+        zIndex: theme.zIndex.drawer + 1000
+      }}
+    >
+      <Toolbar
+        style={{
+          display: "flex",
+          justifyContent: "space-between"
+        }}
         sx={{
-          zIndex: theme.zIndex.drawer + 1000
+          minHeight: minNavbarHeights,
+          pr: 1
         }}
       >
-        <Toolbar
-          style={{
-            padding: 0,
-            marginLeft: 20,
-            marginRight: 5
-          }}
+        <IconButton
           sx={{
-            minHeight: minNavbarHeights
+            display: { xs: "none", md: "flex" },
+            mt: 0.5
+          }}
+          onClick={clickedLogo}
+        >
+          <img src={logo} alt="SityEx logo" width={90} />
+        </IconButton>
+        <IconButton
+          color="inherit"
+          aria-label="open drawer"
+          onClick={() => setIsOpenDrawer(!isOpenDrawer)}
+          edge="start"
+          sx={{ display: { xs: "flex", md: "none" } }}
+        >
+          <MenuIcon />
+        </IconButton>
+        <IconButton
+          sx={{
+            display: { xs: "flex", md: "none" },
+            mt: 1
+          }}
+          onClick={clickedLogo}
+        >
+          <img src={logo} alt="SityEx logo" width={90} />
+        </IconButton>
+        <Box
+          sx={{
+            flexGrow: 1,
+            display: { xs: "none", md: "flex" },
+            justifyContent: { md: "space-evenly", lg: "center" }
           }}
         >
-          <IconButton
-            sx={{
-              display: { xs: "none", md: "flex" },
-              mr: { xs: 1, sm: 2 }
-            }}
-            onClick={clickedLogo}
-          >
-            <img src={logo} alt="SityEx logo" width={90} />
-          </IconButton>
-          <Box sx={{ display: { xs: "flex", md: "flex" } }}>
-            {isSmallScreen && (
+          {pages.map((page) => (
+            <Button
+              key={page}
+              onClick={() => handleClickNavMenu(page)}
+              sx={{
+                mx: 5,
+                color: "white",
+                display: "block",
+                fontSize: "1.1em"
+              }}
+            >
+              {page}
+            </Button>
+          ))}
+        </Box>
+        {auth?.isAuthResolved && (
+          <Box ref={userSettingsRef}>
+            <Tooltip title="Open settings" id="user-settings">
               <IconButton
-                color="inherit"
-                aria-label="open drawer"
-                onClick={() => setIsOpenDrawer(!isOpenDrawer)}
-                edge="start"
-                sx={{ my: 0, py: 0 }}
-              >
-                <MenuIcon />
-              </IconButton>
-            )}
-          </Box>
-          <IconButton
-            sx={{
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              alignItems: "center",
-              m: 0,
-              mt: 1,
-              p: 0
-            }}
-            onClick={clickedLogo}
-          >
-            <img src={logo} alt="SityEx logo" width={90} />
-          </IconButton>
-          <Box
-            sx={{
-              flexGrow: 1,
-              display: { xs: "none", md: "flex" },
-              justifyContent: { md: "space-evenly", lg: "center" }
-            }}
-          >
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={() => handleClickNavMenu(page)}
+                onClick={toggleUserMenu}
                 sx={{
-                  mx: 5,
-                  color: "white",
-                  display: "block",
-                  fontSize: "1.1em"
+                  m: 0,
+                  p: 0
                 }}
               >
-                {page}
-              </Button>
-            ))}
-          </Box>
-          {auth?.isAuthResolved && (
-            <Box sx={{ marginLeft: "auto" }} ref={userSettingsRef}>
-              <Tooltip title="Open settings" id="user-settings">
-                <IconButton
-                  onClick={toggleUserMenu}
+                <Avatar
+                  alt="Remy Sharp"
+                  src={`https://eu.ui-avatars.com/api/?name=${auth.data.userName.replace(
+                    " ",
+                    "+"
+                  )}&size=250`}
                   sx={{
                     m: 0,
                     p: 0
                   }}
+                />
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: "40px", zIndex: theme.zIndex.drawer + 1000 }}
+              id="menu-appbar"
+              anchorEl={userSettingsRef.current}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right"
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right"
+              }}
+              keepMounted
+              open={isOpenUserMenu}
+              onClose={() => handleCloseUserMenu()}
+            >
+              {settings.map((setting) => (
+                <MenuItem
+                  key={setting}
+                  onClick={() => handleCloseUserMenu(setting)}
                 >
-                  <Avatar
-                    alt="Remy Sharp"
-                    src={`https://eu.ui-avatars.com/api/?name=${auth.data.userName.replace(
-                      " ",
-                      "+"
-                    )}&size=250`}
-                    sx={{
-                      m: 0,
-                      p: 0
-                    }}
-                  />
-                </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{ mt: "33px", zIndex: theme.zIndex.drawer + 1000 }}
-                id="menu-appbar"
-                anchorEl={userSettingsRef.current}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right"
-                }}
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right"
-                }}
-                keepMounted
-                open={isOpenUserMenu}
-                onClose={() => handleCloseUserMenu()}
-              >
-                {settings.map((setting) => (
-                  <MenuItem
-                    key={setting}
-                    onClick={() => handleCloseUserMenu(setting)}
-                  >
-                    <Typography textAlign="center">{setting}</Typography>
-                  </MenuItem>
-                ))}
-              </Menu>
-            </Box>
-          )}
-          {!auth?.isAuthResolved && (
-            <Box sx={{ marginRight: 1 }}>
-              <Button
-                variant="contained"
-                color="secondary"
-                onClick={() => navigate(ROUTES_PATHS.SIGN_UP)}
-              >
-                Sign up
-              </Button>
-            </Box>
-          )}
-        </Toolbar>
-      </AppBar>
-    </>
+                  <Typography textAlign="center">{setting}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+        )}
+        {!auth?.isAuthResolved && (
+          <Box>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={() => navigate(ROUTES_PATHS.SIGN_UP)}
+              sx={{ mr: 0 }}
+            >
+              Sign up
+            </Button>
+          </Box>
+        )}
+      </Toolbar>
+    </AppBar>
   );
 }
 
