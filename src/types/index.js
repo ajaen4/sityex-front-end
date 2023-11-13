@@ -7,12 +7,19 @@ export const REQUESTING_CITY = "REQUESTING_CITY";
 
 //--------------------CITIES END
 
-//--------------------COUNTRIES
+//--------------------COUNTRY
 
 export const FETCH_COUNTRY_SUCCESS = "FETCH_COUNTRY_SUCCESS";
 export const REQUESTING_COUNTRY = "REQUESTING_COUNTRY";
 
-//--------------------CITIES END
+//--------------------COUNTRY END
+
+//--------------------COUNTRIES
+
+export const FETCH_ALL_COUNTRIES_SUCCESS = "FETCH_ALL_COUNTRIES_SUCCESS";
+export const REQUESTING_ALL_COUNTRIES = "REQUESTING_ALL_COUNTRIES";
+
+//--------------------COUNTRIES END
 
 //--------------------AUTH
 

@@ -6,7 +6,7 @@ import "leaflet.markercluster/dist/MarkerCluster.Default.css";
 
 import CitiesMarkerCluster from "components/Maps/CitiesMarkerCluster";
 
-const CENTER = { lat: 46.37783368972618, lng: 4.62754074832646 };
+const CENTER = { lat: 40.4165, lng: -3.70256 };
 
 const TOKEN = process.env.REACT_APP_MAPS_API_KEY;
 const MAP_STYLE = process.env.REACT_APP_MAPS_STYLE;
@@ -15,7 +15,7 @@ function DestinationsMap({ citiesIndex }) {
   return (
     <MapContainer
       center={[CENTER["lat"], CENTER["lng"]]}
-      zoom={4}
+      zoom={5}
       style={{ height: "100%", width: "100%" }}
       zoomControl={false}
     >

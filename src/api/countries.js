@@ -1,4 +1,11 @@
-import { collection, doc, getDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  orderBy
+} from "firebase/firestore";
 import db from "db";
 
 export const getCountry = async (country_3_code) => {
@@ -19,5 +26,18 @@ export const getCountry = async (country_3_code) => {
   } catch (err) {
     console.error("Error fetching country:", err);
     return err;
+  }
+};
+
+export const getCountries = async () => {
+  try {
+    const countriesCol = collection(db, "countries");
+    const q = query(countriesCol, orderBy("name"));
+    const countriesDocs = await getDocs(q);
+    const countriesData = countriesDocs.docs.map((doc) => doc.data());
+    return countriesData;
+  } catch (err) {
+    console.error("Error fetching countries:", err);
+    return [];
   }
 };

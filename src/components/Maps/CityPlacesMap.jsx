@@ -6,7 +6,7 @@ import {
   TileLayer,
   Marker,
   Popup,
-  ZoomControl,
+  ZoomControl
 } from "react-leaflet";
 import "react-leaflet-fullscreen/styles.css";
 import Container from "@mui/material/Container";

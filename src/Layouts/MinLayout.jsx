@@ -33,11 +33,11 @@ const MinLayout = () => {
           flexGrow: 1,
           display: "flex",
           flexDirection: "column",
-        overflow: "auto",
-          backgroundColor: theme.palette.primary.light,
+          overflow: "auto",
+          backgroundColor: theme.palette.primary.light
         }}
       >
-      <Outlet />
+        <Outlet />
       </Box>
     </Box>
   );
