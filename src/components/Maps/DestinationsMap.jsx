@@ -6,7 +6,7 @@ import "leaflet.markercluster/dist/MarkerCluster.Default.css";
 
 import CitiesMarkerCluster from "components/Maps/CitiesMarkerCluster";
 
-const CENTER = { lat: 40.4165, lng: -3.70256 };
+const CENTER = { lat: 37.76922, lng: -3.79028 };
 
 const TOKEN = process.env.REACT_APP_MAPS_API_KEY;
 const MAP_STYLE = process.env.REACT_APP_MAPS_STYLE;
