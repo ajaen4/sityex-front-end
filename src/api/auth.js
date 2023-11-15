@@ -72,7 +72,12 @@ export const logInWithFacebook = async () => {
 export const onAuthStateChangedCallback = (onAuthCallback) =>
   onAuthStateChanged(auth, onAuthCallback);
 
-export const createUser = async ({ email, password, userName }) => {
+export const createUser = async ({
+  email,
+  password,
+  userName,
+  homeCountry
+}) => {
   try {
     const { user } = await createUserWithEmailAndPassword(
       auth,
@@ -80,7 +85,12 @@ export const createUser = async ({ email, password, userName }) => {
       password
     );
     await sendEmailVerification(user);
-    await saveUser({ uid: user.uid, email, userName });
+    await saveUser({
+      uid: user.uid,
+      email,
+      userName,
+      country_3_code: homeCountry
+    });
     return user;
   } catch (error) {
     throw new Error(error.message);

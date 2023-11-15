@@ -54,7 +54,7 @@ const CityInfoPage = () => {
     logAnalyticsEvent("page_view", {
       page_title: "City Info Page",
       page_location: window.location.href,
-      city_name: selectedCity?.name,
+      city_name: selectedCity?.name
     });
   }, []);
 
@@ -169,7 +169,8 @@ const CityInfoPage = () => {
         modalType="Weather"
         onClose={() => setOpenedModal(false)}
         data={selectedCity?.weather}
-      WeatherDataModal/>
+        WeatherDataModal
+      />
       <DemographicDataModal
         openedModal={openedModal}
         setOpenedModal={setOpenedModal}

@@ -33,8 +33,8 @@ const SingleDataCard = ({
           <Typography
             sx={{
               fontSize: "1.1em",
-              color: theme.palette.grey[900],
-          }}
+              color: theme.palette.grey[900]
+            }}
           >
             {title}
           </Typography>
