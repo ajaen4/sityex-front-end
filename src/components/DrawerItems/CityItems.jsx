@@ -9,10 +9,8 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 
 import CityIcon from "@mui/icons-material/LocationCityOutlined";
-import GradingIcon from "@mui/icons-material/GradingOutlined";
-import PlaceIcon from "@mui/icons-material/PlaceOutlined";
+import TicketIcon from "@mui/icons-material/ConfirmationNumberOutlined";
 
-import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
 import * as ROUTES_PATHS from "routes/paths";
@@ -57,7 +55,7 @@ const CityItems = () => {
             px: 2.5
           }}
           onClick={itemSelected}
-          data-path={ROUTES_PATHS.CITY_PLACES}
+          data-path={ROUTES_PATHS.CITY_EVENTS}
         >
           <ListItemIcon
             sx={{
@@ -66,9 +64,9 @@ const CityItems = () => {
               justifyContent: "center"
             }}
           >
-            <PlaceIcon />
+            <TicketIcon />
           </ListItemIcon>
-          <ListItemText primary="Places" />
+          <ListItemText primary="Events" />
         </ListItemButton>
       </ListItem>
     </List>

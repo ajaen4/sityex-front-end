@@ -6,6 +6,7 @@ import selectedCity from "reducers/selectedCity";
 import selectedCountry from "reducers/selectedCountry";
 import places from "reducers/places";
 import allCountries from "reducers/allCountries";
+import events from "reducers/events";
 
 const serviceApp = combineReducers({
   auth,
@@ -13,7 +14,8 @@ const serviceApp = combineReducers({
   selectedCity,
   selectedCountry,
   allCountries,
-  places
+  places,
+  events
 });
 
 export default serviceApp;

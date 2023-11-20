@@ -39,3 +39,12 @@ export const SAVING_PLACE_SUCCESS = "SAVING_PLACE_SUCCESS";
 export const SAVING_PLACE_ERROR = "SAVING_PLACE_ERROR";
 
 //--------------------PLACES END
+
+//--------------------EVENTS
+
+export const FETCHING_EVENTS = "FETCHING_EVENTS";
+export const FETCHING_EVENTS_SUCCESS = "FETCHING_EVENTS_SUCCESS";
+export const FETCHING_EVENT = "FETCHING_EVENT";
+export const FETCHING_EVENT_SUCCESS = "FETCHING_EVENT_SUCCESS";
+
+//--------------------EVENTS END

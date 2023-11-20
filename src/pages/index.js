@@ -5,6 +5,8 @@ import SearchPage from "./SearchPage";
 import MapPage from "./MapPage";
 import LogInPage from "./LogInPage";
 import SignUpPage from "./SignUpPage";
+import CityEventsPage from "./CityEventsPage";
+import CityEventPage from "./CityEventPage";
 
 export {
   SearchPage,
@@ -13,5 +15,7 @@ export {
   SignUpPage,
   CityPage,
   CityInfoPage,
-  CityPlacesPage
+  CityPlacesPage,
+  CityEventsPage,
+  CityEventPage
 };
