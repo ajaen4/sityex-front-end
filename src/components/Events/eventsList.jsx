@@ -2,17 +2,16 @@ import React from "react";
 import { useTheme } from "@mui/material/styles";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { FixedSizeGrid as Grid } from "react-window";
+import AutoSizer from "react-virtualized-auto-sizer";
 
 import {
-  ImageList,
   ImageListItem,
   useMediaQuery
 } from "@mui/material";
 
-const EventsList = ({ events}) => {
-
+const EventsList = ({ events }) => {
   const selectedCity = useSelector((state) => state.selectedCity.data);
-
   const theme = useTheme();
   const navigate = useNavigate();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -21,23 +20,45 @@ const EventsList = ({ events}) => {
     navigate(`/destination/${selectedCity.city_id}/event/${eventSku}`);
   };
 
-  return (
-    <ImageList cols={isSmallScreen ? 3 : 5}>
-        {events?.map((event) => (
+  // Grid cell renderer
+  const Cell = ({ columnIndex, rowIndex, style }) => {
+    const event = events[rowIndex * (isSmallScreen ? 3 : 5) + columnIndex];
+    if (!event) {
+      return null;
+    }
+
+    return (
+      <div style={style}>
         <ImageListItem
-            key={event.sku}
-            onClick={() => handleEventClick(event.sku)}
+          key={event.sku}
+          onClick={() => handleEventClick(event.sku)}
         >
-            <img
+          <img
             srcSet={event.photo_1}
             src={event.photo_1}
             alt={event.plan_name}
             loading="lazy"
-            />
+          />
         </ImageListItem>
-        
-        ))}
-    </ImageList>
+      </div>
+    );
+  };
+
+  return (
+    <AutoSizer>
+      {({ height, width }) => (
+        <Grid
+          columnCount={isSmallScreen ? 3 : 5}
+          columnWidth={width / (isSmallScreen ? 3 : 5)}
+          height={height}
+          rowCount={Math.ceil(events.length / (isSmallScreen ? 3 : 5))}
+          rowHeight={195}
+          width={width}
+        >
+          {Cell}
+        </Grid>
+      )}
+    </AutoSizer>
   );
 };
 
