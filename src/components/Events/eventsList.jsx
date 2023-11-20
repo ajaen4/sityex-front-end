@@ -15,6 +15,7 @@ const EventsList = ({ events }) => {
   const theme = useTheme();
   const navigate = useNavigate();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+  const isMediumScreen = useMediaQuery(theme.breakpoints.down("lg"));
 
   const handleEventClick = (eventSku) => {
     navigate(`/destination/${selectedCity.city_id}/event/${eventSku}`);
@@ -52,7 +53,7 @@ const EventsList = ({ events }) => {
           columnWidth={width / (isSmallScreen ? 3 : 5)}
           height={height}
           rowCount={Math.ceil(events.length / (isSmallScreen ? 3 : 5))}
-          rowHeight={195}
+          rowHeight={isSmallScreen ? 124 : isMediumScreen ?  180 : 195}
           width={width}
         >
           {Cell}
