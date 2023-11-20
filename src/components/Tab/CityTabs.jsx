@@ -5,13 +5,11 @@ import { useSelector } from "react-redux";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import CityIcon from "@mui/icons-material/LocationCityOutlined";
-import GradingIcon from "@mui/icons-material/GradingOutlined";
-import PlaceIcon from "@mui/icons-material/PlaceOutlined";
+import TicketIcon from "@mui/icons-material/ConfirmationNumberOutlined";
 import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
 
 import * as ROUTES_PATHS from "routes/paths";
-import { mobileTabMinHeight } from "constants/constants";
 
 export default function CityTabs() {
   const [value, setValue] = React.useState(0);
@@ -56,14 +54,14 @@ export default function CityTabs() {
         data-path={ROUTES_PATHS.CITY_INFO}
       />
       <Tab
-        icon={<PlaceIcon sx={{ color: theme.palette.grey[100], width: 20 }} />}
-        aria-label="places"
+        icon={<TicketIcon sx={{ color: theme.palette.grey[100], width: 20 }} />}
+        aria-label="events"
         label={
           <Typography variant="caption" color={theme.palette.grey[100]}>
-            Places
+            Events
           </Typography>
         }
-        data-path={ROUTES_PATHS.CITY_PLACES}
+        data-path={ROUTES_PATHS.CITY_EVENTS}
       />
     </Tabs>
   );
