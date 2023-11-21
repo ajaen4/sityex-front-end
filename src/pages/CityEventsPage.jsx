@@ -3,11 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { logAnalyticsEvent } from "api";
 
-import {
-  Box,
-  Tabs,
-  Tab,
-} from "@mui/material";
+import { Box, Tabs, Tab } from "@mui/material";
 
 import EventsList from "components/Events/eventsList";
 
@@ -50,9 +46,10 @@ const CityEventsPage = () => {
   };
 
   const memoizedEvents = useMemo(() => {
-    return eventCategories.map(category => 
-      events.filter(event => event.sityex_subcategories.includes(category))
-            .sort((a, b) => a.remaining_days - b.remaining_days)
+    return eventCategories.map((category) =>
+      events
+        .filter((event) => event.sityex_subcategories.includes(category))
+        .sort((a, b) => a.remaining_days - b.remaining_days)
     );
   }, [events]);
 
@@ -70,9 +67,12 @@ const CityEventsPage = () => {
           <Tab label={category} key={category} />
         ))}
       </Tabs>
-      {eventCategories.map((category, index) => (
-        selectedTab === index && <EventsList events={memoizedEvents[index]} key={category} />
-      ))}
+      {eventCategories.map(
+        (category, index) =>
+          selectedTab === index && (
+            <EventsList events={memoizedEvents[index]} key={category} />
+          )
+      )}
     </Box>
   );
 };

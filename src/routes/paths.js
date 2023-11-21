@@ -10,3 +10,4 @@ export const DESTINATION = "/destination/:city_id";
 export const CITY_INFO = "info";
 export const CITY_EVENTS = "events";
 export const CITY_EVENT = "event/:event_id";
+export const CITY_COMMUNITY = "community";

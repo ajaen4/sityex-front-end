@@ -32,7 +32,7 @@ const CityEventPage = () => {
   }, [event_id]);
 
   const formatText = (text) => {
-    return text.split('\n').map((line, index) => (
+    return text.split("\n").map((line, index) => (
       <span key={index}>
         {line}
         <br />
@@ -99,7 +99,9 @@ const CityEventPage = () => {
           </Button>
         </Grid>
         <Grid item xs={11}>
-          <Typography sx={{ pt: 4, pb: 2, fontSize: 16 }}>{formatText(selectedEvent.description)}</Typography>
+          <Typography sx={{ pt: 4, pb: 2, fontSize: 16 }}>
+            {formatText(selectedEvent.description)}
+          </Typography>
         </Grid>
       </Grid>
     </Box>

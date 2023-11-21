@@ -6,7 +6,8 @@ import {
   CityPage,
   CityInfoPage,
   CityEventsPage,
-  CityEventPage
+  CityEventPage,
+  CityCommunityPage
 } from "pages";
 
 import * as ROUTES_PATHS from "routes/paths";
@@ -42,6 +43,10 @@ const WithAuthRoutes = {
         {
           path: ROUTES_PATHS.CITY_EVENT,
           element: <CityEventPage />
+        },
+        {
+          path: ROUTES_PATHS.CITY_COMMUNITY,
+          element: <CityCommunityPage />
         }
       ]
     }

@@ -5,10 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { FixedSizeGrid as Grid } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
 
-import {
-  ImageListItem,
-  useMediaQuery
-} from "@mui/material";
+import { ImageListItem, useMediaQuery } from "@mui/material";
 
 const EventsList = ({ events }) => {
   const selectedCity = useSelector((state) => state.selectedCity.data);
@@ -46,14 +43,14 @@ const EventsList = ({ events }) => {
   };
 
   return (
-    <AutoSizer>
+    <AutoSizer style={{ marginBottom: 1 }}>
       {({ height, width }) => (
         <Grid
           columnCount={isSmallScreen ? 3 : 5}
           columnWidth={width / (isSmallScreen ? 3 : 5)}
           height={height}
           rowCount={Math.ceil(events.length / (isSmallScreen ? 3 : 5))}
-          rowHeight={isSmallScreen ? 124 : isMediumScreen ?  180 : 195}
+          rowHeight={isSmallScreen ? 124 : isMediumScreen ? 180 : 195}
           width={width}
         >
           {Cell}
