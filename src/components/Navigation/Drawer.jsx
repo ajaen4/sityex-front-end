@@ -33,12 +33,12 @@ export default function Drawer(props) {
       return;
     }
 
-    if (!paths.some(path => location.pathname.includes(path))) {
+    if (!paths.some((path) => location.pathname.includes(path))) {
       props.setIsOpenDrawer(false);
       return;
     }
 
-    if (paths.some(path => location.pathname.includes(path))) {
+    if (paths.some((path) => location.pathname.includes(path))) {
       props.setIsOpenDrawer(true);
       return;
     }

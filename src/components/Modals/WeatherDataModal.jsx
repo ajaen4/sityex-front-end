@@ -87,61 +87,70 @@ const WeatherDataModal = ({ openedModal, modalType, onClose, data }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {data && Object.keys(data).map((key) => (
-                <TableRow
-                  key={key}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell
-                    align="left"
-                    sx={{ fontSize: tableFontSize, flex: 2 }}
+              {data &&
+                Object.keys(data).map((key) => (
+                  <TableRow
+                    key={key}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
-                    {key}
-                  </TableCell>
-                  <TableCell
-                    align="left"
-                    sx={{ fontSize: tableFontSize, flex: 2 }}
-                  >
-                    {data[key].avg_daily_temp_celsius}
-                  </TableCell>
-                  <TableCell
-                    align="left"
-                    sx={{ fontSize: tableFontSize, flex: 2 }}
-                  >
-                    {data[key].avg_cloud_cover_percent}
-                  </TableCell>
-                  <TableCell
-                    align="left"
-                    sx={{ fontSize: tableFontSize, flex: 2 }}
-                  >
-                    {data[key].avg_daily_precipitation_hours}
-                  </TableCell>
-                  <TableCell
-                    align="left"
-                    sx={{ fontSize: tableFontSize, flex: 2 }}
-                  >
-                    {data[key].avg_humidity_2m_percent}
-                  </TableCell>
-                  <TableCell
-                    align="left"
-                    sx={{ fontSize: tableFontSize, flex: 2 }}
-                  >
-                    {data[key].avg_european_aqi}
-                  </TableCell>
-                  <TableCell
-                    align="left"
-                    sx={{ fontSize: tableFontSize, flex: 2 }}
-                  >
-                    {data[key].avg_sunrise_hour.padStart(2, "0") + ":" + data[key].avg_sunrise_minute.padStart(2, "0") + ":" + data[key].avg_sunrise_second.padStart(2, "0")}
-                  </TableCell>
-                  <TableCell
-                    align="left"
-                    sx={{ fontSize: tableFontSize, flex: 2 }}
-                  >
-                    {data[key].avg_sunset_hour.padStart(2, "0") + ":" + data[key].avg_sunset_minute.padStart(2, "0") + ":" + data[key].avg_sunset_second.padStart(2, "0")}
-                  </TableCell>
-                </TableRow>
-              ))}
+                    <TableCell
+                      align="left"
+                      sx={{ fontSize: tableFontSize, flex: 2 }}
+                    >
+                      {key}
+                    </TableCell>
+                    <TableCell
+                      align="left"
+                      sx={{ fontSize: tableFontSize, flex: 2 }}
+                    >
+                      {data[key].avg_daily_temp_celsius}
+                    </TableCell>
+                    <TableCell
+                      align="left"
+                      sx={{ fontSize: tableFontSize, flex: 2 }}
+                    >
+                      {data[key].avg_cloud_cover_percent}
+                    </TableCell>
+                    <TableCell
+                      align="left"
+                      sx={{ fontSize: tableFontSize, flex: 2 }}
+                    >
+                      {data[key].avg_daily_precipitation_hours}
+                    </TableCell>
+                    <TableCell
+                      align="left"
+                      sx={{ fontSize: tableFontSize, flex: 2 }}
+                    >
+                      {data[key].avg_humidity_2m_percent}
+                    </TableCell>
+                    <TableCell
+                      align="left"
+                      sx={{ fontSize: tableFontSize, flex: 2 }}
+                    >
+                      {data[key].avg_european_aqi}
+                    </TableCell>
+                    <TableCell
+                      align="left"
+                      sx={{ fontSize: tableFontSize, flex: 2 }}
+                    >
+                      {data[key].avg_sunrise_hour.padStart(2, "0") +
+                        ":" +
+                        data[key].avg_sunrise_minute.padStart(2, "0") +
+                        ":" +
+                        data[key].avg_sunrise_second.padStart(2, "0")}
+                    </TableCell>
+                    <TableCell
+                      align="left"
+                      sx={{ fontSize: tableFontSize, flex: 2 }}
+                    >
+                      {data[key].avg_sunset_hour.padStart(2, "0") +
+                        ":" +
+                        data[key].avg_sunset_minute.padStart(2, "0") +
+                        ":" +
+                        data[key].avg_sunset_second.padStart(2, "0")}
+                    </TableCell>
+                  </TableRow>
+                ))}
             </TableBody>
           </Table>
         </TableContainer>

@@ -19,12 +19,11 @@ import {
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 
-import { logInUser, logInUserWithGoogle, logInUserWithFacebook } from "actions";
+import { logInUser, logInUserWithGoogle } from "actions";
 
 import StandarModal from "components/Modals/StandarModal";
 
 import Google from "assets/img/icons/social-google.svg";
-import Facebook from "assets/img/icons/facebook.png";
 
 import * as ROUTES_PATHS from "routes/paths";
 
@@ -90,30 +89,6 @@ const LogInForm = ({ setIsFetching }) => {
                 />
               </Box>
               Sign in with Google
-            </Button>
-          </Grid>
-          <Grid item xs={12}>
-            <Button
-              disableElevation
-              fullWidth
-              onClick={providerHandler(logInUserWithFacebook)}
-              size="large"
-              variant="outlined"
-              sx={{
-                color: "grey.700",
-                backgroundColor: theme.palette.grey[50],
-                borderColor: theme.palette.grey[100]
-              }}
-            >
-              <Box sx={{ mr: { xs: 1, sm: 2 } }}>
-                <img
-                  src={Facebook}
-                  alt="facebook"
-                  width={20}
-                  style={{ marginTop: 6 }}
-                />
-              </Box>
-              Sign in with Facebook
             </Button>
           </Grid>
           <Grid item xs={12}>

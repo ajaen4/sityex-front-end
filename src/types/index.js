@@ -7,12 +7,19 @@ export const REQUESTING_CITY = "REQUESTING_CITY";
 
 //--------------------CITIES END
 
-//--------------------COUNTRIES
+//--------------------COUNTRY
 
 export const FETCH_COUNTRY_SUCCESS = "FETCH_COUNTRY_SUCCESS";
 export const REQUESTING_COUNTRY = "REQUESTING_COUNTRY";
 
-//--------------------CITIES END
+//--------------------COUNTRY END
+
+//--------------------COUNTRIES
+
+export const FETCH_ALL_COUNTRIES_SUCCESS = "FETCH_ALL_COUNTRIES_SUCCESS";
+export const REQUESTING_ALL_COUNTRIES = "REQUESTING_ALL_COUNTRIES";
+
+//--------------------COUNTRIES END
 
 //--------------------AUTH
 
@@ -32,3 +39,12 @@ export const SAVING_PLACE_SUCCESS = "SAVING_PLACE_SUCCESS";
 export const SAVING_PLACE_ERROR = "SAVING_PLACE_ERROR";
 
 //--------------------PLACES END
+
+//--------------------EVENTS
+
+export const FETCHING_EVENTS = "FETCHING_EVENTS";
+export const FETCHING_EVENTS_SUCCESS = "FETCHING_EVENTS_SUCCESS";
+export const FETCHING_EVENT = "FETCHING_EVENT";
+export const FETCHING_EVENT_SUCCESS = "FETCHING_EVENT_SUCCESS";
+
+//--------------------EVENTS END

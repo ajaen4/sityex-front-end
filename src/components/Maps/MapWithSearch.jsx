@@ -50,7 +50,7 @@ function MapWithSearch({
   );
   const [currPlaces, setCurrPlaces] = useState([]);
   const placesInDB = useSelector((state) => state.places.data.places);
-  
+
   const dispatch = useDispatch();
 
   const selectedPlaceMarker = useRef(null);
