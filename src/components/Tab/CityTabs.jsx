@@ -1,13 +1,15 @@
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useTheme } from "@mui/material/styles";
 
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
+import Typography from "@mui/material/Typography";
+
 import CityIcon from "@mui/icons-material/LocationCityOutlined";
 import TicketIcon from "@mui/icons-material/ConfirmationNumberOutlined";
-import Typography from "@mui/material/Typography";
-import { useTheme } from "@mui/material/styles";
+import PeopleIcon from "@mui/icons-material/PeopleOutlined";
 
 import * as ROUTES_PATHS from "routes/paths";
 
@@ -62,6 +64,16 @@ export default function CityTabs() {
           </Typography>
         }
         data-path={ROUTES_PATHS.CITY_EVENTS}
+      />
+      <Tab
+        icon={<PeopleIcon sx={{ color: theme.palette.grey[100], width: 20 }} />}
+        aria-label="community"
+        label={
+          <Typography variant="caption" color={theme.palette.grey[100]}>
+            Community
+          </Typography>
+        }
+        data-path={ROUTES_PATHS.CITY_COMMUNITY}
       />
     </Tabs>
   );

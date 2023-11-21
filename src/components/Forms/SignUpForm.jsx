@@ -25,11 +25,7 @@ import { useTheme } from "@mui/material/styles";
 import Google from "assets/img/icons/social-google.svg";
 
 import StandarModal from "components/Modals/StandarModal";
-import {
-  createUser,
-  logInUserWithGoogle,
-  fetchCountries
-} from "actions";
+import { createUser, logInUserWithGoogle, fetchCountries } from "actions";
 import { sameAs } from "helpers/validators";
 
 import * as ROUTES_PATHS from "routes/paths";
