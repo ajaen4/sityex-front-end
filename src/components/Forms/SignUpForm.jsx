@@ -23,13 +23,11 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
 
 import Google from "assets/img/icons/social-google.svg";
-import Facebook from "assets/img/icons/facebook.png";
 
 import StandarModal from "components/Modals/StandarModal";
 import {
   createUser,
   logInUserWithGoogle,
-  logInUserWithFacebook,
   fetchCountries
 } from "actions";
 import { sameAs } from "helpers/validators";
@@ -118,30 +116,6 @@ const SignUpForm = ({ setIsFetching }) => {
                 />
               </Box>
               Sign Up with Google
-            </Button>
-          </Grid>
-          <Grid item xs={12}>
-            <Button
-              disableElevation
-              fullWidth
-              onClick={providerHandler(logInUserWithFacebook)}
-              size="large"
-              variant="outlined"
-              sx={{
-                color: "grey.700",
-                backgroundColor: theme.palette.grey[50],
-                borderColor: theme.palette.grey[100]
-              }}
-            >
-              <Box sx={{ mr: { xs: 1, sm: 2 } }}>
-                <img
-                  src={Facebook}
-                  alt="facebook"
-                  width={20}
-                  style={{ marginTop: 6 }}
-                />
-              </Box>
-              Sign in with Facebook
             </Button>
           </Grid>
           <Grid item xs={12}>
