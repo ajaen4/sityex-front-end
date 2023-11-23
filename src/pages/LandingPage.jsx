@@ -127,7 +127,7 @@ const LandingPage = () => {
             <Typography variant="h2" sx={{ fontSize: 35 }}>
               + 1000 events in all Spain
             </Typography>
-            <Typography sx={{ fontSize: 16, mt: 4 }}>
+            <Typography sx={{ fontSize: 20, color: theme.palette.grey[500], mt: 4 }}>
               Complete free access to our event search engine
             </Typography>
           </Stack>
@@ -204,9 +204,9 @@ const LandingPage = () => {
             <Typography variant="h2" sx={{ fontSize: 35 }}>
               Find a vibrant community of expats
             </Typography>
-            <Typography sx={{ fontSize: 16, mt: 4 }}>
-              Complete free access to our community of expats and locals in
-              Whatsapp community, no need to download any app!
+            <Typography sx={{ fontSize: 20, color: theme.palette.grey[500], mt: 4 }}>
+              Free access to our community of expats and locals in
+              Whatsapp community!
             </Typography>
           </Stack>
         </Grid>
