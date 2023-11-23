@@ -3,9 +3,7 @@ import MainLayout from "Layouts/MainLayout";
 import {
   LandingPage,
   SearchPage,
-  MapPage,
   CityPage,
-  CityInfoPage,
   CityEventsPage,
   CityEventPage,
   CityCommunityPage
@@ -29,10 +27,6 @@ const WithAuthRoutes = {
       path: ROUTES_PATHS.DESTINATION,
       element: <CityPage />,
       children: [
-        {
-          path: ROUTES_PATHS.CITY_INFO,
-          element: <CityInfoPage />
-        },
         {
           path: ROUTES_PATHS.CITY_EVENTS,
           element: <CityEventsPage />
