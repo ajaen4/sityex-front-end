@@ -47,6 +47,7 @@ const CityEventPage = () => {
       sx={{
         overflowY: "scroll",
         mx: 1,
+        my: 1,
         width: "90%",
         justifyContent: "center",
         backgroundColor: "white",

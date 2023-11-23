@@ -8,8 +8,10 @@ import SignUpPage from "./SignUpPage";
 import CityEventsPage from "./CityEventsPage";
 import CityEventPage from "./CityEventPage";
 import CityCommunityPage from "./CityCommunityPage";
+import LandingPage from "./LandingPage";
 
 export {
+  LandingPage,
   SearchPage,
   MapPage,
   LogInPage,

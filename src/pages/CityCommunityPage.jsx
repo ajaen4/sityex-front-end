@@ -83,10 +83,20 @@ const CityCommunityPage = () => {
     return (
       <Container maxWidth="sm">
         <Paper elevation={3} sx={{ padding: "20px", marginTop: "20px" }}>
-          <Typography variant="h4" gutterBottom align="center" sx={{ fontSize: 16 }}>
+          <Typography
+            variant="h4"
+            gutterBottom
+            align="center"
+            sx={{ fontSize: 16 }}
+          >
             {`Join Our Community in ${selectedCity?.name}`}
           </Typography>
-          <Typography variant="body1" gutterBottom align="center" sx={{ fontSize: 16 }}>
+          <Typography
+            variant="body1"
+            gutterBottom
+            align="center"
+            sx={{ fontSize: 16 }}
+          >
             {`Scan the QR code below to join our WhatsApp community and connect with
             expats in ${selectedCity?.name}.`}
           </Typography>
