@@ -47,27 +47,6 @@ const MainItems = () => {
           <ListItemText primary="Search City" />
         </ListItemButton>
       </ListItem>
-      <ListItem disablePadding sx={{ display: "block" }}>
-        <ListItemButton
-          sx={{
-            minHeight: 48,
-            px: 2.5
-          }}
-          data-path={ROUTES_PATHS.MAP}
-          onClick={itemSelected}
-        >
-          <ListItemIcon
-            sx={{
-              minWidth: 0,
-              mr: 3,
-              justifyContent: "center"
-            }}
-          >
-            <MapIcon />
-          </ListItemIcon>
-          <ListItemText primary="Destinations Map" />
-        </ListItemButton>
-      </ListItem>
     </List>
   );
 };

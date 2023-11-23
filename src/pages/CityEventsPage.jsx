@@ -3,11 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { logAnalyticsEvent } from "api";
 
-import {
-  Box,
-  Tabs,
-  Tab,
-} from "@mui/material";
+import { Box, Tabs, Tab, useMediaQuery, useTheme } from "@mui/material";
 
 import EventsList from "components/Events/eventsList";
 
@@ -32,6 +28,8 @@ const CityEventsPage = () => {
   const [selectedTab, setSelectedTab] = useState(0);
 
   const dispatch = useDispatch();
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   useEffect(() => {
     logAnalyticsEvent("page_view", {
@@ -49,30 +47,55 @@ const CityEventsPage = () => {
     setSelectedTab(newValue);
   };
 
-  const memoizedEvents = useMemo(() => {
-    return eventCategories.map(category => 
-      events.filter(event => event.sityex_subcategories.includes(category))
-            .sort((a, b) => a.remaining_days - b.remaining_days)
+  const filteredSubcategories = useMemo(() => {
+    const usedSubcategories = new Set();
+
+    events.forEach((event) => {
+      const subcategories = event.sityex_subcategories
+        .split(",")
+        .map((subcategory) => subcategory.trim());
+      subcategories.forEach((subcategory) => {
+        usedSubcategories.add(subcategory);
+      });
+    });
+
+    return eventCategories.filter((subcategory) =>
+      usedSubcategories.has(subcategory)
     );
   }, [events]);
 
+  const memoizedEvents = useMemo(() => {
+    return filteredSubcategories.map((category) =>
+      events
+        .filter((event) => event.sityex_subcategories.includes(category))
+        .sort((a, b) => a.remaining_days - b.remaining_days)
+    );
+  }, [events, filteredSubcategories]);
+
   return (
-    <Box sx={{ overflowY: "scroll", my: 0.5, mx: 1.5 }}>
+    <Box sx={{ my: 0.5, mx: 0.5, width: "100%" }}>
       <Tabs
         value={selectedTab}
         onChange={handleTabChange}
         textColor="secondary"
         indicatorColor="secondary"
-        variant="scrollable"
+        variant={isSmallScreen ? "scrollable" : "none"}
         scrollButtons="auto"
+        centered={!isSmallScreen}
+        xs={{ display: "flex", flexDirection: "row", justifyContent: "center" }}
       >
-        {eventCategories.map((category) => (
+        {filteredSubcategories.map((category) => (
           <Tab label={category} key={category} />
         ))}
       </Tabs>
-      {eventCategories.map((category, index) => (
-        selectedTab === index && <EventsList events={memoizedEvents[index]} key={category} />
-      ))}
+      <Box sx={{ overflowY: "scroll", width: "100%", height: "100%", pb: 6 }}>
+        {filteredSubcategories.map(
+          (category, index) =>
+            selectedTab === index && (
+              <EventsList events={memoizedEvents[index]} key={category} />
+            )
+        )}
+      </Box>
     </Box>
   );
 };

@@ -6,3 +6,4 @@ export * from "./analytics";
 export * from "./places";
 export * from "./maps";
 export * from "./events";
+export * from "./storage";

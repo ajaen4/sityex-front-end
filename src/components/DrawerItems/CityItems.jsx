@@ -8,17 +8,14 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 
-import CityIcon from "@mui/icons-material/LocationCityOutlined";
 import TicketIcon from "@mui/icons-material/ConfirmationNumberOutlined";
-
-import { useTheme } from "@mui/material/styles";
+import PeopleIcon from "@mui/icons-material/PeopleOutlined";
 
 import * as ROUTES_PATHS from "routes/paths";
 
 const CityItems = () => {
   const navigate = useNavigate();
   const selectedCity = useSelector((state) => state.selectedCity.data);
-  const theme = useTheme();
 
   const itemSelected = (event) => {
     const path = event.currentTarget.getAttribute("data-path");
@@ -27,27 +24,6 @@ const CityItems = () => {
 
   return (
     <List>
-      <ListItem disablePadding sx={{ display: "block" }}>
-        <ListItemButton
-          sx={{
-            minHeight: 48,
-            px: 2.5
-          }}
-          onClick={itemSelected}
-          data-path={ROUTES_PATHS.CITY_INFO}
-        >
-          <ListItemIcon
-            sx={{
-              minWidth: 0,
-              mr: 3,
-              justifyContent: "center"
-            }}
-          >
-            <CityIcon />
-          </ListItemIcon>
-          <ListItemText primary="Info" />
-        </ListItemButton>
-      </ListItem>
       <ListItem disablePadding sx={{ display: "block" }}>
         <ListItemButton
           sx={{
@@ -67,6 +43,27 @@ const CityItems = () => {
             <TicketIcon />
           </ListItemIcon>
           <ListItemText primary="Events" />
+        </ListItemButton>
+      </ListItem>
+      <ListItem disablePadding sx={{ display: "block" }}>
+        <ListItemButton
+          sx={{
+            minHeight: 48,
+            px: 2.5
+          }}
+          onClick={itemSelected}
+          data-path={ROUTES_PATHS.CITY_COMMUNITY}
+        >
+          <ListItemIcon
+            sx={{
+              minWidth: 0,
+              mr: 3,
+              justifyContent: "center"
+            }}
+          >
+            <PeopleIcon />
+          </ListItemIcon>
+          <ListItemText primary="Community" />
         </ListItemButton>
       </ListItem>
     </List>

@@ -1,12 +1,14 @@
 import MainLayout from "Layouts/MainLayout";
 
 import {
+  LandingPage,
   SearchPage,
   MapPage,
   CityPage,
   CityInfoPage,
   CityEventsPage,
-  CityEventPage
+  CityEventPage,
+  CityCommunityPage
 } from "pages";
 
 import * as ROUTES_PATHS from "routes/paths";
@@ -17,15 +19,11 @@ const WithAuthRoutes = {
   children: [
     {
       path: "/",
-      element: <SearchPage />
+      element: <LandingPage />
     },
     {
       path: ROUTES_PATHS.SEARCH,
       element: <SearchPage />
-    },
-    {
-      path: ROUTES_PATHS.MAP,
-      element: <MapPage />
     },
     {
       path: ROUTES_PATHS.DESTINATION,
@@ -42,6 +40,10 @@ const WithAuthRoutes = {
         {
           path: ROUTES_PATHS.CITY_EVENT,
           element: <CityEventPage />
+        },
+        {
+          path: ROUTES_PATHS.CITY_COMMUNITY,
+          element: <CityCommunityPage />
         }
       ]
     }
