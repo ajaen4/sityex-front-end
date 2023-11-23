@@ -11,7 +11,7 @@ import { createFilterOptions } from "@mui/material/Autocomplete";
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-const CitiesAutocomplete = ({ selectedCity, citiesIndex, onChangeCity }) => {
+const CitiesAutocomplete = ({ selectedCity, citiesIndex, onSelectCity }) => {
   const theme = useTheme();
 
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -30,7 +30,7 @@ const CitiesAutocomplete = ({ selectedCity, citiesIndex, onChangeCity }) => {
     <Autocomplete
       freeSolo
       options={getDestinations()}
-      onChange={onChangeCity}
+      onChange={onSelectCity}
       getOptionLabel={(option) => option.name}
       filterOptions={filterOptions}
       renderInput={(params) => (

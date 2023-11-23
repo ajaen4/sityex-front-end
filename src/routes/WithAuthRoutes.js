@@ -1,6 +1,7 @@
 import MainLayout from "Layouts/MainLayout";
 
 import {
+  LandingPage,
   SearchPage,
   MapPage,
   CityPage,
@@ -18,15 +19,11 @@ const WithAuthRoutes = {
   children: [
     {
       path: "/",
-      element: <SearchPage />
+      element: <LandingPage />
     },
     {
       path: ROUTES_PATHS.SEARCH,
       element: <SearchPage />
-    },
-    {
-      path: ROUTES_PATHS.MAP,
-      element: <MapPage />
     },
     {
       path: ROUTES_PATHS.DESTINATION,
