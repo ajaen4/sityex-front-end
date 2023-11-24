@@ -1,7 +1,15 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Box, Typography, Button, Grid, Stack, useTheme, useMediaQuery } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Button,
+  Grid,
+  Stack,
+  useTheme,
+  useMediaQuery
+} from "@mui/material";
 
 import AttractionsIcon from "@mui/icons-material/AttractionsOutlined";
 import MusicNoteIcon from "@mui/icons-material/MusicNoteOutlined";
@@ -28,24 +36,26 @@ const LandingPage = () => {
       }}
     >
       <Grid container sx={{ height: "85vh", alignItems: "center" }}>
-      <Grid
-          item
-          xs={12}
-          sx={{
-            justifyContent: "center"
-          }}
-        >
-          <Box
-            component="img"
-            alt="Expats in Spain"
-            src="https://sityex-public-images.s3.eu-west-1.amazonaws.com/people_kitchen.jpg"
+        {isSmallScreen && (
+          <Grid
+            item
+            xs={12}
             sx={{
-              width: "100%",
-              height: "auto",
-              display: { xs: "flex", md: "none" }
+              justifyContent: "center"
             }}
-          />
-        </Grid>
+          >
+            <Box
+              component="img"
+              alt="Expats in Spain"
+              src="https://sityex-public-images.s3.eu-west-1.amazonaws.com/people_kitchen.jpg"
+              sx={{
+                width: "100%",
+                height: "auto",
+                display: { xs: "flex", md: "none" }
+              }}
+            />
+          </Grid>
+        )}
         <Grid
           item
           md={4}
@@ -55,10 +65,12 @@ const LandingPage = () => {
             justifyContent: "center"
           }}
         >
-          <Stack sx = {{
-            display: "flex",
-            alignItems: {xs: "center", md: "start"}
-          }}>
+          <Stack
+            sx={{
+              display: "flex",
+              alignItems: { xs: "center", md: "start" }
+            }}
+          >
             <Typography variant="h2" sx={{ fontSize: 35 }}>
               Settle seameslessly in Spain with{" "}
               <Typography
@@ -78,11 +90,16 @@ const LandingPage = () => {
             </Button>
             <Typography
               variant="h5"
-              sx={{ fontSize: 20, mt: 5, color: theme.palette.grey[500], alignSelf: "start" }}
+              sx={{
+                fontSize: 20,
+                mt: 5,
+                color: theme.palette.grey[500],
+                alignSelf: "start"
+              }}
             >
               Partners
             </Typography>
-             <Grid container>
+            <Grid container>
               <Grid item xs={3}>
                 <Box
                   component="img"
@@ -127,7 +144,9 @@ const LandingPage = () => {
             <Typography variant="h2" sx={{ fontSize: 35 }}>
               + 1000 events in all Spain
             </Typography>
-            <Typography sx={{ fontSize: 20, color: theme.palette.grey[500], mt: 4 }}>
+            <Typography
+              sx={{ fontSize: 20, color: theme.palette.grey[500], mt: 4 }}
+            >
               Complete free access to our event search engine
             </Typography>
           </Stack>
@@ -204,9 +223,11 @@ const LandingPage = () => {
             <Typography variant="h2" sx={{ fontSize: 35 }}>
               Find a vibrant community of expats
             </Typography>
-            <Typography sx={{ fontSize: 20, color: theme.palette.grey[500], mt: 4 }}>
-              Free access to our community of expats and locals in
-              Whatsapp community!
+            <Typography
+              sx={{ fontSize: 20, color: theme.palette.grey[500], mt: 4 }}
+            >
+              Free access to our community of expats and locals in Whatsapp
+              community!
             </Typography>
           </Stack>
         </Grid>
