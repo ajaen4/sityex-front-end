@@ -17,6 +17,7 @@ import {
 import DestinationsMap from "components/Maps/DestinationsMap";
 import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 import CitiesAutocomplete from "components/Autocomplete/CitiesAutocomplete";
+import CitiesGrid from "components/ImageGrids/CitiesGrid";
 
 const SearchPage = () => {
   const citiesIndex = useSelector((state) => state.citiesIndex.data);
@@ -45,21 +46,28 @@ const SearchPage = () => {
   return (
     <Box
       sx={{
-        width: "100%",
         display: "flex",
-        flexDirection: "column",
-        flexGrow: 1,
-        position: "relative"
+        position: "relative",
+        height: "100vh",
       }}
     >
       {tab === "search-box" && (
         <Box
           style={{
             textAlign: "center",
-            justifyContent: "center"
+            justifyContent: "center",
+            width: "100%"
           }}
         >
-          <Grid container spacing={1} sx={{ justifyContent: "center", my: 10 }}>
+          <Grid
+            container
+            sx={{
+              justifyContent: "center",
+              mt: 10,
+              width: "100%",
+              height: "100%",
+            }}
+          >
             <Grid item xs={11} md={5} lg={4}>
               <Card elevation={0}>
                 <CardContent>
@@ -72,6 +80,19 @@ const SearchPage = () => {
                   />
                 </CardContent>
               </Card>
+            </Grid>
+            <Grid item xs={12} sx={{ height: "100%", mt: 5, mx: 0.5 }}>
+              <Box
+                sx={{
+                  overflowY: "scroll",
+                  height: "100%",
+                  pb: 35
+                }}
+              >
+                <CitiesGrid
+                  citiesIndex={citiesIndex ? citiesIndex.cities : null}
+                />
+              </Box>
             </Grid>
           </Grid>
         </Box>

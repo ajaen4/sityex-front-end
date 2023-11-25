@@ -5,7 +5,7 @@ import { logAnalyticsEvent } from "api";
 
 import { Box, Tabs, Tab, useMediaQuery, useTheme } from "@mui/material";
 
-import EventsList from "components/Events/eventsList";
+import EventsGrid from "components/ImageGrids/EventsGrid";
 
 import { getCityEvents } from "actions";
 
@@ -92,7 +92,7 @@ const CityEventsPage = () => {
         {filteredSubcategories.map(
           (category, index) =>
             selectedTab === index && (
-              <EventsList events={memoizedEvents[index]} key={category} />
+              <EventsGrid events={memoizedEvents[index]} />
             )
         )}
       </Box>
