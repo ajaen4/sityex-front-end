@@ -11,7 +11,7 @@ import {
   useTheme
 } from "@mui/material";
 
-const EventsList = ({ events }) => {
+const EventsGrid = ({ events }) => {
   const selectedCity = useSelector((state) => state.selectedCity.data);
   const [eventsBadImage, setEventsBadImage] = useState([]);
 
@@ -38,6 +38,7 @@ const EventsList = ({ events }) => {
   const Cell = ({ columnIndex, rowIndex, style }) => {
     const eventIndex = rowIndex * numColumns + columnIndex;
     const event = events[eventIndex];
+
     if (!event) return null;
 
     const isError = eventsBadImage.includes(event.sku);
@@ -63,8 +64,8 @@ const EventsList = ({ events }) => {
               <div
                 style={{
                   whiteSpace: "normal",
-                  lineHeight: "1.2",
-                  maxHeight: "2.4em",
+                  lineHeight: "1.2rem",
+                  maxHeight: "2.4rem",
                   fontSize: "0.8rem",
                   overflow: "hidden",
                   textOverflow: "ellipsis"
@@ -73,7 +74,7 @@ const EventsList = ({ events }) => {
                 {event.plan_name}
               </div>
             }
-            handleEventClick={() => handleEventClick(event.sku)}
+            onClick={() => handleEventClick(event.sku)}
           />
         </ImageListItem>
       </div>
@@ -98,4 +99,4 @@ const EventsList = ({ events }) => {
   );
 };
 
-export default EventsList;
+export default EventsGrid;
