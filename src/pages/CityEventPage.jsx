@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 
 import { logAnalyticsEvent } from "api";
 
-import { Box, Grid, Typography, Button } from "@mui/material";
+import { Box, Grid, Typography, Button, Chip } from "@mui/material";
 
 import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 
@@ -76,8 +76,15 @@ const CityEventPage = () => {
             justifyContent: "flex-end"
           }}
         >
-          <Typography variant="h2" sx={{ p: 2 }}>
+          {(selectedEvent.availability_of_tickets === "low") && <Chip label="Few tickets left" color="secondary" sx={{ mx: 2, py: 0.5 }} />}
+          <Typography variant="h2" sx={{ px: 2, py: 0.5 }}>
             {selectedEvent.plan_name}
+          </Typography>
+          <Typography variant="h4" sx={{ px: 2, py: 0.5 }}>
+            {selectedEvent.venue}
+          </Typography>
+          <Typography variant="h5" sx={{ px: 2, py: 0.5 }}>
+            {`Starting from: ${selectedEvent.minimum_price} ${selectedEvent.currency}`}
           </Typography>
         </Grid>
         <Grid
@@ -88,19 +95,20 @@ const CityEventPage = () => {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            justifyContent: "center"
+            justifyContent: "center",
+            mt: {xs: 2, md: 0, lg: 0},
           }}
         >
           <Button
             variant="contained"
-            color="secondary"
+            color="primary"
             onClick={() => window.open(selectedEvent.affiliate_url)}
           >
             Buy tickets
           </Button>
         </Grid>
         <Grid item xs={11}>
-          <Typography sx={{ pt: 4, pb: 2, fontSize: 16 }}>
+          <Typography sx={{ pt: {xs: 1, md: 4, lg: 4}, pb: 2, fontSize: 16 }}>
             {formatText(selectedEvent.description)}
           </Typography>
         </Grid>
