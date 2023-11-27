@@ -19,7 +19,8 @@ const eventCategories = [
   "Courses",
   "Sport",
   "Fitness",
-  "Games"
+  "Games",
+  "Other"
 ];
 
 const CityEventsPage = () => {
