@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
@@ -13,6 +13,7 @@ import { getCityEvent } from "actions";
 const CityEventPage = () => {
   const selectedCity = useSelector((state) => state.selectedCity.data);
   const selectedEvent = useSelector((state) => state.events.data.selectedEvent);
+  const [imageHasError, setImageHasError] = useState(false);
 
   const { event_id } = useParams();
 
@@ -42,6 +43,10 @@ const CityEventPage = () => {
 
   if (!selectedEvent) return <CenteredLoadingSpinner />;
 
+  const imgSrc = imageHasError
+      ? "https://sityex-public-images.s3.eu-west-1.amazonaws.com/square_big_logo_blue.png"
+      : selectedEvent.photo_1;
+
   return (
     <Box
       sx={{
@@ -58,8 +63,9 @@ const CityEventPage = () => {
       <Grid container sx={{ display: "flex", justifyContent: "center" }}>
         <Grid item xs={12} md={3}>
           <img
-            srcSet={selectedEvent.photo_1}
-            src={selectedEvent.photo_1}
+            onError={() => setImageHasError(true)}
+            srcSet={imgSrc}
+            src={imgSrc}
             alt={selectedEvent.plan_name}
             loading="lazy"
             style={{ width: "100%", borderRadius: 6 }}

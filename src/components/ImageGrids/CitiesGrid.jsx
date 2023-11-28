@@ -46,7 +46,7 @@ const CitiesGrid = ({ citiesIndex }) => {
       : `https://sityex-public-images.s3.eu-west-1.amazonaws.com/cities/${city.city_id}.jpg`;
 
     return (
-      <div style={style}>
+      <div style={{...style, padding: 1}}>
         <ImageListItem
           key={city.city_id}
           onClick={() => handleCityClick(city.city_id)}
@@ -85,7 +85,7 @@ const CitiesGrid = ({ citiesIndex }) => {
         <Grid
           columnCount={numColumns}
           columnWidth={width / numColumns}
-          height={height}
+          height={Math.ceil(citiesIndex.length / numColumns) * getRowHeight(width)}
           rowCount={Math.ceil(citiesIndex.length / numColumns)}
           rowHeight={getRowHeight(width)}
           width={width}

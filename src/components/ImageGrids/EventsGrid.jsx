@@ -43,7 +43,7 @@ const EventsGrid = ({ events }) => {
 
     const isError = eventsBadImage.includes(event.sku);
     const imgSrc = isError
-      ? "https://sityex-public-images.s3.eu-west-1.amazonaws.com/square_big_logo_blue.png"
+      ? "https://sityex-public-images.s3.eu-west-1.amazonaws.com/square_black_big_logo_blue.png"
       : event.photo_1;
 
     return (
