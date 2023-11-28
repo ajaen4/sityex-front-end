@@ -47,28 +47,22 @@ const SearchPage = () => {
     <Box
       sx={{
         display: "flex",
+        height: "100%",
+        justifyContent: "center",
         position: "relative",
-        height: "100vh",
+        overflowY: "scroll"
       }}
     >
       {tab === "search-box" && (
-        <Box
-          style={{
-            textAlign: "center",
-            justifyContent: "center",
-            width: "100%"
-          }}
-        >
           <Grid
             container
             sx={{
               justifyContent: "center",
               mt: 10,
               width: "100%",
-              height: "100%",
             }}
           >
-            <Grid item xs={11} md={5} lg={4}>
+            <Grid item xs={11} md={5} lg={4} sx={{display: "flex", justifyContent: "center"}}>
               <Card elevation={0}>
                 <CardContent>
                   <Typography variant="h2" color="textSecondary" sx={{ mb: 3 }}>
@@ -81,12 +75,10 @@ const SearchPage = () => {
                 </CardContent>
               </Card>
             </Grid>
-            <Grid item xs={12} sx={{ height: "100%", mt: 5, mx: 0.5 }}>
+            <Grid item xs={12} sx={{ height: "100%", mt: 5 }}>
               <Box
                 sx={{
-                  overflowY: "scroll",
                   height: "100%",
-                  pb: 35
                 }}
               >
                 <CitiesGrid
@@ -95,7 +87,6 @@ const SearchPage = () => {
               </Box>
             </Grid>
           </Grid>
-        </Box>
       )}
       {tab === "map" && (
         <Box
@@ -103,7 +94,7 @@ const SearchPage = () => {
             textAlign: "center",
             justifyContent: "center",
             width: "100%",
-            height: "100%"
+            height: "100%",
           }}
         >
           <Suspense fallback={<CenteredLoadingSpinner />}>
