@@ -66,7 +66,8 @@ const CitiesGrid = ({ citiesIndex }) => {
                   maxHeight: "2.4rem",
                   fontSize: "0.8rem",
                   overflow: "hidden",
-                  textOverflow: "ellipsis"
+                  textOverflow: "ellipsis",
+                  textAlign: "center"
                 }}
               >
                 {city.name}
