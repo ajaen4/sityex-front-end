@@ -57,6 +57,7 @@
     "@types/markerclustererplus": "2.1.33"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "eslint": "^8.49.0",
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^9.0.0",

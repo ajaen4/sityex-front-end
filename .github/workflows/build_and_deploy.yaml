@@ -22,6 +22,7 @@ jobs:
       REACT_APP_MAPS_API_KEY: ${{ secrets.REACT_APP_MAPS_API_KEY }}
       REACT_APP_PLACES_API_KEY: ${{ github.ref == 'refs/heads/dev' && secrets.REACT_APP_PLACES_API_KEY_DEV || secrets.REACT_APP_PLACES_API_KEY }}
       REACT_APP_MAPS_STYLE: ${{ secrets.REACT_APP_MAPS_STYLE }}
+      GCP_SA_KEY_BASE_64: ${{ github.ref == 'refs/heads/dev' && secrets.GCP_SA_KEY_BASE_64_DEV || secrets.GCP_SA_KEY_BASE_64 }}
       CI: ""
 
     steps:
@@ -46,6 +47,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     env:
+      # Because env context (environment variables) set at the job level are not directly accessible in the with or env fields of a step
       REACT_APP_PROJECT_ID: ${{ github.ref == 'refs/heads/dev' && secrets.REACT_APP_PROJECT_ID_DEV || secrets.REACT_APP_PROJECT_ID }}
       CI: ""
     steps:
@@ -66,4 +68,4 @@ jobs:
         with:
           args: deploy --project ${{ env.REACT_APP_PROJECT_ID }}
         env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          GCP_SA_KEY: ${{ env.GCP_SA_KEY_BASE_64 }}

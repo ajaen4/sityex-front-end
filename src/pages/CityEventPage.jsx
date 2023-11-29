@@ -108,7 +108,7 @@ const CityEventPage = () => {
           <Button
             variant="contained"
             color="primary"
-            onClick={() => window.open(selectedEvent.affiliate_url)}
+            onClick={() => window.open(selectedEvent.affiliate_url, '_blank', 'noopener')}
           >
             Buy tickets
           </Button>
