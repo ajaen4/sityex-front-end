@@ -22,7 +22,7 @@ jobs:
       REACT_APP_MAPS_API_KEY: ${{ secrets.REACT_APP_MAPS_API_KEY }}
       REACT_APP_PLACES_API_KEY: ${{ github.ref_name == 'dev' && secrets.REACT_APP_PLACES_API_KEY_DEV || secrets.REACT_APP_PLACES_API_KEY }}
       REACT_APP_MAPS_STYLE: ${{ secrets.REACT_APP_MAPS_STYLE }}
-      GCP_SA_KEY_BASE_64: ${{ github.ref_name == 'dev' && secrets.GCP_SA_KEY_BASE_64_DEV || secrets.GCP_SA_KEY_BASE_64 }}
+      GCP_SA_KEY: ${{ github.ref_name == 'dev' && secrets.GCP_SA_KEY_BASE_64_DEV || secrets.GCP_SA_KEY_BASE_64 }}
       CI: ""
 
     steps:
@@ -68,4 +68,4 @@ jobs:
         with:
           args: deploy --project ${{ env.REACT_APP_PROJECT_ID }}
         env:
-          GCP_SA_KEY: ${{ env.GCP_SA_KEY_BASE_64 }}
+          GCP_SA_KEY: ${{ env.GCP_SA_KEY }}
