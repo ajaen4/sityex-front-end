@@ -22,10 +22,10 @@ jobs:
       REACT_APP_MAPS_API_KEY: ${{ secrets.REACT_APP_MAPS_API_KEY }}
       REACT_APP_PLACES_API_KEY: ${{ github.ref_name == 'dev' && secrets.REACT_APP_PLACES_API_KEY_DEV || secrets.REACT_APP_PLACES_API_KEY }}
       REACT_APP_MAPS_STYLE: ${{ secrets.REACT_APP_MAPS_STYLE }}
-      GCP_SA_KEY: ${{ github.ref_name == 'dev' && secrets.GCP_SA_KEY_BASE_64_DEV || secrets.GCP_SA_KEY_BASE_64 }}
       CI: ""
 
     steps:
+
       - name: Checkout Repo
         uses: actions/checkout@v4.0.0
 
@@ -49,6 +49,7 @@ jobs:
     env:
       # Because env context (environment variables) set at the job level are not directly accessible in the with or env fields of a step
       REACT_APP_PROJECT_ID: ${{ github.ref_name == 'dev' && secrets.REACT_APP_PROJECT_ID_DEV || secrets.REACT_APP_PROJECT_ID }}
+      GCP_SA_KEY: ${{ github.ref_name == 'dev' && secrets.GCP_SA_KEY_BASE_64_DEV || secrets.GCP_SA_KEY_BASE_64 }}
       CI: ""
     steps:
       - name: Checkout Repo
@@ -63,9 +64,8 @@ jobs:
       - name: Install functions dependencies
         run: npm i -D
 
+      # This action is also using GCP_SA_KEY implicitly
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@v12.4.0
         with:
           args: deploy --project ${{ env.REACT_APP_PROJECT_ID }}
-        env:
-          GCP_SA_KEY: ${{ env.GCP_SA_KEY }}
