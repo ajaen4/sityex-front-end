@@ -11,3 +11,13 @@ export const CITY_INFO = "info";
 export const CITY_EVENTS = "events";
 export const CITY_EVENT = "event/:event_id";
 export const CITY_COMMUNITY = "community";
+
+let BLOG = "";
+
+if (process.env.REACT_APP_PROJECT_ID == "sityex-dev") {
+  BLOG = "http://blog.dev.sityex.com";
+} else {
+  BLOG = "http://blog.sityex.com";
+}
+
+export { BLOG };
