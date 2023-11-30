@@ -11,17 +11,18 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     env:
-      REACT_APP_PROJECT_ID: ${{ github.ref == 'refs/heads/dev' && secrets.REACT_APP_PROJECT_ID_DEV || secrets.REACT_APP_PROJECT_ID }}
-      REACT_APP_API_KEY: ${{ github.ref == 'refs/heads/dev' && secrets.REACT_APP_API_KEY_DEV || secrets.REACT_APP_API_KEY }}
-      REACT_APP_AUTH_DOMAIN: ${{ github.ref == 'refs/heads/dev' && secrets.REACT_APP_AUTH_DOMAIN_DEV || secrets.REACT_APP_AUTH_DOMAIN }}
-      REACT_APP_DATABASE_URL: ${{ github.ref == 'refs/heads/dev' && secrets.REACT_APP_DATABASE_URL_DEV || secrets.REACT_APP_DATABASE_URL }}
-      REACT_APP_STORAGE_BUCKET: ${{ github.ref == 'refs/heads/dev' && secrets.REACT_APP_STORAGE_BUCKET_DEV || secrets.REACT_APP_STORAGE_BUCKET }}
-      REACT_APP_MESSAGING_SENDER_ID: ${{ github.ref == 'refs/heads/dev' && secrets.REACT_APP_MESSAGING_SENDER_ID_DEV || secrets.REACT_APP_MESSAGING_SENDER_ID }}
-      REACT_APP_APP_ID: ${{ github.ref == 'refs/heads/dev' && secrets.REACT_APP_APP_ID_DEV || secrets.REACT_APP_APP_ID }}
-      REACT_APP_MEASUREMENT_ID: ${{ github.ref == 'refs/heads/dev' && secrets.REACT_APP_MEASUREMENT_ID_DEV || secrets.REACT_APP_MEASUREMENT_ID }}
+      REACT_APP_PROJECT_ID: ${{ github.ref_name == 'dev' && secrets.REACT_APP_PROJECT_ID_DEV || secrets.REACT_APP_PROJECT_ID }}
+      REACT_APP_API_KEY: ${{ github.ref_name == 'dev' && secrets.REACT_APP_API_KEY_DEV || secrets.REACT_APP_API_KEY }}
+      REACT_APP_AUTH_DOMAIN: ${{ github.ref_name == 'dev' && secrets.REACT_APP_AUTH_DOMAIN_DEV || secrets.REACT_APP_AUTH_DOMAIN }}
+      REACT_APP_DATABASE_URL: ${{ github.ref_name == 'dev' && secrets.REACT_APP_DATABASE_URL_DEV || secrets.REACT_APP_DATABASE_URL }}
+      REACT_APP_STORAGE_BUCKET: ${{ github.ref_name == 'dev' && secrets.REACT_APP_STORAGE_BUCKET_DEV || secrets.REACT_APP_STORAGE_BUCKET }}
+      REACT_APP_MESSAGING_SENDER_ID: ${{ github.ref_name == 'dev' && secrets.REACT_APP_MESSAGING_SENDER_ID_DEV || secrets.REACT_APP_MESSAGING_SENDER_ID }}
+      REACT_APP_APP_ID: ${{ github.ref_name == 'dev' && secrets.REACT_APP_APP_ID_DEV || secrets.REACT_APP_APP_ID }}
+      REACT_APP_MEASUREMENT_ID: ${{ github.ref_name == 'dev' && secrets.REACT_APP_MEASUREMENT_ID_DEV || secrets.REACT_APP_MEASUREMENT_ID }}
       REACT_APP_MAPS_API_KEY: ${{ secrets.REACT_APP_MAPS_API_KEY }}
-      REACT_APP_PLACES_API_KEY: ${{ github.ref == 'refs/heads/dev' && secrets.REACT_APP_PLACES_API_KEY_DEV || secrets.REACT_APP_PLACES_API_KEY }}
+      REACT_APP_PLACES_API_KEY: ${{ github.ref_name == 'dev' && secrets.REACT_APP_PLACES_API_KEY_DEV || secrets.REACT_APP_PLACES_API_KEY }}
       REACT_APP_MAPS_STYLE: ${{ secrets.REACT_APP_MAPS_STYLE }}
+      GCP_SA_KEY_BASE_64: ${{ github.ref_name == 'dev' && secrets.GCP_SA_KEY_BASE_64_DEV || secrets.GCP_SA_KEY_BASE_64 }}
       CI: ""
 
     steps:
@@ -46,7 +47,8 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     env:
-      REACT_APP_PROJECT_ID: ${{ github.ref == 'refs/heads/dev' && secrets.REACT_APP_PROJECT_ID_DEV || secrets.REACT_APP_PROJECT_ID }}
+      # Because env context (environment variables) set at the job level are not directly accessible in the with or env fields of a step
+      REACT_APP_PROJECT_ID: ${{ github.ref_name == 'dev' && secrets.REACT_APP_PROJECT_ID_DEV || secrets.REACT_APP_PROJECT_ID }}
       CI: ""
     steps:
       - name: Checkout Repo
@@ -66,4 +68,4 @@ jobs:
         with:
           args: deploy --project ${{ env.REACT_APP_PROJECT_ID }}
         env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          GCP_SA_KEY: ${{ env.GCP_SA_KEY_BASE_64 }}
