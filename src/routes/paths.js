@@ -15,9 +15,9 @@ export const CITY_COMMUNITY = "community";
 let BLOG = "";
 
 if (process.env.REACT_APP_PROJECT_ID == "sityex-dev") {
-  BLOG = "http://blog.dev.sityex.com";
+  BLOG = "https://blog.dev.sityex.com";
 } else {
-  BLOG = "http://blog.sityex.com";
+  BLOG = "https://blog.sityex.com";
 }
 
 export { BLOG };
