@@ -4,9 +4,11 @@ import { useParams } from "react-router-dom";
 
 import { logAnalyticsEvent } from "api";
 
-import { Box, Grid, Typography, Button, Chip } from "@mui/material";
+import { Box, Grid, Typography, Button, Chip, Stack } from "@mui/material";
+import LocationOnIcon from "@mui/icons-material/LocationOnOutlined";
 
 import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
+import EventMap from "components/Maps/EventMap";
 
 import { getCityEvent } from "actions";
 
@@ -44,8 +46,8 @@ const CityEventPage = () => {
   if (!selectedEvent) return <CenteredLoadingSpinner />;
 
   const imgSrc = imageHasError
-      ? "https://sityex-public-images.s3.eu-west-1.amazonaws.com/square_big_logo_blue.png"
-      : selectedEvent.photo_1;
+    ? "https://sityex-public-images.s3.eu-west-1.amazonaws.com/square_big_logo_blue.png"
+    : selectedEvent.photo_1;
 
   return (
     <Box
@@ -82,7 +84,13 @@ const CityEventPage = () => {
             justifyContent: "flex-end"
           }}
         >
-          {(selectedEvent.availability_of_tickets === "low") && <Chip label="Few tickets left" color="secondary" sx={{ mx: 2, py: 0.5 }} />}
+          {selectedEvent.availability_of_tickets === "low" && (
+            <Chip
+              label="Few tickets left"
+              color="secondary"
+              sx={{ mx: 2, py: 0.5 }}
+            />
+          )}
           <Typography variant="h2" sx={{ px: 2, py: 0.5 }}>
             {selectedEvent.plan_name}
           </Typography>
@@ -102,21 +110,39 @@ const CityEventPage = () => {
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
-            mt: {xs: 2, md: 0, lg: 0},
+            mt: { xs: 2, md: 0, lg: 0 }
           }}
         >
           <Button
             variant="contained"
             color="primary"
-            onClick={() => window.open(selectedEvent.affiliate_url, '_blank', 'noopener')}
+            onClick={() =>
+              window.open(selectedEvent.affiliate_url, "_blank", "noopener")
+            }
           >
             Buy tickets
           </Button>
         </Grid>
         <Grid item xs={11}>
-          <Typography sx={{ pt: {xs: 1, md: 4, lg: 4}, pb: 2, fontSize: 16 }}>
+          <Typography sx={{ pt: { xs: 1, md: 4, lg: 4 }, pb: 2, fontSize: 16 }}>
             {formatText(selectedEvent.description)}
           </Typography>
+        </Grid>
+        <Grid item xs={11} sx={{ mt: 2 }}>
+          <Box sx={{ display: "flex", alignItems: "center"}}>
+            <LocationOnIcon sx={{ fontSize: 25 }} />
+            <Typography variant="h3" sx={{ fontSize: 22 }}>
+              Location
+            </Typography>
+          </Box>
+          <Stack sx={{ display: "flex", mb: 1 }}>
+            <Typography variant="h5" sx={{ my: 1 }}>
+            {selectedEvent.location}
+            </Typography>
+          </Stack>
+          <Box sx={{ width: "100%", height: 200 }}>
+          <EventMap eventCoordinates={selectedEvent.coordinates} />
+          </Box>
         </Grid>
       </Grid>
     </Box>
