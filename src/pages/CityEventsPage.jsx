@@ -74,7 +74,7 @@ const CityEventsPage = () => {
   }, [events, filteredSubcategories]);
 
   return (
-    <Box sx={{ my: 0.5, mx: 0.5, width: "100%" }}>
+    <Box sx={{ py: 0.5, px: 0.5, width: "100%" }}>
       <Tabs
         value={selectedTab}
         onChange={handleTabChange}

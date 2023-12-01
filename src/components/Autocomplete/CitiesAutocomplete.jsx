@@ -11,7 +11,7 @@ import { createFilterOptions } from "@mui/material/Autocomplete";
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-const CitiesAutocomplete = ({ selectedCity, citiesIndex, onSelectCity }) => {
+const CitiesAutocomplete = ({ selectedCity, citiesIndex, onSelectCity, placeholder }) => {
   const theme = useTheme();
 
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -21,14 +21,14 @@ const CitiesAutocomplete = ({ selectedCity, citiesIndex, onSelectCity }) => {
   });
 
   const getDestinations = () => {
-    if (citiesIndex !== null)
+    if (citiesIndex !== null){
       return citiesIndex.sort((a, b) => a.name.localeCompare(b.name));
+    }
     else return [];
   };
 
   return (
     <Autocomplete
-      freeSolo
       options={getDestinations()}
       onChange={onSelectCity}
       getOptionLabel={(option) => option.name}
@@ -47,7 +47,7 @@ const CitiesAutocomplete = ({ selectedCity, citiesIndex, onSelectCity }) => {
                       width="20"
                       src={`https://flagcdn.com/w20/${selectedCity.country_2_code.toLowerCase()}.png`}
                       srcSet={`https://flagcdn.com/w40/${selectedCity.country_2_code.toLowerCase()}.png 2x`}
-                      alt=""
+                      alt="country flag"
                     />
                   </IconButton>
                 )}
@@ -55,7 +55,7 @@ const CitiesAutocomplete = ({ selectedCity, citiesIndex, onSelectCity }) => {
             ),
             style: { fontSize: 16 }
           }}
-          placeholder={selectedCity && selectedCity.name}
+          placeholder={(selectedCity && selectedCity.name) || placeholder}
           fullWidth
         />
       )}

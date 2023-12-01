@@ -1,10 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import {
   Box,
   Typography,
-  Button,
   Grid,
   Stack,
   useTheme,
@@ -20,12 +20,18 @@ import MuseumIcon from "@mui/icons-material/Museum";
 import SchoolIcon from "@mui/icons-material/School";
 import SportsGymnasticsIcon from "@mui/icons-material/SportsGymnastics";
 
-import * as ROUTES_PATHS from "routes/paths";
+import CitiesAutocomplete from "components/Autocomplete/CitiesAutocomplete";
 
 const LandingPage = () => {
+  const citiesIndex = useSelector((state) => state.citiesIndex.data);
+
   const theme = useTheme();
   const navigate = useNavigate();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+
+  const onSelectCity = (event, value) => {
+    navigate("/destination/" + value.city_id + "/events");
+  };
 
   return (
     <Box
@@ -81,13 +87,13 @@ const LandingPage = () => {
                 SityEx
               </Typography>
             </Typography>
-            <Button
-              variant="contained"
-              sx={{ mt: 5, mb: 2, width: 200, height: 50 }}
-              onClick={() => navigate(ROUTES_PATHS.SEARCH)}
-            >
-              Find your city
-            </Button>
+            <Box sx={{ width: 230, my: 2 }}>
+              <CitiesAutocomplete
+                citiesIndex={citiesIndex ? citiesIndex.cities : null}
+                onSelectCity={onSelectCity}
+                placeholder="Enter your destination"
+              />
+            </Box>
             <Typography
               variant="h5"
               sx={{

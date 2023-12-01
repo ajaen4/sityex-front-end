@@ -38,7 +38,7 @@ const SearchPage = () => {
   }, []);
 
   const onSelectCity = (event, value) => {
-    if (value) navigate("/destination/" + value.city_id + "/events");
+    navigate("/destination/" + value.city_id + "/events");
   };
 
   if (!citiesIndex) return <CenteredLoadingSpinner />;
