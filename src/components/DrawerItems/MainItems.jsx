@@ -6,11 +6,9 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import GradingIcon from "@mui/icons-material/GradingOutlined";
-import MapIcon from "@mui/icons-material/MapOutlined";
 import SearchIcon from "@mui/icons-material/SearchOutlined";
+import NewspaperIcon from "@mui/icons-material/NewspaperOutlined";
 
-import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
 import * as ROUTES_PATHS from "routes/paths";
@@ -21,6 +19,10 @@ const MainItems = () => {
 
   const itemSelected = (event) => {
     const path = event.currentTarget.getAttribute("data-path");
+    if (path === ROUTES_PATHS.BLOG) {
+      window.location.href = ROUTES_PATHS.BLOG;
+    }
+
     navigate(path);
   };
 
@@ -47,6 +49,27 @@ const MainItems = () => {
           <ListItemText primary="Search City" />
         </ListItemButton>
       </ListItem>
+      {/* <ListItem disablePadding sx={{ display: "block" }}>
+        <ListItemButton
+          sx={{
+            minHeight: 48,
+            px: 2.5
+          }}
+          data-path={ROUTES_PATHS.BLOG}
+          onClick={itemSelected}
+        >
+          <ListItemIcon
+            sx={{
+              minWidth: 0,
+              mr: 3,
+              justifyContent: "center"
+            }}
+          >
+            <NewspaperIcon />
+          </ListItemIcon>
+          <ListItemText primary="Blog" />
+        </ListItemButton>
+      </ListItem> */}
     </List>
   );
 };

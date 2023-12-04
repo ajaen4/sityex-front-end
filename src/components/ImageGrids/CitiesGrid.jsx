@@ -25,7 +25,7 @@ const CitiesGrid = ({ citiesIndex }) => {
 
   const handleImageError = (city_id) => {
     if (!cityIdsBadImage.includes(city_id))
-    setCityIdsBadImage([...cityIdsBadImage, city_id]);
+      setCityIdsBadImage([...cityIdsBadImage, city_id]);
   };
 
   const getRowHeight = (width) => {
@@ -46,7 +46,7 @@ const CitiesGrid = ({ citiesIndex }) => {
       : `https://sityex-public-images.s3.eu-west-1.amazonaws.com/cities/${city.city_id}.jpg`;
 
     return (
-      <div style={{...style, padding: 1}}>
+      <div style={{ ...style, padding: 1 }}>
         <ImageListItem
           key={city.city_id}
           onClick={() => handleCityClick(city.city_id)}
@@ -86,7 +86,9 @@ const CitiesGrid = ({ citiesIndex }) => {
         <Grid
           columnCount={numColumns}
           columnWidth={width / numColumns}
-          height={Math.ceil(citiesIndex.length / numColumns) * getRowHeight(width)}
+          height={
+            Math.ceil(citiesIndex.length / numColumns) * getRowHeight(width)
+          }
           rowCount={Math.ceil(citiesIndex.length / numColumns)}
           rowHeight={getRowHeight(width)}
           width={width}

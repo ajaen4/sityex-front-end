@@ -43,6 +43,7 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
 
   const handleClickNavMenu = (page) => {
     if (page === "Search City") navigate(ROUTES_PATHS.SEARCH);
+    if (page === "Blog") window.location.href = ROUTES_PATHS.BLOG;
   };
 
   const clickedLogo = () => navigate(ROUTES_PATHS.ROOT);

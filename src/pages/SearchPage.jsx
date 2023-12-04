@@ -38,7 +38,7 @@ const SearchPage = () => {
   }, []);
 
   const onSelectCity = (event, value) => {
-    if (value) navigate("/destination/" + value.city_id + "/events");
+    navigate("/destination/" + value.city_id + "/events");
   };
 
   if (!citiesIndex) return <CenteredLoadingSpinner />;
@@ -54,39 +54,45 @@ const SearchPage = () => {
       }}
     >
       {tab === "search-box" && (
+        <Grid
+          container
+          sx={{
+            justifyContent: "center",
+            mt: 10,
+            width: "100%"
+          }}
+        >
           <Grid
-            container
-            sx={{
-              justifyContent: "center",
-              mt: 10,
-              width: "100%",
-            }}
+            item
+            xs={11}
+            md={5}
+            lg={4}
+            sx={{ display: "flex", justifyContent: "center" }}
           >
-            <Grid item xs={11} md={5} lg={4} sx={{display: "flex", justifyContent: "center"}}>
-              <Card elevation={0}>
-                <CardContent>
-                  <Typography variant="h2" color="textSecondary" sx={{ mb: 3 }}>
-                    Introduce a destination
-                  </Typography>
-                  <CitiesAutocomplete
-                    citiesIndex={citiesIndex ? citiesIndex.cities : null}
-                    onSelectCity={onSelectCity}
-                  />
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid item xs={12} sx={{ height: "100%", mt: 5 }}>
-              <Box
-                sx={{
-                  height: "100%",
-                }}
-              >
-                <CitiesGrid
+            <Card elevation={0}>
+              <CardContent>
+                <Typography variant="h2" color="textSecondary" sx={{ mb: 3 }}>
+                  Introduce a destination
+                </Typography>
+                <CitiesAutocomplete
                   citiesIndex={citiesIndex ? citiesIndex.cities : null}
+                  onSelectCity={onSelectCity}
                 />
-              </Box>
-            </Grid>
+              </CardContent>
+            </Card>
           </Grid>
+          <Grid item xs={12} sx={{ height: "100%", mt: 5 }}>
+            <Box
+              sx={{
+                height: "100%"
+              }}
+            >
+              <CitiesGrid
+                citiesIndex={citiesIndex ? citiesIndex.cities : null}
+              />
+            </Box>
+          </Grid>
+        </Grid>
       )}
       {tab === "map" && (
         <Box
@@ -94,7 +100,7 @@ const SearchPage = () => {
             textAlign: "center",
             justifyContent: "center",
             width: "100%",
-            height: "100%",
+            height: "100%"
           }}
         >
           <Suspense fallback={<CenteredLoadingSpinner />}>

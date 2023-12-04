@@ -20,7 +20,7 @@ const CityPage = () => {
   const { pathname } = useLocation();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
   const isDestinationPage = pathname.split("/").includes("destination");
-  const isCityPlacesPage = pathname.split("/").includes("places");
+  const isCityEventPage = pathname.split("/").includes("event");
 
   const dispatch = useDispatch();
 
@@ -45,28 +45,26 @@ const CityPage = () => {
         backgroundColor: "grey.100"
       }}
     >
-      {!isCityPlacesPage && (
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            my: 2
-          }}
-        >
-          <img
-            loading="lazy"
-            width="30"
-            src={`https://flagcdn.com/w160/${selectedCity.country_2_code.toLowerCase()}.png`}
-            alt="City Image"
-            style={{ marginRight: "10px" }}
-          />
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          my: 2
+        }}
+      >
+        <img
+          loading="lazy"
+          width="30"
+          src={`https://flagcdn.com/w160/${selectedCity.country_2_code.toLowerCase()}.png`}
+          alt="City Image"
+          style={{ marginRight: "10px" }}
+        />
 
-          <Typography color="textSecondary" variant="h2">
-            {selectedCity.name}
-          </Typography>
-        </Box>
-      )}
+        <Typography color="textSecondary" variant="h2">
+          {selectedCity.name}
+        </Typography>
+      </Box>
       <Box
         sx={{
           flex: 1,
@@ -77,7 +75,7 @@ const CityPage = () => {
       >
         <Outlet />
       </Box>
-      {isDestinationPage && isSmallScreen && (
+      {isDestinationPage && !isCityEventPage && isSmallScreen && (
         <Box
           sx={{
             display: "flex",
