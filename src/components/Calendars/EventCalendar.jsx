@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 
 import dayjs from "dayjs";
 
-import { Box, Badge, Chip } from "@mui/material";
+import { Box, Badge, Chip, useMediaQuery } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { PickersDay } from "@mui/x-date-pickers/PickersDay";
@@ -35,6 +37,16 @@ export default function EventCalendar({ selectedEvent }) {
   const [value, setValue] = useState(dayjs());
   const [highlightedDates, setHighlightedDates] = useState([]);
 
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+
+  const hasRealTime = [...new Set(highlightedDates.map(
+    date => date.format('HH:mm')
+  ))
+  ].some(
+    time => time !== "00:00"
+  );
+
   const isSelectedDateHighlighted = highlightedDates.some((date) =>
     date.isSame(value, "day")
   );
@@ -58,7 +70,8 @@ export default function EventCalendar({ selectedEvent }) {
     <Box>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DateCalendar
-          value={value}
+          readOnly={!hasRealTime}
+          value={hasRealTime ? value : null}
           onChange={(newValue) => setValue(newValue)}
           loading={false}
           renderLoading={() => <DayCalendarSkeleton />}
@@ -72,12 +85,11 @@ export default function EventCalendar({ selectedEvent }) {
           }}
         />
       </LocalizationProvider>
-      
-        <Box sx={{ px: 2, py: 1, minHeight: 50 }}>
+      <Box sx={{display: { xs: 'flex', md: 'flex' }, flexWrap: { xs: 'nowrap', md: 'wrap' }, overflowX: { xs: 'auto', md: 'none' }, p: 1, minHeight: 60 }}>
         {isSelectedDateHighlighted && (
           timesForSelectedDate.map((time, index) => (
             (time !== "00:00") &&
-            <Chip label={time} color="secondary" sx={{ mx: 0.5 }} />
+            <Chip label={time} color="secondary" sx={{ mx: 0.5, my: 0.5 }} />
           )))}
         </Box>
     </Box>
