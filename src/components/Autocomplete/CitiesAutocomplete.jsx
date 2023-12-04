@@ -11,7 +11,12 @@ import { createFilterOptions } from "@mui/material/Autocomplete";
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-const CitiesAutocomplete = ({ selectedCity, citiesIndex, onSelectCity, placeholder }) => {
+const CitiesAutocomplete = ({
+  selectedCity,
+  citiesIndex,
+  onSelectCity,
+  placeholder
+}) => {
   const theme = useTheme();
 
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -21,10 +26,9 @@ const CitiesAutocomplete = ({ selectedCity, citiesIndex, onSelectCity, placehold
   });
 
   const getDestinations = () => {
-    if (citiesIndex !== null){
+    if (citiesIndex !== null) {
       return citiesIndex.sort((a, b) => a.name.localeCompare(b.name));
-    }
-    else return [];
+    } else return [];
   };
 
   return (
