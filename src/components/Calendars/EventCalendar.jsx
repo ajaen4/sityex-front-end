@@ -73,7 +73,7 @@ export default function EventCalendar({ selectedEvent }) {
         />
       </LocalizationProvider>
       
-        <Box sx={{ px: 2, py: 1, minHeight: 80 }}>
+        <Box sx={{ px: 2, py: 1, minHeight: 50 }}>
         {isSelectedDateHighlighted && (
           timesForSelectedDate.map((time, index) => (
             (time !== "00:00") &&
