@@ -26,7 +26,6 @@ jobs:
       CI: ""
 
     steps:
-
       - name: Checkout Repo
         uses: actions/checkout@v4.0.0
 
