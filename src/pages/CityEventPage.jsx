@@ -6,6 +6,7 @@ import { logAnalyticsEvent } from "api";
 
 import { Box, Grid, Typography, Button, Chip } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOnOutlined";
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonthOutlined';
 
 import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 import EventMap from "components/Maps/EventMap";
@@ -148,8 +149,8 @@ const CityEventPage = () => {
             flexDirection: "column"
           }}
         >
-          <Box sx={{ display: "flex", alignItems: "center" }}>
-            <LocationOnIcon sx={{ fontSize: 25 }} />
+          <Box sx={{ display: "flex" }}>
+            <CalendarMonthIcon sx={{ fontSize: 25 }} />
             <Typography variant="h3" sx={{ fontSize: 22 }}>
               Dates
             </Typography>
@@ -160,7 +161,7 @@ const CityEventPage = () => {
         </Grid>
         { !(selectedEvent.coordinates.latitude === 0 && selectedEvent.coordinates.longitude === 0) && 
         <Grid item xs={11.5} sx={{ mt: 2 }}>
-          <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Box sx={{ display: "flex" }}>
             <LocationOnIcon sx={{ fontSize: 25 }} />
             <Typography variant="h3" sx={{ fontSize: 22 }}>
               Location
