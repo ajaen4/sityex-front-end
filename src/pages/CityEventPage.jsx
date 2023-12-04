@@ -158,6 +158,7 @@ const CityEventPage = () => {
             <EventCalendar selectedEvent={selectedEvent} />
           )}
         </Grid>
+        { !(selectedEvent.coordinates.latitude === 0 && selectedEvent.coordinates.longitude === 0) && 
         <Grid item xs={11.5} sx={{ mt: 2 }}>
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <LocationOnIcon sx={{ fontSize: 25 }} />
@@ -172,6 +173,7 @@ const CityEventPage = () => {
             <EventMap eventCoordinates={selectedEvent.coordinates} />
           </Box>
         </Grid>
+}
       </Grid>
     </Box>
   );
