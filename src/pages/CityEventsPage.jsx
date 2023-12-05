@@ -38,11 +38,9 @@ const CityEventsPage = () => {
       page_location: window.location.href,
       city_name: selectedCity?.name
     });
-  }, [selectedCity?.name]);
 
-  useEffect(() => {
     dispatch(getCityEvents(selectedCity.city_id));
-  }, [selectedCity]);
+  }, [selectedCity?.name]);
 
   const handleTabChange = (event, newValue) => {
     setSelectedTab(newValue);
@@ -80,7 +78,7 @@ const CityEventsPage = () => {
         onChange={handleTabChange}
         textColor="secondary"
         indicatorColor="secondary"
-        variant={isSmallScreen ? "scrollable" : "none"}
+        variant={isSmallScreen ? "scrollable" : "standard"}
         scrollButtons="auto"
         centered={!isSmallScreen}
         xs={{ display: "flex", flexDirection: "row", justifyContent: "center" }}
@@ -93,7 +91,7 @@ const CityEventsPage = () => {
         {filteredSubcategories.map(
           (category, index) =>
             selectedTab === index && (
-              <EventsGrid events={memoizedEvents[index]} />
+              <EventsGrid key={category} events={memoizedEvents[index]} />
             )
         )}
       </Box>

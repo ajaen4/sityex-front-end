@@ -31,3 +31,16 @@ export const getCityEvent = (city_id, event_id) => (dispatch, getState) => {
     dispatch({ type: FETCHING_EVENT_SUCCESS, selected_event });
   });
 };
+
+export const setUserInterested = (
+  city_id,
+  event_id,
+  user_id,
+  interested_info
+) => {
+  api.setUserInterested(city_id, event_id, user_id, interested_info);
+};
+
+export const countInterestedUsers = (city_id, event_id, user_id) => {
+  return api.countInterestedUsers(city_id, event_id, user_id);
+};

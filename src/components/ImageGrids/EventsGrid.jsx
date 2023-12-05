@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -8,10 +8,14 @@ import {
   ImageListItem,
   ImageListItemBar,
   useMediaQuery,
-  useTheme
+  useTheme,
+  Chip
 } from "@mui/material";
 
+import { countInterestedUsers } from "actions";
+
 const EventsGrid = ({ events }) => {
+  const auth = useSelector((state) => state.auth);
   const selectedCity = useSelector((state) => state.selectedCity.data);
   const [eventsBadImage, setEventsBadImage] = useState([]);
 
@@ -38,27 +42,56 @@ const EventsGrid = ({ events }) => {
   const Cell = ({ columnIndex, rowIndex, style }) => {
     const eventIndex = rowIndex * numColumns + columnIndex;
     const event = events[eventIndex];
+    const [interestedCount, setInterestedCount] = useState(null);
 
     if (!event) return null;
+  
+    useEffect(() => {
+      countInterestedUsers(
+        selectedCity.city_id,
+        event.sku,
+        auth.data?.id
+      ).then((interestedCount) => {
+        setInterestedCount(interestedCount);
+      });
+    }, [event]);
 
     const isError = eventsBadImage.includes(event.sku);
     const imgSrc = isError
       ? "https://sityex-public-images.s3.eu-west-1.amazonaws.com/square_black_big_logo_blue.png"
       : event.photo_1;
 
+    const key = isError
+      ? `error-${event.sku}-${rowIndex}-${columnIndex}`
+      : `${event.sku}-${rowIndex}-${columnIndex}`;
+
     return (
       <div style={style}>
         <ImageListItem
-          key={isError ? `error-${event.sku}` : event.sku}
+          key={key}
           onClick={() => handleEventClick(event.sku)}
+          style={{ 
+            height: '100%'
+          }}
         >
+          <div 
+            style={{ position: 'relative' }}>
           <img
             srcSet={imgSrc}
             src={imgSrc}
             alt={event.plan_name}
             loading="lazy"
             onError={() => handleImageError(event.sku)}
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
+          {(interestedCount !== null && interestedCount !== 0) &&
+            <Chip
+              label={`${interestedCount} people interested`}
+              color="secondary"
+              sx={{ position: 'absolute', top: 8, left: 8 }}
+            />
+          }
+          </div>
           <ImageListItemBar
             title={
               <div
