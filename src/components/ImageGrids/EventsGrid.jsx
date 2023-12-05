@@ -84,7 +84,7 @@ const EventsGrid = ({ events }) => {
             />
             {interestedCount !== null && interestedCount !== 0 && (
               <Chip
-                label={`${interestedCount} people interested`}
+                label={`${interestedCount} users interested`}
                 color="secondary"
                 sx={{ position: "absolute", top: 8, left: 8 }}
               />
