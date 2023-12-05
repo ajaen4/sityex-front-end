@@ -45,15 +45,13 @@ const EventsGrid = ({ events }) => {
     const [interestedCount, setInterestedCount] = useState(null);
 
     if (!event) return null;
-  
+
     useEffect(() => {
-      countInterestedUsers(
-        selectedCity.city_id,
-        event.sku,
-        auth.data?.id
-      ).then((interestedCount) => {
-        setInterestedCount(interestedCount);
-      });
+      countInterestedUsers(selectedCity.city_id, event.sku, auth.data?.id).then(
+        (interestedCount) => {
+          setInterestedCount(interestedCount);
+        }
+      );
     }, [event]);
 
     const isError = eventsBadImage.includes(event.sku);
@@ -70,27 +68,27 @@ const EventsGrid = ({ events }) => {
         <ImageListItem
           key={key}
           onClick={() => handleEventClick(event.sku)}
-          style={{ 
-            height: '100%'
+          style={{
+            height: "100%",
+            cursor: "pointer"
           }}
         >
-          <div 
-            style={{ position: 'relative' }}>
-          <img
-            srcSet={imgSrc}
-            src={imgSrc}
-            alt={event.plan_name}
-            loading="lazy"
-            onError={() => handleImageError(event.sku)}
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-          />
-          {(interestedCount !== null && interestedCount !== 0) &&
-            <Chip
-              label={`${interestedCount} people interested`}
-              color="secondary"
-              sx={{ position: 'absolute', top: 8, left: 8 }}
+          <div style={{ position: "relative" }}>
+            <img
+              srcSet={imgSrc}
+              src={imgSrc}
+              alt={event.plan_name}
+              loading="lazy"
+              onError={() => handleImageError(event.sku)}
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
-          }
+            {interestedCount !== null && interestedCount !== 0 && (
+              <Chip
+                label={`${interestedCount} people interested`}
+                color="secondary"
+                sx={{ position: "absolute", top: 8, left: 8 }}
+              />
+            )}
           </div>
           <ImageListItemBar
             title={
