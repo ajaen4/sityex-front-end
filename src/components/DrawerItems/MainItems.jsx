@@ -49,7 +49,7 @@ const MainItems = () => {
           <ListItemText primary="Search City" />
         </ListItemButton>
       </ListItem>
-      {/* <ListItem disablePadding sx={{ display: "block" }}>
+      <ListItem disablePadding sx={{ display: "block" }}>
         <ListItemButton
           sx={{
             minHeight: 48,
@@ -69,7 +69,7 @@ const MainItems = () => {
           </ListItemIcon>
           <ListItemText primary="Blog" />
         </ListItemButton>
-      </ListItem> */}
+      </ListItem>
     </List>
   );
 };
