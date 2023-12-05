@@ -86,7 +86,15 @@ const EventsGrid = ({ events }) => {
               <Chip
                 label={`${interestedCount} users interested`}
                 color="secondary"
-                sx={{ position: "absolute", top: 8, left: 8 }}
+                sx={{ 
+                  position: "absolute", 
+                  top: 8, 
+                  left: 4,
+                  fontSize: {
+                    xs: "0.6rem",
+                    md: "0.8rem"
+                  }
+                }}
               />
             )}
           </div>

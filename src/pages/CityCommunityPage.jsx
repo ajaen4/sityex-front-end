@@ -37,7 +37,7 @@ const CityCommunityPage = () => {
   if (!auth?.isAuthResolved)
     return (
       <Container maxWidth="sm">
-        <Paper elevation={3} sx={{ padding: "20px", marginTop: "20px" }}>
+        <Paper elevation={3} sx={{ padding: "20px" }}>
           <Typography
             variant="h5"
             gutterBottom
@@ -65,7 +65,7 @@ const CityCommunityPage = () => {
       <Container maxWidth="sm">
         <Paper
           elevation={3}
-          sx={{ padding: "20px", marginTop: "20px", textAlign: "center" }}
+          sx={{ padding: "20px", textAlign: "center" }}
         >
           <Typography variant="h4" gutterBottom sx={{ fontSize: 16 }}>
             Coming Soon
@@ -82,7 +82,7 @@ const CityCommunityPage = () => {
   if (qrCodeUrl)
     return (
       <Container maxWidth="sm">
-        <Paper elevation={3} sx={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "20px", marginTop: "20px" }}>
+        <Paper elevation={3} sx={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "20px" }}>
           <Typography
             variant="h4"
             gutterBottom
@@ -93,7 +93,7 @@ const CityCommunityPage = () => {
           </Typography>
           <Button
             variant="contained"
-            style={{ width: "50%", alignSelf: "center", marginTop: 20, marginBottom: 20 }}
+            style={{ width: "50%", alignSelf: "center", marginTop: 10, marginBottom: 20 }}
             onClick={() => window.open(selectedCity.whatsapp_link)}
           >
             Join through link
