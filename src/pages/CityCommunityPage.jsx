@@ -82,7 +82,7 @@ const CityCommunityPage = () => {
   if (qrCodeUrl)
     return (
       <Container maxWidth="sm">
-        <Paper elevation={3} sx={{ padding: "20px", marginTop: "20px" }}>
+        <Paper elevation={3} sx={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "20px", marginTop: "20px" }}>
           <Typography
             variant="h4"
             gutterBottom
@@ -91,6 +91,13 @@ const CityCommunityPage = () => {
           >
             {`Join Our Community in ${selectedCity?.name}`}
           </Typography>
+          <Button
+            variant="contained"
+            style={{ width: "50%", alignSelf: "center", marginTop: 20, marginBottom: 20 }}
+            onClick={() => window.open(selectedCity.whatsapp_link)}
+          >
+            Join through link
+          </Button>
           <Typography
             variant="body1"
             gutterBottom
