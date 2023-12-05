@@ -12,9 +12,10 @@ import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 import EventMap from "components/Maps/EventMap";
 import EventCalendar from "components/Calendars/EventCalendar";
 
-import { getCityEvent } from "actions";
+import { getCityEvent, setUserInterested } from "actions";
 
 const CityEventPage = () => {
+  const auth = useSelector((state) => state.auth);
   const selectedCity = useSelector((state) => state.selectedCity.data);
   const selectedEvent = useSelector((state) => state.events.data.selectedEvent);
   const [imageHasError, setImageHasError] = useState(false);
@@ -30,6 +31,21 @@ const CityEventPage = () => {
       city_name: selectedCity?.name,
       event_id: event_id
     });
+
+    if (!auth.isAuthResolved) {
+      return;
+    }
+
+    const interested_info = {
+      is_interested: true
+    };
+
+    setUserInterested(
+      selectedCity.city_id,
+      event_id,
+      auth.data.id,
+      interested_info
+    );
   }, []);
 
   useEffect(() => {
@@ -43,6 +59,15 @@ const CityEventPage = () => {
         <br />
       </span>
     ));
+  };
+
+  const clickedBuyTickets = () => {
+    const buy_info = {
+      has_bought: true
+    };
+
+    setUserInterested(selectedCity.city_id, event_id, auth.data?.id, buy_info);
+    window.open(selectedEvent.affiliate_url, "_blank", "noopener");
   };
 
   if (!selectedEvent) return <CenteredLoadingSpinner />;
@@ -117,9 +142,7 @@ const CityEventPage = () => {
           <Button
             variant="contained"
             color="primary"
-            onClick={() =>
-              window.open(selectedEvent.affiliate_url, "_blank", "noopener")
-            }
+            onClick={clickedBuyTickets}
           >
             Buy tickets
           </Button>
