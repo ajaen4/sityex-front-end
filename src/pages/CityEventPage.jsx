@@ -6,15 +6,16 @@ import { logAnalyticsEvent } from "api";
 
 import { Box, Grid, Typography, Button, Chip } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOnOutlined";
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonthOutlined';
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonthOutlined";
 
 import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 import EventMap from "components/Maps/EventMap";
 import EventCalendar from "components/Calendars/EventCalendar";
 
-import { getCityEvent } from "actions";
+import { getCityEvent, setUserInterested } from "actions";
 
 const CityEventPage = () => {
+  const auth = useSelector((state) => state.auth);
   const selectedCity = useSelector((state) => state.selectedCity.data);
   const selectedEvent = useSelector((state) => state.events.data.selectedEvent);
   const [imageHasError, setImageHasError] = useState(false);
@@ -30,6 +31,21 @@ const CityEventPage = () => {
       city_name: selectedCity?.name,
       event_id: event_id
     });
+
+    if (!auth.isAuthResolved) {
+      return;
+    }
+
+    const interested_info = {
+      is_interested: true
+    };
+
+    setUserInterested(
+      selectedCity.city_id,
+      event_id,
+      auth.data.id,
+      interested_info
+    );
   }, []);
 
   useEffect(() => {
@@ -43,6 +59,15 @@ const CityEventPage = () => {
         <br />
       </span>
     ));
+  };
+
+  const clickedBuyTickets = () => {
+    const buy_info = {
+      has_bought: true
+    };
+
+    setUserInterested(selectedCity.city_id, event_id, auth.data?.id, buy_info);
+    window.open(selectedEvent.affiliate_url, "_blank", "noopener");
   };
 
   if (!selectedEvent) return <CenteredLoadingSpinner />;
@@ -117,9 +142,7 @@ const CityEventPage = () => {
           <Button
             variant="contained"
             color="primary"
-            onClick={() =>
-              window.open(selectedEvent.affiliate_url, "_blank", "noopener")
-            }
+            onClick={clickedBuyTickets}
           >
             Buy tickets
           </Button>
@@ -136,9 +159,12 @@ const CityEventPage = () => {
             display: { xs: "none", md: "flex" }
           }}
         >
-          {selectedEvent.sessions && (
-            <EventCalendar selectedEvent={selectedEvent} />
-          )}
+          {selectedEvent.sessions &&
+            !selectedEvent.plan_name
+              .toLowerCase()
+              .includes("tarjeta regalo") && (
+              <EventCalendar selectedEvent={selectedEvent} />
+            )}
         </Grid>
         <Grid
           item
@@ -159,22 +185,25 @@ const CityEventPage = () => {
             <EventCalendar selectedEvent={selectedEvent} />
           )}
         </Grid>
-        { !(selectedEvent.coordinates.latitude === 0 && selectedEvent.coordinates.longitude === 0) && 
-        <Grid item xs={11.5} sx={{ mt: 2 }}>
-          <Box sx={{ display: "flex" }}>
-            <LocationOnIcon sx={{ fontSize: 25 }} />
-            <Typography variant="h3" sx={{ fontSize: 22 }}>
-              Location
+        {!(
+          selectedEvent.coordinates.latitude === 0 &&
+          selectedEvent.coordinates.longitude === 0
+        ) && (
+          <Grid item xs={11.5} sx={{ mt: 2 }}>
+            <Box sx={{ display: "flex" }}>
+              <LocationOnIcon sx={{ fontSize: 25 }} />
+              <Typography variant="h3" sx={{ fontSize: 22 }}>
+                Location
+              </Typography>
+            </Box>
+            <Typography variant="h5" sx={{ my: 1 }}>
+              {selectedEvent.location}
             </Typography>
-          </Box>
-          <Typography variant="h5" sx={{ my: 1 }}>
-            {selectedEvent.location}
-          </Typography>
-          <Box sx={{ width: "100%", height: 200 }}>
-            <EventMap eventCoordinates={selectedEvent.coordinates} />
-          </Box>
-        </Grid>
-}
+            <Box sx={{ width: "100%", height: 200 }}>
+              <EventMap eventCoordinates={selectedEvent.coordinates} />
+            </Box>
+          </Grid>
+        )}
       </Grid>
     </Box>
   );

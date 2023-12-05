@@ -50,6 +50,9 @@ const CitiesGrid = ({ citiesIndex }) => {
         <ImageListItem
           key={city.city_id}
           onClick={() => handleCityClick(city.city_id)}
+          style={{
+            cursor: "pointer"
+          }}
         >
           <img
             src={imgSrc}
