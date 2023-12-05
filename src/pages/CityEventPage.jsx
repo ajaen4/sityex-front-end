@@ -6,7 +6,7 @@ import { logAnalyticsEvent } from "api";
 
 import { Box, Grid, Typography, Button, Chip } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOnOutlined";
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonthOutlined';
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonthOutlined";
 
 import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 import EventMap from "components/Maps/EventMap";
@@ -136,9 +136,12 @@ const CityEventPage = () => {
             display: { xs: "none", md: "flex" }
           }}
         >
-          {selectedEvent.sessions && (
-            <EventCalendar selectedEvent={selectedEvent} />
-          )}
+          {selectedEvent.sessions &&
+            !selectedEvent.plan_name
+              .toLowerCase()
+              .includes("tarjeta regalo") && (
+              <EventCalendar selectedEvent={selectedEvent} />
+            )}
         </Grid>
         <Grid
           item
@@ -159,22 +162,25 @@ const CityEventPage = () => {
             <EventCalendar selectedEvent={selectedEvent} />
           )}
         </Grid>
-        { !(selectedEvent.coordinates.latitude === 0 && selectedEvent.coordinates.longitude === 0) && 
-        <Grid item xs={11.5} sx={{ mt: 2 }}>
-          <Box sx={{ display: "flex" }}>
-            <LocationOnIcon sx={{ fontSize: 25 }} />
-            <Typography variant="h3" sx={{ fontSize: 22 }}>
-              Location
+        {!(
+          selectedEvent.coordinates.latitude === 0 &&
+          selectedEvent.coordinates.longitude === 0
+        ) && (
+          <Grid item xs={11.5} sx={{ mt: 2 }}>
+            <Box sx={{ display: "flex" }}>
+              <LocationOnIcon sx={{ fontSize: 25 }} />
+              <Typography variant="h3" sx={{ fontSize: 22 }}>
+                Location
+              </Typography>
+            </Box>
+            <Typography variant="h5" sx={{ my: 1 }}>
+              {selectedEvent.location}
             </Typography>
-          </Box>
-          <Typography variant="h5" sx={{ my: 1 }}>
-            {selectedEvent.location}
-          </Typography>
-          <Box sx={{ width: "100%", height: 200 }}>
-            <EventMap eventCoordinates={selectedEvent.coordinates} />
-          </Box>
-        </Grid>
-}
+            <Box sx={{ width: "100%", height: 200 }}>
+              <EventMap eventCoordinates={selectedEvent.coordinates} />
+            </Box>
+          </Grid>
+        )}
       </Grid>
     </Box>
   );

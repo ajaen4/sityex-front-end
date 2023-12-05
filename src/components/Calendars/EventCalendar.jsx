@@ -40,12 +40,9 @@ export default function EventCalendar({ selectedEvent }) {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
-  const hasRealTime = [...new Set(highlightedDates.map(
-    date => date.format('HH:mm')
-  ))
-  ].some(
-    time => time !== "00:00"
-  );
+  const hasRealTime = [
+    ...new Set(highlightedDates.map((date) => date.format("HH:mm")))
+  ].some((time) => time !== "00:00");
 
   const isSelectedDateHighlighted = highlightedDates.some((date) =>
     date.isSame(value, "day")
@@ -85,13 +82,27 @@ export default function EventCalendar({ selectedEvent }) {
           }}
         />
       </LocalizationProvider>
-      <Box sx={{display: { xs: 'flex', md: 'flex' }, flexWrap: { xs: 'nowrap', md: 'wrap' }, overflowX: { xs: 'auto', md: 'none' }, p: 1, minHeight: 60 }}>
-        {isSelectedDateHighlighted && (
-          timesForSelectedDate.map((time, index) => (
-            (time !== "00:00") &&
-            <Chip label={time} color="secondary" sx={{ mx: 0.5, my: 0.5 }} />
-          )))}
-        </Box>
+      <Box
+        sx={{
+          display: { xs: "flex", md: "flex" },
+          flexWrap: { xs: "nowrap", md: "wrap" },
+          overflowX: { xs: "auto", md: "none" },
+          p: 1,
+          minHeight: 60
+        }}
+      >
+        {isSelectedDateHighlighted &&
+          timesForSelectedDate.map(
+            (time, index) =>
+              time !== "00:00" && (
+                <Chip
+                  label={time}
+                  color="secondary"
+                  sx={{ mx: 0.5, my: 0.5 }}
+                />
+              )
+          )}
+      </Box>
     </Box>
   );
 }
