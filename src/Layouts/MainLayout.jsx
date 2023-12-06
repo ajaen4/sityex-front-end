@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import { Box } from "@mui/material";
 
@@ -15,6 +16,9 @@ import {
 const MainLayout = () => {
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);
   const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
+
+  const { pathname } = useLocation();
+  const isLandingPage = pathname.split("/").every((str) => str === "");
 
   useEffect(() => {
     const handleResize = () => {
@@ -49,7 +53,7 @@ const MainLayout = () => {
           overflow: "hidden"
         }}
       >
-        <Box sx={{ minHeight: minNavbarHeights }} />
+        {!isLandingPage && <Box sx={{ minHeight: minNavbarHeights }} />}
         <Outlet />
       </Box>
     </Box>
