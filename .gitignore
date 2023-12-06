@@ -27,3 +27,4 @@ commands
 .eslintcache
 .firebase
 .github/push_to_dev.json
+firebase-debug.json

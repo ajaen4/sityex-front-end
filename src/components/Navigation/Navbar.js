@@ -115,7 +115,7 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
           edge="start"
           sx={{ display: { xs: "flex", md: "none" } }}
         >
-          <MenuIcon />
+          <MenuIcon sx={{ color: isOpaqueNavbar ? "primary.main" : "white" }} />
         </IconButton>
         <IconButton
           sx={{
