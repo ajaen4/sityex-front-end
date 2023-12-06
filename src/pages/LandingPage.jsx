@@ -269,7 +269,7 @@ const LandingPage = () => {
           <Typography variant="h5" sx={{ color: "grey.500", fontSize: 22 }}>
             33 cities all over Spain's geography
           </Typography>
-          <Carousel sx={{ height: "100%", width: "100%", mt: 5 }}>
+          <Carousel sx={{ height: "100%", width: "100%", mt: 5 }} navButtonsAlwaysVisible indicators={false}>
             {citiesIndex?.cities && createSlides(citiesIndex.cities)}
           </Carousel>
         </Grid>

@@ -70,7 +70,10 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
 
     scrollRef.current.addEventListener("scroll", handleScroll);
 
-    return () => scrollRef.current.removeEventListener("scroll", handleScroll);
+    return () => {
+      if (scrollRef.current)
+        scrollRef.current.removeEventListener("scroll", handleScroll);
+    };
   }, [scrollRef]);
 
   return (
