@@ -97,8 +97,7 @@ export default function EventCalendar({ selectedEvent }) {
           }}
         />
       </LocalizationProvider>
-      <Stack
-      >
+      <Stack>
         <Box sx={{ display: "flex", my: 1 }}>
           <AccessTimeIcon sx={{ fontSize: 25 }} />
           <Typography variant="h3" sx={{ fontSize: 22 }}>

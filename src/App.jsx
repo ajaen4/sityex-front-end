@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 
 import Routes from "routes/";
 import ScrollTop from "components/ScrollControl/ScrollTop";
+import { ScrollProvider } from "components/Contexts/ScrollContext";
 import { CssBaseline, StyledEngineProvider } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "theme";
@@ -64,14 +65,16 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router>
-          <ScrollTop>
-            <StyledEngineProvider injectFirst>
-              <ThemeProvider theme={theme()}>
-                <CssBaseline />
-                <Routes />
-              </ThemeProvider>
-            </StyledEngineProvider>
-          </ScrollTop>
+          <ScrollProvider>
+            <ScrollTop>
+              <StyledEngineProvider injectFirst>
+                <ThemeProvider theme={theme()}>
+                  <CssBaseline />
+                  <Routes />
+                </ThemeProvider>
+              </StyledEngineProvider>
+            </ScrollTop>
+          </ScrollProvider>
         </Router>
       </Provider>
     );
