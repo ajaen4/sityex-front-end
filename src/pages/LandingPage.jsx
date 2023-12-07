@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -8,22 +8,18 @@ import {
   Grid,
   Stack,
   useTheme,
+  Paper,
   useMediaQuery
 } from "@mui/material";
-
-import AttractionsIcon from "@mui/icons-material/AttractionsOutlined";
-import MusicNoteIcon from "@mui/icons-material/MusicNoteOutlined";
-import CelebrationIcon from "@mui/icons-material/CelebrationOutlined";
-import BrunchDiningIcon from "@mui/icons-material/BrunchDiningOutlined";
-import TheaterComedyIcon from "@mui/icons-material/TheaterComedy";
-import MuseumIcon from "@mui/icons-material/Museum";
-import SchoolIcon from "@mui/icons-material/School";
-import SportsGymnasticsIcon from "@mui/icons-material/SportsGymnastics";
+import LocationCityIcon from "@mui/icons-material/LocationCityOutlined";
+import Carousel from "react-material-ui-carousel";
 
 import CitiesAutocomplete from "components/Autocomplete/CitiesAutocomplete";
+import { ScrollContext } from "components/Contexts/ScrollContext";
 
 const LandingPage = () => {
   const citiesIndex = useSelector((state) => state.citiesIndex.data);
+  const scrollRef = useContext(ScrollContext);
 
   const theme = useTheme();
   const navigate = useNavigate();
@@ -33,225 +29,277 @@ const LandingPage = () => {
     navigate("/destination/" + value.city_id + "/events");
   };
 
-  return (
-    <Box
-      sx={{
-        overflowY: "scroll",
-        justifyContent: "center",
-        p: 1
-      }}
-    >
-      <Grid container sx={{ height: "85vh", alignItems: "center" }}>
-        {isSmallScreen && (
-          <Grid
-            item
-            xs={12}
-            sx={{
-              justifyContent: "center"
-            }}
-          >
-            <Box
-              component="img"
-              alt="Expats in Spain"
-              src="https://sityex-public-images.s3.eu-west-1.amazonaws.com/people_kitchen.jpg"
-              sx={{
-                width: "100%",
-                height: "auto",
-                display: { xs: "flex", md: "none" }
-              }}
-            />
-          </Grid>
-        )}
-        <Grid
-          item
-          md={4}
-          xs={12}
+  const slice = isSmallScreen ? 1 : 3;
+  const createSlides = (cities) => {
+    let slides = [];
+    for (let i = 0; i < cities.length; i += slice) {
+      slides.push(
+        <Box
+          key={i}
           sx={{
             display: "flex",
-            justifyContent: "center"
+            width: "100%",
+            height: "60vh"
           }}
         >
-          <Stack
-            sx={{
-              display: "flex",
-              alignItems: { xs: "center", md: "start" }
-            }}
-          >
-            <Typography variant="h2" sx={{ fontSize: 35 }}>
-              Settle seameslessly in Spain with{" "}
-              <Typography
-                component="span"
-                variant="h1"
-                sx={{ color: theme.palette.primary.main }}
+          {cities.slice(i, i + slice).map((city) => (
+            <Paper key={city.city_id} sx={{ flex: 1, m: 1 }}>
+              <Box
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "end",
+                  height: "100%",
+                  width: "100%",
+                  borderRadius: 10,
+                  backgroundImage: `url(https://sityex-public-images.s3.eu-west-1.amazonaws.com/cities/${city.city_id}.jpg)`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center"
+                }}
+                alt={city.name}
               >
-                SityEx
-              </Typography>
+                <h2 style={{ color: "white" }}>{city.name}</h2>
+              </Box>
+            </Paper>
+          ))}
+        </Box>
+      );
+    }
+    return slides;
+  };
+
+  return (
+    <Box
+      ref={scrollRef}
+      sx={{
+        overflowY: "scroll",
+        justifyContent: "center"
+      }}
+    >
+      <Grid container sx={{ alignItems: "center" }}>
+        <Grid
+          item
+          xs={12}
+          sx={{
+            height: "100vh",
+            backgroundImage:
+              "url(https://sityex-public-images.s3.eu-west-1.amazonaws.com/people_kitchen.jpg)",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <Stack sx={{ display: "flex", justifyContent: "center" }}>
+            <Typography
+              variant="h1"
+              color="white"
+              fontSize={60}
+              sx={{ alignSelf: "center", textAlign: "center" }}
+            >
+              Discover, Connect, Belong
             </Typography>
-            <Box sx={{ width: 230, my: 2 }}>
+            <Box
+              sx={{
+                width: isSmallScreen ? "70%" : "40%",
+                mt: 10,
+                alignSelf: "center"
+              }}
+            >
               <CitiesAutocomplete
                 citiesIndex={citiesIndex ? citiesIndex.cities : null}
                 onSelectCity={onSelectCity}
                 placeholder="Enter your destination"
               />
             </Box>
-            <Typography
-              variant="h5"
-              sx={{
-                fontSize: 20,
-                mt: 5,
-                color: theme.palette.grey[500],
-                alignSelf: "start"
-              }}
-            >
-              Partners
-            </Typography>
-            <Grid container>
-              <Grid item xs={3}>
-                <Box
-                  component="img"
-                  alt="Fever logo"
-                  src="https://sityex-public-images.s3.eu-west-1.amazonaws.com/fever_logo.jpg"
-                  sx={{ width: "100%", height: "auto" }}
-                />
-              </Grid>
-            </Grid>
           </Stack>
         </Grid>
         <Grid
           item
-          md={8}
-          sx={{
-            justifyContent: "center"
-          }}
-        >
-          <Box
-            component="img"
-            alt="Expats in Spain"
-            src="https://sityex-public-images.s3.eu-west-1.amazonaws.com/people_kitchen.jpg"
-            sx={{
-              width: "100%",
-              height: "auto",
-              display: { xs: "none", md: "flex" }
-            }}
-          />
-        </Grid>
-      </Grid>
-      <Grid container sx={{ height: "80vh", alignItems: "center" }}>
-        <Grid
-          item
-          md={4}
           xs={12}
           sx={{
             display: "flex",
-            justifyContent: "center"
+            flexDirection: "column",
+            px: 2
           }}
         >
-          <Stack>
-            <Typography variant="h2" sx={{ fontSize: 35 }}>
-              + 1000 events in all Spain
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              textAlign: "center",
+              height: isSmallScreen ? "70vh" : "auto",
+              mt: 20
+            }}
+          >
+            <img
+              width="80"
+              src={
+                "https://sityex-public-images.s3.eu-west-1.amazonaws.com/icons/community.png"
+              }
+              alt="community icon"
+              style={{ mt: 10 }}
+            />
+            <Typography
+              variant="h1"
+              sx={{ color: "grey.500", my: 1, mb: 5, fontSize: 40 }}
+            >
+              Unlock the power of Community
             </Typography>
             <Typography
-              sx={{ fontSize: 20, color: theme.palette.grey[500], mt: 4 }}
+              sx={{ fontSize: 22, width: isSmallScreen ? "90%" : "70%" }}
             >
-              Complete free access to our event search engine
+              Your go-to platform for expats, where building meaningful
+              connections and navigating the journey of living abroad is made
+              seamless and enriching
             </Typography>
-          </Stack>
-        </Grid>
-        <Grid
-          item
-          md={8}
-          xs={12}
-          sx={{
-            justifyContent: "center"
-          }}
-        >
-          <Grid container sx={{ display: "flex", justifyContent: "center" }}>
-            <Grid item md={3} xs={4} sx={{ textAlign: "center", mt: 1 }}>
-              <AttractionsIcon sx={{ fontSize: { md: 70, xs: 50 } }} />
-              <Typography variant="h5" sx={{ fontSize: 20 }}>
-                Experiences
-              </Typography>
+          </Box>
+          <Grid
+            container
+            sx={{
+              justifyContent: "space-evenly"
+            }}
+          >
+            <Grid
+              item
+              xs={12}
+              md={3}
+              sx={{ display: "flex", justifyContent: "center", my: 10 }}
+            >
+              <Stack
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  textAlign: "center"
+                }}
+              >
+                <img
+                  width="80"
+                  src={
+                    "https://sityex-public-images.s3.eu-west-1.amazonaws.com/icons/party.png"
+                  }
+                  alt="events icon"
+                />
+                <Typography
+                  variant="h2"
+                  sx={{ color: "grey.500", fontSize: 25, my: 2 }}
+                >
+                  Events
+                </Typography>
+                <Typography sx={{ color: "grey.500", fontSize: 20, my: 2 }}>
+                  Vibrant tapestry of cultural, social, and recreational
+                  activities for a global community of like-minded expats
+                </Typography>
+              </Stack>
             </Grid>
-            <Grid item md={3} xs={4} sx={{ textAlign: "center", mt: 1 }}>
-              <MusicNoteIcon sx={{ fontSize: { md: 70, xs: 50 } }} />
-              <Typography variant="h5" sx={{ fontSize: 20 }}>
-                Music
-              </Typography>
+            <Grid
+              item
+              xs={12}
+              md={3}
+              sx={{ display: "flex", justifyContent: "center", my: 10 }}
+            >
+              <Stack
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  textAlign: "center"
+                }}
+              >
+                <img
+                  width="80"
+                  src={
+                    "https://sityex-public-images.s3.eu-west-1.amazonaws.com/icons/house.png"
+                  }
+                  alt="housing icon"
+                />
+                <Typography
+                  variant="h2"
+                  sx={{ color: "grey.500", fontSize: 25, my: 2 }}
+                >
+                  Housing
+                </Typography>
+                <Typography sx={{ color: "grey.500", fontSize: 20, my: 2 }}>
+                  Seamless transition to new horizons, fostering a sense of
+                  belonging from day one
+                </Typography>
+              </Stack>
             </Grid>
-            <Grid item md={3} xs={4} sx={{ textAlign: "center", mt: 1 }}>
-              <CelebrationIcon sx={{ fontSize: { md: 70, xs: 50 } }} />
-              <Typography variant="h5" sx={{ fontSize: 20 }}>
-                Party
-              </Typography>
-            </Grid>
-            <Grid item md={3} xs={4} sx={{ textAlign: "center", mt: 1 }}>
-              <BrunchDiningIcon sx={{ fontSize: { md: 70, xs: 50 } }} />
-              <Typography variant="h5" sx={{ fontSize: 20 }}>
-                Food & Drink
-              </Typography>
-            </Grid>
-            <Grid item md={3} xs={4} sx={{ textAlign: "center", mt: 1 }}>
-              <TheaterComedyIcon sx={{ fontSize: { md: 70, xs: 50 } }} />
-              <Typography variant="h5" sx={{ fontSize: 20 }}>
-                Play
-              </Typography>
-            </Grid>
-            <Grid item md={3} xs={4} sx={{ textAlign: "center", mt: 1 }}>
-              <MuseumIcon sx={{ fontSize: { md: 70, xs: 50 } }} />
-              <Typography variant="h5" sx={{ fontSize: 20 }}>
-                Museums
-              </Typography>
-            </Grid>
-            <Grid item md={3} xs={4} sx={{ textAlign: "center", mt: 1 }}>
-              <SchoolIcon sx={{ fontSize: { md: 70, xs: 50 } }} />
-              <Typography variant="h5" sx={{ fontSize: 20 }}>
-                Courses
-              </Typography>
-            </Grid>
-            <Grid item md={3} xs={4} sx={{ textAlign: "center", mt: 1 }}>
-              <SportsGymnasticsIcon sx={{ fontSize: { md: 70, xs: 50 } }} />
-              <Typography variant="h5" sx={{ fontSize: 20 }}>
-                Sport
-              </Typography>
+            <Grid
+              item
+              xs={12}
+              md={3}
+              sx={{ display: "flex", justifyContent: "center", my: 10 }}
+            >
+              <Stack
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  textAlign: "center"
+                }}
+              >
+                <img
+                  width="80"
+                  src={
+                    "https://sityex-public-images.s3.eu-west-1.amazonaws.com/icons/government.png"
+                  }
+                  alt="government icon"
+                />
+                <Typography
+                  variant="h2"
+                  sx={{ color: "grey.500", fontSize: 25, my: 2 }}
+                >
+                  Bureaucracy Support
+                </Typography>
+                <Typography sx={{ color: "grey.500", fontSize: 20, my: 2 }}>
+                  Resources and guidance, making the paperwork and procedures
+                  associated with expat life more manageable and stress-free
+                </Typography>
+              </Stack>
             </Grid>
           </Grid>
         </Grid>
-      </Grid>
-      <Grid
-        container
-        sx={{
-          height: "80vh",
-          alignItems: "center"
-        }}
-      >
-        <Grid item md={7} xs={12}>
-          <Stack>
-            <Typography variant="h2" sx={{ fontSize: 35 }}>
-              Find a vibrant community of expats
-            </Typography>
-            <Typography
-              sx={{ fontSize: 20, color: theme.palette.grey[500], mt: 4 }}
-            >
-              Free access to our community of expats and locals in Whatsapp
-              community!
-            </Typography>
-          </Stack>
-        </Grid>
         <Grid
           item
-          md={4}
           xs={12}
           sx={{
+            height: "100vh",
             display: "flex",
-            justifyContent: "center"
+            justifyContent: "center",
+            flexDirection: "column",
+            alignItems: "center",
+            textAlign: "center",
+            px: 2,
+            mt: 20
           }}
         >
-          <Box
-            component="img"
-            alt="Whatsapp logo"
-            src="https://sityex-public-images.s3.eu-west-1.amazonaws.com/whatsapp_logo.png"
-            sx={{ width: "100%", height: "auto" }}
+          <img
+            width="80"
+            src={
+              "https://sityex-public-images.s3.eu-west-1.amazonaws.com/icons/cities.png"
+            }
+            alt="cities icon"
+            style={{ mt: 10 }}
           />
+          <Typography
+            variant="h1"
+            sx={{ color: "grey.500", my: 1, mb: 1, fontSize: 30 }}
+          >
+            Cities
+          </Typography>
+          <Typography
+            sx={{ fontSize: 22, width: isSmallScreen ? "90%" : "70%" }}
+          >
+            33 cities all over Spain
+          </Typography>
+          <Carousel
+            sx={{ height: "100%", width: "100%", mt: 5 }}
+            navButtonsAlwaysVisible
+            indicators={false}
+          >
+            {citiesIndex?.cities && createSlides(citiesIndex.cities)}
+          </Carousel>
         </Grid>
       </Grid>
     </Box>

@@ -1,5 +1,5 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect, useRef, useContext } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import AppBar from "@mui/material/AppBar";
@@ -15,22 +15,31 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { useTheme } from "@mui/material/styles";
 
+import { ScrollContext } from "components/Contexts/ScrollContext";
+
 import { signOutUser } from "actions";
 
-import logo from "assets/img/icons/big_logo_white.png";
+import logo_white from "assets/img/icons/big_logo_white.png";
+import logo_blue from "assets/img/icons/big_logo_blue.png";
 
 import * as ROUTES_PATHS from "routes/paths";
 import { pages, settings, minNavbarHeights } from "constants/constants.js";
 
 function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
-  const [isOpenUserMenu, setIsOpenUserMenu] = React.useState(false);
+  const [isOpenUserMenu, setIsOpenUserMenu] = useState(false);
+  const [hasScrolled100vh, setHasScrolled100vh] = useState(false);
 
   const auth = useSelector((state) => state.auth);
 
-  const theme = useTheme();
-  const userSettingsRef = React.useRef(null);
+  const scrollRef = useContext(ScrollContext);
 
+  const theme = useTheme();
+  const userSettingsRef = useRef(null);
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  const isLandingPage = pathname.split("/").every((str) => str === "");
+  const isOpaqueNavbar = !isLandingPage || hasScrolled100vh;
 
   const toggleUserMenu = () => {
     setIsOpenUserMenu(!isOpenUserMenu);
@@ -48,10 +57,32 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
 
   const clickedLogo = () => navigate(ROUTES_PATHS.ROOT);
 
+  useEffect(() => {
+    if (!scrollRef?.current) return;
+
+    const handleScroll = () => {
+      if (!scrollRef.current) return;
+
+      const currentScrollPos = scrollRef.current.scrollTop;
+      const viewportHeight = window.innerHeight;
+      setHasScrolled100vh(currentScrollPos > viewportHeight);
+    };
+
+    scrollRef.current.addEventListener("scroll", handleScroll);
+
+    return () => {
+      if (scrollRef.current)
+        scrollRef.current.removeEventListener("scroll", handleScroll);
+    };
+  }, [scrollRef]);
+
   return (
     <AppBar
+      position="fixed"
       sx={{
-        zIndex: theme.zIndex.drawer + 1000
+        zIndex: theme.zIndex.drawer + 1000,
+        backgroundColor: isOpaqueNavbar ? "white" : "transparent",
+        boxShadow: isOpaqueNavbar ? true : "none"
       }}
     >
       <Toolbar
@@ -71,7 +102,11 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
           }}
           onClick={clickedLogo}
         >
-          <img src={logo} alt="SityEx logo" width={90} />
+          <img
+            src={isOpaqueNavbar ? logo_blue : logo_white}
+            alt="SityEx logo"
+            width={90}
+          />
         </IconButton>
         <IconButton
           color="inherit"
@@ -80,16 +115,21 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
           edge="start"
           sx={{ display: { xs: "flex", md: "none" } }}
         >
-          <MenuIcon />
+          <MenuIcon sx={{ color: isOpaqueNavbar ? "primary.main" : "white" }} />
         </IconButton>
         <IconButton
           sx={{
             display: { xs: "flex", md: "none" },
-            mt: 1
+            mt: 1,
+            cursor: "pointer"
           }}
           onClick={clickedLogo}
         >
-          <img src={logo} alt="SityEx logo" width={90} />
+          <img
+            src={isOpaqueNavbar ? logo_blue : logo_white}
+            alt="SityEx logo"
+            width={90}
+          />
         </IconButton>
         <Box
           sx={{
@@ -104,7 +144,7 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
               onClick={() => handleClickNavMenu(page)}
               sx={{
                 mx: 5,
-                color: "white",
+                color: isOpaqueNavbar ? "primary.main" : "white",
                 display: "block",
                 fontSize: "1.1em"
               }}

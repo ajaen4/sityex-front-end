@@ -7,6 +7,7 @@ import {
   Autocomplete,
   TextField
 } from "@mui/material";
+import SearchIcon from "@mui/icons-material/SearchOutlined";
 import { createFilterOptions } from "@mui/material/Autocomplete";
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
@@ -55,6 +56,7 @@ const CitiesAutocomplete = ({
                     />
                   </IconButton>
                 )}
+                {!selectedCity && <SearchIcon />}
               </InputAdornment>
             ),
             style: { fontSize: 16 }

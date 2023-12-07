@@ -6,7 +6,6 @@ import { logAnalyticsEvent } from "api";
 
 import { Box, Grid, Typography, Button, Chip } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOnOutlined";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonthOutlined";
 
 import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 import EventMap from "components/Maps/EventMap";
@@ -66,7 +65,7 @@ const CityEventPage = () => {
       has_bought: true
     };
 
-    setUserInterested(selectedCity.city_id, event_id, auth.data?.id, buy_info);
+    if (auth.data?.id) setUserInterested(selectedCity.city_id, event_id, auth.data?.id, buy_info);
     window.open(selectedEvent.affiliate_url, "_blank", "noopener");
   };
 
@@ -89,7 +88,7 @@ const CityEventPage = () => {
       }}
     >
       <Grid container sx={{ display: "flex", justifyContent: "center" }}>
-        <Grid item xs={11} md={3}>
+        <Grid item xs={11} md={3} lg={3}>
           <img
             onError={() => setImageHasError(true)}
             srcSet={imgSrc}
@@ -103,6 +102,7 @@ const CityEventPage = () => {
           item
           xs={12}
           md={6.5}
+          lg={6}
           sx={{
             display: "flex",
             flexDirection: "column",
@@ -131,6 +131,7 @@ const CityEventPage = () => {
           item
           xs={12}
           md={2}
+          lg={2}
           sx={{
             display: "flex",
             flexDirection: "column",
@@ -147,7 +148,7 @@ const CityEventPage = () => {
             Buy tickets
           </Button>
         </Grid>
-        <Grid item xs={11} md={8}>
+        <Grid item xs={11} md={7} lg={8}>
           <Typography sx={{ pt: { xs: 1, md: 4, lg: 4 }, pb: 2, fontSize: 16 }}>
             {formatText(selectedEvent.description)}
           </Typography>
@@ -156,7 +157,8 @@ const CityEventPage = () => {
           item
           md={3.5}
           sx={{
-            display: { xs: "none", md: "flex" }
+            display: { xs: "none", md: "flex" },
+            justifyContent: "center"
           }}
         >
           {selectedEvent.sessions &&
@@ -168,22 +170,18 @@ const CityEventPage = () => {
         </Grid>
         <Grid
           item
-          xs={11}
+          xs={11.5}
           sx={{
             mt: 2,
-            display: { xs: "flex", md: "none" },
-            flexDirection: "column"
+            display: { xs: "flex", md: "none" }
           }}
         >
-          <Box sx={{ display: "flex" }}>
-            <CalendarMonthIcon sx={{ fontSize: 25 }} />
-            <Typography variant="h3" sx={{ fontSize: 22 }}>
-              Dates
-            </Typography>
-          </Box>
-          {selectedEvent.sessions && (
-            <EventCalendar selectedEvent={selectedEvent} />
-          )}
+          {selectedEvent.sessions &&
+            !selectedEvent.plan_name
+              .toLowerCase()
+              .includes("tarjeta regalo") && (
+              <EventCalendar selectedEvent={selectedEvent} />
+            )}
         </Grid>
         {!(
           selectedEvent.coordinates.latitude === 0 &&

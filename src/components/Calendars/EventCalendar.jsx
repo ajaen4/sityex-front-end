@@ -2,8 +2,17 @@ import React, { useEffect, useState } from "react";
 
 import dayjs from "dayjs";
 
-import { Box, Badge, Chip, useMediaQuery } from "@mui/material";
+import {
+  Box,
+  Badge,
+  Chip,
+  useMediaQuery,
+  Typography,
+  Stack
+} from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import AccessTimeIcon from "@mui/icons-material/AccessTimeOutlined";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonthOutlined";
 
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -64,7 +73,13 @@ export default function EventCalendar({ selectedEvent }) {
     .map((date) => date.format("HH:mm"));
 
   return (
-    <Box>
+    <Box sx={{ width: "100%", overflow: "hidden" }}>
+      <Box sx={{ display: "flex", mb: 1 }}>
+        <CalendarMonthIcon sx={{ fontSize: 25 }} />
+        <Typography variant="h3" sx={{ fontSize: 22 }}>
+          Calendar
+        </Typography>
+      </Box>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DateCalendar
           readOnly={!hasRealTime}
@@ -82,27 +97,36 @@ export default function EventCalendar({ selectedEvent }) {
           }}
         />
       </LocalizationProvider>
-      <Box
-        sx={{
-          display: { xs: "flex", md: "flex" },
-          flexWrap: { xs: "nowrap", md: "wrap" },
-          overflowX: { xs: "auto", md: "none" },
-          p: 1,
-          minHeight: 60
-        }}
-      >
-        {isSelectedDateHighlighted &&
-          timesForSelectedDate.map(
-            (time, index) =>
-              time !== "00:00" && (
-                <Chip
-                  label={time}
-                  color="secondary"
-                  sx={{ mx: 0.5, my: 0.5 }}
-                />
-              )
-          )}
-      </Box>
+      <Stack>
+        <Box sx={{ display: "flex", my: 1 }}>
+          <AccessTimeIcon sx={{ fontSize: 25 }} />
+          <Typography variant="h3" sx={{ fontSize: 22 }}>
+            Time slots
+          </Typography>
+        </Box>
+        <Box
+          sx={{
+            display: { xs: "flex", md: "flex" },
+            flexWrap: { xs: "nowrap", md: "wrap" },
+            overflowX: { xs: "auto", md: "none" },
+            py: 2,
+            minHeight: 75
+          }}
+        >
+          {isSelectedDateHighlighted &&
+            timesForSelectedDate.map(
+              (time, index) =>
+                time !== "00:00" && (
+                  <Chip
+                    key={index}
+                    label={time}
+                    color="secondary"
+                    sx={{ mx: 0.5, my: 0.5 }}
+                  />
+                )
+            )}
+        </Box>
+      </Stack>
     </Box>
   );
 }

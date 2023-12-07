@@ -18,12 +18,14 @@ import {
 } from "constants/constants";
 
 export default function Drawer(props) {
+  const selectedCity = useSelector((state) => state.selectedCity.data);
+
   const { window } = props;
   const { pathname } = useLocation();
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
-  const selectedCity = useSelector((state) => state.selectedCity.data);
+  const isLandingPage = pathname.split("/").every((str) => str === "");
 
   useEffect(() => {
     const paths = ["destination"];
@@ -97,7 +99,7 @@ export default function Drawer(props) {
             : 0
         }}
       >
-        <Box sx={{ minHeight: minNavbarHeights }} />
+        {!isLandingPage && <Box sx={{ minHeight: minNavbarHeights }} />}
         <Divider sx={{ mt: 3 }}>{selectedCity?.name}</Divider>
         <CityItems />
       </MUIDrawer>
