@@ -29,7 +29,7 @@ const LandingPage = () => {
     navigate("/destination/" + value.city_id + "/events");
   };
 
-  const slice = isSmallScreen ? 1 : 3;
+  const slice = isSmallScreen ? 1 : 5;
   const createSlides = (cities) => {
     let slides = [];
     for (let i = 0; i < cities.length; i += slice) {
@@ -39,7 +39,7 @@ const LandingPage = () => {
           sx={{
             display: "flex",
             width: "100%",
-            height: "70vh"
+            height: "60vh"
           }}
         >
           {cities.slice(i, i + slice).map((city) => (
@@ -290,10 +290,10 @@ const LandingPage = () => {
           <Typography
             sx={{ fontSize: 22, width: isSmallScreen ? "90%" : "70%" }}
           >
-            33 cities all over Spain
+            27 cities all over Spain
           </Typography>
           <Carousel
-            sx={{ width: "100%" }}
+            sx={{ width: "100%", mt: 5 }}
             navButtonsAlwaysVisible
             indicators={false}
           >
