@@ -10,6 +10,10 @@ import {
   useTheme
 } from "@mui/material";
 
+import {
+  data_bucket_url
+} from "constants/constants";
+
 const CitiesGrid = ({ citiesIndex }) => {
   const [cityIdsBadImage, setCityIdsBadImage] = useState([]);
 
@@ -42,8 +46,8 @@ const CitiesGrid = ({ citiesIndex }) => {
     const isError = cityIdsBadImage.includes(city.city_id);
 
     const imgSrc = isError
-      ? "https://sityex-public-images.s3.eu-west-1.amazonaws.com/black_big_logo_blue.png"
-      : `https://sityex-public-images.s3.eu-west-1.amazonaws.com/cities/${city.city_id}.jpg`;
+      ? `${data_bucket_url}/logos/black_big_logo_blue.png`
+      : `${data_bucket_url}/cities/${city.city_id}.jpg`;
 
     return (
       <div style={{ ...style, padding: 1 }}>
