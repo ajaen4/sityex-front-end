@@ -14,6 +14,10 @@ import {
 
 import { countInterestedUsers } from "actions";
 
+import {
+  data_bucket_url
+} from "constants/constants";
+
 const EventsGrid = ({ events }) => {
   const auth = useSelector((state) => state.auth);
   const selectedCity = useSelector((state) => state.selectedCity.data);
@@ -56,7 +60,7 @@ const EventsGrid = ({ events }) => {
 
     const isError = eventsBadImage.includes(event.sku);
     const imgSrc = isError
-      ? "https://sityex-public-images.s3.eu-west-1.amazonaws.com/square_black_big_logo_blue.png"
+      ? `${data_bucket_url}/logos/square_black_big_logo_blue.png`
       : event.photo_1;
 
     const key = isError
