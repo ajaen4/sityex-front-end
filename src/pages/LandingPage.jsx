@@ -100,7 +100,13 @@ const LandingPage = () => {
             >
               Discover, Connect, Belong
             </Typography>
-            <Box sx={{ width: isSmallScreen ? "70%" : "40%", mt: 10, alignSelf: "center" }}>
+            <Box
+              sx={{
+                width: isSmallScreen ? "70%" : "40%",
+                mt: 10,
+                alignSelf: "center"
+              }}
+            >
               <CitiesAutocomplete
                 citiesIndex={citiesIndex ? citiesIndex.cities : null}
                 onSelectCity={onSelectCity}
@@ -113,7 +119,6 @@ const LandingPage = () => {
           item
           xs={12}
           sx={{
-            height: isSmallScreen ? "auto" : "100vh",
             display: "flex",
             flexDirection: "column",
             px: 2
@@ -125,36 +130,43 @@ const LandingPage = () => {
               flexDirection: "column",
               alignItems: "center",
               textAlign: "center",
-              my: 10,
-              height: isSmallScreen ? "100vh" : "auto"
+              height: isSmallScreen ? "70vh" : "auto",
+              mt: 20
             }}
           >
             <img
-                  width="80"
-                  src={
-                    "https://sityex-public-images.s3.eu-west-1.amazonaws.com/icons/community.png"
-                  }
-                  alt="events icon"
-                  style={{ mt: 10 }}
-                />
+              width="80"
+              src={
+                "https://sityex-public-images.s3.eu-west-1.amazonaws.com/icons/community.png"
+              }
+              alt="community icon"
+              style={{ mt: 10 }}
+            />
             <Typography
               variant="h1"
               sx={{ color: "grey.500", my: 1, mb: 5, fontSize: 40 }}
             >
               Unlock the power of Community
             </Typography>
-            <Typography sx={{ fontSize: 22, width: isSmallScreen ? "90%" : "70%" }}>
+            <Typography
+              sx={{ fontSize: 22, width: isSmallScreen ? "90%" : "70%" }}
+            >
               Your go-to platform for expats, where building meaningful
               connections and navigating the journey of living abroad is made
               seamless and enriching
             </Typography>
           </Box>
-          <Grid container>
+          <Grid
+            container
+            sx={{
+              justifyContent: "space-evenly"
+            }}
+          >
             <Grid
               item
               xs={12}
-              md={4}
-              sx={{ display: "flex", justifyContent: "center", height: isSmallScreen ? "100vh" : "auto" }}
+              md={3}
+              sx={{ display: "flex", justifyContent: "center", my: 10 }}
             >
               <Stack
                 sx={{
@@ -185,8 +197,8 @@ const LandingPage = () => {
             <Grid
               item
               xs={12}
-              md={4}
-              sx={{ display: "flex", justifyContent: "center", height: isSmallScreen ? "100vh" : "auto" }}
+              md={3}
+              sx={{ display: "flex", justifyContent: "center", my: 10 }}
             >
               <Stack
                 sx={{
@@ -200,7 +212,7 @@ const LandingPage = () => {
                   src={
                     "https://sityex-public-images.s3.eu-west-1.amazonaws.com/icons/house.png"
                   }
-                  alt="hosting icon"
+                  alt="housing icon"
                 />
                 <Typography
                   variant="h2"
@@ -217,8 +229,8 @@ const LandingPage = () => {
             <Grid
               item
               xs={12}
-              md={4}
-              sx={{ display: "flex", justifyContent: "center", height: isSmallScreen ? "100vh" : "auto" }}
+              md={3}
+              sx={{ display: "flex", justifyContent: "center", my: 10 }}
             >
               <Stack
                 sx={{
@@ -256,20 +268,36 @@ const LandingPage = () => {
             display: "flex",
             justifyContent: "center",
             flexDirection: "column",
+            alignItems: "center",
+            textAlign: "center",
             px: 2,
-            py: 10
+            mt: 20
           }}
         >
-          <Box sx={{ display: "flex", my: 2 }}>
-            <LocationCityIcon sx={{ fontSize: 30, color: "grey.500" }} />
-            <Typography variant="h2" sx={{ color: "grey.500", fontSize: 30 }}>
-              Cities
-            </Typography>
-          </Box>
-          <Typography variant="h5" sx={{ color: "grey.500", fontSize: 22 }}>
-            33 cities all over Spain's geography
+          <img
+            width="80"
+            src={
+              "https://sityex-public-images.s3.eu-west-1.amazonaws.com/icons/cities.png"
+            }
+            alt="cities icon"
+            style={{ mt: 10 }}
+          />
+          <Typography
+            variant="h1"
+            sx={{ color: "grey.500", my: 1, mb: 1, fontSize: 30 }}
+          >
+            Cities
           </Typography>
-          <Carousel sx={{ height: "100%", width: "100%", mt: 5 }} navButtonsAlwaysVisible indicators={false}>
+          <Typography
+            sx={{ fontSize: 22, width: isSmallScreen ? "90%" : "70%" }}
+          >
+            33 cities all over Spain
+          </Typography>
+          <Carousel
+            sx={{ height: "100%", width: "100%", mt: 5 }}
+            navButtonsAlwaysVisible
+            indicators={false}
+          >
             {citiesIndex?.cities && createSlides(citiesIndex.cities)}
           </Carousel>
         </Grid>
