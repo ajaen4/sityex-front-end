@@ -11,11 +11,14 @@ import {
   Paper,
   useMediaQuery
 } from "@mui/material";
-import LocationCityIcon from "@mui/icons-material/LocationCityOutlined";
 import Carousel from "react-material-ui-carousel";
 
 import CitiesAutocomplete from "components/Autocomplete/CitiesAutocomplete";
 import { ScrollContext } from "components/Contexts/ScrollContext";
+
+import {
+  data_bucket_url
+} from "constants/constants";
 
 const LandingPage = () => {
   const citiesIndex = useSelector((state) => state.citiesIndex.data);
@@ -52,7 +55,7 @@ const LandingPage = () => {
                   height: "100%",
                   width: "100%",
                   borderRadius: 10,
-                  backgroundImage: `url(https://sityex-public-images.s3.eu-west-1.amazonaws.com/cities/${city.city_id}.jpg)`,
+                  backgroundImage: `url(${data_bucket_url}/cities/${city.city_id}.jpg)`,
                   backgroundSize: "cover",
                   backgroundPosition: "center"
                 }}
@@ -83,7 +86,7 @@ const LandingPage = () => {
           sx={{
             height: "100vh",
             backgroundImage:
-              "url(https://sityex-public-images.s3.eu-west-1.amazonaws.com/people_kitchen.jpg)",
+            `url(${data_bucket_url}/people_kitchen.jpg)`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             display: "flex",
@@ -137,7 +140,7 @@ const LandingPage = () => {
             <img
               width="80"
               src={
-                "https://sityex-public-images.s3.eu-west-1.amazonaws.com/icons/community.png"
+                `${data_bucket_url}/icons/community.png`
               }
               alt="community icon"
               style={{ mt: 10 }}
@@ -178,7 +181,7 @@ const LandingPage = () => {
                 <img
                   width="80"
                   src={
-                    "https://sityex-public-images.s3.eu-west-1.amazonaws.com/icons/party.png"
+                    `${data_bucket_url}/icons/party.png`
                   }
                   alt="events icon"
                 />
@@ -210,7 +213,7 @@ const LandingPage = () => {
                 <img
                   width="80"
                   src={
-                    "https://sityex-public-images.s3.eu-west-1.amazonaws.com/icons/house.png"
+                    `${data_bucket_url}/icons/house.png`
                   }
                   alt="housing icon"
                 />
@@ -242,7 +245,7 @@ const LandingPage = () => {
                 <img
                   width="80"
                   src={
-                    "https://sityex-public-images.s3.eu-west-1.amazonaws.com/icons/government.png"
+                    `${data_bucket_url}/icons/government.png`
                   }
                   alt="government icon"
                 />
@@ -276,7 +279,7 @@ const LandingPage = () => {
           <img
             width="80"
             src={
-              "https://sityex-public-images.s3.eu-west-1.amazonaws.com/icons/cities.png"
+              `${data_bucket_url}/icons/cities.png`
             }
             alt="cities icon"
             style={{ mt: 10 }}
