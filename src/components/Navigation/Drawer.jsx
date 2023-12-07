@@ -18,7 +18,6 @@ import {
 } from "constants/constants";
 
 export default function Drawer(props) {
-
   const selectedCity = useSelector((state) => state.selectedCity.data);
 
   const { window } = props;
