@@ -39,7 +39,7 @@ const LandingPage = () => {
           sx={{
             display: "flex",
             width: "100%",
-            height: "60vh"
+            height: "70vh"
           }}
         >
           {cities.slice(i, i + slice).map((city) => (
@@ -264,7 +264,6 @@ const LandingPage = () => {
           item
           xs={12}
           sx={{
-            height: "100vh",
             display: "flex",
             justifyContent: "center",
             flexDirection: "column",
@@ -294,7 +293,7 @@ const LandingPage = () => {
             33 cities all over Spain
           </Typography>
           <Carousel
-            sx={{ height: "100%", width: "100%", mt: 5 }}
+            sx={{ width: "100%" }}
             navButtonsAlwaysVisible
             indicators={false}
           >
