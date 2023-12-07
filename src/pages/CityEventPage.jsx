@@ -65,7 +65,7 @@ const CityEventPage = () => {
       has_bought: true
     };
 
-    setUserInterested(selectedCity.city_id, event_id, auth.data?.id, buy_info);
+    if (auth.data?.id) setUserInterested(selectedCity.city_id, event_id, auth.data?.id, buy_info);
     window.open(selectedEvent.affiliate_url, "_blank", "noopener");
   };
 
