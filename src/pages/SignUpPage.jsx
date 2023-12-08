@@ -39,7 +39,7 @@ const SignUpPage = () => {
         <title>SityEx | Sign Up - Join Our Expat Community</title>
         <meta
           name="description"
-          content="Join SityEx and become part of a thriving community of expatriates in Spain. Sign up to connect with fellow expats, explore Spanish cities, and access resources to ease your transition. Your journey towards an enriching expat life begins with SityEx."
+          content="Join SityEx and become part of a thriving community of expatriates in Spain. Sign up to connect with fellow expats, explore Spanish cities, and access resources to ease your transition."
         ></meta>
         <link rel="canonical" href="https://sityex.com/signup" />
       </Helmet>
@@ -67,7 +67,7 @@ const SignUpPage = () => {
                 display: "flex"
               }}
             >
-              <img src={Logo} alt="SityEx" width={150} height={35} />
+              <img src={Logo} alt="SityEx" width={150} height={45} />
             </Box>
           </Grid>
           <Grid item xs={12}>
@@ -81,7 +81,8 @@ const SignUpPage = () => {
                 <Typography
                   color={theme.palette.secondary.main}
                   gutterBottom
-                  variant="h3"
+                  variant="h1"
+                  style={{ fontSize: 25 }}
                 >
                   Sign Up
                 </Typography>
