@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { Helmet } from "react-helmet-async";
 
 import {
   Box,
@@ -16,9 +17,7 @@ import Carousel from "react-material-ui-carousel";
 import CitiesAutocomplete from "components/Autocomplete/CitiesAutocomplete";
 import { ScrollContext } from "components/Contexts/ScrollContext";
 
-import {
-  data_bucket_url
-} from "constants/constants";
+import { data_bucket_url } from "constants/constants";
 
 const LandingPage = () => {
   const citiesIndex = useSelector((state) => state.citiesIndex.data);
@@ -60,6 +59,8 @@ const LandingPage = () => {
                   backgroundPosition: "center"
                 }}
                 alt={city.name}
+                title={city.name}
+                loading="lazy"
               >
                 <h2 style={{ color: "white" }}>{city.name}</h2>
               </Box>
@@ -79,14 +80,21 @@ const LandingPage = () => {
         justifyContent: "center"
       }}
     >
+      <Helmet>
+        <title>SityEx | Discover, Connect, Belong</title>
+        <meta
+          name="description"
+          content="SityEx is dedicated to helping expats in Spain smoothly transition into their new life. Discover vibrant communities, connect with fellow expatriates, and feel a sense of belonging in your chosen Spanish city. Your journey to a fulfilling expat experience starts here."
+        ></meta>
+        <link rel="canonical" href="/" />
+      </Helmet>
       <Grid container sx={{ alignItems: "center" }}>
         <Grid
           item
           xs={12}
           sx={{
             height: "100vh",
-            backgroundImage:
-            `url(${data_bucket_url}/people_kitchen.jpg)`,
+            backgroundImage: `url(${data_bucket_url}/people_kitchen.jpg)`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             display: "flex",
@@ -139,14 +147,15 @@ const LandingPage = () => {
           >
             <img
               width="80"
-              src={
-                `${data_bucket_url}/icons/community.png`
-              }
+              height="80"
+              src={`${data_bucket_url}/icons/community.png`}
               alt="community icon"
+              title="Community"
+              loading="lazy"
               style={{ mt: 10 }}
             />
             <Typography
-              variant="h1"
+              variant="h2"
               sx={{ color: "grey.500", my: 1, mb: 5, fontSize: 40 }}
             >
               Unlock the power of Community
@@ -180,10 +189,11 @@ const LandingPage = () => {
               >
                 <img
                   width="80"
-                  src={
-                    `${data_bucket_url}/icons/party.png`
-                  }
+                  height="80"
+                  src={`${data_bucket_url}/icons/party.png`}
                   alt="events icon"
+                  title="Events"
+                  loading="lazy"
                 />
                 <Typography
                   variant="h2"
@@ -212,10 +222,11 @@ const LandingPage = () => {
               >
                 <img
                   width="80"
-                  src={
-                    `${data_bucket_url}/icons/house.png`
-                  }
+                  height="80"
+                  src={`${data_bucket_url}/icons/house.png`}
                   alt="housing icon"
+                  title="Housing"
+                  loading="lazy"
                 />
                 <Typography
                   variant="h2"
@@ -244,10 +255,11 @@ const LandingPage = () => {
               >
                 <img
                   width="80"
-                  src={
-                    `${data_bucket_url}/icons/government.png`
-                  }
+                  height="80"
+                  src={`${data_bucket_url}/icons/government.png`}
                   alt="government icon"
+                  title="Government Bureaucracy"
+                  loading="lazy"
                 />
                 <Typography
                   variant="h2"
@@ -278,14 +290,15 @@ const LandingPage = () => {
         >
           <img
             width="80"
-            src={
-              `${data_bucket_url}/icons/cities.png`
-            }
+            height="80"
+            src={`${data_bucket_url}/icons/cities.png`}
             alt="cities icon"
+            title="Cities"
+            loading="lazy"
             style={{ mt: 10 }}
           />
           <Typography
-            variant="h1"
+            variant="h2"
             sx={{ color: "grey.500", my: 1, mb: 1, fontSize: 30 }}
           >
             Cities

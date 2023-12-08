@@ -10,6 +10,7 @@ import { ScrollProvider } from "components/Contexts/ScrollContext";
 import { CssBaseline, StyledEngineProvider } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "theme";
+import { HelmetProvider } from "react-helmet-async";
 
 import {
   onAuthStateChanged,
@@ -64,18 +65,20 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Router>
-          <ScrollProvider>
-            <ScrollTop>
-              <StyledEngineProvider injectFirst>
-                <ThemeProvider theme={theme()}>
-                  <CssBaseline />
-                  <Routes />
-                </ThemeProvider>
-              </StyledEngineProvider>
-            </ScrollTop>
-          </ScrollProvider>
-        </Router>
+        <HelmetProvider>
+          <Router>
+            <ScrollProvider>
+              <ScrollTop>
+                <StyledEngineProvider injectFirst>
+                  <ThemeProvider theme={theme()}>
+                    <CssBaseline />
+                    <Routes />
+                  </ThemeProvider>
+                </StyledEngineProvider>
+              </ScrollTop>
+            </ScrollProvider>
+          </Router>
+        </HelmetProvider>
       </Provider>
     );
   }

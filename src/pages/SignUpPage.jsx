@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 import { useTheme } from "@mui/material/styles";
 import { Grid, Stack, Typography, Container, Box, Card } from "@mui/material";
@@ -34,6 +35,14 @@ const SignUpPage = () => {
         flex: "100%"
       }}
     >
+      <Helmet>
+        <title>SityEx | Sign Up - Join Our Expat Community</title>
+        <meta
+          name="description"
+          content="Join SityEx and become part of a thriving community of expatriates in Spain. Sign up to connect with fellow expats, explore Spanish cities, and access resources to ease your transition. Your journey towards an enriching expat life begins with SityEx."
+        ></meta>
+        <link rel="canonical" href="/signup" />
+      </Helmet>
       <Card
         sx={{
           display: "flex",

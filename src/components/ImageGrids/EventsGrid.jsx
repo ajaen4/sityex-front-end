@@ -14,9 +14,7 @@ import {
 
 import { countInterestedUsers } from "actions";
 
-import {
-  data_bucket_url
-} from "constants/constants";
+import { data_bucket_url } from "constants/constants";
 
 const EventsGrid = ({ events }) => {
   const auth = useSelector((state) => state.auth);
