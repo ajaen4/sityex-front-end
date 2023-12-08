@@ -60,7 +60,6 @@ const CitiesGrid = ({ citiesIndex }) => {
             src={imgSrc}
             alt={city.name}
             title={city.name}
-            loading="lazy"
             onError={() => handleImageError(city.city_id)}
           />
           <ImageListItemBar

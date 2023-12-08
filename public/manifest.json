@@ -3,13 +3,43 @@
   "name": "SityEx",
   "icons": [
     {
-      "src": "small_logo_blue.png",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "/small_logo_blue_16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/small_logo_blue_32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/small_logo_blue_48.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "/small_logo_blue_64.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "/small_logo_blue_128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/small_logo_blue_256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "/small_logo_blue_512.png",
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#2196f3",
   "background_color": "#ffffff"
 }
