@@ -68,7 +68,7 @@ const LogInPage = () => {
                 display: "flex"
               }}
             >
-              <img src={Logo} alt="SityEx" width={150} height={35} />
+              <img src={Logo} alt="SityEx" width={150} height={45} />
             </Box>
           </Grid>
           <Grid item xs={12} sx={{ display: "flex", justifyContent: "center" }}>
