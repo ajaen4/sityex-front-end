@@ -84,9 +84,9 @@ const LandingPage = () => {
         <title>SityEx | Discover, Connect, Belong</title>
         <meta
           name="description"
-          content="SityEx is dedicated to helping expats in Spain smoothly transition into their new life. Discover vibrant communities, connect with fellow expatriates, and feel a sense of belonging in your chosen Spanish city. Your journey to a fulfilling expat experience starts here."
+          content="Empowering expats in Spain with SityEx. Discover communities, connect with expats, and find your belonging in your new Spanish city. Start your journey today."
         ></meta>
-        <link rel="canonical" href="/" />
+        <link rel="canonical" href="https://sityex.com/" />
       </Helmet>
       <Grid container sx={{ alignItems: "center" }}>
         <Grid

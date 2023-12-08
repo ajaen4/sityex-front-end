@@ -80,6 +80,7 @@ const EventsGrid = ({ events }) => {
               srcSet={imgSrc}
               src={imgSrc}
               alt={event.plan_name}
+              title={event.plan_name}
               loading="lazy"
               onError={() => handleImageError(event.sku)}
               style={{ width: "100%", height: "100%", objectFit: "cover" }}

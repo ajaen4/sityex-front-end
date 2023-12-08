@@ -41,7 +41,7 @@ const SignUpPage = () => {
           name="description"
           content="Join SityEx and become part of a thriving community of expatriates in Spain. Sign up to connect with fellow expats, explore Spanish cities, and access resources to ease your transition. Your journey towards an enriching expat life begins with SityEx."
         ></meta>
-        <link rel="canonical" href="/signup" />
+        <link rel="canonical" href="https://sityex.com/signup" />
       </Helmet>
       <Card
         sx={{
