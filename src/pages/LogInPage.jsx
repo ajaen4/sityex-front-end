@@ -41,7 +41,7 @@ const LogInPage = () => {
 
         <meta
           name="description"
-          content="Welcome back to SityEx. Log in to reconnect with the expatriate community in Spain, discover new events, and access personalized resources. Continue your enriching journey in your chosen Spanish city with SityEx."
+          content="Welcome back to SityEx. Log in to reconnect with the expatriate community in Spain, discover new events, and access personalized resources."
         ></meta>
         <link rel="canonical" href="https://sityex.com/login" />
       </Helmet>
@@ -76,7 +76,8 @@ const LogInPage = () => {
               <Typography
                 color={theme.palette.secondary.main}
                 gutterBottom
-                variant="h3"
+                variant="h1"
+                style={{ fontSize: 25 }}
               >
                 Hi, Welcome Back
               </Typography>
