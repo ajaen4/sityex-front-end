@@ -60,7 +60,7 @@ const SearchPage = () => {
           name="description"
           content="Discover Your Ideal Spanish City | SityEx City Search"
         ></meta>
-        <link rel="canonical" href="/search" />
+        <link rel="canonical" href="https://sityex.com/search" />
       </Helmet>
       {tab === "search-box" && (
         <Grid
@@ -76,17 +76,19 @@ const SearchPage = () => {
             xs={11}
             md={5}
             lg={4}
-            sx={{ display: "flex", justifyContent: "center" }}
+            sx={{ display: "flex", justifyContent: "center", }}
           >
             <Card elevation={0}>
-              <CardContent>
-                <Typography variant="h2" color="textSecondary" sx={{ mb: 3 }}>
+              <CardContent sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                <Typography variant="h1" color="textSecondary" sx={{ mb: 3, fontSize: 25 }}>
                   Introduce a destination
                 </Typography>
-                <CitiesAutocomplete
-                  citiesIndex={citiesIndex ? citiesIndex.cities : null}
-                  onSelectCity={onSelectCity}
-                />
+                <Box sx={{ display: "flex", flexDirection: "column", width: "80%" }}>
+                  <CitiesAutocomplete
+                    citiesIndex={citiesIndex ? citiesIndex.cities : null}
+                    onSelectCity={onSelectCity}
+                  />
+                </Box>
               </CardContent>
             </Card>
           </Grid>
