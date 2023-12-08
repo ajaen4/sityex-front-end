@@ -105,7 +105,10 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
           <img
             src={isOpaqueNavbar ? logo_blue : logo_white}
             alt="SityEx logo"
-            width={90}
+            title="SityEx logo"
+            loading="eager"
+            width="90"
+            height="30"
           />
         </IconButton>
         <IconButton
@@ -128,7 +131,10 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
           <img
             src={isOpaqueNavbar ? logo_blue : logo_white}
             alt="SityEx logo"
-            width={90}
+            title="SityEx logo"
+            loading="eager"
+            width="90"
+            height="30"
           />
         </IconButton>
         <Box
