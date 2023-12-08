@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Suspense } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 import { logAnalyticsEvent } from "api";
 
@@ -53,6 +54,14 @@ const SearchPage = () => {
         overflowY: "scroll"
       }}
     >
+      <Helmet>
+        <title>SityEx | City Search</title>
+        <meta
+          name="description"
+          content="Discover Your Ideal Spanish City | SityEx City Search"
+        ></meta>
+        <link rel="canonical" href="/search" />
+      </Helmet>
       {tab === "search-box" && (
         <Grid
           container

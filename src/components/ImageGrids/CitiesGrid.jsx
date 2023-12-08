@@ -10,9 +10,7 @@ import {
   useTheme
 } from "@mui/material";
 
-import {
-  data_bucket_url
-} from "constants/constants";
+import { data_bucket_url } from "constants/constants";
 
 const CitiesGrid = ({ citiesIndex }) => {
   const [cityIdsBadImage, setCityIdsBadImage] = useState([]);

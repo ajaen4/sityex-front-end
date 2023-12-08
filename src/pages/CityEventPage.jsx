@@ -13,9 +13,7 @@ import EventCalendar from "components/Calendars/EventCalendar";
 
 import { getCityEvent, setUserInterested } from "actions";
 
-import {
-  data_bucket_url
-} from "constants/constants";
+import { data_bucket_url } from "constants/constants";
 
 const CityEventPage = () => {
   const auth = useSelector((state) => state.auth);
@@ -69,7 +67,13 @@ const CityEventPage = () => {
       has_bought: true
     };
 
-    if (auth.data?.id) setUserInterested(selectedCity.city_id, event_id, auth.data?.id, buy_info);
+    if (auth.data?.id)
+      setUserInterested(
+        selectedCity.city_id,
+        event_id,
+        auth.data?.id,
+        buy_info
+      );
     window.open(selectedEvent.affiliate_url, "_blank", "noopener");
   };
 

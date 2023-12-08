@@ -19,6 +19,7 @@
     "mapbox-gl": "^2.15.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-helmet-async": "^2.0.3",
     "react-hook-form": "^7.45.2",
     "react-leaflet": "^4.2.1",
     "react-leaflet-fullscreen": "^4.1.0",

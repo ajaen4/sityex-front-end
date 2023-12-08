@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 import { useTheme } from "@mui/material/styles";
 import { Grid, Stack, Typography, Container, Box, Card } from "@mui/material";
@@ -35,6 +36,15 @@ const LogInPage = () => {
         overflow: "auto"
       }}
     >
+      <Helmet>
+        <title>SityEx | Log In - Continue Your Expat Journey</title>
+
+        <meta
+          name="description"
+          content="Welcome back to SityEx. Log in to reconnect with the expatriate community in Spain, discover new events, and access personalized resources. Continue your enriching journey in your chosen Spanish city with SityEx."
+        ></meta>
+        <link rel="canonical" href="/login" />
+      </Helmet>
       <Card
         sx={{
           display: "flex",
