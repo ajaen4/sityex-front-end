@@ -108,7 +108,7 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
             title="SityEx logo"
             loading="eager"
             width="90"
-            height="30"
+            height="25"
           />
         </IconButton>
         <IconButton
@@ -134,7 +134,7 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
             title="SityEx logo"
             loading="eager"
             width="90"
-            height="30"
+            height="25"
           />
         </IconButton>
         <Box

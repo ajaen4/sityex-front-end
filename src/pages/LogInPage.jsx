@@ -43,7 +43,7 @@ const LogInPage = () => {
           name="description"
           content="Welcome back to SityEx. Log in to reconnect with the expatriate community in Spain, discover new events, and access personalized resources. Continue your enriching journey in your chosen Spanish city with SityEx."
         ></meta>
-        <link rel="canonical" href="/login" />
+        <link rel="canonical" href="https://sityex.com/login" />
       </Helmet>
       <Card
         sx={{
