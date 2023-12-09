@@ -28,6 +28,11 @@
       "type": "image/png"
     },
     {
+      "src": "/small_logo_blue_192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
       "src": "/small_logo_blue_256.png",
       "sizes": "256x256",
       "type": "image/png"
