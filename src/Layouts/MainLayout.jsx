@@ -15,33 +15,21 @@ import {
 
 const MainLayout = () => {
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);
-  const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
 
   const { pathname } = useLocation();
   const isLandingPage = pathname.split("/").every((str) => str === "");
-
-  useEffect(() => {
-    const handleResize = () => {
-      setViewportHeight(window.innerHeight);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   return (
     <Box
       sx={{
         display: "flex",
-        height: `${viewportHeight}px`,
+        height: "100vh",
         overflowY: "hidden"
       }}
     >
       <Navbar isOpenDrawer={isOpenDrawer} setIsOpenDrawer={setIsOpenDrawer} />
       <Drawer isOpenDrawer={isOpenDrawer} setIsOpenDrawer={setIsOpenDrawer} />
       <Box
-        component="main"
         sx={{
           flexGrow: 1,
           display: "flex",
