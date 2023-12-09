@@ -17,7 +17,7 @@ import {
   minNavbarHeights
 } from "constants/constants";
 
-export default function Drawer(props) {
+export default function Drawer({isOpenDrawer, setIsOpenDrawer, ...props}) {
   const selectedCity = useSelector((state) => state.selectedCity.data);
 
   const { window } = props;
@@ -31,23 +31,23 @@ export default function Drawer(props) {
     const paths = ["destination"];
 
     if (isSmallScreen) {
-      props.setIsOpenDrawer(false);
+      setIsOpenDrawer(false);
       return;
     }
 
     if (!paths.some((path) => location.pathname.includes(path))) {
-      props.setIsOpenDrawer(false);
+      setIsOpenDrawer(false);
       return;
     }
 
     if (paths.some((path) => location.pathname.includes(path))) {
-      props.setIsOpenDrawer(true);
+      setIsOpenDrawer(true);
       return;
     }
   }, [pathname]);
 
   const handleDrawerToggle = () => {
-    props.setIsOpenDrawer(!props.isOpenDrawer);
+    setIsOpenDrawer(!isOpenDrawer);
   };
 
   const container =
@@ -57,7 +57,7 @@ export default function Drawer(props) {
     <Box
       component="nav"
       sx={{
-        width: props.isOpenDrawer
+        width: isOpenDrawer
           ? { md: tabletDrawerWidth, lg: drawerWidth }
           : 0,
         flexShrink: { md: 0 }
@@ -67,7 +67,7 @@ export default function Drawer(props) {
       <MUIDrawer
         container={container}
         variant="temporary"
-        open={props.isOpenDrawer}
+        open={isOpenDrawer}
         onClose={handleDrawerToggle}
         ModalProps={{
           keepMounted: true
@@ -90,11 +90,11 @@ export default function Drawer(props) {
           display: { xs: "none", md: "block" },
           "& .MuiDrawer-paper": {
             boxSizing: "border-box",
-            width: props.isOpenDrawer
+            width: isOpenDrawer
               ? { md: tabletDrawerWidth, lg: drawerWidth }
               : 0
           },
-          width: props.isOpenDrawer
+          width: isOpenDrawer
             ? { md: tabletDrawerWidth, lg: drawerWidth }
             : 0
         }}
