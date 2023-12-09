@@ -1,5 +1,4 @@
 import CityPage from "./CityPage";
-import CityInfoPage from "./CityInfoPage";
 import SearchPage from "./SearchPage";
 import LogInPage from "./LogInPage";
 import SignUpPage from "./SignUpPage";
@@ -14,7 +13,6 @@ export {
   LogInPage,
   SignUpPage,
   CityPage,
-  CityInfoPage,
   CityEventsPage,
   CityEventPage,
   CityCommunityPage
