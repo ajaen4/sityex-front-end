@@ -17,7 +17,7 @@ import {
   minNavbarHeights
 } from "constants/constants";
 
-export default function Drawer({isOpenDrawer, setIsOpenDrawer, ...props}) {
+export default function Drawer({ isOpenDrawer, setIsOpenDrawer, ...props }) {
   const selectedCity = useSelector((state) => state.selectedCity.data);
 
   const { window } = props;
@@ -57,9 +57,7 @@ export default function Drawer({isOpenDrawer, setIsOpenDrawer, ...props}) {
     <Box
       component="nav"
       sx={{
-        width: isOpenDrawer
-          ? { md: tabletDrawerWidth, lg: drawerWidth }
-          : 0,
+        width: isOpenDrawer ? { md: tabletDrawerWidth, lg: drawerWidth } : 0,
         flexShrink: { md: 0 }
       }}
       aria-label="mailbox folders"
@@ -90,13 +88,9 @@ export default function Drawer({isOpenDrawer, setIsOpenDrawer, ...props}) {
           display: { xs: "none", md: "block" },
           "& .MuiDrawer-paper": {
             boxSizing: "border-box",
-            width: isOpenDrawer
-              ? { md: tabletDrawerWidth, lg: drawerWidth }
-              : 0
+            width: isOpenDrawer ? { md: tabletDrawerWidth, lg: drawerWidth } : 0
           },
-          width: isOpenDrawer
-            ? { md: tabletDrawerWidth, lg: drawerWidth }
-            : 0
+          width: isOpenDrawer ? { md: tabletDrawerWidth, lg: drawerWidth } : 0
         }}
       >
         {!isLandingPage && <Box sx={{ minHeight: minNavbarHeights }} />}
