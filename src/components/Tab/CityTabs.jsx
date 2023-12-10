@@ -3,9 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useTheme } from "@mui/material/styles";
 
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Typography from "@mui/material/Typography";
+import BottomNavigation from "@mui/material/BottomNavigation";
+import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 
 import TicketIcon from "@mui/icons-material/ConfirmationNumberOutlined";
 import PeopleIcon from "@mui/icons-material/PeopleOutlined";
@@ -26,40 +25,17 @@ export default function CityTabs() {
   };
 
   return (
-    <Tabs
-      value={value}
-      onChange={itemSelected}
-      aria-label="city-navigations"
-      sx={{
-        "& .MuiTabs-indicator": { backgroundColor: theme.palette.grey[100] },
-        "& .Mui-selected": { color: theme.palette.grey[100] },
-        "& .MuiButtonBase-root, & .MuiTab-root": {
-          paddingTop: "1 !important",
-          paddingBottom: "0 !important",
-          minHeight: "0 !important"
-        }
-      }}
-    >
-      <Tab
-        icon={<TicketIcon sx={{ color: theme.palette.grey[100], width: 20 }} />}
-        aria-label="events"
-        label={
-          <Typography variant="caption" color={theme.palette.grey[100]}>
-            Events
-          </Typography>
-        }
+    <BottomNavigation showLabels value={value} onChange={itemSelected}>
+      <BottomNavigationAction
+        label="Events"
+        icon={<TicketIcon />}
         data-path={ROUTES_PATHS.CITY_EVENTS}
       />
-      <Tab
-        icon={<PeopleIcon sx={{ color: theme.palette.grey[100], width: 20 }} />}
-        aria-label="community"
-        label={
-          <Typography variant="caption" color={theme.palette.grey[100]}>
-            Community
-          </Typography>
-        }
+      <BottomNavigationAction
+        label="Community"
+        icon={<PeopleIcon />}
         data-path={ROUTES_PATHS.CITY_COMMUNITY}
       />
-    </Tabs>
+    </BottomNavigation>
   );
 }
