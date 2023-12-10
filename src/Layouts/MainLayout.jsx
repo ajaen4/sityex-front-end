@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
@@ -23,7 +23,7 @@ const MainLayout = () => {
     <Box
       sx={{
         display: "flex",
-        height: "100vh",
+        height: `${window.innerHeight}px`,
         overflowY: "hidden"
       }}
     >

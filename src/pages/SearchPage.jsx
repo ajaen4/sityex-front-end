@@ -76,14 +76,30 @@ const SearchPage = () => {
             xs={11}
             md={5}
             lg={4}
-            sx={{ display: "flex", justifyContent: "center", }}
+            sx={{ display: "flex", justifyContent: "center" }}
           >
             <Card elevation={0}>
-              <CardContent sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                <Typography variant="h1" color="textSecondary" sx={{ mb: 3, fontSize: 25 }}>
+              <CardContent
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center"
+                }}
+              >
+                <Typography
+                  variant="h1"
+                  color="textSecondary"
+                  sx={{ mb: 3, fontSize: 25 }}
+                >
                   Introduce a destination
                 </Typography>
-                <Box sx={{ display: "flex", flexDirection: "column", width: "80%" }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    width: "80%"
+                  }}
+                >
                   <CitiesAutocomplete
                     citiesIndex={citiesIndex ? citiesIndex.cities : null}
                     onSelectCity={onSelectCity}

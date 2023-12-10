@@ -67,25 +67,14 @@ const CityPage = () => {
       </Box>
       <Box
         sx={{
-          flex: 1,
           display: "flex",
-          justifyContent: "center",
+          flexGrow: 1,
           overflowY: "hidden"
         }}
       >
         <Outlet />
       </Box>
-      {isDestinationPage && !isCityEventPage && isSmallScreen && (
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            backgroundColor: theme.palette.primary.main
-          }}
-        >
-          <CityTabs />
-        </Box>
-      )}
+      {isDestinationPage && !isCityEventPage && isSmallScreen && <CityTabs />}
     </Box>
   );
 };
