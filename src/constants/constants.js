@@ -11,5 +11,4 @@ export const minNavbarHeights = {
   xl: "64px"
 };
 export const mobileTabMinHeight = "48px";
-export const data_bucket_url =
-  "https://sityex-public-images.s3.eu-west-1.amazonaws.com";
+export const imagesCdn = "https://d1dshnpqadx0e7.cloudfront.net";

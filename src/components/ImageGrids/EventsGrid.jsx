@@ -14,7 +14,7 @@ import {
 
 import { countInterestedUsers } from "actions";
 
-import { data_bucket_url } from "constants/constants";
+import { imagesCdn } from "constants/constants";
 
 const EventsGrid = ({ events }) => {
   const auth = useSelector((state) => state.auth);
@@ -58,7 +58,7 @@ const EventsGrid = ({ events }) => {
 
     const isError = eventsBadImage.includes(event.sku);
     const imgSrc = isError
-      ? `${data_bucket_url}/logos/square_black_big_logo_blue.png`
+      ? `${imagesCdn}/logos/square_black_big_logo_blue.png`
       : event.photo_1;
 
     const key = isError

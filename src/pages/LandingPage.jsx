@@ -17,7 +17,7 @@ import Carousel from "react-material-ui-carousel";
 import CitiesAutocomplete from "components/Autocomplete/CitiesAutocomplete";
 import { ScrollContext } from "components/Contexts/ScrollContext";
 
-import { data_bucket_url } from "constants/constants";
+import { imagesCdn } from "constants/constants";
 
 const LandingPage = () => {
   const citiesIndex = useSelector((state) => state.citiesIndex.data);
@@ -54,7 +54,7 @@ const LandingPage = () => {
                   height: "100%",
                   width: "100%",
                   borderRadius: 10,
-                  backgroundImage: `url(${data_bucket_url}/cities/${city.city_id}.jpg)`,
+                  backgroundImage: `url(${imagesCdn}/cities/${city.city_id}.jpg)`,
                   backgroundSize: "cover",
                   backgroundPosition: "center"
                 }}
@@ -94,7 +94,7 @@ const LandingPage = () => {
           xs={12}
           sx={{
             height: "100vh",
-            backgroundImage: `url(${data_bucket_url}/people_kitchen.jpg)`,
+            backgroundImage: `url(${imagesCdn}/people_kitchen.jpg)`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             display: "flex",
@@ -148,7 +148,7 @@ const LandingPage = () => {
             <img
               width="80"
               height="80"
-              src={`${data_bucket_url}/icons/community.png`}
+              src={`${imagesCdn}/icons/community.png`}
               alt="community icon"
               title="Community"
               loading="lazy"
@@ -190,7 +190,7 @@ const LandingPage = () => {
                 <img
                   width="80"
                   height="80"
-                  src={`${data_bucket_url}/icons/party.png`}
+                  src={`${imagesCdn}/icons/party.png`}
                   alt="events icon"
                   title="Events"
                   loading="lazy"
@@ -223,7 +223,7 @@ const LandingPage = () => {
                 <img
                   width="80"
                   height="80"
-                  src={`${data_bucket_url}/icons/house.png`}
+                  src={`${imagesCdn}/icons/house.png`}
                   alt="housing icon"
                   title="Housing"
                   loading="lazy"
@@ -256,7 +256,7 @@ const LandingPage = () => {
                 <img
                   width="80"
                   height="80"
-                  src={`${data_bucket_url}/icons/government.png`}
+                  src={`${imagesCdn}/icons/government.png`}
                   alt="government icon"
                   title="Government Bureaucracy"
                   loading="lazy"
@@ -291,7 +291,7 @@ const LandingPage = () => {
           <img
             width="80"
             height="80"
-            src={`${data_bucket_url}/icons/cities.png`}
+            src={`${imagesCdn}/icons/cities.png`}
             alt="cities icon"
             title="Cities"
             loading="lazy"
