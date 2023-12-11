@@ -13,7 +13,7 @@ import EventCalendar from "components/Calendars/EventCalendar";
 
 import { getCityEvent, setUserInterested } from "actions";
 
-import { data_bucket_url } from "constants/constants";
+import { imagesCdn } from "constants/constants";
 
 const CityEventPage = () => {
   const auth = useSelector((state) => state.auth);
@@ -80,7 +80,7 @@ const CityEventPage = () => {
   if (!selectedEvent) return <CenteredLoadingSpinner />;
 
   const imgSrc = imageHasError
-    ? `${data_bucket_url}/logos/square_big_logo_blue.png`
+    ? `${imagesCdn}/logos/square_big_logo_blue.png`
     : selectedEvent.photo_1;
 
   return (
