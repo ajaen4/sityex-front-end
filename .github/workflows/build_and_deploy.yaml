@@ -36,9 +36,6 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Install functions dependencies
-        run: npm i -D
-
       # This action is also using GCP_SA_KEY implicitly
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@v12.4.0
