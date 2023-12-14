@@ -12,7 +12,6 @@ import "leaflet/dist/leaflet.css";
 
 import CitiesMarkerCluster from "components/Maps/CitiesMarkerCluster";
 
-
 const CENTER = { lat: 37.76922, lng: -3.79028 };
 
 const TOKEN = process.env.NEXT_PUBLIC_MAPS_API_KEY;
