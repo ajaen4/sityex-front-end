@@ -25,6 +25,11 @@ import CitiesGrid from "components/ImageGrids/CitiesGrid";
 
 import { contentHeight } from "constants/constants";
 
+export const metadata = {
+  title: "SityEx | City Search",
+  description: "Discover Your Ideal Spanish City from our 27 available cities.",
+};
+
 const SearchPage = () => {
   const [tab, setTab] = useState("search-box");
 

@@ -9,6 +9,12 @@ import WithoutAuth from "components/Session/WithoutAuth";
 
 import { contentHeight, minNavbarHeight } from "constants/constants";
 
+export const metadata = {
+  title: "SityEx | Sign Up - Join Our Community",
+  description:
+    "Join SityEx and become part of a thriving community of expatriates in Spain. Sign up to connect with fellow expats, explore Spanish cities, and access resources to ease your transition.",
+};
+
 const SignUpPage = () => {
   const [innerHeight, setInnerHeight] = useState({
     xl: contentHeight.xl,

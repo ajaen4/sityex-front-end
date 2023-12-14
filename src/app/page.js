@@ -7,6 +7,12 @@ import CitySlides from "components/Slides/CitySlides";
 
 import { imagesCdn } from "constants/constants";
 
+export const metadata = {
+  title: "SityEx | Discover, Connect, Belong",
+  description:
+    "Empowering expats in Spain with SityEx. Discover communities, connect with expats, and find your belonging in your new Spanish city. Start your journey today.",
+};
+
 const LandingPage = () => {
   return (
     <Grid container sx={{ alignItems: "center" }}>
