@@ -40,7 +40,7 @@ export default function RootLayout({ children }) {
                       md: `calc(100% - ${tabletDrawerWidth}px)`,
                       lg: `calc(100% - ${drawerWidth}px)`,
                     },
-                    overflow: "hidden",
+                    overflow: "scroll",
                   }}
                 >
                   <NavBarPlaceholder />

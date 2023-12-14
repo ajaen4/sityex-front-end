@@ -11,18 +11,19 @@ import {
   Box,
   Tabs,
   Tab,
+  Stack,
 } from "@mui/material";
 
 const DestinationsMap = dynamic(
   () => import("components/Maps/DestinationsMap"),
   {
     ssr: false,
-  },
+  }
 );
 import CitiesAutocomplete from "components/Autocomplete/CitiesAutocomplete";
 import CitiesGrid from "components/ImageGrids/CitiesGrid";
 
-import { minNavbarHeights } from "constants/constants";
+import { contentHeight } from "constants/constants";
 
 const SearchPage = () => {
   const [tab, setTab] = useState("search-box");
@@ -31,86 +32,45 @@ const SearchPage = () => {
     setTab(newValue);
   };
 
-  const windowHeight = "100vh";
-  let windowInnerHeight = null;
-
-  if (typeof window !== "undefined") {
-    windowInnerHeight = window.innerHeight;
-  }
-
-  const height = !windowInnerHeight
-    ? windowHeight
-    : {
-        xs: `${windowInnerHeight - minNavbarHeights.xs}px`,
-        sm: `${windowInnerHeight - minNavbarHeights.sm}px`,
-        md: `${windowInnerHeight - minNavbarHeights.md}px`,
-        lg: `${windowInnerHeight - minNavbarHeights.lg}px`,
-        xl: `${windowInnerHeight - minNavbarHeights.xl}px`,
-      };
-
   return (
     <Box
       sx={{
         display: "flex",
-        height: height,
+        height: contentHeight,
         justifyContent: "center",
         position: "relative",
         overflowY: "scroll",
       }}
     >
       {tab === "search-box" && (
-        <Grid
-          container
+        <Stack
           sx={{
-            justifyContent: "center",
-            mt: 10,
+            display: "flex",
             width: "100%",
+            mt: 10,
+            alignItems: "center",
           }}
         >
-          <Grid
-            item
-            xs={11}
-            md={5}
-            lg={4}
-            sx={{ display: "flex", justifyContent: "center" }}
+          <Typography
+            variant="h1"
+            color="textSecondary"
+            sx={{ my: 2, fontSize: 25 }}
           >
-            <Card elevation={0}>
-              <CardContent
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                }}
-              >
-                <Typography
-                  variant="h1"
-                  color="textSecondary"
-                  sx={{ mb: 3, fontSize: 25 }}
-                >
-                  Introduce a destination
-                </Typography>
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    width: "80%",
-                  }}
-                >
-                  <CitiesAutocomplete />
-                </Box>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={12} sx={{ height: "100%", mt: 5 }}>
-            <Box
-              sx={{
-                height: "100%",
-              }}
-            >
-              <CitiesGrid />
-            </Box>
-          </Grid>
-        </Grid>
+            Introduce a destination
+          </Typography>
+          <Box
+            sx={{
+              width: { xs: "60%", md: "20%", lg: "20%", xl: "15%" },
+              mt: 2,
+              mb: 5,
+            }}
+          >
+            <CitiesAutocomplete />
+          </Box>
+          <Box sx={{ width: "100%", height: "100%" }}>
+            <CitiesGrid />
+          </Box>
+        </Stack>
       )}
       {tab === "map" && <DestinationsMap />}
       <Box

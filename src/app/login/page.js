@@ -1,27 +1,38 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { Stack, Typography, Box } from "@mui/material";
 
 import LogInForm from "components/Forms/LogInForm";
 import WithoutAuth from "components/Session/WithoutAuth";
 
+import { contentHeight, minNavbarHeight } from "constants/constants";
+
 const LogInPage = () => {
+  const [innerHeight, setInnerHeight] = useState(contentHeight);
+
+  useEffect(() => {
+    const innerHeightPx = window.innerHeight;
+
+    const correctedHeight = {
+      xs: `calc(${innerHeightPx}px - ${minNavbarHeight.xs})`,
+      md: `calc(${innerHeightPx}px - ${minNavbarHeight.md})`,
+      lg: `calc(${innerHeightPx}px - ${minNavbarHeight.lg})`,
+      xl: `calc(${innerHeightPx}px - ${minNavbarHeight.xl})`,
+    };
+
+    setInnerHeight(correctedHeight);
+  }, []);
+
   return (
     <Box
       sx={{
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: {
-          xs: "86.5vh",
-          md: "83vh",
-          lg: "92vh",
-          xl: "93vh",
-        },
+        height: innerHeight,
         backgroundColor: "primary.light",
-        py: 3,
       }}
     >
       <Box
