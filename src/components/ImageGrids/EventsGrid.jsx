@@ -1,6 +1,8 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 
 import { FixedSizeGrid as Grid } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
@@ -9,7 +11,7 @@ import {
   ImageListItemBar,
   useMediaQuery,
   useTheme,
-  Chip
+  Chip,
 } from "@mui/material";
 
 import { countInterestedUsers } from "actions";
@@ -22,13 +24,13 @@ const EventsGrid = ({ events }) => {
   const [eventsBadImage, setEventsBadImage] = useState([]);
 
   const theme = useTheme();
-  const navigate = useNavigate();
+  const router = useRouter();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
   const numColumns = isSmallScreen ? 3 : 5;
   const aspectRatio = 1;
 
   const handleEventClick = (eventSku) => {
-    navigate(`/destination/${selectedCity.city_id}/event/${eventSku}`);
+    router.push(`/destination/${selectedCity.city_id}/event/${eventSku}`);
   };
 
   const handleImageError = (eventSku) => {
@@ -52,7 +54,7 @@ const EventsGrid = ({ events }) => {
       countInterestedUsers(selectedCity.city_id, event.sku, auth.data?.id).then(
         (interestedCount) => {
           setInterestedCount(interestedCount);
-        }
+        },
       );
     }, [event]);
 
@@ -72,7 +74,7 @@ const EventsGrid = ({ events }) => {
           onClick={() => handleEventClick(event.sku)}
           style={{
             height: "100%",
-            cursor: "pointer"
+            cursor: "pointer",
           }}
         >
           <div style={{ position: "relative" }}>
@@ -81,6 +83,7 @@ const EventsGrid = ({ events }) => {
               src={imgSrc}
               alt={event.plan_name}
               title={event.plan_name}
+              loading="lazy"
               onError={() => handleImageError(event.sku)}
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
@@ -94,8 +97,8 @@ const EventsGrid = ({ events }) => {
                   left: 4,
                   fontSize: {
                     xs: "0.6rem",
-                    md: "0.8rem"
-                  }
+                    md: "0.8rem",
+                  },
                 }}
               />
             )}
@@ -109,7 +112,7 @@ const EventsGrid = ({ events }) => {
                   maxHeight: "2.4rem",
                   fontSize: "0.8rem",
                   overflow: "hidden",
-                  textOverflow: "ellipsis"
+                  textOverflow: "ellipsis",
                 }}
               >
                 {event.plan_name}

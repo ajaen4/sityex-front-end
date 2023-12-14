@@ -2,6 +2,7 @@ export const ROOT = "/";
 export const SIGN_UP = "/signup";
 export const LOG_IN = "/login";
 export const SEARCH = "/search";
+export const BLOG = "/blog";
 export const MAP = "/map";
 export const ACCOUNT = "/account";
 export const ADMIN = "/admin";
@@ -11,13 +12,3 @@ export const CITY_INFO = "info";
 export const CITY_EVENTS = "events";
 export const CITY_EVENT = "event/:event_id";
 export const CITY_COMMUNITY = "community";
-
-let BLOG = "";
-
-if (process.env.REACT_APP_PROJECT_ID == "sityex-dev") {
-  BLOG = "https://blog.dev.sityex.com";
-} else {
-  BLOG = "https://blog.sityex.com";
-}
-
-export { BLOG };

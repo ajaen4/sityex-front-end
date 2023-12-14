@@ -9,7 +9,7 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   sendEmailVerification,
-  FacebookAuthProvider
+  FacebookAuthProvider,
 } from "firebase/auth";
 
 import { doc, setDoc, getDoc } from "firebase/firestore";
@@ -39,7 +39,7 @@ export const logInWithGoogle = async () => {
       uid: user.uid,
       email: user.email,
       userName: user.displayName,
-      photoURL: user.photoURL
+      photoURL: user.photoURL,
     });
     return user;
   } catch (error) {
@@ -56,7 +56,7 @@ export const logInWithFacebook = async () => {
       await saveUser({
         uid: user.uid,
         email: user.email,
-        userName: user.displayName
+        userName: user.displayName,
       });
       return user;
     })
@@ -76,20 +76,20 @@ export const createUser = async ({
   email,
   password,
   userName,
-  homeCountry
+  homeCountry,
 }) => {
   try {
     const { user } = await createUserWithEmailAndPassword(
       auth,
       email,
-      password
+      password,
     );
     await sendEmailVerification(user);
     await saveUser({
       uid: user.uid,
       email,
       userName,
-      country_3_code: homeCountry
+      country_3_code: homeCountry,
     });
     return user;
   } catch (error) {
@@ -103,7 +103,7 @@ export const saveUser = async (userData) => {
     userName: userData.userName,
     email: userData.email,
     id: userData.uid,
-    photoURL: userData.photoURL || null
+    photoURL: userData.photoURL || null,
   });
 };
 

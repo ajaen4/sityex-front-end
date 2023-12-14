@@ -1,45 +1,33 @@
-import { set } from "firebase/database";
-
 import {
-  SET_AUTH_USER,
-  JUST_LOGGED_IN,
-  USER_JUST_CREATED,
-  SET_AUTH_USER_ERROR
-} from "types";
+  setAuthUser,
+  setIsAuthResolved,
+  userJustCreated,
+  justLoggedIn,
+  setAuthUserError,
+} from "store/reducers/auth";
 
 import * as api from "api";
 
 export const createUser = (signUpData) => (dispatch, getState) => {
   return api
     .createUser(signUpData)
-    .then((user) =>
-      dispatch({ type: USER_JUST_CREATED, userJustCreated: true })
-    );
+    .then((user) => dispatch(userJustCreated(true)));
 };
 
 export const logInUser = (logInData) => (dispatch, getState) => {
-  return api
-    .logIn(logInData)
-    .then((user) => dispatch({ type: JUST_LOGGED_IN, justLoggedIn: true }));
+  return api.logIn(logInData).then((user) => dispatch(justLoggedIn(true)));
 };
 
 export const logInUserWithGoogle = () => (dispatch, getState) => {
-  return api
-    .logInWithGoogle()
-    .then((user) => dispatch({ type: JUST_LOGGED_IN, justLoggedIn: true }));
+  return api.logInWithGoogle().then((user) => dispatch(justLoggedIn(true)));
 };
 
 export const logInUserWithFacebook = () => (dispatch, getState) => {
-  return api
-    .logInWithFacebook()
-    .then((user) => dispatch({ type: JUST_LOGGED_IN, justLoggedIn: true }));
+  return api.logInWithFacebook().then((user) => dispatch(justLoggedIn(true)));
 };
 
 export const signOutUser = (uid) => {
-  api.signOutUser().then(() => {
-    const userStatusDatabaseRef = api.createFirebaseRef("status", uid);
-    return set(userStatusDatabaseRef, api.isOfflineForDatabase);
-  });
+  api.signOutUser();
 };
 
 export const onAuthStateChanged = (onAuthCallback) =>
@@ -48,12 +36,11 @@ export const onAuthStateChanged = (onAuthCallback) =>
 export const storeAuthUser = (authUser) => (dispatch, getState) => {
   if (authUser && authUser.emailVerified) {
     api.getUserData(authUser.uid).then(
-      (user) =>
-        dispatch({ type: SET_AUTH_USER, user: user, isAuthResolved: true }),
+      (user) => dispatch(setAuthUser({ user: user, isAuthResolved: true })),
       (errorMessage) =>
-        dispatch({ type: SET_AUTH_USER_ERROR, errorMessage: errorMessage })
+        dispatch(setAuthUserError({ errorMessage: errorMessage })),
     );
   } else {
-    dispatch({ type: SET_AUTH_USER, user: null, isAuthResolved: false });
+    dispatch(setIsAuthResolved({ isAuthResolved: false }));
   }
 };

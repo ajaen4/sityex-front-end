@@ -1,7 +1,6 @@
 import * as React from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
-import { useTheme } from "@mui/material/styles";
 
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
@@ -15,13 +14,12 @@ export default function CityTabs() {
   const [value, setValue] = React.useState(0);
   const selectedCity = useSelector((state) => state.selectedCity.data);
 
-  const theme = useTheme();
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const itemSelected = (event, value) => {
     setValue(value);
     const path = event.currentTarget.getAttribute("data-path");
-    navigate(`/destination/${selectedCity.city_id}/${path}`);
+    router.push(`/destination/${selectedCity.city_id}/${path}`);
   };
 
   return (

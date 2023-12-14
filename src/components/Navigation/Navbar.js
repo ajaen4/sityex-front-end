@@ -1,6 +1,8 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+"use client";
+
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
+import { usePathname, useRouter } from "next/navigation";
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -15,28 +17,26 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { useTheme } from "@mui/material/styles";
 
-import { ScrollContext } from "components/Contexts/ScrollContext";
-
 import { signOutUser } from "actions";
-
-import logo_white from "assets/img/icons/big_logo_white.png";
-import logo_blue from "assets/img/icons/big_logo_blue.png";
+import { useDrawerContext } from "components/Contexts/DrawerContext";
 
 import * as ROUTES_PATHS from "routes/paths";
-import { pages, settings, minNavbarHeights } from "constants/constants.js";
+import { pages, settings, minNavbarHeightsPx } from "constants/constants.js";
 
-function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
+const logo_white = "/big_logo_white.png";
+const logo_blue = "/big_logo_blue.png";
+
+function NavBar({}) {
+  const { isOpenDrawer, setIsOpenDrawer } = useDrawerContext();
   const [isOpenUserMenu, setIsOpenUserMenu] = useState(false);
   const [hasScrolled100vh, setHasScrolled100vh] = useState(false);
 
   const auth = useSelector((state) => state.auth);
 
-  const scrollRef = useContext(ScrollContext);
-
+  const router = useRouter();
+  const pathname = usePathname();
   const theme = useTheme();
   const userSettingsRef = useRef(null);
-  const navigate = useNavigate();
-  const { pathname } = useLocation();
 
   const isLandingPage = pathname.split("/").every((str) => str === "");
   const isOpaqueNavbar = !isLandingPage || hasScrolled100vh;
@@ -51,30 +51,25 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
   };
 
   const handleClickNavMenu = (page) => {
-    if (page === "Search City") navigate(ROUTES_PATHS.SEARCH);
+    if (page === "Search City") router.push(ROUTES_PATHS.SEARCH);
     if (page === "Blog") window.location.href = ROUTES_PATHS.BLOG;
   };
 
-  const clickedLogo = () => navigate(ROUTES_PATHS.ROOT);
+  const clickedLogo = () => router.push(ROUTES_PATHS.ROOT);
 
   useEffect(() => {
-    if (!scrollRef?.current) return;
-
     const handleScroll = () => {
-      if (!scrollRef.current) return;
-
-      const currentScrollPos = scrollRef.current.scrollTop;
+      const scrollY = window.scrollY;
       const viewportHeight = window.innerHeight;
-      setHasScrolled100vh(currentScrollPos > viewportHeight);
+      setHasScrolled100vh(scrollY > viewportHeight);
     };
 
-    scrollRef.current.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      if (scrollRef.current)
-        scrollRef.current.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
-  }, [scrollRef]);
+  }, []);
 
   return (
     <AppBar
@@ -82,23 +77,23 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
       sx={{
         zIndex: theme.zIndex.drawer + 1000,
         backgroundColor: isOpaqueNavbar ? "white" : "transparent",
-        boxShadow: isOpaqueNavbar ? true : "none"
+        boxShadow: isOpaqueNavbar ? true : "none",
       }}
     >
       <Toolbar
         style={{
           display: "flex",
-          justifyContent: "space-between"
+          justifyContent: "space-between",
         }}
         sx={{
-          minHeight: minNavbarHeights,
-          pr: 1
+          minHeight: minNavbarHeightsPx,
+          pr: 1,
         }}
       >
         <IconButton
           sx={{
             display: { xs: "none", md: "flex" },
-            mt: 0.5
+            mt: 0.5,
           }}
           onClick={clickedLogo}
         >
@@ -124,7 +119,7 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
           sx={{
             display: { xs: "flex", md: "none" },
             mt: 1,
-            cursor: "pointer"
+            cursor: "pointer",
           }}
           onClick={clickedLogo}
         >
@@ -141,7 +136,7 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
           sx={{
             flexGrow: 1,
             display: { xs: "none", md: "flex" },
-            justifyContent: { md: "space-evenly", lg: "center" }
+            justifyContent: { md: "space-evenly", lg: "center" },
           }}
         >
           {pages.map((page) => (
@@ -152,32 +147,32 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
                 mx: 5,
                 color: isOpaqueNavbar ? "primary.main" : "white",
                 display: "block",
-                fontSize: "1.1em"
+                fontSize: "1.1em",
               }}
             >
               {page}
             </Button>
           ))}
         </Box>
-        {auth?.isAuthResolved && (
+        {auth.isAuthResolved && (
           <Box ref={userSettingsRef}>
             <Tooltip title="Open settings" id="user-settings">
               <IconButton
                 onClick={toggleUserMenu}
                 sx={{
                   m: 0,
-                  p: 0
+                  p: 0,
                 }}
               >
                 <Avatar
                   alt="Remy Sharp"
                   src={`https://eu.ui-avatars.com/api/?name=${auth.data.userName.replace(
                     " ",
-                    "+"
+                    "+",
                   )}&size=250`}
                   sx={{
                     m: 0,
-                    p: 0
+                    p: 0,
                   }}
                 />
               </IconButton>
@@ -188,11 +183,11 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
               anchorEl={userSettingsRef.current}
               anchorOrigin={{
                 vertical: "top",
-                horizontal: "right"
+                horizontal: "right",
               }}
               transformOrigin={{
                 vertical: "top",
-                horizontal: "right"
+                horizontal: "right",
               }}
               keepMounted
               open={isOpenUserMenu}
@@ -209,12 +204,12 @@ function NavBar({ isOpenDrawer, setIsOpenDrawer }) {
             </Menu>
           </Box>
         )}
-        {!auth?.isAuthResolved && (
+        {!auth.isAuthResolved && (
           <Box>
             <Button
               variant="contained"
               color="secondary"
-              onClick={() => navigate(ROUTES_PATHS.SIGN_UP)}
+              onClick={() => router.push(ROUTES_PATHS.SIGN_UP)}
               sx={{ mr: 0 }}
             >
               Sign up

@@ -12,7 +12,7 @@ const CenteredLoadingSpinner = () => {
         height: "100vh",
         width: "100vw",
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
       }}
     >
       <CircularProgress />
