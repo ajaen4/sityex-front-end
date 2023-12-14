@@ -15,7 +15,7 @@ function CitiesMarkerCluster({ citiesIndex }) {
   const groupBy = (array, key) => {
     return array.reduce((result, currentValue) => {
       (result[currentValue[key]] = result[currentValue[key]] || []).push(
-        currentValue
+        currentValue,
       );
       return result;
     }, {});
@@ -38,9 +38,9 @@ function CitiesMarkerCluster({ citiesIndex }) {
                 <div style="background-color: ${theme.palette.primary[200]}; color: black; text-align: center; border-radius: 50%; width: 40px; height: 40px; line-height: 40px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">📍${count}</div>
               </div>`,
             className: "custom-cluster-icon",
-            iconSize: new L.Point(50, 50)
+            iconSize: new L.Point(50, 50),
           });
-        }
+        },
       });
 
       citiesByCountry[countryCode].forEach((city) => {
@@ -57,12 +57,12 @@ function CitiesMarkerCluster({ citiesIndex }) {
               <span>${city.name}</span>
             </div>
           `,
-          iconSize: [null, null]
+          iconSize: [null, null],
         });
 
         const marker = L.marker(
           [city.coordinates.latitude, city.coordinates.longitude],
-          { icon: customIcon }
+          { icon: customIcon },
         ).on("click", () => {
           window.location.href = `/destination/${city.city_id}/events`;
         });

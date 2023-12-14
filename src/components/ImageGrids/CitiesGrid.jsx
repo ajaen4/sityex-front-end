@@ -1,5 +1,8 @@
+"use client";
+
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
 
 import { FixedSizeGrid as Grid } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
@@ -7,22 +10,23 @@ import {
   ImageListItem,
   ImageListItemBar,
   useMediaQuery,
-  useTheme
+  useTheme,
 } from "@mui/material";
 
 import { imagesCdn } from "constants/constants";
 
-const CitiesGrid = ({ citiesIndex }) => {
+const CitiesGrid = ({}) => {
+  const citiesIndex = useSelector((state) => state.citiesIndex.data);
   const [cityIdsBadImage, setCityIdsBadImage] = useState([]);
 
   const theme = useTheme();
-  const navigate = useNavigate();
+  const router = useRouter();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
   const numColumns = isSmallScreen ? 2 : 4;
   const aspectRatio = 1.5;
 
   const handleCityClick = (city_id) => {
-    navigate(`/destination/${city_id}/events`);
+    router.push(`/destination/${city_id}/events`);
   };
 
   const handleImageError = (city_id) => {
@@ -35,9 +39,13 @@ const CitiesGrid = ({ citiesIndex }) => {
     return columnWidth / aspectRatio;
   };
 
+  if (!citiesIndex) return null;
+
+  const cities = citiesIndex.cities;
+
   const Cell = ({ columnIndex, rowIndex, style }) => {
     const cityIndex = rowIndex * numColumns + columnIndex;
-    const city = citiesIndex[cityIndex];
+    const city = cities[cityIndex];
 
     if (!city) return null;
 
@@ -53,7 +61,7 @@ const CitiesGrid = ({ citiesIndex }) => {
           key={city.city_id}
           onClick={() => handleCityClick(city.city_id)}
           style={{
-            cursor: "pointer"
+            cursor: "pointer",
           }}
         >
           <img
@@ -72,7 +80,7 @@ const CitiesGrid = ({ citiesIndex }) => {
                   fontSize: "0.8rem",
                   overflow: "hidden",
                   textOverflow: "ellipsis",
-                  textAlign: "center"
+                  textAlign: "center",
                 }}
               >
                 {city.name}
@@ -91,10 +99,8 @@ const CitiesGrid = ({ citiesIndex }) => {
         <Grid
           columnCount={numColumns}
           columnWidth={width / numColumns}
-          height={
-            Math.ceil(citiesIndex.length / numColumns) * getRowHeight(width)
-          }
-          rowCount={Math.ceil(citiesIndex.length / numColumns)}
+          height={Math.ceil(cities.length / numColumns) * getRowHeight(width)}
+          rowCount={Math.ceil(cities.length / numColumns)}
           rowHeight={getRowHeight(width)}
           width={width}
         >

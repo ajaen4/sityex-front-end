@@ -1,6 +1,8 @@
-import React, { useEffect } from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { usePathname } from "next/navigation";
 
 import Box from "@mui/material/Box";
 import { Drawer as MUIDrawer } from "@mui/material";
@@ -10,18 +12,17 @@ import { useTheme } from "@mui/material/styles";
 
 import MainItems from "components/DrawerItems/MainItems";
 import CityItems from "components/DrawerItems/CityItems";
+import { useDrawerContext } from "components/Contexts/DrawerContext";
 
-import {
-  drawerWidth,
-  tabletDrawerWidth,
-  minNavbarHeights
-} from "constants/constants";
+import NavBarPlaceholder from "components/Navigation/NavBarPlaceholder";
 
-export default function Drawer({ isOpenDrawer, setIsOpenDrawer, ...props }) {
+import { drawerWidth, tabletDrawerWidth } from "constants/constants";
+
+export default function Drawer({ ...props }) {
+  const { isOpenDrawer, setIsOpenDrawer } = useDrawerContext();
   const selectedCity = useSelector((state) => state.selectedCity.data);
 
-  const { window } = props;
-  const { pathname } = useLocation();
+  const pathname = usePathname();
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -35,21 +36,22 @@ export default function Drawer({ isOpenDrawer, setIsOpenDrawer, ...props }) {
       return;
     }
 
-    if (!paths.some((path) => location.pathname.includes(path))) {
+    if (!paths.some((path) => pathname.includes(path))) {
       setIsOpenDrawer(false);
       return;
     }
 
-    if (paths.some((path) => location.pathname.includes(path))) {
+    if (paths.some((path) => pathname.includes(path))) {
       setIsOpenDrawer(true);
       return;
     }
-  }, [pathname]);
+  }, [pathname, isSmallScreen, setIsOpenDrawer]);
 
   const handleDrawerToggle = () => {
     setIsOpenDrawer(!isOpenDrawer);
   };
 
+  const { window } = props;
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
@@ -58,9 +60,8 @@ export default function Drawer({ isOpenDrawer, setIsOpenDrawer, ...props }) {
       component="nav"
       sx={{
         width: isOpenDrawer ? { md: tabletDrawerWidth, lg: drawerWidth } : 0,
-        flexShrink: { md: 0 }
+        flexShrink: { md: 0 },
       }}
-      aria-label="mailbox folders"
     >
       <MUIDrawer
         container={container}
@@ -68,17 +69,17 @@ export default function Drawer({ isOpenDrawer, setIsOpenDrawer, ...props }) {
         open={isOpenDrawer}
         onClose={handleDrawerToggle}
         ModalProps={{
-          keepMounted: true
+          keepMounted: true,
         }}
         sx={{
           display: { xs: "block", md: "none" },
           "& .MuiDrawer-paper": {
             boxSizing: "border-box",
-            width: { md: tabletDrawerWidth, lg: drawerWidth }
-          }
+            width: { md: tabletDrawerWidth, lg: drawerWidth },
+          },
         }}
       >
-        <Box sx={{ minHeight: minNavbarHeights }} />
+        <NavBarPlaceholder />
         <Divider sx={{ mt: 3 }}>Navigation</Divider>
         <MainItems />
       </MUIDrawer>
@@ -88,12 +89,14 @@ export default function Drawer({ isOpenDrawer, setIsOpenDrawer, ...props }) {
           display: { xs: "none", md: "block" },
           "& .MuiDrawer-paper": {
             boxSizing: "border-box",
-            width: isOpenDrawer ? { md: tabletDrawerWidth, lg: drawerWidth } : 0
+            width: isOpenDrawer
+              ? { md: tabletDrawerWidth, lg: drawerWidth }
+              : 0,
           },
-          width: isOpenDrawer ? { md: tabletDrawerWidth, lg: drawerWidth } : 0
+          width: isOpenDrawer ? { md: tabletDrawerWidth, lg: drawerWidth } : 0,
         }}
       >
-        {!isLandingPage && <Box sx={{ minHeight: minNavbarHeights }} />}
+        <NavBarPlaceholder />
         <Divider sx={{ mt: 3 }}>{selectedCity?.name}</Divider>
         <CityItems />
       </MUIDrawer>

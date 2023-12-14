@@ -8,7 +8,7 @@ function Footer() {
         backgroundColor: "grey.100",
         width: "100%",
         minHeight: "70px",
-        py: "5px"
+        py: "5px",
       }}
     >
       <Container>
