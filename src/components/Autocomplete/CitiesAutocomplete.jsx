@@ -28,7 +28,7 @@ const CitiesAutocomplete = ({ selectedCity, placeholder }) => {
   });
 
   const getDestinations = (cities) => {
-    if (cities !== null) {
+    if (cities) {
       return [...cities].sort((a, b) => a.name.localeCompare(b.name));
     } else return [];
   };
@@ -37,9 +37,7 @@ const CitiesAutocomplete = ({ selectedCity, placeholder }) => {
     router.push(`/destination/${value.city_id}/events`);
   };
 
-  if (!citiesIndex) return null;
-
-  const cities = citiesIndex.cities;
+  const cities = citiesIndex ? citiesIndex.cities : [];
 
   return (
     <Autocomplete
