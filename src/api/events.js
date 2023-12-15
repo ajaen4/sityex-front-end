@@ -27,22 +27,22 @@ export const setUserInterested = async (
   city_id,
   event_id,
   user_id,
-  interested_info
+  interested_info,
 ) => {
   const cityDocRef = doc(citiesCollection, city_id);
   const eventCollectionRef = doc(collection(cityDocRef, "events"), event_id);
   const interestedUsersRef = doc(
     collection(eventCollectionRef, "interested_users"),
-    user_id
+    user_id,
   );
 
   setDoc(
     interestedUsersRef,
     {
       user_id: user_id,
-      ...interested_info
+      ...interested_info,
     },
-    { merge: true }
+    { merge: true },
   );
 };
 
@@ -51,7 +51,7 @@ export const countInterestedUsers = async (city_id, event_id, user_id) => {
   const eventCollectionRef = doc(collection(cityDocRef, "events"), event_id);
   const interestedUsersCollectionRef = collection(
     eventCollectionRef,
-    "interested_users"
+    "interested_users",
   );
 
   const querySnapshot = await getDocs(interestedUsersCollectionRef);

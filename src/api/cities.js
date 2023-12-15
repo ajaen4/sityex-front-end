@@ -22,7 +22,7 @@ export const getCitiesIndex = async () => {
     const indexDoc = await getDoc(doc(collection(db, "cities"), document_name));
     if (!indexDoc.exists()) {
       console.log(
-        "No such document " + document_name + " in collection cities!"
+        "No such document " + document_name + " in collection cities!",
       );
       return {};
     } else {

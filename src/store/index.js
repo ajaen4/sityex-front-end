@@ -1,26 +1,15 @@
-import { createStore, applyMiddleware, compose } from "redux";
-import serviceApp from "reducers";
-import thunk from "redux-thunk";
+import { configureStore } from "@reduxjs/toolkit";
+import rootReducer from "store/reducers";
 import logger from "redux-logger";
 
-import { loadState } from "localStorage/localStorage";
+export const makeStore = () => {
+  const middleware = (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(
+      process.env.NODE_ENV !== "production" ? logger : [],
+    );
 
-const initStore = () => {
-  const middlewares = [thunk];
-  const composeEnhancers =
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-  if (process.env.NODE_ENV !== "production") {
-    middlewares.push(logger);
-  }
-
-  const store = createStore(
-    serviceApp,
-    loadState(),
-    composeEnhancers(applyMiddleware(...middlewares))
-  );
-
-  return store;
+  return configureStore({
+    reducer: rootReducer,
+    middleware,
+  });
 };
-
-export default initStore;

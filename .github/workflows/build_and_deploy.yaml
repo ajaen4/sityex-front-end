@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Deploy SityEx web app
 
 on:
   push:
@@ -11,33 +11,39 @@ jobs:
     name: Build & Deploy
     runs-on: ubuntu-latest
     env:
-      REACT_APP_PROJECT_ID: ${{ github.ref_name == 'dev' && secrets.REACT_APP_PROJECT_ID_DEV || secrets.REACT_APP_PROJECT_ID }}
-      REACT_APP_API_KEY: ${{ github.ref_name == 'dev' && secrets.REACT_APP_API_KEY_DEV || secrets.REACT_APP_API_KEY }}
-      REACT_APP_AUTH_DOMAIN: ${{ github.ref_name == 'dev' && secrets.REACT_APP_AUTH_DOMAIN_DEV || secrets.REACT_APP_AUTH_DOMAIN }}
-      REACT_APP_DATABASE_URL: ${{ github.ref_name == 'dev' && secrets.REACT_APP_DATABASE_URL_DEV || secrets.REACT_APP_DATABASE_URL }}
-      REACT_APP_STORAGE_BUCKET: ${{ github.ref_name == 'dev' && secrets.REACT_APP_STORAGE_BUCKET_DEV || secrets.REACT_APP_STORAGE_BUCKET }}
-      REACT_APP_MESSAGING_SENDER_ID: ${{ github.ref_name == 'dev' && secrets.REACT_APP_MESSAGING_SENDER_ID_DEV || secrets.REACT_APP_MESSAGING_SENDER_ID }}
-      REACT_APP_APP_ID: ${{ github.ref_name == 'dev' && secrets.REACT_APP_APP_ID_DEV || secrets.REACT_APP_APP_ID }}
-      REACT_APP_MEASUREMENT_ID: ${{ github.ref_name == 'dev' && secrets.REACT_APP_MEASUREMENT_ID_DEV || secrets.REACT_APP_MEASUREMENT_ID }}
-      REACT_APP_MAPS_API_KEY: ${{ secrets.REACT_APP_MAPS_API_KEY }}
-      REACT_APP_PLACES_API_KEY: ${{ github.ref_name == 'dev' && secrets.REACT_APP_PLACES_API_KEY_DEV || secrets.REACT_APP_PLACES_API_KEY }}
-      REACT_APP_MAPS_STYLE: ${{ secrets.REACT_APP_MAPS_STYLE }}
-      REACT_APP_MAPS_STREET_STYLE: ${{ secrets.REACT_APP_MAPS_STREET_STYLE }}
+      NEXT_PUBLIC_PROJECT_ID: ${{ github.ref_name == 'dev' && secrets.NEXT_PUBLIC_PROJECT_ID_DEV || secrets.NEXT_PUBLIC_PROJECT_ID }}
+      NEXT_PUBLIC_API_KEY: ${{ github.ref_name == 'dev' && secrets.NEXT_PUBLIC_API_KEY_DEV || secrets.NEXT_PUBLIC_API_KEY }}
+      NEXT_PUBLIC_AUTH_DOMAIN: ${{ github.ref_name == 'dev' && secrets.NEXT_PUBLIC_AUTH_DOMAIN_DEV || secrets.NEXT_PUBLIC_AUTH_DOMAIN }}
+      NEXT_PUBLIC_DATABASE_URL: ${{ github.ref_name == 'dev' && secrets.NEXT_PUBLIC_DATABASE_URL_DEV || secrets.NEXT_PUBLIC_DATABASE_URL }}
+      NEXT_PUBLIC_STORAGE_BUCKET: ${{ github.ref_name == 'dev' && secrets.NEXT_PUBLIC_STORAGE_BUCKET_DEV || secrets.NEXT_PUBLIC_STORAGE_BUCKET }}
+      NEXT_PUBLIC_MESSAGING_SENDER_ID: ${{ github.ref_name == 'dev' && secrets.NEXT_PUBLIC_MESSAGING_SENDER_ID_DEV || secrets.NEXT_PUBLIC_MESSAGING_SENDER_ID }}
+      NEXT_PUBLIC_APP_ID: ${{ github.ref_name == 'dev' && secrets.NEXT_PUBLIC_APP_ID_DEV || secrets.NEXT_PUBLIC_APP_ID }}
+      NEXT_PUBLIC_MEASUREMENT_ID: ${{ github.ref_name == 'dev' && secrets.NEXT_PUBLIC_MEASUREMENT_ID_DEV || secrets.NEXT_PUBLIC_MEASUREMENT_ID }}
+      NEXT_PUBLIC_MAPS_API_KEY: ${{ secrets.NEXT_PUBLIC_MAPS_API_KEY }}
+      NEXT_PUBLIC_PLACES_API_KEY: ${{ github.ref_name == 'dev' && secrets.NEXT_PUBLIC_PLACES_API_KEY_DEV || secrets.NEXT_PUBLIC_PLACES_API_KEY }}
+      NEXT_PUBLIC_MAPS_STYLE: ${{ secrets.NEXT_PUBLIC_MAPS_STYLE }}
+      NEXT_PUBLIC_MAPS_STREET_STYLE: ${{ secrets.NEXT_PUBLIC_MAPS_STREET_STYLE }}
       GCP_SA_KEY: ${{ github.ref_name == 'dev' && secrets.GCP_SA_KEY_BASE_64_DEV || secrets.GCP_SA_KEY_BASE_64 }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ github.ref_name == 'dev' && secrets.VERCEL_PROJECT_ID_DEV || secrets.VERCEL_PROJECT_ID }}
       CI: ""
 
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4.0.0
 
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Build
-        run: npm run build
-
-      # This action is also using GCP_SA_KEY implicitly
-      - name: Deploy to Firebase
-        uses: w9jds/firebase-action@v12.4.0
+      - uses: actions/setup-node@v4
         with:
-          args: deploy --project ${{ env.REACT_APP_PROJECT_ID }}
+          node-version: 20
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Build Project Artifacts
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}

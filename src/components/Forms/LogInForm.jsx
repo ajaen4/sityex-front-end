@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
@@ -9,13 +11,12 @@ import {
   Typography,
   Button,
   Box,
-  useMediaQuery,
   TextField,
   FormHelperText,
   FormControl,
   Link,
   InputAdornment,
-  IconButton
+  IconButton,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 
@@ -23,31 +24,28 @@ import { logInUser, logInUserWithGoogle } from "actions";
 
 import StandarModal from "components/Modals/StandarModal";
 
-import Google from "assets/img/icons/social-google.svg";
-
 import * as ROUTES_PATHS from "routes/paths";
 
-const LogInForm = ({ setIsFetching }) => {
+const Google = "/social-google.svg";
+
+const LogInForm = ({}) => {
   const dispatch = useDispatch();
   const theme = useTheme();
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset
+    reset,
   } = useForm();
+
   const [errorMessage, setErrorMessage] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
 
   const signInUser = (data) => {
-    setIsFetching(true);
     dispatch(logInUser(data))
-      .then((user) => {
-        console.log(user);
-      })
+      .then((user) => {})
       .catch((errorMessage) => {
         setErrorMessage(errorMessage);
-        setIsFetching(false);
         reset();
       });
   };
@@ -58,7 +56,7 @@ const LogInForm = ({ setIsFetching }) => {
         (user) => {},
         (errorMessage) => {
           setErrorMessage(errorMessage);
-        }
+        },
       );
     };
   };
@@ -77,16 +75,11 @@ const LogInForm = ({ setIsFetching }) => {
               sx={{
                 color: "grey.700",
                 backgroundColor: theme.palette.grey[50],
-                borderColor: theme.palette.grey[100]
+                borderColor: theme.palette.grey[100],
               }}
             >
               <Box sx={{ mr: { xs: 1, sm: 2 } }}>
-                <img
-                  src={Google}
-                  alt="google"
-                  width={16}
-                  style={{ marginTop: 6 }}
-                />
+                <img src={Google} alt="google" width={16} />
               </Box>
               Sign in with Google
             </Button>
@@ -95,7 +88,7 @@ const LogInForm = ({ setIsFetching }) => {
             <Box
               sx={{
                 alignItems: "center",
-                display: "flex"
+                display: "flex",
               }}
             >
               <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
@@ -104,13 +97,11 @@ const LogInForm = ({ setIsFetching }) => {
                 variant="outlined"
                 sx={{
                   cursor: "unset",
-                  m: 2,
                   py: 0.5,
-                  px: 7,
                   borderColor: `${theme.palette.grey[100]} !important`,
                   color: `${theme.palette.grey[900]}!important`,
                   fontWeight: 500,
-                  borderRadius: "14px"
+                  borderRadius: "14px",
                 }}
                 disableRipple
                 disabled
@@ -137,7 +128,7 @@ const LogInForm = ({ setIsFetching }) => {
               noValidate
               sx={{
                 mt: 1,
-                width: "83%"
+                width: "80%",
               }}
             >
               <FormControl fullWidth error={Boolean(errors.email)}>
@@ -150,7 +141,7 @@ const LogInForm = ({ setIsFetching }) => {
                   autoComplete="email"
                   autoFocus
                   InputProps={{
-                    style: { fontSize: 16 }
+                    style: { fontSize: 16 },
                   }}
                   error={errors.email !== undefined}
                   {...register("email", {
@@ -158,8 +149,8 @@ const LogInForm = ({ setIsFetching }) => {
                     pattern: {
                       value:
                         /^(([^<>()\[\]\\.,:\s@"]+(\.[^<>()\[\]\\.,:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                      message: "The email doesn't have a valid format"
-                    }
+                      message: "The email doesn't have a valid format",
+                    },
                   })}
                 />
                 <FormHelperText style={{ minHeight: "30px" }}>
@@ -184,14 +175,14 @@ const LogInForm = ({ setIsFetching }) => {
                           {showPassword ? <VisibilityOff /> : <Visibility />}
                         </IconButton>
                       </InputAdornment>
-                    )
+                    ),
                   }}
                   {...register("password", {
                     required: "The password is required",
                     minLength: {
                       value: 8,
-                      message: "The password must have at least 8 characters"
-                    }
+                      message: "The password must have at least 8 characters",
+                    },
                   })}
                 />
                 <FormHelperText style={{ minHeight: "30px" }}>
@@ -203,7 +194,6 @@ const LogInForm = ({ setIsFetching }) => {
                 type="submit"
                 fullWidth
                 variant="contained"
-                sx={{ mb: 2 }}
               >
                 Log In
               </Button>

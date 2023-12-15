@@ -8,7 +8,7 @@ import {
   Chip,
   useMediaQuery,
   Typography,
-  Stack
+  Stack,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import AccessTimeIcon from "@mui/icons-material/AccessTimeOutlined";
@@ -50,11 +50,11 @@ export default function EventCalendar({ selectedEvent }) {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const hasRealTime = [
-    ...new Set(highlightedDates.map((date) => date.format("HH:mm")))
+    ...new Set(highlightedDates.map((date) => date.format("HH:mm"))),
   ].some((time) => time !== "00:00");
 
   const isSelectedDateHighlighted = highlightedDates.some((date) =>
-    date.isSame(value, "day")
+    date.isSame(value, "day"),
   );
 
   const parseEventDates = (sessions) => {
@@ -88,12 +88,12 @@ export default function EventCalendar({ selectedEvent }) {
           loading={false}
           renderLoading={() => <DayCalendarSkeleton />}
           slots={{
-            day: ServerDay
+            day: ServerDay,
           }}
           slotProps={{
             day: {
-              highlightedDates
-            }
+              highlightedDates,
+            },
           }}
         />
       </LocalizationProvider>
@@ -110,7 +110,7 @@ export default function EventCalendar({ selectedEvent }) {
             flexWrap: { xs: "nowrap", md: "wrap" },
             overflowX: { xs: "auto", md: "none" },
             py: 2,
-            minHeight: 75
+            minHeight: 75,
           }}
         >
           {isSelectedDateHighlighted &&
@@ -123,7 +123,7 @@ export default function EventCalendar({ selectedEvent }) {
                     color="secondary"
                     sx={{ mx: 0.5, my: 0.5 }}
                   />
-                )
+                ),
             )}
         </Box>
       </Stack>
