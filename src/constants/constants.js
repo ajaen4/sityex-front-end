@@ -2,18 +2,19 @@ export const pages = ["Search City"];
 export const settings = ["Account", "Logout"];
 export const drawerWidth = 240;
 export const tabletDrawerWidth = 200;
-export const minNavbarHeights = {
-  xs: 50,
-  sm: 50,
-  md: 64,
-  lg: 64,
-  xl: 64,
+export const minNavbarHeight = {
+  xs: "50px",
+  sm: "50px",
+  md: "64px",
+  lg: "64px",
+  xl: "64px",
 };
-export const minNavbarHeightsPx = {
-  xs: `${minNavbarHeights.xs}px`,
-  sm: `${minNavbarHeights.sm}px`,
-  md: `${minNavbarHeights.md}px`,
-  lg: `${minNavbarHeights.lg}px`,
-  xl: `${minNavbarHeights.xl}px`,
+
+export const contentHeight = {
+  xs: "87vh",
+  md: "82vh",
+  lg: "92vh",
+  xl: "93.5vh",
 };
+
 export const imagesCdn = "https://d1dshnpqadx0e7.cloudfront.net";

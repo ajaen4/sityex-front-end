@@ -1,13 +1,35 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { Stack, Typography, Box } from "@mui/material";
 
 import SignUpForm from "components/Forms/SignUpForm";
 import WithoutAuth from "components/Session/WithoutAuth";
 
+import { contentHeight, minNavbarHeight } from "constants/constants";
+
+// export const metadata = {
+//   title: "SityEx | Sign Up - Join Our Community",
+//   description:
+//     "Join SityEx and become part of a thriving community of expatriates in Spain. Sign up to connect with fellow expats, explore Spanish cities, and access resources to ease your transition.",
+// };
+
 const SignUpPage = () => {
+  const [innerHeight, setInnerHeight] = useState({
+    xl: contentHeight.xl,
+  });
+
+  useEffect(() => {
+    const innerHeightPx = window.innerHeight;
+
+    const correctedHeight = {
+      xl: `calc(${innerHeightPx}px - ${minNavbarHeight.xl})`,
+    };
+
+    setInnerHeight(correctedHeight);
+  }, []);
+
   return (
     <Box
       sx={{
@@ -15,13 +37,9 @@ const SignUpPage = () => {
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "primary.light",
-        height: {
-          xs: "86.5vh",
-          md: "83vh",
-          lg: "91vh",
-          xl: "93vh",
-        },
+        height: innerHeight,
         overflow: "scroll",
+        py: 3,
       }}
     >
       <Box
@@ -33,8 +51,6 @@ const SignUpPage = () => {
           borderRadius: 3,
           p: 2,
           mx: 3,
-          mt: 10,
-          mb: 3,
           backgroundColor: "white",
           boxShadow:
             "0px 10px 20px rgba(0, 0, 0, 0.19), 0px 6px 6px rgba(0, 0, 0, 0.23)",

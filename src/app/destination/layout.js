@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useTheme } from "@mui/material/styles";
 import { useParams, usePathname } from "next/navigation";
@@ -12,10 +12,12 @@ import { fetchCity, fetchCountry } from "actions";
 import { Box, Typography } from "@mui/material";
 
 import CityTabs from "components/Tab/CityTabs";
+import { contentHeight, minNavbarHeight } from "constants/constants";
 
 const CityLayout = ({ children }) => {
   const { city_id } = useParams();
   const selectedCity = useSelector((state) => state.selectedCity.data);
+  const [innerHeight, setInnerHeight] = useState(contentHeight);
 
   const theme = useTheme();
   const pathname = usePathname();
@@ -24,6 +26,19 @@ const CityLayout = ({ children }) => {
   const isCityEventPage = pathname.split("/").includes("event");
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const innerHeightPx = window.innerHeight;
+
+    const correctedHeight = {
+      xs: `calc(${innerHeightPx}px - ${minNavbarHeight.xs})`,
+      md: `calc(${innerHeightPx}px - ${minNavbarHeight.md})`,
+      lg: `calc(${innerHeightPx}px - ${minNavbarHeight.lg})`,
+      xl: `calc(${innerHeightPx}px - ${minNavbarHeight.xl})`,
+    };
+
+    setInnerHeight(correctedHeight);
+  }, []);
 
   useEffect(() => {
     dispatch(fetchCity(city_id));
@@ -40,11 +55,7 @@ const CityLayout = ({ children }) => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        height: {
-          xs: "86vh",
-          lg: "92vh",
-          xl: "94vh",
-        },
+        height: innerHeight,
         overflow: "hidden",
         backgroundColor: "grey.100",
       }}
@@ -72,9 +83,8 @@ const CityLayout = ({ children }) => {
       <Box
         sx={{
           display: "flex",
-          flexGrow: 1,
           overflowY: "hidden",
-          height: "100%",
+          flexGrow: 1,
         }}
       >
         {children}

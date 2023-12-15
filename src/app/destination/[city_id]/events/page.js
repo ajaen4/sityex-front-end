@@ -68,7 +68,14 @@ const CityEventsPage = () => {
   }, [events, filteredSubcategories]);
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexGrow: 1,
+        width: "100%",
+        flexDirection: "column",
+      }}
+    >
       <Tabs
         value={selectedTab}
         onChange={handleTabChange}
@@ -83,7 +90,15 @@ const CityEventsPage = () => {
           <Tab label={category} key={category} />
         ))}
       </Tabs>
-      <Box sx={{ overflowY: "scroll", width: "100%", height: "100%", pb: 6 }}>
+      <Box
+        sx={{
+          overflowY: "scroll",
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          flexGrow: 1,
+        }}
+      >
         {filteredSubcategories.map(
           (category, index) =>
             selectedTab === index && (

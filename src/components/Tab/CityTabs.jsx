@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 
@@ -11,7 +11,7 @@ import PeopleIcon from "@mui/icons-material/PeopleOutlined";
 import * as ROUTES_PATHS from "routes/paths";
 
 export default function CityTabs() {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
   const selectedCity = useSelector((state) => state.selectedCity.data);
 
   const router = useRouter();

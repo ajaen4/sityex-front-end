@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { usePathname } from "next/navigation";
 
@@ -25,8 +25,6 @@ export default function Drawer({ ...props }) {
   const pathname = usePathname();
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
-
-  const isLandingPage = pathname.split("/").every((str) => str === "");
 
   useEffect(() => {
     const paths = ["destination"];

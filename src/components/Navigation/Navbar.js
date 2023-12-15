@@ -21,7 +21,7 @@ import { signOutUser } from "actions";
 import { useDrawerContext } from "components/Contexts/DrawerContext";
 
 import * as ROUTES_PATHS from "routes/paths";
-import { pages, settings, minNavbarHeightsPx } from "constants/constants.js";
+import { pages, settings, minNavbarHeight } from "constants/constants.js";
 
 const logo_white = "/big_logo_white.png";
 const logo_blue = "/big_logo_blue.png";
@@ -73,7 +73,7 @@ function NavBar({}) {
 
   return (
     <AppBar
-      position="fixed"
+      position={isLandingPage ? "fixed" : "fixed"}
       sx={{
         zIndex: theme.zIndex.drawer + 1000,
         backgroundColor: isOpaqueNavbar ? "white" : "transparent",
@@ -86,7 +86,6 @@ function NavBar({}) {
           justifyContent: "space-between",
         }}
         sx={{
-          minHeight: minNavbarHeightsPx,
           pr: 1,
         }}
       >
