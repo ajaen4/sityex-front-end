@@ -30,6 +30,7 @@ export default function RootLayout({ children }) {
           content="rqpcK6RBveELxXz0UrvCJb4EEi-bGF-W4QSK58hIuS8"
         />
         <meta name="theme-color" content="#2196f3" />
+        <link rel="canonical" href="https://sityex.com/" />
         {/*Facebook*/}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://sityex.com/" />
