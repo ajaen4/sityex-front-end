@@ -48,7 +48,7 @@ const MainItems = () => {
         <ListItemButton
           sx={{
             minHeight: 48,
-            px: 2.5
+            px: 2.5,
           }}
           data-path={ROUTES_PATHS.BLOG}
           onClick={itemSelected}
@@ -57,7 +57,7 @@ const MainItems = () => {
             sx={{
               minWidth: 0,
               mr: 3,
-              justifyContent: "center"
+              justifyContent: "center",
             }}
           >
             <NewspaperIcon />
