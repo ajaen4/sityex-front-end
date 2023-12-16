@@ -40,7 +40,8 @@ function NavBar({}) {
   const userSettingsRef = useRef(null);
 
   const isLandingPage = pathname.split("/").every((str) => str === "");
-  const isBlogPage = pathname.split("/").slice(-1) === "blog";
+  const isBlogPage =
+    pathname.split("/")[pathname.split("/").length - 1] === "blog";
   const isOpaqueNavbar =
     (!isLandingPage && !isBlogPage) ||
     (isLandingPage && scrolledY > 750) ||
@@ -172,7 +173,7 @@ function NavBar({}) {
                   alt="Remy Sharp"
                   src={`https://eu.ui-avatars.com/api/?name=${auth.data.userName.replace(
                     " ",
-                    "+"
+                    "+",
                   )}&size=250`}
                   sx={{
                     m: 0,
