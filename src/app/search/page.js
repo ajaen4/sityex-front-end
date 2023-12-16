@@ -19,7 +19,6 @@ const SearchPage = () => {
         height: contentHeight,
         justifyContent: "center",
         position: "relative",
-        overflowY: "scroll",
       }}
     >
       <SearchTab />

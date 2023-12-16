@@ -55,7 +55,7 @@ const CityEventsPage = () => {
     });
 
     return eventCategories.filter((subcategory) =>
-      usedSubcategories.has(subcategory),
+      usedSubcategories.has(subcategory)
     );
   }, [events]);
 
@@ -63,7 +63,7 @@ const CityEventsPage = () => {
     return filteredSubcategories.map((category) =>
       events
         .filter((event) => event.sityex_subcategories.includes(category))
-        .sort((a, b) => a.remaining_days - b.remaining_days),
+        .sort((a, b) => a.remaining_days - b.remaining_days)
     );
   }, [events, filteredSubcategories]);
 
@@ -92,7 +92,6 @@ const CityEventsPage = () => {
       </Tabs>
       <Box
         sx={{
-          overflowY: "scroll",
           width: "100%",
           display: "flex",
           flexDirection: "column",
@@ -103,7 +102,7 @@ const CityEventsPage = () => {
           (category, index) =>
             selectedTab === index && (
               <EventsGrid key={category} events={memoizedEvents[index]} />
-            ),
+            )
         )}
       </Box>
     </Box>
