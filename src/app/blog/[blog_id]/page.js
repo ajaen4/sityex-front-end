@@ -11,9 +11,8 @@ const mediumStyle = {
   lineHeight: 1.6,
   color: "#333",
   backgroundColor: "#fff",
-  maxWidth: "65%",
-  margin: "40px auto",
-  padding: "20px",
+  maxWidth: "800px",
+  padding: 20,
 };
 
 const h1Style = {
@@ -53,7 +52,7 @@ const SingleBlogPage = () => {
   const { blog_id } = useParams();
 
   return (
-    <Box>
+    <Box sx={{ display: "flex", justifyContent: "center" }}>
       {blog_id === "nie" && (
         <div style={mediumStyle}>
           <h1 style={h1Style}>
