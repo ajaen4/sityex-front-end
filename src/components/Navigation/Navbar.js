@@ -21,7 +21,8 @@ import { signOutUser } from "actions";
 import { useDrawerContext } from "components/Contexts/DrawerContext";
 
 import * as ROUTES_PATHS from "routes/paths";
-import { pages, settings, minNavbarHeight } from "constants/constants.js";
+import { pages, settings } from "constants/constants.js";
+import { sliderClasses } from "@mui/material";
 
 const logo_white = "/big_logo_white.png";
 const logo_blue = "/big_logo_blue.png";
@@ -39,7 +40,7 @@ function NavBar({}) {
   const userSettingsRef = useRef(null);
 
   const isLandingPage = pathname.split("/").every((str) => str === "");
-  const isBlogPage = pathname.split("/").includes("blog");
+  const isBlogPage = pathname.split("/").slice(-1) === "blog";
   const isOpaqueNavbar =
     (!isLandingPage && !isBlogPage) ||
     (isLandingPage && scrolledY > 750) ||
