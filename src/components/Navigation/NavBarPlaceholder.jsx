@@ -10,8 +10,9 @@ import { minNavbarHeight } from "constants/constants";
 function NavBarPlaceholder({}) {
   const pathname = usePathname();
   const isLandingPage = pathname.split("/").every((str) => str === "");
+  const isBlogPage = pathname.split("/").includes("blog");
 
-  return <>{!isLandingPage && <Box sx={{ minHeight: minNavbarHeight }} />}</>;
+  return <>{!isLandingPage && !isBlogPage && <Box sx={{ minHeight: minNavbarHeight }} />}</>;
 }
 
 export default NavBarPlaceholder;
