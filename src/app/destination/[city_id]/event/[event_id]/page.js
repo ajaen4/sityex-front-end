@@ -40,7 +40,7 @@ const CityEventPage = () => {
       selectedCity.city_id,
       event_id,
       auth.data.id,
-      interested_info,
+      interested_info
     );
   }, []);
 
@@ -67,7 +67,7 @@ const CityEventPage = () => {
         selectedCity.city_id,
         event_id,
         auth.data?.id,
-        buy_info,
+        buy_info
       );
     window.open(selectedEvent.affiliate_url, "_blank", "noopener");
   };
@@ -81,7 +81,6 @@ const CityEventPage = () => {
   return (
     <Box
       sx={{
-        overflowY: "scroll",
         mx: 1.5,
         mb: 2,
         p: 2,
