@@ -29,7 +29,7 @@ const logo_blue = "/big_logo_blue.png";
 function NavBar({}) {
   const { isOpenDrawer, setIsOpenDrawer } = useDrawerContext();
   const [isOpenUserMenu, setIsOpenUserMenu] = useState(false);
-  const [hasScrolled100vh, setHasScrolled100vh] = useState(false);
+  const [scrolledY, setScrolledY] = useState(0);
 
   const auth = useSelector((state) => state.auth);
 
@@ -39,7 +39,11 @@ function NavBar({}) {
   const userSettingsRef = useRef(null);
 
   const isLandingPage = pathname.split("/").every((str) => str === "");
-  const isOpaqueNavbar = !isLandingPage || hasScrolled100vh;
+  const isBlogPage = pathname.split("/").includes("blog");
+  const isOpaqueNavbar =
+    (!isLandingPage && !isBlogPage) ||
+    (isLandingPage && scrolledY > 750) ||
+    (isBlogPage && scrolledY > 400);
 
   const toggleUserMenu = () => {
     setIsOpenUserMenu(!isOpenUserMenu);
@@ -61,7 +65,7 @@ function NavBar({}) {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const viewportHeight = window.innerHeight;
-      setHasScrolled100vh(scrollY > viewportHeight);
+      setScrolledY(scrollY);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -73,7 +77,7 @@ function NavBar({}) {
 
   return (
     <AppBar
-      position={isLandingPage ? "fixed" : "fixed"}
+      position={isLandingPage || isBlogPage ? "fixed" : "fixed"}
       sx={{
         zIndex: theme.zIndex.drawer + 1000,
         backgroundColor: isOpaqueNavbar ? "white" : "transparent",
@@ -167,7 +171,7 @@ function NavBar({}) {
                   alt="Remy Sharp"
                   src={`https://eu.ui-avatars.com/api/?name=${auth.data.userName.replace(
                     " ",
-                    "+",
+                    "+"
                   )}&size=250`}
                   sx={{
                     m: 0,
