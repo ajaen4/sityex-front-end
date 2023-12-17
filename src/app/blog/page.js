@@ -44,7 +44,7 @@ const BlogPage = () => {
             backgroundColor: "rgba(0, 0, 0, 0.5)",
             borderRadius: 2,
             p: 2,
-            mb: 8,
+            mb: 2,
             mx: 3,
           }}
         >
