@@ -30,7 +30,7 @@ export default function RootLayout({ children }) {
           content="rqpcK6RBveELxXz0UrvCJb4EEi-bGF-W4QSK58hIuS8"
         />
         <meta name="theme-color" content="#2196f3" />
-        <link rel="canonical" href="https://sityex.com/" />
+        <link rel="canonical" href="https://www.sityex.com/" />
         {/*Facebook*/}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://sityex.com/" />
@@ -69,7 +69,6 @@ export default function RootLayout({ children }) {
               <Box
                 sx={{
                   display: "flex",
-                  overflowY: "hidden",
                 }}
               >
                 <DataLoader />
@@ -84,7 +83,7 @@ export default function RootLayout({ children }) {
                       md: `calc(100% - ${tabletDrawerWidth}px)`,
                       lg: `calc(100% - ${drawerWidth}px)`,
                     },
-                    overflow: "scroll",
+                    overflowY: "scroll",
                   }}
                 >
                   <NavBarPlaceholder />

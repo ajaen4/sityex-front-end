@@ -41,7 +41,9 @@ const CitiesGrid = ({}) => {
 
   if (!citiesIndex) return null;
 
-  const cities = citiesIndex.cities;
+  const cities = [...citiesIndex.cities].sort((a, b) =>
+    a.name.localeCompare(b.name),
+  );
 
   const Cell = ({ columnIndex, rowIndex, style }) => {
     const cityIndex = rowIndex * numColumns + columnIndex;

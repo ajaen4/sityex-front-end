@@ -92,7 +92,6 @@ const CityEventsPage = () => {
       </Tabs>
       <Box
         sx={{
-          overflowY: "scroll",
           width: "100%",
           display: "flex",
           flexDirection: "column",

@@ -81,7 +81,6 @@ const CityEventPage = () => {
   return (
     <Box
       sx={{
-        overflowY: "scroll",
         mx: 1.5,
         mb: 2,
         p: 2,

@@ -56,8 +56,8 @@ const CityLayout = ({ children }) => {
         display: "flex",
         flexDirection: "column",
         height: innerHeight,
-        overflow: "hidden",
         backgroundColor: "grey.100",
+        overflow: "scroll",
       }}
     >
       <Box
@@ -83,7 +83,6 @@ const CityLayout = ({ children }) => {
       <Box
         sx={{
           display: "flex",
-          overflowY: "hidden",
           flexGrow: 1,
         }}
       >

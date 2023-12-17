@@ -38,7 +38,6 @@ const SignUpPage = () => {
         alignItems: "center",
         backgroundColor: "primary.light",
         height: innerHeight,
-        overflow: "scroll",
         py: 3,
       }}
     >
