@@ -25,12 +25,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
         <meta
           name="google-site-verification"
           content="rqpcK6RBveELxXz0UrvCJb4EEi-bGF-W4QSK58hIuS8"
         />
         <meta name="theme-color" content="#2196f3" />
         <link rel="canonical" href="https://www.sityex.com/" />
+        <link rel="apple-touch-icon" href="%PUBLIC_URL%/small_logo_blue.png" />
         {/*Facebook*/}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://sityex.com/" />

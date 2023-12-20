@@ -9,12 +9,6 @@ import WithoutAuth from "components/Session/WithoutAuth";
 
 import { contentHeight, minNavbarHeight } from "constants/constants";
 
-// export const metadata = {
-//   title: "SityEx | Log In - Continue Your Journey",
-//   description:
-//     "Welcome back to SityEx. Log in to reconnect with the expatriate community in Spain, discover new events, and access personalized resources.",
-// };
-
 const LogInPage = () => {
   const [innerHeight, setInnerHeight] = useState(contentHeight);
 
