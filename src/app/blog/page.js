@@ -18,7 +18,7 @@ export const metadata = {
   description:
     "Read our blog posts to learn more about how to secure housing, easy handling of government bureaucracy and all about your new home city.",
   alternates: {
-    canonical: "https://sityex.com/blog",
+    canonical: "https://www.sityex.com/blog",
   },
 };
 
