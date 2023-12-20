@@ -22,7 +22,6 @@ import { useDrawerContext } from "components/Contexts/DrawerContext";
 
 import * as ROUTES_PATHS from "routes/paths";
 import { pages, settings } from "constants/constants.js";
-import { sliderClasses } from "@mui/material";
 
 const logo_white = "/big_logo_white.png";
 const logo_blue = "/big_logo_blue.png";
@@ -66,7 +65,6 @@ function NavBar({}) {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      const viewportHeight = window.innerHeight;
       setScrolledY(scrollY);
     };
 
@@ -173,7 +171,7 @@ function NavBar({}) {
                   alt="Remy Sharp"
                   src={`https://eu.ui-avatars.com/api/?name=${auth.data.userName.replace(
                     " ",
-                    "+",
+                    "+"
                   )}&size=250`}
                   sx={{
                     m: 0,
