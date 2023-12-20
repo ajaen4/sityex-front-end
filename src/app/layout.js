@@ -23,7 +23,7 @@ export const metadata = {
   generator: "SityEx",
   applicationName: "SityEx",
   creator: "Alberto Jaen",
-  manifest: "https://sityex.com/manifest.json",
+  manifest: "https://www.sityex.com/manifest.json",
   title: {
     default: "SityEx | Discover, Connect, Belong",
   },
