@@ -15,7 +15,11 @@ import { imagesCdn } from "constants/constants";
 
 export const metadata = {
   title: "SityEx | Blog",
-  description: "Read our blog posts to learn more about our cities.",
+  description:
+    "Read our blog posts to learn more about how to secure housing, easy handling of government bureaucracy and all about your new home city.",
+  alternates: {
+    canonical: "https://sityex.com/blog",
+  },
 };
 
 const BlogPage = () => {
@@ -76,6 +80,7 @@ const BlogPage = () => {
               width="80"
               height="80"
               src={`${imagesCdn}/icons/house.png`}
+              loading="eager"
               alt="housing icon"
               title="Housing"
             />
@@ -101,6 +106,7 @@ const BlogPage = () => {
               width="80"
               height="80"
               src={`${imagesCdn}/icons/government.png`}
+              loading="eager"
               alt="government icon"
               title="Government Bureaucracy"
             />
@@ -126,6 +132,7 @@ const BlogPage = () => {
               width="80"
               height="80"
               src={`${imagesCdn}/icons/party.png`}
+              loading="eager"
               alt="events icon"
               title="Events"
             />
