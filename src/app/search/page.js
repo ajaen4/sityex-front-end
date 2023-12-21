@@ -10,7 +10,7 @@ export const metadata = {
   title: "SityEx | City Search",
   description: "Discover Your Ideal Spanish City from our 27 available cities.",
   alternates: {
-    canonical: "https://www.sityex.com/search",
+    canonical: "https://sityex.com/search",
   },
 };
 
