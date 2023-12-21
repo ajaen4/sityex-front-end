@@ -12,7 +12,7 @@ export const metadata = {
   description:
     "Empowering expats in Spain with SityEx. Discover communities, connect with expats, and find your belonging in your new Spanish city. Start your journey today.",
   alternates: {
-    canonical: "https://sityex.com/",
+    canonical: "https://www.sityex.com/",
   },
 };
 

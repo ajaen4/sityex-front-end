@@ -1,9 +1,16 @@
-import React, { Suspense } from "react";
+import React from "react";
+import Link from "next/link";
 
-import { Box, Grid, Typography } from "@mui/material";
+import {
+  Box,
+  Grid,
+  Typography,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+} from "@mui/material";
 
-import BlogSlides from "components/Slides/BlogSlides";
-import LoadingSpinner from "components/Spinner/LoadingSpinner";
 import { imagesCdn } from "constants/constants";
 
 export const metadata = {
@@ -11,7 +18,7 @@ export const metadata = {
   description:
     "Read our blog posts to learn more about how to secure housing, easy handling of government bureaucracy and all about your new home city.",
   alternates: {
-    canonical: "https://sityex.com/blog",
+    canonical: "https://www.sityex.com/blog",
   },
 };
 
@@ -22,7 +29,6 @@ const BlogPage = () => {
         display: "flex",
         textAlign: "center",
         flexDirection: "column",
-        width: "100%",
       }}
     >
       <Box
@@ -125,10 +131,10 @@ const BlogPage = () => {
             <img
               width="80"
               height="80"
-              src={`${imagesCdn}/icons/cities.png`}
+              src={`${imagesCdn}/icons/party.png`}
               loading="eager"
-              alt="city icon"
-              title="City Guide"
+              alt="events icon"
+              title="Events"
             />
             <Typography
               color="grey900"
@@ -139,22 +145,113 @@ const BlogPage = () => {
           </Box>
         </Grid>
       </Grid>
-      <Typography variant="h2" sx={{ color: "grey.500", my: 3, fontSize: 40 }}>
-        Latest Blogs
+      <Typography variant="h2" sx={{ color: "grey.500", mt: 3, fontSize: 40 }}>
+        Blogs
       </Typography>
-      <Box>
-        <Suspense fallback={<LoadingSpinner />}>
-          <BlogSlides is_latest={true} />
-        </Suspense>
-      </Box>
-      <Typography variant="h2" sx={{ color: "grey.500", my: 3, fontSize: 40 }}>
-        Other Blogs
-      </Typography>
-      <Box>
-        <Suspense fallback={<LoadingSpinner />}>
-          <BlogSlides is_latest={false} />
-        </Suspense>
-      </Box>
+      <Grid
+        container
+        spacing={1}
+        sx={{ justifyContent: "space-evenly", my: 5 }}
+      >
+        <Grid
+          item
+          xs={12}
+          md={3}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            my: 2,
+          }}
+        >
+          <Card sx={{ maxWidth: 345 }}>
+            <CardMedia
+              sx={{ height: 140 }}
+              image={`${imagesCdn}/blogs/nie.png`}
+              title="NIE blog"
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                Unlocking Spain: Your Complete Guide to Getting a NIE/TIE
+                hassle-free
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Understanding the NIE is the first step in making Spain your
+                home. It's more than just a number; it's your key to numerous
+                activities, from opening a bank account to signing a lease.
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <Link href="/blog/nie">Read publication</Link>
+            </CardActions>
+          </Card>
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          md={3}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            my: 2,
+          }}
+        >
+          <Card sx={{ maxWidth: 345 }}>
+            <CardMedia
+              sx={{ height: 140 }}
+              image={`${imagesCdn}/blogs/empadronamiento.png`}
+              title="Empadronamiento blog"
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                Claim Your Spanish Address: A Step-by-Step Empadronamiento Guide
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                The certificado de empadronamiento is a document that registers
+                where you live in Spain and with whom. The Spanish law requires
+                all nationals and expat residents who live more than 6 months in
+                Spain to register at the city hall.
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <Link href="/blog/empadronamiento">Read publication</Link>
+            </CardActions>
+          </Card>
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          md={3}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            my: 2,
+          }}
+        >
+          <Card sx={{ maxWidth: 345 }}>
+            <CardMedia
+              sx={{ height: 140 }}
+              image={`${imagesCdn}/blogs/social_security.png`}
+              title="Social Security blog"
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                Obtaining your Social Security Number
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                The Spanish Social Security Number is a crucial requirement for
+                living and working in Spain. It’s used to access the healthcare
+                system, pay taxes, and, importantly, for employment purposes.
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <Link href="/blog/social-security">Read publication</Link>
+            </CardActions>
+          </Card>
+        </Grid>
+      </Grid>
     </Box>
   );
 };
