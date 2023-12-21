@@ -39,7 +39,6 @@ const BlogPage = () => {
         <Box
           sx={{
             textAlign: "center",
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
             borderRadius: 2,
             p: 2,
             mb: 2,
