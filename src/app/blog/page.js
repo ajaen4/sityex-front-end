@@ -30,7 +30,7 @@ const BlogPage = () => {
           display: "flex",
           height: "60vh",
           justifyContent: "center",
-          backgroundImage: `url(${imagesCdn}/blog.jpg)`,
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)), url(${imagesCdn}/blog.jpg)`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           alignItems: "end",
@@ -50,8 +50,7 @@ const BlogPage = () => {
             SityEx Blog
           </Typography>
           <Typography color="white" fontSize={20}>
-            In detail content about all you need to know about your new home
-            city
+            All you need to know about your new home city
           </Typography>
         </Box>
       </Box>
