@@ -5,3 +5,4 @@ export * from "./analytics";
 export * from "./maps";
 export * from "./events";
 export * from "./storage";
+export * from "./blogs";
