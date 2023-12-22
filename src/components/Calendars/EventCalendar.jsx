@@ -6,11 +6,9 @@ import {
   Box,
   Badge,
   Chip,
-  useMediaQuery,
   Typography,
   Stack,
 } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
 import AccessTimeIcon from "@mui/icons-material/AccessTimeOutlined";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonthOutlined";
 
@@ -46,9 +44,6 @@ export default function EventCalendar({ selectedEvent }) {
   const [value, setValue] = useState(dayjs());
   const [highlightedDates, setHighlightedDates] = useState([]);
 
-  const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
-
   const hasRealTime = [
     ...new Set(highlightedDates.map((date) => date.format("HH:mm"))),
   ].some((time) => time !== "00:00");
@@ -73,7 +68,7 @@ export default function EventCalendar({ selectedEvent }) {
     .map((date) => date.format("HH:mm"));
 
   return (
-    <Box sx={{ width: "100%", overflow: "hidden" }}>
+    <Box sx={{ width: "100%", overflow: "hidden", px: 1 }}>
       <Box sx={{ display: "flex", mb: 1 }}>
         <CalendarMonthIcon sx={{ fontSize: 25 }} />
         <Typography variant="h3" sx={{ fontSize: 22 }}>
@@ -97,8 +92,8 @@ export default function EventCalendar({ selectedEvent }) {
           }}
         />
       </LocalizationProvider>
-      <Stack>
-        <Box sx={{ display: "flex", my: 1 }}>
+      <Stack >
+        <Box sx={{ my: 1, display: "flex" }}>
           <AccessTimeIcon sx={{ fontSize: 25 }} />
           <Typography variant="h3" sx={{ fontSize: 22 }}>
             Time slots
@@ -108,9 +103,12 @@ export default function EventCalendar({ selectedEvent }) {
           sx={{
             display: { xs: "flex", md: "flex" },
             flexWrap: { xs: "nowrap", md: "wrap" },
-            overflowX: { xs: "auto", md: "none" },
+            overflowX: { xs: "scroll", md: "none" },
             py: 2,
             minHeight: 75,
+            maxWidth: { xs: "320px" },
+            alignSelf: "center",
+            width: "100%",
           }}
         >
           {isSelectedDateHighlighted &&
