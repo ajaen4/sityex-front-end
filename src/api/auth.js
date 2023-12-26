@@ -37,7 +37,6 @@ export const logInWithGoogle = async () => {
       uid: user.uid,
       email: user.email,
       userName: user.displayName,
-      homeCountry3Code: null,
       photoURL: user.photoURL,
     });
     return user;
@@ -76,13 +75,17 @@ export const createUser = async ({
 
 export const saveUser = async (userData) => {
   const userRef = doc(db, "users", userData.uid);
-  await setDoc(userRef, {
-    userName: userData.userName,
-    email: userData.email,
-    id: userData.uid,
-    homeCountry3Code: userData.homeCountry3Code,
-    photoURL: userData.photoURL || null,
-  });
+  await setDoc(
+    userRef,
+    {
+      userName: userData.userName,
+      email: userData.email,
+      id: userData.uid,
+      homeCountry3Code: userData.homeCountry3Code,
+      photoURL: userData.photoURL || null,
+    },
+    { merge: true }
+  );
 };
 
 export const updateUser = async (userData) => {

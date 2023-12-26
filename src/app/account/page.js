@@ -120,7 +120,12 @@ const AccountPage = () => {
         <Grid item xs={12} md={4}>
           <Box sx={{ mt: 3, ml: 3 }}>
             {selectedTab === 0 && (
-              <Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
                 <Typography variant="h2">Public Profile</Typography>
                 <Divider sx={{ my: 3 }} />
                 <Box
@@ -130,6 +135,7 @@ const AccountPage = () => {
                   sx={{
                     mt: 1,
                     width: "80%",
+                    alignSelf: "center",
                   }}
                 >
                   <FormControl fullWidth error={Boolean(errors.userName)}>
@@ -190,7 +196,12 @@ const AccountPage = () => {
               </Box>
             )}
             {selectedTab === 1 && (
-              <Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
                 <Typography variant="h2">Account</Typography>
                 <Divider sx={{ my: 3 }} />
                 <Box
@@ -200,6 +211,7 @@ const AccountPage = () => {
                   sx={{
                     mt: 1,
                     width: "80%",
+                    alignSelf: "center",
                   }}
                 >
                   <FormControl fullWidth error={Boolean(errors.email)}>
