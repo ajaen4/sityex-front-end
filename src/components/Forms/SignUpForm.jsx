@@ -39,6 +39,7 @@ const SignUpForm = ({}) => {
     control,
     formState: { errors },
     getValues,
+    reset,
   } = useForm();
 
   const dispatch = useDispatch();
@@ -49,12 +50,17 @@ const SignUpForm = ({}) => {
   const [errorMessage, setErrorMessage] = useState(null);
   const [signedUpMessage, setSignedUpMessage] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
-  const [selectedCountry, setSelectedCountry] = useState("");
   const allCountries = useSelector((state) => state.allCountries.data);
 
-  useEffect(() => {
-    dispatch(fetchCountries());
-  }, []);
+  const resetForm = () => {
+    reset({
+      email: "",
+      userName: "",
+      homeCountry3Code: "",
+      password: "",
+      confirmPassword: "",
+    });
+  };
 
   const signUpUser = (data) => {
     dispatch(createUser(data)).then(
@@ -62,6 +68,7 @@ const SignUpForm = ({}) => {
         setSignedUpMessage(
           "Verify your email to be able to log in. Remember to check your spam folder!",
         );
+        resetForm();
       },
       (error) => {
         setErrorMessage(error);
@@ -78,10 +85,6 @@ const SignUpForm = ({}) => {
         },
       );
     };
-  };
-
-  const handleChange = (event) => {
-    setSelectedCountry(event.target.value);
   };
 
   return (
@@ -205,21 +208,17 @@ const SignUpForm = ({}) => {
                     {errors.userName?.message}
                   </FormHelperText>
                 </FormControl>
-                <FormControl fullWidth error={Boolean(errors.homeCountry)}>
+                <FormControl fullWidth error={Boolean(errors.homeCountry3Code)}>
                   <InputLabel>Home Country</InputLabel>
                   <Controller
-                    name="homeCountry"
+                    name="homeCountry3Code"
                     control={control}
+                    defaultValue=""
                     rules={{ required: "Home country is required" }}
                     render={({ field }) => (
                       <Select
                         {...field}
                         label="Home Country"
-                        value={selectedCountry}
-                        onChange={(e) => {
-                          field.onChange(e);
-                          handleChange(e);
-                        }}
                       >
                         {allCountries &&
                           allCountries.map((country) => (
@@ -234,7 +233,7 @@ const SignUpForm = ({}) => {
                     )}
                   />
                   <FormHelperText style={{ minHeight: "25px" }}>
-                    {errors.homeCountry?.message}
+                    {errors.homeCountry3Code?.message}
                   </FormHelperText>
                 </FormControl>
                 <FormControl fullWidth error={Boolean(errors.password)}>

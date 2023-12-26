@@ -22,10 +22,6 @@ export const logInUserWithGoogle = () => (dispatch, getState) => {
   return api.logInWithGoogle().then((user) => dispatch(justLoggedIn(true)));
 };
 
-export const logInUserWithFacebook = () => (dispatch, getState) => {
-  return api.logInWithFacebook().then((user) => dispatch(justLoggedIn(true)));
-};
-
 export const signOutUser = (uid) => {
   api.signOutUser();
 };
@@ -38,9 +34,13 @@ export const storeAuthUser = (authUser) => (dispatch, getState) => {
     api.getUserData(authUser.uid).then(
       (user) => dispatch(setAuthUser({ user: user, isAuthResolved: true })),
       (errorMessage) =>
-        dispatch(setAuthUserError({ errorMessage: errorMessage })),
+        dispatch(setAuthUserError({ errorMessage: errorMessage }))
     );
   } else {
     dispatch(setIsAuthResolved({ isAuthResolved: false }));
   }
+};
+
+export const updateUser = (userData) => {
+  return api.updateUser(userData);
 };
