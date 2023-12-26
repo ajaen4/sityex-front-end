@@ -52,6 +52,7 @@ function NavBar({}) {
 
   const handleCloseUserMenu = (setting) => {
     setIsOpenUserMenu(false);
+    if (setting === "Account") router.push(ROUTES_PATHS.ACCOUNT);
     if (setting === "Logout") signOutUser(auth.data.id);
   };
 
@@ -77,7 +78,7 @@ function NavBar({}) {
 
   return (
     <AppBar
-      position={isLandingPage || isBlogPage ? "fixed" : "fixed"}
+      position="fixed"
       sx={{
         zIndex: theme.zIndex.drawer + 1000,
         backgroundColor: isOpaqueNavbar ? "white" : "transparent",
@@ -171,7 +172,7 @@ function NavBar({}) {
                   alt="Remy Sharp"
                   src={`https://eu.ui-avatars.com/api/?name=${auth.data.userName.replace(
                     " ",
-                    "+",
+                    "+"
                   )}&size=250`}
                   sx={{
                     m: 0,
