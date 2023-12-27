@@ -216,10 +216,7 @@ const SignUpForm = ({}) => {
                     defaultValue=""
                     rules={{ required: "Home country is required" }}
                     render={({ field }) => (
-                      <Select
-                        {...field}
-                        label="Home Country"
-                      >
+                      <Select {...field} label="Home Country">
                         {allCountries &&
                           allCountries.map((country) => (
                             <MenuItem

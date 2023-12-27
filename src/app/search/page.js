@@ -8,7 +8,8 @@ import { contentHeight } from "constants/constants";
 
 export const metadata = {
   title: "SityEx | City Search",
-  description: "Discover Your Ideal Spanish City from our 27 available cities.",
+  description:
+    "Explore and find your perfect match in Spain with SityEx. Our comprehensive city search tool offers detailed insights into Spanish cities, helping you uncover hidden gems and make informed decisions about your next destination. Whether you're looking for vibrant culture, serene beaches, or dynamic urban life, start your journey with SityEx and discover a city that feels like home.",
   alternates: {
     canonical: "https://sityex.com/search",
   },
