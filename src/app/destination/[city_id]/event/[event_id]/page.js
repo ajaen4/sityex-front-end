@@ -8,6 +8,8 @@ import dynamic from "next/dynamic";
 import { Box, Grid, Typography, Button, Chip } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOnOutlined";
 
+import SendGAPageView from "components/DataLoaders/SendGAPageView";
+
 const EventMap = dynamic(() => import("components/Maps/EventMap"), {
   ssr: false,
 });
@@ -40,7 +42,7 @@ const CityEventPage = () => {
       selectedCity.city_id,
       event_id,
       auth.data.id,
-      interested_info,
+      interested_info
     );
   }, []);
 
@@ -67,7 +69,7 @@ const CityEventPage = () => {
         selectedCity.city_id,
         event_id,
         auth.data?.id,
-        buy_info,
+        buy_info
       );
     window.open(selectedEvent.affiliate_url, "_blank", "noopener");
   };
@@ -90,6 +92,7 @@ const CityEventPage = () => {
         borderRadius: 2,
       }}
     >
+      <SendGAPageView pageTitle="Single Event Page" event_id={event_id} />
       <Grid container sx={{ display: "flex", justifyContent: "center" }}>
         <Grid item xs={12} md={3} lg={3}>
           <img

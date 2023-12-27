@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Box, Tabs, Tab, useMediaQuery, useTheme } from "@mui/material";
 
 import EventsGrid from "components/ImageGrids/EventsGrid";
+import SendGAPageView from "components/DataLoaders/SendGAPageView";
 
 import { getCityEvents } from "actions";
 import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
@@ -83,6 +84,7 @@ const CityEventsPage = () => {
         flexDirection: "column",
       }}
     >
+      <SendGAPageView pageTitle="Events Page" selectedCity={selectedCity} />
       <Tabs
         value={selectedTab}
         onChange={handleTabChange}
