@@ -22,7 +22,7 @@ const SendGAPageView = ({ pageTitle, selectedCity, blog_id, event_id }) => {
       pageView.event_id = event_id;
     }
     
-    if (process.env.NEXT_PUBLIC_ENVIRONMENT !== "development") {
+    if (process.env.NEXT_PUBLIC_ENVIRONMENT !== "local") {
       logAnalyticsEvent("page_view", pageView);
     }
   }, [selectedCity, blog_id, event_id]);
