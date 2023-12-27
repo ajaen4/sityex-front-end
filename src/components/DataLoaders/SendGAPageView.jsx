@@ -22,6 +22,8 @@ const SendGAPageView = ({ pageTitle, selectedCity, blog_id, event_id }) => {
       pageView.event_id = event_id;
     }
     
+    console.log(pageTitle);
+    console.log(process.env.NEXT_PUBLIC_ENVIRONMENT);
     if (process.env.NEXT_PUBLIC_ENVIRONMENT !== "local") {
       logAnalyticsEvent("page_view", pageView);
     }
