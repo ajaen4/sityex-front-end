@@ -87,7 +87,6 @@ const AccountPage = () => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        alignItems: "center",
         p: 3,
       }}
     >
@@ -129,7 +128,7 @@ const AccountPage = () => {
           </Grid>
         )}
         <Grid item xs={12} md={4}>
-          <Box sx={{ mt: { md: 1.5 }, ml: 3 }}>
+          <Box sx={{ mt: { md: 1.5 } }}>
             {selectedTab === 0 && (
               <Box>
                 <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -140,13 +139,13 @@ const AccountPage = () => {
                   )}
                   <Typography variant="h2">Public Profile</Typography>
                 </Box>
-                <Divider sx={{ my: 3 }} />
+                <Divider sx={{ mt: 1 }} />
                 <Box
                   component="form"
                   onSubmit={handleSubmit(updateUserData)}
                   noValidate
                   sx={{
-                    mt: 1,
+                    mt: 3,
                     width: "80%",
                   }}
                 >
