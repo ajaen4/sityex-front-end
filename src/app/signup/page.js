@@ -6,6 +6,7 @@ import { Stack, Typography, Box } from "@mui/material";
 
 import SignUpForm from "components/Forms/SignUpForm";
 import WithoutAuth from "components/Session/WithoutAuth";
+import SendGAPageView from "components/DataLoaders/SendGAPageView";
 
 import { contentHeight, minNavbarHeight } from "constants/constants";
 
@@ -35,6 +36,7 @@ const SignUpPage = () => {
         py: 3,
       }}
     >
+      <SendGAPageView pageTitle="Sign Up Page" />
       <Box
         sx={{
           display: "flex",

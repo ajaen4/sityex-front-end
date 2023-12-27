@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import SendGAPageView from "components/DataLoaders/SendGAPageView";
 
 import { useForm, Controller } from "react-hook-form";
 import { useTheme } from "@mui/material/styles";
@@ -90,6 +91,7 @@ const AccountPage = () => {
         p: 3,
       }}
     >
+      <SendGAPageView pageTitle="Account Page" />
       <Grid container spacing={1}>
         {((isSmallScreen && selectedTab === false) || !isSmallScreen) && (
           <Grid item xs={12} md={4}>

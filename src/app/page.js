@@ -4,6 +4,7 @@ import { Box, Typography, Stack, Grid } from "@mui/material";
 
 import CitiesAutocomplete from "components/Autocomplete/CitiesAutocomplete";
 import CitySlides from "components/Slides/CitySlides";
+import SendGAPageView from "components/DataLoaders/SendGAPageView";
 
 import { imagesCdn } from "constants/constants";
 
@@ -19,6 +20,7 @@ export const metadata = {
 const LandingPage = () => {
   return (
     <Grid container sx={{ alignItems: "center" }}>
+      <SendGAPageView pageTitle="Landing Page" />
       <Grid
         item
         xs={12}
