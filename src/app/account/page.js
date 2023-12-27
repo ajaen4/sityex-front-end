@@ -4,8 +4,10 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import { useForm, Controller } from "react-hook-form";
+import { useTheme } from "@mui/material/styles";
 
 import {
+  useMediaQuery,
   Box,
   Avatar,
   Typography,
@@ -22,18 +24,23 @@ import {
   MenuItem,
   Snackbar,
   Alert,
+  IconButton,
 } from "@mui/material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBackOutlined";
 
 import WithAuth from "components/Session/WithAuth";
 
 import { updateUser } from "actions";
 
 const AccountPage = () => {
-  const [selectedTab, setSelectedtab] = useState(0);
+  const [selectedTab, setSelectedtab] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState(null);
 
   const auth = useSelector((state) => state.auth.data);
   const allCountries = useSelector((state) => state.allCountries.data);
+
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const {
     register,
@@ -84,49 +91,53 @@ const AccountPage = () => {
       }}
     >
       <Grid container spacing={1}>
-        <Grid item xs={12} md={4}>
-          <Grid container>
-            <Grid item xs={2}>
-              <Avatar
-                alt="Remy Sharp"
-                src={`https://eu.ui-avatars.com/api/?name=${auth.userName.replace(
-                  " ",
-                  "+"
-                )}&size=512`}
-                sx={{ width: 50, height: 50 }}
-              />
-            </Grid>
-            <Grid item xs={10} sx={{ display: "flex", alignItems: "center" }}>
-              <Typography variant="h2">{auth.userName}</Typography>
-            </Grid>
-            <Grid
-              item
-              xs={12}
-              md={8}
-              sx={{ mt: 3, borderRight: 1, borderColor: "divider" }}
-            >
-              <Tabs
-                orientation="vertical"
-                value={selectedTab}
-                onChange={handleChange}
-                aria-label="account tabs"
+        {((isSmallScreen && selectedTab === false) || !isSmallScreen) && (
+          <Grid item xs={12} md={4}>
+            <Grid container>
+              <Grid item xs={2}>
+                <Avatar
+                  alt="Remy Sharp"
+                  src={`https://eu.ui-avatars.com/api/?name=${auth.userName.replace(
+                    " ",
+                    "+"
+                  )}&size=512`}
+                  sx={{ width: 50, height: 50 }}
+                />
+              </Grid>
+              <Grid item xs={10} sx={{ display: "flex", alignItems: "center" }}>
+                <Typography variant="h2">{auth.userName}</Typography>
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                md={8}
+                sx={{ mt: 3, borderRight: 1, borderColor: "divider" }}
               >
-                <Tab label="Public Profile" />
-                <Tab label="Account" />
-              </Tabs>
+                <Tabs
+                  orientation="vertical"
+                  value={selectedTab}
+                  onChange={handleChange}
+                  aria-label="account tabs"
+                >
+                  <Tab label="Public Profile" />
+                  <Tab label="Account" />
+                </Tabs>
+              </Grid>
             </Grid>
           </Grid>
-        </Grid>
+        )}
         <Grid item xs={12} md={4}>
-          <Box sx={{ mt: 3, ml: 3 }}>
+          <Box sx={{ mt: { md: 1.5 }, ml: 3 }}>
             {selectedTab === 0 && (
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <Typography variant="h2">Public Profile</Typography>
+              <Box>
+                <Box sx={{ display: "flex", alignItems: "center" }}>
+                  {isSmallScreen && (
+                    <IconButton onClick={() => handleChange(null, false)}>
+                      <ArrowBackIcon sx={{ mr: 2 }} />
+                    </IconButton>
+                  )}
+                  <Typography variant="h2">Public Profile</Typography>
+                </Box>
                 <Divider sx={{ my: 3 }} />
                 <Box
                   component="form"
@@ -135,7 +146,6 @@ const AccountPage = () => {
                   sx={{
                     mt: 1,
                     width: "80%",
-                    alignSelf: "center",
                   }}
                 >
                   <FormControl fullWidth error={Boolean(errors.userName)}>
@@ -196,13 +206,15 @@ const AccountPage = () => {
               </Box>
             )}
             {selectedTab === 1 && (
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <Typography variant="h2">Account</Typography>
+              <Box>
+                <Box sx={{ display: "flex", alignItems: "center" }}>
+                  {isSmallScreen && (
+                    <IconButton onClick={() => handleChange(null, false)}>
+                      <ArrowBackIcon sx={{ mr: 2 }} />
+                    </IconButton>
+                  )}
+                  <Typography variant="h2">Account</Typography>
+                </Box>
                 <Divider sx={{ my: 3 }} />
                 <Box
                   component="form"
@@ -211,7 +223,6 @@ const AccountPage = () => {
                   sx={{
                     mt: 1,
                     width: "80%",
-                    alignSelf: "center",
                   }}
                 >
                   <FormControl fullWidth error={Boolean(errors.email)}>

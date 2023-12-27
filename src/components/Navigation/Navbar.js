@@ -170,9 +170,9 @@ function NavBar({}) {
               >
                 <Avatar
                   alt="Remy Sharp"
-                  src={`https://eu.ui-avatars.com/api/?name=${auth.data.userName.replace(
+                  src={`https://eu.ui-avatars.com/api/?name=${auth.data?.userName.replace(
                     " ",
-                    "+"
+                    "+",
                   )}&size=250`}
                   sx={{
                     m: 0,

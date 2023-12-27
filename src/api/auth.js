@@ -37,7 +37,7 @@ export const logInWithGoogle = async () => {
       uid: user.uid,
       email: user.email,
       userName: user.displayName,
-      photoURL: user.photoURL,
+      photoURL: user.photoURL || null,
     });
     return user;
   } catch (error) {
@@ -75,17 +75,27 @@ export const createUser = async ({
 
 export const saveUser = async (userData) => {
   const userRef = doc(db, "users", userData.uid);
-  await setDoc(
-    userRef,
-    {
-      userName: userData.userName,
-      email: userData.email,
-      id: userData.uid,
-      homeCountry3Code: userData.homeCountry3Code,
-      photoURL: userData.photoURL || null,
-    },
-    { merge: true }
-  );
+  getDoc(userRef).then((docSnap) => {
+    if (docSnap.exists()) {
+      setDoc(
+        userRef,
+        {
+          userName: userData.userName,
+          email: userData.email,
+          photoURL: userData.photoURL || null,
+        },
+        { merge: true }
+      );
+    } else {
+      setDoc(userRef, {
+        userName: userData.userName,
+        email: userData.email,
+        id: userData.uid,
+        homeCountry3Code: userData.homeCountry3Code || null,
+        photoURL: userData.photoURL || null,
+      });
+    }
+  });
 };
 
 export const updateUser = async (userData) => {
