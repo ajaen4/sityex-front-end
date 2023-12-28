@@ -86,6 +86,7 @@ export default function EventCalendar({ selectedEvent }) {
           }}
         />
       </LocalizationProvider>
+      {hasRealTime &&
       <Stack>
         <Box sx={{ my: 1, display: "flex" }}>
           <AccessTimeIcon sx={{ fontSize: 25 }} />
@@ -119,6 +120,7 @@ export default function EventCalendar({ selectedEvent }) {
             )}
         </Box>
       </Stack>
+      }
     </Box>
   );
 }
