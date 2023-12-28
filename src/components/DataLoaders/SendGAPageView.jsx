@@ -1,29 +1,39 @@
 "use client";
 
 import { useEffect } from "react";
-import { logAnalyticsEvent } from "api";
+import ReactGA from "react-ga4";
 
 const SendGAPageView = ({ pageTitle, selectedCity, blog_id, event_id }) => {
   useEffect(() => {
-    let pageView = {
-      page_title: pageTitle,
-      page_location: window.location.href,
+
+    ReactGA.initialize([
+      {
+        trackingId: process.env.NEXT_PUBLIC_MEASUREMENT_ID,
+        gaOptions: { send_page_view: false },
+      },
+    ]);
+
+    let gaEvent = {
+      hitType: "pageview",
+      page: window.location.href,
+      title: pageTitle,
     };
 
-    if (selectedCity) {
-      pageView.city_name = selectedCity.name;
+    if (typeof selectedCity !== "undefined") {
+      gaEvent["city_name"] = selectedCity.name;
     }
 
-    if (blog_id) {
-      pageView.blog_id = selectedCity.blog_id;
+    if (typeof blog_id !== "undefined") {
+      gaEvent["blog_id"] = blog_id;
     }
 
-    if (event_id) {
-      pageView.event_id = event_id;
+    if (typeof event_id !== "undefined") {
+      gaEvent["event_id"] = event_id;
     }
 
-    logAnalyticsEvent("page_view", pageView);
-  }, [selectedCity, blog_id, event_id]);
+    ReactGA.send(gaEvent);
+
+  }, []);
 
   return null;
 };

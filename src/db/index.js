@@ -1,6 +1,5 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, Timestamp } from "firebase/firestore";
-import { initializeAnalytics, isSupported } from "firebase/analytics";
 import { getStorage } from "firebase/storage";
 
 const config = {
@@ -16,9 +15,6 @@ const config = {
 
 const app = initializeApp(config);
 const db = getFirestore(app);
-const analytics = isSupported().then((yes) =>
-  yes ? initializeAnalytics(app, { send_page_view: false }) : null,
-);
 const storage = getStorage(app);
 
-export { db as default, analytics, storage, Timestamp };
+export { db as default, storage, Timestamp };
