@@ -7,6 +7,8 @@ import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 
 import TicketIcon from "@mui/icons-material/ConfirmationNumberOutlined";
 import PeopleIcon from "@mui/icons-material/PeopleOutlined";
+import HouseIcon from "@mui/icons-material/MapsHomeWorkOutlined";
+import GovernmentIcon from "@mui/icons-material/AssuredWorkloadOutlined";
 
 import * as ROUTES_PATHS from "routes/paths";
 
@@ -33,6 +35,16 @@ export default function CityTabs() {
         label="Community"
         icon={<PeopleIcon />}
         data-path={ROUTES_PATHS.CITY_COMMUNITY}
+      />
+      <BottomNavigationAction
+        label="Housing"
+        icon={<HouseIcon />}
+        data-path={ROUTES_PATHS.CITY_HOUSING}
+      />
+      <BottomNavigationAction
+        label="Bureaucracy"
+        icon={<GovernmentIcon />}
+        data-path={ROUTES_PATHS.CITY_BUREAUCRACY}
       />
     </BottomNavigation>
   );
