@@ -4,6 +4,7 @@ import { Box, Typography, Stack, Grid } from "@mui/material";
 
 import CitiesAutocomplete from "components/Autocomplete/CitiesAutocomplete";
 import CitySlides from "components/Slides/CitySlides";
+import SendGAPageView from "components/DataLoaders/SendGAPageView";
 
 import { imagesCdn } from "constants/constants";
 
@@ -19,12 +20,13 @@ export const metadata = {
 const LandingPage = () => {
   return (
     <Grid container sx={{ alignItems: "center" }}>
+      <SendGAPageView pageTitle="Landing Page" />
       <Grid
         item
         xs={12}
         sx={{
           height: "100vh",
-          backgroundImage: `url(${imagesCdn}/people_kitchen.jpg)`,
+          backgroundImage: `url(${imagesCdn}/landing.jpg)`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           display: "flex",
@@ -37,7 +39,11 @@ const LandingPage = () => {
           variant="h1"
           color="white"
           fontSize={60}
-          sx={{ alignSelf: "center", textAlign: "center" }}
+          sx={{
+            alignSelf: "center",
+            textAlign: "center",
+            mt: { xs: -30, md: -25 },
+          }}
         >
           Discover, Connect, Belong
         </Typography>
