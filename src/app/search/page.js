@@ -3,7 +3,6 @@ import React from "react";
 import { Box } from "@mui/material";
 
 import SearchTab from "components/Tab/SearchTab";
-import SendGAPageView from "components/DataLoaders/SendGAPageView";
 
 import { contentHeight } from "constants/constants";
 
@@ -26,7 +25,6 @@ const SearchPage = () => {
         position: "relative",
       }}
     >
-      <SendGAPageView pageTitle="Search Page" />
       <SearchTab />
     </Box>
   );

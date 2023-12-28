@@ -8,8 +8,6 @@ import { getQRCode } from "api";
 
 import { Container, Paper, Typography, Box, Button } from "@mui/material";
 
-import SendGAPageView from "components/DataLoaders/SendGAPageView";
-
 const CityCommunityPage = () => {
   const auth = useSelector((state) => state.auth);
   const selectedCity = useSelector((state) => state.selectedCity.data);
@@ -32,7 +30,6 @@ const CityCommunityPage = () => {
   if (!auth.isAuthResolved)
     return (
       <Container maxWidth="sm">
-        <SendGAPageView pageTitle="Community Page" />
         <Paper elevation={3} sx={{ padding: "20px" }}>
           <Typography
             variant="h5"
@@ -59,7 +56,6 @@ const CityCommunityPage = () => {
   if (!cityHasCommunity)
     return (
       <Container maxWidth="sm" sx={{ height: "100%" }}>
-        <SendGAPageView pageTitle="Community Page" />
         <Paper elevation={3} sx={{ padding: "20px", textAlign: "center" }}>
           <Typography variant="h4" gutterBottom sx={{ fontSize: 16 }}>
             Coming Soon

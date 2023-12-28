@@ -16,7 +16,7 @@ import { createFilterOptions } from "@mui/material/Autocomplete";
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-import LoadingSpinner from "components/Spinner/LoadingSpinner";
+import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 
 const CitiesAutocomplete = ({ selectedCity, placeholder }) => {
   const citiesIndex = useSelector((state) => state.citiesIndex.data);
@@ -44,7 +44,7 @@ const CitiesAutocomplete = ({ selectedCity, placeholder }) => {
   const cities = citiesIndex ? citiesIndex.cities : [];
 
   if (isLoading) {
-    return <LoadingSpinner />;
+    return <CenteredLoadingSpinner />;
   }
 
   return (
