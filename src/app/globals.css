@@ -47,3 +47,13 @@ body {
   color: #1a0dab;
   text-decoration: none;
 }
+
+/* Hide all scroll bars */
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
