@@ -23,7 +23,6 @@ const SendGAPageView = ({ pageTitle, selectedCity, blog_id, event_id }) => {
     }
 
     logAnalyticsEvent("page_view", pageView);
-
   }, [selectedCity, blog_id, event_id]);
 
   return null;

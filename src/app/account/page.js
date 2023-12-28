@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import SendGAPageView from "components/DataLoaders/SendGAPageView";
 
 import { useForm, Controller } from "react-hook-form";
 import { useTheme } from "@mui/material/styles";
@@ -90,7 +89,6 @@ const AccountPage = () => {
         p: 3,
       }}
     >
-      <SendGAPageView pageTitle="Account Page" />
       <Grid container spacing={1}>
         {((isSmallScreen && selectedTab === false) || !isSmallScreen) && (
           <Grid item xs={12} md={4}>
@@ -100,7 +98,7 @@ const AccountPage = () => {
                   alt="Remy Sharp"
                   src={`https://eu.ui-avatars.com/api/?name=${auth.userName.replace(
                     " ",
-                    "+"
+                    "+",
                   )}&size=512`}
                   sx={{ width: 50, height: 50 }}
                 />
@@ -216,13 +214,13 @@ const AccountPage = () => {
                   )}
                   <Typography variant="h2">Account</Typography>
                 </Box>
-                <Divider sx={{ my: 3 }} />
+                <Divider sx={{ mt: 1 }} />
                 <Box
                   component="form"
                   onSubmit={handleSubmit(updateUserData)}
                   noValidate
                   sx={{
-                    mt: 1,
+                    mt: 3,
                     width: "80%",
                   }}
                 >
