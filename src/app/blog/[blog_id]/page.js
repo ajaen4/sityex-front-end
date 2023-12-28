@@ -7,6 +7,7 @@ import { Box, Typography } from "@mui/material";
 
 import BlogSlides from "components/Slides/BlogSlides";
 import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
+import SendGAPageView from "components/DataLoaders/SendGAPageView";
 
 import * as api from "api";
 
@@ -29,6 +30,7 @@ const SingleBlogPage = () => {
         alignItems: "center",
       }}
     >
+      <SendGAPageView pageTitle="Single Blog Page" blog_id={blog_id} />
       <div
         className="mediumBlogStyle"
         dangerouslySetInnerHTML={{ __html: blog.content }}
