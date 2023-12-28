@@ -229,7 +229,7 @@ const LandingPage = () => {
           Cities
         </Typography>
         <Typography sx={{ fontSize: 22, width: { xs: "90%", md: "70%" } }}>
-          27 cities all over Spain
+          Cities all over Spain
         </Typography>
         <CitySlides />
       </Grid>

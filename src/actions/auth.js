@@ -22,10 +22,6 @@ export const logInUserWithGoogle = () => (dispatch, getState) => {
   return api.logInWithGoogle().then((user) => dispatch(justLoggedIn(true)));
 };
 
-export const logInUserWithFacebook = () => (dispatch, getState) => {
-  return api.logInWithFacebook().then((user) => dispatch(justLoggedIn(true)));
-};
-
 export const signOutUser = (uid) => {
   api.signOutUser();
 };
@@ -36,11 +32,26 @@ export const onAuthStateChanged = (onAuthCallback) =>
 export const storeAuthUser = (authUser) => (dispatch, getState) => {
   if (authUser && authUser.emailVerified) {
     api.getUserData(authUser.uid).then(
-      (user) => dispatch(setAuthUser({ user: user, isAuthResolved: true })),
+      (user) => {
+        if (user) {
+          dispatch(setAuthUser({ user: user, isAuthResolved: true }));
+        } else {
+          const tempUserData = {
+            id: authUser.uid,
+            email: authUser.email,
+            userName: authUser.displayName,
+          };
+          dispatch(setAuthUser({ user: tempUserData, isAuthResolved: true }));
+        }
+      },
       (errorMessage) =>
         dispatch(setAuthUserError({ errorMessage: errorMessage })),
     );
   } else {
     dispatch(setIsAuthResolved({ isAuthResolved: false }));
   }
+};
+
+export const updateUser = (userData) => {
+  return api.updateUser(userData);
 };

@@ -2,7 +2,12 @@
 
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { onAuthStateChanged, storeAuthUser, fetchCitiesIndex } from "actions";
+import {
+  onAuthStateChanged,
+  storeAuthUser,
+  fetchCitiesIndex,
+  fetchCountries,
+} from "actions";
 
 const DataLoader = () => {
   const dispatch = useDispatch();
@@ -13,6 +18,7 @@ const DataLoader = () => {
     });
 
     dispatch(fetchCitiesIndex());
+    dispatch(fetchCountries());
 
     return () => {
       unsubscribeAuth();

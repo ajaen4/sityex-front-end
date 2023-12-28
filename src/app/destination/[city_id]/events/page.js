@@ -8,6 +8,7 @@ import { Box, Tabs, Tab, useMediaQuery, useTheme } from "@mui/material";
 import EventsGrid from "components/ImageGrids/EventsGrid";
 
 import { getCityEvents } from "actions";
+import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 
 const eventCategories = [
   "Experiences",
@@ -25,12 +26,14 @@ const eventCategories = [
 
 const CityEventsPage = () => {
   const selectedCity = useSelector((state) => state.selectedCity.data);
-  const events = useSelector((state) => state.events.events);
+  const events = useSelector((state) => state.events);
   const [selectedTab, setSelectedTab] = useState(0);
 
   const dispatch = useDispatch();
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+
+  const eventsData = events.events || [];
 
   useEffect(() => {
     if (selectedCity) {
@@ -45,7 +48,7 @@ const CityEventsPage = () => {
   const filteredSubcategories = useMemo(() => {
     const usedSubcategories = new Set();
 
-    events.forEach((event) => {
+    eventsData.forEach((event) => {
       const subcategories = event.sityex_subcategories
         .split(",")
         .map((subcategory) => subcategory.trim());
@@ -61,11 +64,15 @@ const CityEventsPage = () => {
 
   const memoizedEvents = useMemo(() => {
     return filteredSubcategories.map((category) =>
-      events
+      eventsData
         .filter((event) => event.sityex_subcategories.includes(category))
         .sort((a, b) => a.remaining_days - b.remaining_days),
     );
   }, [events, filteredSubcategories]);
+
+  if (events.city_id !== selectedCity.city_id) {
+    return <CenteredLoadingSpinner />;
+  }
 
   return (
     <Box

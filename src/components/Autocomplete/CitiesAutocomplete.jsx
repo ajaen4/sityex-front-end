@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 
@@ -16,8 +16,11 @@ import { createFilterOptions } from "@mui/material/Autocomplete";
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
+import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
+
 const CitiesAutocomplete = ({ selectedCity, placeholder }) => {
   const citiesIndex = useSelector((state) => state.citiesIndex.data);
+  const [isLoading, setIsLoading] = useState(false);
 
   const theme = useTheme();
   const router = useRouter();
@@ -35,9 +38,14 @@ const CitiesAutocomplete = ({ selectedCity, placeholder }) => {
 
   const onSelectCity = (event, value) => {
     router.push(`/destination/${value.city_id}/events`);
+    setIsLoading(true);
   };
 
   const cities = citiesIndex ? citiesIndex.cities : [];
+
+  if (isLoading) {
+    return <CenteredLoadingSpinner />;
+  }
 
   return (
     <Autocomplete
@@ -76,13 +84,14 @@ const CitiesAutocomplete = ({ selectedCity, placeholder }) => {
           component="li"
           sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
           {...props}
-          key={option?.city_id}
+          key={option.city_id}
         >
           <img
             width="20"
             src={`https://flagcdn.com/w20/${option.country_2_code.toLowerCase()}.png`}
             srcSet={`https://flagcdn.com/w40/${option.country_2_code.toLowerCase()}.png 2x`}
-            alt=""
+            alt={option.name}
+            key={option.city_id}
           />
           {option.name}
         </Box>

@@ -9,7 +9,6 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   sendEmailVerification,
-  FacebookAuthProvider,
 } from "firebase/auth";
 
 import { doc, setDoc, getDoc } from "firebase/firestore";
@@ -18,7 +17,6 @@ import db from "db";
 
 const auth = getAuth();
 const googleProvider = new GoogleAuthProvider();
-const facebookProvider = new FacebookAuthProvider();
 
 export const logIn = async ({ email, password }) => {
   try {
@@ -39,34 +37,12 @@ export const logInWithGoogle = async () => {
       uid: user.uid,
       email: user.email,
       userName: user.displayName,
-      photoURL: user.photoURL,
+      photoURL: user.photoURL || null,
     });
     return user;
   } catch (error) {
     throw new Error(error.message);
   }
-};
-
-export const logInWithFacebook = async () => {
-  signInWithPopup(auth, facebookProvider)
-    .then(async (result) => {
-      const user = result.user;
-      const credential = FacebookAuthProvider.credentialFromResult(result);
-
-      await saveUser({
-        uid: user.uid,
-        email: user.email,
-        userName: user.displayName,
-      });
-      return user;
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      const email = error.customData.email;
-      const credential = FacebookAuthProvider.credentialFromError(error);
-      throw new Error(errorMessage);
-    });
 };
 
 export const onAuthStateChangedCallback = (onAuthCallback) =>
@@ -76,7 +52,7 @@ export const createUser = async ({
   email,
   password,
   userName,
-  homeCountry,
+  homeCountry3Code,
 }) => {
   try {
     const { user } = await createUserWithEmailAndPassword(
@@ -89,7 +65,7 @@ export const createUser = async ({
       uid: user.uid,
       email,
       userName,
-      country_3_code: homeCountry,
+      homeCountry3Code,
     });
     return user;
   } catch (error) {
@@ -99,12 +75,32 @@ export const createUser = async ({
 
 export const saveUser = async (userData) => {
   const userRef = doc(db, "users", userData.uid);
-  await setDoc(userRef, {
-    userName: userData.userName,
-    email: userData.email,
-    id: userData.uid,
-    photoURL: userData.photoURL || null,
+  getDoc(userRef).then((docSnap) => {
+    if (docSnap.exists()) {
+      setDoc(
+        userRef,
+        {
+          userName: userData.userName,
+          email: userData.email,
+          photoURL: userData.photoURL || null,
+        },
+        { merge: true },
+      );
+    } else {
+      setDoc(userRef, {
+        userName: userData.userName,
+        email: userData.email,
+        id: userData.uid,
+        homeCountry3Code: userData.homeCountry3Code || null,
+        photoURL: userData.photoURL || null,
+      });
+    }
   });
+};
+
+export const updateUser = async (userData) => {
+  const userRef = doc(db, "users", userData.id);
+  await setDoc(userRef, userData, { merge: true });
 };
 
 export const getUserData = async (uid) => {

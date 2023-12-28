@@ -2,13 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import dayjs from "dayjs";
 
-import {
-  Box,
-  Badge,
-  Chip,
-  Typography,
-  Stack,
-} from "@mui/material";
+import { Box, Badge, Chip, Typography, Stack } from "@mui/material";
 import AccessTimeIcon from "@mui/icons-material/AccessTimeOutlined";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonthOutlined";
 
@@ -92,7 +86,7 @@ export default function EventCalendar({ selectedEvent }) {
           }}
         />
       </LocalizationProvider>
-      <Stack >
+      <Stack>
         <Box sx={{ my: 1, display: "flex" }}>
           <AccessTimeIcon sx={{ fontSize: 25 }} />
           <Typography variant="h3" sx={{ fontSize: 22 }}>

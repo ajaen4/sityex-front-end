@@ -4,6 +4,7 @@ import { Box, Grid, Typography } from "@mui/material";
 
 import BlogSlides from "components/Slides/BlogSlides";
 import LoadingSpinner from "components/Spinner/LoadingSpinner";
+
 import { imagesCdn } from "constants/constants";
 
 export const metadata = {
