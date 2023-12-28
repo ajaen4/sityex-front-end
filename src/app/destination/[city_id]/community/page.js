@@ -32,10 +32,7 @@ const CityCommunityPage = () => {
   if (!auth.isAuthResolved)
     return (
       <Container maxWidth="sm">
-        <SendGAPageView
-          pageTitle="City Community Page"
-          selectedCity={selectedCity}
-        />
+        <SendGAPageView pageTitle="City Community Page" />
         <Paper elevation={3} sx={{ padding: "20px" }}>
           <Typography
             variant="h5"
