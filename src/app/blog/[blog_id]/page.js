@@ -8,8 +8,6 @@ import LoadingSpinner from "components/Spinner/LoadingSpinner";
 
 import * as api from "api";
 
-import { imagesCdn } from "constants/constants";
-
 const fetchBlog = async (blog_id) => {
   const blog = await api.getBlog(blog_id);
   return blog;
