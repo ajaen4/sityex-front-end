@@ -58,7 +58,7 @@ function NavBar({}) {
 
   const handleClickNavMenu = (page) => {
     if (page === "Search City") router.push(ROUTES_PATHS.SEARCH);
-    if (page === "Blog") window.location.href = ROUTES_PATHS.BLOG;
+    if (page === "Blog") router.push(ROUTES_PATHS.BLOG);
   };
 
   const clickedLogo = () => router.push(ROUTES_PATHS.ROOT);
@@ -172,7 +172,7 @@ function NavBar({}) {
                   alt="Remy Sharp"
                   src={`https://eu.ui-avatars.com/api/?name=${auth.data?.userName.replace(
                     " ",
-                    "+",
+                    "+"
                   )}&size=250`}
                   sx={{
                     m: 0,
