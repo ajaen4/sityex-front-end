@@ -81,7 +81,6 @@ const LandingPage = () => {
             src={`${imagesCdn}/icons/community.png`}
             alt="community icon"
             title="Community"
-            style={{ mt: 10 }}
           />
           <Typography
             variant="h2"
@@ -226,7 +225,6 @@ const LandingPage = () => {
           src={`${imagesCdn}/icons/cities.png`}
           alt="cities icon"
           title="Cities"
-          style={{ mt: 10 }}
         />
         <Typography
           variant="h2"

@@ -1,26 +1,24 @@
-"use client";
-
-import React, { useState, useEffect } from "react";
-import { useParams } from "next/navigation";
+import React, { Suspense } from "react";
 
 import { Box, Typography } from "@mui/material";
 
 import BlogSlides from "components/Slides/BlogSlides";
-import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 import SendGAPageView from "components/DataLoaders/SendGAPageView";
+import LoadingSpinner from "components/Spinner/LoadingSpinner";
 
 import * as api from "api";
 
-const SingleBlogPage = () => {
-  const { blog_id } = useParams();
+import { imagesCdn } from "constants/constants";
 
-  const [blog, setBlog] = useState(null);
+const fetchBlog = async (blog_id) => {
+  const blog = await api.getBlog(blog_id);
+  return blog;
+};
 
-  useEffect(() => {
-    api.getBlog(blog_id).then((blog) => setBlog(blog));
-  }, []);
-
-  if (!blog) return <CenteredLoadingSpinner />;
+const SingleBlogPage = async ({ params }) => {
+  const blog_id = params.blog_id;
+  console.log(blog_id);
+  const blog = await fetchBlog(blog_id);
 
   return (
     <Box
@@ -41,7 +39,9 @@ const SingleBlogPage = () => {
       >
         You might also be interested in
       </Typography>
-      <BlogSlides avoidBlogId={blog.id} />
+      <Suspense fallback={<LoadingSpinner />}>
+        <BlogSlides avoidBlogId={blog.id} />
+      </Suspense>
     </Box>
   );
 };

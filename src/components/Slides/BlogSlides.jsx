@@ -1,6 +1,4 @@
-"use client";
-
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Link from "next/link";
 
 import {
@@ -16,19 +14,19 @@ import { imagesCdn } from "constants/constants";
 
 import * as api from "api";
 
-const BlogSlides = ({ is_latest, avoidBlogId }) => {
-  const [blogs, setBlogs] = useState([]);
+const fetchBlogs = async (is_latest, avoidBlogId) => {
+  let blogs = await api.getBlogs();
 
-  useEffect(() => {
-    api.getBlogs().then((blogs) => {
-      if (is_latest !== undefined)
-        blogs = blogs.filter((blog) => blog.is_latest === is_latest);
+  if (is_latest !== undefined)
+    blogs = blogs.filter((blog) => blog.is_latest === is_latest);
+  if (avoidBlogId !== undefined)
+    blogs = blogs.filter((blog) => blog.id !== avoidBlogId);
 
-      if (avoidBlogId !== undefined)
-        blogs = blogs.filter((blog) => blog.id !== avoidBlogId);
-      setBlogs(blogs);
-    });
-  }, []);
+  return blogs;
+};
+
+const BlogSlides = async({ is_latest, avoidBlogId }) => {
+  const blogs = await fetchBlogs(is_latest, avoidBlogId);
 
   return (
     <Box
