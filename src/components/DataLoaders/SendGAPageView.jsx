@@ -5,7 +5,6 @@ import ReactGA from "react-ga4";
 
 const SendGAPageView = ({ pageTitle, selectedCity, blog_id, event_id }) => {
   useEffect(() => {
-
     ReactGA.initialize([
       {
         trackingId: process.env.NEXT_PUBLIC_MEASUREMENT_ID,
@@ -32,7 +31,6 @@ const SendGAPageView = ({ pageTitle, selectedCity, blog_id, event_id }) => {
     }
 
     ReactGA.send(gaEvent);
-
   }, []);
 
   return null;

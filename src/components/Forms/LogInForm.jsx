@@ -53,7 +53,7 @@ const LogInForm = ({}) => {
   const onClickGoogleAuth = () => {
     setIsFetching(true);
     logInUserWithGoogle();
-  }
+  };
 
   return (
     <>
@@ -209,7 +209,7 @@ const LogInForm = ({}) => {
           </Link>
         </Grid>
       </Grid>
-      {isFetching && <CenteredLoadingSpinner/>}
+      {isFetching && <CenteredLoadingSpinner />}
       {errorMessage !== null && (
         <StandarModal
           color="error"

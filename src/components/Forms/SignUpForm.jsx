@@ -84,7 +84,7 @@ const SignUpForm = ({}) => {
   const onClickGoogleAuth = () => {
     setIsFetching(true);
     logInUserWithGoogle();
-  }
+  };
 
   return (
     <>
@@ -327,7 +327,7 @@ const SignUpForm = ({}) => {
           </Link>
         </Grid>
       </Grid>
-      {isFetching && <CenteredLoadingSpinner/>}
+      {isFetching && <CenteredLoadingSpinner />}
       {signedUpMessage !== null && (
         <StandarModal
           color="success"

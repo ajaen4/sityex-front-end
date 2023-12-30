@@ -100,7 +100,7 @@ const AccountPage = () => {
                   alt="Remy Sharp"
                   src={`https://eu.ui-avatars.com/api/?name=${auth.userName.replace(
                     " ",
-                    "+"
+                    "+",
                   )}&size=512`}
                   sx={{ width: 50, height: 50 }}
                 />
