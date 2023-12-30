@@ -1,22 +1,21 @@
 import {
-  getAuth,
   signInWithEmailAndPassword,
   onAuthStateChanged,
   createUserWithEmailAndPassword,
   signOut,
   sendPasswordResetEmail,
   updatePassword,
-  signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
   GoogleAuthProvider,
   sendEmailVerification,
 } from "firebase/auth";
 
 import { doc, setDoc, getDoc } from "firebase/firestore";
 
-import db from "db";
+import db, { auth } from "baas";
 
-const auth = getAuth();
-const googleProvider = new GoogleAuthProvider();
+export const googleProvider = new GoogleAuthProvider();
 
 export const logIn = async ({ email, password }) => {
   try {
@@ -32,17 +31,27 @@ export const logIn = async ({ email, password }) => {
 
 export const logInWithGoogle = async () => {
   try {
-    const { user } = await signInWithPopup(auth, googleProvider);
-    await saveUser({
-      uid: user.uid,
-      email: user.email,
-      userName: user.displayName,
-      photoURL: user.photoURL || null,
-    });
-    return user;
+    signInWithRedirect(auth, googleProvider);
   } catch (error) {
     throw new Error(error.message);
   }
+
+  getRedirectResult(auth)
+    .then((result) => {
+      if (result) {
+        const user = result.user;
+        saveUser({
+          uid: user.uid,
+          email: user.email,
+          userName: user.displayName,
+          photoURL: user.photoURL || null,
+        });
+        return user;
+      }
+    })
+    .catch((error) => {
+      throw new Error(error.message);
+    });
 };
 
 export const onAuthStateChangedCallback = (onAuthCallback) =>
@@ -58,7 +67,7 @@ export const createUser = async ({
     const { user } = await createUserWithEmailAndPassword(
       auth,
       email,
-      password,
+      password
     );
     await sendEmailVerification(user);
     await saveUser({
@@ -84,7 +93,7 @@ export const saveUser = async (userData) => {
           email: userData.email,
           photoURL: userData.photoURL || null,
         },
-        { merge: true },
+        { merge: true }
       );
     } else {
       setDoc(userRef, {

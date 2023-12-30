@@ -1,4 +1,4 @@
-import db from "db";
+import db from "baas";
 import { getDoc, collection, doc } from "firebase/firestore";
 
 export const getMap = (map_name) => {

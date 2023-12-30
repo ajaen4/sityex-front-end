@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 
 import { useForm } from "react-hook-form";
 import { useTheme } from "@mui/material/styles";
@@ -23,13 +22,13 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { logInUser, logInUserWithGoogle } from "actions";
 
 import StandarModal from "components/Modals/StandarModal";
+import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 
 import * as ROUTES_PATHS from "routes/paths";
 
 const Google = "/social-google.svg";
 
 const LogInForm = ({}) => {
-  const dispatch = useDispatch();
   const theme = useTheme();
   const {
     register,
@@ -40,9 +39,10 @@ const LogInForm = ({}) => {
 
   const [errorMessage, setErrorMessage] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
+  const [isFetching, setIsFetching] = useState(false);
 
   const signInUser = (data) => {
-    dispatch(logInUser(data))
+    logInUser(data)
       .then((user) => {})
       .catch((errorMessage) => {
         setErrorMessage(errorMessage);
@@ -50,16 +50,10 @@ const LogInForm = ({}) => {
       });
   };
 
-  const providerHandler = (providerAction) => {
-    return async () => {
-      dispatch(providerAction()).then(
-        (user) => {},
-        (errorMessage) => {
-          setErrorMessage(errorMessage);
-        },
-      );
-    };
-  };
+  const onClickGoogleAuth = () => {
+    setIsFetching(true);
+    logInUserWithGoogle();
+  }
 
   return (
     <>
@@ -69,7 +63,7 @@ const LogInForm = ({}) => {
             <Button
               disableElevation
               fullWidth
-              onClick={providerHandler(logInUserWithGoogle)}
+              onClick={onClickGoogleAuth}
               size="large"
               variant="outlined"
               sx={{
@@ -215,6 +209,7 @@ const LogInForm = ({}) => {
           </Link>
         </Grid>
       </Grid>
+      {isFetching && <CenteredLoadingSpinner/>}
       {errorMessage !== null && (
         <StandarModal
           color="error"

@@ -1,25 +1,21 @@
 import {
   setAuthUser,
   setIsAuthResolved,
-  userJustCreated,
-  justLoggedIn,
   setAuthUserError,
 } from "store/reducers/auth";
 
 import * as api from "api";
 
-export const createUser = (signUpData) => (dispatch, getState) => {
-  return api
-    .createUser(signUpData)
-    .then((user) => dispatch(userJustCreated(true)));
+export const createUser = (signUpData) => {
+  return api.createUser(signUpData);
 };
 
-export const logInUser = (logInData) => (dispatch, getState) => {
-  return api.logIn(logInData).then((user) => dispatch(justLoggedIn(true)));
+export const logInUser = (logInData) => {
+  return api.logIn(logInData);
 };
 
-export const logInUserWithGoogle = () => (dispatch, getState) => {
-  return api.logInWithGoogle().then((user) => dispatch(justLoggedIn(true)));
+export const logInUserWithGoogle = () => {
+  return api.logInWithGoogle();
 };
 
 export const signOutUser = (uid) => {
@@ -45,7 +41,7 @@ export const storeAuthUser = (authUser) => (dispatch, getState) => {
         }
       },
       (errorMessage) =>
-        dispatch(setAuthUserError({ errorMessage: errorMessage })),
+        dispatch(setAuthUserError({ errorMessage: errorMessage }))
     );
   } else {
     dispatch(setIsAuthResolved({ isAuthResolved: false }));
