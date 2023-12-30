@@ -1,0 +1,43 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /users/{document=**} {
+      allow read, write: if request.auth.uid != null;
+    }
+    
+    match /cities/{city_id} {
+
+      // Allow read access to everything under cities
+      allow read;
+      
+      match /events/{event_id} {
+        allow read; 
+      }
+
+      // Allow authenticated users to write, except to interested_users
+      allow write: if request.auth.uid != null 
+                   && !request.resource.__name__.matches('cities/.*/events/.*/interested_users/.*');
+
+      // Allow anyone to write to interested_users
+      match /events/{event_id}/interested_users/{user_id} {
+        allow read, write;
+      }
+    }
+    
+    match /countries/{document=**} {
+      allow read;
+      allow write: if request.auth.uid != null;
+    }
+
+    match /maps/{document=**} {
+      allow read;
+      allow write: if request.auth.uid != null;
+    }
+    
+    match /blogs/{document=**} {
+      allow read;
+      allow write: if request.auth.uid != null;
+    }
+  }
+}
