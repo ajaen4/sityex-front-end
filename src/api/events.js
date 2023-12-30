@@ -1,4 +1,4 @@
-import db from "db";
+import db from "baas";
 import { doc, getDoc, getDocs, collection, setDoc } from "firebase/firestore";
 
 const citiesCollection = collection(db, "cities");

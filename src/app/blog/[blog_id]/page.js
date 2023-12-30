@@ -8,6 +8,8 @@ import LoadingSpinner from "components/Spinner/LoadingSpinner";
 
 import * as api from "api";
 
+export const revalidate = 300;
+
 const fetchBlog = async (blog_id) => {
   const blog = await api.getBlog(blog_id);
   return blog;

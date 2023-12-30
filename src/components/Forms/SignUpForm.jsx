@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 import { useForm, Controller } from "react-hook-form";
 import {
@@ -25,7 +25,9 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
 
 import StandarModal from "components/Modals/StandarModal";
-import { createUser, logInUserWithGoogle, fetchCountries } from "actions";
+import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
+
+import { createUser, logInUserWithGoogle } from "actions";
 import { sameAs } from "helpers/validators";
 
 import * as ROUTES_PATHS from "routes/paths";
@@ -42,14 +44,14 @@ const SignUpForm = ({}) => {
     reset,
   } = useForm();
 
-  const dispatch = useDispatch();
-
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const [errorMessage, setErrorMessage] = useState(null);
   const [signedUpMessage, setSignedUpMessage] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
+  const [isFetching, setIsFetching] = useState(false);
+
   const allCountries = useSelector((state) => state.allCountries.data);
 
   const resetForm = () => {
@@ -63,28 +65,25 @@ const SignUpForm = ({}) => {
   };
 
   const signUpUser = (data) => {
-    dispatch(createUser(data)).then(
+    createUser(data).then(
       (user) => {
+        setIsFetching(false);
         setSignedUpMessage(
           "Verify your email to be able to log in. Remember to check your spam folder!",
         );
         resetForm();
       },
       (error) => {
+        setIsFetching(false);
         setErrorMessage(error);
       },
     );
+    setIsFetching(true);
   };
 
-  const providerHandler = (providerAction) => {
-    return async () => {
-      dispatch(providerAction()).then(
-        (user) => {},
-        (errorMessage) => {
-          setErrorMessage(errorMessage);
-        },
-      );
-    };
+  const onClickGoogleAuth = () => {
+    setIsFetching(true);
+    logInUserWithGoogle();
   };
 
   return (
@@ -101,7 +100,7 @@ const SignUpForm = ({}) => {
               <Button
                 disableElevation
                 fullWidth
-                onClick={providerHandler(logInUserWithGoogle)}
+                onClick={onClickGoogleAuth}
                 size="large"
                 variant="outlined"
                 sx={{
@@ -328,6 +327,7 @@ const SignUpForm = ({}) => {
           </Link>
         </Grid>
       </Grid>
+      {isFetching && <CenteredLoadingSpinner />}
       {signedUpMessage !== null && (
         <StandarModal
           color="success"

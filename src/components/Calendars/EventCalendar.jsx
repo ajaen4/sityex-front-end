@@ -86,41 +86,41 @@ export default function EventCalendar({ selectedEvent }) {
           }}
         />
       </LocalizationProvider>
-      {hasRealTime &&
-      <Stack>
-        <Box sx={{ my: 1, display: "flex" }}>
-          <AccessTimeIcon sx={{ fontSize: 25 }} />
-          <Typography variant="h3" sx={{ fontSize: 22 }}>
-            Time slots
-          </Typography>
-        </Box>
-        <Box
-          sx={{
-            display: { xs: "flex", md: "flex" },
-            flexWrap: { xs: "nowrap", md: "wrap" },
-            overflowX: { xs: "scroll", md: "none" },
-            py: 2,
-            minHeight: 75,
-            maxWidth: { xs: "320px" },
-            alignSelf: "center",
-            width: "100%",
-          }}
-        >
-          {isSelectedDateHighlighted &&
-            timesForSelectedDate.map(
-              (time, index) =>
-                time !== "00:00" && (
-                  <Chip
-                    key={index}
-                    label={time}
-                    color="secondary"
-                    sx={{ mx: 0.5, my: 0.5 }}
-                  />
-                ),
-            )}
-        </Box>
-      </Stack>
-      }
+      {hasRealTime && (
+        <Stack>
+          <Box sx={{ my: 1, display: "flex" }}>
+            <AccessTimeIcon sx={{ fontSize: 25 }} />
+            <Typography variant="h3" sx={{ fontSize: 22 }}>
+              Time slots
+            </Typography>
+          </Box>
+          <Box
+            sx={{
+              display: { xs: "flex", md: "flex" },
+              flexWrap: { xs: "nowrap", md: "wrap" },
+              overflowX: { xs: "scroll", md: "none" },
+              py: 2,
+              minHeight: 75,
+              maxWidth: { xs: "320px" },
+              alignSelf: "center",
+              width: "100%",
+            }}
+          >
+            {isSelectedDateHighlighted &&
+              timesForSelectedDate.map(
+                (time, index) =>
+                  time !== "00:00" && (
+                    <Chip
+                      key={index}
+                      label={time}
+                      color="secondary"
+                      sx={{ mx: 0.5, my: 0.5 }}
+                    />
+                  ),
+              )}
+          </Box>
+        </Stack>
+      )}
     </Box>
   );
 }

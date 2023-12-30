@@ -6,7 +6,7 @@ import {
   query,
   orderBy,
 } from "firebase/firestore";
-import db from "db";
+import db from "baas";
 
 export const getCountry = async (country_3_code) => {
   try {
