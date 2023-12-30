@@ -1,5 +1,5 @@
 import { collection, doc, getDoc } from "firebase/firestore";
-import db from "db";
+import db from "baas";
 
 export const getCity = async (city) => {
   try {

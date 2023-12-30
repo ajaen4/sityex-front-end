@@ -1,4 +1,4 @@
-import db from "db";
+import db from "baas";
 import { getDocs, getDoc, doc, collection } from "firebase/firestore";
 
 export const getBlogs = async () => {

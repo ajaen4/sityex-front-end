@@ -4,8 +4,6 @@ const authSlice = createSlice({
   name: "auth",
   initialState: {
     data: null,
-    justLoggedIn: false,
-    userJustCreated: false,
     isAuthResolved: false,
     errorMessage: null,
   },
@@ -17,23 +15,12 @@ const authSlice = createSlice({
     setIsAuthResolved: (state, action) => {
       state.isAuthResolved = action.payload.isAuthResolved;
     },
-    userJustCreated: (state, action) => {
-      state.userJustCreated = action.payload.userJustCreated;
-    },
-    justLoggedIn: (state, action) => {
-      state.justLoggedIn = action.payload.justLoggedIn;
-    },
     setAuthUserError: (state, action) => {
       state.errorMessage = action.payload.errorMessage;
     },
   },
 });
 
-export const {
-  setAuthUser,
-  setIsAuthResolved,
-  userJustCreated,
-  justLoggedIn,
-  setAuthUserError,
-} = authSlice.actions;
+export const { setAuthUser, setIsAuthResolved, setAuthUserError } =
+  authSlice.actions;
 export default authSlice.reducer;

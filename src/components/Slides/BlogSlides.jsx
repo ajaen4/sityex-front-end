@@ -25,7 +25,7 @@ const fetchBlogs = async (is_latest, avoidBlogId) => {
   return blogs;
 };
 
-const BlogSlides = async({ is_latest, avoidBlogId }) => {
+const BlogSlides = async ({ is_latest, avoidBlogId }) => {
   const blogs = await fetchBlogs(is_latest, avoidBlogId);
 
   return (

@@ -1,4 +1,4 @@
-import { storage } from "db";
+import { storage } from "baas";
 
 import { ref, getDownloadURL } from "firebase/storage";
 
