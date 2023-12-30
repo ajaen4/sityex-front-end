@@ -41,7 +41,7 @@ export const storeAuthUser = (authUser) => (dispatch, getState) => {
         }
       },
       (errorMessage) =>
-        dispatch(setAuthUserError({ errorMessage: errorMessage })),
+        dispatch(setAuthUserError({ errorMessage: errorMessage }))
     );
   } else {
     dispatch(setIsAuthResolved({ isAuthResolved: false }));
