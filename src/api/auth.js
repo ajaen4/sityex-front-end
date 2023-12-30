@@ -36,7 +36,7 @@ export const logInWithGoogle = async () => {
     throw new Error(error.message);
   }
 
-  getRedirectResult(auth)
+  return getRedirectResult(auth)
     .then((result) => {
       if (result) {
         const user = result.user;
