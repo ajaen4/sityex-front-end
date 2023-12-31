@@ -21,12 +21,10 @@ env:
   NEXT_PUBLIC_MAPS_STYLE: ${{ secrets.NEXT_PUBLIC_MAPS_STYLE }}
   NEXT_PUBLIC_MAPS_STREET_STYLE: ${{ secrets.NEXT_PUBLIC_MAPS_STREET_STYLE }}
   NEXT_PUBLIC_SENTRY_DSN_URL: ${{ secrets.NEXT_PUBLIC_SENTRY_DSN_URL}}
+  NEXT_PUBLIC_SENTRY_DEPLOY_ENVIRONMENT: ${{ github.ref_name == 'dev' && 'dev' || 'prod' }}
   GCP_SA_KEY: ${{ github.ref_name == 'dev' && secrets.GCP_SA_KEY_BASE_64_DEV || secrets.GCP_SA_KEY_BASE_64 }}
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ github.ref_name == 'dev' && secrets.VERCEL_PROJECT_ID_DEV || secrets.VERCEL_PROJECT_ID }}
-  SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-  SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
-  SENTRY_DEPLOY_ENVIRONMENT: ${{ github.ref_name == 'dev' && 'dev' || 'prod' }}
   GOOGLE_APPLICATION_CREDENTIALS: /tmp/gcp-key.json
   CI: ""
 
