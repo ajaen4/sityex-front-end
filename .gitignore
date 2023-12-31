@@ -42,3 +42,5 @@ commands
 firebase-debug.json
 .env
 .vscode
+# Sentry Config File
+.sentryclirc
