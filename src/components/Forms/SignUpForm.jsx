@@ -25,7 +25,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
 
 import StandarModal from "components/Modals/StandarModal";
-import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
+import LoadingSpinner from "components/Spinner/LoadingSpinner";
 
 import { createUser, logInUserWithGoogle } from "actions";
 import { sameAs } from "helpers/validators";
@@ -118,7 +118,8 @@ const SignUpForm = ({}) => {
                     style={{ marginRight: isSmallScreen ? 8 : 16 }}
                   />
                 </Box>
-                Sign Up with Google
+                {!isFetching &&<div>Sign in with Google</div>}
+                {isFetching && <LoadingSpinner />}
               </Button>
             </Grid>
             <Grid item xs={12}>
@@ -307,7 +308,8 @@ const SignUpForm = ({}) => {
                     type="submit"
                     style={{ margin: "2%", width: "100%" }}
                   >
-                    Create account
+                    {!isFetching && <div>Create account</div>}
+                    {isFetching && <LoadingSpinner color="white"/>}
                   </Button>
                 </Box>
               </Box>
@@ -327,7 +329,6 @@ const SignUpForm = ({}) => {
           </Link>
         </Grid>
       </Grid>
-      {isFetching && <CenteredLoadingSpinner />}
       {signedUpMessage !== null && (
         <StandarModal
           color="success"
