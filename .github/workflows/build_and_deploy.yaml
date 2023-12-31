@@ -7,23 +7,33 @@ on:
       - main
 
 env:
-      NEXT_PUBLIC_PROJECT_ID: ${{ github.ref_name == 'dev' && secrets.NEXT_PUBLIC_PROJECT_ID_DEV || secrets.NEXT_PUBLIC_PROJECT_ID }}
-      NEXT_PUBLIC_API_KEY: ${{ github.ref_name == 'dev' && secrets.NEXT_PUBLIC_API_KEY_DEV || secrets.NEXT_PUBLIC_API_KEY }}
-      NEXT_PUBLIC_AUTH_DOMAIN: ${{ github.ref_name == 'dev' && secrets.NEXT_PUBLIC_AUTH_DOMAIN_DEV || secrets.NEXT_PUBLIC_AUTH_DOMAIN }}
-      NEXT_PUBLIC_DATABASE_URL: ${{ github.ref_name == 'dev' && secrets.NEXT_PUBLIC_DATABASE_URL_DEV || secrets.NEXT_PUBLIC_DATABASE_URL }}
-      NEXT_PUBLIC_STORAGE_BUCKET: ${{ github.ref_name == 'dev' && secrets.NEXT_PUBLIC_STORAGE_BUCKET_DEV || secrets.NEXT_PUBLIC_STORAGE_BUCKET }}
-      NEXT_PUBLIC_MESSAGING_SENDER_ID: ${{ github.ref_name == 'dev' && secrets.NEXT_PUBLIC_MESSAGING_SENDER_ID_DEV || secrets.NEXT_PUBLIC_MESSAGING_SENDER_ID }}
-      NEXT_PUBLIC_APP_ID: ${{ github.ref_name == 'dev' && secrets.NEXT_PUBLIC_APP_ID_DEV || secrets.NEXT_PUBLIC_APP_ID }}
-      NEXT_PUBLIC_MEASUREMENT_ID: ${{ github.ref_name == 'dev' && secrets.NEXT_PUBLIC_MEASUREMENT_ID_DEV || secrets.NEXT_PUBLIC_MEASUREMENT_ID }}
-      NEXT_PUBLIC_MAPS_API_KEY: ${{ secrets.NEXT_PUBLIC_MAPS_API_KEY }}
-      NEXT_PUBLIC_PLACES_API_KEY: ${{ github.ref_name == 'dev' && secrets.NEXT_PUBLIC_PLACES_API_KEY_DEV || secrets.NEXT_PUBLIC_PLACES_API_KEY }}
-      NEXT_PUBLIC_MAPS_STYLE: ${{ secrets.NEXT_PUBLIC_MAPS_STYLE }}
-      NEXT_PUBLIC_MAPS_STREET_STYLE: ${{ secrets.NEXT_PUBLIC_MAPS_STREET_STYLE }}
-      GCP_SA_KEY: ${{ github.ref_name == 'dev' && secrets.GCP_SA_KEY_BASE_64_DEV || secrets.GCP_SA_KEY_BASE_64 }}
-      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-      VERCEL_PROJECT_ID: ${{ github.ref_name == 'dev' && secrets.VERCEL_PROJECT_ID_DEV || secrets.VERCEL_PROJECT_ID }}
-      GOOGLE_APPLICATION_CREDENTIALS: /tmp/gcp-key.json
-      CI: ""
+  NEXT_PUBLIC_PROJECT_ID: ${{ github.ref_name == 'dev' && secrets.NEXT_PUBLIC_PROJECT_ID_DEV || secrets.NEXT_PUBLIC_PROJECT_ID }}
+  NEXT_PUBLIC_API_KEY: ${{ github.ref_name == 'dev' && secrets.NEXT_PUBLIC_API_KEY_DEV || secrets.NEXT_PUBLIC_API_KEY }}
+  NEXT_PUBLIC_AUTH_DOMAIN: ${{ github.ref_name == 'dev' && secrets.NEXT_PUBLIC_AUTH_DOMAIN_DEV || secrets.NEXT_PUBLIC_AUTH_DOMAIN }}
+  NEXT_PUBLIC_DATABASE_URL: ${{ github.ref_name == 'dev' && secrets.NEXT_PUBLIC_DATABASE_URL_DEV || secrets.NEXT_PUBLIC_DATABASE_URL }}
+  NEXT_PUBLIC_STORAGE_BUCKET: ${{ github.ref_name == 'dev' && secrets.NEXT_PUBLIC_STORAGE_BUCKET_DEV || secrets.NEXT_PUBLIC_STORAGE_BUCKET }}
+  NEXT_PUBLIC_MESSAGING_SENDER_ID: ${{ github.ref_name == 'dev' && secrets.NEXT_PUBLIC_MESSAGING_SENDER_ID_DEV || secrets.NEXT_PUBLIC_MESSAGING_SENDER_ID }}
+  NEXT_PUBLIC_APP_ID: ${{ github.ref_name == 'dev' && secrets.NEXT_PUBLIC_APP_ID_DEV || secrets.NEXT_PUBLIC_APP_ID }}
+  NEXT_PUBLIC_MEASUREMENT_ID: ${{ github.ref_name == 'dev' && secrets.NEXT_PUBLIC_MEASUREMENT_ID_DEV || secrets.NEXT_PUBLIC_MEASUREMENT_ID }}
+  NEXT_PUBLIC_MAPS_API_KEY: ${{ secrets.NEXT_PUBLIC_MAPS_API_KEY }}
+  NEXT_PUBLIC_PLACES_API_KEY: ${{ github.ref_name == 'dev' && secrets.NEXT_PUBLIC_PLACES_API_KEY_DEV || secrets.NEXT_PUBLIC_PLACES_API_KEY }}
+  NEXT_PUBLIC_MAPS_STYLE: ${{ secrets.NEXT_PUBLIC_MAPS_STYLE }}
+  NEXT_PUBLIC_MAPS_STREET_STYLE: ${{ secrets.NEXT_PUBLIC_MAPS_STREET_STYLE }}
+  # Sentry needed in client
+  NEXT_PUBLIC_SENTRY_DSN_URL: ${{ secrets.NEXT_PUBLIC_SENTRY_DSN_URL}}
+  NEXT_PUBLIC_SENTRY_ORG: ${{ secrets.NEXT_PUBLIC_SENTRY_ORG }}
+  NEXT_PUBLIC_SENTRY_PROJECT: ${{ secrets.NEXT_PUBLIC_SENTRY_PROJECT }}
+  NEXT_PUBLIC_SENTRY_DEPLOY_ENVIRONMENT: ${{ github.ref_name == 'dev' && 'dev' || 'prod' }}
+  # GCP
+  GCP_SA_KEY: ${{ github.ref_name == 'dev' && secrets.GCP_SA_KEY_BASE_64_DEV || secrets.GCP_SA_KEY_BASE_64 }}
+  GOOGLE_APPLICATION_CREDENTIALS: /tmp/gcp-key.json
+  # Vercel
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ github.ref_name == 'dev' && secrets.VERCEL_PROJECT_ID_DEV || secrets.VERCEL_PROJECT_ID }}
+  # Sentry needed in CI/CD
+  SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+  SENTRY_LOG_LEVEL: ${{ secrets.SENTRY_LOG_LEVEL }}
+  CI: ""
 
 jobs:
   vercel:
@@ -39,7 +49,7 @@ jobs:
           node-version: 20
 
       - name: Install Vercel CLI
-        run: npm install --global vercel@latest
+        run: npm install --global vercel@33.0.1
 
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
@@ -63,7 +73,7 @@ jobs:
           node-version: 20
       
       - name: Install Firebase CLI
-        run: npm install -g firebase-tools
+        run: npm install -g firebase-tools@13.0.2
 
       - name: Set Up GCP Credentials
         run: |
