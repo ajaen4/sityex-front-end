@@ -25,6 +25,8 @@ env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ github.ref_name == 'dev' && secrets.VERCEL_PROJECT_ID_DEV || secrets.VERCEL_PROJECT_ID }}
   SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+  SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+  SENTRY_DEPLOY_ENVIRONMENT: ${{ github.ref_name == 'dev' && 'dev' || 'prod' }}
   GOOGLE_APPLICATION_CREDENTIALS: /tmp/gcp-key.json
   CI: ""
 
