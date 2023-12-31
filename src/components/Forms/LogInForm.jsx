@@ -22,7 +22,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { logInUser, logInUserWithGoogle } from "actions";
 
 import StandarModal from "components/Modals/StandarModal";
-import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
+import LoadingSpinner from "components/Spinner/LoadingSpinner";
 
 import * as ROUTES_PATHS from "routes/paths";
 
@@ -72,10 +72,12 @@ const LogInForm = ({}) => {
                 borderColor: theme.palette.grey[100],
               }}
             >
+              
               <Box sx={{ mr: { xs: 1, sm: 2 } }}>
                 <img src={Google} alt="google" width={16} />
               </Box>
-              Sign in with Google
+              {!isFetching &&<div>Sign in with Google</div>}
+              {isFetching && <LoadingSpinner />}
             </Button>
           </Grid>
           <Grid item xs={12}>
@@ -189,7 +191,8 @@ const LogInForm = ({}) => {
                 fullWidth
                 variant="contained"
               >
-                Log In
+                {!isFetching && <div>Log In</div>}
+                {isFetching && <LoadingSpinner color="white"/>}
               </Button>
             </Box>
           </Grid>
@@ -209,7 +212,6 @@ const LogInForm = ({}) => {
           </Link>
         </Grid>
       </Grid>
-      {isFetching && <CenteredLoadingSpinner />}
       {errorMessage !== null && (
         <StandarModal
           color="error"
