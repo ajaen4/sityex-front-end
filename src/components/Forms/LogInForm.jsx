@@ -72,11 +72,10 @@ const LogInForm = ({}) => {
                 borderColor: theme.palette.grey[100],
               }}
             >
-              
               <Box sx={{ mr: { xs: 1, sm: 2 } }}>
                 <img src={Google} alt="google" width={16} />
               </Box>
-              {!isFetching &&<div>Sign in with Google</div>}
+              {!isFetching && <div>Sign in with Google</div>}
               {isFetching && <LoadingSpinner />}
             </Button>
           </Grid>
@@ -192,7 +191,7 @@ const LogInForm = ({}) => {
                 variant="contained"
               >
                 {!isFetching && <div>Log In</div>}
-                {isFetching && <LoadingSpinner color="white"/>}
+                {isFetching && <LoadingSpinner color="white" />}
               </Button>
             </Box>
           </Grid>

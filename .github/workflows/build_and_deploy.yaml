@@ -71,16 +71,16 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      
+
       - name: Install Firebase CLI
         run: npm install -g firebase-tools@13.0.2
 
       - name: Set Up GCP Credentials
         run: |
           echo "${{ env.GCP_SA_KEY }}" | base64 -d > ${{ env.GOOGLE_APPLICATION_CREDENTIALS }}
-      
+
       - name: Enable Firebase Experiments
         run: firebase experiments:enable webframeworks
-      
+
       - name: Deploy to Firebase
         run: firebase deploy --project ${{ env.NEXT_PUBLIC_PROJECT_ID }}
