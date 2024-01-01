@@ -1,4 +1,4 @@
-import React from "react";
+import React, { cache } from "react";
 import Link from "next/link";
 
 import {
@@ -14,7 +14,9 @@ import { imagesCdn } from "constants/constants";
 
 import * as api from "api";
 
-const fetchBlogs = async (is_latest, avoidBlogId) => {
+export const revalidate = 10;
+
+const fetchBlogs = cache(async (is_latest, avoidBlogId) => {
   let blogs = await api.getBlogs();
 
   if (is_latest !== undefined)
@@ -23,7 +25,7 @@ const fetchBlogs = async (is_latest, avoidBlogId) => {
     blogs = blogs.filter((blog) => blog.id !== avoidBlogId);
 
   return blogs;
-};
+});
 
 const BlogSlides = async ({ is_latest, avoidBlogId }) => {
   const blogs = await fetchBlogs(is_latest, avoidBlogId);
