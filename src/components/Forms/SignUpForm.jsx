@@ -118,7 +118,7 @@ const SignUpForm = ({}) => {
                     style={{ marginRight: isSmallScreen ? 8 : 16 }}
                   />
                 </Box>
-                {!isFetching &&<div>Sign in with Google</div>}
+                {!isFetching && <div>Sign in with Google</div>}
                 {isFetching && <LoadingSpinner />}
               </Button>
             </Grid>
@@ -309,7 +309,7 @@ const SignUpForm = ({}) => {
                     style={{ margin: "2%", width: "100%" }}
                   >
                     {!isFetching && <div>Create account</div>}
-                    {isFetching && <LoadingSpinner color="white"/>}
+                    {isFetching && <LoadingSpinner color="white" />}
                   </Button>
                 </Box>
               </Box>
