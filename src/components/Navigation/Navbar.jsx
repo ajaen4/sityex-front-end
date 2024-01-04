@@ -15,7 +15,6 @@ import * as ROUTES_PATHS from "routes/paths";
 
 function NavBar({}) {
   const [scrolledY, setScrolledY] = useState(0);
-
   const auth = useSelector((state) => state.auth);
 
   const router = useRouter();
