@@ -4,18 +4,20 @@ import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { usePathname, useRouter } from "next/navigation";
 
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  IconButton,
+  Typography,
+  Menu,
+  Avatar,
+  Button,
+  Tooltip,
+  MenuItem,
+} from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import MenuIcon from "@mui/icons-material/Menu";
 
 import { signOutUser } from "actions";
 import { useDrawerContext } from "components/Contexts/DrawerContext";
@@ -85,142 +87,224 @@ function NavBar({}) {
         boxShadow: isOpaqueNavbar ? true : "none",
       }}
     >
-      <Toolbar
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-        }}
+      <Box
         sx={{
-          pr: 1,
+          display: { xs: "flex", md: "None" },
+          width: "100%",
         }}
       >
-        <IconButton
-          sx={{
-            display: { xs: "none", md: "flex" },
-            mt: 0.5,
-          }}
-          onClick={clickedLogo}
-        >
-          <img
-            src={isOpaqueNavbar ? logo_blue : logo_white}
-            alt="SityEx logo"
-            title="SityEx logo"
-            loading="eager"
-            width="90"
-            height="25"
-          />
-        </IconButton>
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          onClick={() => setIsOpenDrawer(!isOpenDrawer)}
-          edge="start"
-          sx={{ display: { xs: "flex", md: "none" } }}
-        >
-          <MenuIcon sx={{ color: isOpaqueNavbar ? "primary.main" : "white" }} />
-        </IconButton>
-        <IconButton
-          sx={{
-            display: { xs: "flex", md: "none" },
-            mt: 1,
-            cursor: "pointer",
-          }}
-          onClick={clickedLogo}
-        >
-          <img
-            src={isOpaqueNavbar ? logo_blue : logo_white}
-            alt="SityEx logo"
-            title="SityEx logo"
-            loading="eager"
-            width="90"
-            height="25"
-          />
-        </IconButton>
-        <Box
-          sx={{
-            flexGrow: 1,
-            display: { xs: "none", md: "flex" },
-            justifyContent: { md: "space-evenly", lg: "center" },
+        <Toolbar
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            width: "100%",
+            paddingRight: 7,
           }}
         >
-          {pages.map((page) => (
-            <Button
-              key={page}
-              onClick={() => handleClickNavMenu(page)}
-              sx={{
-                mx: 5,
-                color: isOpaqueNavbar ? "primary.main" : "white",
-                display: "block",
-                fontSize: "1.1em",
-              }}
+          <Box sx={{ width: "33%", justifyContent: "start" }}>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={() => setIsOpenDrawer(!isOpenDrawer)}
+              edge="start"
             >
-              {page}
-            </Button>
-          ))}
-        </Box>
-        {auth.isAuthResolved && (
-          <Box ref={userSettingsRef}>
-            <Tooltip title="Open settings" id="user-settings">
-              <IconButton
-                onClick={toggleUserMenu}
+              <MenuIcon
                 sx={{
-                  m: 0,
-                  p: 0,
+                  color: isOpaqueNavbar ? "primary.main" : "white",
+                }}
+              />
+            </IconButton>
+          </Box>
+          <Box sx={{ width: "33%", justifyContent: "center" }}>
+            <IconButton
+              sx={{
+                mt: 1,
+                cursor: "pointer",
+              }}
+              onClick={clickedLogo}
+            >
+              <img
+                src={isOpaqueNavbar ? logo_blue : logo_white}
+                alt="SityEx logo"
+                title="SityEx logo"
+                loading="eager"
+                width="90"
+                height="25"
+              />
+            </IconButton>
+          </Box>
+          <Box sx={{ display: "flex", width: "34%", justifyContent: "end" }}>
+            {auth.isAuthResolved && (
+              <Box ref={userSettingsRef}>
+                <Tooltip title="Open settings" id="user-settings">
+                  <IconButton
+                    onClick={toggleUserMenu}
+                    sx={{
+                      m: 0,
+                      p: 0,
+                    }}
+                  >
+                    <Avatar
+                      alt="Remy Sharp"
+                      src={`https://eu.ui-avatars.com/api/?name=${auth.data?.userName.replace(
+                        " ",
+                        "+",
+                      )}&size=250`}
+                      sx={{
+                        m: 0,
+                        p: 0,
+                      }}
+                    />
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  sx={{ mt: "40px", zIndex: theme.zIndex.drawer + 1000 }}
+                  id="menu-appbar"
+                  anchorEl={userSettingsRef.current}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  open={isOpenUserMenu}
+                  onClose={() => handleCloseUserMenu()}
+                >
+                  {settings.map((setting) => (
+                    <MenuItem
+                      key={setting}
+                      onClick={() => handleCloseUserMenu(setting)}
+                    >
+                      <Typography textAlign="center">{setting}</Typography>
+                    </MenuItem>
+                  ))}
+                </Menu>
+              </Box>
+            )}
+            {!auth.isAuthResolved && (
+              <Box>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  onClick={() => router.push(ROUTES_PATHS.SIGN_UP)}
+                  sx={{ mr: 0 }}
+                >
+                  Sign up
+                </Button>
+              </Box>
+            )}
+          </Box>
+        </Toolbar>
+      </Box>
+      <Box sx={{ display: { xs: "None", md: "flex", lg: "flex" } }}>
+        <Toolbar
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            width: "100%",
+          }}
+        >
+          <IconButton
+            sx={{
+              mt: 0.5,
+            }}
+            onClick={clickedLogo}
+          >
+            <img
+              src={isOpaqueNavbar ? logo_blue : logo_white}
+              alt="SityEx logo"
+              title="SityEx logo"
+              loading="eager"
+              width="90"
+              height="25"
+            />
+          </IconButton>
+          <Box
+            sx={{
+              justifyContent: { md: "space-evenly", lg: "center" },
+            }}
+          >
+            {pages.map((page) => (
+              <Button
+                key={page}
+                onClick={() => handleClickNavMenu(page)}
+                sx={{
+                  mx: 5,
+                  color: isOpaqueNavbar ? "primary.main" : "white",
+                  fontSize: "1.1em",
                 }}
               >
-                <Avatar
-                  alt="Remy Sharp"
-                  src={`https://eu.ui-avatars.com/api/?name=${auth.data?.userName.replace(
-                    " ",
-                    "+",
-                  )}&size=250`}
+                {page}
+              </Button>
+            ))}
+          </Box>
+          {auth.isAuthResolved && (
+            <Box ref={userSettingsRef}>
+              <Tooltip title="Open settings" id="user-settings">
+                <IconButton
+                  onClick={toggleUserMenu}
                   sx={{
                     m: 0,
                     p: 0,
                   }}
-                />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "40px", zIndex: theme.zIndex.drawer + 1000 }}
-              id="menu-appbar"
-              anchorEl={userSettingsRef.current}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              open={isOpenUserMenu}
-              onClose={() => handleCloseUserMenu()}
-            >
-              {settings.map((setting) => (
-                <MenuItem
-                  key={setting}
-                  onClick={() => handleCloseUserMenu(setting)}
                 >
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-        )}
-        {!auth.isAuthResolved && (
-          <Box>
-            <Button
-              variant="contained"
-              color="secondary"
-              onClick={() => router.push(ROUTES_PATHS.SIGN_UP)}
-              sx={{ mr: 0 }}
-            >
-              Sign up
-            </Button>
-          </Box>
-        )}
-      </Toolbar>
+                  <Avatar
+                    alt="Remy Sharp"
+                    src={`https://eu.ui-avatars.com/api/?name=${auth.data?.userName.replace(
+                      " ",
+                      "+",
+                    )}&size=250`}
+                    sx={{
+                      m: 0,
+                      p: 0,
+                    }}
+                  />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: "40px", zIndex: theme.zIndex.drawer + 1000 }}
+                id="menu-appbar"
+                anchorEl={userSettingsRef.current}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                open={isOpenUserMenu}
+                onClose={() => handleCloseUserMenu()}
+              >
+                {settings.map((setting) => (
+                  <MenuItem
+                    key={setting}
+                    onClick={() => handleCloseUserMenu(setting)}
+                  >
+                    <Typography textAlign="center">{setting}</Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
+          )}
+          {!auth.isAuthResolved && (
+            <Box>
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={() => router.push(ROUTES_PATHS.SIGN_UP)}
+                sx={{ mr: 0 }}
+              >
+                Sign up
+              </Button>
+            </Box>
+          )}
+        </Toolbar>
+      </Box>
     </AppBar>
   );
 }

@@ -26,7 +26,7 @@ const LandingPage = () => {
         xs={12}
         sx={{
           height: "100vh",
-          backgroundImage: `url(${imagesCdn}/landing.jpg)`,
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)), url(${imagesCdn}/landing.jpg)`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           display: "flex",
@@ -42,12 +42,12 @@ const LandingPage = () => {
           sx={{
             alignSelf: "center",
             textAlign: "center",
-            mt: { xs: -30, md: -25 },
+            mt: { xs: -10, md: -20 },
           }}
         >
           Discover, Connect, Belong
         </Typography>
-        <Box sx={{ width: 300, mt: 10 }}>
+        <Box sx={{ width: 250, mt: 10 }}>
           <CitiesAutocomplete placeholder="Enter your destination" />
         </Box>
       </Grid>
@@ -167,8 +167,8 @@ const LandingPage = () => {
                 Housing
               </Typography>
               <Typography sx={{ color: "grey.500", fontSize: 20, my: 2 }}>
-                Seamless transition to new horizons, fostering a sense of
-                belonging from day one
+                Housing options and discounts through our partners to help you
+                find your ideal home
               </Typography>
             </Stack>
           </Grid>
@@ -199,8 +199,8 @@ const LandingPage = () => {
                 Bureaucracy Support
               </Typography>
               <Typography sx={{ color: "grey.500", fontSize: 20, my: 2 }}>
-                Resources and guidance, making the paperwork and procedures
-                associated with expat life more manageable and stress-free
+                Automatized processes through our local partners that do the
+                paperwork for you
               </Typography>
             </Stack>
           </Grid>
