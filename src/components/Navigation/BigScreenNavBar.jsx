@@ -136,7 +136,10 @@ function BigScreenNavBar({
               {settings.map((setting) => (
                 <MenuItem
                   key={setting}
-                  onClick={() => handleCloseUserMenu(setting)}
+                  onClick={() => {
+                    setIsOpenUserMenu(false);
+                    handleCloseUserMenu(setting);
+                  }}
                 >
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
