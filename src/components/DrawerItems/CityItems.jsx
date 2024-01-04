@@ -12,6 +12,8 @@ import ListItemText from "@mui/material/ListItemText";
 
 import TicketIcon from "@mui/icons-material/ConfirmationNumberOutlined";
 import PeopleIcon from "@mui/icons-material/PeopleOutlined";
+import HouseIcon from "@mui/icons-material/MapsHomeWorkOutlined";
+import GovernmentIcon from "@mui/icons-material/AssuredWorkloadOutlined";
 
 import * as ROUTES_PATHS from "routes/paths";
 
@@ -66,6 +68,49 @@ const CityItems = () => {
             <PeopleIcon />
           </ListItemIcon>
           <ListItemText primary="Community" />
+        </ListItemButton>
+      </ListItem>
+
+      <ListItem disablePadding sx={{ display: "block" }}>
+        <ListItemButton
+          sx={{
+            minHeight: 48,
+            px: 2.5,
+          }}
+          onClick={itemSelected}
+          data-path={ROUTES_PATHS.CITY_HOUSING}
+        >
+          <ListItemIcon
+            sx={{
+              minWidth: 0,
+              mr: 3,
+              justifyContent: "center",
+            }}
+          >
+            <HouseIcon />
+          </ListItemIcon>
+          <ListItemText primary="Housing" />
+        </ListItemButton>
+      </ListItem>
+      <ListItem disablePadding sx={{ display: "block" }}>
+        <ListItemButton
+          sx={{
+            minHeight: 48,
+            px: 2.5,
+          }}
+          onClick={itemSelected}
+          data-path={ROUTES_PATHS.CITY_BUREAUCRACY}
+        >
+          <ListItemIcon
+            sx={{
+              minWidth: 0,
+              mr: 3,
+              justifyContent: "center",
+            }}
+          >
+            <GovernmentIcon />
+          </ListItemIcon>
+          <ListItemText primary="Bureaucracy" />
         </ListItemButton>
       </ListItem>
     </List>
