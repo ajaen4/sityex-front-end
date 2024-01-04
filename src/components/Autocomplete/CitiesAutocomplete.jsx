@@ -16,7 +16,7 @@ import { createFilterOptions } from "@mui/material/Autocomplete";
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
+import LoadingSpinner from "components/Spinner/LoadingSpinner";
 
 const CitiesAutocomplete = ({ selectedCity, placeholder }) => {
   const citiesIndex = useSelector((state) => state.citiesIndex.data);
@@ -43,42 +43,47 @@ const CitiesAutocomplete = ({ selectedCity, placeholder }) => {
 
   const cities = citiesIndex ? citiesIndex.cities : [];
 
-  if (isLoading) {
-    return <CenteredLoadingSpinner />;
-  }
-
   return (
     <Autocomplete
       options={getDestinations(cities)}
       onChange={onSelectCity}
       getOptionLabel={(option) => option.name}
       filterOptions={filterOptions}
-      renderInput={(params) => (
-        <TextField
-          {...params}
-          InputProps={{
-            ...params.InputProps,
-            startAdornment: (
-              <InputAdornment position="start">
-                {selectedCity && (
-                  <IconButton>
-                    <img
-                      width="20"
-                      src={`https://flagcdn.com/w20/${selectedCity.country_2_code.toLowerCase()}.png`}
-                      srcSet={`https://flagcdn.com/w40/${selectedCity.country_2_code.toLowerCase()}.png 2x`}
-                      alt="country flag"
-                    />
-                  </IconButton>
-                )}
-                {!selectedCity && <SearchIcon />}
-              </InputAdornment>
-            ),
-            style: { fontSize: 16 },
-          }}
-          placeholder={(selectedCity && selectedCity.name) || placeholder}
-          fullWidth
-        />
-      )}
+      renderInput={(params) => {
+        if (isLoading) {
+          return (
+            <Box sx={{ display: "flex", justifyContent: "center" }}>
+              <LoadingSpinner />
+            </Box>
+          );
+        } else
+          return (
+            <TextField
+              {...params}
+              InputProps={{
+                ...params.InputProps,
+                startAdornment: (
+                  <InputAdornment position="start">
+                    {selectedCity && (
+                      <IconButton>
+                        <img
+                          width="20"
+                          src={`https://flagcdn.com/w20/${selectedCity.country_2_code.toLowerCase()}.png`}
+                          srcSet={`https://flagcdn.com/w40/${selectedCity.country_2_code.toLowerCase()}.png 2x`}
+                          alt="country flag"
+                        />
+                      </IconButton>
+                    )}
+                    {!selectedCity && <SearchIcon />}
+                  </InputAdornment>
+                ),
+                style: { fontSize: 16 },
+              }}
+              placeholder={(selectedCity && selectedCity.name) || placeholder}
+              fullWidth
+            />
+          );
+      }}
       renderOption={(props, option) => (
         <Box
           component="li"
