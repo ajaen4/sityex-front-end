@@ -155,7 +155,7 @@ const CityEventPage = () => {
         </Grid>
         <Grid item xs={12} md={7} lg={8} xl={9}>
           <Typography sx={{ pt: { xs: 1, md: 4, lg: 4 }, pb: 2, fontSize: 16 }}>
-            {formatText(selectedEvent.description)}
+            {selectedEvent.description}
           </Typography>
         </Grid>
         <Grid
