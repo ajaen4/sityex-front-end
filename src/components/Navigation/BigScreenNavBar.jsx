@@ -1,24 +1,22 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  IconButton,
+  Typography,
+  Menu,
+  Avatar,
+  Button,
+  Tooltip,
+  MenuItem,
+} from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-
-import { signOutUser } from "actions";
-import { useDrawerContext } from "components/Contexts/DrawerContext";
 
 import * as ROUTES_PATHS from "routes/paths";
 import { pages, settings } from "constants/constants.js";
@@ -26,55 +24,22 @@ import { pages, settings } from "constants/constants.js";
 const logo_white = "/big_logo_white.png";
 const logo_blue = "/big_logo_blue.png";
 
-function NavBar({}) {
-  const { isOpenDrawer, setIsOpenDrawer } = useDrawerContext();
-  const [isOpenUserMenu, setIsOpenUserMenu] = useState(false);
-  const [scrolledY, setScrolledY] = useState(0);
-
+function BigScreenNavBar({
+  isOpaqueNavbar,
+  handleCloseUserMenu,
+  handleClickNavMenu,
+  clickedLogo,
+}) {
   const auth = useSelector((state) => state.auth);
+  const [isOpenUserMenu, setIsOpenUserMenu] = useState(false);
 
   const router = useRouter();
-  const pathname = usePathname();
   const theme = useTheme();
   const userSettingsRef = useRef(null);
-
-  const isLandingPage = pathname.split("/").every((str) => str === "");
-  const isBlogPage =
-    pathname.split("/")[pathname.split("/").length - 1] === "blog";
-  const isOpaqueNavbar =
-    (!isLandingPage && !isBlogPage) ||
-    (isLandingPage && scrolledY > 750) ||
-    (isBlogPage && scrolledY > 400);
 
   const toggleUserMenu = () => {
     setIsOpenUserMenu(!isOpenUserMenu);
   };
-
-  const handleCloseUserMenu = (setting) => {
-    setIsOpenUserMenu(false);
-    if (setting === "Account") router.push(ROUTES_PATHS.ACCOUNT);
-    if (setting === "Logout") signOutUser(auth.data.id);
-  };
-
-  const handleClickNavMenu = (page) => {
-    if (page === "Search City") router.push(ROUTES_PATHS.SEARCH);
-    if (page === "Blog") router.push(ROUTES_PATHS.BLOG);
-  };
-
-  const clickedLogo = () => router.push(ROUTES_PATHS.ROOT);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      setScrolledY(scrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   return (
     <AppBar
@@ -89,41 +54,12 @@ function NavBar({}) {
         style={{
           display: "flex",
           justifyContent: "space-between",
-        }}
-        sx={{
-          pr: 1,
+          width: "100%",
         }}
       >
         <IconButton
           sx={{
-            display: { xs: "none", md: "flex" },
             mt: 0.5,
-          }}
-          onClick={clickedLogo}
-        >
-          <img
-            src={isOpaqueNavbar ? logo_blue : logo_white}
-            alt="SityEx logo"
-            title="SityEx logo"
-            loading="eager"
-            width="90"
-            height="25"
-          />
-        </IconButton>
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          onClick={() => setIsOpenDrawer(!isOpenDrawer)}
-          edge="start"
-          sx={{ display: { xs: "flex", md: "none" } }}
-        >
-          <MenuIcon sx={{ color: isOpaqueNavbar ? "primary.main" : "white" }} />
-        </IconButton>
-        <IconButton
-          sx={{
-            display: { xs: "flex", md: "none" },
-            mt: 1,
-            cursor: "pointer",
           }}
           onClick={clickedLogo}
         >
@@ -138,8 +74,6 @@ function NavBar({}) {
         </IconButton>
         <Box
           sx={{
-            flexGrow: 1,
-            display: { xs: "none", md: "flex" },
             justifyContent: { md: "space-evenly", lg: "center" },
           }}
         >
@@ -150,7 +84,6 @@ function NavBar({}) {
               sx={{
                 mx: 5,
                 color: isOpaqueNavbar ? "primary.main" : "white",
-                display: "block",
                 fontSize: "1.1em",
               }}
             >
@@ -195,12 +128,18 @@ function NavBar({}) {
               }}
               keepMounted
               open={isOpenUserMenu}
-              onClose={() => handleCloseUserMenu()}
+              onClose={() => {
+                setIsOpenUserMenu(false);
+                handleCloseUserMenu();
+              }}
             >
               {settings.map((setting) => (
                 <MenuItem
                   key={setting}
-                  onClick={() => handleCloseUserMenu(setting)}
+                  onClick={() => {
+                    setIsOpenUserMenu(false);
+                    handleCloseUserMenu(setting);
+                  }}
                 >
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
@@ -225,4 +164,4 @@ function NavBar({}) {
   );
 }
 
-export default NavBar;
+export default BigScreenNavBar;
