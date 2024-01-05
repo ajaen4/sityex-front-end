@@ -60,6 +60,7 @@ const LandingPage = () => {
           px: 2,
           alignItems: "center",
           textAlign: "center",
+          mt: 10,
         }}
       >
         <Box
@@ -72,7 +73,6 @@ const LandingPage = () => {
               xs: "60vh",
               md: "auto",
             },
-            mt: 10,
           }}
         >
           <img
@@ -115,7 +115,7 @@ const LandingPage = () => {
             sx={{
               display: "flex",
               justifyContent: "center",
-              my: { xs: 5, md: 10 },
+              mt: { xs: 5, md: 10 },
             }}
           >
             <Stack
@@ -151,7 +151,7 @@ const LandingPage = () => {
             sx={{
               display: "flex",
               justifyContent: "center",
-              my: { xs: 5, md: 10 },
+              mt: { xs: 5, md: 10 },
             }}
           >
             <Stack
@@ -187,7 +187,7 @@ const LandingPage = () => {
             sx={{
               display: "flex",
               justifyContent: "center",
-              my: { xs: 5, md: 10 },
+              mt: { xs: 5, md: 10 },
             }}
           >
             <Stack
@@ -227,6 +227,7 @@ const LandingPage = () => {
           px: 2,
           alignItems: "center",
           textAlign: "center",
+          mt: 10,
         }}
       >
         <Box
@@ -235,7 +236,6 @@ const LandingPage = () => {
             flexDirection: "column",
             alignItems: "center",
             textAlign: "center",
-            mt: 5,
           }}
         >
           <img
@@ -276,6 +276,7 @@ const LandingPage = () => {
             item
             xs={6}
             md={4}
+            xl={3}
             sx={{ mt: { xs: 5, md: 10 }, maxHeight: 60 }}
           >
             <img
@@ -291,6 +292,7 @@ const LandingPage = () => {
             item
             xs={6}
             md={3}
+            xl={2}
             sx={{ mt: { xs: 5, md: 10 }, maxHeight: 60 }}
           >
             <img
@@ -306,7 +308,8 @@ const LandingPage = () => {
             item
             xs={6}
             md={3}
-            sx={{ mt: { xs: 5, md: 10 }, maxHeight: 60 }}
+            xl={2}
+            sx={{ mt: { xs: 7, md: 11 }, maxHeight: 60 }}
           >
             <img
               width="80%"
@@ -320,6 +323,7 @@ const LandingPage = () => {
             item
             xs={6}
             md={3}
+            xl={2}
             sx={{ mt: { xs: 5, md: 10 }, maxHeight: 180 }}
           >
             <img
@@ -334,6 +338,7 @@ const LandingPage = () => {
             item
             xs={6}
             md={4}
+            xl={3}
             sx={{ mt: { xs: 5, md: 10 }, maxHeight: 80 }}
           >
             <img
