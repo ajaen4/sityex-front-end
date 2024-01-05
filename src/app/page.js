@@ -309,7 +309,7 @@ const LandingPage = () => {
             xs={6}
             md={3}
             xl={2}
-            sx={{ mt: { xs: 5, md: 10 }, maxHeight: 60 }}
+            sx={{ mt: { xs: 7, md: 11 }, maxHeight: 60 }}
           >
             <img
               width="80%"
@@ -361,7 +361,7 @@ const LandingPage = () => {
           alignItems: "center",
           textAlign: "center",
           px: 2,
-          mt: 10,
+          mt: { xs: 10, xl: 15 },
         }}
       >
         <img
