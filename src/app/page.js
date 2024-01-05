@@ -69,10 +69,6 @@ const LandingPage = () => {
             flexDirection: "column",
             alignItems: "center",
             textAlign: "center",
-            height: {
-              xs: "60vh",
-              md: "auto",
-            },
           }}
         >
           <img
@@ -227,7 +223,8 @@ const LandingPage = () => {
           px: 2,
           alignItems: "center",
           textAlign: "center",
-          mt: 10,
+          mt: { md: 10, xs: 15 },
+          height: { xs: "auto", md: "60vh" },
         }}
       >
         <Box
@@ -266,90 +263,6 @@ const LandingPage = () => {
             integrations and discounts.
           </Typography>
         </Box>
-        <Grid
-          container
-          sx={{
-            justifyContent: "space-evenly",
-          }}
-        >
-          <Grid
-            item
-            xs={6}
-            md={4}
-            xl={3}
-            sx={{ mt: { xs: 5, md: 10 }, maxHeight: 60 }}
-          >
-            <img
-              width="70%"
-              height="100%"
-              src={`${imagesCdn}/partner_logos/taxdown.png`}
-              alt="taxdown icon"
-              title="Taxdown"
-            />
-          </Grid>
-
-          <Grid
-            item
-            xs={6}
-            md={3}
-            xl={2}
-            sx={{ mt: { xs: 5, md: 10 }, maxHeight: 60 }}
-          >
-            <img
-              width="50%"
-              height="80%"
-              src={`${imagesCdn}/partner_logos/fever.png`}
-              alt="fever icon"
-              title="Feverup"
-            />
-          </Grid>
-
-          <Grid
-            item
-            xs={6}
-            md={3}
-            xl={2}
-            sx={{ mt: { xs: 7, md: 11 }, maxHeight: 60 }}
-          >
-            <img
-              width="80%"
-              height="65%"
-              src={`${imagesCdn}/partner_logos/tax_scouts.png`}
-              alt="taxscouts icon"
-              title="TaxScouts"
-            />
-          </Grid>
-          <Grid
-            item
-            xs={6}
-            md={3}
-            xl={2}
-            sx={{ mt: { xs: 5, md: 10 }, maxHeight: 180 }}
-          >
-            <img
-              width="40%"
-              height="100%"
-              src={`${imagesCdn}/partner_logos/spotahome.png`}
-              alt="spotahome icon"
-              title="SpotAHome"
-            />
-          </Grid>
-          <Grid
-            item
-            xs={6}
-            md={4}
-            xl={3}
-            sx={{ mt: { xs: 5, md: 10 }, maxHeight: 80 }}
-          >
-            <img
-              width="60%"
-              height="100%"
-              src={`${imagesCdn}/partner_logos/housing_anywhere.png`}
-              alt="housing anywhere icon"
-              title="Housing Anywhere"
-            />
-          </Grid>
-        </Grid>
       </Grid>
       <Grid
         item
@@ -361,7 +274,7 @@ const LandingPage = () => {
           alignItems: "center",
           textAlign: "center",
           px: 2,
-          mt: 10,
+          mt: { xs: 15, md: 10 },
         }}
       >
         <img
