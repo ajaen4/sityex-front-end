@@ -69,10 +69,10 @@ const LandingPage = () => {
             alignItems: "center",
             textAlign: "center",
             height: {
-              xs: "70vh",
+              xs: "60vh",
               md: "auto",
             },
-            mt: 20,
+            mt: 10,
           }}
         >
           <img
@@ -112,7 +112,11 @@ const LandingPage = () => {
             item
             xs={12}
             md={3}
-            sx={{ display: "flex", justifyContent: "center", my: 10 }}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              my: { xs: 5, md: 10 },
+            }}
           >
             <Stack
               sx={{
@@ -144,7 +148,11 @@ const LandingPage = () => {
             item
             xs={12}
             md={3}
-            sx={{ display: "flex", justifyContent: "center", my: 10 }}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              my: { xs: 5, md: 10 },
+            }}
           >
             <Stack
               sx={{
@@ -176,7 +184,11 @@ const LandingPage = () => {
             item
             xs={12}
             md={3}
-            sx={{ display: "flex", justifyContent: "center", my: 10 }}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              my: { xs: 5, md: 10 },
+            }}
           >
             <Stack
               sx={{
@@ -203,6 +215,134 @@ const LandingPage = () => {
                 paperwork for you
               </Typography>
             </Stack>
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid
+        item
+        xs={12}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          px: 2,
+          alignItems: "center",
+          textAlign: "center",
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            textAlign: "center",
+            mt: 10,
+          }}
+        >
+          <img
+            width="80"
+            height="80"
+            src={`${imagesCdn}/icons/how_it_works.png`}
+            alt="how it works"
+            title="How it works"
+          />
+          <Typography
+            variant="h2"
+            sx={{ color: "grey.500", my: 1, fontSize: 40 }}
+          >
+            How it works
+          </Typography>
+          <Typography
+            sx={{
+              fontSize: 22,
+              mt: 5,
+              width: {
+                xs: "90%",
+                md: "70%",
+              },
+            }}
+          >
+            We establish partnerships with local experts specializing in various
+            aspects of the expat journey, offering our members exclusive
+            integrations and discounts.
+          </Typography>
+        </Box>
+        <Grid
+          container
+          sx={{
+            justifyContent: "space-evenly",
+          }}
+        >
+          <Grid
+            item
+            xs={6}
+            md={4}
+            sx={{ mt: { xs: 5, md: 10 }, maxHeight: 60 }}
+          >
+            <img
+              width="70%"
+              height="100%"
+              src={`${imagesCdn}/partner_logos/taxdown.png`}
+              alt="taxdown icon"
+              title="Taxdown"
+            />
+          </Grid>
+
+          <Grid
+            item
+            xs={6}
+            md={3}
+            sx={{ mt: { xs: 5, md: 10 }, maxHeight: 60 }}
+          >
+            <img
+              width="50%"
+              height="80%"
+              src={`${imagesCdn}/partner_logos/fever.png`}
+              alt="fever icon"
+              title="Feverup"
+            />
+          </Grid>
+
+          <Grid
+            item
+            xs={6}
+            md={3}
+            sx={{ mt: { xs: 5, md: 10 }, maxHeight: 60 }}
+          >
+            <img
+              width="80%"
+              height="65%"
+              src={`${imagesCdn}/partner_logos/tax_scouts.png`}
+              alt="taxscouts icon"
+              title="TaxScouts"
+            />
+          </Grid>
+          <Grid
+            item
+            xs={6}
+            md={3}
+            sx={{ mt: { xs: 5, md: 10 }, maxHeight: 180 }}
+          >
+            <img
+              width="40%"
+              height="100%"
+              src={`${imagesCdn}/partner_logos/spotahome.png`}
+              alt="spotahome icon"
+              title="SpotAHome"
+            />
+          </Grid>
+          <Grid
+            item
+            xs={6}
+            md={4}
+            sx={{ mt: { xs: 5, md: 10 }, maxHeight: 80 }}
+          >
+            <img
+              width="60%"
+              height="100%"
+              src={`${imagesCdn}/partner_logos/housing_anywhere.png`}
+              alt="housing anywhere icon"
+              title="Housing Anywhere"
+            />
           </Grid>
         </Grid>
       </Grid>
