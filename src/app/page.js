@@ -60,6 +60,7 @@ const LandingPage = () => {
           px: 2,
           alignItems: "center",
           textAlign: "center",
+          mt: 10,
         }}
       >
         <Box
@@ -72,7 +73,6 @@ const LandingPage = () => {
               xs: "60vh",
               md: "auto",
             },
-            mt: 10,
           }}
         >
           <img
@@ -115,7 +115,7 @@ const LandingPage = () => {
             sx={{
               display: "flex",
               justifyContent: "center",
-              my: { xs: 5, md: 10 },
+              mt: { xs: 5, md: 10 },
             }}
           >
             <Stack
@@ -151,7 +151,7 @@ const LandingPage = () => {
             sx={{
               display: "flex",
               justifyContent: "center",
-              my: { xs: 5, md: 10 },
+              mt: { xs: 5, md: 10 },
             }}
           >
             <Stack
@@ -187,7 +187,7 @@ const LandingPage = () => {
             sx={{
               display: "flex",
               justifyContent: "center",
-              my: { xs: 5, md: 10 },
+              mt: { xs: 5, md: 10 },
             }}
           >
             <Stack
@@ -227,6 +227,7 @@ const LandingPage = () => {
           px: 2,
           alignItems: "center",
           textAlign: "center",
+          mt: 10,
         }}
       >
         <Box
@@ -235,7 +236,6 @@ const LandingPage = () => {
             flexDirection: "column",
             alignItems: "center",
             textAlign: "center",
-            mt: 5,
           }}
         >
           <img
@@ -361,7 +361,7 @@ const LandingPage = () => {
           alignItems: "center",
           textAlign: "center",
           px: 2,
-          mt: { xs: 10, xl: 15 },
+          mt: 10,
         }}
       >
         <img
