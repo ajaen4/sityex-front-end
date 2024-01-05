@@ -115,7 +115,7 @@ const LandingPage = () => {
             sx={{
               display: "flex",
               justifyContent: "center",
-              my: { xs: 5, md: 5 },
+              my: { xs: 5, md: 10 },
             }}
           >
             <Stack
