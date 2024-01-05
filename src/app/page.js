@@ -276,6 +276,7 @@ const LandingPage = () => {
             item
             xs={6}
             md={4}
+            xl={3}
             sx={{ mt: { xs: 5, md: 10 }, maxHeight: 60 }}
           >
             <img
@@ -291,6 +292,7 @@ const LandingPage = () => {
             item
             xs={6}
             md={3}
+            xl={2}
             sx={{ mt: { xs: 5, md: 10 }, maxHeight: 60 }}
           >
             <img
@@ -306,6 +308,7 @@ const LandingPage = () => {
             item
             xs={6}
             md={3}
+            xl={2}
             sx={{ mt: { xs: 5, md: 10 }, maxHeight: 60 }}
           >
             <img
@@ -320,6 +323,7 @@ const LandingPage = () => {
             item
             xs={6}
             md={3}
+            xl={2}
             sx={{ mt: { xs: 5, md: 10 }, maxHeight: 180 }}
           >
             <img
@@ -334,6 +338,7 @@ const LandingPage = () => {
             item
             xs={6}
             md={4}
+            xl={3}
             sx={{ mt: { xs: 5, md: 10 }, maxHeight: 80 }}
           >
             <img
