@@ -115,7 +115,7 @@ const LandingPage = () => {
             sx={{
               display: "flex",
               justifyContent: "center",
-              my: { xs: 5, md: 10 },
+              my: { xs: 5, md: 5 },
             }}
           >
             <Stack
@@ -235,7 +235,7 @@ const LandingPage = () => {
             flexDirection: "column",
             alignItems: "center",
             textAlign: "center",
-            mt: 10,
+            mt: 5,
           }}
         >
           <img
@@ -356,7 +356,7 @@ const LandingPage = () => {
           alignItems: "center",
           textAlign: "center",
           px: 2,
-          mt: 20,
+          mt: 10,
         }}
       >
         <img
