@@ -1,4 +1,5 @@
 import React, { Suspense, cache } from "react";
+import { notFound } from "next/navigation";
 
 import { Box, Typography } from "@mui/material";
 
@@ -18,6 +19,10 @@ const fetchBlog = cache(async (blog_id) => {
 const SingleBlogPage = async ({ params }) => {
   const blog_id = params.blog_id;
   const blog = await fetchBlog(blog_id);
+
+  if (!blog) {
+    return notFound();
+  }
 
   return (
     <Box
