@@ -22,8 +22,7 @@ const CityCommunityPage = () => {
     if (auth.isAuthResolved && selectedCity) {
       getQRCode(selectedCity.city_id)
         .then((url) => setQrCodeUrl(url))
-        .catch((error) => {
-          console.error("Error fetching QR code", error);
+        .catch((_) => {
           setCityHasCommunity(false);
         });
     }
