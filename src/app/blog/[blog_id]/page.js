@@ -1,4 +1,4 @@
-import React, { Suspense, cache } from "react";
+import React, { Suspense } from "react";
 import { notFound } from "next/navigation";
 
 import { Box, Typography } from "@mui/material";
@@ -11,10 +11,10 @@ import * as api from "api";
 
 export const revalidate = 300;
 
-const fetchBlog = cache(async (blog_id) => {
+const fetchBlog = async (blog_id) => {
   const blog = await api.getBlog(blog_id);
   return blog;
-});
+};
 
 const SingleBlogPage = async ({ params }) => {
   const blog_id = params.blog_id;
