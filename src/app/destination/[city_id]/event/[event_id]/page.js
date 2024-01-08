@@ -41,7 +41,7 @@ const CityEventPage = () => {
       selectedCity.city_id,
       event_id,
       auth.data.id,
-      interested_info,
+      interested_info
     );
   }, []);
 
@@ -68,7 +68,7 @@ const CityEventPage = () => {
         selectedCity.city_id,
         event_id,
         auth.data?.id,
-        buy_info,
+        buy_info
       );
     window.open(selectedEvent.affiliate_url, "_blank", "noopener");
   };
@@ -155,7 +155,7 @@ const CityEventPage = () => {
         </Grid>
         <Grid item xs={12} md={7} lg={8} xl={9}>
           <Typography sx={{ pt: { xs: 1, md: 4, lg: 4 }, pb: 2, fontSize: 16 }}>
-            {formatText(selectedEvent.description)}
+            {formatText(selectedEvent.description_en)}
           </Typography>
         </Grid>
         <Grid
