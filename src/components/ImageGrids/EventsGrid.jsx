@@ -67,6 +67,8 @@ const EventsGrid = ({ events }) => {
       ? `error-${event.sku}-${rowIndex}-${columnIndex}`
       : `${event.sku}-${rowIndex}-${columnIndex}`;
 
+    const plan_name = event.plan_name_en !== "" ? event.plan_name_en : event.plan_name_es;
+
     return (
       <div style={style}>
         <ImageListItem
@@ -81,8 +83,8 @@ const EventsGrid = ({ events }) => {
             <img
               srcSet={imgSrc}
               src={imgSrc}
-              alt={event.plan_name}
-              title={event.plan_name}
+              alt={plan_name}
+              title={plan_name}
               loading="lazy"
               onError={() => handleImageError(event.sku)}
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
@@ -115,7 +117,7 @@ const EventsGrid = ({ events }) => {
                   textOverflow: "ellipsis",
                 }}
               >
-                {event.plan_name}
+                {plan_name}
               </div>
             }
             onClick={() => handleEventClick(event.sku)}
