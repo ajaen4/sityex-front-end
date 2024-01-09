@@ -9,7 +9,7 @@ import SendGAPageView from "components/DataLoaders/SendGAPageView";
 import { imagesCdn } from "constants/constants";
 
 export const metadata = {
-  title: "SityEx | Discover, Connect, Belong",
+  title: "SityEx | Home",
   description:
     "Empowering expats in Spain with SityEx. Discover communities, connect with expats, and find your belonging in your new Spanish city. Start your journey today.",
   alternates: {
