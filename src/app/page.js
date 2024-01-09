@@ -112,7 +112,7 @@ const LandingPage = () => {
             sx={{
               display: "flex",
               justifyContent: "center",
-              mt: { xs: 10, md: 15 },
+              mt: 10,
             }}
           >
             <Stack
@@ -148,7 +148,7 @@ const LandingPage = () => {
             sx={{
               display: "flex",
               justifyContent: "center",
-              mt: { xs: 10, md: 15 },
+              mt: 10,
             }}
           >
             <Stack
@@ -184,7 +184,7 @@ const LandingPage = () => {
             sx={{
               display: "flex",
               justifyContent: "center",
-              mt: { xs: 10, md: 15 },
+              mt: 10,
             }}
           >
             <Stack
