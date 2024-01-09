@@ -29,13 +29,13 @@ const EventsGrid = ({ events }) => {
   const numColumns = isSmallScreen ? 3 : 5;
   const aspectRatio = 1;
 
-  const handleEventClick = (eventSku) => {
-    router.push(`/destination/${selectedCity.city_id}/event/${eventSku}`);
+  const handleEventClick = (eventId) => {
+    router.push(`/destination/${selectedCity.city_id}/event/${eventId}`);
   };
 
-  const handleImageError = (eventSku) => {
-    if (!eventsBadImage.includes(eventSku))
-      setEventsBadImage([...eventsBadImage, eventSku]);
+  const handleImageError = (eventId) => {
+    if (!eventsBadImage.includes(eventId))
+      setEventsBadImage([...eventsBadImage, eventId]);
   };
 
   const getRowHeight = (width) => {
@@ -51,21 +51,30 @@ const EventsGrid = ({ events }) => {
     if (!event) return null;
 
     useEffect(() => {
-      countInterestedUsers(selectedCity.city_id, event.sku, auth.data?.id).then(
+      countInterestedUsers(selectedCity.city_id, event.event_id, auth.data?.id).then(
         (interestedCount) => {
           setInterestedCount(interestedCount);
         },
       );
     }, [event]);
 
-    const isError = eventsBadImage.includes(event.sku);
-    const imgSrc = isError
-      ? `${imagesCdn}/logos/square_black_big_logo_blue.png`
-      : event.photo_1;
+    const isError = eventsBadImage.includes(event.event_id);
+
+    let imgSrc = null;
+    if (event.partner === "sityex"){
+      imgSrc = `${imagesCdn}/${event.photo_1}`;
+    }
+    else {
+      imgSrc = event.photo_1;
+    }
+  
+    if (isError){
+      imgSrc = `${imagesCdn}/logos/square_black_big_logo_blue.png`
+    }
 
     const key = isError
-      ? `error-${event.sku}-${rowIndex}-${columnIndex}`
-      : `${event.sku}-${rowIndex}-${columnIndex}`;
+      ? `error-${event.event_id}-${rowIndex}-${columnIndex}`
+      : `${event.event_id}-${rowIndex}-${columnIndex}`;
 
     const plan_name = event.plan_name_en !== "" ? event.plan_name_en : event.plan_name_es;
 
@@ -73,7 +82,7 @@ const EventsGrid = ({ events }) => {
       <div style={style}>
         <ImageListItem
           key={key}
-          onClick={() => handleEventClick(event.sku)}
+          onClick={() => handleEventClick(event.event_id)}
           style={{
             height: "100%",
             cursor: "pointer",
@@ -86,7 +95,7 @@ const EventsGrid = ({ events }) => {
               alt={plan_name}
               title={plan_name}
               loading="lazy"
-              onError={() => handleImageError(event.sku)}
+              onError={() => handleImageError(event.event_id)}
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
             {interestedCount !== null && interestedCount !== 0 && (
@@ -120,7 +129,7 @@ const EventsGrid = ({ events }) => {
                 {plan_name}
               </div>
             }
-            onClick={() => handleEventClick(event.sku)}
+            onClick={() => handleEventClick(event.event_id)}
           />
         </ImageListItem>
       </div>

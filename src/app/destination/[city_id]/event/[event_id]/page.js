@@ -75,9 +75,16 @@ const CityEventPage = () => {
 
   if (!selectedEvent) return null;
 
-  const imgSrc = imageHasError
-    ? `${imagesCdn}/logos/square_big_logo_blue.png`
-    : selectedEvent.photo_1;
+  let imgSrc = null;
+  if (selectedEvent.partner === "sityex") {
+    imgSrc = `${imagesCdn}/${selectedEvent.photo_1}`;
+  } else {
+    imgSrc = selectedEvent.photo_1;
+  }
+
+  if (imageHasError) {
+    imgSrc = `${imagesCdn}/logos/square_black_big_logo_blue.png`;
+  }
 
   const plan_name = selectedEvent.plan_name_en
     ? selectedEvent.plan_name_en
