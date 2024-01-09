@@ -61,6 +61,7 @@ const LandingPage = () => {
           alignItems: "center",
           textAlign: "center",
           mt: 10,
+          height: { xs: "auto", md: "77vh" },
         }}
       >
         <Box
@@ -111,7 +112,7 @@ const LandingPage = () => {
             sx={{
               display: "flex",
               justifyContent: "center",
-              mt: { xs: 5, md: 10 },
+              mt: { xs: 10, md: 15 },
             }}
           >
             <Stack
@@ -134,7 +135,7 @@ const LandingPage = () => {
               >
                 Events
               </Typography>
-              <Typography sx={{ color: "grey.500", fontSize: 20, my: 2 }}>
+              <Typography sx={{ color: "grey.500", fontSize: 20, mt: 2 }}>
                 Vibrant tapestry of cultural, social, and recreational
                 activities for a global community of like-minded expats
               </Typography>
@@ -147,7 +148,7 @@ const LandingPage = () => {
             sx={{
               display: "flex",
               justifyContent: "center",
-              mt: { xs: 5, md: 10 },
+              mt: { xs: 10, md: 15 },
             }}
           >
             <Stack
@@ -170,7 +171,7 @@ const LandingPage = () => {
               >
                 Housing
               </Typography>
-              <Typography sx={{ color: "grey.500", fontSize: 20, my: 2 }}>
+              <Typography sx={{ color: "grey.500", fontSize: 20, mt: 2 }}>
                 Housing options and discounts through our partners to help you
                 find your ideal home
               </Typography>
@@ -183,7 +184,7 @@ const LandingPage = () => {
             sx={{
               display: "flex",
               justifyContent: "center",
-              mt: { xs: 5, md: 10 },
+              mt: { xs: 10, md: 15 },
             }}
           >
             <Stack
@@ -206,7 +207,7 @@ const LandingPage = () => {
               >
                 Bureaucracy Support
               </Typography>
-              <Typography sx={{ color: "grey.500", fontSize: 20, my: 2 }}>
+              <Typography sx={{ color: "grey.500", fontSize: 20, mt: 2 }}>
                 Automatized processes through our local partners that do the
                 paperwork for you
               </Typography>
@@ -223,8 +224,8 @@ const LandingPage = () => {
           px: 2,
           alignItems: "center",
           textAlign: "center",
-          mt: { md: 10, xs: 15 },
-          height: { xs: "auto", md: "60vh" },
+          mt: 15,
+          height: { xs: "auto", md: "50vh" },
         }}
       >
         <Box
@@ -274,7 +275,7 @@ const LandingPage = () => {
           alignItems: "center",
           textAlign: "center",
           px: 2,
-          mt: { xs: 15, md: 10 },
+          mt: 15,
         }}
       >
         <img
