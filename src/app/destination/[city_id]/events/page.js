@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { Box, Tabs, Tab, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Tabs, Tab, useTheme } from "@mui/material";
 
 import EventsGrid from "components/ImageGrids/EventsGrid";
 
@@ -12,6 +12,7 @@ import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 import SendGAPageView from "components/DataLoaders/SendGAPageView";
 
 const eventCategories = [
+  "Exclusive events",
   "Experiences",
   "Music",
   "Party",
@@ -33,7 +34,6 @@ const CityEventsPage = () => {
 
   const dispatch = useDispatch();
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const eventsData = events.events || [];
 
@@ -94,9 +94,8 @@ const CityEventsPage = () => {
         onChange={handleTabChange}
         textColor="secondary"
         indicatorColor="secondary"
-        variant={isSmallScreen ? "scrollable" : "standard"}
+        variant="scrollable"
         scrollButtons="auto"
-        centered={!isSmallScreen}
         xs={{ display: "flex", flexDirection: "row", justifyContent: "center" }}
       >
         {filteredSubcategories.map((category) => (
