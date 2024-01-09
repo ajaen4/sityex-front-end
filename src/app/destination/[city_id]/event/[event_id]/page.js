@@ -156,13 +156,15 @@ const CityEventPage = () => {
             my: { xs: 2, md: 0, lg: 0 },
           }}
         >
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={clickedBuyTickets}
-          >
-            Buy tickets
-          </Button>
+          {selectedEvent.partner !== "sityex" && (
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={clickedBuyTickets}
+            >
+              Buy tickets
+            </Button>
+          )}
         </Grid>
         <Grid item xs={12} md={7} lg={8} xl={9}>
           <Typography sx={{ pt: { xs: 1, md: 4, lg: 4 }, pb: 2, fontSize: 16 }}>
