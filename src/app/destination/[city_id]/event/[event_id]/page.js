@@ -79,6 +79,10 @@ const CityEventPage = () => {
     ? `${imagesCdn}/logos/square_big_logo_blue.png`
     : selectedEvent.photo_1;
 
+  const plan_name = selectedEvent.plan_name_en
+    ? selectedEvent.plan_name_en
+    : selectedEvent.plan_name_es;
+
   return (
     <Box
       sx={{
@@ -98,7 +102,7 @@ const CityEventPage = () => {
             onError={() => setImageHasError(true)}
             srcSet={imgSrc}
             src={imgSrc}
-            alt={selectedEvent.plan_name}
+            alt={plan_name}
             loading="lazy"
             style={{ width: "100%", borderRadius: 6 }}
           />
@@ -123,7 +127,7 @@ const CityEventPage = () => {
             />
           )}
           <Typography variant="h2" sx={{ px: 2, py: 0.5 }}>
-            {selectedEvent.plan_name}
+            {plan_name}
           </Typography>
           <Typography variant="h4" sx={{ px: 2, py: 0.5 }}>
             {selectedEvent.venue}
@@ -170,9 +174,7 @@ const CityEventPage = () => {
           }}
         >
           {selectedEvent.sessions &&
-            !selectedEvent.plan_name
-              .toLowerCase()
-              .includes("tarjeta regalo") && (
+            !plan_name.toLowerCase().includes("tarjeta regalo") && (
               <EventCalendar selectedEvent={selectedEvent} />
             )}
         </Grid>
