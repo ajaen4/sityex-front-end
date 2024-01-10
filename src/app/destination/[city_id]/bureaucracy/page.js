@@ -163,7 +163,7 @@ const BureaucracyPage = () => {
                   }}
                 >
                   <CardContent sx={{ pb: 0, flexGrow: 1 }}>
-                    <Typography variant="h5" component="div" sx={{ mb: 2 }}>
+                    <Typography variant="h4" sx={{ mb: 2 }}>
                       Residential NIE
                     </Typography>
                     <Typography variant="body2">
@@ -209,7 +209,7 @@ const BureaucracyPage = () => {
                   }}
                 >
                   <CardContent sx={{ pb: 0, flexGrow: 1 }}>
-                    <Typography variant="h5" component="div" sx={{ mb: 2 }}>
+                    <Typography variant="h4" sx={{ mb: 2 }}>
                       Non-residential NIE
                     </Typography>
                     <Typography variant="body2">
@@ -258,7 +258,7 @@ const BureaucracyPage = () => {
                   }}
                 >
                   <CardContent sx={{ pb: 0, flexGrow: 1 }}>
-                    <Typography variant="h5" component="div" sx={{ mb: 2 }}>
+                    <Typography variant="h4" sx={{ mb: 2 }}>
                       Full pack
                     </Typography>
                     <Typography variant="body2">
