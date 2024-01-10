@@ -21,9 +21,9 @@ export const getCityEvent = (city_id, event_id) => (dispatch, getState) => {
     dispatch(
       fetchingEventSuccess({
         selected_event: getState().events.events.find(
-          (event) => event.event_id === event_id
+          (event) => event.event_id === event_id,
         ),
-      })
+      }),
     );
   }
 
@@ -36,7 +36,7 @@ export const setUserInterested = (
   city_id,
   event_id,
   user_id,
-  interested_info
+  interested_info,
 ) => {
   api.setUserInterested(city_id, event_id, user_id, interested_info);
 };
