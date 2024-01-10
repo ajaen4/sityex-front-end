@@ -35,6 +35,27 @@ const CityItems = () => {
             px: 2.5,
           }}
           onClick={itemSelected}
+          data-path={ROUTES_PATHS.CITY_BUREAUCRACY}
+        >
+          <ListItemIcon
+            sx={{
+              minWidth: 0,
+              mr: 3,
+              justifyContent: "center",
+            }}
+          >
+            <GovernmentIcon />
+          </ListItemIcon>
+          <ListItemText primary="Bureaucracy" />
+        </ListItemButton>
+      </ListItem>
+      <ListItem disablePadding sx={{ display: "block" }}>
+        <ListItemButton
+          sx={{
+            minHeight: 48,
+            px: 2.5,
+          }}
+          onClick={itemSelected}
           data-path={ROUTES_PATHS.CITY_EVENTS}
         >
           <ListItemIcon
@@ -49,28 +70,6 @@ const CityItems = () => {
           <ListItemText primary="Events" />
         </ListItemButton>
       </ListItem>
-      <ListItem disablePadding sx={{ display: "block" }}>
-        <ListItemButton
-          sx={{
-            minHeight: 48,
-            px: 2.5,
-          }}
-          onClick={itemSelected}
-          data-path={ROUTES_PATHS.CITY_COMMUNITY}
-        >
-          <ListItemIcon
-            sx={{
-              minWidth: 0,
-              mr: 3,
-              justifyContent: "center",
-            }}
-          >
-            <PeopleIcon />
-          </ListItemIcon>
-          <ListItemText primary="Community" />
-        </ListItemButton>
-      </ListItem>
-
       <ListItem disablePadding sx={{ display: "block" }}>
         <ListItemButton
           sx={{
@@ -99,7 +98,7 @@ const CityItems = () => {
             px: 2.5,
           }}
           onClick={itemSelected}
-          data-path={ROUTES_PATHS.CITY_BUREAUCRACY}
+          data-path={ROUTES_PATHS.CITY_COMMUNITY}
         >
           <ListItemIcon
             sx={{
@@ -108,9 +107,9 @@ const CityItems = () => {
               justifyContent: "center",
             }}
           >
-            <GovernmentIcon />
+            <PeopleIcon />
           </ListItemIcon>
-          <ListItemText primary="Bureaucracy" />
+          <ListItemText primary="Community" />
         </ListItemButton>
       </ListItem>
     </List>

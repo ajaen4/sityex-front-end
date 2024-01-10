@@ -71,8 +71,9 @@ const BureaucracyPage = () => {
       <Box
         sx={{
           display: "flex",
+          flexDirection: "column",
           flexGrow: 1,
-          overflow: "scroll",
+          overflowY: "auto",
         }}
       >
         {selectedTab === 0 && (
@@ -91,7 +92,7 @@ const BureaucracyPage = () => {
                 justifyContent: "center",
                 m: 1,
                 width: "90%",
-                padding: 3,
+                padding: 2,
                 textAlign: "center",
               }}
             >
@@ -159,53 +160,7 @@ const BureaucracyPage = () => {
                     flexDirection: "column",
                     m: 1,
                     textAlign: "center",
-                    minHeight: { xs: 315, md: 390 },
-                  }}
-                >
-                  <CardContent sx={{ pb: 0, flexGrow: 1 }}>
-                    <Typography variant="h4" sx={{ mb: 2 }}>
-                      Residential NIE
-                    </Typography>
-                    <Typography variant="body2">
-                      For those who plan to:
-                    </Typography>
-                    <ul>
-                      <li>Buy or sell property.</li>
-                      <li>Inherit assets.</li>
-                      <li>Conduct significant financial transactions.</li>
-                      <li>Study or work for a short period.</li>
-                      <li>
-                        Engage in any legal activity that requires a Spanish tax
-                        identification number.
-                      </li>
-                    </ul>
-                  </CardContent>
-                  <CardActions
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                    }}
-                  >
-                    <Button
-                      sx={{ alignSelf: "center" }}
-                      size="small"
-                      variant="contained"
-                      href="https://entretramites.com/en/services/immigration-advice/residence-nie"
-                      target="_blank"
-                    >
-                      Go to partner's page
-                    </Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-              <Grid item xs={10} md={3}>
-                <Card
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    m: 1,
-                    textAlign: "center",
-                    minHeight: { xs: 315, md: 390 },
+                    minHeight: { xs: 315, md: 395 },
                   }}
                 >
                   <CardContent sx={{ pb: 0, flexGrow: 1 }}>
@@ -215,19 +170,17 @@ const BureaucracyPage = () => {
                     <Typography variant="body2">
                       For those who plan to:
                     </Typography>
-                    <ul>
-                      <li>Live in Spain for more than three months.</li>
-                      <li>
-                        Work or engage in any professional activity in Spain.
-                      </li>
-                      <li>
-                        Register for social services and health care in Spain.
-                      </li>
-                      <li>Apply for a driver's license in Spain.</li>
-                      <li>
-                        Buy, sell, or own property in Spain as a resident.
-                      </li>
-                    </ul>
+                    <Box sx={{ textAlign: "left" }}>
+                      <ul>
+                        <li>Buy or sell property.</li>
+                        <li>Inherit assets.</li>
+                        <li>Conduct significant financial transactions.</li>
+                        <li>
+                          Engage in any legal activity that requires a Spanish
+                          tax identification number.
+                        </li>
+                      </ul>
+                    </Box>
                   </CardContent>
                   <CardActions
                     sx={{
@@ -254,7 +207,58 @@ const BureaucracyPage = () => {
                     flexDirection: "column",
                     m: 1,
                     textAlign: "center",
-                    minHeight: { xs: 315, md: 390 },
+                    minHeight: { xs: 315, md: 395 },
+                  }}
+                >
+                  <CardContent sx={{ pb: 0, flexGrow: 1 }}>
+                    <Typography variant="h4" sx={{ mb: 2 }}>
+                      Residential NIE
+                    </Typography>
+                    <Typography variant="body2">
+                      For those who plan to:
+                    </Typography>
+                    <Box sx={{ textAlign: "left" }}>
+                      <ul>
+                        <li>Live in Spain for more than three months.</li>
+                        <li>
+                          Work or engage in any professional activity in Spain.
+                        </li>
+                        <li>
+                          Register for social services and health care in Spain.
+                        </li>
+                        <li>Apply for a driver's license in Spain.</li>
+                        <li>
+                          Buy, sell, or own property in Spain as a resident.
+                        </li>
+                      </ul>
+                    </Box>
+                  </CardContent>
+                  <CardActions
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <Button
+                      sx={{ alignSelf: "center" }}
+                      size="small"
+                      variant="contained"
+                      href="https://entretramites.com/en/services/immigration-advice/residence-nie"
+                      target="_blank"
+                    >
+                      Go to partner's page
+                    </Button>
+                  </CardActions>
+                </Card>
+              </Grid>
+              <Grid item xs={10} md={3}>
+                <Card
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    m: 1,
+                    textAlign: "center",
+                    minHeight: { xs: 315, md: 395 },
                   }}
                 >
                   <CardContent sx={{ pb: 0, flexGrow: 1 }}>
@@ -265,13 +269,15 @@ const BureaucracyPage = () => {
                       For those who want all their paperwork ready in one go,
                       includes:
                     </Typography>
-                    <ul>
-                      <li>Residential NIE.</li>
-                      <li>Empadronamiento Certificate.</li>
-                      <li>Digital Certificate.</li>
-                      <li>Social Security Number.</li>
-                      <li>Individual Health Card (TSI).</li>
-                    </ul>
+                    <Box sx={{ textAlign: "left" }}>
+                      <ul>
+                        <li>Residential NIE.</li>
+                        <li>Empadronamiento Certificate.</li>
+                        <li>Digital Certificate.</li>
+                        <li>Social Security Number.</li>
+                        <li>Individual Health Card (TSI).</li>
+                      </ul>
+                    </Box>
                   </CardContent>
                   <CardActions
                     sx={{
@@ -299,50 +305,71 @@ const BureaucracyPage = () => {
             sx={{
               width: "100%",
               display: "flex",
-              justifyContent: "center",
-              alignItems: "start",
+              flexDirection: "column",
+              alignItems: "center",
             }}
           >
             <Paper
               elevation={3}
               sx={{
                 display: "flex",
-                justifyContent: "center",
-                m: 1,
+                flexDirection: "column",
+                alignItems: "center",
+                my: 1,
                 width: "90%",
-                padding: 3,
+                padding: 2,
                 textAlign: "center",
               }}
             >
-              <Box>
-                <Typography variant="h3" gutterBottom sx={{ mb: 2 }}>
-                  How it works
-                </Typography>
-                <img
-                  width="200"
-                  height="40"
-                  src={`${imagesCdn}/partner_logos/taxdown.png`}
-                  alt="taxdown icon"
-                  title="Taxdown"
-                />
-                <Typography
-                  variant="body1"
-                  gutterBottom
-                  sx={{ fontSize: 16, my: 2 }}
-                >
-                  We have partnered with <b>TaxDown</b> to offer you a{" "}
-                  <b>15% discount</b> on all their services.
-                </Typography>
-                <Button
-                  sx={{ alignSelf: "center" }}
-                  size="small"
-                  variant="contained"
-                  href="https://app.taxdown.es/"
-                  target="_blank"
-                >
-                  Redeem discount
-                </Button>
-              </Box>
+              <Typography variant="h3" gutterBottom sx={{ mb: 1 }}>
+                How it works
+              </Typography>
+              <img
+                style={{ marginBottom: 0.5 }}
+                width="150"
+                height="30"
+                src={`${imagesCdn}/partner_logos/taxdown.png`}
+                alt="taxdown icon"
+                title="Taxdown"
+              />
+              <Typography
+                variant="body1"
+                gutterBottom
+                sx={{ fontSize: 16, my: 1 }}
+              >
+                We have partnered with <b>TaxDown</b> to offer you a{" "}
+                <b>15% discount</b> on all their services.
+              </Typography>
+              <Typography
+                variant="body1"
+                gutterBottom
+                sx={{ fontSize: 16, my: 1 }}
+              >
+                TaxDown is an online platform designed to simplify the process
+                of filing taxes, particularly suited for residents in Spain,
+                including expats. It offers an easy-to-use, automated system
+                that helps users navigate through the complexities of the
+                Spanish tax system.
+              </Typography>
+              <Typography
+                variant="body1"
+                gutterBottom
+                sx={{ fontSize: 16, my: 1 }}
+              >
+                By providing personalized tax optimization advice, TaxDown aims
+                to ensure that users benefit from all the tax deductions and
+                credits they are eligible for, potentially leading to
+                significant tax savings.
+              </Typography>
+              <Button
+                sx={{ alignSelf: "center", mt: 1 }}
+                size="small"
+                variant="contained"
+                href="https://taxdown.es/landings_partners/sityex/?utm_source=empleados&utm_medium=partnership&utm_campaign=empleados_partnership"
+                target="_blank"
+              >
+                Redeem discount
+              </Button>
             </Paper>
           </Box>
         )}

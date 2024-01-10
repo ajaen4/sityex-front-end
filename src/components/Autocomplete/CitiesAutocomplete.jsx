@@ -37,7 +37,7 @@ const CitiesAutocomplete = ({ selectedCity, placeholder }) => {
   };
 
   const onSelectCity = (event, value) => {
-    router.push(`/destination/${value.city_id}/events`);
+    router.push(`/destination/${value.city_id}/bureaucracy`);
     setIsLoading(true);
   };
 
