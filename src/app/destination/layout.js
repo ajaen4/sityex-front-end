@@ -50,6 +50,8 @@ const CityLayout = ({ children }) => {
 
   if (selectedCity === null || selectedCity.city_id !== city_id) return null;
 
+  const showTabs = isDestinationPage && !isCityEventPage && isSmallScreen;
+
   return (
     <Box
       sx={{
@@ -97,7 +99,7 @@ const CityLayout = ({ children }) => {
           {children}
         </Box>
       </Box>
-      {isDestinationPage && !isCityEventPage && isSmallScreen && <CityTabs />}
+      {showTabs && <CityTabs />}
     </Box>
   );
 };

@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 
-import BottomNavigation from "@mui/material/BottomNavigation";
-import BottomNavigationAction from "@mui/material/BottomNavigationAction";
+import { BottomNavigation, BottomNavigationAction } from "@mui/material";
 
 import TicketIcon from "@mui/icons-material/ConfirmationNumberOutlined";
 import PeopleIcon from "@mui/icons-material/PeopleOutlined";
@@ -25,7 +24,12 @@ export default function CityTabs() {
   };
 
   return (
-    <BottomNavigation showLabels value={value} onChange={itemSelected}>
+    <BottomNavigation
+      showLabels
+      value={value}
+      onChange={itemSelected}
+      style={{ minHeight: 60 }}
+    >
       <BottomNavigationAction
         label="Bureaucracy"
         icon={<GovernmentIcon />}

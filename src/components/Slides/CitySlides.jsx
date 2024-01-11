@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
 
 import { Box, useTheme, Paper, useMediaQuery } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
@@ -12,9 +13,15 @@ const CitySlides = () => {
   const citiesIndex = useSelector((state) => state.citiesIndex.data);
 
   const theme = useTheme();
+  const router = useRouter();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const slice = isSmallScreen ? 1 : 5;
+
+  const handleCityClick = (city_id) => {
+    router.push(`/destination/${city_id}/bureaucracy`);
+  };
+
   const createSlides = (cities) => {
     let slides = [];
     for (let i = 0; i < cities.length; i += slice) {
@@ -28,7 +35,7 @@ const CitySlides = () => {
           }}
         >
           {cities.slice(i, i + slice).map((city) => (
-            <Paper key={city.city_id} sx={{ flex: 1, m: 1 }}>
+            <Paper key={city.city_id} sx={{ flex: 1, m: 1 }} >
               <Box
                 style={{
                   display: "flex",
@@ -40,7 +47,9 @@ const CitySlides = () => {
                   backgroundImage: `url(${imagesCdn}/cities/${city.city_id}.jpg)`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
+                  cursor: "pointer",
                 }}
+                onClick={() => handleCityClick(city.city_id)}
                 alt={city.name}
                 title={city.name}
               >
