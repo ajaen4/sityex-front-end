@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { Box, Tabs, Tab, useTheme } from "@mui/material";
+import { Box, Tabs, Tab } from "@mui/material";
 
 import EventsGrid from "components/ImageGrids/EventsGrid";
 
@@ -33,7 +33,6 @@ const CityEventsPage = () => {
   const [selectedTab, setSelectedTab] = useState(0);
 
   const dispatch = useDispatch();
-  const theme = useTheme();
 
   const eventsData = events.events || [];
 
@@ -80,9 +79,9 @@ const CityEventsPage = () => {
     <Box
       sx={{
         display: "flex",
-        flexGrow: 1,
         width: "100%",
         flexDirection: "column",
+        flexGrow: 1,
       }}
     >
       <SendGAPageView
@@ -96,7 +95,12 @@ const CityEventsPage = () => {
         indicatorColor="secondary"
         variant="scrollable"
         scrollButtons="auto"
-        xs={{ display: "flex", flexDirection: "row", justifyContent: "center" }}
+        xs={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          mt: 0,
+        }}
       >
         {filteredSubcategories.map((category) => (
           <Tab label={category} key={category} />
@@ -104,9 +108,9 @@ const CityEventsPage = () => {
       </Tabs>
       <Box
         sx={{
-          width: "100%",
           display: "flex",
           flexDirection: "column",
+          width: "100%",
           flexGrow: 1,
         }}
       >

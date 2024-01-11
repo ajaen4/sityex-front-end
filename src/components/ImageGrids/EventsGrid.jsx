@@ -51,32 +51,34 @@ const EventsGrid = ({ events }) => {
     if (!event) return null;
 
     useEffect(() => {
-      countInterestedUsers(selectedCity.city_id, event.event_id, auth.data?.id).then(
-        (interestedCount) => {
-          setInterestedCount(interestedCount);
-        },
-      );
+      countInterestedUsers(
+        selectedCity.city_id,
+        event.event_id,
+        auth.data?.id,
+      ).then((interestedCount) => {
+        setInterestedCount(interestedCount);
+      });
     }, [event]);
 
     const isError = eventsBadImage.includes(event.event_id);
 
     let imgSrc = null;
-    if (event.partner === "sityex"){
+    if (event.partner === "sityex") {
       imgSrc = `${imagesCdn}/${event.photo_1}`;
-    }
-    else {
+    } else {
       imgSrc = event.photo_1;
     }
-  
-    if (isError){
-      imgSrc = `${imagesCdn}/logos/square_black_big_logo_blue.png`
+
+    if (isError) {
+      imgSrc = `${imagesCdn}/logos/square_black_big_logo_blue.png`;
     }
 
     const key = isError
       ? `error-${event.event_id}-${rowIndex}-${columnIndex}`
       : `${event.event_id}-${rowIndex}-${columnIndex}`;
 
-    const plan_name = event.plan_name_en !== "" ? event.plan_name_en : event.plan_name_es;
+    const plan_name =
+      event.plan_name_en !== "" ? event.plan_name_en : event.plan_name_es;
 
     return (
       <div style={style}>
@@ -142,7 +144,7 @@ const EventsGrid = ({ events }) => {
         <Grid
           columnCount={numColumns}
           columnWidth={width / numColumns}
-          height={height}
+          height={Math.ceil(events.length / numColumns) * getRowHeight(width)}
           rowCount={Math.ceil(events.length / numColumns)}
           rowHeight={getRowHeight(width)}
           width={width}

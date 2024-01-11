@@ -27,14 +27,14 @@ export default function CityTabs() {
   return (
     <BottomNavigation showLabels value={value} onChange={itemSelected}>
       <BottomNavigationAction
+        label="Bureaucracy"
+        icon={<GovernmentIcon />}
+        data-path={ROUTES_PATHS.CITY_BUREAUCRACY}
+      />
+      <BottomNavigationAction
         label="Events"
         icon={<TicketIcon />}
         data-path={ROUTES_PATHS.CITY_EVENTS}
-      />
-      <BottomNavigationAction
-        label="Community"
-        icon={<PeopleIcon />}
-        data-path={ROUTES_PATHS.CITY_COMMUNITY}
       />
       <BottomNavigationAction
         label="Housing"
@@ -42,9 +42,9 @@ export default function CityTabs() {
         data-path={ROUTES_PATHS.CITY_HOUSING}
       />
       <BottomNavigationAction
-        label="Bureaucracy"
-        icon={<GovernmentIcon />}
-        data-path={ROUTES_PATHS.CITY_BUREAUCRACY}
+        label="Community"
+        icon={<PeopleIcon />}
+        data-path={ROUTES_PATHS.CITY_COMMUNITY}
       />
     </BottomNavigation>
   );
