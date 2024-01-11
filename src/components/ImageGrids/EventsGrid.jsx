@@ -148,6 +148,7 @@ const EventsGrid = ({ events }) => {
           rowCount={Math.ceil(events.length / numColumns)}
           rowHeight={getRowHeight(width)}
           width={width}
+          style={{ overflow: "hidden"}}
         >
           {Cell}
         </Grid>
