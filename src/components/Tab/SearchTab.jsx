@@ -48,7 +48,14 @@ const SearchTab = () => {
           >
             <CitiesAutocomplete />
           </Box>
-          <Box sx={{ width: "100%", height: "100%" }}>
+          <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          width: "100%",
+          flexGrow: 1,
+        }}
+      >
             <CitiesGrid />
           </Box>
         </Stack>

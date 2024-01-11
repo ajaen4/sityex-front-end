@@ -144,7 +144,7 @@ const EventsGrid = ({ events }) => {
         <Grid
           columnCount={numColumns}
           columnWidth={width / numColumns}
-          height={height}
+          height={Math.ceil(events.length / numColumns) * getRowHeight(width)}
           rowCount={Math.ceil(events.length / numColumns)}
           rowHeight={getRowHeight(width)}
           width={width}

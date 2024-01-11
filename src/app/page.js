@@ -9,7 +9,7 @@ import SendGAPageView from "components/DataLoaders/SendGAPageView";
 import { imagesCdn } from "constants/constants";
 
 export const metadata = {
-  title: "SityEx | Home",
+  title: "SityEx | Discover, Connect, Belong",
   description:
     "Empowering expats in Spain with SityEx. Discover communities, connect with expats, and find your belonging in your new Spanish city. Start your journey today.",
   alternates: {
@@ -263,6 +263,38 @@ const LandingPage = () => {
             aspects of the expat journey, offering our members exclusive
             integrations and discounts.
           </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-evenly",
+              flexWrap: "wrap",
+            }}
+          >
+            <img
+              width="200"
+              height="50"
+              src={`${imagesCdn}/partner_logos/entretramites.webp`}
+              alt="entretramites icon"
+              title="Entre Tramites"
+              style={{ marginLeft: 40, marginRight: 40, marginTop: 40 }}
+            />
+            <img
+              width="150"
+              height="30"
+              src={`${imagesCdn}/partner_logos/taxdown.png`}
+              alt="taxdown icon"
+              title="Taxdown"
+              style={{ marginLeft: 40, marginRight: 40, marginTop: 53 }}
+            />
+            <img
+              width="120"
+              height="40"
+              src={`${imagesCdn}/partner_logos/fever.png`}
+              alt="fever icon"
+              title="Fever"
+              style={{ marginLeft: 40, marginRight: 40, marginTop: 40 }}
+            />
+          </Box>
         </Box>
       </Grid>
       <Grid
