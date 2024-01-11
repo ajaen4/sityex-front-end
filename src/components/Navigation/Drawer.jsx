@@ -77,7 +77,7 @@ export default function Drawer({ ...props }) {
           },
         }}
       >
-        <NavBarPlaceholder/>
+        <NavBarPlaceholder />
         <Divider sx={{ mt: 3 }}>Navigation</Divider>
         <MainItems />
       </MUIDrawer>
@@ -94,7 +94,7 @@ export default function Drawer({ ...props }) {
           width: isOpenDrawer ? { md: tabletDrawerWidth, lg: drawerWidth } : 0,
         }}
       >
-        <NavBarPlaceholder/>
+        <NavBarPlaceholder />
         <Divider sx={{ mt: 3 }}>{selectedCity?.name}</Divider>
         <CityItems />
       </MUIDrawer>
