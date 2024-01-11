@@ -16,12 +16,15 @@ import {
 
 import { countInterestedUsers } from "actions";
 
-import { imagesCdn } from "constants/constants";
+import { useShowBottomNavContext } from "components/Contexts/ShowBottomNav";
+
+import { imagesCdn, minBottomNavHeight } from "constants/constants";
 
 const EventsGrid = ({ events }) => {
   const auth = useSelector((state) => state.auth);
   const selectedCity = useSelector((state) => state.selectedCity.data);
   const [eventsBadImage, setEventsBadImage] = useState([]);
+  const { showBottomNav } = useShowBottomNavContext();
 
   const theme = useTheme();
   const router = useRouter();
@@ -47,7 +50,7 @@ const EventsGrid = ({ events }) => {
     const eventIndex = rowIndex * numColumns + columnIndex;
     const event = events[eventIndex];
     const [interestedCount, setInterestedCount] = useState(null);
-
+  
     if (!event) return null;
 
     useEffect(() => {
@@ -144,7 +147,7 @@ const EventsGrid = ({ events }) => {
         <Grid
           columnCount={numColumns}
           columnWidth={width / numColumns}
-          height={Math.ceil(events.length / numColumns) * getRowHeight(width)}
+          height={Math.ceil(events.length / numColumns) * getRowHeight(width) + (showBottomNav ? minBottomNavHeight : 0)}
           rowCount={Math.ceil(events.length / numColumns)}
           rowHeight={getRowHeight(width)}
           width={width}

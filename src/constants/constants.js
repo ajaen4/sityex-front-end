@@ -2,6 +2,7 @@ export const pages = ["Search City", "Blog"];
 export const settings = ["Account", "Logout"];
 export const drawerWidth = 240;
 export const tabletDrawerWidth = 200;
+export const minBottomNavHeight = 60;
 export const minNavbarHeight = {
   xs: "50px",
   sm: "50px",
