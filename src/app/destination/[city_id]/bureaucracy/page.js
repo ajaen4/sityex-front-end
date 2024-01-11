@@ -85,7 +85,7 @@ const BureaucracyPage = () => {
               <Chip
                 label={
                   <div>
-                    Discount code: <b>SITYEX10</b>
+                    Discount code: <b>10SITYEX</b>
                   </div>
                 }
                 color="primary"
@@ -200,7 +200,6 @@ const BureaucracyPage = () => {
                   </Typography>
                   <Box sx={{ textAlign: "left" }}>
                     <ul>
-                      <li>Live in Spain for more than three months.</li>
                       <li>
                         Work or engage in any professional activity in Spain.
                       </li>
