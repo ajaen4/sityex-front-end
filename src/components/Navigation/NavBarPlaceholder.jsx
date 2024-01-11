@@ -19,7 +19,7 @@ function NavBarPlaceholder({}) {
     (!isLandingPage && !isBlogPage) ||
     (isLandingPage && scrolledY > 750) ||
     (isBlogPage && scrolledY > 400);
-  
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
@@ -33,13 +33,7 @@ function NavBarPlaceholder({}) {
     };
   }, []);
 
-  return (
-    <>
-      {isOpaqueNavbar && (
-        <Box sx={{ minHeight: minNavbarHeight }} />
-      )}
-    </>
-  );
+  return <>{isOpaqueNavbar && <Box sx={{ minHeight: minNavbarHeight }} />}</>;
 }
 
 export default NavBarPlaceholder;
