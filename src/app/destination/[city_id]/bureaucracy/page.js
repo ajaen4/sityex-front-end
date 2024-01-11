@@ -200,7 +200,6 @@ const BureaucracyPage = () => {
                   </Typography>
                   <Box sx={{ textAlign: "left" }}>
                     <ul>
-                      <li>Live in Spain for more than three months.</li>
                       <li>
                         Work or engage in any professional activity in Spain.
                       </li>
