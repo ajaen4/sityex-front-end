@@ -41,7 +41,7 @@ const CityEventPage = () => {
       selectedCity.city_id,
       event_id,
       auth.data.id,
-      interested_info,
+      interested_info
     );
   }, []);
 
@@ -68,7 +68,7 @@ const CityEventPage = () => {
         selectedCity.city_id,
         event_id,
         auth.data?.id,
-        buy_info,
+        buy_info
       );
     window.open(selectedEvent.affiliate_url, "_blank", "noopener");
   };
@@ -133,13 +133,13 @@ const CityEventPage = () => {
               sx={{ mx: 2, py: 0.5 }}
             />
           )}
-          <Typography variant="h2" sx={{ px: 2, py: 0.5 }}>
+          <Typography variant="h2" sx={{ px: { md: 2 }, py: 0.5 }}>
             {plan_name}
           </Typography>
-          <Typography variant="h4" sx={{ px: 2, py: 0.5 }}>
+          <Typography variant="h4" sx={{ px: { md: 2 }, py: 0.5 }}>
             {selectedEvent.venue}
           </Typography>
-          <Typography variant="h5" sx={{ px: 2, py: 0.5 }}>
+          <Typography variant="h5" sx={{ px: { md: 2 }, py: 0.5 }}>
             {`Starting from: ${selectedEvent.minimum_price} ${selectedEvent.currency}`}
           </Typography>
         </Grid>

@@ -59,7 +59,7 @@ const CityEventsPage = () => {
     });
 
     return eventCategories.filter((subcategory) =>
-      usedSubcategories.has(subcategory),
+      usedSubcategories.has(subcategory)
     );
   }, [events]);
 
@@ -67,7 +67,7 @@ const CityEventsPage = () => {
     return filteredSubcategories.map((category) =>
       eventsData
         .filter((event) => event.sityex_subcategories.includes(category))
-        .sort((a, b) => a.remaining_days - b.remaining_days),
+        .sort((a, b) => a.remaining_days - b.remaining_days)
     );
   }, [events, filteredSubcategories]);
 
@@ -81,6 +81,7 @@ const CityEventsPage = () => {
         display: "flex",
         width: "100%",
         flexDirection: "column",
+        flexGrow: 1,
       }}
     >
       <SendGAPageView
@@ -94,7 +95,12 @@ const CityEventsPage = () => {
         indicatorColor="secondary"
         variant="scrollable"
         scrollButtons="auto"
-        xs={{ display: "flex", flexDirection: "row", justifyContent: "center" }}
+        xs={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          mt: 0,
+        }}
       >
         {filteredSubcategories.map((category) => (
           <Tab label={category} key={category} />
@@ -102,9 +108,9 @@ const CityEventsPage = () => {
       </Tabs>
       <Box
         sx={{
-          width: "100%",
           display: "flex",
           flexDirection: "column",
+          width: "100%",
           flexGrow: 1,
         }}
       >
@@ -112,7 +118,7 @@ const CityEventsPage = () => {
           (category, index) =>
             selectedTab === index && (
               <EventsGrid key={category} events={memoizedEvents[index]} />
-            ),
+            )
         )}
       </Box>
     </Box>

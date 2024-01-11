@@ -91,10 +91,10 @@ export default function RootLayout({ children }) {
                     flexDirection: "column",
                     flexGrow: 1,
                     width: {
+                      xs: "100%",
                       md: `calc(100% - ${tabletDrawerWidth}px)`,
                       lg: `calc(100% - ${drawerWidth}px)`,
                     },
-                    overflowY: "scroll",
                   }}
                 >
                   <NavBarPlaceholder />
