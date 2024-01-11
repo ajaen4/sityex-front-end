@@ -85,7 +85,7 @@ const BureaucracyPage = () => {
               <Chip
                 label={
                   <div>
-                    Discount code: <b>SITYEX10</b>
+                    Discount code: <b>10SITYEX</b>
                   </div>
                 }
                 color="primary"
