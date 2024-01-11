@@ -26,7 +26,7 @@ const CitiesGrid = ({}) => {
   const aspectRatio = 1.5;
 
   const handleCityClick = (city_id) => {
-    router.push(`/destination/${city_id}/events`);
+    router.push(`/destination/${city_id}/bureaucracy`);
   };
 
   const handleImageError = (city_id) => {
