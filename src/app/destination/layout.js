@@ -12,12 +12,18 @@ import { fetchCity, fetchCountry } from "actions";
 import { Box, Typography } from "@mui/material";
 
 import CityTabs from "components/Tab/CityTabs";
-import { contentHeight, minNavbarHeight } from "constants/constants";
+import { useShowBottomNavContext } from "components/Contexts/ShowBottomNav";
+import {
+  contentHeight,
+  minNavbarHeight,
+  minBottomNavHeight,
+} from "constants/constants";
 
 const CityLayout = ({ children }) => {
   const { city_id } = useParams();
   const selectedCity = useSelector((state) => state.selectedCity.data);
   const [innerHeight, setInnerHeight] = useState(contentHeight);
+  const { showBottomNav, setShowBottomNav } = useShowBottomNavContext();
 
   const theme = useTheme();
   const pathname = usePathname();
@@ -48,9 +54,11 @@ const CityLayout = ({ children }) => {
     if (selectedCity) dispatch(fetchCountry(selectedCity.country_3_code));
   }, [selectedCity]);
 
-  if (selectedCity === null || selectedCity.city_id !== city_id) return null;
+  useEffect(() => {
+    setShowBottomNav(isDestinationPage && !isCityEventPage && isSmallScreen);
+  }, [isDestinationPage, isCityEventPage, isSmallScreen]);
 
-  const showTabs = isDestinationPage && !isCityEventPage && isSmallScreen;
+  if (selectedCity === null || selectedCity.city_id !== city_id) return null;
 
   return (
     <Box
@@ -97,9 +105,13 @@ const CityLayout = ({ children }) => {
           }}
         >
           {children}
+          {showBottomNav && (
+            <Box sx={{ minHeight: minBottomNavHeight }}>
+              <CityTabs />
+            </Box>
+          )}
         </Box>
       </Box>
-      {showTabs && <CityTabs />}
     </Box>
   );
 };

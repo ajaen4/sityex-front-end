@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 
-import { BottomNavigation, BottomNavigationAction } from "@mui/material";
+import { BottomNavigation, BottomNavigationAction, Paper } from "@mui/material";
 
 import TicketIcon from "@mui/icons-material/ConfirmationNumberOutlined";
 import PeopleIcon from "@mui/icons-material/PeopleOutlined";
@@ -24,11 +24,12 @@ export default function CityTabs() {
   };
 
   return (
+    <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, backgroundColor: "transparent" }} elevation={3}>
     <BottomNavigation
       showLabels
       value={value}
       onChange={itemSelected}
-      style={{ minHeight: 60 }}
+      style={{ minHeight: 60, backgroundColor: "rgba(255, 255, 255, 0.9)" }}
     >
       <BottomNavigationAction
         label="Bureaucracy"
@@ -51,5 +52,6 @@ export default function CityTabs() {
         data-path={ROUTES_PATHS.CITY_COMMUNITY}
       />
     </BottomNavigation>
+    </Paper>
   );
 }
