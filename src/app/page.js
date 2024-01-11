@@ -61,7 +61,6 @@ const LandingPage = () => {
           alignItems: "center",
           textAlign: "center",
           mt: 10,
-          height: { xs: "auto", md: "77vh" },
         }}
       >
         <Box
@@ -225,7 +224,6 @@ const LandingPage = () => {
           alignItems: "center",
           textAlign: "center",
           mt: 15,
-          height: { xs: "auto", md: "50vh" },
         }}
       >
         <Box
