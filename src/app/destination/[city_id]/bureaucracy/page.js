@@ -81,7 +81,7 @@ const BureaucracyPage = () => {
           >
             <Box>
               <Typography variant="h3" gutterBottom sx={{ mb: 2 }}>
-                How it works
+                How to get the NIE/TIE
               </Typography>
               <Chip
                 label={
@@ -111,7 +111,7 @@ const BureaucracyPage = () => {
                 sx={{ fontSize: 16, my: 2 }}
               >
                 We have partnered with <b>Entre Tramites</b> to offer you a{" "}
-                <b>10% discount</b> on all their NIE/TIE services.
+                <b>10% discount</b> on all their NIE services.
               </Typography>
               <Box sx={{ mt: 3 }}>
                 <Stepper alternativeLabel>
@@ -132,7 +132,7 @@ const BureaucracyPage = () => {
             </Box>
           </Card>
           <Typography variant="h3" gutterBottom sx={{ m: 2 }}>
-            Available Packages
+            Available NIEs
           </Typography>
           <Grid container sx={{ justifyContent: "center" }}>
             <Grid item xs={10} md={3}>
@@ -301,7 +301,7 @@ const BureaucracyPage = () => {
           >
             <Box>
               <Typography variant="h3" gutterBottom sx={{ mb: 2 }}>
-                How it works
+                How to get a Visa
               </Typography>
               <Chip
                 label={
@@ -352,7 +352,7 @@ const BureaucracyPage = () => {
             </Box>
           </Card>
           <Typography variant="h3" gutterBottom sx={{ m: 2 }}>
-            Available Packages
+            Available Visas
           </Typography>
           <Grid container sx={{ justifyContent: "center" }}>
             <Grid item xs={10} md={4}>
@@ -496,7 +496,7 @@ const BureaucracyPage = () => {
             }}
           >
             <Typography variant="h3" gutterBottom sx={{ mb: 1 }}>
-              How it works
+              How to get your Tax Declaration
             </Typography>
             <img
               style={{ marginBottom: 0.5 }}
@@ -520,9 +520,9 @@ const BureaucracyPage = () => {
               sx={{ fontSize: 16, my: 1 }}
             >
               TaxDown is an online platform designed to simplify the process of
-              filing taxes, including expats. It offers an easy-to-use,
-              automated system that helps users navigate through the
-              complexities of the Spanish tax system.
+              filing taxes, including expats. It offers an{" "}
+              <b>easy-to-use, automated system</b> that helps users navigate
+              through the complexities of the Spanish tax system.
             </Typography>
             <Typography
               variant="body1"
@@ -530,9 +530,9 @@ const BureaucracyPage = () => {
               sx={{ fontSize: 16, my: 1 }}
             >
               By providing personalized tax optimization advice, TaxDown aims to
-              ensure that users benefit from all the tax deductions and credits
-              they are eligible for, potentially leading to significant tax
-              savings.
+              ensure that users benefit from{" "}
+              <b>all the tax deductions and credits</b> they are eligible for,
+              potentially leading to significant tax savings.
             </Typography>
             <Button
               sx={{ alignSelf: "center", mt: 1 }}

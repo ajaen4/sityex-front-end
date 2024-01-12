@@ -64,7 +64,7 @@ function CitiesMarkerCluster({ citiesIndex }) {
           [city.coordinates.latitude, city.coordinates.longitude],
           { icon: customIcon },
         ).on("click", () => {
-          window.location.href = `/destination/${city.city_id}/events`;
+          window.location.href = `/destination/${city.city_id}/bureaucracy`;
         });
 
         markers.addLayer(marker);
