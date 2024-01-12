@@ -8,6 +8,7 @@ import dynamic from "next/dynamic";
 import { Box, Grid, Typography, Button, Chip } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOnOutlined";
 import SendGAPageView from "components/DataLoaders/SendGAPageView";
+import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 
 const EventMap = dynamic(() => import("components/Maps/EventMap"), {
   ssr: false,
@@ -41,7 +42,7 @@ const CityEventPage = () => {
       selectedCity.city_id,
       event_id,
       auth.data.id,
-      interested_info,
+      interested_info
     );
   }, []);
 
@@ -68,7 +69,7 @@ const CityEventPage = () => {
         selectedCity.city_id,
         event_id,
         auth.data?.id,
-        buy_info,
+        buy_info
       );
     window.open(selectedEvent.affiliate_url, "_blank", "noopener");
   };
@@ -89,6 +90,10 @@ const CityEventPage = () => {
   const plan_name = selectedEvent.plan_name_en
     ? selectedEvent.plan_name_en
     : selectedEvent.plan_name_es;
+
+  if (selectedEvent.event_id !== event_id) {
+    return <CenteredLoadingSpinner />;
+  }
 
   return (
     <Box
