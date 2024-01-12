@@ -135,8 +135,8 @@ const LandingPage = () => {
                 Events
               </Typography>
               <Typography sx={{ color: "grey.500", fontSize: 20, mt: 2 }}>
-                Exclusive SityEx events and third party events to discover your
-                new home city
+                Exclusive SityEx and third party events to discover your new
+                home city
               </Typography>
             </Stack>
           </Grid>
