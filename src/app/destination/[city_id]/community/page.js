@@ -10,6 +10,8 @@ import { Container, Paper, Typography, Box, Button } from "@mui/material";
 
 import SendGAPageView from "components/DataLoaders/SendGAPageView";
 
+import { imagesCdn } from "constants/constants";
+
 const CityCommunityPage = () => {
   const auth = useSelector((state) => state.auth);
   const selectedCity = useSelector((state) => state.selectedCity.data);
@@ -85,9 +87,17 @@ const CityCommunityPage = () => {
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
+            alignItems: "center",
             padding: "20px",
           }}
         >
+          <img
+            width="150"
+            height="80"
+            src={`${imagesCdn}/partner_logos/meetup.png`}
+            alt="meetup icon"
+            title="Meetup icon"
+          />
           <Typography
             variant="h4"
             gutterBottom
@@ -95,6 +105,24 @@ const CityCommunityPage = () => {
             sx={{ fontSize: 16 }}
           >
             {`Join Our Community in ${selectedCity?.name}`}
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{ fontSize: 16, my: 1, textAlign: "center" }}
+            gutterBottom
+          >
+            New in town or looking to meet like-minded expats? Discover our
+            community on Meetup!
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{ fontSize: 16, my: 1, textAlign: "center" }}
+            gutterBottom
+          >
+            Meetup is a platform where people with shared interests come
+            together to engage in social activities, learn new things, and make
+            new friends. It's a fantastic way to connect with other expats in a
+            relaxed and friendly environment.
           </Typography>
           <Button
             variant="contained"
@@ -104,31 +132,14 @@ const CityCommunityPage = () => {
               marginTop: 10,
               marginBottom: 20,
             }}
-            onClick={() => window.open(selectedCity.whatsapp_link)}
+            onClick={() =>
+              window.open(
+                "https://www.meetup.com/sityex-madrid-community-expats/"
+              )
+            }
           >
             Join through link
           </Button>
-          <Typography
-            variant="body1"
-            gutterBottom
-            align="center"
-            sx={{ fontSize: 16 }}
-          >
-            {`Scan the QR code below to join our WhatsApp community and connect with
-            expats in ${selectedCity?.name}.`}
-          </Typography>
-          <Box
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            my={2}
-          >
-            <img
-              src={qrCodeUrl}
-              alt="WhatsApp Community QR Code"
-              style={{ maxWidth: "100%", height: "auto" }}
-            />
-          </Box>
         </Paper>
       </Container>
     );
