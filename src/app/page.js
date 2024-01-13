@@ -319,14 +319,20 @@ const LandingPage = () => {
                 title="Entre Tramites"
                 style={{ marginTop: 20 }}
               />
-              <img
-                width="180"
-                height="40"
-                src={`${imagesCdn}/partner_logos/taxdown.png`}
-                alt="taxdown icon"
-                title="Taxdown"
-                style={{ marginTop: 20 }}
-              />
+              <a
+                href="https://taxdown.es/landings_partners/sityex/?utm_source=empleados&utm_medium=partnership&utm_campaign=empleados_partnership"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  width="180"
+                  height="40"
+                  src={`${imagesCdn}/partner_logos/taxdown.png`}
+                  alt="taxdown icon"
+                  title="Taxdown"
+                  style={{ marginTop: 20 }}
+                />
+              </a>
             </Grid>
             <Grid
               item
