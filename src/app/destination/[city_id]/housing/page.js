@@ -14,10 +14,15 @@ const HousingPage = () => {
     <Box
       sx={{
         display: "flex",
+        flexDirection: "column",
+        textAlign: "center",
         width: "100%",
         justifyContent: "center",
       }}
     >
+      <Typography variant="h1" sx={{ my: 3 }}>
+        Housing
+      </Typography>
       <Container maxWidth="sm" sx={{ height: "100%" }}>
         <SendGAPageView
           pageTitle="City Housing Page"

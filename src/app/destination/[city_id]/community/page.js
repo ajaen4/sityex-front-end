@@ -32,7 +32,10 @@ const CityCommunityPage = () => {
 
   if (!auth.isAuthResolved)
     return (
-      <Container maxWidth="sm">
+      <Container maxWidth="sm" sx={{ textAlign: "center" }}>
+        <Typography variant="h1" sx={{ my: 3 }}>
+          Community
+        </Typography>
         <SendGAPageView
           pageTitle="City Community Page"
           selectedCity={selectedCity}
@@ -62,7 +65,10 @@ const CityCommunityPage = () => {
 
   if (!cityHasCommunity)
     return (
-      <Container maxWidth="sm" sx={{ height: "100%" }}>
+      <Container maxWidth="sm" sx={{ height: "100%", textAlign: "center" }}>
+        <Typography variant="h1" sx={{ my: 3 }}>
+          Community
+        </Typography>
         <SendGAPageView pageTitle="City Community Page" />
         <Paper elevation={3} sx={{ padding: "20px", textAlign: "center" }}>
           <Typography variant="h4" gutterBottom sx={{ fontSize: 16 }}>
@@ -79,7 +85,10 @@ const CityCommunityPage = () => {
 
   if (qrCodeUrl)
     return (
-      <Container maxWidth="sm">
+      <Container maxWidth="sm" sx={{ textAlign: "center" }}>
+        <Typography variant="h1" sx={{ my: 3 }}>
+          Community
+        </Typography>
         <SendGAPageView pageTitle="City Community Page" />
         <Paper
           elevation={3}
