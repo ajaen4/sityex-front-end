@@ -80,26 +80,6 @@ const CityLayout = ({ children }) => {
         <Box
           sx={{
             display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            my: 2,
-          }}
-        >
-          <img
-            loading="lazy"
-            width="30"
-            src={`https://flagcdn.com/w160/${selectedCity.country_2_code.toLowerCase()}.png`}
-            alt="City Image"
-            style={{ marginRight: "10px" }}
-          />
-
-          <Typography color="textSecondary" variant="h2">
-            {selectedCity.name}
-          </Typography>
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
             flexDirection: "column",
             flexGrow: 1,
           }}
