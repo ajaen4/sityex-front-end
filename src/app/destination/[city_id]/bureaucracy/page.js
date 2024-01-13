@@ -139,14 +139,14 @@ const BureaucracyPage = () => {
             Available NIEs
           </Typography>
           <Grid container sx={{ justifyContent: "center" }}>
-            <Grid item xs={10} md={3}>
+            <Grid item xs={10} md={4} lg={3}>
               <Card
                 sx={{
                   display: "flex",
                   flexDirection: "column",
                   m: 1,
                   textAlign: "center",
-                  minHeight: { md: 395 },
+                  minHeight: { md: 355 },
                 }}
               >
                 <CardContent sx={{ pb: 0, flexGrow: 1 }}>
@@ -186,14 +186,14 @@ const BureaucracyPage = () => {
                 </CardActions>
               </Card>
             </Grid>
-            <Grid item xs={10} md={3}>
+            <Grid item xs={10} md={4} lg={3}>
               <Card
                 sx={{
                   display: "flex",
                   flexDirection: "column",
                   m: 1,
                   textAlign: "center",
-                  minHeight: { md: 395 },
+                  minHeight: { md: 355 },
                 }}
               >
                 <CardContent sx={{ pb: 0, flexGrow: 1 }}>
@@ -236,14 +236,14 @@ const BureaucracyPage = () => {
                 </CardActions>
               </Card>
             </Grid>
-            <Grid item xs={10} md={3}>
+            <Grid item xs={10} md={4} lg={3}>
               <Card
                 sx={{
                   display: "flex",
                   flexDirection: "column",
                   m: 1,
                   textAlign: "center",
-                  minHeight: { md: 395 },
+                  minHeight: { md: 355 },
                 }}
               >
                 <CardContent sx={{ pb: 0, flexGrow: 1 }}>
@@ -359,7 +359,7 @@ const BureaucracyPage = () => {
             Available Visas
           </Typography>
           <Grid container sx={{ justifyContent: "center" }}>
-            <Grid item xs={10} md={4}>
+            <Grid item xs={10} md={5} lg={4}>
               <Card
                 sx={{
                   display: "flex",
@@ -418,7 +418,7 @@ const BureaucracyPage = () => {
                 </CardActions>
               </Card>
             </Grid>
-            <Grid item xs={10} md={4}>
+            <Grid item xs={10} md={5} lg={4}>
               <Card
                 sx={{
                   display: "flex",
