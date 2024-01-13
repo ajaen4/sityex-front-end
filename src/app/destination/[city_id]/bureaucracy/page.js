@@ -44,6 +44,9 @@ const BureaucracyPage = () => {
         pageTitle="City Bureaucracy Page"
         selectedCity={selectedCity}
       />
+      <Typography variant="h1" sx={{ my: 3 }}>
+        Bureaucracy
+      </Typography>
       <Tabs
         value={selectedTab}
         onChange={handleTabChange}
@@ -55,6 +58,7 @@ const BureaucracyPage = () => {
           display: "flex",
           flexDirection: "row",
           justifyContent: "center",
+          mt: 0,
         }}
       >
         <Tab label="NIE/TIE" key="NIE/TIE" />

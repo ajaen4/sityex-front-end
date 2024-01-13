@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { Box, Tabs, Tab } from "@mui/material";
+import { Box, Tabs, Tab, Typography } from "@mui/material";
 
 import EventsGrid from "components/ImageGrids/EventsGrid";
 
@@ -82,12 +82,16 @@ const CityEventsPage = () => {
         width: "100%",
         flexDirection: "column",
         flexGrow: 1,
+        textAlign: "center",
       }}
     >
       <SendGAPageView
         pageTitle="City Events Page"
         selectedCity={selectedCity}
       />
+      <Typography variant="h1" sx={{ my: 3 }}>
+        Events
+      </Typography>
       <Tabs
         value={selectedTab}
         onChange={handleTabChange}
