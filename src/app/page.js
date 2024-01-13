@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Box, Typography, Stack, Grid } from "@mui/material";
+import LooksOneIcon from "@mui/icons-material/LooksOneOutlined";
 
 import CitiesAutocomplete from "components/Autocomplete/CitiesAutocomplete";
 import CitySlides from "components/Slides/CitySlides";
@@ -164,6 +165,7 @@ const LandingPage = () => {
                 alt="housing icon"
                 title="Housing"
               />
+
               <Typography
                 variant="h2"
                 sx={{ color: "grey.500", fontSize: 25, my: 2 }}
@@ -261,38 +263,210 @@ const LandingPage = () => {
             aspects of the expat journey, offering our members exclusive
             integrations and discounts.
           </Typography>
+          <Grid container sx={{ display: "flex", justifyContent: "center" }}>
+            <Grid
+              item
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                mt: 5,
+                border: "1px solid #673ab7",
+                borderRadius: "10px",
+                padding: 3,
+                mx: 2,
+              }}
+              md={3}
+              xs={12}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                <Box
+                  sx={{
+                    width: 30,
+                    height: 30,
+                    backgroundColor: "primary.main",
+                    borderRadius: "50%",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    color: "white",
+                    fontSize: "20px",
+                    mr: 1,
+                  }}
+                >
+                  1
+                </Box>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontSize: 20,
+                  }}
+                >
+                  Sort your bureaucracy
+                </Typography>
+              </Box>
+              <img
+                width="200"
+                height="50"
+                src={`${imagesCdn}/partner_logos/entretramites.webp`}
+                alt="entretramites icon"
+                title="Entre Tramites"
+                style={{ marginTop: 20 }}
+              />
+              <img
+                width="180"
+                height="40"
+                src={`${imagesCdn}/partner_logos/taxdown.png`}
+                alt="taxdown icon"
+                title="Taxdown"
+                style={{ marginTop: 20 }}
+              />
+            </Grid>
+            <Grid
+              item
+              sx={{
+                display: "flex",
+                flexDirection: { xs: "column", md: "row" },
+                alignItems: "center",
+                justifyContent: "center",
+                flexWrap: "wrap",
+                mt: 5,
+                border: "1px solid #673ab7",
+                borderRadius: "10px",
+                padding: 3,
+                mx: 2,
+              }}
+              md={3}
+              xs={12}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                <Box
+                  sx={{
+                    width: 30,
+                    height: 30,
+                    backgroundColor: "primary.main",
+                    borderRadius: "50%",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    color: "white",
+                    fontSize: "20px",
+                    mr: 1,
+                  }}
+                >
+                  2
+                </Box>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontSize: 20,
+                  }}
+                >
+                  Find your new home
+                </Typography>
+              </Box>
+              <img
+                width="140"
+                height="45"
+                src={`${imagesCdn}/partner_logos/housing_anywhere.png`}
+                alt="housinganywhere icon"
+                title="HousingAnywhere"
+                style={{ marginTop: 20, marginRight: 20 }}
+              />
+              <img
+                width="200"
+                height="35"
+                src={`${imagesCdn}/partner_logos/uniplaces.png`}
+                alt="uniplaces icon"
+                title="Uniplaces"
+                style={{ marginTop: 20, marginRight: 20 }}
+              />
+              <img
+                width="80"
+                height="100"
+                src={`${imagesCdn}/partner_logos/spotahome.png`}
+                alt="spotahome icon"
+                title="Spotahome"
+                style={{ marginTop: 20 }}
+              />
+            </Grid>
+            <Grid
+              item
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                mt: 5,
+                border: "1px solid #673ab7",
+                borderRadius: "10px",
+                padding: 3,
+                mx: 2,
+              }}
+              md={3}
+              xs={12}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                <Box
+                  sx={{
+                    width: 30,
+                    height: 30,
+                    backgroundColor: "primary.main",
+                    borderRadius: "50%",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    color: "white",
+                    fontSize: "20px",
+                    mr: 1,
+                  }}
+                >
+                  3
+                </Box>
+
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontSize: 20,
+                  }}
+                >
+                  Do cool stuff
+                </Typography>
+              </Box>
+              <img
+                width="100"
+                height="30"
+                src={`${imagesCdn}/partner_logos/fever.png`}
+                alt="fever icon"
+                title="Fever"
+                style={{ marginTop: 20 }}
+              />
+            </Grid>
+          </Grid>
           <Box
             sx={{
               display: "flex",
               justifyContent: "space-evenly",
               flexWrap: "wrap",
             }}
-          >
-            <img
-              width="200"
-              height="50"
-              src={`${imagesCdn}/partner_logos/entretramites.webp`}
-              alt="entretramites icon"
-              title="Entre Tramites"
-              style={{ marginLeft: 40, marginRight: 40, marginTop: 40 }}
-            />
-            <img
-              width="150"
-              height="30"
-              src={`${imagesCdn}/partner_logos/taxdown.png`}
-              alt="taxdown icon"
-              title="Taxdown"
-              style={{ marginLeft: 40, marginRight: 40, marginTop: 53 }}
-            />
-            <img
-              width="120"
-              height="40"
-              src={`${imagesCdn}/partner_logos/fever.png`}
-              alt="fever icon"
-              title="Fever"
-              style={{ marginLeft: 40, marginRight: 40, marginTop: 40 }}
-            />
-          </Box>
+          ></Box>
         </Box>
       </Grid>
       <Grid
