@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
 import {
-  Paper,
   Typography,
   Box,
   Tabs,
@@ -504,8 +503,8 @@ const BureaucracyPage = () => {
             </Typography>
             <img
               style={{ marginBottom: 0.5 }}
-              width="150"
-              height="30"
+              width="180"
+              height="40"
               src={`${imagesCdn}/partner_logos/taxdown.png`}
               alt="taxdown icon"
               title="Taxdown"
