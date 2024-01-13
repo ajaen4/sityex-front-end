@@ -58,7 +58,7 @@ const LogInPage = () => {
             variant="h1"
             style={{ fontSize: 25 }}
           >
-            Hi, Welcome Back
+            Log In
           </Typography>
           <Typography variant="caption" fontSize="16px" textAlign="center">
             Enter your credentials to continue
