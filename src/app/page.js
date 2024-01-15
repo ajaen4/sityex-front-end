@@ -338,7 +338,7 @@ const LandingPage = () => {
               item
               sx={{
                 display: "flex",
-                flexDirection: { xs: "column", md: "row" },
+                flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "center",
                 flexWrap: "wrap",
