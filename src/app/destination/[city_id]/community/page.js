@@ -142,9 +142,7 @@ const CityCommunityPage = () => {
               marginBottom: 20,
             }}
             onClick={() =>
-              window.open(
-                "https://www.meetup.com/sityex-madrid-community-expats/"
-              )
+              window.open(selectedCity.community_links.meetup_link)
             }
           >
             Join through link
