@@ -6,7 +6,6 @@ import {
   sendPasswordResetEmail,
   updatePassword,
   signInWithRedirect,
-  getRedirectResult,
   GoogleAuthProvider,
   sendEmailVerification,
 } from "firebase/auth";
@@ -35,23 +34,6 @@ export const logInWithGoogle = async () => {
   } catch (error) {
     throw new Error(error.message);
   }
-
-  return getRedirectResult(auth)
-    .then((result) => {
-      if (result) {
-        const user = result.user;
-        saveUser({
-          uid: user.uid,
-          email: user.email,
-          userName: user.displayName,
-          photoURL: user.photoURL || null,
-        });
-        return user;
-      }
-    })
-    .catch((error) => {
-      throw new Error(error.message);
-    });
 };
 
 export const onAuthStateChangedCallback = (onAuthCallback) =>
@@ -67,7 +49,7 @@ export const createUser = async ({
     const { user } = await createUserWithEmailAndPassword(
       auth,
       email,
-      password,
+      password
     );
     await sendEmailVerification(user);
     await saveUser({
@@ -93,7 +75,7 @@ export const saveUser = async (userData) => {
           email: userData.email,
           photoURL: userData.photoURL || null,
         },
-        { merge: true },
+        { merge: true }
       );
     } else {
       setDoc(userRef, {

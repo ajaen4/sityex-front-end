@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { getRedirectResult } from "firebase/auth";
 
 import { useForm, Controller } from "react-hook-form";
 import {
@@ -27,10 +28,12 @@ import { useTheme } from "@mui/material/styles";
 import StandarModal from "components/Modals/StandarModal";
 import LoadingSpinner from "components/Spinner/LoadingSpinner";
 
-import { createUser, logInUserWithGoogle } from "actions";
+import { createUser, logInUserWithGoogle, storeAuthUser } from "actions";
 import { sameAs } from "helpers/validators";
 
 import * as ROUTES_PATHS from "routes/paths";
+import * as api from "api";
+import { auth } from "baas";
 
 const Google = "/social-google.svg";
 
@@ -85,6 +88,28 @@ const SignUpForm = ({}) => {
     setIsFetching(true);
     logInUserWithGoogle();
   };
+
+  useEffect(() => {
+    getRedirectResult(auth)
+      .then((result) => {
+        if (result) {
+          setIsFetching(true);
+          const user = result.user;
+          const dbUser = {
+            uid: user.uid,
+            email: user.email,
+            userName: user.displayName,
+            photoURL: user.photoURL || null,
+          };
+          
+          storeAuthUser(dbUser);
+          api.saveUser(dbUser);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   return (
     <>

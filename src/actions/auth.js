@@ -15,7 +15,7 @@ export const logInUser = (logInData) => {
 };
 
 export const logInUserWithGoogle = () => {
-  return api.logInWithGoogle();
+  api.logInWithGoogle();
 };
 
 export const signOutUser = (uid) => {
@@ -41,7 +41,7 @@ export const storeAuthUser = (authUser) => (dispatch, getState) => {
         }
       },
       (errorMessage) =>
-        dispatch(setAuthUserError({ errorMessage: errorMessage })),
+        dispatch(setAuthUserError({ errorMessage: errorMessage }))
     );
   } else {
     dispatch(setIsAuthResolved({ isAuthResolved: false }));
