@@ -28,7 +28,7 @@ import { useTheme } from "@mui/material/styles";
 import StandarModal from "components/Modals/StandarModal";
 import LoadingSpinner from "components/Spinner/LoadingSpinner";
 
-import { createUser, logInUserWithGoogle } from "actions";
+import { createUser, logInUserWithGoogle, storeAuthUser } from "actions";
 import { sameAs } from "helpers/validators";
 
 import * as ROUTES_PATHS from "routes/paths";
@@ -93,6 +93,7 @@ const SignUpForm = ({}) => {
     getRedirectResult(auth)
       .then((result) => {
         if (result) {
+          setIsFetching(true);
           const user = result.user;
           const dbUser = {
             uid: user.uid,
