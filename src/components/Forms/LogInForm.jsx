@@ -62,6 +62,7 @@ const LogInForm = ({}) => {
     getRedirectResult(auth)
       .then((result) => {
         if (result) {
+          setIsFetching(true);
           const user = result.user;
           const dbUser = {
             uid: user.uid,
