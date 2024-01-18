@@ -140,7 +140,7 @@ const LandingPage = () => {
               fontSize: 22,
               width: {
                 xs: "90%",
-                md: "70%",
+                md: "100%",
               },
             }}
           >
@@ -183,7 +183,9 @@ const LandingPage = () => {
               >
                 Events
               </Typography>
-              <Typography sx={{ color: "grey.500", fontSize: 20, mt: 2 }}>
+              <Typography
+                sx={{ color: "grey.500", fontSize: 20, mt: 2, mx: 2 }}
+              >
                 Exclusive SityEx and third party events to discover your new
                 home city
               </Typography>
@@ -220,7 +222,9 @@ const LandingPage = () => {
               >
                 Housing
               </Typography>
-              <Typography sx={{ color: "grey.500", fontSize: 20, mt: 2 }}>
+              <Typography
+                sx={{ color: "grey.500", fontSize: 20, mt: 2, mx: 2 }}
+              >
                 Housing options and discounts through our partners to help you
                 find your ideal home
               </Typography>
@@ -256,7 +260,9 @@ const LandingPage = () => {
               >
                 Bureaucracy Support
               </Typography>
-              <Typography sx={{ color: "grey.500", fontSize: 20, mt: 2 }}>
+              <Typography
+                sx={{ color: "grey.500", fontSize: 20, mt: 2, mx: 2 }}
+              >
                 Automatized processes through our local partners that do the
                 paperwork for you
               </Typography>
