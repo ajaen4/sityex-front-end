@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Carousel from "react-material-ui-carousel";
+
 import HorizontalImages from "components/Slides/HorizontalImages";
 
 const HousingSlides = ({ listing }) => {
@@ -23,10 +24,6 @@ const HousingSlides = ({ listing }) => {
       />
     ));
   };
-
-  if (!horizontalImages) {
-    return null;
-  }
 
   return (
     <Carousel
