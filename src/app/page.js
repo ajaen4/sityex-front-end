@@ -47,24 +47,24 @@ const LandingPage = () => {
           sx={{
             textAlign: "center",
             alignSelf: "center",
-            mb: 3,
+            mb: 4,
           }}
         >
           Discover, Connect, Belong
         </Typography>
+        <Box sx={{ width: 250, mb: { xs: 20, md: 25 } }}>
+          <CitiesAutocomplete placeholder="Enter your destination" />
+        </Box>
         <Typography
           variant="h1"
           color="white"
           fontSize={20}
           sx={{
-            mb: 3,
+            mb: 2,
           }}
         >
           One-stop platform for expats
         </Typography>
-        <Box sx={{ width: 250, mb: { xs: 20, md: 25 } }}>
-          <CitiesAutocomplete placeholder="Enter your destination" />
-        </Box>
         <Box sx={{ display: "flex", mb: 4 }}>
           <Box
             sx={{
