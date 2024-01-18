@@ -35,26 +35,18 @@ const BlogPage = () => {
           display: "flex",
           height: "60vh",
           justifyContent: "center",
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)), url(${imagesCdn}/blog.jpg)`,
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${imagesCdn}/blog_background.png)`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          alignItems: "end",
+          alignItems: "center",
         }}
       >
-        <Box
-          sx={{
-            textAlign: "center",
-            borderRadius: 2,
-            p: 2,
-            mb: 2,
-            mx: 3,
-          }}
-        >
-          <Typography variant="h1" color="white" fontSize={60} sx={{ mb: 2 }}>
+        <Box>
+          <Typography variant="h1" color="white" fontSize={40}>
             SityEx Blog
           </Typography>
-          <Typography color="white" fontSize={20}>
-            All you need to know about your new home city
+          <Typography color="white" fontSize={20} sx={{ mt: 1 }}>
+            Detailed information about bureaucracy, housing and your new city
           </Typography>
         </Box>
       </Box>

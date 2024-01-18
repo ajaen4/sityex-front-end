@@ -26,14 +26,14 @@ export const metadata = {
   creator: "Alberto Jaen",
   manifest: "https://sityex.com/manifest.json",
   title: {
-    default: "SityEx | Discover, Connect, Belong",
+    default: "SityEx | One-stop platform for expats",
   },
   description:
     "Empowering expats in Spain with SityEx. Discover communities, connect with expats, and find your belonging in your new Spanish city. Start your journey today.",
   openGraph: {
     type: "website",
     url: "https://sityex.com/",
-    title: "SityEx | Discover, Connect, Belong",
+    title: "SityEx | One-stop platform for expats",
     description:
       "Empowering expats in Spain with SityEx. Discover communities, connect with expats, and find your belonging in your new Spanish city. Start your journey today.",
     images: [
@@ -42,7 +42,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "SityEx | Discover, Connect, Belong",
+    title: "SityEx | One-stop platform for expats",
     description:
       "Empowering expats in Spain with SityEx. Discover communities, connect with expats, and find your belonging in your new Spanish city. Start your journey today.",
     images: [
