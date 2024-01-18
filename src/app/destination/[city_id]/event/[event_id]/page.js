@@ -42,7 +42,7 @@ const CityEventPage = () => {
       selectedCity.city_id,
       event_id,
       auth.data.id,
-      interested_info
+      interested_info,
     );
   }, []);
 
@@ -69,7 +69,7 @@ const CityEventPage = () => {
         selectedCity.city_id,
         event_id,
         auth.data?.id,
-        buy_info
+        buy_info,
       );
     window.open(selectedEvent.affiliate_url, "_blank", "noopener");
   };
@@ -99,7 +99,7 @@ const CityEventPage = () => {
     <Box
       sx={{
         mx: 1.5,
-        mb: 2,
+        my: 2,
         px: { xs: 2, md: 4 },
         py: 2,
         justifyContent: "center",

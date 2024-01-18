@@ -9,7 +9,7 @@ import { useMediaQuery } from "@mui/material";
 
 import { fetchCity, fetchCountry } from "actions";
 
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 
 import CityTabs from "components/Tab/CityTabs";
 import { useShowBottomNavContext } from "components/Contexts/ShowBottomNav";

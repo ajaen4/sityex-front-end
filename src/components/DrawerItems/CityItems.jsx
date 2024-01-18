@@ -56,27 +56,6 @@ const CityItems = () => {
             px: 2.5,
           }}
           onClick={itemSelected}
-          data-path={ROUTES_PATHS.CITY_EVENTS}
-        >
-          <ListItemIcon
-            sx={{
-              minWidth: 0,
-              mr: 3,
-              justifyContent: "center",
-            }}
-          >
-            <TicketIcon />
-          </ListItemIcon>
-          <ListItemText primary="Events" />
-        </ListItemButton>
-      </ListItem>
-      <ListItem disablePadding sx={{ display: "block" }}>
-        <ListItemButton
-          sx={{
-            minHeight: 48,
-            px: 2.5,
-          }}
-          onClick={itemSelected}
           data-path={ROUTES_PATHS.CITY_HOUSING}
         >
           <ListItemIcon
@@ -89,6 +68,27 @@ const CityItems = () => {
             <HouseIcon />
           </ListItemIcon>
           <ListItemText primary="Housing" />
+        </ListItemButton>
+      </ListItem>
+      <ListItem disablePadding sx={{ display: "block" }}>
+        <ListItemButton
+          sx={{
+            minHeight: 48,
+            px: 2.5,
+          }}
+          onClick={itemSelected}
+          data-path={ROUTES_PATHS.CITY_EVENTS}
+        >
+          <ListItemIcon
+            sx={{
+              minWidth: 0,
+              mr: 3,
+              justifyContent: "center",
+            }}
+          >
+            <TicketIcon />
+          </ListItemIcon>
+          <ListItemText primary="Events" />
         </ListItemButton>
       </ListItem>
       <ListItem disablePadding sx={{ display: "block" }}>
