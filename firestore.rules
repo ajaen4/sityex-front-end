@@ -23,6 +23,10 @@ service cloud.firestore {
       match /events/{event_id}/interested_users/{user_id} {
         allow read, write;
       }
+      
+      match /housing/{housing_id} {
+        allow read; 
+      }
     }
     
     match /countries/{document=**} {
@@ -39,5 +43,6 @@ service cloud.firestore {
       allow read;
       allow write: if request.auth.uid != null;
     }
+
   }
 }

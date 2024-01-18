@@ -24,34 +24,43 @@ export default function CityTabs() {
   };
 
   return (
-    <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, backgroundColor: "transparent" }} elevation={3}>
-    <BottomNavigation
-      showLabels
-      value={value}
-      onChange={itemSelected}
-      style={{ minHeight: 60, backgroundColor: "rgba(255, 255, 255, 0.9)" }}
+    <Paper
+      sx={{
+        position: "fixed",
+        bottom: 0,
+        left: 0,
+        right: 0,
+        backgroundColor: "transparent",
+      }}
+      elevation={3}
     >
-      <BottomNavigationAction
-        label="Bureaucracy"
-        icon={<GovernmentIcon />}
-        data-path={ROUTES_PATHS.CITY_BUREAUCRACY}
-      />
-      <BottomNavigationAction
-        label="Events"
-        icon={<TicketIcon />}
-        data-path={ROUTES_PATHS.CITY_EVENTS}
-      />
-      <BottomNavigationAction
-        label="Housing"
-        icon={<HouseIcon />}
-        data-path={ROUTES_PATHS.CITY_HOUSING}
-      />
-      <BottomNavigationAction
-        label="Community"
-        icon={<PeopleIcon />}
-        data-path={ROUTES_PATHS.CITY_COMMUNITY}
-      />
-    </BottomNavigation>
+      <BottomNavigation
+        showLabels
+        value={value}
+        onChange={itemSelected}
+        style={{ minHeight: 60, backgroundColor: "rgba(255, 255, 255, 0.9)" }}
+      >
+        <BottomNavigationAction
+          label="Bureaucracy"
+          icon={<GovernmentIcon />}
+          data-path={ROUTES_PATHS.CITY_BUREAUCRACY}
+        />
+        <BottomNavigationAction
+          label="Housing"
+          icon={<HouseIcon />}
+          data-path={ROUTES_PATHS.CITY_HOUSING}
+        />
+        <BottomNavigationAction
+          label="Events"
+          icon={<TicketIcon />}
+          data-path={ROUTES_PATHS.CITY_EVENTS}
+        />
+        <BottomNavigationAction
+          label="Community"
+          icon={<PeopleIcon />}
+          data-path={ROUTES_PATHS.CITY_COMMUNITY}
+        />
+      </BottomNavigation>
     </Paper>
   );
 }

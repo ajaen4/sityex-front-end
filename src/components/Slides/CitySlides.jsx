@@ -35,7 +35,7 @@ const CitySlides = () => {
           }}
         >
           {cities.slice(i, i + slice).map((city) => (
-            <Paper key={city.city_id} sx={{ flex: 1, m: 1 }} >
+            <Paper key={city.city_id} sx={{ flex: 1, m: 1 }}>
               <Box
                 style={{
                   display: "flex",

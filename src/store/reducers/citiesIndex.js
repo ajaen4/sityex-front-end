@@ -18,9 +18,6 @@ const citiesIndexSlice = createSlice({
   },
 });
 
-export const {
-  requestingCitiesIndex,
-  fetchCitiesIndexSuccess,
-  fetchCitiesIndexFailure,
-} = citiesIndexSlice.actions;
+export const { requestingCitiesIndex, fetchCitiesIndexSuccess } =
+  citiesIndexSlice.actions;
 export default citiesIndexSlice.reducer;

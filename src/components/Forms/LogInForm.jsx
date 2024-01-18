@@ -70,7 +70,7 @@ const LogInForm = ({}) => {
             userName: user.displayName,
             photoURL: user.photoURL || null,
           };
-          
+
           storeAuthUser(dbUser);
           api.saveUser(dbUser);
         }
