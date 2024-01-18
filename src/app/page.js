@@ -29,7 +29,7 @@ const LandingPage = () => {
         item
         xs={12}
         sx={{
-          height: { xs: "92.5vh", md: "100vh" },
+          height: { xs: 750, md: 730, lg: 780 },
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${imagesCdn}/landing.jpg)`,
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -71,7 +71,7 @@ const LandingPage = () => {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              mx: 4,
+              mx: 3,
             }}
           >
             <HouseIcon sx={{ color: "white", fontSize: 60 }} />
@@ -82,7 +82,7 @@ const LandingPage = () => {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              mx: 4,
+              mx: 3,
             }}
           >
             <GovernmentIcon sx={{ color: "white", fontSize: 60 }} />
@@ -93,7 +93,7 @@ const LandingPage = () => {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              mx: 4,
+              mx: 3,
             }}
           >
             <PeopleIcon sx={{ color: "white", fontSize: 60 }} />
