@@ -101,7 +101,7 @@ const SignUpForm = ({}) => {
             userName: user.displayName,
             photoURL: user.photoURL || null,
           };
-          
+
           storeAuthUser(dbUser);
           api.saveUser(dbUser);
         }

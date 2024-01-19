@@ -19,7 +19,7 @@ const CitySlides = () => {
   const slice = isSmallScreen ? 1 : 5;
 
   const handleCityClick = (city_id) => {
-    router.push(`/destination/${city_id}/bureaucracy`);
+    router.push(`/destination/${city_id}`);
   };
 
   const createSlides = (cities) => {
@@ -35,7 +35,7 @@ const CitySlides = () => {
           }}
         >
           {cities.slice(i, i + slice).map((city) => (
-            <Paper key={city.city_id} sx={{ flex: 1, m: 1 }} >
+            <Paper key={city.city_id} sx={{ flex: 1, m: 1 }}>
               <Box
                 style={{
                   display: "flex",

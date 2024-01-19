@@ -1,14 +1,30 @@
 "use client";
 
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import dynamic from "next/dynamic";
 
-import { Container, Paper, Typography, Box } from "@mui/material";
+import { Box } from "@mui/material";
 
 import SendGAPageView from "components/DataLoaders/SendGAPageView";
+const HousingMap = dynamic(() => import("components/Maps/HousingMap"), {
+  ssr: false,
+});
+
+import { fetchHousingIndex } from "actions";
 
 const HousingPage = () => {
   const selectedCity = useSelector((state) => state.selectedCity.data);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!selectedCity) {
+      return;
+    }
+
+    dispatch(fetchHousingIndex(selectedCity.city_id));
+  }, [selectedCity.city_id]);
 
   return (
     <Box
@@ -17,26 +33,18 @@ const HousingPage = () => {
         flexDirection: "column",
         textAlign: "center",
         width: "100%",
+        height: "100%",
         justifyContent: "center",
       }}
     >
-      <Typography variant="h1" sx={{ my: 3 }}>
-        Housing
-      </Typography>
-      <Container maxWidth="sm" sx={{ height: "100%" }}>
-        <SendGAPageView
-          pageTitle="City Housing Page"
-          selectedCity={selectedCity}
-        />
-        <Paper elevation={3} sx={{ padding: "20px", textAlign: "center" }}>
-          <Typography variant="h4" gutterBottom sx={{ fontSize: 16 }}>
-            Coming Soon
-          </Typography>
-          <Typography variant="body1" sx={{ fontSize: 16 }}>
-            Housing for {selectedCity?.name} is in the works. Stay tuned!
-          </Typography>
-        </Paper>
-      </Container>
+      <SendGAPageView
+        pageTitle="City Housing Page"
+        selectedCity={{
+          city_name: selectedCity.name,
+          city_id: selectedCity.city_id,
+        }}
+      />
+      <HousingMap />
     </Box>
   );
 };

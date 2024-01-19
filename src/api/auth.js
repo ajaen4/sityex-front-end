@@ -49,7 +49,7 @@ export const createUser = async ({
     const { user } = await createUserWithEmailAndPassword(
       auth,
       email,
-      password
+      password,
     );
     await sendEmailVerification(user);
     await saveUser({
@@ -75,7 +75,7 @@ export const saveUser = async (userData) => {
           email: userData.email,
           photoURL: userData.photoURL || null,
         },
-        { merge: true }
+        { merge: true },
       );
     } else {
       setDoc(userRef, {

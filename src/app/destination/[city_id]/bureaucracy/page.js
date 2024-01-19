@@ -41,7 +41,10 @@ const BureaucracyPage = () => {
     >
       <SendGAPageView
         pageTitle="City Bureaucracy Page"
-        selectedCity={selectedCity}
+        selectedCity={{
+          city_name: selectedCity.name,
+          city_id: selectedCity.city_id,
+        }}
       />
       <Typography variant="h1" sx={{ my: 3 }}>
         Bureaucracy

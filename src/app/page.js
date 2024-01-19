@@ -1,16 +1,19 @@
 import React from "react";
 
 import { Box, Typography, Stack, Grid } from "@mui/material";
-import LooksOneIcon from "@mui/icons-material/LooksOneOutlined";
 
 import CitiesAutocomplete from "components/Autocomplete/CitiesAutocomplete";
 import CitySlides from "components/Slides/CitySlides";
 import SendGAPageView from "components/DataLoaders/SendGAPageView";
 
+import PeopleIcon from "@mui/icons-material/PeopleOutlined";
+import HouseIcon from "@mui/icons-material/MapsHomeWorkOutlined";
+import GovernmentIcon from "@mui/icons-material/AssuredWorkloadOutlined";
+
 import { imagesCdn } from "constants/constants";
 
 export const metadata = {
-  title: "SityEx | Discover, Connect, Belong",
+  title: "SityEx | One-stop platform for expats",
   description:
     "Empowering expats in Spain with SityEx. Discover communities, connect with expats, and find your belonging in your new Spanish city. Start your journey today.",
   alternates: {
@@ -26,30 +29,76 @@ const LandingPage = () => {
         item
         xs={12}
         sx={{
-          height: "100vh",
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)), url(${imagesCdn}/landing.jpg)`,
+          height: { xs: 730, md: 710, lg: 770 },
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${imagesCdn}/landing.jpg)`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
+          justifyContent: "end",
           alignItems: "center",
+          width: "100%",
         }}
       >
         <Typography
-          variant="h1"
+          variant="h5"
           color="white"
-          fontSize={60}
+          fontSize={50}
           sx={{
-            alignSelf: "center",
             textAlign: "center",
-            mt: { xs: -10, md: -20 },
+            alignSelf: "center",
+            mb: 4,
           }}
         >
           Discover, Connect, Belong
         </Typography>
-        <Box sx={{ width: 250, mt: 10 }}>
+        <Box sx={{ width: 250, mb: { xs: 20, md: 25 } }}>
           <CitiesAutocomplete placeholder="Enter your destination" />
+        </Box>
+        <Typography
+          variant="h1"
+          color="white"
+          fontSize={20}
+          sx={{
+            mb: 2,
+          }}
+        >
+          One-stop platform for expats
+        </Typography>
+        <Box sx={{ display: "flex", mb: 4 }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              mx: 3,
+            }}
+          >
+            <HouseIcon sx={{ color: "white", fontSize: 60 }} />
+            <Typography color="white"> Housing </Typography>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              mx: 3,
+            }}
+          >
+            <GovernmentIcon sx={{ color: "white", fontSize: 60 }} />
+            <Typography color="white"> Bureaucracy </Typography>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              mx: 3,
+            }}
+          >
+            <PeopleIcon sx={{ color: "white", fontSize: 60 }} />
+            <Typography color="white"> Community </Typography>
+          </Box>
         </Box>
       </Grid>
       <Grid
@@ -86,17 +135,16 @@ const LandingPage = () => {
             Unlock the power of Community
           </Typography>
           <Typography
+            variant="h1"
             sx={{
               fontSize: 22,
               width: {
                 xs: "90%",
-                md: "70%",
+                md: "100%",
               },
             }}
           >
-            Your go-to platform for expats, where building meaningful
-            connections and navigating the journey of living abroad is made
-            seamless and enriching
+            Community-based, one-stop platform for expats
           </Typography>
         </Box>
         <Grid
@@ -135,7 +183,9 @@ const LandingPage = () => {
               >
                 Events
               </Typography>
-              <Typography sx={{ color: "grey.500", fontSize: 20, mt: 2 }}>
+              <Typography
+                sx={{ color: "grey.500", fontSize: 20, mt: 2, mx: 2 }}
+              >
                 Exclusive SityEx and third party events to discover your new
                 home city
               </Typography>
@@ -172,7 +222,9 @@ const LandingPage = () => {
               >
                 Housing
               </Typography>
-              <Typography sx={{ color: "grey.500", fontSize: 20, mt: 2 }}>
+              <Typography
+                sx={{ color: "grey.500", fontSize: 20, mt: 2, mx: 2 }}
+              >
                 Housing options and discounts through our partners to help you
                 find your ideal home
               </Typography>
@@ -208,7 +260,9 @@ const LandingPage = () => {
               >
                 Bureaucracy Support
               </Typography>
-              <Typography sx={{ color: "grey.500", fontSize: 20, mt: 2 }}>
+              <Typography
+                sx={{ color: "grey.500", fontSize: 20, mt: 2, mx: 2 }}
+              >
                 Automatized processes through our local partners that do the
                 paperwork for you
               </Typography>
@@ -259,9 +313,8 @@ const LandingPage = () => {
               },
             }}
           >
-            We establish partnerships with local experts specializing in various
-            aspects of the expat journey, offering our members exclusive
-            integrations and discounts.
+            We establish partnerships with local experts, offering our members
+            exclusive integrations and discounts.
           </Typography>
           <Grid container sx={{ display: "flex", justifyContent: "center" }}>
             <Grid

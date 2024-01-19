@@ -50,7 +50,7 @@ const EventsGrid = ({ events }) => {
     const eventIndex = rowIndex * numColumns + columnIndex;
     const event = events[eventIndex];
     const [interestedCount, setInterestedCount] = useState(null);
-  
+
     if (!event) return null;
 
     useEffect(() => {
@@ -147,11 +147,14 @@ const EventsGrid = ({ events }) => {
         <Grid
           columnCount={numColumns}
           columnWidth={width / numColumns}
-          height={Math.ceil(events.length / numColumns) * getRowHeight(width) + (showBottomNav ? minBottomNavHeight : 0)}
+          height={
+            Math.ceil(events.length / numColumns) * getRowHeight(width) +
+            (showBottomNav ? minBottomNavHeight : 0)
+          }
           rowCount={Math.ceil(events.length / numColumns)}
           rowHeight={getRowHeight(width)}
           width={width}
-          style={{ overflow: "hidden"}}
+          style={{ overflow: "hidden" }}
         >
           {Cell}
         </Grid>

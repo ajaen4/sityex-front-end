@@ -6,6 +6,7 @@ import selectedCity from "store/reducers/selectedCity";
 import selectedCountry from "store/reducers/selectedCountry";
 import allCountries from "store/reducers/allCountries";
 import events from "store/reducers/events";
+import housing from "store/reducers/housing";
 
 const rootReducer = combineReducers({
   auth,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   selectedCountry,
   allCountries,
   events,
+  housing,
 });
 
 export default rootReducer;

@@ -38,7 +38,10 @@ const CityCommunityPage = () => {
         </Typography>
         <SendGAPageView
           pageTitle="City Community Page"
-          selectedCity={selectedCity}
+          selectedCity={{
+            city_name: selectedCity.name,
+            city_id: selectedCity.city_id,
+          }}
         />
         <Paper elevation={3} sx={{ padding: "20px" }}>
           <Typography
