@@ -29,7 +29,7 @@ const LandingPage = () => {
         item
         xs={12}
         sx={{
-          height: { xs: 750, md: 730, lg: 780 },
+          height: { xs: 730, md: 710, lg: 770 },
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${imagesCdn}/landing.jpg)`,
           backgroundSize: "cover",
           backgroundPosition: "center",
