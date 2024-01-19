@@ -70,7 +70,7 @@ const BureaucracyPage = () => {
               }}
             >
               <Button
-                sx={{ alignSelf: "center" }}
+                sx={{ alignSelf: "center", fontSize: 16 }}
                 size="small"
                 variant="contained"
                 href={`${selectedCity.city_id}/${ROUTES_PATHS.CITY_BUREAUCRACY}`}
@@ -107,7 +107,7 @@ const BureaucracyPage = () => {
               }}
             >
               <Button
-                sx={{ alignSelf: "center" }}
+                sx={{ alignSelf: "center", fontSize: 16 }}
                 size="small"
                 variant="contained"
                 href={`${selectedCity.city_id}/${ROUTES_PATHS.CITY_HOUSING}`}
@@ -145,7 +145,7 @@ const BureaucracyPage = () => {
               }}
             >
               <Button
-                sx={{ alignSelf: "center" }}
+                sx={{ alignSelf: "center", fontSize: 16 }}
                 size="small"
                 variant="contained"
                 href={`${selectedCity.city_id}/${ROUTES_PATHS.CITY_EVENTS}`}
@@ -183,7 +183,7 @@ const BureaucracyPage = () => {
               }}
             >
               <Button
-                sx={{ alignSelf: "center" }}
+                sx={{ alignSelf: "center", fontSize: 16 }}
                 size="small"
                 variant="contained"
                 href={`${selectedCity.city_id}/${ROUTES_PATHS.CITY_COMMUNITY}`}
