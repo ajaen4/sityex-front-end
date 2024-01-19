@@ -45,7 +45,7 @@ const BlogSlides = async ({ is_latest, avoidBlogId }) => {
           sx={{
             display: "flex",
             flexDirection: "column",
-            width: 300,
+            minWidth: 300,
             margin: 1,
             minHeight: 350,
           }}
