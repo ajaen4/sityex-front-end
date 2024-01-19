@@ -50,7 +50,7 @@ const BureaucracyPage = () => {
               flexDirection: "column",
               mx: { xs: 4, md: 1 },
               mb: 2,
-              minHeight: 360,
+              minHeight: { md: 360 },
             }}
           >
             <CardContent sx={{ flexGrow: 1 }}>
@@ -87,7 +87,7 @@ const BureaucracyPage = () => {
               flexDirection: "column",
               mx: { xs: 4, md: 1 },
               mb: 2,
-              minHeight: 360,
+              minHeight: { md: 360 },
             }}
           >
             <CardContent sx={{ flexGrow: 1 }}>
@@ -124,7 +124,7 @@ const BureaucracyPage = () => {
               flexDirection: "column",
               mx: { xs: 4, md: 1 },
               mb: 2,
-              minHeight: 360,
+              minHeight: { md: 360 },
             }}
           >
             <CardContent sx={{ flexGrow: 1 }}>
@@ -162,7 +162,7 @@ const BureaucracyPage = () => {
               flexDirection: "column",
               mx: { xs: 4, md: 1 },
               mb: 2,
-              minHeight: 360,
+              minHeight: { md: 360 },
             }}
           >
             <CardContent sx={{ flexGrow: 1 }}>
