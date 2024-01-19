@@ -1,12 +1,18 @@
-"use client";
-
-import React from "react";
+import React, { useEffect } from "react";
 import Carousel from "react-material-ui-carousel";
-
 import HorizontalImages from "components/Slides/HorizontalImages";
 
 const HousingSlides = ({ listing }) => {
   const horizontalImages = HorizontalImages(listing.images);
+  const carouselRef = React.useRef(null);
+
+  useEffect(() => {
+    const wrapper = carouselRef.current;
+    if (wrapper) {
+      const disableClickPropagation = L?.DomEvent?.disableClickPropagation;
+      disableClickPropagation(wrapper);
+    }
+  }, []);
 
   const createSlides = (images) => {
     if (!images || images.length === 0) {
@@ -26,13 +32,15 @@ const HousingSlides = ({ listing }) => {
   };
 
   return (
-    <Carousel
-      sx={{ width: "100%", mx: 0 }}
-      navButtonsAlwaysVisible
-      indicators={false}
-    >
-      {createSlides(horizontalImages)}
-    </Carousel>
+    <div ref={carouselRef}>
+      <Carousel
+        sx={{ width: "100%", mx: 0 }}
+        navButtonsAlwaysVisible
+        indicators={false}
+      >
+        {createSlides(horizontalImages)}
+      </Carousel>
+    </div>
   );
 };
 
