@@ -45,10 +45,9 @@ const BlogSlides = async ({ is_latest, avoidBlogId }) => {
           sx={{
             display: "flex",
             flexDirection: "column",
-            maxWidth: 300,
-            minWidth: 300,
+            width: 300,
             margin: 1,
-            minHeight: 450,
+            minHeight: 350,
           }}
         >
           <CardMedia

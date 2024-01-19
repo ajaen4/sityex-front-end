@@ -19,7 +19,7 @@ const CitySlides = () => {
   const slice = isSmallScreen ? 1 : 5;
 
   const handleCityClick = (city_id) => {
-    router.push(`/destination/${city_id}/bureaucracy`);
+    router.push(`/destination/${city_id}`);
   };
 
   const createSlides = (cities) => {
