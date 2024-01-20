@@ -29,7 +29,7 @@ const LandingPage = () => {
         item
         xs={12}
         sx={{
-          height: { xs: 730, md: 710, lg: 770 },
+          height: { xs: 710, md: 710, lg: 770 },
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${imagesCdn}/landing.jpg)`,
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -147,6 +147,7 @@ const LandingPage = () => {
             Community-based, one-stop platform for expats
           </Typography>
         </Box>
+
         <Grid
           container
           sx={{
@@ -173,21 +174,21 @@ const LandingPage = () => {
               <img
                 width="80"
                 height="80"
-                src={`${imagesCdn}/icons/party.png`}
-                alt="events icon"
-                title="Events"
+                src={`${imagesCdn}/icons/government.png`}
+                alt="government icon"
+                title="Government Bureaucracy"
               />
               <Typography
                 variant="h2"
                 sx={{ color: "grey.500", fontSize: 25, my: 2 }}
               >
-                Events
+                Bureaucracy Support
               </Typography>
               <Typography
                 sx={{ color: "grey.500", fontSize: 20, mt: 2, mx: 2 }}
               >
-                Exclusive SityEx and third party events to discover your new
-                home city
+                Automatized processes through our local partners that do the
+                paperwork for you
               </Typography>
             </Stack>
           </Grid>
@@ -250,21 +251,21 @@ const LandingPage = () => {
               <img
                 width="80"
                 height="80"
-                src={`${imagesCdn}/icons/government.png`}
-                alt="government icon"
-                title="Government Bureaucracy"
+                src={`${imagesCdn}/icons/party.png`}
+                alt="events icon"
+                title="Events"
               />
               <Typography
                 variant="h2"
                 sx={{ color: "grey.500", fontSize: 25, my: 2 }}
               >
-                Bureaucracy Support
+                Events
               </Typography>
               <Typography
                 sx={{ color: "grey.500", fontSize: 20, mt: 2, mx: 2 }}
               >
-                Automatized processes through our local partners that do the
-                paperwork for you
+                Exclusive SityEx and third party events to discover your new
+                home city
               </Typography>
             </Stack>
           </Grid>
@@ -370,7 +371,7 @@ const LandingPage = () => {
                 src={`${imagesCdn}/partner_logos/entretramites.webp`}
                 alt="entretramites icon"
                 title="Entre Tramites"
-                style={{ marginTop: 20 }}
+                style={{ marginTop: 10 }}
               />
               <a
                 href="https://taxdown.es/landings_partners/sityex/?utm_source=empleados&utm_medium=partnership&utm_campaign=empleados_partnership"
@@ -383,7 +384,7 @@ const LandingPage = () => {
                   src={`${imagesCdn}/partner_logos/taxdown.png`}
                   alt="taxdown icon"
                   title="Taxdown"
-                  style={{ marginTop: 20 }}
+                  style={{ marginTop: 10 }}
                 />
               </a>
             </Grid>
@@ -442,15 +443,15 @@ const LandingPage = () => {
                 src={`${imagesCdn}/partner_logos/housing_anywhere.png`}
                 alt="housinganywhere icon"
                 title="HousingAnywhere"
-                style={{ marginTop: 20, marginRight: 20 }}
+                style={{ marginTop: 10, marginRight: 20 }}
               />
               <img
-                width="200"
+                width="180"
                 height="35"
                 src={`${imagesCdn}/partner_logos/uniplaces.png`}
                 alt="uniplaces icon"
                 title="Uniplaces"
-                style={{ marginTop: 20, marginRight: 20 }}
+                style={{ marginTop: 10, marginRight: 10 }}
               />
               <img
                 width="80"
@@ -458,7 +459,7 @@ const LandingPage = () => {
                 src={`${imagesCdn}/partner_logos/spotahome.png`}
                 alt="spotahome icon"
                 title="Spotahome"
-                style={{ marginTop: 20 }}
+                style={{ marginTop: 10 }}
               />
             </Grid>
             <Grid
