@@ -75,44 +75,43 @@ const ListingInfoWindow = ({ listing, setSelectedListing }) => {
         <CloseIcon fontSize="small" />
       </IconButton>
       <HousingSlides listing={listing} />
-        <CardContent
-          sx={{
-            flexGrow: 1,
-            cursor: "pointer",
-            px: 2,
-            py: 1,
-            textAlign: "left",
-          }}
-        >
-          <Box sx={{ display: "flex", alignItems: "center" }}>
-            <Typography
-              variant="h6"
-              sx={{
-                fontWeight: "bold",
-                mr: 1,
-                fontSize: 18,
-              }}
-            >
-              {formatPrice(listing.costsFormatted.price)}
-            </Typography>
-            <Typography variant="body1">
-              {listing.costsFormatted.pricing}
-            </Typography>
-          </Box>
-          <Box sx={{ display: "flex", alignItems: "center", mt: 0.5 }}>
-            <Typography variant="body1">
-              {listing.kindLabel} • {listing.typeLabel} •{" "}
-              {listing.facilities.totalSize &&
-                listing.facilities.totalSize.value}{" "}
-              m²
-            </Typography>
-          </Box>
-          <Box sx={{ display: "flex", alignItems: "center", mt: 0.5 }}>
-            <Typography variant="body1">
-              Available from {formatDate(listing.available[0]["from"])}
-            </Typography>
-          </Box>
-        </CardContent>
+      <CardContent
+        sx={{
+          flexGrow: 1,
+          cursor: "pointer",
+          px: 2,
+          py: 1,
+          textAlign: "left",
+        }}
+      >
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Typography
+            variant="h6"
+            sx={{
+              fontWeight: "bold",
+              mr: 1,
+              fontSize: 18,
+            }}
+          >
+            {formatPrice(listing.costsFormatted.price)}
+          </Typography>
+          <Typography variant="body1">
+            {listing.costsFormatted.pricing}
+          </Typography>
+        </Box>
+        <Box sx={{ display: "flex", alignItems: "center", mt: 0.5 }}>
+          <Typography variant="body1">
+            {listing.kindLabel} • {listing.typeLabel} •{" "}
+            {listing.facilities.totalSize && listing.facilities.totalSize.value}{" "}
+            m²
+          </Typography>
+        </Box>
+        <Box sx={{ display: "flex", alignItems: "center", mt: 0.5 }}>
+          <Typography variant="body1">
+            Available from {formatDate(listing.available[0]["from"])}
+          </Typography>
+        </Box>
+      </CardContent>
     </Card>
   );
 };

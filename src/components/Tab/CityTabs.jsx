@@ -14,7 +14,6 @@ import * as ROUTES_PATHS from "routes/paths";
 export default function CityTabs() {
   const [value, setValue] = useState(0);
   const selectedCity = useSelector((state) => state.selectedCity.data);
-
   const router = useRouter();
 
   const itemSelected = (event, value) => {
@@ -38,26 +37,30 @@ export default function CityTabs() {
         showLabels
         value={value}
         onChange={itemSelected}
-        style={{ minHeight: 60, backgroundColor: "rgba(255, 255, 255, 0.9)" }}
+        style={{ minHeight: 60, backgroundColor: "rgba(33, 150, 243, 0.7)" }}
       >
         <BottomNavigationAction
           label="Bureaucracy"
           icon={<GovernmentIcon />}
+          sx={{ color: "white", "&.Mui-selected": { color: "white" } }}
           data-path={ROUTES_PATHS.CITY_BUREAUCRACY}
         />
         <BottomNavigationAction
           label="Housing"
           icon={<HouseIcon />}
           data-path={ROUTES_PATHS.CITY_HOUSING}
+          sx={{ color: "white", "&.Mui-selected": { color: "white" } }}
         />
         <BottomNavigationAction
           label="Events"
           icon={<TicketIcon />}
+          sx={{ color: "white", "&.Mui-selected": { color: "white" } }}
           data-path={ROUTES_PATHS.CITY_EVENTS}
         />
         <BottomNavigationAction
           label="Community"
           icon={<PeopleIcon />}
+          sx={{ color: "white", "&.Mui-selected": { color: "white" } }}
           data-path={ROUTES_PATHS.CITY_COMMUNITY}
         />
       </BottomNavigation>
