@@ -37,7 +37,6 @@ const LandingPage = () => {
           flexDirection: "column",
           justifyContent: "end",
           alignItems: "center",
-          width: "100%",
         }}
       >
         <Typography
@@ -130,7 +129,7 @@ const LandingPage = () => {
           />
           <Typography
             variant="h2"
-            sx={{ color: "grey.500", my: 1, mb: 5, fontSize: 40 }}
+            sx={{ color: "grey.500", mt: 1, mb: 5, fontSize: 40 }}
           >
             Unlock the power of Community
           </Typography>
@@ -317,21 +316,26 @@ const LandingPage = () => {
             We establish partnerships with local experts, offering our members
             exclusive integrations and discounts.
           </Typography>
-          <Grid container sx={{ display: "flex", justifyContent: "center" }}>
-            <Grid
-              item
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: { md: "center" },
+              flexDirection: "row",
+              overflowX: { xs: "scroll" },
+              maxWidth: "100vw",
+            }}
+          >
+            <Box
               sx={{
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                mt: { xs: 2, md: 5 },
                 border: "1px solid #673ab7",
                 borderRadius: "10px",
                 padding: 3,
-                mx: 2,
+                mt: 5,
+                mx: 1,
               }}
-              md={3}
-              xs={12}
             >
               <Box
                 sx={{
@@ -371,7 +375,7 @@ const LandingPage = () => {
                 src={`${imagesCdn}/partner_logos/entretramites.webp`}
                 alt="entretramites icon"
                 title="Entre Tramites"
-                style={{ marginTop: 10 }}
+                style={{ marginTop: 20 }}
               />
               <a
                 href="https://taxdown.es/landings_partners/sityex/?utm_source=empleados&utm_medium=partnership&utm_campaign=empleados_partnership"
@@ -384,26 +388,23 @@ const LandingPage = () => {
                   src={`${imagesCdn}/partner_logos/taxdown.png`}
                   alt="taxdown icon"
                   title="Taxdown"
-                  style={{ marginTop: 10 }}
+                  style={{ marginTop: 20 }}
                 />
               </a>
-            </Grid>
-            <Grid
-              item
+            </Box>
+            <Box
               sx={{
                 display: "flex",
-                flexDirection: "row",
+                flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                flexWrap: "wrap",
-                mt: { xs: 2, md: 5 },
                 border: "1px solid #673ab7",
                 borderRadius: "10px",
                 padding: 3,
-                mx: 2,
+                mx: 1,
+                mt: 5,
+                minWidth: 320,
               }}
-              md={3}
-              xs={12}
             >
               <Box
                 sx={{
@@ -414,13 +415,13 @@ const LandingPage = () => {
               >
                 <Box
                   sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
                     width: 30,
                     height: 30,
                     backgroundColor: "primary.main",
                     borderRadius: "50%",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
                     color: "white",
                     fontSize: "20px",
                     mr: 1,
@@ -437,45 +438,53 @@ const LandingPage = () => {
                   Find your new home
                 </Typography>
               </Box>
-              <img
-                width="140"
-                height="45"
-                src={`${imagesCdn}/partner_logos/housing_anywhere.png`}
-                alt="housinganywhere icon"
-                title="HousingAnywhere"
-                style={{ marginTop: 10, marginRight: 20 }}
-              />
-              <img
-                width="180"
-                height="35"
-                src={`${imagesCdn}/partner_logos/uniplaces.png`}
-                alt="uniplaces icon"
-                title="Uniplaces"
-                style={{ marginTop: 10, marginRight: 10 }}
-              />
-              <img
-                width="80"
-                height="100"
-                src={`${imagesCdn}/partner_logos/spotahome.png`}
-                alt="spotahome icon"
-                title="Spotahome"
-                style={{ marginTop: 10 }}
-              />
-            </Grid>
-            <Grid
-              item
+              <Box
+                sx={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  maxWidth: 280,
+                }}
+              >
+                <img
+                  width="140"
+                  height="45"
+                  src={`${imagesCdn}/partner_logos/housing_anywhere.png`}
+                  alt="housinganywhere icon"
+                  title="HousingAnywhere"
+                  style={{ marginTop: 20, marginRight: 20 }}
+                />
+                <img
+                  width="180"
+                  height="35"
+                  src={`${imagesCdn}/partner_logos/uniplaces.png`}
+                  alt="uniplaces icon"
+                  title="Uniplaces"
+                  style={{ marginTop: 10, marginRight: 10 }}
+                />
+                <img
+                  width="80"
+                  height="100"
+                  src={`${imagesCdn}/partner_logos/spotahome.png`}
+                  alt="spotahome icon"
+                  title="Spotahome"
+                  style={{ marginTop: 20 }}
+                />
+              </Box>
+            </Box>
+            <Box
               sx={{
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                mt: { xs: 2, md: 5 },
                 border: "1px solid #673ab7",
                 borderRadius: "10px",
                 padding: 3,
-                mx: 2,
+                mx: 1,
+                mt: 5,
+                minWidth: 230,
               }}
-              md={3}
-              xs={12}
             >
               <Box
                 sx={{
@@ -518,15 +527,8 @@ const LandingPage = () => {
                 title="Fever"
                 style={{ marginTop: 20 }}
               />
-            </Grid>
-          </Grid>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-evenly",
-              flexWrap: "wrap",
-            }}
-          ></Box>
+            </Box>
+          </Box>
         </Box>
       </Grid>
       <Grid
