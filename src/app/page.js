@@ -332,6 +332,7 @@ const LandingPage = () => {
                 alignItems: "center",
                 border: "1px solid #673ab7",
                 borderRadius: "10px",
+                minWidth: 300,
                 padding: 3,
                 mt: 5,
                 mx: 1,

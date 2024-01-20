@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 
 import {
@@ -39,6 +39,26 @@ const BureaucracyPage = () => {
           city_id: selectedCity.city_id,
         }}
       />
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          mt: 3,
+        }}
+      >
+        <img
+          loading="lazy"
+          width="30"
+          src={`https://flagcdn.com/w160/${selectedCity.country_2_code.toLowerCase()}.png`}
+          alt="City Image"
+          style={{ marginRight: "10px" }}
+        />
+
+        <Typography color="textSecondary" variant="h2">
+          {selectedCity.name}
+        </Typography>
+      </Box>
       <Typography variant="h1" sx={{ my: 3 }}>
         Available services
       </Typography>
