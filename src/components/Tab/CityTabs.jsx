@@ -37,7 +37,7 @@ export default function CityTabs() {
         showLabels
         value={value}
         onChange={itemSelected}
-        style={{ minHeight: 60, backgroundColor: "rgba(33, 150, 243, 0.7)" }}
+        style={{ minHeight: 60, backgroundColor: "rgba(128, 128, 128, 0.8)" }}
       >
         <BottomNavigationAction
           label="Bureaucracy"
