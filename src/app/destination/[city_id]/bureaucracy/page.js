@@ -506,7 +506,7 @@ const BureaucracyPage = () => {
             </Typography>
             <img
               style={{ marginBottom: 0.5 }}
-              width="180"
+              width="200"
               height="40"
               src={`${imagesCdn}/partner_logos/taxdown.png`}
               alt="taxdown icon"

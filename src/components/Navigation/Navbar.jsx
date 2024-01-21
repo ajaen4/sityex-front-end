@@ -25,7 +25,7 @@ function NavBar({}) {
     pathname.split("/")[pathname.split("/").length - 1] === "blog";
   const isOpaqueNavbar =
     (!isLandingPage && !isBlogPage) ||
-    (isLandingPage && scrolledY > 750) ||
+    (isLandingPage && scrolledY > 740) ||
     (isBlogPage && scrolledY > 400);
 
   const handleCloseUserMenu = (setting) => {

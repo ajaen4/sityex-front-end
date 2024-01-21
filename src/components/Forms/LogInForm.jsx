@@ -20,7 +20,7 @@ import {
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 
-import { logInUser, storeAuthUser } from "actions";
+import { logInUser, logInUserWithGoogle, storeAuthUser } from "actions";
 
 import StandarModal from "components/Modals/StandarModal";
 import LoadingSpinner from "components/Spinner/LoadingSpinner";
