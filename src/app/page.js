@@ -15,7 +15,7 @@ import { imagesCdn } from "constants/constants";
 export const metadata = {
   title: "SityEx | One-stop platform for expats",
   description:
-    "Empowering expats in Spain with SityEx. Discover communities, connect with expats, and find your belonging in your new Spanish city. Start your journey today.",
+    "SityEx is a community-based, one-stop platform for all expat needs in Spain. We focus on housing and bureaucracy services with a vibrant community at its base.",
   alternates: {
     canonical: "https://sityex.com/",
   },
@@ -29,7 +29,7 @@ const LandingPage = () => {
         item
         xs={12}
         sx={{
-          height: { xs: 710, md: 710, lg: 770 },
+          height: { xs: 710, md: 710, lg: 740 },
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${imagesCdn}/landing.jpg)`,
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -332,7 +332,7 @@ const LandingPage = () => {
                 alignItems: "center",
                 border: "1px solid #673ab7",
                 borderRadius: "10px",
-                minWidth: 300,
+                minWidth: 340,
                 padding: 3,
                 mt: 5,
                 mx: 1,
@@ -384,7 +384,7 @@ const LandingPage = () => {
                 rel="noopener noreferrer"
               >
                 <img
-                  width="180"
+                  width="200"
                   height="40"
                   src={`${imagesCdn}/partner_logos/taxdown.png`}
                   alt="taxdown icon"
@@ -404,7 +404,7 @@ const LandingPage = () => {
                 padding: 3,
                 mx: 1,
                 mt: 5,
-                minWidth: 320,
+                minWidth: 340,
               }}
             >
               <Box
@@ -445,7 +445,7 @@ const LandingPage = () => {
                   flexWrap: "wrap",
                   alignItems: "center",
                   justifyContent: "center",
-                  maxWidth: 280,
+                  maxWidth: 290,
                 }}
               >
                 <img
@@ -454,15 +454,7 @@ const LandingPage = () => {
                   src={`${imagesCdn}/partner_logos/housing_anywhere.png`}
                   alt="housinganywhere icon"
                   title="HousingAnywhere"
-                  style={{ marginTop: 20, marginRight: 20 }}
-                />
-                <img
-                  width="180"
-                  height="35"
-                  src={`${imagesCdn}/partner_logos/uniplaces.png`}
-                  alt="uniplaces icon"
-                  title="Uniplaces"
-                  style={{ marginTop: 10, marginRight: 10 }}
+                  style={{ marginTop: 20, marginRight: 10 }}
                 />
                 <img
                   width="80"
@@ -471,6 +463,14 @@ const LandingPage = () => {
                   alt="spotahome icon"
                   title="Spotahome"
                   style={{ marginTop: 20 }}
+                />
+                <img
+                  width="180"
+                  height="35"
+                  src={`${imagesCdn}/partner_logos/uniplaces.png`}
+                  alt="uniplaces icon"
+                  title="Uniplaces"
+                  style={{ marginTop: 10 }}
                 />
               </Box>
             </Box>
@@ -484,7 +484,7 @@ const LandingPage = () => {
                 padding: 3,
                 mx: 1,
                 mt: 5,
-                minWidth: 230,
+                minWidth: 340,
               }}
             >
               <Box
