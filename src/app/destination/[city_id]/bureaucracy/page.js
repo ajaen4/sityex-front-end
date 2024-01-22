@@ -891,7 +891,6 @@ const BureaucracyPage = () => {
                   flexDirection: "column",
                   m: 1,
                   textAlign: "center",
-                  minHeight: { md: 345 },
                 }}
               >
                 <CardContent sx={{ pb: 0, flexGrow: 1 }}>
@@ -901,7 +900,7 @@ const BureaucracyPage = () => {
                     }}
                   >
                     <Typography variant="h4" sx={{ mb: 2 }}>
-                      Golden Visa
+                      Golden Visa (Non-EU citizens)
                     </Typography>
                     <Typography variant="body2" sx={{ textAlign: "left" }}>
                       For those who plan to:
@@ -909,10 +908,7 @@ const BureaucracyPage = () => {
                     <Box sx={{ textAlign: "left" }}>
                       <ul>
                         <li>Stay long-term in Spain.</li>
-                        <li>
-                          It's aimed at non-EU nationals who make a significant
-                          investment in Spain.
-                        </li>
+                        <li>Make a significant investment in Spain.</li>
                       </ul>
                     </Box>
                   </Box>
@@ -972,66 +968,252 @@ const BureaucracyPage = () => {
             alignItems: "center",
           }}
         >
-          <Card
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              my: 1,
-              width: "90%",
-              padding: 2,
-              textAlign: "center",
-            }}
-          >
-            <Typography variant="h3" gutterBottom sx={{ mb: 1 }}>
-              How to get your Tax Declaration
-            </Typography>
-            <img
-              style={{ marginBottom: 0.5 }}
-              width="200"
-              height="40"
-              src={`${imagesCdn}/partner_logos/taxdown.png`}
-              alt="taxdown icon"
-              title="Taxdown"
-            />
-            <Typography
-              variant="body1"
-              gutterBottom
-              sx={{ fontSize: 16, my: 1 }}
-            >
-              We have partnered with <b>TaxDown</b> to offer you a{" "}
-              <b>15% discount</b> on all their services.
-            </Typography>
-            <Typography
-              variant="body1"
-              gutterBottom
-              sx={{ fontSize: 16, my: 1 }}
-            >
-              TaxDown is an online platform designed to simplify the process of
-              filing taxes, including expats. It offers an{" "}
-              <b>easy-to-use, automated system</b> that helps users navigate
-              through the complexities of the Spanish tax system.
-            </Typography>
-            <Typography
-              variant="body1"
-              gutterBottom
-              sx={{ fontSize: 16, my: 1 }}
-            >
-              By providing personalized tax optimization advice, TaxDown aims to
-              ensure that users benefit from{" "}
-              <b>all the tax deductions and credits</b> they are eligible for,
-              potentially leading to significant tax savings.
-            </Typography>
-            <Button
-              sx={{ alignSelf: "center", mt: 1 }}
-              size="small"
-              variant="contained"
-              href="https://taxdown.es/landings_partners/sityex/?utm_source=empleados&utm_medium=partnership&utm_campaign=empleados_partnership"
-              target="_blank"
-            >
-              Redeem discount
-            </Button>
-          </Card>
+          <Grid container sx={{ justifyContent: "center" }}>
+            <Grid item xs={10} md={4} lg={3}>
+              <Card
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  m: 1,
+                  textAlign: "center",
+                }}
+              >
+                <CardContent sx={{ pb: 0, flexGrow: 1 }}>
+                  <Box sx={{ minHeight: { md: 305 } }}>
+                    <Typography variant="h3" gutterBottom sx={{ mb: 1 }}>
+                      Beckham Law
+                    </Typography>
+                    <Typography> **English speaking**</Typography>
+                    <img
+                      width="200"
+                      height="50"
+                      src={`${imagesCdn}/partner_logos/entretramites.webp`}
+                      alt="entretramites icon"
+                      title="EntreTramites"
+                    />
+                    <Box sx={{ textAlign: "left", mt: 2 }}>
+                      <Typography variant="body2">
+                        For those who want to:
+                      </Typography>
+
+                      <ul>
+                        <li>
+                          Pay tax only on Spanish-sourced income at a flat,
+                          lower rate.
+                        </li>
+                        <li>
+                          Have a simplified tax filing process compared to
+                          regular resident taxation.
+                        </li>
+                      </ul>
+                    </Box>
+                  </Box>
+
+                  <Chip
+                    label={
+                      <div>
+                        Discount code: <b>10SITYEX</b>
+                      </div>
+                    }
+                    color="primary"
+                  />
+                  <Typography
+                    variant="body2"
+                    sx={{ textAlign: "center", my: 1 }}
+                  >
+                    <span
+                      style={{
+                        border: "1px solid #673ab7",
+                        borderRadius: "10px",
+                        padding: "2px 10px",
+                        display: "inline-block",
+                      }}
+                    >
+                      <span
+                        style={{
+                          textDecoration: "line-through",
+                          marginRight: "10px",
+                        }}
+                      >
+                        €317,0
+                      </span>
+                      <span style={{ color: "green", fontWeight: "bold" }}>
+                        €285,3
+                      </span>
+                    </span>
+                  </Typography>
+                </CardContent>
+                <CardActions
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <Button
+                    sx={{ alignSelf: "center", mt: 1 }}
+                    size="small"
+                    variant="contained"
+                    href="https://entretramites.com/en/services/beckham-law-free-consultation"
+                    target="_blank"
+                  >
+                    Go to Partner's page
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
+            <Grid item xs={10} md={4} lg={3}>
+              <Card
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  m: 1,
+                  textAlign: "center",
+                }}
+              >
+                <CardContent sx={{ pb: 0, flexGrow: 1 }}>
+                  <Box sx={{ minHeight: { md: 305 } }}>
+                    <Typography variant="h3" gutterBottom sx={{ mb: 1 }}>
+                      Accountant Tax Declaration
+                    </Typography>
+                    <Typography> **English speaking**</Typography>
+                    <img
+                      width="200"
+                      height="50"
+                      src={`${imagesCdn}/partner_logos/entretramites.webp`}
+                      alt="entretramites icon"
+                      title="EntreTramites"
+                    />
+                    <Box sx={{ textAlign: "left", mt: 2 }}>
+                      <Typography variant="body2">
+                        For those who want to:
+                      </Typography>
+
+                      <ul>
+                        <li>
+                          Do the Tax Declaration with an experienced accountant.
+                        </li>
+                        <li>
+                          Do the Tax Declaration with an english speaking
+                          accountant.
+                        </li>
+                      </ul>
+                    </Box>
+                  </Box>
+                  <Chip
+                    label={
+                      <div>
+                        Discount code: <b>10SITYEX</b>
+                      </div>
+                    }
+                    color="primary"
+                  />
+                  <Typography
+                    variant="body2"
+                    sx={{ textAlign: "center", my: 1 }}
+                  >
+                    <span
+                      style={{
+                        border: "1px solid #673ab7",
+                        borderRadius: "10px",
+                        padding: "2px 10px",
+                        display: "inline-block",
+                      }}
+                    >
+                      <span
+                        style={{
+                          textDecoration: "line-through",
+                          marginRight: "10px",
+                        }}
+                      >
+                        €70,2
+                      </span>
+                      <span style={{ color: "green", fontWeight: "bold" }}>
+                        €63,18
+                      </span>
+                    </span>
+                  </Typography>
+                </CardContent>
+                <CardActions
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <Button
+                    sx={{ alignSelf: "center", mt: 1 }}
+                    size="small"
+                    variant="contained"
+                    href="https://entretramites.com/en/services/income-tax-return"
+                    target="_blank"
+                  >
+                    Go to Partner's page
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
+            <Grid item xs={10} md={4} lg={3}>
+              <Card
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  m: 1,
+                  textAlign: "center",
+                }}
+              >
+                <CardContent sx={{ pb: 0, flexGrow: 1 }}>
+                  <Box sx={{ minHeight: { md: 380 } }}>
+                    <Typography variant="h3" gutterBottom sx={{ mb: 1 }}>
+                      Automated Tax Declaration
+                    </Typography>
+                    <Typography> **in Spanish**</Typography>
+                    <img
+                      style={{ marginBottom: 0.5 }}
+                      width="200"
+                      height="40"
+                      src={`${imagesCdn}/partner_logos/taxdown.png`}
+                      alt="taxdown icon"
+                      title="Taxdown"
+                    />
+                    <Typography variant="body1" gutterBottom sx={{ my: 1 }}>
+                      We have partnered with <b>TaxDown</b> to offer you a{" "}
+                      <b>15% discount</b> on their Tax Declaration automated
+                      service.
+                    </Typography>
+
+                    <Box sx={{ textAlign: "left", mt: 1 }}>
+                      <Typography variant="body2" gutterBottom>
+                        For those who want to:
+                      </Typography>
+                      <Box sx={{ textAlign: "left" }}>
+                        <ul>
+                          <li>
+                            Do the Tax Declaration in an automated fashion.
+                          </li>
+                          <li>Do the Tax Declaration completely online.</li>
+                        </ul>
+                      </Box>
+                    </Box>
+                  </Box>
+                </CardContent>
+                <CardActions
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <Button
+                    sx={{ alignSelf: "center", mt: 1 }}
+                    size="small"
+                    variant="contained"
+                    href="https://taxdown.es/landings_partners/sityex/?utm_source=empleados&utm_medium=partnership&utm_campaign=empleados_partnership"
+                    target="_blank"
+                  >
+                    Redeem discount
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
+          </Grid>
         </Box>
       )}
     </Box>
