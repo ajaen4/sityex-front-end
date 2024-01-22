@@ -980,10 +980,12 @@ const BureaucracyPage = () => {
               >
                 <CardContent sx={{ pb: 0, flexGrow: 1 }}>
                   <Box sx={{ minHeight: { md: 305 } }}>
-                    <Typography variant="h3" gutterBottom sx={{ mb: 1 }}>
-                      Beckham Law
-                    </Typography>
-                    <Typography> **English speaking**</Typography>
+                    <Box sx={{ minHeight: { md: 75 } }}>
+                      <Typography variant="h3" gutterBottom sx={{ mb: 1 }}>
+                        Beckham Law
+                      </Typography>
+                      <Typography> **English speaking**</Typography>
+                    </Box>
                     <img
                       width="200"
                       height="50"
@@ -1072,10 +1074,12 @@ const BureaucracyPage = () => {
               >
                 <CardContent sx={{ pb: 0, flexGrow: 1 }}>
                   <Box sx={{ minHeight: { md: 305 } }}>
-                    <Typography variant="h3" gutterBottom sx={{ mb: 1 }}>
-                      Accountant Tax Declaration
-                    </Typography>
-                    <Typography> **English speaking**</Typography>
+                    <Box sx={{ minHeight: { md: 75 } }}>
+                      <Typography variant="h3" gutterBottom sx={{ mb: 1 }}>
+                        Accountant Tax Declaration
+                      </Typography>
+                      <Typography> **English speaking**</Typography>
+                    </Box>
                     <img
                       width="200"
                       height="50"
@@ -1162,25 +1166,20 @@ const BureaucracyPage = () => {
               >
                 <CardContent sx={{ pb: 0, flexGrow: 1 }}>
                   <Box sx={{ minHeight: { md: 380 } }}>
-                    <Typography variant="h3" gutterBottom sx={{ mb: 1 }}>
-                      Automated Tax Declaration
-                    </Typography>
-                    <Typography> **in Spanish**</Typography>
+                    <Box sx={{ minHeight: { md: 75 } }}>
+                      <Typography variant="h3" gutterBottom sx={{ mb: 1 }}>
+                        Automated Tax Declaration
+                      </Typography>
+                      <Typography> **in Spanish**</Typography>
+                    </Box>
                     <img
-                      style={{ marginBottom: 0.5 }}
                       width="200"
                       height="40"
                       src={`${imagesCdn}/partner_logos/taxdown.png`}
                       alt="taxdown icon"
                       title="Taxdown"
                     />
-                    <Typography variant="body1" gutterBottom sx={{ my: 1 }}>
-                      We have partnered with <b>TaxDown</b> to offer you a{" "}
-                      <b>15% discount</b> on their Tax Declaration automated
-                      service.
-                    </Typography>
-
-                    <Box sx={{ textAlign: "left", mt: 1 }}>
+                    <Box sx={{ textAlign: "left", mt: 3 }}>
                       <Typography variant="body2" gutterBottom>
                         For those who want to:
                       </Typography>
@@ -1193,6 +1192,11 @@ const BureaucracyPage = () => {
                         </ul>
                       </Box>
                     </Box>
+                    <Typography variant="body1" gutterBottom sx={{ my: 1 }}>
+                      We have partnered with <b>TaxDown</b> to offer you a{" "}
+                      <b>15% discount</b> on their Tax Declaration automated
+                      service.
+                    </Typography>
                   </Box>
                 </CardContent>
                 <CardActions
