@@ -59,7 +59,7 @@ const BureaucracyPage = () => {
           {selectedCity.name}
         </Typography>
       </Box>
-      <Typography variant="h1" sx={{ my: 3 }}>
+      <Typography variant="h1" sx={{ my: 3, fontSize: 30 }}>
         Available services
       </Typography>
       <Grid container>

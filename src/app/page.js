@@ -1,21 +1,21 @@
 import React from "react";
 
 import { Box, Typography, Stack, Grid } from "@mui/material";
+import PeopleIcon from "@mui/icons-material/PeopleOutlined";
+import HouseIcon from "@mui/icons-material/MapsHomeWorkOutlined";
+import GovernmentIcon from "@mui/icons-material/AssuredWorkloadOutlined";
 
 import CitiesAutocomplete from "components/Autocomplete/CitiesAutocomplete";
 import CitySlides from "components/Slides/CitySlides";
 import SendGAPageView from "components/DataLoaders/SendGAPageView";
-
-import PeopleIcon from "@mui/icons-material/PeopleOutlined";
-import HouseIcon from "@mui/icons-material/MapsHomeWorkOutlined";
-import GovernmentIcon from "@mui/icons-material/AssuredWorkloadOutlined";
+import Footer from "components/Footers/Footer";
 
 import { imagesCdn } from "constants/constants";
 
 export const metadata = {
   title: "SityEx | One-stop platform for expats",
   description:
-    "SityEx is a community-based, one-stop platform for all expat needs in Spain. We focus on housing and bureaucracy services with a vibrant community at its base.",
+    "Community-based, one-stop platform for all expat needs in Spain. We focus on housing and bureaucracy services with a vibrant community at its base.",
   alternates: {
     canonical: "https://sityex.com/",
   },
@@ -562,6 +562,9 @@ const LandingPage = () => {
           Cities all over Spain
         </Typography>
         <CitySlides />
+      </Grid>
+      <Grid item xs={12} sx={{ mt: 5 }}>
+        <Footer />
       </Grid>
     </Grid>
   );

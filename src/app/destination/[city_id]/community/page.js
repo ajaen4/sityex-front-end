@@ -33,7 +33,7 @@ const CityCommunityPage = () => {
   if (!auth.isAuthResolved)
     return (
       <Container maxWidth="sm" sx={{ textAlign: "center" }}>
-        <Typography variant="h1" sx={{ my: 3 }}>
+        <Typography variant="h1" sx={{ my: 3, fontSize: 30 }}>
           Community
         </Typography>
         <SendGAPageView
