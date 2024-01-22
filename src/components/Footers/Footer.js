@@ -67,7 +67,7 @@ function Footer() {
               <ul style={{ listStyleType: "none", padding: 0 }}>
                 <li style={{ marginTop: 10 }}>
                   <Link
-                    href="https://www.meetup.com/es/pro/sityex-community/"
+                    href="https://www.meetup.com/en/pro/sityex-community/"
                     target="_blank"
                     sx={{
                       textDecoration: "none",

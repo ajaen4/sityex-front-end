@@ -17,7 +17,18 @@ import {
   CardActions,
   Button,
   Grid,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
 } from "@mui/material";
+
+import ExpandMoreIcon from "@mui/icons-material/ExpandMoreOutlined";
 
 import SendGAPageView from "components/DataLoaders/SendGAPageView";
 
@@ -36,7 +47,10 @@ const BureaucracyPage = () => {
       sx={{
         width: "100%",
         height: "100%",
+        display: "flex",
+        flexDirection: "column",
         textAlign: "center",
+        alignItems: "center",
       }}
     >
       <SendGAPageView
@@ -63,7 +77,7 @@ const BureaucracyPage = () => {
           mt: 0,
         }}
       >
-        <Tab label="NIE/TIE" key="NIE/TIE" />
+        <Tab label="Essentials" key="Essentials" />
         <Tab label="Visa" key="Visa" />
         <Tab label="Tax Declaration" key="Tax Declaration" />
       </Tabs>
@@ -73,8 +87,82 @@ const BureaucracyPage = () => {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            width: "100%",
           }}
         >
+          <Accordion sx={{ width: "90%", textAlign: "center", my: 1 }}>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+              Which documents/services do I need? (Also applicable to EU
+              citizens)
+            </AccordionSummary>
+            <AccordionDetails>
+              <TableContainer>
+                <Table stickyHeader size="small">
+                  <TableHead>
+                    <TableRow>
+                      <TableCell style={{ visibility: "hidden" }}>
+                        Hidden Cell
+                      </TableCell>
+                      <TableCell align="center" colSpan={4}>
+                        Essentials
+                      </TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell />
+                      <TableCell align="right">NIE/TIE</TableCell>
+                      <TableCell align="right">Empadronamiento</TableCell>
+                      <TableCell align="right">
+                        Social Security number
+                      </TableCell>
+                      <TableCell align="right">Health Card</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    <TableRow
+                      key="moreThan3Months"
+                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    >
+                      <TableCell
+                        component="th"
+                        scope="row"
+                        style={{ whiteSpace: "nowrap" }}
+                      >
+                        Signing any contract
+                      </TableCell>
+                      <TableCell align="right">✅</TableCell>
+                      <TableCell align="right">❌</TableCell>
+                      <TableCell align="right">❌</TableCell>
+                      <TableCell align="right">❌</TableCell>
+                    </TableRow>
+                    <TableRow
+                      key="gettingAJob"
+                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    >
+                      <TableCell component="th" scope="row">
+                        Working in Spain
+                      </TableCell>
+                      <TableCell align="right">✅</TableCell>
+                      <TableCell align="right">❌</TableCell>
+                      <TableCell align="right">✅</TableCell>
+                      <TableCell align="right">❌</TableCell>
+                    </TableRow>
+                    <TableRow
+                      key="gettingAJob"
+                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    >
+                      <TableCell component="th" scope="row">
+                        Using the public health system
+                      </TableCell>
+                      <TableCell align="right">✅</TableCell>
+                      <TableCell align="right">✅</TableCell>
+                      <TableCell align="right">✅</TableCell>
+                      <TableCell align="right">✅</TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </AccordionDetails>
+          </Accordion>
           <Card
             sx={{
               display: "flex",
@@ -87,7 +175,7 @@ const BureaucracyPage = () => {
           >
             <Box>
               <Typography variant="h3" gutterBottom sx={{ mb: 2 }}>
-                How to get the NIE/TIE
+                Essentials
               </Typography>
               <Chip
                 label={
@@ -114,10 +202,11 @@ const BureaucracyPage = () => {
               <Typography
                 variant="body1"
                 gutterBottom
-                sx={{ fontSize: 16, my: 2 }}
+                sx={{ fontSize: 16, m: 2 }}
               >
                 We have partnered with <b>Entre Tramites</b> to offer you a{" "}
-                <b>10% discount</b> on all their NIE services.
+                <b>10% discount</b> on all their essential services. They will
+                take<b> care of the whole process for you, 100% online.</b>
               </Typography>
               <Box sx={{ mt: 3 }}>
                 <Stepper alternativeLabel>
@@ -138,7 +227,7 @@ const BureaucracyPage = () => {
             </Box>
           </Card>
           <Typography variant="h3" gutterBottom sx={{ m: 2 }}>
-            Available NIEs
+            Available services
           </Typography>
           <Grid container sx={{ justifyContent: "center" }}>
             <Grid item xs={10} md={4} lg={3}>
@@ -148,7 +237,7 @@ const BureaucracyPage = () => {
                   flexDirection: "column",
                   m: 1,
                   textAlign: "center",
-                  minHeight: { md: 355 },
+                  minHeight: { md: 400 },
                 }}
               >
                 <CardContent sx={{ pb: 0, flexGrow: 1 }}>
@@ -169,6 +258,31 @@ const BureaucracyPage = () => {
                       </li>
                     </ul>
                   </Box>
+                  <Typography
+                    variant="body2"
+                    sx={{ textAlign: "center", my: 2 }}
+                  >
+                    <span
+                      style={{
+                        border: "1px solid #673ab7",
+                        borderRadius: "10px",
+                        padding: "2px 10px",
+                        display: "inline-block",
+                      }}
+                    >
+                      <span
+                        style={{
+                          textDecoration: "line-through",
+                          marginRight: "10px",
+                        }}
+                      >
+                        €190
+                      </span>
+                      <span style={{ color: "green", fontWeight: "bold" }}>
+                        €171
+                      </span>
+                    </span>
+                  </Typography>
                 </CardContent>
                 <CardActions
                   sx={{
@@ -195,7 +309,7 @@ const BureaucracyPage = () => {
                   flexDirection: "column",
                   m: 1,
                   textAlign: "center",
-                  minHeight: { md: 355 },
+                  minHeight: { md: 400 },
                 }}
               >
                 <CardContent sx={{ pb: 0, flexGrow: 1 }}>
@@ -219,6 +333,31 @@ const BureaucracyPage = () => {
                       </li>
                     </ul>
                   </Box>
+                  <Typography
+                    variant="body2"
+                    sx={{ textAlign: "center", my: 2 }}
+                  >
+                    <span
+                      style={{
+                        border: "1px solid #673ab7",
+                        borderRadius: "10px",
+                        padding: "2px 10px",
+                        display: "inline-block",
+                      }}
+                    >
+                      <span
+                        style={{
+                          textDecoration: "line-through",
+                          marginRight: "10px",
+                        }}
+                      >
+                        €190
+                      </span>
+                      <span style={{ color: "green", fontWeight: "bold" }}>
+                        €171
+                      </span>
+                    </span>
+                  </Typography>
                 </CardContent>
                 <CardActions
                   sx={{
@@ -245,12 +384,147 @@ const BureaucracyPage = () => {
                   flexDirection: "column",
                   m: 1,
                   textAlign: "center",
-                  minHeight: { md: 355 },
+                  minHeight: { md: 400 },
                 }}
               >
                 <CardContent sx={{ pb: 0, flexGrow: 1 }}>
                   <Typography variant="h4" sx={{ mb: 2 }}>
-                    Full pack
+                    Empadronamiento
+                  </Typography>
+                  <Typography variant="body2" sx={{ textAlign: "left" }}>
+                    For those who plan to:
+                  </Typography>
+                  <Box sx={{ textAlign: "left" }}>
+                    <ul>
+                      <li>
+                        Access any kind of public service and benefits in Spain.
+                      </li>
+                    </ul>
+                  </Box>
+                  <Typography
+                    variant="body2"
+                    sx={{ textAlign: "center", my: 2 }}
+                  >
+                    <span
+                      style={{
+                        border: "1px solid #673ab7",
+                        borderRadius: "10px",
+                        padding: "2px 10px",
+                        display: "inline-block",
+                      }}
+                    >
+                      <span
+                        style={{
+                          textDecoration: "line-through",
+                          marginRight: "10px",
+                        }}
+                      >
+                        €64,1
+                      </span>
+                      <span style={{ color: "green", fontWeight: "bold" }}>
+                        €57,69
+                      </span>
+                    </span>
+                  </Typography>
+                </CardContent>
+                <CardActions
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <Button
+                    sx={{ alignSelf: "center" }}
+                    size="small"
+                    variant="contained"
+                    href="https://entretramites.com/en/services/immigration-advice/residence-nie"
+                    target="_blank"
+                  >
+                    Go to partner's page
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
+            <Grid item xs={10} md={4} lg={3}>
+              <Card
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  m: 1,
+                  textAlign: "center",
+                  minHeight: { md: 400 },
+                }}
+              >
+                <CardContent sx={{ pb: 0, flexGrow: 1 }}>
+                  <Typography variant="h4" sx={{ mb: 2 }}>
+                    Non-EU citizen Half Pack
+                  </Typography>
+                  <Typography variant="body2" sx={{ textAlign: "left" }}>
+                    Perfect if you don't need all the paperwork, includes:
+                  </Typography>
+                  <Box sx={{ textAlign: "left" }}>
+                    <ul>
+                      <li>Residential NIE.</li>
+                      <li>Empadronamiento Certificate.</li>
+                    </ul>
+                  </Box>
+                  <Typography
+                    variant="body2"
+                    sx={{ textAlign: "center", my: 2 }}
+                  >
+                    <span
+                      style={{
+                        border: "1px solid #673ab7",
+                        borderRadius: "10px",
+                        padding: "2px 10px",
+                        display: "inline-block",
+                      }}
+                    >
+                      <span
+                        style={{
+                          textDecoration: "line-through",
+                          marginRight: "10px",
+                        }}
+                      >
+                        €152,5
+                      </span>
+                      <span style={{ color: "green", fontWeight: "bold" }}>
+                        €137,25
+                      </span>
+                    </span>
+                  </Typography>
+                </CardContent>
+                <CardActions
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <Button
+                    sx={{ alignSelf: "center" }}
+                    size="small"
+                    variant="contained"
+                    href="https://entretramites.com/en/services/immigration-advice/residence-nie"
+                    target="_blank"
+                  >
+                    Go to partner's page
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
+            <Grid item xs={10} md={4} lg={3}>
+              <Card
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  m: 1,
+                  textAlign: "center",
+                  minHeight: { md: 400 },
+                }}
+              >
+                <CardContent sx={{ pb: 0, flexGrow: 1 }}>
+                  <Typography variant="h4" sx={{ mb: 2 }}>
+                    Non-EU citizen Full Pack
                   </Typography>
                   <Typography variant="body2" sx={{ textAlign: "left" }}>
                     For those who want all their paperwork ready in one go,
@@ -265,6 +539,169 @@ const BureaucracyPage = () => {
                       <li>Individual Health Card (TSI).</li>
                     </ul>
                   </Box>
+                  <Typography
+                    variant="body2"
+                    sx={{ textAlign: "center", my: 2 }}
+                  >
+                    <span
+                      style={{
+                        border: "1px solid #673ab7",
+                        borderRadius: "10px",
+                        padding: "2px 10px",
+                        display: "inline-block",
+                      }}
+                    >
+                      <span
+                        style={{
+                          textDecoration: "line-through",
+                          marginRight: "10px",
+                        }}
+                      >
+                        €215,4
+                      </span>
+                      <span style={{ color: "green", fontWeight: "bold" }}>
+                        €193,86
+                      </span>
+                    </span>
+                  </Typography>
+                </CardContent>
+                <CardActions
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <Button
+                    sx={{ alignSelf: "center" }}
+                    size="small"
+                    variant="contained"
+                    href="https://entretramites.com/en/services/immigration-advice/residence-nie"
+                    target="_blank"
+                  >
+                    Go to partner's page
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
+            <Grid item xs={10} md={4} lg={3}>
+              <Card
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  m: 1,
+                  textAlign: "center",
+                  minHeight: { md: 400 },
+                }}
+              >
+                <CardContent sx={{ pb: 0, flexGrow: 1 }}>
+                  <Typography variant="h4" sx={{ mb: 2 }}>
+                    EU citizen Half Pack
+                  </Typography>
+                  <Typography variant="body2" sx={{ textAlign: "left" }}>
+                    Perfect if you don't need all the paperwork, includes:
+                  </Typography>
+                  <Box sx={{ textAlign: "left" }}>
+                    <ul>
+                      <li>Residential NIE.</li>
+                      <li>Empadronamiento Certificate.</li>
+                    </ul>
+                  </Box>
+                  <Typography
+                    variant="body2"
+                    sx={{ textAlign: "center", my: 2 }}
+                  >
+                    <span
+                      style={{
+                        border: "1px solid #673ab7",
+                        borderRadius: "10px",
+                        padding: "2px 10px",
+                        display: "inline-block",
+                      }}
+                    >
+                      <span
+                        style={{
+                          textDecoration: "line-through",
+                          marginRight: "10px",
+                        }}
+                      >
+                        €252,9
+                      </span>
+                      <span style={{ color: "green", fontWeight: "bold" }}>
+                        €227,61
+                      </span>
+                    </span>
+                  </Typography>
+                </CardContent>
+                <CardActions
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <Button
+                    sx={{ alignSelf: "center" }}
+                    size="small"
+                    variant="contained"
+                    href="https://entretramites.com/en/services/immigration-advice/residence-nie"
+                    target="_blank"
+                  >
+                    Go to partner's page
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
+            <Grid item xs={10} md={4} lg={3}>
+              <Card
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  m: 1,
+                  textAlign: "center",
+                  minHeight: { md: 400 },
+                }}
+              >
+                <CardContent sx={{ pb: 0, flexGrow: 1 }}>
+                  <Typography variant="h4" sx={{ mb: 2 }}>
+                    EU citizen Full Pack
+                  </Typography>
+                  <Typography variant="body2" sx={{ textAlign: "left" }}>
+                    For those who want all their paperwork ready in one go,
+                    includes:
+                  </Typography>
+                  <Box sx={{ textAlign: "left" }}>
+                    <ul>
+                      <li>Residential NIE.</li>
+                      <li>Empadronamiento Certificate.</li>
+                      <li>Digital Certificate.</li>
+                      <li>Social Security Number.</li>
+                      <li>Individual Health Card (TSI).</li>
+                    </ul>
+                  </Box>
+                  <Typography
+                    variant="body2"
+                    sx={{ textAlign: "center", my: 2 }}
+                  >
+                    <span
+                      style={{
+                        border: "1px solid #673ab7",
+                        borderRadius: "10px",
+                        padding: "2px 10px",
+                        display: "inline-block",
+                      }}
+                    >
+                      <span
+                        style={{
+                          textDecoration: "line-through",
+                          marginRight: "10px",
+                        }}
+                      >
+                        €315,8
+                      </span>
+                      <span style={{ color: "green", fontWeight: "bold" }}>
+                        €284,22
+                      </span>
+                    </span>
+                  </Typography>
                 </CardContent>
                 <CardActions
                   sx={{
@@ -334,10 +771,11 @@ const BureaucracyPage = () => {
               <Typography
                 variant="body1"
                 gutterBottom
-                sx={{ fontSize: 16, my: 2 }}
+                sx={{ fontSize: 16, m: 2 }}
               >
                 We have partnered with <b>Entre Tramites</b> to offer you a{" "}
-                <b>10% discount</b> on all their Visa services.
+                <b>10% discount</b> on all their Visa services. They will take
+                <b> care of the whole process for you, 100% online.</b>
               </Typography>
               <Box sx={{ mt: 3 }}>
                 <Stepper alternativeLabel>
@@ -361,13 +799,13 @@ const BureaucracyPage = () => {
             Available Visas
           </Typography>
           <Grid container sx={{ justifyContent: "center" }}>
-            <Grid item xs={10} md={5} lg={4}>
+            <Grid item xs={10} md={4} lg={3}>
               <Card
                 sx={{
                   display: "flex",
                   flexDirection: "column",
                   m: 1,
-                  minHeight: { md: 480 },
+                  minHeight: { md: 345 },
                   textAlign: "center",
                 }}
               >
@@ -387,20 +825,31 @@ const BureaucracyPage = () => {
                       </li>
                     </ul>
                   </Box>
-                  <Typography variant="body2" sx={{ textAlign: "left" }}>
-                    Requisites:
+                  <Typography
+                    variant="body2"
+                    sx={{ textAlign: "center", my: 2 }}
+                  >
+                    <span
+                      style={{
+                        border: "1px solid #673ab7",
+                        borderRadius: "10px",
+                        padding: "2px 10px",
+                        display: "inline-block",
+                      }}
+                    >
+                      <span
+                        style={{
+                          textDecoration: "line-through",
+                          marginRight: "10px",
+                        }}
+                      >
+                        €632,8
+                      </span>
+                      <span style={{ color: "green", fontWeight: "bold" }}>
+                        €569,52
+                      </span>
+                    </span>
                   </Typography>
-                  <Box sx={{ textAlign: "left" }}>
-                    <ul>
-                      <li>Only 20% of your income must come from Spain.</li>
-                      <li>
-                        Proof of remote work with a non-Spanish company for at
-                        least three months prior to the application.
-                      </li>
-                      <li>Health insurance with full coverage in Spain.</li>
-                      <li>Evidence of sufficient financial means (25 k €).</li>
-                    </ul>
-                  </Box>
                 </CardContent>
                 <CardActions
                   sx={{
@@ -412,7 +861,7 @@ const BureaucracyPage = () => {
                     sx={{ alignSelf: "center" }}
                     size="small"
                     variant="contained"
-                    href="https://entretramites.com/en/services/immigration-advice"
+                    href="https://entretramites.com/en/digital-nomad-visa-consultation"
                     target="_blank"
                   >
                     Go to partner's page
@@ -420,14 +869,14 @@ const BureaucracyPage = () => {
                 </CardActions>
               </Card>
             </Grid>
-            <Grid item xs={10} md={5} lg={4}>
+            <Grid item xs={10} md={4} lg={3}>
               <Card
                 sx={{
                   display: "flex",
                   flexDirection: "column",
                   m: 1,
                   textAlign: "center",
-                  minHeight: { md: 480 },
+                  minHeight: { md: 345 },
                 }}
               >
                 <CardContent sx={{ pb: 0, flexGrow: 1 }}>
@@ -446,19 +895,31 @@ const BureaucracyPage = () => {
                       </li>
                     </ul>
                   </Box>
-                  <Typography variant="body2" sx={{ textAlign: "left" }}>
-                    Requisites:
+                  <Typography
+                    variant="body2"
+                    sx={{ textAlign: "center", my: 2 }}
+                  >
+                    <span
+                      style={{
+                        border: "1px solid #673ab7",
+                        borderRadius: "10px",
+                        padding: "2px 10px",
+                        display: "inline-block",
+                      }}
+                    >
+                      <span
+                        style={{
+                          textDecoration: "line-through",
+                          marginRight: "10px",
+                        }}
+                      >
+                        €1.201,5
+                      </span>
+                      <span style={{ color: "green", fontWeight: "bold" }}>
+                        €1081,35
+                      </span>
+                    </span>
                   </Typography>
-                  <Box sx={{ textAlign: "left" }}>
-                    <ul>
-                      <li>Health insurance with full coverage in Spain.</li>
-                      <li>Sufficient financial means for self and family.</li>
-                      <li>
-                        Must make the required investment (either €500k, €1 M,
-                        or €2 M) and provide the corresponding proof document.
-                      </li>
-                    </ul>
-                  </Box>
                 </CardContent>
                 <CardActions
                   sx={{
@@ -470,7 +931,7 @@ const BureaucracyPage = () => {
                     sx={{ alignSelf: "center" }}
                     size="small"
                     variant="contained"
-                    href="https://entretramites.com/en/services/immigration-advice"
+                    href="https://entretramites.com/servicios/tramites-extranjeria/golden-visa-espana"
                     target="_blank"
                   >
                     Go to partner's page
