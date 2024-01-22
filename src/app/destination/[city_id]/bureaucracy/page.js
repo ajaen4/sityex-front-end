@@ -109,12 +109,12 @@ const BureaucracyPage = () => {
                     </TableRow>
                     <TableRow>
                       <TableCell />
-                      <TableCell align="right">NIE/TIE</TableCell>
-                      <TableCell align="right">Empadronamiento</TableCell>
-                      <TableCell align="right">
+                      <TableCell align="center">NIE/TIE</TableCell>
+                      <TableCell align="center">Empadronamiento</TableCell>
+                      <TableCell align="center">
                         Social Security number
                       </TableCell>
-                      <TableCell align="right">Health Card</TableCell>
+                      <TableCell align="center">Health Card</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -129,10 +129,10 @@ const BureaucracyPage = () => {
                       >
                         Signing any contract
                       </TableCell>
-                      <TableCell align="right">✅</TableCell>
-                      <TableCell align="right">❌</TableCell>
-                      <TableCell align="right">❌</TableCell>
-                      <TableCell align="right">❌</TableCell>
+                      <TableCell align="center">✅</TableCell>
+                      <TableCell align="center">❌</TableCell>
+                      <TableCell align="center">❌</TableCell>
+                      <TableCell align="center">❌</TableCell>
                     </TableRow>
                     <TableRow
                       key="gettingAJob"
@@ -141,10 +141,10 @@ const BureaucracyPage = () => {
                       <TableCell component="th" scope="row">
                         Work in Spain
                       </TableCell>
-                      <TableCell align="right">✅</TableCell>
-                      <TableCell align="right">❌</TableCell>
-                      <TableCell align="right">✅</TableCell>
-                      <TableCell align="right">❌</TableCell>
+                      <TableCell align="center">✅</TableCell>
+                      <TableCell align="center">❌</TableCell>
+                      <TableCell align="center">✅</TableCell>
+                      <TableCell align="center">❌</TableCell>
                     </TableRow>
                     <TableRow
                       key="gettingAJob"
@@ -153,10 +153,10 @@ const BureaucracyPage = () => {
                       <TableCell component="th" scope="row">
                         Using the public health system
                       </TableCell>
-                      <TableCell align="right">✅</TableCell>
-                      <TableCell align="right">✅</TableCell>
-                      <TableCell align="right">✅</TableCell>
-                      <TableCell align="right">✅</TableCell>
+                      <TableCell align="center">✅</TableCell>
+                      <TableCell align="center">✅</TableCell>
+                      <TableCell align="center">✅</TableCell>
+                      <TableCell align="center">✅</TableCell>
                     </TableRow>
                   </TableBody>
                 </Table>
