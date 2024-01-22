@@ -1,50 +1,125 @@
 import React from "react";
-import { Container, Box, Typography, Link } from "@mui/material";
+import { Box, Typography, Link, Grid } from "@mui/material";
+
+import { imagesCdn } from "constants/constants";
 
 function Footer() {
   return (
     <Box
       sx={{
-        backgroundColor: "grey.100",
+        backgroundColor: "grey.900",
         width: "100%",
-        minHeight: "70px",
-        py: "5px",
       }}
     >
-      <Container>
-        <nav>
-          <ul style={{ listStyleType: "none", padding: 0 }}>
-            <li style={{ display: "inline", marginRight: "10px" }}>
-              <Link href="#" target="_blank">
-                SITYEX
-              </Link>
-            </li>
-            <li style={{ display: "inline", marginRight: "10px" }}>
-              <Link href="#" target="_blank">
-                About Us
-              </Link>
-            </li>
-            <li style={{ display: "inline", marginRight: "10px" }}>
-              <Link href="#" target="_blank">
-                Blog
-              </Link>
-            </li>
-          </ul>
-        </nav>
-        <div className="copyright" id="copyright">
-          <Typography variant="body2">
-            © {new Date().getFullYear()}, Designed by{" "}
-            <Link href="#" target="_blank">
-              SITYEX
-            </Link>
-            . Coded by{" "}
-            <Link href="#" target="_blank">
-              Alberto Jaen
-            </Link>
-            .
+      <Grid container>
+        <Grid item xs={12} md={5} sx={{ p: 3 }}>
+          <img
+            width="200"
+            height="50"
+            src={`${imagesCdn}/logos/big_logo_white.png`}
+            alt="entretramites icon"
+            title="Entre Tramites"
+          />
+          <Typography sx={{ color: "white" }}>
+            Community-based, one-stop platform for all expat needs in Spain. We
+            focus on housing and bureaucracy services with a vibrant community
+            at its base.
           </Typography>
-        </div>
-      </Container>
+        </Grid>
+        <Grid item xs={12} md={7} sx={{ display: "flex", p: 3 }}>
+          <Box>
+            <Typography variant="h3" sx={{ color: "white" }}>
+              SityEx
+            </Typography>
+            <nav>
+              <ul style={{ listStyleType: "none", padding: 0 }}>
+                <li style={{ marginTop: 10 }}>
+                  <Link
+                    href="/search"
+                    sx={{
+                      textDecoration: "none",
+                      color: "white",
+                    }}
+                  >
+                    Search City
+                  </Link>
+                </li>
+                <li
+                  style={{
+                    marginTop: 5,
+                  }}
+                >
+                  <Link
+                    href="/blog"
+                    sx={{ textDecoration: "none", color: "white" }}
+                  >
+                    Blog
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+          </Box>
+          <Box sx={{ ml: { xs: 5, md: 10 } }}>
+            <Typography variant="h3" sx={{ color: "white" }}>
+              Community
+            </Typography>
+            <nav>
+              <ul style={{ listStyleType: "none", padding: 0 }}>
+                <li style={{ marginTop: 10 }}>
+                  <Link
+                    href="https://www.meetup.com/es/pro/sityex-community/"
+                    target="_blank"
+                    sx={{
+                      textDecoration: "none",
+                      color: "white",
+                    }}
+                  >
+                    Meetup
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+          </Box>
+          <Box sx={{ ml: { xs: 5, md: 10 } }}>
+            <Typography variant="h3" sx={{ color: "white" }}>
+              Social
+            </Typography>
+            <nav>
+              <ul style={{ listStyleType: "none", padding: 0 }}>
+                <li style={{ marginTop: 10 }}>
+                  <Link
+                    href="https://www.instagram.com/sityex.official/"
+                    target="_blank"
+                    sx={{
+                      textDecoration: "none",
+                      color: "white",
+                    }}
+                  >
+                    Instagram
+                  </Link>
+                </li>
+                <li style={{ marginTop: 10 }}>
+                  <Link
+                    href="https://www.linkedin.com/company/sityex/"
+                    target="_blank"
+                    sx={{
+                      textDecoration: "none",
+                      color: "white",
+                    }}
+                  >
+                    LinkedIn
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+          </Box>
+        </Grid>
+        <Grid item xs={12} md={5} sx={{ px: 3, pb: 1 }}>
+          <Typography variant="body2" sx={{ color: "white", mt: 2, mb: 1 }}>
+            © {new Date().getFullYear()} SityEx, all rights reserved
+          </Typography>
+        </Grid>
+      </Grid>
     </Box>
   );
 }

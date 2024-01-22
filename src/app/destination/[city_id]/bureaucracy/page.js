@@ -46,7 +46,7 @@ const BureaucracyPage = () => {
           city_id: selectedCity.city_id,
         }}
       />
-      <Typography variant="h1" sx={{ my: 3 }}>
+      <Typography variant="h1" sx={{ my: 3, fontSize: 30 }}>
         Bureaucracy
       </Typography>
       <Tabs

@@ -29,13 +29,13 @@ export const metadata = {
     default: "SityEx | One-stop platform for expats",
   },
   description:
-    "SityEx is a community-based, one-stop platform for all expat needs in Spain. We focus on housing and bureaucracy services with a vibrant community at its base.",
+    "Community-based, one-stop platform for all expat needs in Spain. We focus on housing and bureaucracy services with a vibrant community at its base.",
   openGraph: {
     type: "website",
     url: "https://sityex.com/",
     title: "SityEx | One-stop platform for expats",
     description:
-      "SityEx is a community-based, one-stop platform for all expat needs in Spain. We focus on housing and bureaucracy services with a vibrant community at its base.",
+      "Community-based, one-stop platform for all expat needs in Spain. We focus on housing and bureaucracy services with a vibrant community at its base.",
     images: [
       "https://d1dshnpqadx0e7.cloudfront.net/logos/resized_big_logo_blue.png",
     ],
@@ -44,7 +44,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "SityEx | One-stop platform for expats",
     description:
-      "SityEx is a community-based, one-stop platform for all expat needs in Spain. We focus on housing and bureaucracy services with a vibrant community at its base.",
+      "Community-based, one-stop platform for all expat needs in Spain. We focus on housing and bureaucracy services with a vibrant community at its base.",
     images: [
       "https://d1dshnpqadx0e7.cloudfront.net/logos/resized_big_logo_blue.png",
     ],
