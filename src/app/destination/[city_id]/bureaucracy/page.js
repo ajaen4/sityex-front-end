@@ -139,7 +139,7 @@ const BureaucracyPage = () => {
                       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                     >
                       <TableCell component="th" scope="row">
-                        Working in Spain
+                        Work in Spain
                       </TableCell>
                       <TableCell align="right">✅</TableCell>
                       <TableCell align="right">❌</TableCell>
@@ -237,26 +237,27 @@ const BureaucracyPage = () => {
                   flexDirection: "column",
                   m: 1,
                   textAlign: "center",
-                  minHeight: { md: 400 },
                 }}
               >
                 <CardContent sx={{ pb: 0, flexGrow: 1 }}>
-                  <Typography variant="h4" sx={{ mb: 2 }}>
-                    Non-residential NIE
-                  </Typography>
-                  <Typography variant="body2" sx={{ textAlign: "left" }}>
-                    For those who plan to:
-                  </Typography>
-                  <Box sx={{ textAlign: "left" }}>
-                    <ul>
-                      <li>Buy or sell property.</li>
-                      <li>Inherit assets.</li>
-                      <li>Conduct significant financial transactions.</li>
-                      <li>
-                        Engage in any legal activity that requires a Spanish tax
-                        identification number.
-                      </li>
-                    </ul>
+                  <Box sx={{ minHeight: { md: 238 } }}>
+                    <Typography variant="h4" sx={{ mb: 2 }}>
+                      Non-residential NIE
+                    </Typography>
+                    <Typography variant="body2" sx={{ textAlign: "left" }}>
+                      For those who plan to:
+                    </Typography>
+                    <Box sx={{ textAlign: "left" }}>
+                      <ul>
+                        <li>Buy or sell property.</li>
+                        <li>Inherit assets.</li>
+                        <li>Conduct significant financial transactions.</li>
+                        <li>
+                          Engage in any legal activity that requires a Spanish
+                          tax identification number.
+                        </li>
+                      </ul>
+                    </Box>
                   </Box>
                   <Typography
                     variant="body2"
@@ -309,29 +310,30 @@ const BureaucracyPage = () => {
                   flexDirection: "column",
                   m: 1,
                   textAlign: "center",
-                  minHeight: { md: 400 },
                 }}
               >
                 <CardContent sx={{ pb: 0, flexGrow: 1 }}>
-                  <Typography variant="h4" sx={{ mb: 2 }}>
-                    Residential NIE
-                  </Typography>
-                  <Typography variant="body2" sx={{ textAlign: "left" }}>
-                    For those who plan to:
-                  </Typography>
-                  <Box sx={{ textAlign: "left" }}>
-                    <ul>
-                      <li>
-                        Work or engage in any professional activity in Spain.
-                      </li>
-                      <li>
-                        Register for social services and health care in Spain.
-                      </li>
-                      <li>Apply for a driver's license in Spain.</li>
-                      <li>
-                        Buy, sell, or own property in Spain as a resident.
-                      </li>
-                    </ul>
+                  <Box sx={{ minHeight: { md: 238 } }}>
+                    <Typography variant="h4" sx={{ mb: 2 }}>
+                      Residential NIE
+                    </Typography>
+                    <Typography variant="body2" sx={{ textAlign: "left" }}>
+                      For those who plan to:
+                    </Typography>
+                    <Box sx={{ textAlign: "left" }}>
+                      <ul>
+                        <li>
+                          Work or engage in any professional activity in Spain.
+                        </li>
+                        <li>
+                          Register for social services and health care in Spain.
+                        </li>
+                        <li>Apply for a driver's license in Spain.</li>
+                        <li>
+                          Buy, sell, or own property in Spain as a resident.
+                        </li>
+                      </ul>
+                    </Box>
                   </Box>
                   <Typography
                     variant="body2"
@@ -384,22 +386,24 @@ const BureaucracyPage = () => {
                   flexDirection: "column",
                   m: 1,
                   textAlign: "center",
-                  minHeight: { md: 400 },
                 }}
               >
                 <CardContent sx={{ pb: 0, flexGrow: 1 }}>
-                  <Typography variant="h4" sx={{ mb: 2 }}>
-                    Empadronamiento
-                  </Typography>
-                  <Typography variant="body2" sx={{ textAlign: "left" }}>
-                    For those who plan to:
-                  </Typography>
-                  <Box sx={{ textAlign: "left" }}>
-                    <ul>
-                      <li>
-                        Access any kind of public service and benefits in Spain.
-                      </li>
-                    </ul>
+                  <Box sx={{ minHeight: { md: 238 } }}>
+                    <Typography variant="h4" sx={{ mb: 2 }}>
+                      Empadronamiento
+                    </Typography>
+                    <Typography variant="body2" sx={{ textAlign: "left" }}>
+                      For those who plan to:
+                    </Typography>
+                    <Box sx={{ textAlign: "left" }}>
+                      <ul>
+                        <li>
+                          Access any kind of public service and benefits in
+                          Spain.
+                        </li>
+                      </ul>
+                    </Box>
                   </Box>
                   <Typography
                     variant="body2"
@@ -452,21 +456,22 @@ const BureaucracyPage = () => {
                   flexDirection: "column",
                   m: 1,
                   textAlign: "center",
-                  minHeight: { md: 400 },
                 }}
               >
                 <CardContent sx={{ pb: 0, flexGrow: 1 }}>
-                  <Typography variant="h4" sx={{ mb: 2 }}>
-                    Non-EU citizen Half Pack
-                  </Typography>
-                  <Typography variant="body2" sx={{ textAlign: "left" }}>
-                    Perfect if you don't need all the paperwork, includes:
-                  </Typography>
-                  <Box sx={{ textAlign: "left" }}>
-                    <ul>
-                      <li>Residential NIE.</li>
-                      <li>Empadronamiento Certificate.</li>
-                    </ul>
+                  <Box sx={{ minHeight: { md: 238 } }}>
+                    <Typography variant="h4" sx={{ mb: 2 }}>
+                      Non-EU citizen Half Pack
+                    </Typography>
+                    <Typography variant="body2" sx={{ textAlign: "left" }}>
+                      Perfect if you don't need all the paperwork, includes:
+                    </Typography>
+                    <Box sx={{ textAlign: "left" }}>
+                      <ul>
+                        <li>Residential NIE.</li>
+                        <li>Empadronamiento Certificate.</li>
+                      </ul>
+                    </Box>
                   </Box>
                   <Typography
                     variant="body2"
@@ -519,25 +524,26 @@ const BureaucracyPage = () => {
                   flexDirection: "column",
                   m: 1,
                   textAlign: "center",
-                  minHeight: { md: 400 },
                 }}
               >
                 <CardContent sx={{ pb: 0, flexGrow: 1 }}>
-                  <Typography variant="h4" sx={{ mb: 2 }}>
-                    Non-EU citizen Full Pack
-                  </Typography>
-                  <Typography variant="body2" sx={{ textAlign: "left" }}>
-                    For those who want all their paperwork ready in one go,
-                    includes:
-                  </Typography>
-                  <Box sx={{ textAlign: "left" }}>
-                    <ul>
-                      <li>Residential NIE.</li>
-                      <li>Empadronamiento Certificate.</li>
-                      <li>Digital Certificate.</li>
-                      <li>Social Security Number.</li>
-                      <li>Individual Health Card (TSI).</li>
-                    </ul>
+                  <Box sx={{ minHeight: { md: 238 } }}>
+                    <Typography variant="h4" sx={{ mb: 2 }}>
+                      Non-EU citizen Full Pack
+                    </Typography>
+                    <Typography variant="body2" sx={{ textAlign: "left" }}>
+                      For those who want all their paperwork ready in one go,
+                      includes:
+                    </Typography>
+                    <Box sx={{ textAlign: "left" }}>
+                      <ul>
+                        <li>Residential NIE.</li>
+                        <li>Empadronamiento Certificate.</li>
+                        <li>Digital Certificate.</li>
+                        <li>Social Security Number.</li>
+                        <li>Individual Health Card (TSI).</li>
+                      </ul>
+                    </Box>
                   </Box>
                   <Typography
                     variant="body2"
@@ -590,21 +596,22 @@ const BureaucracyPage = () => {
                   flexDirection: "column",
                   m: 1,
                   textAlign: "center",
-                  minHeight: { md: 400 },
                 }}
               >
                 <CardContent sx={{ pb: 0, flexGrow: 1 }}>
-                  <Typography variant="h4" sx={{ mb: 2 }}>
-                    EU citizen Half Pack
-                  </Typography>
-                  <Typography variant="body2" sx={{ textAlign: "left" }}>
-                    Perfect if you don't need all the paperwork, includes:
-                  </Typography>
-                  <Box sx={{ textAlign: "left" }}>
-                    <ul>
-                      <li>Residential NIE.</li>
-                      <li>Empadronamiento Certificate.</li>
-                    </ul>
+                  <Box sx={{ minHeight: { md: 238 } }}>
+                    <Typography variant="h4" sx={{ mb: 2 }}>
+                      EU citizen Half Pack
+                    </Typography>
+                    <Typography variant="body2" sx={{ textAlign: "left" }}>
+                      Perfect if you don't need all the paperwork, includes:
+                    </Typography>
+                    <Box sx={{ textAlign: "left" }}>
+                      <ul>
+                        <li>Residential NIE.</li>
+                        <li>Empadronamiento Certificate.</li>
+                      </ul>
+                    </Box>
                   </Box>
                   <Typography
                     variant="body2"
@@ -657,25 +664,26 @@ const BureaucracyPage = () => {
                   flexDirection: "column",
                   m: 1,
                   textAlign: "center",
-                  minHeight: { md: 400 },
                 }}
               >
                 <CardContent sx={{ pb: 0, flexGrow: 1 }}>
-                  <Typography variant="h4" sx={{ mb: 2 }}>
-                    EU citizen Full Pack
-                  </Typography>
-                  <Typography variant="body2" sx={{ textAlign: "left" }}>
-                    For those who want all their paperwork ready in one go,
-                    includes:
-                  </Typography>
-                  <Box sx={{ textAlign: "left" }}>
-                    <ul>
-                      <li>Residential NIE.</li>
-                      <li>Empadronamiento Certificate.</li>
-                      <li>Digital Certificate.</li>
-                      <li>Social Security Number.</li>
-                      <li>Individual Health Card (TSI).</li>
-                    </ul>
+                  <Box sx={{ minHeight: { md: 238 } }}>
+                    <Typography variant="h4" sx={{ mb: 2 }}>
+                      EU citizen Full Pack
+                    </Typography>
+                    <Typography variant="body2" sx={{ textAlign: "left" }}>
+                      For those who want all their paperwork ready in one go,
+                      includes:
+                    </Typography>
+                    <Box sx={{ textAlign: "left" }}>
+                      <ul>
+                        <li>Residential NIE.</li>
+                        <li>Empadronamiento Certificate.</li>
+                        <li>Digital Certificate.</li>
+                        <li>Social Security Number.</li>
+                        <li>Individual Health Card (TSI).</li>
+                      </ul>
+                    </Box>
                   </Box>
                   <Typography
                     variant="body2"
@@ -805,25 +813,32 @@ const BureaucracyPage = () => {
                   display: "flex",
                   flexDirection: "column",
                   m: 1,
-                  minHeight: { md: 345 },
                   textAlign: "center",
                 }}
               >
                 <CardContent sx={{ pb: 0, flexGrow: 1 }}>
-                  <Typography variant="h4" sx={{ mb: 2 }}>
-                    Digital Nomad Visa
-                  </Typography>
-                  <Typography variant="body2" sx={{ textAlign: "left" }}>
-                    For those who plan to:
-                  </Typography>
-                  <Box sx={{ textAlign: "left" }}>
-                    <ul>
-                      <li>Work remotely for companies based outside Spain.</li>
-                      <li>
-                        Live and work in Spain while maintaining their
-                        employment.
-                      </li>
-                    </ul>
+                  <Box
+                    sx={{
+                      minHeight: { md: 190 },
+                    }}
+                  >
+                    <Typography variant="h4" sx={{ mb: 2 }}>
+                      Digital Nomad Visa
+                    </Typography>
+                    <Typography variant="body2" sx={{ textAlign: "left" }}>
+                      For those who plan to:
+                    </Typography>
+                    <Box sx={{ textAlign: "left" }}>
+                      <ul>
+                        <li>
+                          Work remotely for companies based outside Spain.
+                        </li>
+                        <li>
+                          Live and work in Spain while maintaining their
+                          employment.
+                        </li>
+                      </ul>
+                    </Box>
                   </Box>
                   <Typography
                     variant="body2"
@@ -880,20 +895,26 @@ const BureaucracyPage = () => {
                 }}
               >
                 <CardContent sx={{ pb: 0, flexGrow: 1 }}>
-                  <Typography variant="h4" sx={{ mb: 2 }}>
-                    Golden Visa
-                  </Typography>
-                  <Typography variant="body2" sx={{ textAlign: "left" }}>
-                    For those who plan to:
-                  </Typography>
-                  <Box sx={{ textAlign: "left" }}>
-                    <ul>
-                      <li>Stay long-term in Spain.</li>
-                      <li>
-                        It's aimed at non-EU nationals who make a significant
-                        investment in Spain.
-                      </li>
-                    </ul>
+                  <Box
+                    sx={{
+                      minHeight: { md: 190 },
+                    }}
+                  >
+                    <Typography variant="h4" sx={{ mb: 2 }}>
+                      Golden Visa
+                    </Typography>
+                    <Typography variant="body2" sx={{ textAlign: "left" }}>
+                      For those who plan to:
+                    </Typography>
+                    <Box sx={{ textAlign: "left" }}>
+                      <ul>
+                        <li>Stay long-term in Spain.</li>
+                        <li>
+                          It's aimed at non-EU nationals who make a significant
+                          investment in Spain.
+                        </li>
+                      </ul>
+                    </Box>
                   </Box>
                   <Typography
                     variant="body2"
