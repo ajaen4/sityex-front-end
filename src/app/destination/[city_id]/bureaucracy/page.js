@@ -139,7 +139,7 @@ const BureaucracyPage = () => {
                       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                     >
                       <TableCell component="th" scope="row">
-                        Working in Spain
+                        Work in Spain
                       </TableCell>
                       <TableCell align="right">✅</TableCell>
                       <TableCell align="right">❌</TableCell>
