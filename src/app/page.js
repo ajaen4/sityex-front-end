@@ -73,8 +73,8 @@ const LandingPage = () => {
               mx: 3,
             }}
           >
-            <HouseIcon sx={{ color: "white", fontSize: 60 }} />
-            <Typography color="white"> Housing </Typography>
+            <GovernmentIcon sx={{ color: "white", fontSize: 60 }} />
+            <Typography color="white"> Bureaucracy </Typography>
           </Box>
           <Box
             sx={{
@@ -84,8 +84,8 @@ const LandingPage = () => {
               mx: 3,
             }}
           >
-            <GovernmentIcon sx={{ color: "white", fontSize: 60 }} />
-            <Typography color="white"> Bureaucracy </Typography>
+            <HouseIcon sx={{ color: "white", fontSize: 60 }} />
+            <Typography color="white"> Housing </Typography>
           </Box>
           <Box
             sx={{
