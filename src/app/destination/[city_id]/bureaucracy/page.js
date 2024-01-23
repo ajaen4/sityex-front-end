@@ -128,7 +128,7 @@ const BureaucracyPage = () => {
                         scope="row"
                         style={{ whiteSpace: "nowrap" }}
                       >
-                        Signing any contract (ex: lease)
+                        Staying in Spain for more than 3 months
                       </TableCell>
                       <TableCell align="center">✅</TableCell>
                       <TableCell align="center">❌</TableCell>
