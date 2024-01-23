@@ -10,10 +10,6 @@ import HousingSlides from "components/Slides/HousingSlides";
 const ListingInfoWindow = ({ listing, setSelectedListing }) => {
   const cardRef = useRef(null);
 
-  const navigate = (link) => {
-    window.open(link.replace("/es/", "/en/"), "_blank");
-  };
-
   useEffect(() => {
     if (cardRef?.current) {
       const disableClickPropagation = L?.DomEvent?.disableClickPropagation;
@@ -47,7 +43,7 @@ const ListingInfoWindow = ({ listing, setSelectedListing }) => {
     <Card
       ref={cardRef}
       id={listing.housing_id}
-      onClick={() => navigate(listing.localizedLinks.es)}
+      onClick={() => window.open(listing.originalLink, "_blank")}
       key={listing.housing_id}
       href={listing.originalLink}
       sx={{
