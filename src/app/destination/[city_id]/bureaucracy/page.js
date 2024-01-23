@@ -68,8 +68,8 @@ const BureaucracyPage = () => {
         onChange={handleTabChange}
         textColor="secondary"
         indicatorColor="secondary"
-        variant="standard"
-        centered
+        variant="scrollable"
+        scrollButtons="auto"
         xs={{
           display: "flex",
           flexDirection: "row",
@@ -80,6 +80,7 @@ const BureaucracyPage = () => {
         <Tab label="Essentials" key="Essentials" />
         <Tab label="Visa" key="Visa" />
         <Tab label="Tax Declaration" key="Tax Declaration" />
+        <Tab label="Driver's and Vehicle Licensing" key="car-related" />
       </Tabs>
       {selectedTab === 0 && (
         <Box
@@ -127,7 +128,7 @@ const BureaucracyPage = () => {
                         scope="row"
                         style={{ whiteSpace: "nowrap" }}
                       >
-                        Signing any contract
+                        Signing any contract (ex: lease)
                       </TableCell>
                       <TableCell align="center">✅</TableCell>
                       <TableCell align="center">❌</TableCell>
@@ -183,7 +184,7 @@ const BureaucracyPage = () => {
                     Discount code: <b>10SITYEX</b>
                   </div>
                 }
-                color="primary"
+                sx={{ backgroundColor: "#b39ddb", color: "white" }}
               />
               <Typography
                 variant="body1"
@@ -760,7 +761,7 @@ const BureaucracyPage = () => {
                     Discount code: <b>10SITYEX</b>
                   </div>
                 }
-                color="primary"
+                sx={{ backgroundColor: "#b39ddb", color: "white" }}
               />
               <Typography
                 variant="body1"
@@ -1017,7 +1018,7 @@ const BureaucracyPage = () => {
                         Discount code: <b>10SITYEX</b>
                       </div>
                     }
-                    color="primary"
+                    sx={{ backgroundColor: "#b39ddb", color: "white" }}
                   />
                   <Typography
                     variant="body2"
@@ -1109,7 +1110,7 @@ const BureaucracyPage = () => {
                         Discount code: <b>10SITYEX</b>
                       </div>
                     }
-                    color="primary"
+                    sx={{ backgroundColor: "#b39ddb", color: "white" }}
                   />
                   <Typography
                     variant="body2"
@@ -1213,6 +1214,229 @@ const BureaucracyPage = () => {
                     target="_blank"
                   >
                     Redeem discount
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
+          </Grid>
+        </Box>
+      )}
+      {selectedTab === 3 && (
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            width: "100%",
+          }}
+        >
+          <Card
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              m: 1,
+              width: "90%",
+              padding: 2,
+              textAlign: "center",
+            }}
+          >
+            <Box>
+              <Typography variant="h3" gutterBottom sx={{ mb: 2 }}>
+                Driver's And Vehicle Licensing
+              </Typography>
+              <Chip
+                label={
+                  <div>
+                    Discount code: <b>10SITYEX</b>
+                  </div>
+                }
+                sx={{ backgroundColor: "#b39ddb", color: "white" }}
+              />
+              <Typography
+                variant="body1"
+                gutterBottom
+                sx={{ fontSize: 12, my: 1 }}
+              >
+                **Remember to apply the code when you are in the payment page**
+              </Typography>
+              <img
+                width="200"
+                height="50"
+                src={`${imagesCdn}/partner_logos/entretramites.webp`}
+                alt="entretramites icon"
+                title="Entre Tramites"
+              />
+              <Typography
+                variant="body1"
+                gutterBottom
+                sx={{ fontSize: 16, m: 2 }}
+              >
+                We have partnered with <b>Entre Tramites</b> to offer you a{" "}
+                <b>10% discount</b> on all their Driver's and Vehicle Licensing.
+                They will take
+                <b> care of the whole process for you, 100% online.</b>
+              </Typography>
+              <Box sx={{ mt: 3 }}>
+                <Stepper alternativeLabel>
+                  <Step key="First step">
+                    <StepLabel>First step</StepLabel>
+                    <Typography variant="body1" sx={{ mt: 1 }}>
+                      Choose the documents you need
+                    </Typography>
+                  </Step>
+                  <Step key="Second step">
+                    <StepLabel>Second step</StepLabel>
+                    <Typography variant="body1" sx={{ mt: 1 }}>
+                      Redeem your discount through our code
+                    </Typography>
+                  </Step>
+                </Stepper>
+              </Box>
+            </Box>
+          </Card>
+          <Typography variant="h3" gutterBottom sx={{ m: 2 }}>
+            Available services
+          </Typography>
+          <Grid container sx={{ justifyContent: "center" }}>
+            <Grid item xs={10} md={4} lg={3}>
+              <Card
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  m: 1,
+                  textAlign: "center",
+                }}
+              >
+                <CardContent sx={{ pb: 0, flexGrow: 1 }}>
+                  <Box sx={{ minHeight: { md: 238 } }}>
+                    <Typography variant="h4" sx={{ mb: 2 }}>
+                      Driver's License Exchange
+                    </Typography>
+                    <Typography variant="body2" sx={{ textAlign: "left" }}>
+                      For those who:
+                    </Typography>
+                    <Box sx={{ textAlign: "left" }}>
+                      <ul>
+                        <li>
+                          Have a driver's license from a country different from
+                          Spain.
+                        </li>
+                        <li>
+                          Want to have that driver's license recognized in
+                          Spain.
+                        </li>
+                        <li>Want a complete management of the procedure.</li>
+                      </ul>
+                    </Box>
+                  </Box>
+                  <Typography
+                    variant="body2"
+                    sx={{ textAlign: "center", my: 2 }}
+                  >
+                    <span
+                      style={{
+                        border: "1px solid #673ab7",
+                        borderRadius: "10px",
+                        padding: "2px 10px",
+                        display: "inline-block",
+                      }}
+                    >
+                      <span
+                        style={{
+                          textDecoration: "line-through",
+                          marginRight: "10px",
+                        }}
+                      >
+                        €315,8
+                      </span>
+                      <span style={{ color: "green", fontWeight: "bold" }}>
+                        €284,22
+                      </span>
+                    </span>
+                  </Typography>
+                </CardContent>
+                <CardActions
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <Button
+                    sx={{ alignSelf: "center" }}
+                    size="small"
+                    variant="contained"
+                    href="https://entretramites.com/en/services/dgt-services-in-spain"
+                    target="_blank"
+                  >
+                    Go to partner's page
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
+            <Grid item xs={10} md={4} lg={3}>
+              <Card
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  m: 1,
+                  textAlign: "center",
+                }}
+              >
+                <CardContent sx={{ pb: 0, flexGrow: 1 }}>
+                  <Box sx={{ minHeight: { md: 238 } }}>
+                    <Typography variant="h4" sx={{ mb: 2 }}>
+                      Vehicle Registration
+                    </Typography>
+                    <Typography variant="body2" sx={{ textAlign: "left" }}>
+                      For those who:
+                    </Typography>
+                    <Box sx={{ textAlign: "left" }}>
+                      <ul>
+                        <li>Want to register a vehicle in Spain.</li>
+                        <li>Want a complete management of the procedure.</li>
+                      </ul>
+                    </Box>
+                  </Box>
+                  <Typography
+                    variant="body2"
+                    sx={{ textAlign: "center", my: 2 }}
+                  >
+                    <span
+                      style={{
+                        border: "1px solid #673ab7",
+                        borderRadius: "10px",
+                        padding: "2px 10px",
+                        display: "inline-block",
+                      }}
+                    >
+                      <span
+                        style={{
+                          textDecoration: "line-through",
+                          marginRight: "10px",
+                        }}
+                      >
+                        €544,50
+                      </span>
+                      <span style={{ color: "green", fontWeight: "bold" }}>
+                        €490,05
+                      </span>
+                    </span>
+                  </Typography>
+                </CardContent>
+                <CardActions
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <Button
+                    sx={{ alignSelf: "center" }}
+                    size="small"
+                    variant="contained"
+                    href="https://entretramites.com/en/services/dgt-services-in-spain"
+                    target="_blank"
+                  >
+                    Go to partner's page
                   </Button>
                 </CardActions>
               </Card>
