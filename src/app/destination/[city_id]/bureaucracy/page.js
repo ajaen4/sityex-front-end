@@ -148,7 +148,7 @@ const BureaucracyPage = () => {
                       <TableCell align="center">❌</TableCell>
                     </TableRow>
                     <TableRow
-                      key="gettingAJob"
+                      key="usingPublicHealthcare"
                       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                     >
                       <TableCell component="th" scope="row">
@@ -184,7 +184,7 @@ const BureaucracyPage = () => {
                     Discount code: <b>10SITYEX</b>
                   </div>
                 }
-                sx={{ backgroundColor: "#b39ddb", color: "white" }}
+                sx={{ backgroundColor: "#673ab7", color: "white" }}
               />
               <Typography
                 variant="body1"
@@ -199,6 +199,7 @@ const BureaucracyPage = () => {
                 src={`${imagesCdn}/partner_logos/entretramites.webp`}
                 alt="entretramites icon"
                 title="Entre Tramites"
+                style={{ marginTop: 15 }}
               />
               <Typography
                 variant="body1"
@@ -761,7 +762,7 @@ const BureaucracyPage = () => {
                     Discount code: <b>10SITYEX</b>
                   </div>
                 }
-                sx={{ backgroundColor: "#b39ddb", color: "white" }}
+                sx={{ backgroundColor: "#673ab7", color: "white" }}
               />
               <Typography
                 variant="body1"
@@ -776,6 +777,7 @@ const BureaucracyPage = () => {
                 src={`${imagesCdn}/partner_logos/entretramites.webp`}
                 alt="entretramites icon"
                 title="Entre Tramites"
+                style={{ marginTop: 15 }}
               />
               <Typography
                 variant="body1"
@@ -993,6 +995,7 @@ const BureaucracyPage = () => {
                       src={`${imagesCdn}/partner_logos/entretramites.webp`}
                       alt="entretramites icon"
                       title="EntreTramites"
+                      style={{ marginTop: 15 }}
                     />
                     <Box sx={{ textAlign: "left", mt: 2 }}>
                       <Typography variant="body2">
@@ -1018,7 +1021,7 @@ const BureaucracyPage = () => {
                         Discount code: <b>10SITYEX</b>
                       </div>
                     }
-                    sx={{ backgroundColor: "#b39ddb", color: "white" }}
+                    sx={{ backgroundColor: "#673ab7", color: "white" }}
                   />
                   <Typography
                     variant="body2"
@@ -1087,6 +1090,7 @@ const BureaucracyPage = () => {
                       src={`${imagesCdn}/partner_logos/entretramites.webp`}
                       alt="entretramites icon"
                       title="EntreTramites"
+                      style={{ marginTop: 15 }}
                     />
                     <Box sx={{ textAlign: "left", mt: 2 }}>
                       <Typography variant="body2">
@@ -1110,7 +1114,7 @@ const BureaucracyPage = () => {
                         Discount code: <b>10SITYEX</b>
                       </div>
                     }
-                    sx={{ backgroundColor: "#b39ddb", color: "white" }}
+                    sx={{ backgroundColor: "#673ab7", color: "white" }}
                   />
                   <Typography
                     variant="body2"
@@ -1179,6 +1183,7 @@ const BureaucracyPage = () => {
                       src={`${imagesCdn}/partner_logos/taxdown.png`}
                       alt="taxdown icon"
                       title="Taxdown"
+                      style={{ marginTop: 15 }}
                     />
                     <Box sx={{ textAlign: "left", mt: 3 }}>
                       <Typography variant="body2" gutterBottom>
@@ -1250,7 +1255,7 @@ const BureaucracyPage = () => {
                     Discount code: <b>10SITYEX</b>
                   </div>
                 }
-                sx={{ backgroundColor: "#b39ddb", color: "white" }}
+                sx={{ backgroundColor: "#673ab7", color: "white" }}
               />
               <Typography
                 variant="body1"
@@ -1265,6 +1270,7 @@ const BureaucracyPage = () => {
                 src={`${imagesCdn}/partner_logos/entretramites.webp`}
                 alt="entretramites icon"
                 title="Entre Tramites"
+                style={{ marginTop: 15 }}
               />
               <Typography
                 variant="body1"
