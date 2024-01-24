@@ -919,7 +919,7 @@ const BureaucracyPage = () => {
                     sx={{ alignSelf: "center" }}
                     size="small"
                     variant="contained"
-                    href="https://entretramites.com/en/digital-nomad-visa-consultation#schedule"
+                    href="https://entretramites.com/en/partners-program/free-consultation-partners"
                     target="_blank"
                   >
                     Get free consultation
@@ -997,7 +997,7 @@ const BureaucracyPage = () => {
                     sx={{ alignSelf: "center" }}
                     size="small"
                     variant="contained"
-                    href="https://entretramites.com/en/services/immigration-advice/spain-golden-visa#contact"
+                    href="https://entretramites.com/en/partners-program/free-consultation-partners"
                     target="_blank"
                   >
                     Get free consultation
@@ -1424,7 +1424,7 @@ const BureaucracyPage = () => {
                     sx={{ alignSelf: "center" }}
                     size="small"
                     variant="contained"
-                    href="https://entretramites.com/en/services/dgt-services-in-spain#contact"
+                    href="https://entretramites.com/en/partners-program/free-consultation-partners"
                     target="_blank"
                   >
                     Get free consultation
@@ -1498,7 +1498,7 @@ const BureaucracyPage = () => {
                     sx={{ alignSelf: "center" }}
                     size="small"
                     variant="contained"
-                    href="https://entretramites.com/en/services/dgt-services-in-spain#contact"
+                    href="https://entretramites.com/en/partners-program/free-consultation-partners"
                     target="_blank"
                   >
                     Get free consultation
