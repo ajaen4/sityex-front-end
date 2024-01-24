@@ -833,7 +833,7 @@ const BureaucracyPage = () => {
                   <Step key="thid-step">
                     <StepLabel>Third step</StepLabel>
                     <Typography variant="body1" sx={{ mt: 1 }}>
-                      Entre Tramites will send you an email to start the process
+                      Wait for an email from Entre Tramites
                     </Typography>
                   </Step>
                 </Stepper>
@@ -1340,7 +1340,7 @@ const BureaucracyPage = () => {
                   <Step key="thid-step">
                     <StepLabel>Third step</StepLabel>
                     <Typography variant="body1" sx={{ mt: 1 }}>
-                      Entre Tramites will send you an email to start the process
+                      Wait for an email from Entre Tramites
                     </Typography>
                   </Step>
                 </Stepper>
