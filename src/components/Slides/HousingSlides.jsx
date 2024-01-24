@@ -35,7 +35,7 @@ const HousingSlides = ({ listing }) => {
     <div ref={carouselRef}>
       <Carousel
         sx={{ width: "100%", mx: 0 }}
-        navButtonsAlwaysVisible
+        navButtonsAlwaysVisible={horizontalImages.length > 1}
         indicators={false}
       >
         {createSlides(horizontalImages)}

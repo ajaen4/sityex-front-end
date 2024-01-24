@@ -45,8 +45,6 @@ const BureaucracyPage = () => {
   return (
     <Box
       sx={{
-        width: "100%",
-        height: "100%",
         display: "flex",
         flexDirection: "column",
         textAlign: "center",
@@ -91,7 +89,13 @@ const BureaucracyPage = () => {
             width: "100%",
           }}
         >
-          <Accordion sx={{ width: "90%", textAlign: "center", my: 1 }}>
+          <Accordion
+            sx={{
+              textAlign: "center",
+              my: 1,
+              width: "95%",
+            }}
+          >
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
               Which documents/services do I need? (Also applicable to EU
               citizens)
@@ -104,13 +108,14 @@ const BureaucracyPage = () => {
                       <TableCell style={{ visibility: "hidden" }}>
                         Hidden Cell
                       </TableCell>
-                      <TableCell align="center" colSpan={4}>
+                      <TableCell align="center" colSpan={5}>
                         Essentials
                       </TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell />
-                      <TableCell align="center">NIE/TIE</TableCell>
+                      <TableCell align="center">Non-residential NIE</TableCell>
+                      <TableCell align="center">Residential NIE</TableCell>
                       <TableCell align="center">Empadronamiento</TableCell>
                       <TableCell align="center">
                         Social Security number
@@ -123,6 +128,20 @@ const BureaucracyPage = () => {
                       key="moreThan3Months"
                       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                     >
+                      <TableCell component="th" scope="row">
+                        Engage in any activity that requires a Spanish tax
+                        number without living in Spain
+                      </TableCell>
+                      <TableCell align="center">✅</TableCell>
+                      <TableCell align="center">❌</TableCell>
+                      <TableCell align="center">❌</TableCell>
+                      <TableCell align="center">❌</TableCell>
+                      <TableCell align="center">❌</TableCell>
+                    </TableRow>
+                    <TableRow
+                      key="moreThan3Months"
+                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    >
                       <TableCell
                         component="th"
                         scope="row"
@@ -130,6 +149,7 @@ const BureaucracyPage = () => {
                       >
                         Staying in Spain for more than 3 months
                       </TableCell>
+                      <TableCell align="center">❌</TableCell>
                       <TableCell align="center">✅</TableCell>
                       <TableCell align="center">❌</TableCell>
                       <TableCell align="center">❌</TableCell>
@@ -142,6 +162,7 @@ const BureaucracyPage = () => {
                       <TableCell component="th" scope="row">
                         Work in Spain
                       </TableCell>
+                      <TableCell align="center">❌</TableCell>
                       <TableCell align="center">✅</TableCell>
                       <TableCell align="center">❌</TableCell>
                       <TableCell align="center">✅</TableCell>
@@ -154,6 +175,7 @@ const BureaucracyPage = () => {
                       <TableCell component="th" scope="row">
                         Using the public health system
                       </TableCell>
+                      <TableCell align="center">❌</TableCell>
                       <TableCell align="center">✅</TableCell>
                       <TableCell align="center">✅</TableCell>
                       <TableCell align="center">✅</TableCell>
@@ -168,10 +190,10 @@ const BureaucracyPage = () => {
             sx={{
               display: "flex",
               justifyContent: "center",
-              m: 1,
-              width: "90%",
-              padding: 2,
               textAlign: "center",
+              my: 1,
+              padding: 2,
+              width: "95%",
             }}
           >
             <Box>
@@ -212,16 +234,22 @@ const BureaucracyPage = () => {
               </Typography>
               <Box sx={{ mt: 3 }}>
                 <Stepper alternativeLabel>
-                  <Step key="First step">
+                  <Step key="first-step">
                     <StepLabel>First step</StepLabel>
                     <Typography variant="body1" sx={{ mt: 1 }}>
                       Choose the documents you need
                     </Typography>
                   </Step>
-                  <Step key="Second step">
+                  <Step key="second-step">
                     <StepLabel>Second step</StepLabel>
                     <Typography variant="body1" sx={{ mt: 1 }}>
                       Redeem your discount through our code
+                    </Typography>
+                  </Step>
+                  <Step key="thid-step">
+                    <StepLabel>Third step</StepLabel>
+                    <Typography variant="body1" sx={{ mt: 1 }}>
+                      Wait from an email from Entre Tramites
                     </Typography>
                   </Step>
                 </Stepper>
@@ -241,7 +269,7 @@ const BureaucracyPage = () => {
                   textAlign: "center",
                 }}
               >
-                <CardContent sx={{ pb: 0, flexGrow: 1 }}>
+                <CardContent sx={{ pb: 0 }}>
                   <Box sx={{ minHeight: { md: 238 } }}>
                     <Typography variant="h4" sx={{ mb: 2 }}>
                       Non-residential NIE
@@ -279,10 +307,10 @@ const BureaucracyPage = () => {
                           marginRight: "10px",
                         }}
                       >
-                        €190
+                        €189,97
                       </span>
                       <span style={{ color: "green", fontWeight: "bold" }}>
-                        €171
+                        €170,97
                       </span>
                     </span>
                   </Typography>
@@ -297,10 +325,10 @@ const BureaucracyPage = () => {
                     sx={{ alignSelf: "center" }}
                     size="small"
                     variant="contained"
-                    href="https://entretramites.com/en/services/immigration-advice/residence-nie"
+                    href="https://app.entretramites.com/stripePaymentLink?id=5175&t=1b1e3c17"
                     target="_blank"
                   >
-                    Go to partner's page
+                    Hire service
                   </Button>
                 </CardActions>
               </Card>
@@ -314,7 +342,7 @@ const BureaucracyPage = () => {
                   textAlign: "center",
                 }}
               >
-                <CardContent sx={{ pb: 0, flexGrow: 1 }}>
+                <CardContent sx={{ pb: 0 }}>
                   <Box sx={{ minHeight: { md: 238 } }}>
                     <Typography variant="h4" sx={{ mb: 2 }}>
                       Residential NIE
@@ -355,10 +383,10 @@ const BureaucracyPage = () => {
                           marginRight: "10px",
                         }}
                       >
-                        €190
+                        €189,97
                       </span>
                       <span style={{ color: "green", fontWeight: "bold" }}>
-                        €171
+                        €170,97
                       </span>
                     </span>
                   </Typography>
@@ -373,10 +401,10 @@ const BureaucracyPage = () => {
                     sx={{ alignSelf: "center" }}
                     size="small"
                     variant="contained"
-                    href="https://entretramites.com/en/services/immigration-advice/residence-nie"
+                    href="https://app.entretramites.com/stripePaymentLink?id=5176&t=48fcd379"
                     target="_blank"
                   >
-                    Go to partner's page
+                    Hire service
                   </Button>
                 </CardActions>
               </Card>
@@ -390,7 +418,7 @@ const BureaucracyPage = () => {
                   textAlign: "center",
                 }}
               >
-                <CardContent sx={{ pb: 0, flexGrow: 1 }}>
+                <CardContent sx={{ pb: 0 }}>
                   <Box sx={{ minHeight: { md: 238 } }}>
                     <Typography variant="h4" sx={{ mb: 2 }}>
                       Empadronamiento
@@ -425,10 +453,10 @@ const BureaucracyPage = () => {
                           marginRight: "10px",
                         }}
                       >
-                        €64,1
+                        €64,13
                       </span>
                       <span style={{ color: "green", fontWeight: "bold" }}>
-                        €57,69
+                        €57,72
                       </span>
                     </span>
                   </Typography>
@@ -443,10 +471,10 @@ const BureaucracyPage = () => {
                     sx={{ alignSelf: "center" }}
                     size="small"
                     variant="contained"
-                    href="https://entretramites.com/en/services/immigration-advice/residence-nie"
+                    href="https://app.entretramites.com/stripePaymentLink?id=5186&t=81b370ad"
                     target="_blank"
                   >
-                    Go to partner's page
+                    Hire service
                   </Button>
                 </CardActions>
               </Card>
@@ -460,7 +488,7 @@ const BureaucracyPage = () => {
                   textAlign: "center",
                 }}
               >
-                <CardContent sx={{ pb: 0, flexGrow: 1 }}>
+                <CardContent sx={{ pb: 0 }}>
                   <Box sx={{ minHeight: { md: 238 } }}>
                     <Typography variant="h4" sx={{ mb: 2 }}>
                       Non-EU citizen Half Pack
@@ -493,10 +521,10 @@ const BureaucracyPage = () => {
                           marginRight: "10px",
                         }}
                       >
-                        €152,5
+                        €152,46
                       </span>
                       <span style={{ color: "green", fontWeight: "bold" }}>
-                        €137,25
+                        €137,21
                       </span>
                     </span>
                   </Typography>
@@ -511,10 +539,10 @@ const BureaucracyPage = () => {
                     sx={{ alignSelf: "center" }}
                     size="small"
                     variant="contained"
-                    href="https://entretramites.com/en/services/immigration-advice/residence-nie"
+                    href="https://app.entretramites.com/stripePaymentLink?id=5179&t=7da3d896"
                     target="_blank"
                   >
-                    Go to partner's page
+                    Hire service
                   </Button>
                 </CardActions>
               </Card>
@@ -528,7 +556,7 @@ const BureaucracyPage = () => {
                   textAlign: "center",
                 }}
               >
-                <CardContent sx={{ pb: 0, flexGrow: 1 }}>
+                <CardContent sx={{ pb: 0 }}>
                   <Box sx={{ minHeight: { md: 238 } }}>
                     <Typography variant="h4" sx={{ mb: 2 }}>
                       Non-EU citizen Full Pack
@@ -565,10 +593,10 @@ const BureaucracyPage = () => {
                           marginRight: "10px",
                         }}
                       >
-                        €215,4
+                        €215,38
                       </span>
                       <span style={{ color: "green", fontWeight: "bold" }}>
-                        €193,86
+                        €193,84
                       </span>
                     </span>
                   </Typography>
@@ -583,10 +611,10 @@ const BureaucracyPage = () => {
                     sx={{ alignSelf: "center" }}
                     size="small"
                     variant="contained"
-                    href="https://entretramites.com/en/services/immigration-advice/residence-nie"
+                    href="https://app.entretramites.com/stripePaymentLink?id=5180&t=b9898094"
                     target="_blank"
                   >
-                    Go to partner's page
+                    Hire service
                   </Button>
                 </CardActions>
               </Card>
@@ -600,7 +628,7 @@ const BureaucracyPage = () => {
                   textAlign: "center",
                 }}
               >
-                <CardContent sx={{ pb: 0, flexGrow: 1 }}>
+                <CardContent sx={{ pb: 0 }}>
                   <Box sx={{ minHeight: { md: 238 } }}>
                     <Typography variant="h4" sx={{ mb: 2 }}>
                       EU citizen Half Pack
@@ -633,10 +661,10 @@ const BureaucracyPage = () => {
                           marginRight: "10px",
                         }}
                       >
-                        €252,9
+                        €252,89
                       </span>
                       <span style={{ color: "green", fontWeight: "bold" }}>
-                        €227,61
+                        €227,60
                       </span>
                     </span>
                   </Typography>
@@ -651,10 +679,10 @@ const BureaucracyPage = () => {
                     sx={{ alignSelf: "center" }}
                     size="small"
                     variant="contained"
-                    href="https://entretramites.com/en/services/immigration-advice/residence-nie"
+                    href="https://app.entretramites.com/stripePaymentLink?id=5177&t=92a353b4"
                     target="_blank"
                   >
-                    Go to partner's page
+                    Hire service
                   </Button>
                 </CardActions>
               </Card>
@@ -668,7 +696,7 @@ const BureaucracyPage = () => {
                   textAlign: "center",
                 }}
               >
-                <CardContent sx={{ pb: 0, flexGrow: 1 }}>
+                <CardContent sx={{ pb: 0 }}>
                   <Box sx={{ minHeight: { md: 238 } }}>
                     <Typography variant="h4" sx={{ mb: 2 }}>
                       EU citizen Full Pack
@@ -705,10 +733,10 @@ const BureaucracyPage = () => {
                           marginRight: "10px",
                         }}
                       >
-                        €315,8
+                        €315,81
                       </span>
                       <span style={{ color: "green", fontWeight: "bold" }}>
-                        €284,22
+                        €284,23
                       </span>
                     </span>
                   </Typography>
@@ -723,10 +751,10 @@ const BureaucracyPage = () => {
                     sx={{ alignSelf: "center" }}
                     size="small"
                     variant="contained"
-                    href="https://entretramites.com/en/services/immigration-advice/residence-nie"
+                    href="https://app.entretramites.com/stripePaymentLink?id=5178&t=944e39a6"
                     target="_blank"
                   >
-                    Go to partner's page
+                    Hire service
                   </Button>
                 </CardActions>
               </Card>
@@ -746,10 +774,10 @@ const BureaucracyPage = () => {
             sx={{
               display: "flex",
               justifyContent: "center",
-              m: 1,
-              width: "90%",
-              padding: 2,
               textAlign: "center",
+              my: 1,
+              padding: 2,
+              width: "95%",
             }}
           >
             <Box>
@@ -790,16 +818,22 @@ const BureaucracyPage = () => {
               </Typography>
               <Box sx={{ mt: 3 }}>
                 <Stepper alternativeLabel>
-                  <Step key="First step">
+                  <Step key="first-step">
                     <StepLabel>First step</StepLabel>
                     <Typography variant="body1" sx={{ mt: 1 }}>
                       Choose the documents you need
                     </Typography>
                   </Step>
-                  <Step key="Second step">
+                  <Step key="second-step">
                     <StepLabel>Second step</StepLabel>
                     <Typography variant="body1" sx={{ mt: 1 }}>
                       Redeem your discount through our code
+                    </Typography>
+                  </Step>
+                  <Step key="thid-step">
+                    <StepLabel>Third step</StepLabel>
+                    <Typography variant="body1" sx={{ mt: 1 }}>
+                      Entre Tramites will send you an email to start the process
                     </Typography>
                   </Step>
                 </Stepper>
@@ -819,10 +853,10 @@ const BureaucracyPage = () => {
                   textAlign: "center",
                 }}
               >
-                <CardContent sx={{ pb: 0, flexGrow: 1 }}>
+                <CardContent sx={{ pb: 0 }}>
                   <Box
                     sx={{
-                      minHeight: { md: 190 },
+                      minHeight: { md: 205 },
                     }}
                   >
                     <Typography variant="h4" sx={{ mb: 2 }}>
@@ -868,6 +902,12 @@ const BureaucracyPage = () => {
                       </span>
                     </span>
                   </Typography>
+                  <Typography variant="body2" sx={{ textAlign: "center" }}>
+                    <b>
+                      A free consultation with a specialist is necessary for
+                      this service.
+                    </b>
+                  </Typography>
                 </CardContent>
                 <CardActions
                   sx={{
@@ -879,10 +919,10 @@ const BureaucracyPage = () => {
                     sx={{ alignSelf: "center" }}
                     size="small"
                     variant="contained"
-                    href="https://entretramites.com/en/digital-nomad-visa-consultation"
+                    href="https://entretramites.com/en/partners-program/free-consultation-partners"
                     target="_blank"
                   >
-                    Go to partner's page
+                    Get free consultation
                   </Button>
                 </CardActions>
               </Card>
@@ -896,10 +936,10 @@ const BureaucracyPage = () => {
                   textAlign: "center",
                 }}
               >
-                <CardContent sx={{ pb: 0, flexGrow: 1 }}>
+                <CardContent sx={{ pb: 0 }}>
                   <Box
                     sx={{
-                      minHeight: { md: 190 },
+                      minHeight: { md: 205 },
                     }}
                   >
                     <Typography variant="h4" sx={{ mb: 2 }}>
@@ -940,6 +980,12 @@ const BureaucracyPage = () => {
                       </span>
                     </span>
                   </Typography>
+                  <Typography variant="body2" sx={{ textAlign: "center" }}>
+                    <b>
+                      A free consultation with a specialist is necessary for
+                      this service.
+                    </b>
+                  </Typography>
                 </CardContent>
                 <CardActions
                   sx={{
@@ -951,10 +997,10 @@ const BureaucracyPage = () => {
                     sx={{ alignSelf: "center" }}
                     size="small"
                     variant="contained"
-                    href="https://entretramites.com/servicios/tramites-extranjeria/golden-visa-espana"
+                    href="https://entretramites.com/en/partners-program/free-consultation-partners"
                     target="_blank"
                   >
-                    Go to partner's page
+                    Get free consultation
                   </Button>
                 </CardActions>
               </Card>
@@ -981,11 +1027,11 @@ const BureaucracyPage = () => {
                   textAlign: "center",
                 }}
               >
-                <CardContent sx={{ pb: 0, flexGrow: 1 }}>
-                  <Box sx={{ minHeight: { md: 305 } }}>
+                <CardContent sx={{ pb: 0 }}>
+                  <Box sx={{ minHeight: { md: 323 } }}>
                     <Box sx={{ minHeight: { md: 75 } }}>
                       <Typography variant="h3" gutterBottom sx={{ mb: 1 }}>
-                        Beckham Law
+                        Beckham Law (Application)
                       </Typography>
                       <Typography> **English speaking**</Typography>
                     </Box>
@@ -1005,7 +1051,7 @@ const BureaucracyPage = () => {
                       <ul>
                         <li>
                           Pay tax only on Spanish-sourced income at a flat,
-                          lower rate.
+                          lower rate (24%).
                         </li>
                         <li>
                           Have a simplified tax filing process compared to
@@ -1014,7 +1060,6 @@ const BureaucracyPage = () => {
                       </ul>
                     </Box>
                   </Box>
-
                   <Chip
                     label={
                       <div>
@@ -1041,10 +1086,10 @@ const BureaucracyPage = () => {
                           marginRight: "10px",
                         }}
                       >
-                        €317,0
+                        €317,02
                       </span>
                       <span style={{ color: "green", fontWeight: "bold" }}>
-                        €285,3
+                        €285,32
                       </span>
                     </span>
                   </Typography>
@@ -1059,10 +1104,10 @@ const BureaucracyPage = () => {
                     sx={{ alignSelf: "center", mt: 1 }}
                     size="small"
                     variant="contained"
-                    href="https://entretramites.com/en/services/beckham-law-free-consultation"
+                    href="https://app.entretramites.com/stripePaymentLink?id=5184&t=4f330a11"
                     target="_blank"
                   >
-                    Go to Partner's page
+                    Hire service
                   </Button>
                 </CardActions>
               </Card>
@@ -1076,8 +1121,8 @@ const BureaucracyPage = () => {
                   textAlign: "center",
                 }}
               >
-                <CardContent sx={{ pb: 0, flexGrow: 1 }}>
-                  <Box sx={{ minHeight: { md: 305 } }}>
+                <CardContent sx={{ pb: 0 }}>
+                  <Box sx={{ minHeight: { md: 323 } }}>
                     <Box sx={{ minHeight: { md: 75 } }}>
                       <Typography variant="h3" gutterBottom sx={{ mb: 1 }}>
                         Accountant Tax Declaration
@@ -1098,13 +1143,9 @@ const BureaucracyPage = () => {
                       </Typography>
 
                       <ul>
-                        <li>
-                          Do the Tax Declaration with an experienced accountant.
-                        </li>
-                        <li>
-                          Do the Tax Declaration with an english speaking
-                          accountant.
-                        </li>
+                        <li>Are new to Spanish taxes.</li>
+                        <li>Want simple, fast and up-to-date guidance.</li>
+                        <li>have a professional do your taxes for you.</li>
                       </ul>
                     </Box>
                   </Box>
@@ -1134,10 +1175,10 @@ const BureaucracyPage = () => {
                           marginRight: "10px",
                         }}
                       >
-                        €70,2
+                        €70,18
                       </span>
                       <span style={{ color: "green", fontWeight: "bold" }}>
-                        €63,18
+                        €63,16
                       </span>
                     </span>
                   </Typography>
@@ -1152,10 +1193,10 @@ const BureaucracyPage = () => {
                     sx={{ alignSelf: "center", mt: 1 }}
                     size="small"
                     variant="contained"
-                    href="https://entretramites.com/en/services/income-tax-return"
+                    href="https://app.entretramites.com/stripePaymentLink?id=5183&t=c23194a7"
                     target="_blank"
                   >
-                    Go to Partner's page
+                    Hire service
                   </Button>
                 </CardActions>
               </Card>
@@ -1169,8 +1210,8 @@ const BureaucracyPage = () => {
                   textAlign: "center",
                 }}
               >
-                <CardContent sx={{ pb: 0, flexGrow: 1 }}>
-                  <Box sx={{ minHeight: { md: 380 } }}>
+                <CardContent sx={{ pb: 0 }}>
+                  <Box sx={{ minHeight: { md: 398 } }}>
                     <Box sx={{ minHeight: { md: 75 } }}>
                       <Typography variant="h3" gutterBottom sx={{ mb: 1 }}>
                         Automated Tax Declaration
@@ -1239,10 +1280,10 @@ const BureaucracyPage = () => {
             sx={{
               display: "flex",
               justifyContent: "center",
-              m: 1,
-              width: "90%",
-              padding: 2,
               textAlign: "center",
+              my: 1,
+              padding: 2,
+              width: "95%",
             }}
           >
             <Box>
@@ -1284,16 +1325,22 @@ const BureaucracyPage = () => {
               </Typography>
               <Box sx={{ mt: 3 }}>
                 <Stepper alternativeLabel>
-                  <Step key="First step">
+                  <Step key="first-step">
                     <StepLabel>First step</StepLabel>
                     <Typography variant="body1" sx={{ mt: 1 }}>
                       Choose the documents you need
                     </Typography>
                   </Step>
-                  <Step key="Second step">
+                  <Step key="second-step">
                     <StepLabel>Second step</StepLabel>
                     <Typography variant="body1" sx={{ mt: 1 }}>
                       Redeem your discount through our code
+                    </Typography>
+                  </Step>
+                  <Step key="thid-step">
+                    <StepLabel>Third step</StepLabel>
+                    <Typography variant="body1" sx={{ mt: 1 }}>
+                      Entre Tramites will send you an email to start the process
                     </Typography>
                   </Step>
                 </Stepper>
@@ -1313,7 +1360,7 @@ const BureaucracyPage = () => {
                   textAlign: "center",
                 }}
               >
-                <CardContent sx={{ pb: 0, flexGrow: 1 }}>
+                <CardContent sx={{ pb: 0 }}>
                   <Box sx={{ minHeight: { md: 238 } }}>
                     <Typography variant="h4" sx={{ mb: 2 }}>
                       Driver's License Exchange
@@ -1360,6 +1407,12 @@ const BureaucracyPage = () => {
                       </span>
                     </span>
                   </Typography>
+                  <Typography variant="body2" sx={{ textAlign: "center" }}>
+                    <b>
+                      A free consultation with a specialist is necessary for
+                      this service.
+                    </b>
+                  </Typography>
                 </CardContent>
                 <CardActions
                   sx={{
@@ -1371,10 +1424,10 @@ const BureaucracyPage = () => {
                     sx={{ alignSelf: "center" }}
                     size="small"
                     variant="contained"
-                    href="https://entretramites.com/en/services/dgt-services-in-spain"
+                    href="https://entretramites.com/en/partners-program/free-consultation-partners"
                     target="_blank"
                   >
-                    Go to partner's page
+                    Get free consultation
                   </Button>
                 </CardActions>
               </Card>
@@ -1388,7 +1441,7 @@ const BureaucracyPage = () => {
                   textAlign: "center",
                 }}
               >
-                <CardContent sx={{ pb: 0, flexGrow: 1 }}>
+                <CardContent sx={{ pb: 0 }}>
                   <Box sx={{ minHeight: { md: 238 } }}>
                     <Typography variant="h4" sx={{ mb: 2 }}>
                       Vehicle Registration
@@ -1428,6 +1481,12 @@ const BureaucracyPage = () => {
                       </span>
                     </span>
                   </Typography>
+                  <Typography variant="body2" sx={{ textAlign: "center" }}>
+                    <b>
+                      A free consultation with a specialist is necessary for
+                      this service.
+                    </b>
+                  </Typography>
                 </CardContent>
                 <CardActions
                   sx={{
@@ -1439,10 +1498,10 @@ const BureaucracyPage = () => {
                     sx={{ alignSelf: "center" }}
                     size="small"
                     variant="contained"
-                    href="https://entretramites.com/en/services/dgt-services-in-spain"
+                    href="https://entretramites.com/en/partners-program/free-consultation-partners"
                     target="_blank"
                   >
-                    Go to partner's page
+                    Get free consultation
                   </Button>
                 </CardActions>
               </Card>
