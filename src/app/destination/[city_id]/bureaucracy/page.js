@@ -215,14 +215,6 @@ const BureaucracyPage = () => {
                 <Table stickyHeader size="small">
                   <TableHead>
                     <TableRow>
-                      <TableCell style={{ visibility: "hidden" }}>
-                        Hidden Cell
-                      </TableCell>
-                      <TableCell align="center" colSpan={5}>
-                        Essentials
-                      </TableCell>
-                    </TableRow>
-                    <TableRow>
                       <TableCell />
                       <TableCell align="center">
                         Non-residential NIE
