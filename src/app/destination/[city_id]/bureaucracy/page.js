@@ -26,20 +26,130 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Tooltip,
+  IconButton,
 } from "@mui/material";
 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMoreOutlined";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 
 import SendGAPageView from "components/DataLoaders/SendGAPageView";
+import RequirementsModal from "components/Modals/RequirementsModal";
 
 import { imagesCdn } from "constants/constants";
 
 const BureaucracyPage = () => {
   const selectedCity = useSelector((state) => state.selectedCity.data);
   const [selectedTab, setSelectedTab] = useState(0);
+  const [showModal, setShowModal] = useState(false);
+  const [requirementsContent, setRequirementsContent] = useState("");
 
   const handleTabChange = (event, newValue) => {
     setSelectedTab(newValue);
+  };
+
+  const onClickDigitalNomad = () => {
+    setRequirementsContent(
+      <ul style={{ fontSize: 15 }}>
+        <li style={{ marginBottom: "5px" }}>
+          Demonstrate at least{" "}
+          <b>
+            3 years of work experience in the field or hold a Professional
+            Degree
+          </b>{" "}
+          related to the job position.
+        </li>
+        <li style={{ marginBottom: "5px" }}>
+          You must have been working for your company for at least 3 months and
+          have a <b>contract of at least 1 year.</b> Also, you need to have a
+          written authorization to work remotely.
+        </li>
+        <li style={{ marginBottom: "5px" }}>
+          Your company should be <b>located outside Spain.</b>
+        </li>
+        <li style={{ marginBottom: "5px" }}>
+          Prove that your income from Spanish clients{" "}
+          <b>does not represent more than 20% of your total earnings.</b>
+        </li>
+        <li style={{ marginBottom: "5px" }}>
+          Have a <b>minimum income level</b> of at least €30.240 (and even more
+          if you take your relatives with you).
+        </li>
+        <li>
+          Have a{" "}
+          <b>
+            clean criminal record and private health insurance with full
+            coverage
+          </b>{" "}
+          in Spain.
+        </li>
+      </ul>
+    );
+    setShowModal(true);
+  };
+
+  const onClickGoldenVisa = () => {
+    setRequirementsContent(
+      <ul style={{ fontSize: 15 }}>
+        <li style={{ marginBottom: "5px" }}>
+          Not being a citizen of the European Union.
+        </li>
+        <li style={{ marginBottom: "5px" }}>
+          Be of legal age <b>(+18 in Spain).</b>
+        </li>
+        <li style={{ marginBottom: "5px" }}>
+          Have no criminal record, either in Spain or in any other country, for
+          the last 5 years.
+        </li>
+        <li style={{ marginBottom: "5px" }}>
+          Have health care coverage in Spain. This can be through public
+          insurance or private insurance but{" "}
+          <b>it must belong to an insurance company in Spain.</b>
+        </li>
+        <li style={{ marginBottom: "5px" }}>
+          To have and prove the possession of sufficient financial resources to
+          support both the main investor and their family if the application is
+          made for them as well.
+        </li>
+        <li>
+          Making the relevant investment{" "}
+          <b>(whether 500,000, €1M or €2M depending on which path is chosen)</b>
+          , and provide the corresponding document to prove it.
+        </li>
+      </ul>
+    );
+    setShowModal(true);
+  };
+
+  const onClickBeckhamLaw = () => {
+    setRequirementsContent(
+      <div style={{ fontSize: 15 }}>
+        You can apply for the Beckham Law if you are a foreign worker{" "}
+        <b>who just moved to Spain</b> and one of the following:
+        <ul>
+          <li style={{ marginTop: "5px", marginBottom: "5px" }}>
+            An expat with an executive or management position and high income.
+          </li>
+          <li style={{ marginBottom: "5px" }}>
+            A highly qualified professional who provides services to emerging
+            companies (this case has some extra conditions).
+          </li>
+          <li style={{ marginBottom: "5px" }}>
+            A remote worker in Spain that works for a foreign company.
+          </li>
+          <li style={{ marginBottom: "5px" }}>
+            An administrator who will work for a Spanish company (they should
+            have a participation of less than 25% in the case of asset-holding
+            companies).
+          </li>
+          <li>
+            An entrepreneur with an innovative project of special economic
+            interest for Spain.
+          </li>
+        </ul>
+      </div>
+    );
+    setShowModal(true);
   };
 
   return (
@@ -114,18 +224,75 @@ const BureaucracyPage = () => {
                     </TableRow>
                     <TableRow>
                       <TableCell />
-                      <TableCell align="center">Non-residential NIE</TableCell>
-                      <TableCell align="center">Residential NIE</TableCell>
-                      <TableCell align="center">Empadronamiento</TableCell>
+                      <TableCell align="center">
+                        Non-residential NIE
+                        <Tooltip
+                          enterTouchDelay={0}
+                          title="
+                      Tax identification number assigned to every foreigner who
+                      carries out an economic or professional activity."
+                        >
+                          <IconButton>
+                            <HelpOutlineIcon />
+                          </IconButton>
+                        </Tooltip>
+                      </TableCell>
+                      <TableCell align="center">
+                        Residential NIE{" "}
+                        <Tooltip
+                          enterTouchDelay={0}
+                          title="
+                          Certifies the right of a person to reside in Spain. Also
+                          brings the tax identification number."
+                        >
+                          <IconButton>
+                            <HelpOutlineIcon />
+                          </IconButton>
+                        </Tooltip>
+                      </TableCell>
+                      <TableCell align="center">
+                        Empadronamiento{" "}
+                        <Tooltip
+                          enterTouchDelay={0}
+                          title="
+                          Allows individuals to declare their place of residence in
+                      Spain. It is required for accessing public services and
+                      benefits."
+                        >
+                          <IconButton>
+                            <HelpOutlineIcon />
+                          </IconButton>
+                        </Tooltip>
+                      </TableCell>
                       <TableCell align="center">
                         Social Security number
+                        <Tooltip
+                          enterTouchDelay={0}
+                          title="
+                          It identifies the citizen with Social Security, which provides residents with medical assistance and social benefits in cases of unemployment, old age, sick leave, etc."
+                        >
+                          <IconButton>
+                            <HelpOutlineIcon />
+                          </IconButton>
+                        </Tooltip>
                       </TableCell>
-                      <TableCell align="center">Health Card</TableCell>
+                      <TableCell align="center">
+                        Health Card
+                        <Tooltip
+                          enterTouchDelay={0}
+                          title="
+                          It is the document that identifies and allows foreigners to have access to medical centers and services of your assigned public health system."
+                        >
+                          <IconButton>
+                            <HelpOutlineIcon />
+                          </IconButton>
+                        </Tooltip>
+                      </TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
                     <TableRow
-                      key="moreThan3Months"
+                      key="spanishTaxNotLivingSpain"
                       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                     >
                       <TableCell component="th" scope="row">
@@ -270,9 +437,19 @@ const BureaucracyPage = () => {
                 }}
               >
                 <CardContent sx={{ pb: 0 }}>
-                  <Box sx={{ minHeight: { md: 238 } }}>
+                  <Box sx={{ minHeight: { md: 260 } }}>
                     <Typography variant="h4" sx={{ mb: 2 }}>
                       Non-residential NIE
+                      <Tooltip
+                        enterTouchDelay={0}
+                        title="
+                      Tax identification number assigned to every foreigner who
+                      carries out an economic or professional activity."
+                      >
+                        <IconButton>
+                          <HelpOutlineIcon />
+                        </IconButton>
+                      </Tooltip>
                     </Typography>
                     <Typography variant="body2" sx={{ textAlign: "left" }}>
                       For those who plan to:
@@ -343,9 +520,19 @@ const BureaucracyPage = () => {
                 }}
               >
                 <CardContent sx={{ pb: 0 }}>
-                  <Box sx={{ minHeight: { md: 238 } }}>
+                  <Box sx={{ minHeight: { md: 260 } }}>
                     <Typography variant="h4" sx={{ mb: 2 }}>
                       Residential NIE
+                      <Tooltip
+                        enterTouchDelay={0}
+                        title="
+                        Certifies the right of a person to reside in Spain. Also
+                        brings the tax identification number."
+                      >
+                        <IconButton>
+                          <HelpOutlineIcon />
+                        </IconButton>
+                      </Tooltip>
                     </Typography>
                     <Typography variant="body2" sx={{ textAlign: "left" }}>
                       For those who plan to:
@@ -419,9 +606,20 @@ const BureaucracyPage = () => {
                 }}
               >
                 <CardContent sx={{ pb: 0 }}>
-                  <Box sx={{ minHeight: { md: 238 } }}>
+                  <Box sx={{ minHeight: { md: 260 } }}>
                     <Typography variant="h4" sx={{ mb: 2 }}>
                       Empadronamiento
+                      <Tooltip
+                        enterTouchDelay={0}
+                        title="
+                          Allows individuals to declare their place of residence in
+                      Spain. It is required for accessing public services and
+                      benefits."
+                      >
+                        <IconButton>
+                          <HelpOutlineIcon />
+                        </IconButton>
+                      </Tooltip>
                     </Typography>
                     <Typography variant="body2" sx={{ textAlign: "left" }}>
                       For those who plan to:
@@ -489,8 +687,8 @@ const BureaucracyPage = () => {
                 }}
               >
                 <CardContent sx={{ pb: 0 }}>
-                  <Box sx={{ minHeight: { md: 238 } }}>
-                    <Typography variant="h4" sx={{ mb: 2 }}>
+                  <Box sx={{ minHeight: { md: 252 } }}>
+                    <Typography variant="h4" sx={{ my: 1, minHeight: 40 }}>
                       Non-EU citizen Half Pack
                     </Typography>
                     <Typography variant="body2" sx={{ textAlign: "left" }}>
@@ -916,7 +1114,17 @@ const BureaucracyPage = () => {
                   }}
                 >
                   <Button
-                    sx={{ alignSelf: "center" }}
+                    sx={{ alignSelf: "center", my: 1, color: "white" }}
+                    size="small"
+                    variant="contained"
+                    target="_blank"
+                    color="orange"
+                    onClick={onClickDigitalNomad}
+                  >
+                    See requirements
+                  </Button>
+                  <Button
+                    sx={{ alignSelf: "center", mt: 1 }}
                     size="small"
                     variant="contained"
                     href="https://entretramites.com/en/partners-program/free-consultation-partners"
@@ -994,7 +1202,21 @@ const BureaucracyPage = () => {
                   }}
                 >
                   <Button
-                    sx={{ alignSelf: "center" }}
+                    sx={{
+                      alignSelf: "center",
+                      my: 1,
+                      color: "white",
+                    }}
+                    size="small"
+                    variant="contained"
+                    target="_blank"
+                    color="orange"
+                    onClick={onClickGoldenVisa}
+                  >
+                    See requirements
+                  </Button>
+                  <Button
+                    sx={{ alignSelf: "center", mt: 1 }}
                     size="small"
                     variant="contained"
                     href="https://entretramites.com/en/partners-program/free-consultation-partners"
@@ -1025,10 +1247,11 @@ const BureaucracyPage = () => {
                   flexDirection: "column",
                   m: 1,
                   textAlign: "center",
+                  minHeight: { md: 550 },
                 }}
               >
                 <CardContent sx={{ pb: 0 }}>
-                  <Box sx={{ minHeight: { md: 323 } }}>
+                  <Box sx={{ minHeight: { md: 325 } }}>
                     <Box sx={{ minHeight: { md: 75 } }}>
                       <Typography variant="h3" gutterBottom sx={{ mb: 1 }}>
                         Beckham Law (Application)
@@ -1101,6 +1324,16 @@ const BureaucracyPage = () => {
                   }}
                 >
                   <Button
+                    sx={{ alignSelf: "center", my: 1, color: "white" }}
+                    size="small"
+                    variant="contained"
+                    target="_blank"
+                    color="orange"
+                    onClick={onClickBeckhamLaw}
+                  >
+                    See requirements
+                  </Button>
+                  <Button
                     sx={{ alignSelf: "center", mt: 1 }}
                     size="small"
                     variant="contained"
@@ -1119,10 +1352,11 @@ const BureaucracyPage = () => {
                   flexDirection: "column",
                   m: 1,
                   textAlign: "center",
+                  minHeight: { md: 555 },
                 }}
               >
                 <CardContent sx={{ pb: 0 }}>
-                  <Box sx={{ minHeight: { md: 323 } }}>
+                  <Box sx={{ minHeight: { md: 325 } }}>
                     <Box sx={{ minHeight: { md: 75 } }}>
                       <Typography variant="h3" gutterBottom sx={{ mb: 1 }}>
                         Accountant Tax Declaration
@@ -1208,6 +1442,7 @@ const BureaucracyPage = () => {
                   flexDirection: "column",
                   m: 1,
                   textAlign: "center",
+                  minHeight: { md: 555 },
                 }}
               >
                 <CardContent sx={{ pb: 0 }}>
@@ -1509,6 +1744,12 @@ const BureaucracyPage = () => {
           </Grid>
         </Box>
       )}
+      <RequirementsModal
+        title="Requirements"
+        message={requirementsContent}
+        showModal={showModal}
+        setShowModal={setShowModal}
+      />
     </Box>
   );
 };
