@@ -387,7 +387,7 @@ const BureaucracyPage = () => {
                 gutterBottom
                 sx={{ fontSize: 16, m: 2 }}
               >
-                We have partnered with <b>Entre Tramites</b> to offer you a{" "}
+                We have partnered with <b>Entre Trámites</b> to offer you a{" "}
                 <b>10% discount</b> on all their essential services. They will
                 take<b> care of the whole process for you, 100% online.</b>
               </Typography>
@@ -408,7 +408,7 @@ const BureaucracyPage = () => {
                   <Step key="thid-step">
                     <StepLabel>Third step</StepLabel>
                     <Typography variant="body1" sx={{ mt: 1 }}>
-                      Wait from an email from Entre Tramites
+                      Wait from an email from Entre Trámites
                     </Typography>
                   </Step>
                 </Stepper>
@@ -1002,7 +1002,7 @@ const BureaucracyPage = () => {
                 gutterBottom
                 sx={{ fontSize: 16, m: 2 }}
               >
-                We have partnered with <b>Entre Tramites</b> to offer you a{" "}
+                We have partnered with <b>Entre Trámites</b> to offer you a{" "}
                 <b>10% discount</b> on all their Visa services. They will take
                 <b> care of the whole process for you, 100% online.</b>
               </Typography>
@@ -1023,7 +1023,7 @@ const BureaucracyPage = () => {
                   <Step key="thid-step">
                     <StepLabel>Third step</StepLabel>
                     <Typography variant="body1" sx={{ mt: 1 }}>
-                      Wait for an email from Entre Tramites
+                      Wait for an email from Entre Trámites
                     </Typography>
                   </Step>
                 </Stepper>
@@ -1119,7 +1119,7 @@ const BureaucracyPage = () => {
                     sx={{ alignSelf: "center", mt: 1 }}
                     size="small"
                     variant="contained"
-                    href="https://entretramites.com/en/partners-program/free-consultation-partners"
+                    href="https://entretramites.com/en/partners-program/free-consultation-partners?aff=3d90441f"
                     target="_blank"
                   >
                     Get free consultation
@@ -1211,7 +1211,7 @@ const BureaucracyPage = () => {
                     sx={{ alignSelf: "center", mt: 1 }}
                     size="small"
                     variant="contained"
-                    href="https://entretramites.com/en/partners-program/free-consultation-partners"
+                    href="https://entretramites.com/en/partners-program/free-consultation-partners?aff=3d90441f"
                     target="_blank"
                   >
                     Get free consultation
@@ -1545,7 +1545,7 @@ const BureaucracyPage = () => {
                 gutterBottom
                 sx={{ fontSize: 16, m: 2 }}
               >
-                We have partnered with <b>Entre Tramites</b> to offer you a{" "}
+                We have partnered with <b>Entre Trámites</b> to offer you a{" "}
                 <b>10% discount</b> on all their Driver's and Vehicle Licensing.
                 They will take
                 <b> care of the whole process for you, 100% online.</b>
@@ -1567,7 +1567,7 @@ const BureaucracyPage = () => {
                   <Step key="thid-step">
                     <StepLabel>Third step</StepLabel>
                     <Typography variant="body1" sx={{ mt: 1 }}>
-                      Wait for an email from Entre Tramites
+                      Wait for an email from Entre Trámites
                     </Typography>
                   </Step>
                 </Stepper>
@@ -1651,7 +1651,7 @@ const BureaucracyPage = () => {
                     sx={{ alignSelf: "center" }}
                     size="small"
                     variant="contained"
-                    href="https://entretramites.com/en/partners-program/free-consultation-partners"
+                    href="https://entretramites.com/en/partners-program/free-consultation-partners?aff=3d90441f"
                     target="_blank"
                   >
                     Get free consultation
@@ -1725,7 +1725,7 @@ const BureaucracyPage = () => {
                     sx={{ alignSelf: "center" }}
                     size="small"
                     variant="contained"
-                    href="https://entretramites.com/en/partners-program/free-consultation-partners"
+                    href="https://entretramites.com/en/partners-program/free-consultation-partners?aff=3d90441f"
                     target="_blank"
                   >
                     Get free consultation
