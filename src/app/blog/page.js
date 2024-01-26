@@ -5,6 +5,7 @@ import { Box, Grid, Typography } from "@mui/material";
 import BlogSlides from "components/Slides/BlogSlides";
 import LoadingSpinner from "components/Spinner/LoadingSpinner";
 import SendGAPageView from "components/DataLoaders/SendGAPageView";
+import Footer from "components/Footers/Footer";
 
 import { imagesCdn } from "constants/constants";
 
@@ -149,6 +150,9 @@ const BlogPage = () => {
         <Suspense fallback={<LoadingSpinner />}>
           <BlogSlides is_latest={false} />
         </Suspense>
+      </Box>
+      <Box sx={{ mt: 5, textAlign: "start" }}>
+        <Footer />
       </Box>
     </Box>
   );
