@@ -391,6 +391,22 @@ const BureaucracyPage = () => {
                 <b>10% discount</b> on all their essential services. They will
                 take<b> care of the whole process for you, 100% online.</b>
               </Typography>
+              <Typography
+                variant="body1"
+                gutterBottom
+                sx={{ fontSize: 16, m: 2 }}
+              >
+                Still not sure what you need?
+              </Typography>
+              <Button
+                sx={{ alignSelf: "center" }}
+                size="small"
+                variant="contained"
+                href="https://entretramites.com/en/partners-program/free-consultation-partners?aff=3d90441f"
+                target="_blank"
+              >
+                Get free consultation
+              </Button>
               <Box sx={{ mt: 3 }}>
                 <Stepper alternativeLabel>
                   <Step key="first-step">
@@ -1119,7 +1135,7 @@ const BureaucracyPage = () => {
                     sx={{ alignSelf: "center", mt: 1 }}
                     size="small"
                     variant="contained"
-                    href="https://entretramites.com/en/partners-program/free-consultation-partners?aff=3d90441f"
+                    href="https://entretramites.com/en/digital-nomad-visa-consultation"
                     target="_blank"
                   >
                     Get free consultation
@@ -1211,7 +1227,7 @@ const BureaucracyPage = () => {
                     sx={{ alignSelf: "center", mt: 1 }}
                     size="small"
                     variant="contained"
-                    href="https://entretramites.com/en/partners-program/free-consultation-partners?aff=3d90441f"
+                    href="https://entretramites.com/en/free-immigration-consultation"
                     target="_blank"
                   >
                     Get free consultation
