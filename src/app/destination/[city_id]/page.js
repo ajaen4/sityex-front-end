@@ -73,7 +73,7 @@ const BureaucracyPage = () => {
             }}
           >
             <CardContent
-              sx={{ pb: 0, minHeight: { xs: 255, md: 250, lg: 205 } }}
+              sx={{ pb: 0, minHeight: { xs: 235, md: 250, lg: 205 } }}
             >
               <GovernmentIcon sx={{ fontSize: { xs: 30, md: 40 } }} />
               <Typography gutterBottom variant="h3" component="div">
@@ -83,8 +83,7 @@ const BureaucracyPage = () => {
                 variant="body2"
                 sx={{ fontSize: { xs: 15, md: 16 }, mt: 2 }}
               >
-                We cover mostly every bureaucratic procedure you may need: NIE,
-                Visa, Social Security, etc...
+                We cover mostly every bureaucratic procedure you may need
               </Typography>
             </CardContent>
             <CardActions
@@ -114,7 +113,7 @@ const BureaucracyPage = () => {
             }}
           >
             <CardContent
-              sx={{ pb: 0, minHeight: { xs: 255, md: 250, lg: 205 } }}
+              sx={{ pb: 0, minHeight: { xs: 235, md: 250, lg: 205 } }}
             >
               <HouseIcon sx={{ fontSize: { xs: 30, md: 40 } }} />
               <Typography gutterBottom variant="h3" component="div">
@@ -155,7 +154,7 @@ const BureaucracyPage = () => {
             }}
           >
             <CardContent
-              sx={{ pb: 0, minHeight: { xs: 255, md: 250, lg: 205 } }}
+              sx={{ pb: 0, minHeight: { xs: 235, md: 250, lg: 205 } }}
             >
               <TicketIcon sx={{ fontSize: { xs: 30, md: 40 } }} />
               <Typography gutterBottom variant="h3" component="div">
@@ -196,7 +195,7 @@ const BureaucracyPage = () => {
             }}
           >
             <CardContent
-              sx={{ pb: 0, minHeight: { xs: 255, md: 250, lg: 205 } }}
+              sx={{ pb: 0, minHeight: { xs: 235, md: 250, lg: 205 } }}
             >
               <PeopleIcon sx={{ fontSize: { xs: 30, md: 40 } }} />
               <Typography gutterBottom variant="h3" component="div">
