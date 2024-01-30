@@ -8,33 +8,22 @@ import {
   Box,
   Tabs,
   Tab,
-  Stepper,
-  Step,
-  StepLabel,
   Chip,
   Card,
   CardContent,
   CardActions,
   Button,
   Grid,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
   Tooltip,
   IconButton,
 } from "@mui/material";
 
-import ExpandMoreIcon from "@mui/icons-material/ExpandMoreOutlined";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 
 import SendGAPageView from "components/DataLoaders/SendGAPageView";
 import RequirementsModal from "components/Modals/RequirementsModal";
+import BureaucracyAccordeon from "components/Accordions/bureaucracyAccordeon";
+import EntreTramitesExp from "components/Cards/EntreTramitesExp";
 
 import { imagesCdn } from "constants/constants";
 
@@ -190,6 +179,7 @@ const BureaucracyPage = () => {
         <Tab label="Tax Declaration" key="Tax Declaration" />
         <Tab label="Driver's and Vehicle Licensing" key="car-related" />
       </Tabs>
+      <BureaucracyAccordeon />
       {selectedTab === 0 && (
         <Box
           sx={{
@@ -199,238 +189,10 @@ const BureaucracyPage = () => {
             width: "100%",
           }}
         >
-          <Accordion
-            sx={{
-              textAlign: "center",
-              my: 1,
-              width: "95%",
-            }}
-          >
-            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-              Which documents/services do I need? (Also applicable to EU
-              citizens)
-            </AccordionSummary>
-            <AccordionDetails>
-              <TableContainer>
-                <Table stickyHeader size="small">
-                  <TableHead>
-                    <TableRow>
-                      <TableCell />
-                      <TableCell align="center">
-                        Non-residential NIE
-                        <Tooltip
-                          enterTouchDelay={0}
-                          title="
-                      Tax identification number assigned to every foreigner who
-                      carries out an economic or professional activity."
-                        >
-                          <IconButton>
-                            <HelpOutlineIcon />
-                          </IconButton>
-                        </Tooltip>
-                      </TableCell>
-                      <TableCell align="center">
-                        Residential NIE{" "}
-                        <Tooltip
-                          enterTouchDelay={0}
-                          title="
-                          Certifies the right of a person to reside in Spain. Also
-                          brings the tax identification number."
-                        >
-                          <IconButton>
-                            <HelpOutlineIcon />
-                          </IconButton>
-                        </Tooltip>
-                      </TableCell>
-                      <TableCell align="center">
-                        Empadronamiento{" "}
-                        <Tooltip
-                          enterTouchDelay={0}
-                          title="
-                          Allows individuals to declare their place of residence in
-                      Spain. It is required for accessing public services and
-                      benefits."
-                        >
-                          <IconButton>
-                            <HelpOutlineIcon />
-                          </IconButton>
-                        </Tooltip>
-                      </TableCell>
-                      <TableCell align="center">
-                        Social Security number
-                        <Tooltip
-                          enterTouchDelay={0}
-                          title="
-                          It identifies the citizen with Social Security, which provides residents with medical assistance and social benefits in cases of unemployment, old age, sick leave, etc."
-                        >
-                          <IconButton>
-                            <HelpOutlineIcon />
-                          </IconButton>
-                        </Tooltip>
-                      </TableCell>
-                      <TableCell align="center">
-                        Health Card
-                        <Tooltip
-                          enterTouchDelay={0}
-                          title="
-                          It is the document that identifies and allows foreigners to have access to medical centers and services of your assigned public health system."
-                        >
-                          <IconButton>
-                            <HelpOutlineIcon />
-                          </IconButton>
-                        </Tooltip>
-                      </TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    <TableRow
-                      key="spanishTaxNotLivingSpain"
-                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                    >
-                      <TableCell component="th" scope="row">
-                        Engage in any activity that requires a Spanish tax
-                        number without living in Spain
-                      </TableCell>
-                      <TableCell align="center">✅</TableCell>
-                      <TableCell align="center">❌</TableCell>
-                      <TableCell align="center">❌</TableCell>
-                      <TableCell align="center">❌</TableCell>
-                      <TableCell align="center">❌</TableCell>
-                    </TableRow>
-                    <TableRow
-                      key="moreThan3Months"
-                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                    >
-                      <TableCell
-                        component="th"
-                        scope="row"
-                        style={{ whiteSpace: "nowrap" }}
-                      >
-                        Staying in Spain for more than 3 months
-                      </TableCell>
-                      <TableCell align="center">❌</TableCell>
-                      <TableCell align="center">✅</TableCell>
-                      <TableCell align="center">❌</TableCell>
-                      <TableCell align="center">❌</TableCell>
-                      <TableCell align="center">❌</TableCell>
-                    </TableRow>
-                    <TableRow
-                      key="gettingAJob"
-                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                    >
-                      <TableCell component="th" scope="row">
-                        Work in Spain
-                      </TableCell>
-                      <TableCell align="center">❌</TableCell>
-                      <TableCell align="center">✅</TableCell>
-                      <TableCell align="center">❌</TableCell>
-                      <TableCell align="center">✅</TableCell>
-                      <TableCell align="center">❌</TableCell>
-                    </TableRow>
-                    <TableRow
-                      key="usingPublicHealthcare"
-                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                    >
-                      <TableCell component="th" scope="row">
-                        Using the public health system
-                      </TableCell>
-                      <TableCell align="center">❌</TableCell>
-                      <TableCell align="center">✅</TableCell>
-                      <TableCell align="center">✅</TableCell>
-                      <TableCell align="center">✅</TableCell>
-                      <TableCell align="center">✅</TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </AccordionDetails>
-          </Accordion>
-          <Card
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              textAlign: "center",
-              my: 1,
-              padding: 2,
-              width: "95%",
-            }}
-          >
-            <Box>
-              <Typography variant="h3" gutterBottom sx={{ mb: 2 }}>
-                Essentials
-              </Typography>
-              <Chip
-                label={
-                  <div>
-                    Discount code: <b>10SITYEX</b>
-                  </div>
-                }
-                sx={{ backgroundColor: "#673ab7", color: "white" }}
-              />
-              <Typography
-                variant="body1"
-                gutterBottom
-                sx={{ fontSize: 12, my: 1 }}
-              >
-                **Remember to apply the code when you are in the payment page**
-              </Typography>
-              <img
-                width="200"
-                height="50"
-                src={`${imagesCdn}/partner_logos/entretramites.webp`}
-                alt="entretramites icon"
-                title="Entre Tramites"
-                style={{ marginTop: 15 }}
-              />
-              <Typography
-                variant="body1"
-                gutterBottom
-                sx={{ fontSize: 16, m: 2 }}
-              >
-                We have partnered with <b>Entre Trámites</b> to offer you a{" "}
-                <b>10% discount</b> on all their essential services. They will
-                take<b> care of the whole process for you, 100% online.</b>
-              </Typography>
-              <Typography
-                variant="body1"
-                gutterBottom
-                sx={{ fontSize: 16, m: 2 }}
-              >
-                Still not sure what you need?
-              </Typography>
-              <Button
-                sx={{ alignSelf: "center" }}
-                size="small"
-                variant="contained"
-                href="https://entretramites.com/en/partners-program/free-consultation-partners?aff=3d90441f"
-                target="_blank"
-              >
-                Get free consultation
-              </Button>
-              <Box sx={{ mt: 3 }}>
-                <Stepper alternativeLabel>
-                  <Step key="first-step">
-                    <StepLabel>First step</StepLabel>
-                    <Typography variant="body1" sx={{ mt: 1 }}>
-                      Choose the documents you need
-                    </Typography>
-                  </Step>
-                  <Step key="second-step">
-                    <StepLabel>Second step</StepLabel>
-                    <Typography variant="body1" sx={{ mt: 1 }}>
-                      Redeem your discount through our code
-                    </Typography>
-                  </Step>
-                  <Step key="thid-step">
-                    <StepLabel>Third step</StepLabel>
-                    <Typography variant="body1" sx={{ mt: 1 }}>
-                      Wait from an email from Entre Trámites
-                    </Typography>
-                  </Step>
-                </Stepper>
-              </Box>
-            </Box>
-          </Card>
+          <EntreTramitesExp
+            ServiceName="Essentials"
+            showFreeConsultation={true}
+          />
           <Typography variant="h3" gutterBottom sx={{ m: 2 }}>
             Available services
           </Typography>
@@ -980,76 +742,7 @@ const BureaucracyPage = () => {
             alignItems: "center",
           }}
         >
-          <Card
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              textAlign: "center",
-              my: 1,
-              padding: 2,
-              width: "95%",
-            }}
-          >
-            <Box>
-              <Typography variant="h3" gutterBottom sx={{ mb: 2 }}>
-                How to get a Visa
-              </Typography>
-              <Chip
-                label={
-                  <div>
-                    Discount code: <b>10SITYEX</b>
-                  </div>
-                }
-                sx={{ backgroundColor: "#673ab7", color: "white" }}
-              />
-              <Typography
-                variant="body1"
-                gutterBottom
-                sx={{ fontSize: 12, my: 1 }}
-              >
-                **Remember to apply the code when you are in the payment page**
-              </Typography>
-              <img
-                width="200"
-                height="50"
-                src={`${imagesCdn}/partner_logos/entretramites.webp`}
-                alt="entretramites icon"
-                title="Entre Tramites"
-                style={{ marginTop: 15 }}
-              />
-              <Typography
-                variant="body1"
-                gutterBottom
-                sx={{ fontSize: 16, m: 2 }}
-              >
-                We have partnered with <b>Entre Trámites</b> to offer you a{" "}
-                <b>10% discount</b> on all their Visa services. They will take
-                <b> care of the whole process for you, 100% online.</b>
-              </Typography>
-              <Box sx={{ mt: 3 }}>
-                <Stepper alternativeLabel>
-                  <Step key="first-step">
-                    <StepLabel>First step</StepLabel>
-                    <Typography variant="body1" sx={{ mt: 1 }}>
-                      Choose the documents you need
-                    </Typography>
-                  </Step>
-                  <Step key="second-step">
-                    <StepLabel>Second step</StepLabel>
-                    <Typography variant="body1" sx={{ mt: 1 }}>
-                      Redeem your discount through our code
-                    </Typography>
-                  </Step>
-                  <Step key="thid-step">
-                    <StepLabel>Third step</StepLabel>
-                    <Typography variant="body1" sx={{ mt: 1 }}>
-                      Wait for an email from Entre Trámites
-                    </Typography>
-                  </Step>
-                </Stepper>
-              </Box>
-            </Box>
-          </Card>
+          <EntreTramitesExp ServiceName="Visa" showFreeConsultation={false} />
           <Typography variant="h3" gutterBottom sx={{ m: 2 }}>
             Available Visas
           </Typography>
@@ -1523,77 +1216,10 @@ const BureaucracyPage = () => {
             width: "100%",
           }}
         >
-          <Card
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              textAlign: "center",
-              my: 1,
-              padding: 2,
-              width: "95%",
-            }}
-          >
-            <Box>
-              <Typography variant="h3" gutterBottom sx={{ mb: 2 }}>
-                Driver's And Vehicle Licensing
-              </Typography>
-              <Chip
-                label={
-                  <div>
-                    Discount code: <b>10SITYEX</b>
-                  </div>
-                }
-                sx={{ backgroundColor: "#673ab7", color: "white" }}
-              />
-              <Typography
-                variant="body1"
-                gutterBottom
-                sx={{ fontSize: 12, my: 1 }}
-              >
-                **Remember to apply the code when you are in the payment page**
-              </Typography>
-              <img
-                width="200"
-                height="50"
-                src={`${imagesCdn}/partner_logos/entretramites.webp`}
-                alt="entretramites icon"
-                title="Entre Tramites"
-                style={{ marginTop: 15 }}
-              />
-              <Typography
-                variant="body1"
-                gutterBottom
-                sx={{ fontSize: 16, m: 2 }}
-              >
-                We have partnered with <b>Entre Trámites</b> to offer you a{" "}
-                <b>10% discount</b> on all their Driver's and Vehicle Licensing.
-                They will take
-                <b> care of the whole process for you, 100% online.</b>
-              </Typography>
-              <Box sx={{ mt: 3 }}>
-                <Stepper alternativeLabel>
-                  <Step key="first-step">
-                    <StepLabel>First step</StepLabel>
-                    <Typography variant="body1" sx={{ mt: 1 }}>
-                      Choose the documents you need
-                    </Typography>
-                  </Step>
-                  <Step key="second-step">
-                    <StepLabel>Second step</StepLabel>
-                    <Typography variant="body1" sx={{ mt: 1 }}>
-                      Redeem your discount through our code
-                    </Typography>
-                  </Step>
-                  <Step key="thid-step">
-                    <StepLabel>Third step</StepLabel>
-                    <Typography variant="body1" sx={{ mt: 1 }}>
-                      Wait for an email from Entre Trámites
-                    </Typography>
-                  </Step>
-                </Stepper>
-              </Box>
-            </Box>
-          </Card>
+          <EntreTramitesExp
+            ServiceName="Driver's And Vehicle Licensing"
+            showFreeConsultation={false}
+          />
           <Typography variant="h3" gutterBottom sx={{ m: 2 }}>
             Available services
           </Typography>
