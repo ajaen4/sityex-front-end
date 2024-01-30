@@ -65,33 +65,17 @@ const CityLayout = ({ children }) => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        height: innerHeight,
         backgroundColor: "grey.100",
+        height: innerHeight,
+        overflowY: "scroll",
       }}
     >
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          flexGrow: 1,
-          overflowY: "scroll",
-        }}
-      >
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            flexGrow: 1,
-          }}
-        >
-          {children}
-          {showBottomNav && (
-            <Box sx={{ minHeight: minBottomNavHeight }}>
-              <CityTabs />
-            </Box>
-          )}
+      {children}
+      {showBottomNav && (
+        <Box sx={{ minHeight: minBottomNavHeight }}>
+          <CityTabs />
         </Box>
-      </Box>
+      )}
     </Box>
   );
 };
