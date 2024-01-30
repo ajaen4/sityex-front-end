@@ -1,19 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 
 import { BottomNavigation, BottomNavigationAction, Paper } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import { usePathname } from "next/navigation";
+
+import { useMediaQuery, Box } from "@mui/material";
 
 import TicketIcon from "@mui/icons-material/ConfirmationNumberOutlined";
 import PeopleIcon from "@mui/icons-material/PeopleOutlined";
 import HouseIcon from "@mui/icons-material/MapsHomeWorkOutlined";
 import GovernmentIcon from "@mui/icons-material/AssuredWorkloadOutlined";
 
+import { useShowBottomNavContext } from "components/Contexts/ShowBottomNav";
+
+import { minBottomNavHeight } from "constants/constants";
 import * as ROUTES_PATHS from "routes/paths";
 
 export default function CityTabs() {
   const [value, setValue] = useState(0);
+
+  const theme = useTheme();
+  const pathname = usePathname();
+
   const selectedCity = useSelector((state) => state.selectedCity.data);
+  const { showBottomNav, setShowBottomNav } = useShowBottomNavContext();
+
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+  const isDestinationPage = pathname.split("/").includes("destination");
+  const isCityEventPage = pathname.split("/").includes("event");
+
   const router = useRouter();
 
   const itemSelected = (event, value) => {
@@ -22,7 +39,14 @@ export default function CityTabs() {
     router.push(`/destination/${selectedCity.city_id}/${path}`);
   };
 
+  useEffect(() => {
+    setShowBottomNav(isDestinationPage && !isCityEventPage && isSmallScreen);
+  }, [isDestinationPage, isCityEventPage, isSmallScreen]);
+
+  if (!showBottomNav) return null;
+
   return (
+    <Box sx={{ minHeight: minBottomNavHeight }}>
     <Paper
       sx={{
         position: "fixed",
@@ -65,5 +89,6 @@ export default function CityTabs() {
         />
       </BottomNavigation>
     </Paper>
+    </Box>
   );
 }
