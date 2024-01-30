@@ -80,8 +80,8 @@ const CityEventsPage = () => {
       sx={{
         display: "flex",
         width: "100%",
-        flexDirection: "column",
         flexGrow: 1,
+        flexDirection: "column",
         textAlign: "center",
       }}
     >

@@ -2,34 +2,21 @@
 
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useTheme } from "@mui/material/styles";
-import { useParams, usePathname } from "next/navigation";
-
-import { useMediaQuery } from "@mui/material";
+import { useParams } from "next/navigation";
 
 import { fetchCity, fetchCountry } from "actions";
 
 import { Box } from "@mui/material";
 
 import CityTabs from "components/Tab/CityTabs";
-import { useShowBottomNavContext } from "components/Contexts/ShowBottomNav";
-import {
-  contentHeight,
-  minNavbarHeight,
-  minBottomNavHeight,
-} from "constants/constants";
+import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
+
+import { contentHeight, minNavbarHeight } from "constants/constants";
 
 const CityLayout = ({ children }) => {
   const { city_id } = useParams();
   const selectedCity = useSelector((state) => state.selectedCity.data);
   const [innerHeight, setInnerHeight] = useState(contentHeight);
-  const { showBottomNav, setShowBottomNav } = useShowBottomNavContext();
-
-  const theme = useTheme();
-  const pathname = usePathname();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
-  const isDestinationPage = pathname.split("/").includes("destination");
-  const isCityEventPage = pathname.split("/").includes("event");
 
   const dispatch = useDispatch();
 
@@ -54,44 +41,21 @@ const CityLayout = ({ children }) => {
     if (selectedCity) dispatch(fetchCountry(selectedCity.country_3_code));
   }, [selectedCity]);
 
-  useEffect(() => {
-    setShowBottomNav(isDestinationPage && !isCityEventPage && isSmallScreen);
-  }, [isDestinationPage, isCityEventPage, isSmallScreen]);
-
-  if (selectedCity === null || selectedCity.city_id !== city_id) return null;
+  if (selectedCity === null || selectedCity.city_id !== city_id)
+    return <CenteredLoadingSpinner />;
 
   return (
     <Box
       sx={{
         display: "flex",
         flexDirection: "column",
-        height: innerHeight,
         backgroundColor: "grey.100",
+        height: innerHeight,
+        overflowY: "scroll",
       }}
     >
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          flexGrow: 1,
-          overflowY: "scroll",
-        }}
-      >
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            flexGrow: 1,
-          }}
-        >
-          {children}
-          {showBottomNav && (
-            <Box sx={{ minHeight: minBottomNavHeight }}>
-              <CityTabs />
-            </Box>
-          )}
-        </Box>
-      </Box>
+      {children}
+      <CityTabs />
     </Box>
   );
 };
