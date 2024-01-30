@@ -453,6 +453,7 @@ const BureaucracyPage = () => {
                         title="
                       Tax identification number assigned to every foreigner who
                       carries out an economic or professional activity."
+                        sx={{ mx: 1, p: 0 }}
                       >
                         <IconButton>
                           <HelpOutlineIcon />
@@ -536,6 +537,7 @@ const BureaucracyPage = () => {
                         title="
                         Certifies the right of a person to reside in Spain. Also
                         brings the tax identification number."
+                        sx={{ mx: 1, p: 0 }}
                       >
                         <IconButton>
                           <HelpOutlineIcon />
@@ -623,6 +625,7 @@ const BureaucracyPage = () => {
                           Allows individuals to declare their place of residence in
                       Spain. It is required for accessing public services and
                       benefits."
+                        sx={{ mx: 1, p: 0 }}
                       >
                         <IconButton>
                           <HelpOutlineIcon />
@@ -685,6 +688,7 @@ const BureaucracyPage = () => {
                 </CardActions>
               </Card>
             </Grid>
+            <Grid item xs={12} style={{ width: "100%", height: 0 }}></Grid>
             <Grid item xs={10} md={4} lg={3}>
               <Card
                 sx={{
@@ -695,8 +699,8 @@ const BureaucracyPage = () => {
                 }}
               >
                 <CardContent sx={{ pb: 0 }}>
-                  <Box sx={{ minHeight: { md: 252 } }}>
-                    <Typography variant="h4" sx={{ my: 1, minHeight: 40 }}>
+                  <Box sx={{ minHeight: { md: 238 } }}>
+                    <Typography variant="h4" sx={{ mb: 2 }}>
                       Non-EU citizen Half Pack
                     </Typography>
                     <Typography variant="body2" sx={{ textAlign: "left" }}>
