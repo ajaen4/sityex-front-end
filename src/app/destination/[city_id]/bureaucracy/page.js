@@ -3,143 +3,113 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
-import {
-  Typography,
-  Box,
-  Tabs,
-  Tab,
-  Chip,
-  Card,
-  CardContent,
-  CardActions,
-  Button,
-  Grid,
-  Tooltip,
-  IconButton,
-} from "@mui/material";
-
-import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+import { Typography, Box, Tabs, Tab, Grid } from "@mui/material";
 
 import SendGAPageView from "components/DataLoaders/SendGAPageView";
-import RequirementsModal from "components/Modals/RequirementsModal";
-import BureaucracyAccordeon from "components/Accordions/bureaucracyAccordeon";
+import BureaucracyAccordeon from "components/Accordions/BureaucracyAccordeon";
 import EntreTramitesExp from "components/Cards/EntreTramitesExp";
 import EssentialsBureaucracy from "components/Cards/EssentialsBureaucracy";
+import ConsultationBureaucracy from "components/Cards/ConsultationBureaucracy";
+import TaxBureaucracy from "components/Cards/TaxBureaucracy";
 
-import { imagesCdn } from "constants/constants";
+const digitalNomadReq = (
+  <ul style={{ fontSize: 15 }}>
+    <li style={{ marginBottom: "5px" }}>
+      Demonstrate at least{" "}
+      <b>
+        3 years of work experience in the field or hold a Professional Degree
+      </b>{" "}
+      related to the job position.
+    </li>
+    <li style={{ marginBottom: "5px" }}>
+      You must have been working for your company for at least 3 months and have
+      a <b>contract of at least 1 year.</b> Also, you need to have a written
+      authorization to work remotely.
+    </li>
+    <li style={{ marginBottom: "5px" }}>
+      Your company should be <b>located outside Spain.</b>
+    </li>
+    <li style={{ marginBottom: "5px" }}>
+      Prove that your income from Spanish clients{" "}
+      <b>does not represent more than 20% of your total earnings.</b>
+    </li>
+    <li style={{ marginBottom: "5px" }}>
+      Have a <b>minimum income level</b> of at least €30.240 (and even more if
+      you take your relatives with you).
+    </li>
+    <li>
+      Have a{" "}
+      <b>
+        clean criminal record and private health insurance with full coverage
+      </b>{" "}
+      in Spain.
+    </li>
+  </ul>
+);
+
+const goldenVisaReq = (
+  <ul style={{ fontSize: 15 }}>
+    <li style={{ marginBottom: "5px" }}>
+      Not being a citizen of the European Union.
+    </li>
+    <li style={{ marginBottom: "5px" }}>
+      Be of legal age <b>(+18 in Spain).</b>
+    </li>
+    <li style={{ marginBottom: "5px" }}>
+      Have no criminal record, either in Spain or in any other country, for the
+      last 5 years.
+    </li>
+    <li style={{ marginBottom: "5px" }}>
+      Have health care coverage in Spain. This can be through public insurance
+      or private insurance but{" "}
+      <b>it must belong to an insurance company in Spain.</b>
+    </li>
+    <li style={{ marginBottom: "5px" }}>
+      To have and prove the possession of sufficient financial resources to
+      support both the main investor and their family if the application is made
+      for them as well.
+    </li>
+    <li>
+      Making the relevant investment{" "}
+      <b>(whether 500,000, €1M or €2M depending on which path is chosen)</b>,
+      and provide the corresponding document to prove it.
+    </li>
+  </ul>
+);
+
+const beckhamReq = (
+  <div style={{ fontSize: 15 }}>
+    You can apply for the Beckham Law if you are a foreign worker{" "}
+    <b>who just moved to Spain</b> and one of the following:
+    <ul>
+      <li style={{ marginTop: "5px", marginBottom: "5px" }}>
+        An expat with an executive or management position and high income.
+      </li>
+      <li style={{ marginBottom: "5px" }}>
+        A highly qualified professional who provides services to emerging
+        companies (this case has some extra conditions).
+      </li>
+      <li style={{ marginBottom: "5px" }}>
+        A remote worker in Spain that works for a foreign company.
+      </li>
+      <li style={{ marginBottom: "5px" }}>
+        An administrator who will work for a Spanish company (they should have a
+        participation of less than 25% in the case of asset-holding companies).
+      </li>
+      <li>
+        An entrepreneur with an innovative project of special economic interest
+        for Spain.
+      </li>
+    </ul>
+  </div>
+);
 
 const BureaucracyPage = () => {
   const selectedCity = useSelector((state) => state.selectedCity.data);
   const [selectedTab, setSelectedTab] = useState(0);
-  const [showModal, setShowModal] = useState(false);
-  const [requirementsContent, setRequirementsContent] = useState("");
 
   const handleTabChange = (event, newValue) => {
     setSelectedTab(newValue);
-  };
-
-  const onClickDigitalNomad = () => {
-    setRequirementsContent(
-      <ul style={{ fontSize: 15 }}>
-        <li style={{ marginBottom: "5px" }}>
-          Demonstrate at least{" "}
-          <b>
-            3 years of work experience in the field or hold a Professional
-            Degree
-          </b>{" "}
-          related to the job position.
-        </li>
-        <li style={{ marginBottom: "5px" }}>
-          You must have been working for your company for at least 3 months and
-          have a <b>contract of at least 1 year.</b> Also, you need to have a
-          written authorization to work remotely.
-        </li>
-        <li style={{ marginBottom: "5px" }}>
-          Your company should be <b>located outside Spain.</b>
-        </li>
-        <li style={{ marginBottom: "5px" }}>
-          Prove that your income from Spanish clients{" "}
-          <b>does not represent more than 20% of your total earnings.</b>
-        </li>
-        <li style={{ marginBottom: "5px" }}>
-          Have a <b>minimum income level</b> of at least €30.240 (and even more
-          if you take your relatives with you).
-        </li>
-        <li>
-          Have a{" "}
-          <b>
-            clean criminal record and private health insurance with full
-            coverage
-          </b>{" "}
-          in Spain.
-        </li>
-      </ul>,
-    );
-    setShowModal(true);
-  };
-
-  const onClickGoldenVisa = () => {
-    setRequirementsContent(
-      <ul style={{ fontSize: 15 }}>
-        <li style={{ marginBottom: "5px" }}>
-          Not being a citizen of the European Union.
-        </li>
-        <li style={{ marginBottom: "5px" }}>
-          Be of legal age <b>(+18 in Spain).</b>
-        </li>
-        <li style={{ marginBottom: "5px" }}>
-          Have no criminal record, either in Spain or in any other country, for
-          the last 5 years.
-        </li>
-        <li style={{ marginBottom: "5px" }}>
-          Have health care coverage in Spain. This can be through public
-          insurance or private insurance but{" "}
-          <b>it must belong to an insurance company in Spain.</b>
-        </li>
-        <li style={{ marginBottom: "5px" }}>
-          To have and prove the possession of sufficient financial resources to
-          support both the main investor and their family if the application is
-          made for them as well.
-        </li>
-        <li>
-          Making the relevant investment{" "}
-          <b>(whether 500,000, €1M or €2M depending on which path is chosen)</b>
-          , and provide the corresponding document to prove it.
-        </li>
-      </ul>,
-    );
-    setShowModal(true);
-  };
-
-  const onClickBeckhamLaw = () => {
-    setRequirementsContent(
-      <div style={{ fontSize: 15 }}>
-        You can apply for the Beckham Law if you are a foreign worker{" "}
-        <b>who just moved to Spain</b> and one of the following:
-        <ul>
-          <li style={{ marginTop: "5px", marginBottom: "5px" }}>
-            An expat with an executive or management position and high income.
-          </li>
-          <li style={{ marginBottom: "5px" }}>
-            A highly qualified professional who provides services to emerging
-            companies (this case has some extra conditions).
-          </li>
-          <li style={{ marginBottom: "5px" }}>
-            A remote worker in Spain that works for a foreign company.
-          </li>
-          <li style={{ marginBottom: "5px" }}>
-            An administrator who will work for a Spanish company (they should
-            have a participation of less than 25% in the case of asset-holding
-            companies).
-          </li>
-          <li>
-            An entrepreneur with an innovative project of special economic
-            interest for Spain.
-          </li>
-        </ul>
-      </div>,
-    );
-    setShowModal(true);
   };
 
   return (
@@ -180,7 +150,6 @@ const BureaucracyPage = () => {
         <Tab label="Tax Declaration" key="Tax Declaration" />
         <Tab label="Driver's and Vehicle Licensing" key="car-related" />
       </Tabs>
-      <BureaucracyAccordeon />
       {selectedTab === 0 && (
         <Box
           sx={{
@@ -190,6 +159,7 @@ const BureaucracyPage = () => {
             width: "100%",
           }}
         >
+          <BureaucracyAccordeon />
           <EntreTramitesExp
             ServiceName="Essentials"
             showFreeConsultation={true}
@@ -202,12 +172,13 @@ const BureaucracyPage = () => {
               <EssentialsBureaucracy
                 title="Non-Residential NIE"
                 tooltipText="Tax identification number assigned to every foreigner who carries out an economic or professional activity."
+                mdMinHeight={260}
                 content={
-                  <Box>
-                    <Typography variant="body2" sx={{ textAlign: "left" }}>
+                  <Box sx={{ textAlign: "left" }}>
+                    <Typography variant="body2">
                       For those who plan to:
                     </Typography>
-                    <Box sx={{ textAlign: "left" }}>
+                    <Box>
                       <ul>
                         <li>Buy or sell property.</li>
                         <li>Inherit assets.</li>
@@ -229,12 +200,13 @@ const BureaucracyPage = () => {
                 title="Residential NIE"
                 tooltipText="Certifies the right of a person to reside in Spain. Also
                 brings the tax identification number."
+                mdMinHeight={260}
                 content={
-                  <Box>
-                    <Typography variant="body2" sx={{ textAlign: "left" }}>
+                  <Box sx={{ textAlign: "left" }}>
+                    <Typography variant="body2">
                       For those who plan to:
                     </Typography>
-                    <Box sx={{ textAlign: "left" }}>
+                    <Box>
                       <ul>
                         <li>
                           Work or engage in any professional activity in Spain.
@@ -260,12 +232,13 @@ const BureaucracyPage = () => {
                 tooltipText="Allows individuals to declare their place of residence in
                 Spain. It is required for accessing public services and
                 benefits."
+                mdMinHeight={260}
                 content={
-                  <Box>
-                    <Typography variant="body2" sx={{ textAlign: "left" }}>
+                  <Box sx={{ textAlign: "left" }}>
+                    <Typography variant="body2">
                       For those who plan to:
                     </Typography>
-                    <Box sx={{ textAlign: "left" }}>
+                    <Box>
                       <ul>
                         <li>
                           Access any kind of public service and benefits in
@@ -283,12 +256,13 @@ const BureaucracyPage = () => {
             <Grid item xs={10} md={4} lg={3}>
               <EssentialsBureaucracy
                 title="Non-EU citizen Half Pack"
+                mdMinHeight={232}
                 content={
-                  <Box>
-                    <Typography variant="body2" sx={{ textAlign: "left" }}>
+                  <Box sx={{ textAlign: "left" }}>
+                    <Typography variant="body2">
                       Perfect if you don't need all the paperwork, includes:
                     </Typography>
-                    <Box sx={{ textAlign: "left" }}>
+                    <Box>
                       <ul>
                         <li>Residential NIE.</li>
                         <li>Empadronamiento Certificate.</li>
@@ -303,13 +277,14 @@ const BureaucracyPage = () => {
             <Grid item xs={10} md={4} lg={3}>
               <EssentialsBureaucracy
                 title="Non-EU citizen Full Pack"
+                mdMinHeight={232}
                 content={
-                  <Box>
-                    <Typography variant="body2" sx={{ textAlign: "left" }}>
+                  <Box sx={{ textAlign: "left" }}>
+                    <Typography variant="body2">
                       For those who want all their paperwork ready in one go,
                       includes:
                     </Typography>
-                    <Box sx={{ textAlign: "left" }}>
+                    <Box>
                       <ul>
                         <li>Residential NIE.</li>
                         <li>Empadronamiento Certificate.</li>
@@ -327,12 +302,13 @@ const BureaucracyPage = () => {
             <Grid item xs={10} md={4} lg={3}>
               <EssentialsBureaucracy
                 title="EU citizen Half Pack"
+                mdMinHeight={232}
                 content={
-                  <Box>
-                    <Typography variant="body2" sx={{ textAlign: "left" }}>
+                  <Box sx={{ textAlign: "left" }}>
+                    <Typography variant="body2">
                       Perfect if you don't need all the paperwork, includes:
                     </Typography>
-                    <Box sx={{ textAlign: "left" }}>
+                    <Box>
                       <ul>
                         <li>Residential NIE.</li>
                         <li>Empadronamiento Certificate.</li>
@@ -347,13 +323,14 @@ const BureaucracyPage = () => {
             <Grid item xs={10} md={4} lg={3}>
               <EssentialsBureaucracy
                 title="EU citizen Full Pack"
+                mdMinHeight={232}
                 content={
-                  <Box>
-                    <Typography variant="body2" sx={{ textAlign: "left" }}>
+                  <Box sx={{ textAlign: "left" }}>
+                    <Typography variant="body2">
                       For those who want all their paperwork ready in one go,
                       includes:
                     </Typography>
-                    <Box sx={{ textAlign: "left" }}>
+                    <Box>
                       <ul>
                         <li>Residential NIE.</li>
                         <li>Empadronamiento Certificate.</li>
@@ -385,27 +362,15 @@ const BureaucracyPage = () => {
           </Typography>
           <Grid container sx={{ justifyContent: "center" }}>
             <Grid item xs={10} md={4} lg={3}>
-              <Card
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  m: 1,
-                  textAlign: "center",
-                }}
-              >
-                <CardContent sx={{ pb: 0 }}>
-                  <Box
-                    sx={{
-                      minHeight: { md: 205 },
-                    }}
-                  >
-                    <Typography variant="h4" sx={{ mb: 2 }}>
-                      Digital Nomad Visa
-                    </Typography>
-                    <Typography variant="body2" sx={{ textAlign: "left" }}>
+              <ConsultationBureaucracy
+                title="Digital Nomad Visa"
+                mdMinHeight={205}
+                content={
+                  <Box sx={{ textAlign: "left" }}>
+                    <Typography variant="body2">
                       For those who plan to:
                     </Typography>
-                    <Box sx={{ textAlign: "left" }}>
+                    <Box>
                       <ul>
                         <li>
                           Work remotely for companies based outside Spain.
@@ -417,157 +382,33 @@ const BureaucracyPage = () => {
                       </ul>
                     </Box>
                   </Box>
-                  <Typography
-                    variant="body2"
-                    sx={{ textAlign: "center", my: 2 }}
-                  >
-                    <span
-                      style={{
-                        border: "1px solid #673ab7",
-                        borderRadius: "10px",
-                        padding: "2px 10px",
-                        display: "inline-block",
-                      }}
-                    >
-                      <span
-                        style={{
-                          textDecoration: "line-through",
-                          marginRight: "10px",
-                        }}
-                      >
-                        €632,8
-                      </span>
-                      <span style={{ color: "green", fontWeight: "bold" }}>
-                        €569,52
-                      </span>
-                    </span>
-                  </Typography>
-                  <Typography variant="body2" sx={{ textAlign: "center" }}>
-                    <b>
-                      A free consultation with a specialist is necessary for
-                      this service.
-                    </b>
-                  </Typography>
-                </CardContent>
-                <CardActions
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
-                >
-                  <Button
-                    sx={{ alignSelf: "center", my: 1, color: "white" }}
-                    size="small"
-                    variant="contained"
-                    target="_blank"
-                    color="orange"
-                    onClick={onClickDigitalNomad}
-                  >
-                    See requirements
-                  </Button>
-                  <Button
-                    sx={{ alignSelf: "center", mt: 1 }}
-                    size="small"
-                    variant="contained"
-                    href="https://entretramites.com/en/digital-nomad-visa-consultation"
-                    target="_blank"
-                  >
-                    Get free consultation
-                  </Button>
-                </CardActions>
-              </Card>
+                }
+                price={315.81}
+                requirements={digitalNomadReq}
+                freeConsultationLink="https://entretramites.com/en/digital-nomad-visa-consultation"
+              />
             </Grid>
             <Grid item xs={10} md={4} lg={3}>
-              <Card
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  m: 1,
-                  textAlign: "center",
-                }}
-              >
-                <CardContent sx={{ pb: 0 }}>
-                  <Box
-                    sx={{
-                      minHeight: { md: 205 },
-                    }}
-                  >
-                    <Typography variant="h4" sx={{ mb: 2 }}>
-                      Golden Visa (Non-EU citizens)
-                    </Typography>
-                    <Typography variant="body2" sx={{ textAlign: "left" }}>
+              <ConsultationBureaucracy
+                title="Golden Visa (Non-EU citizens)"
+                mdMinHeight={205}
+                content={
+                  <Box sx={{ textAlign: "left" }}>
+                    <Typography variant="body2">
                       For those who plan to:
                     </Typography>
-                    <Box sx={{ textAlign: "left" }}>
+                    <Box>
                       <ul>
                         <li>Stay long-term in Spain.</li>
                         <li>Make a significant investment in Spain.</li>
                       </ul>
                     </Box>
                   </Box>
-                  <Typography
-                    variant="body2"
-                    sx={{ textAlign: "center", my: 2 }}
-                  >
-                    <span
-                      style={{
-                        border: "1px solid #673ab7",
-                        borderRadius: "10px",
-                        padding: "2px 10px",
-                        display: "inline-block",
-                      }}
-                    >
-                      <span
-                        style={{
-                          textDecoration: "line-through",
-                          marginRight: "10px",
-                        }}
-                      >
-                        €1.201,5
-                      </span>
-                      <span style={{ color: "green", fontWeight: "bold" }}>
-                        €1081,35
-                      </span>
-                    </span>
-                  </Typography>
-                  <Typography variant="body2" sx={{ textAlign: "center" }}>
-                    <b>
-                      A free consultation with a specialist is necessary for
-                      this service.
-                    </b>
-                  </Typography>
-                </CardContent>
-                <CardActions
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
-                >
-                  <Button
-                    sx={{
-                      alignSelf: "center",
-                      my: 1,
-                      color: "white",
-                    }}
-                    size="small"
-                    variant="contained"
-                    target="_blank"
-                    color="orange"
-                    onClick={onClickGoldenVisa}
-                  >
-                    See requirements
-                  </Button>
-                  <Button
-                    sx={{ alignSelf: "center", mt: 1 }}
-                    size="small"
-                    variant="contained"
-                    href="https://entretramites.com/en/free-immigration-consultation"
-                    target="_blank"
-                  >
-                    Get free consultation
-                  </Button>
-                </CardActions>
-              </Card>
+                }
+                price={1201.5}
+                requirements={goldenVisaReq}
+                freeConsultationLink="https://entretramites.com/en/free-immigration-consultation"
+              />
             </Grid>
           </Grid>
         </Box>
@@ -583,238 +424,69 @@ const BureaucracyPage = () => {
         >
           <Grid container sx={{ justifyContent: "center" }}>
             <Grid item xs={10} md={4} lg={3}>
-              <Card
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  m: 1,
-                  textAlign: "center",
-                  minHeight: { md: 550 },
-                }}
-              >
-                <CardContent sx={{ pb: 0 }}>
-                  <Box sx={{ minHeight: { md: 325 } }}>
-                    <Box sx={{ minHeight: { md: 75 } }}>
-                      <Typography variant="h3" gutterBottom sx={{ mb: 1 }}>
-                        Beckham Law (Application)
-                      </Typography>
-                      <Typography> **English speaking**</Typography>
-                    </Box>
-                    <img
-                      width="200"
-                      height="50"
-                      src={`${imagesCdn}/partner_logos/entretramites.webp`}
-                      alt="entretramites icon"
-                      title="EntreTramites"
-                      style={{ marginTop: 15 }}
-                    />
-                    <Box sx={{ textAlign: "left", mt: 2 }}>
-                      <Typography variant="body2">
-                        For those who want to:
-                      </Typography>
+              <TaxBureaucracy
+                title="Beckham Law Application"
+                mdMinHeight={300}
+                mdMinHeightContent={410}
+                content={
+                  <Box>
+                    <Typography variant="body2">
+                      For those who want to:
+                    </Typography>
 
-                      <ul>
-                        <li>
-                          Pay tax only on Spanish-sourced income at a flat,
-                          lower rate (24%).
-                        </li>
-                        <li>
-                          Have a simplified tax filing process compared to
-                          regular resident taxation.
-                        </li>
-                      </ul>
-                    </Box>
+                    <ul>
+                      <li>
+                        Pay tax only on Spanish-sourced income at a flat, lower
+                        rate (24%).
+                      </li>
+                      <li>
+                        Have a simplified tax filing process compared to regular
+                        resident taxation.
+                      </li>
+                    </ul>
                   </Box>
-                  <Chip
-                    label={
-                      <div>
-                        Discount code: <b>10SITYEX</b>
-                      </div>
-                    }
-                    sx={{ backgroundColor: "#673ab7", color: "white" }}
-                  />
-                  <Typography
-                    variant="body2"
-                    sx={{ textAlign: "center", my: 1 }}
-                  >
-                    <span
-                      style={{
-                        border: "1px solid #673ab7",
-                        borderRadius: "10px",
-                        padding: "2px 10px",
-                        display: "inline-block",
-                      }}
-                    >
-                      <span
-                        style={{
-                          textDecoration: "line-through",
-                          marginRight: "10px",
-                        }}
-                      >
-                        €317,02
-                      </span>
-                      <span style={{ color: "green", fontWeight: "bold" }}>
-                        €285,32
-                      </span>
-                    </span>
-                  </Typography>
-                </CardContent>
-                <CardActions
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
-                >
-                  <Button
-                    sx={{ alignSelf: "center", my: 1, color: "white" }}
-                    size="small"
-                    variant="contained"
-                    target="_blank"
-                    color="orange"
-                    onClick={onClickBeckhamLaw}
-                  >
-                    See requirements
-                  </Button>
-                  <Button
-                    sx={{ alignSelf: "center", mt: 1 }}
-                    size="small"
-                    variant="contained"
-                    href="https://app.entretramites.com/stripePaymentLink?id=5184&t=4f330a11"
-                    target="_blank"
-                  >
-                    Hire service
-                  </Button>
-                </CardActions>
-              </Card>
+                }
+                price={317.02}
+                requirements={beckhamReq}
+                paymentLink="https://app.entretramites.com/stripePaymentLink?id=5184&t=4f330a11"
+              />
             </Grid>
             <Grid item xs={10} md={4} lg={3}>
-              <Card
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  m: 1,
-                  textAlign: "center",
-                  minHeight: { md: 555 },
-                }}
-              >
-                <CardContent sx={{ pb: 0 }}>
-                  <Box sx={{ minHeight: { md: 325 } }}>
-                    <Box sx={{ minHeight: { md: 75 } }}>
-                      <Typography variant="h3" gutterBottom sx={{ mb: 1 }}>
-                        Accountant Tax Declaration
-                      </Typography>
-                      <Typography> **English speaking**</Typography>
-                    </Box>
-                    <img
-                      width="200"
-                      height="50"
-                      src={`${imagesCdn}/partner_logos/entretramites.webp`}
-                      alt="entretramites icon"
-                      title="EntreTramites"
-                      style={{ marginTop: 15 }}
-                    />
-                    <Box sx={{ textAlign: "left", mt: 2 }}>
-                      <Typography variant="body2">
-                        For those who want to:
-                      </Typography>
+              <TaxBureaucracy
+                title="Accountant Tax Declaration"
+                mdMinHeight={300}
+                mdMinHeightContent={461}
+                content={
+                  <Box>
+                    <Typography variant="body2">For those who:</Typography>
 
-                      <ul>
-                        <li>Are new to Spanish taxes.</li>
-                        <li>Want simple, fast and up-to-date guidance.</li>
-                        <li>have a professional do your taxes for you.</li>
-                      </ul>
-                    </Box>
+                    <ul>
+                      <li>Are new to Spanish taxes.</li>
+                      <li>Want simple, fast and up-to-date guidance.</li>
+                      <li>Have a professional do your taxes for you.</li>
+                    </ul>
                   </Box>
-                  <Chip
-                    label={
-                      <div>
-                        Discount code: <b>10SITYEX</b>
-                      </div>
-                    }
-                    sx={{ backgroundColor: "#673ab7", color: "white" }}
-                  />
-                  <Typography
-                    variant="body2"
-                    sx={{ textAlign: "center", my: 1 }}
-                  >
-                    <span
-                      style={{
-                        border: "1px solid #673ab7",
-                        borderRadius: "10px",
-                        padding: "2px 10px",
-                        display: "inline-block",
-                      }}
-                    >
-                      <span
-                        style={{
-                          textDecoration: "line-through",
-                          marginRight: "10px",
-                        }}
-                      >
-                        €70,18
-                      </span>
-                      <span style={{ color: "green", fontWeight: "bold" }}>
-                        €63,16
-                      </span>
-                    </span>
-                  </Typography>
-                </CardContent>
-                <CardActions
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
-                >
-                  <Button
-                    sx={{ alignSelf: "center", mt: 1 }}
-                    size="small"
-                    variant="contained"
-                    href="https://app.entretramites.com/stripePaymentLink?id=5183&t=c23194a7"
-                    target="_blank"
-                  >
-                    Hire service
-                  </Button>
-                </CardActions>
-              </Card>
+                }
+                price={70.18}
+                paymentLink="https://app.entretramites.com/stripePaymentLink?id=5183&t=c23194a7"
+              />
             </Grid>
             <Grid item xs={10} md={4} lg={3}>
-              <Card
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  m: 1,
-                  textAlign: "center",
-                  minHeight: { md: 555 },
-                }}
-              >
-                <CardContent sx={{ pb: 0 }}>
-                  <Box sx={{ minHeight: { md: 398 } }}>
-                    <Box sx={{ minHeight: { md: 75 } }}>
-                      <Typography variant="h3" gutterBottom sx={{ mb: 1 }}>
-                        Automated Tax Declaration
-                      </Typography>
-                      <Typography> **in Spanish**</Typography>
-                    </Box>
-                    <img
-                      width="200"
-                      height="40"
-                      src={`${imagesCdn}/partner_logos/taxdown.png`}
-                      alt="taxdown icon"
-                      title="Taxdown"
-                      style={{ marginTop: 15 }}
-                    />
-                    <Box sx={{ textAlign: "left", mt: 3 }}>
-                      <Typography variant="body2" gutterBottom>
-                        For those who want to:
-                      </Typography>
-                      <Box sx={{ textAlign: "left" }}>
-                        <ul>
-                          <li>
-                            Do the Tax Declaration in an automated fashion.
-                          </li>
-                          <li>Do the Tax Declaration completely online.</li>
-                        </ul>
-                      </Box>
+              <TaxBureaucracy
+                title="Automated Tax Declaration"
+                is_taxdown={true}
+                mdMinHeight={405}
+                mdMinHeightContent={461}
+                content={
+                  <Box>
+                    <Typography variant="body2" sx={{ textAlign: "left" }}>
+                      For those who want to:
+                    </Typography>
+                    <Box sx={{ textAlign: "left" }}>
+                      <ul>
+                        <li>Do the Tax Declaration in an automated fashion.</li>
+                        <li>Do the Tax Declaration completely online.</li>
+                      </ul>
                     </Box>
                     <Typography variant="body1" gutterBottom sx={{ my: 1 }}>
                       We have partnered with <b>TaxDown</b> to offer you a{" "}
@@ -822,24 +494,9 @@ const BureaucracyPage = () => {
                       service.
                     </Typography>
                   </Box>
-                </CardContent>
-                <CardActions
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
-                >
-                  <Button
-                    sx={{ alignSelf: "center", mt: 1 }}
-                    size="small"
-                    variant="contained"
-                    href="https://taxdown.es/landings_partners/sityex/?utm_source=empleados&utm_medium=partnership&utm_campaign=empleados_partnership"
-                    target="_blank"
-                  >
-                    Redeem discount
-                  </Button>
-                </CardActions>
-              </Card>
+                }
+                paymentLink="https://taxdown.es/landings_partners/sityex/?utm_source=empleados&utm_medium=partnership&utm_campaign=empleados_partnership"
+              />
             </Grid>
           </Grid>
         </Box>
@@ -862,23 +519,13 @@ const BureaucracyPage = () => {
           </Typography>
           <Grid container sx={{ justifyContent: "center" }}>
             <Grid item xs={10} md={4} lg={3}>
-              <Card
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  m: 1,
-                  textAlign: "center",
-                }}
-              >
-                <CardContent sx={{ pb: 0 }}>
-                  <Box sx={{ minHeight: { md: 238 } }}>
-                    <Typography variant="h4" sx={{ mb: 2 }}>
-                      Driver's License Exchange
-                    </Typography>
-                    <Typography variant="body2" sx={{ textAlign: "left" }}>
-                      For those who:
-                    </Typography>
-                    <Box sx={{ textAlign: "left" }}>
+              <ConsultationBureaucracy
+                title="Driver's License Exchange"
+                mdMinHeight={238}
+                content={
+                  <Box sx={{ textAlign: "left" }}>
+                    <Typography variant="body2">For those who:</Typography>
+                    <Box>
                       <ul>
                         <li>
                           Have a driver's license from a country different from
@@ -892,139 +539,33 @@ const BureaucracyPage = () => {
                       </ul>
                     </Box>
                   </Box>
-                  <Typography
-                    variant="body2"
-                    sx={{ textAlign: "center", my: 2 }}
-                  >
-                    <span
-                      style={{
-                        border: "1px solid #673ab7",
-                        borderRadius: "10px",
-                        padding: "2px 10px",
-                        display: "inline-block",
-                      }}
-                    >
-                      <span
-                        style={{
-                          textDecoration: "line-through",
-                          marginRight: "10px",
-                        }}
-                      >
-                        €315,8
-                      </span>
-                      <span style={{ color: "green", fontWeight: "bold" }}>
-                        €284,22
-                      </span>
-                    </span>
-                  </Typography>
-                  <Typography variant="body2" sx={{ textAlign: "center" }}>
-                    <b>
-                      A free consultation with a specialist is necessary for
-                      this service.
-                    </b>
-                  </Typography>
-                </CardContent>
-                <CardActions
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
-                >
-                  <Button
-                    sx={{ alignSelf: "center" }}
-                    size="small"
-                    variant="contained"
-                    href="https://entretramites.com/en/partners-program/free-consultation-partners?aff=3d90441f"
-                    target="_blank"
-                  >
-                    Get free consultation
-                  </Button>
-                </CardActions>
-              </Card>
+                }
+                price={315.8}
+                freeConsultationLink="https://entretramites.com/en/partners-program/free-consultation-partners?aff=3d90441f"
+              />
             </Grid>
             <Grid item xs={10} md={4} lg={3}>
-              <Card
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  m: 1,
-                  textAlign: "center",
-                }}
-              >
-                <CardContent sx={{ pb: 0 }}>
-                  <Box sx={{ minHeight: { md: 238 } }}>
-                    <Typography variant="h4" sx={{ mb: 2 }}>
-                      Vehicle Registration
-                    </Typography>
-                    <Typography variant="body2" sx={{ textAlign: "left" }}>
-                      For those who:
-                    </Typography>
-                    <Box sx={{ textAlign: "left" }}>
+              <ConsultationBureaucracy
+                title="Vehicle Registration"
+                mdMinHeight={238}
+                content={
+                  <Box sx={{ textAlign: "left" }}>
+                    <Typography variant="body2">For those who:</Typography>
+                    <Box>
                       <ul>
                         <li>Want to register a vehicle in Spain.</li>
                         <li>Want a complete management of the procedure.</li>
                       </ul>
                     </Box>
                   </Box>
-                  <Typography
-                    variant="body2"
-                    sx={{ textAlign: "center", my: 2 }}
-                  >
-                    <span
-                      style={{
-                        border: "1px solid #673ab7",
-                        borderRadius: "10px",
-                        padding: "2px 10px",
-                        display: "inline-block",
-                      }}
-                    >
-                      <span
-                        style={{
-                          textDecoration: "line-through",
-                          marginRight: "10px",
-                        }}
-                      >
-                        €544,50
-                      </span>
-                      <span style={{ color: "green", fontWeight: "bold" }}>
-                        €490,05
-                      </span>
-                    </span>
-                  </Typography>
-                  <Typography variant="body2" sx={{ textAlign: "center" }}>
-                    <b>
-                      A free consultation with a specialist is necessary for
-                      this service.
-                    </b>
-                  </Typography>
-                </CardContent>
-                <CardActions
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
-                >
-                  <Button
-                    sx={{ alignSelf: "center" }}
-                    size="small"
-                    variant="contained"
-                    href="https://entretramites.com/en/partners-program/free-consultation-partners?aff=3d90441f"
-                    target="_blank"
-                  >
-                    Get free consultation
-                  </Button>
-                </CardActions>
-              </Card>
+                }
+                price={544.5}
+                freeConsultationLink="https://entretramites.com/en/partners-program/free-consultation-partners?aff=3d90441f"
+              />
             </Grid>
           </Grid>
         </Box>
       )}
-      <RequirementsModal
-        title="Requirements"
-        message={requirementsContent}
-        showModal={showModal}
-        setShowModal={setShowModal}
-      />
     </Box>
   );
 };

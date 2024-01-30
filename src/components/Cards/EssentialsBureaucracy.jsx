@@ -18,6 +18,7 @@ import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 const EssentialsBureaucracy = ({
   title,
   content,
+  mdMinHeight,
   tooltipText,
   price,
   paymentLink,
@@ -39,7 +40,7 @@ const EssentialsBureaucracy = ({
       }}
     >
       <CardContent sx={{ pb: 0 }}>
-        <Box sx={{ minHeight: { md: 260 } }}>
+        <Box sx={{ minHeight: { md: mdMinHeight } }}>
           <Typography variant="h4" sx={{ mb: 2 }}>
             {title}
             {tooltipText && (

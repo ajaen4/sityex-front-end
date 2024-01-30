@@ -71,7 +71,7 @@ const EntreTramitesExp = ({ ServiceName, showFreeConsultation }) => {
               href="https://entretramites.com/en/partners-program/free-consultation-partners?aff=3d90441f"
               target="_blank"
             >
-              Get free consultation
+              Free consultation
             </Button>
           </Box>
         )}
