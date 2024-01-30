@@ -47,48 +47,48 @@ export default function CityTabs() {
 
   return (
     <Box sx={{ minHeight: minBottomNavHeight }}>
-    <Paper
-      sx={{
-        position: "fixed",
-        bottom: 0,
-        left: 0,
-        right: 0,
-        backgroundColor: "transparent",
-      }}
-      elevation={3}
-    >
-      <BottomNavigation
-        showLabels
-        value={value}
-        onChange={itemSelected}
-        style={{ minHeight: 60, backgroundColor: "rgba(128, 128, 128, 0.8)" }}
+      <Paper
+        sx={{
+          position: "fixed",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          backgroundColor: "transparent",
+        }}
+        elevation={3}
       >
-        <BottomNavigationAction
-          label="Bureaucracy"
-          icon={<GovernmentIcon />}
-          sx={{ color: "white", "&.Mui-selected": { color: "white" } }}
-          data-path={ROUTES_PATHS.CITY_BUREAUCRACY}
-        />
-        <BottomNavigationAction
-          label="Housing"
-          icon={<HouseIcon />}
-          data-path={ROUTES_PATHS.CITY_HOUSING}
-          sx={{ color: "white", "&.Mui-selected": { color: "white" } }}
-        />
-        <BottomNavigationAction
-          label="Events"
-          icon={<TicketIcon />}
-          sx={{ color: "white", "&.Mui-selected": { color: "white" } }}
-          data-path={ROUTES_PATHS.CITY_EVENTS}
-        />
-        <BottomNavigationAction
-          label="Community"
-          icon={<PeopleIcon />}
-          sx={{ color: "white", "&.Mui-selected": { color: "white" } }}
-          data-path={ROUTES_PATHS.CITY_COMMUNITY}
-        />
-      </BottomNavigation>
-    </Paper>
+        <BottomNavigation
+          showLabels
+          value={value}
+          onChange={itemSelected}
+          style={{ minHeight: 60, backgroundColor: "rgba(128, 128, 128, 0.8)" }}
+        >
+          <BottomNavigationAction
+            label="Bureaucracy"
+            icon={<GovernmentIcon />}
+            sx={{ color: "white", "&.Mui-selected": { color: "white" } }}
+            data-path={ROUTES_PATHS.CITY_BUREAUCRACY}
+          />
+          <BottomNavigationAction
+            label="Housing"
+            icon={<HouseIcon />}
+            data-path={ROUTES_PATHS.CITY_HOUSING}
+            sx={{ color: "white", "&.Mui-selected": { color: "white" } }}
+          />
+          <BottomNavigationAction
+            label="Events"
+            icon={<TicketIcon />}
+            sx={{ color: "white", "&.Mui-selected": { color: "white" } }}
+            data-path={ROUTES_PATHS.CITY_EVENTS}
+          />
+          <BottomNavigationAction
+            label="Community"
+            icon={<PeopleIcon />}
+            sx={{ color: "white", "&.Mui-selected": { color: "white" } }}
+            data-path={ROUTES_PATHS.CITY_COMMUNITY}
+          />
+        </BottomNavigation>
+      </Paper>
     </Box>
   );
 }

@@ -24,6 +24,7 @@ import SendGAPageView from "components/DataLoaders/SendGAPageView";
 import RequirementsModal from "components/Modals/RequirementsModal";
 import BureaucracyAccordeon from "components/Accordions/bureaucracyAccordeon";
 import EntreTramitesExp from "components/Cards/EntreTramitesExp";
+import EssentialsBureaucracy from "components/Cards/EssentialsBureaucracy";
 
 import { imagesCdn } from "constants/constants";
 
@@ -72,7 +73,7 @@ const BureaucracyPage = () => {
           </b>{" "}
           in Spain.
         </li>
-      </ul>
+      </ul>,
     );
     setShowModal(true);
   };
@@ -105,7 +106,7 @@ const BureaucracyPage = () => {
           <b>(whether 500,000, €1M or €2M depending on which path is chosen)</b>
           , and provide the corresponding document to prove it.
         </li>
-      </ul>
+      </ul>,
     );
     setShowModal(true);
   };
@@ -136,7 +137,7 @@ const BureaucracyPage = () => {
             interest for Spain.
           </li>
         </ul>
-      </div>
+      </div>,
     );
     setShowModal(true);
   };
@@ -198,30 +199,11 @@ const BureaucracyPage = () => {
           </Typography>
           <Grid container sx={{ justifyContent: "center" }}>
             <Grid item xs={10} md={4} lg={3}>
-              <Card
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  m: 1,
-                  textAlign: "center",
-                }}
-              >
-                <CardContent sx={{ pb: 0 }}>
-                  <Box sx={{ minHeight: { md: 260 } }}>
-                    <Typography variant="h4" sx={{ mb: 2 }}>
-                      Non-residential NIE
-                      <Tooltip
-                        enterTouchDelay={0}
-                        title="
-                      Tax identification number assigned to every foreigner who
-                      carries out an economic or professional activity."
-                        sx={{ mx: 1, p: 0 }}
-                      >
-                        <IconButton>
-                          <HelpOutlineIcon />
-                        </IconButton>
-                      </Tooltip>
-                    </Typography>
+              <EssentialsBureaucracy
+                title="Non-Residential NIE"
+                tooltipText="Tax identification number assigned to every foreigner who carries out an economic or professional activity."
+                content={
+                  <Box>
                     <Typography variant="body2" sx={{ textAlign: "left" }}>
                       For those who plan to:
                     </Typography>
@@ -237,75 +219,18 @@ const BureaucracyPage = () => {
                       </ul>
                     </Box>
                   </Box>
-                  <Typography
-                    variant="body2"
-                    sx={{ textAlign: "center", my: 2 }}
-                  >
-                    <span
-                      style={{
-                        border: "1px solid #673ab7",
-                        borderRadius: "10px",
-                        padding: "2px 10px",
-                        display: "inline-block",
-                      }}
-                    >
-                      <span
-                        style={{
-                          textDecoration: "line-through",
-                          marginRight: "10px",
-                        }}
-                      >
-                        €189,97
-                      </span>
-                      <span style={{ color: "green", fontWeight: "bold" }}>
-                        €170,97
-                      </span>
-                    </span>
-                  </Typography>
-                </CardContent>
-                <CardActions
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
-                >
-                  <Button
-                    sx={{ alignSelf: "center" }}
-                    size="small"
-                    variant="contained"
-                    href="https://app.entretramites.com/stripePaymentLink?id=5175&t=1b1e3c17"
-                    target="_blank"
-                  >
-                    Hire service
-                  </Button>
-                </CardActions>
-              </Card>
+                }
+                price={189.97}
+                paymentLink="https://app.entretramites.com/stripePaymentLink?id=5175&t=1b1e3c17"
+              />
             </Grid>
             <Grid item xs={10} md={4} lg={3}>
-              <Card
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  m: 1,
-                  textAlign: "center",
-                }}
-              >
-                <CardContent sx={{ pb: 0 }}>
-                  <Box sx={{ minHeight: { md: 260 } }}>
-                    <Typography variant="h4" sx={{ mb: 2 }}>
-                      Residential NIE
-                      <Tooltip
-                        enterTouchDelay={0}
-                        title="
-                        Certifies the right of a person to reside in Spain. Also
-                        brings the tax identification number."
-                        sx={{ mx: 1, p: 0 }}
-                      >
-                        <IconButton>
-                          <HelpOutlineIcon />
-                        </IconButton>
-                      </Tooltip>
-                    </Typography>
+              <EssentialsBureaucracy
+                title="Residential NIE"
+                tooltipText="Certifies the right of a person to reside in Spain. Also
+                brings the tax identification number."
+                content={
+                  <Box>
                     <Typography variant="body2" sx={{ textAlign: "left" }}>
                       For those who plan to:
                     </Typography>
@@ -324,76 +249,19 @@ const BureaucracyPage = () => {
                       </ul>
                     </Box>
                   </Box>
-                  <Typography
-                    variant="body2"
-                    sx={{ textAlign: "center", my: 2 }}
-                  >
-                    <span
-                      style={{
-                        border: "1px solid #673ab7",
-                        borderRadius: "10px",
-                        padding: "2px 10px",
-                        display: "inline-block",
-                      }}
-                    >
-                      <span
-                        style={{
-                          textDecoration: "line-through",
-                          marginRight: "10px",
-                        }}
-                      >
-                        €189,97
-                      </span>
-                      <span style={{ color: "green", fontWeight: "bold" }}>
-                        €170,97
-                      </span>
-                    </span>
-                  </Typography>
-                </CardContent>
-                <CardActions
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
-                >
-                  <Button
-                    sx={{ alignSelf: "center" }}
-                    size="small"
-                    variant="contained"
-                    href="https://app.entretramites.com/stripePaymentLink?id=5176&t=48fcd379"
-                    target="_blank"
-                  >
-                    Hire service
-                  </Button>
-                </CardActions>
-              </Card>
+                }
+                price={189.97}
+                paymentLink="https://app.entretramites.com/stripePaymentLink?id=5176&t=48fcd379"
+              />
             </Grid>
             <Grid item xs={10} md={4} lg={3}>
-              <Card
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  m: 1,
-                  textAlign: "center",
-                }}
-              >
-                <CardContent sx={{ pb: 0 }}>
-                  <Box sx={{ minHeight: { md: 260 } }}>
-                    <Typography variant="h4" sx={{ mb: 2 }}>
-                      Empadronamiento
-                      <Tooltip
-                        enterTouchDelay={0}
-                        title="
-                          Allows individuals to declare their place of residence in
-                      Spain. It is required for accessing public services and
-                      benefits."
-                        sx={{ mx: 1, p: 0 }}
-                      >
-                        <IconButton>
-                          <HelpOutlineIcon />
-                        </IconButton>
-                      </Tooltip>
-                    </Typography>
+              <EssentialsBureaucracy
+                title="Empadronamiento"
+                tooltipText="Allows individuals to declare their place of residence in
+                Spain. It is required for accessing public services and
+                benefits."
+                content={
+                  <Box>
                     <Typography variant="body2" sx={{ textAlign: "left" }}>
                       For those who plan to:
                     </Typography>
@@ -406,65 +274,17 @@ const BureaucracyPage = () => {
                       </ul>
                     </Box>
                   </Box>
-                  <Typography
-                    variant="body2"
-                    sx={{ textAlign: "center", my: 2 }}
-                  >
-                    <span
-                      style={{
-                        border: "1px solid #673ab7",
-                        borderRadius: "10px",
-                        padding: "2px 10px",
-                        display: "inline-block",
-                      }}
-                    >
-                      <span
-                        style={{
-                          textDecoration: "line-through",
-                          marginRight: "10px",
-                        }}
-                      >
-                        €64,13
-                      </span>
-                      <span style={{ color: "green", fontWeight: "bold" }}>
-                        €57,72
-                      </span>
-                    </span>
-                  </Typography>
-                </CardContent>
-                <CardActions
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
-                >
-                  <Button
-                    sx={{ alignSelf: "center" }}
-                    size="small"
-                    variant="contained"
-                    href="https://app.entretramites.com/stripePaymentLink?id=5186&t=81b370ad"
-                    target="_blank"
-                  >
-                    Hire service
-                  </Button>
-                </CardActions>
-              </Card>
+                }
+                price={64.13}
+                paymentLink="https://app.entretramites.com/stripePaymentLink?id=5186&t=81b370ad"
+              />
             </Grid>
             <Grid item xs={12} style={{ width: "100%", height: 0 }}></Grid>
             <Grid item xs={10} md={4} lg={3}>
-              <Card
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  m: 1,
-                  textAlign: "center",
-                }}
-              >
-                <CardContent sx={{ pb: 0 }}>
-                  <Box sx={{ minHeight: { md: 238 } }}>
-                    <Typography variant="h4" sx={{ mb: 2 }}>
-                      Non-EU citizen Half Pack
-                    </Typography>
+              <EssentialsBureaucracy
+                title="Non-EU citizen Half Pack"
+                content={
+                  <Box>
                     <Typography variant="body2" sx={{ textAlign: "left" }}>
                       Perfect if you don't need all the paperwork, includes:
                     </Typography>
@@ -475,64 +295,16 @@ const BureaucracyPage = () => {
                       </ul>
                     </Box>
                   </Box>
-                  <Typography
-                    variant="body2"
-                    sx={{ textAlign: "center", my: 2 }}
-                  >
-                    <span
-                      style={{
-                        border: "1px solid #673ab7",
-                        borderRadius: "10px",
-                        padding: "2px 10px",
-                        display: "inline-block",
-                      }}
-                    >
-                      <span
-                        style={{
-                          textDecoration: "line-through",
-                          marginRight: "10px",
-                        }}
-                      >
-                        €152,46
-                      </span>
-                      <span style={{ color: "green", fontWeight: "bold" }}>
-                        €137,21
-                      </span>
-                    </span>
-                  </Typography>
-                </CardContent>
-                <CardActions
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
-                >
-                  <Button
-                    sx={{ alignSelf: "center" }}
-                    size="small"
-                    variant="contained"
-                    href="https://app.entretramites.com/stripePaymentLink?id=5179&t=7da3d896"
-                    target="_blank"
-                  >
-                    Hire service
-                  </Button>
-                </CardActions>
-              </Card>
+                }
+                price={64.13}
+                paymentLink="https://app.entretramites.com/stripePaymentLink?id=5179&t=7da3d896"
+              />
             </Grid>
             <Grid item xs={10} md={4} lg={3}>
-              <Card
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  m: 1,
-                  textAlign: "center",
-                }}
-              >
-                <CardContent sx={{ pb: 0 }}>
-                  <Box sx={{ minHeight: { md: 238 } }}>
-                    <Typography variant="h4" sx={{ mb: 2 }}>
-                      Non-EU citizen Full Pack
-                    </Typography>
+              <EssentialsBureaucracy
+                title="Non-EU citizen Full Pack"
+                content={
+                  <Box>
                     <Typography variant="body2" sx={{ textAlign: "left" }}>
                       For those who want all their paperwork ready in one go,
                       includes:
@@ -547,64 +319,16 @@ const BureaucracyPage = () => {
                       </ul>
                     </Box>
                   </Box>
-                  <Typography
-                    variant="body2"
-                    sx={{ textAlign: "center", my: 2 }}
-                  >
-                    <span
-                      style={{
-                        border: "1px solid #673ab7",
-                        borderRadius: "10px",
-                        padding: "2px 10px",
-                        display: "inline-block",
-                      }}
-                    >
-                      <span
-                        style={{
-                          textDecoration: "line-through",
-                          marginRight: "10px",
-                        }}
-                      >
-                        €215,38
-                      </span>
-                      <span style={{ color: "green", fontWeight: "bold" }}>
-                        €193,84
-                      </span>
-                    </span>
-                  </Typography>
-                </CardContent>
-                <CardActions
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
-                >
-                  <Button
-                    sx={{ alignSelf: "center" }}
-                    size="small"
-                    variant="contained"
-                    href="https://app.entretramites.com/stripePaymentLink?id=5180&t=b9898094"
-                    target="_blank"
-                  >
-                    Hire service
-                  </Button>
-                </CardActions>
-              </Card>
+                }
+                price={215.38}
+                paymentLink="https://app.entretramites.com/stripePaymentLink?id=5180&t=b9898094"
+              />
             </Grid>
             <Grid item xs={10} md={4} lg={3}>
-              <Card
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  m: 1,
-                  textAlign: "center",
-                }}
-              >
-                <CardContent sx={{ pb: 0 }}>
-                  <Box sx={{ minHeight: { md: 238 } }}>
-                    <Typography variant="h4" sx={{ mb: 2 }}>
-                      EU citizen Half Pack
-                    </Typography>
+              <EssentialsBureaucracy
+                title="EU citizen Half Pack"
+                content={
+                  <Box>
                     <Typography variant="body2" sx={{ textAlign: "left" }}>
                       Perfect if you don't need all the paperwork, includes:
                     </Typography>
@@ -615,64 +339,16 @@ const BureaucracyPage = () => {
                       </ul>
                     </Box>
                   </Box>
-                  <Typography
-                    variant="body2"
-                    sx={{ textAlign: "center", my: 2 }}
-                  >
-                    <span
-                      style={{
-                        border: "1px solid #673ab7",
-                        borderRadius: "10px",
-                        padding: "2px 10px",
-                        display: "inline-block",
-                      }}
-                    >
-                      <span
-                        style={{
-                          textDecoration: "line-through",
-                          marginRight: "10px",
-                        }}
-                      >
-                        €252,89
-                      </span>
-                      <span style={{ color: "green", fontWeight: "bold" }}>
-                        €227,60
-                      </span>
-                    </span>
-                  </Typography>
-                </CardContent>
-                <CardActions
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
-                >
-                  <Button
-                    sx={{ alignSelf: "center" }}
-                    size="small"
-                    variant="contained"
-                    href="https://app.entretramites.com/stripePaymentLink?id=5177&t=92a353b4"
-                    target="_blank"
-                  >
-                    Hire service
-                  </Button>
-                </CardActions>
-              </Card>
+                }
+                price={252.89}
+                paymentLink="https://app.entretramites.com/stripePaymentLink?id=5177&t=92a353b4"
+              />
             </Grid>
             <Grid item xs={10} md={4} lg={3}>
-              <Card
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  m: 1,
-                  textAlign: "center",
-                }}
-              >
-                <CardContent sx={{ pb: 0 }}>
-                  <Box sx={{ minHeight: { md: 238 } }}>
-                    <Typography variant="h4" sx={{ mb: 2 }}>
-                      EU citizen Full Pack
-                    </Typography>
+              <EssentialsBureaucracy
+                title="EU citizen Full Pack"
+                content={
+                  <Box>
                     <Typography variant="body2" sx={{ textAlign: "left" }}>
                       For those who want all their paperwork ready in one go,
                       includes:
@@ -687,49 +363,10 @@ const BureaucracyPage = () => {
                       </ul>
                     </Box>
                   </Box>
-                  <Typography
-                    variant="body2"
-                    sx={{ textAlign: "center", my: 2 }}
-                  >
-                    <span
-                      style={{
-                        border: "1px solid #673ab7",
-                        borderRadius: "10px",
-                        padding: "2px 10px",
-                        display: "inline-block",
-                      }}
-                    >
-                      <span
-                        style={{
-                          textDecoration: "line-through",
-                          marginRight: "10px",
-                        }}
-                      >
-                        €315,81
-                      </span>
-                      <span style={{ color: "green", fontWeight: "bold" }}>
-                        €284,23
-                      </span>
-                    </span>
-                  </Typography>
-                </CardContent>
-                <CardActions
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
-                >
-                  <Button
-                    sx={{ alignSelf: "center" }}
-                    size="small"
-                    variant="contained"
-                    href="https://app.entretramites.com/stripePaymentLink?id=5178&t=944e39a6"
-                    target="_blank"
-                  >
-                    Hire service
-                  </Button>
-                </CardActions>
-              </Card>
+                }
+                price={315.81}
+                paymentLink="https://app.entretramites.com/stripePaymentLink?id=5178&t=944e39a6"
+              />
             </Grid>
           </Grid>
         </Box>
