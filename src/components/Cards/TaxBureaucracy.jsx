@@ -57,8 +57,8 @@ const TaxBureaucracy = ({
               <Typography variant="h4" sx={{ mb: 2 }}>
                 {title}
               </Typography>
-              {!is_taxdown && <Typography> **Spanish speaking**</Typography>}
-              {is_taxdown && <Typography> **English speaking**</Typography>}
+              {is_taxdown && <Typography> **Spanish speaking**</Typography>}
+              {!is_taxdown && <Typography> **English speaking**</Typography>}
             </Box>
             <Box
               sx={{
