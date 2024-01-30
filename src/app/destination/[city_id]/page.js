@@ -19,6 +19,7 @@ import HouseIcon from "@mui/icons-material/MapsHomeWorkOutlined";
 import GovernmentIcon from "@mui/icons-material/AssuredWorkloadOutlined";
 
 import SendGAPageView from "components/DataLoaders/SendGAPageView";
+
 import * as ROUTES_PATHS from "routes/paths";
 
 const BureaucracyPage = () => {

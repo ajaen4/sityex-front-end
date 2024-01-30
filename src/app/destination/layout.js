@@ -13,6 +13,8 @@ import { Box } from "@mui/material";
 
 import CityTabs from "components/Tab/CityTabs";
 import { useShowBottomNavContext } from "components/Contexts/ShowBottomNav";
+import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
+
 import {
   contentHeight,
   minNavbarHeight,
@@ -58,7 +60,8 @@ const CityLayout = ({ children }) => {
     setShowBottomNav(isDestinationPage && !isCityEventPage && isSmallScreen);
   }, [isDestinationPage, isCityEventPage, isSmallScreen]);
 
-  if (selectedCity === null || selectedCity.city_id !== city_id) return null;
+  if (selectedCity === null || selectedCity.city_id !== city_id)
+    return <CenteredLoadingSpinner />;
 
   return (
     <Box
