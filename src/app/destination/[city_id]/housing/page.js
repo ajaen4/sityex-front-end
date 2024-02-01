@@ -19,6 +19,7 @@ import HousingList from "components/Lists/HousingList";
 import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 const HousingMap = dynamic(() => import("components/Maps/HousingMap"), {
   ssr: false,
+  loading: () => <CenteredLoadingSpinner />,
 });
 
 import { fetchHousingIndex, orderHousingIndex } from "actions";
