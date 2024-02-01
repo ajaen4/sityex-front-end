@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 
 import {
   Box,
@@ -12,6 +13,10 @@ import {
   ToggleButton,
   ToggleButtonGroup,
   Pagination,
+  Card,
+  CardMedia,
+  CardContent,
+  CardActions,
 } from "@mui/material";
 
 import SendGAPageView from "components/DataLoaders/SendGAPageView";
@@ -23,6 +28,8 @@ const HousingMap = dynamic(() => import("components/Maps/HousingMap"), {
 });
 
 import { fetchHousingIndex, orderHousingIndex } from "actions";
+
+import { imagesCdn } from "constants/constants";
 
 const HousingPage = () => {
   const [selectedView, setSelectedView] = useState("listings");
@@ -183,13 +190,70 @@ const HousingPage = () => {
         </Box>
       )}
       {selectedView === "map" && <HousingMap />}
+      {selectedView === "discounts" && (
+        <Box
+          style={{
+            height: "100%",
+            width: "100%",
+          }}
+        >
+          <Typography variant="h1" sx={{ mt: 3, fontSize: 30 }}>
+            Housing
+          </Typography>
+          <Box
+            sx={{ display: "flex", justifyContent: "center", width: "100%" }}
+          >
+            <Card
+              key="spotahome-discount"
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                minWidth: 300,
+                maxWidth: 300,
+                mt: 15,
+                mb: 3,
+                minHeight: 350,
+              }}
+            >
+              <CardMedia
+                sx={{ height: 220 }}
+                image={`${imagesCdn}/partners/spotahome_discount.jpg`}
+                title="SpotAHome discount"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  Enjoy 25% Off on Spotahome!
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{ mt: 2 }}
+                >
+                  Find your perfect home and save big. Exclusive for Sityex
+                  users. Redeem Your Discount Now!
+                </Typography>
+              </CardContent>
+              <CardActions
+                sx={{ display: "flex", justifyContent: "center", pt: 0 }}
+              >
+                <Link
+                  target="_blank"
+                  href="https://sityex-public-documents.s3.eu-west-1.amazonaws.com/partners/spotahome/discount_explanation.pdf"
+                >
+                  Read instructions
+                </Link>
+              </CardActions>
+            </Card>
+          </Box>
+        </Box>
+      )}
       <Box
         sx={{
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
           position: "absolute",
-          top: selectedView === "listings" ? "85px" : "20px",
+          top: selectedView !== "map" ? "85px" : "20px",
           left: "50%",
           transform: "translateX(-50%)",
           zIndex: 400,
@@ -207,6 +271,7 @@ const HousingPage = () => {
         >
           <Tab value="listings" label="Listings" />
           <Tab value="map" label="Map" />
+          <Tab value="discounts" label="Discounts" />
         </Tabs>
       </Box>
     </Box>
