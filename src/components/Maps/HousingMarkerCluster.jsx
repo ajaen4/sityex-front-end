@@ -25,9 +25,9 @@ const createCustomIcon = (listing) => {
 
 const createNormalIcon = () => {
   return L.divIcon({
-    html: `<div style="background-color: #90caf9; width: 10px; height: 10px; border-radius: 50%; position: relative;"/>`,
+    html: `<div style="background-color: #90caf9; width: 15px; height: 15px; border-radius: 50%; position: relative;"/>`,
     className: "custom-cluster-icon",
-    iconSize: new L.Point(10, 10),
+    iconSize: new L.Point(15, 15),
   });
 };
 
@@ -38,9 +38,11 @@ function HousingMarkerCluster({ listings, onClickListing, currentZoom }) {
   useEffect(() => {
     if (!markersRef.current) {
       markersRef.current = new MarkerClusterGroup({
+        spiderfyOnMaxZoom: false,
+        zoomToBoundsOnClick: true,
         showCoverageOnHover: false,
         maxClusterRadius: 80,
-        disableClusteringAtZoom: 16,
+        disableClusteringAtZoom: 15,
         iconCreateFunction: function (cluster) {
           const count = cluster.getChildCount();
           return L.divIcon({
@@ -64,7 +66,7 @@ function HousingMarkerCluster({ listings, onClickListing, currentZoom }) {
 
       const marker = L.marker(
         [listing.coordinates.latitude, listing.coordinates.longitude],
-        { icon: currentZoom >= 17 ? customIcon : normalIcon },
+        { icon: currentZoom >= 16 ? customIcon : normalIcon },
       ).on("click", () => onClickListing(listing));
 
       markers.addLayer(marker);
