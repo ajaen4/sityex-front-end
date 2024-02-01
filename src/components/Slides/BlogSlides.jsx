@@ -69,7 +69,7 @@ const BlogSlides = async ({ is_latest, avoidBlogId }) => {
               {blog.minified_content}
             </Typography>
           </CardContent>
-          <CardActions>
+          <CardActions sx={{ display: "flex", justifyContent: "center" }}>
             <Link href={blog.blog_path}>Read publication</Link>
           </CardActions>
         </Card>
