@@ -70,7 +70,13 @@ const ListingInfoWindow = ({ listing, setSelectedListing }) => {
       >
         <CloseIcon fontSize="small" />
       </IconButton>
-      <HousingSlides listing={listing} />
+      <HousingSlides
+        listing={listing}
+        isInMap={true}
+        imageHeight={"200px"}
+        autoPlay={true}
+        swipe={true}
+      />
       <CardContent
         sx={{
           flexGrow: 1,
@@ -96,10 +102,10 @@ const ListingInfoWindow = ({ listing, setSelectedListing }) => {
           </Typography>
         </Box>
         <Box sx={{ display: "flex", alignItems: "center", mt: 0.5 }}>
-          <Typography variant="body1">
-            {listing.kindLabel} • {listing.typeLabel} •{" "}
-            {listing.facilities.totalSize && listing.facilities.totalSize.value}{" "}
-            m²
+          <Typography variant="body1" sx={{ fontSize: 16 }}>
+            {listing.kindLabel} • {listing.typeLabel}
+            {listing.facilities.totalSize &&
+              `• ${listing.facilities.totalSize.value} m²`}
           </Typography>
         </Box>
         <Box sx={{ display: "flex", alignItems: "center", mt: 0.5 }}>

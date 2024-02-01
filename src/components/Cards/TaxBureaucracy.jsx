@@ -51,7 +51,7 @@ const TaxBureaucracy = ({
           textAlign: "center",
         }}
       >
-        <CardContent sx={{ pb: 0, minHeight: {md :mdMinHeightContent}}}>
+        <CardContent sx={{ pb: 0, minHeight: { md: mdMinHeightContent } }}>
           <Box sx={{ minHeight: { md: mdMinHeight } }}>
             <Box sx={{ minHeight: { md: 45 } }}>
               <Typography variant="h4" sx={{ mb: 2 }}>
@@ -82,16 +82,16 @@ const TaxBureaucracy = ({
             </Box>
             {content}
           </Box>
-          {!is_taxdown && 
-          <Chip
-            label={
-              <div>
-                Discount code: <b>10SITYEX</b>
-              </div>
-            }
-            sx={{ backgroundColor: "#673ab7", color: "white" }}
-          />
-        }
+          {!is_taxdown && (
+            <Chip
+              label={
+                <div>
+                  Discount code: <b>10SITYEX</b>
+                </div>
+              }
+              sx={{ backgroundColor: "#673ab7", color: "white" }}
+            />
+          )}
           {price && (
             <Typography variant="body2" sx={{ textAlign: "center", my: 2 }}>
               <span

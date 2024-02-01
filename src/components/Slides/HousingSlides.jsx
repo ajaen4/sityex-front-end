@@ -1,14 +1,15 @@
 import React, { useEffect } from "react";
 import Carousel from "react-material-ui-carousel";
-import HorizontalImages from "components/Slides/HorizontalImages";
 
-const HousingSlides = ({ listing }) => {
-  const horizontalImages = HorizontalImages(listing.images);
+import { Box } from "@mui/material";
+
+const HousingSlides = ({ listing, isInMap, imageHeight, autoPlay, swipe }) => {
   const carouselRef = React.useRef(null);
 
   useEffect(() => {
     const wrapper = carouselRef.current;
-    if (wrapper) {
+
+    if (wrapper && isInMap) {
       const disableClickPropagation = L?.DomEvent?.disableClickPropagation;
       disableClickPropagation(wrapper);
     }
@@ -20,12 +21,14 @@ const HousingSlides = ({ listing }) => {
     }
 
     return images.map((image, index) => (
-      <img
+      <Box
         key={index}
-        src={image.sizes["640x480"].link}
-        style={{
-          width: "300px",
-          height: "200px",
+        sx={{
+          width: "100%",
+          height: imageHeight,
+          backgroundImage: `url(${image.sizes["640x480"].link})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       />
     ));
@@ -33,13 +36,16 @@ const HousingSlides = ({ listing }) => {
 
   return (
     <div ref={carouselRef}>
-      <Carousel
-        sx={{ width: "100%", mx: 0 }}
-        navButtonsAlwaysVisible={horizontalImages.length > 1}
-        indicators={false}
-      >
-        {createSlides(horizontalImages)}
-      </Carousel>
+      {listing.images && (
+        <Carousel
+          navButtonsAlwaysVisible={listing.images.length > 1}
+          indicators={false}
+          autoPlay={autoPlay}
+          swipe={swipe ? true : false}
+        >
+          {createSlides(listing.images)}
+        </Carousel>
+      )}
     </div>
   );
 };
