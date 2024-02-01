@@ -184,7 +184,7 @@ const BureaucracyPage = () => {
                     </Box>
                   </Box>
                 }
-                price={64.13}
+                price={152.5}
                 paymentLink="https://app.entretramites.com/stripePaymentLink?id=5179&t=7da3d896"
               />
             </Grid>
