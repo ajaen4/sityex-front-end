@@ -19,7 +19,7 @@ import { minBottomNavHeight } from "constants/constants";
 import * as ROUTES_PATHS from "routes/paths";
 
 export default function CityTabs() {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(-1);
 
   const theme = useTheme();
   const pathname = usePathname();
@@ -33,6 +33,16 @@ export default function CityTabs() {
 
   const router = useRouter();
 
+  const getTabValue = () => {
+    const path = pathname.split("/");
+
+    if (path.includes(ROUTES_PATHS.CITY_BUREAUCRACY)) setValue(0);
+    if (path.includes(ROUTES_PATHS.CITY_HOUSING))  setValue(1);
+    if (path.includes(ROUTES_PATHS.CITY_EVENTS))  setValue(2);
+    if (path.includes(ROUTES_PATHS.CITY_COMMUNITY)) setValue(3);
+
+  }
+
   const itemSelected = (event, value) => {
     setValue(value);
     const path = event.currentTarget.getAttribute("data-path");
@@ -42,6 +52,10 @@ export default function CityTabs() {
   useEffect(() => {
     setShowBottomNav(isDestinationPage && !isCityEventPage && isSmallScreen);
   }, [isDestinationPage, isCityEventPage, isSmallScreen]);
+
+  useEffect(() => {
+    getTabValue();
+  }, [pathname]);
 
   if (!showBottomNav) return null;
 
