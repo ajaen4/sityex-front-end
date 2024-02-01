@@ -40,7 +40,7 @@ function HousingMarkerCluster({ listings, onClickListing, currentZoom }) {
       markersRef.current = new MarkerClusterGroup({
         showCoverageOnHover: false,
         maxClusterRadius: 80,
-        disableClusteringAtZoom: 14,
+        disableClusteringAtZoom: 16,
         iconCreateFunction: function (cluster) {
           const count = cluster.getChildCount();
           return L.divIcon({
@@ -64,7 +64,7 @@ function HousingMarkerCluster({ listings, onClickListing, currentZoom }) {
 
       const marker = L.marker(
         [listing.coordinates.latitude, listing.coordinates.longitude],
-        { icon: currentZoom >= 16 ? customIcon : normalIcon },
+        { icon: currentZoom >= 17 ? customIcon : normalIcon },
       ).on("click", () => onClickListing(listing));
 
       markers.addLayer(marker);
