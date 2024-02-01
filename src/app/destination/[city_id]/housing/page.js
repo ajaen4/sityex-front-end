@@ -106,7 +106,7 @@ const HousingPage = () => {
               }}
             >
               <Pagination
-                count={10}
+                count={Math.floor(housingIndex.listings.length / 30) - 1}
                 siblingCount={0}
                 boundaryCount={1}
                 size="small"
@@ -157,7 +157,7 @@ const HousingPage = () => {
               }}
             >
               <Pagination
-                count={10}
+                count={Math.floor(housingIndex.listings.length / 30)}
                 siblingCount={0}
                 boundaryCount={1}
                 size="small"
