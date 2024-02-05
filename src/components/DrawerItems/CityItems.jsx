@@ -46,7 +46,7 @@ const CityItems = () => {
           >
             <GovernmentIcon />
           </ListItemIcon>
-          <ListItemText primary="Bureaucracy" />
+          <ListItemText primary="Paperwork" />
         </ListItemButton>
       </ListItem>
       <ListItem disablePadding sx={{ display: "block" }}>

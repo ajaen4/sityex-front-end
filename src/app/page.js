@@ -15,7 +15,7 @@ import { imagesCdn } from "constants/constants";
 export const metadata = {
   title: "SityEx | One-stop platform for expats",
   description:
-    "Community-based, one-stop platform for all expat needs in Spain. We focus on housing and bureaucracy services with a vibrant community at its base.",
+    "Community-based, one-stop platform for all expat needs in Spain. We focus on housing and paperwork services with a vibrant community at its base.",
   alternates: {
     canonical: "https://sityex.com/",
   },
@@ -74,7 +74,7 @@ const LandingPage = () => {
             }}
           >
             <GovernmentIcon sx={{ color: "white", fontSize: 60 }} />
-            <Typography color="white"> Bureaucracy </Typography>
+            <Typography color="white"> Paperwork </Typography>
           </Box>
           <Box
             sx={{
@@ -175,13 +175,13 @@ const LandingPage = () => {
                 height="80"
                 src={`${imagesCdn}/icons/government.png`}
                 alt="government icon"
-                title="Government Bureaucracy"
+                title="Government Paperwork"
               />
               <Typography
                 variant="h2"
                 sx={{ color: "grey.500", fontSize: 25, my: 2 }}
               >
-                Bureaucracy Support
+                Paperwork
               </Typography>
               <Typography
                 sx={{ color: "grey.500", fontSize: 20, mt: 2, mx: 2 }}
@@ -367,7 +367,7 @@ const LandingPage = () => {
                     fontSize: 20,
                   }}
                 >
-                  Sort your bureaucracy
+                  Sort your paperwork
                 </Typography>
               </Box>
               <img

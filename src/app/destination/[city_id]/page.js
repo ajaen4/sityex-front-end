@@ -22,7 +22,7 @@ import SendGAPageView from "components/DataLoaders/SendGAPageView";
 
 import * as ROUTES_PATHS from "routes/paths";
 
-const BureaucracyPage = () => {
+const PaperworkPage = () => {
   const selectedCity = useSelector((state) => state.selectedCity.data);
 
   return (
@@ -77,7 +77,7 @@ const BureaucracyPage = () => {
             >
               <GovernmentIcon sx={{ fontSize: { xs: 30, md: 40 } }} />
               <Typography gutterBottom variant="h3" component="div">
-                Bureaucracy
+                Paperwork
               </Typography>
               <Typography
                 variant="body2"
@@ -231,4 +231,4 @@ const BureaucracyPage = () => {
   );
 };
 
-export default BureaucracyPage;
+export default PaperworkPage;

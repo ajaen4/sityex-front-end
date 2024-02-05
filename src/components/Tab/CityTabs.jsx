@@ -78,7 +78,7 @@ export default function CityTabs() {
           style={{ minHeight: 60, backgroundColor: "rgba(128, 128, 128, 0.8)" }}
         >
           <BottomNavigationAction
-            label="Bureaucracy"
+            label="Paperwork"
             icon={<GovernmentIcon />}
             sx={{ color: "white", "&.Mui-selected": { color: "white" } }}
             data-path={ROUTES_PATHS.CITY_BUREAUCRACY}

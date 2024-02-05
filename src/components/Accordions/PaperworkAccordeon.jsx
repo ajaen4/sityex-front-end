@@ -19,7 +19,7 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMoreOutlined";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 
-const BureaucracyAccordeon = () => {
+const PaperworkAccordeon = () => {
   return (
     <Accordion
       sx={{
@@ -169,4 +169,4 @@ const BureaucracyAccordeon = () => {
   );
 };
 
-export default BureaucracyAccordeon;
+export default PaperworkAccordeon;

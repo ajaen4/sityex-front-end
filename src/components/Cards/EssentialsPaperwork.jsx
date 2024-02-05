@@ -15,7 +15,7 @@ import {
 
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 
-const EssentialsBureaucracy = ({
+const EssentialsPaperwork = ({
   title,
   content,
   mdMinHeight,
@@ -100,4 +100,4 @@ const EssentialsBureaucracy = ({
   );
 };
 
-export default EssentialsBureaucracy;
+export default EssentialsPaperwork;
