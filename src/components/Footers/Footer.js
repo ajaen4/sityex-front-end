@@ -56,6 +56,18 @@ function Footer() {
                     Blog
                   </Link>
                 </li>
+                <li
+                  style={{
+                    marginTop: 5,
+                  }}
+                >
+                  <Link
+                    href="/about-us"
+                    sx={{ textDecoration: "none", color: "white" }}
+                  >
+                    About Us
+                  </Link>
+                </li>
               </ul>
             </nav>
           </Box>

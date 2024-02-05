@@ -10,7 +10,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import SearchIcon from "@mui/icons-material/SearchOutlined";
 import NewspaperIcon from "@mui/icons-material/NewspaperOutlined";
-import Diversity3Icon from '@mui/icons-material/Diversity3Outlined';
+import Diversity3Icon from "@mui/icons-material/Diversity3Outlined";
 
 import * as ROUTES_PATHS from "routes/paths";
 

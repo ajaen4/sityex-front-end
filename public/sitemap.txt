@@ -1,11 +1,4 @@
 https://sityex.com/
 https://sityex.com/search
 https://sityex.com/blog
-https://sityex.com/blog/nie
-https://sityex.com/blog/empadronamiento
-https://sityex.com/blog/social-security
-https://sityex.com/blog/housing-guide
-https://sityex.com/blog/navigating-madrid-like-local
-https://sityex.com/blog/spain-healthcare
-https://sityex.com/blog/learn-spanish-madrid
-https://sityex.com/blog/madrid-urban-transport
+https://sityex.com/about-us
