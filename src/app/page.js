@@ -30,7 +30,7 @@ const LandingPage = () => {
         xs={12}
         sx={{
           height: { xs: 710, md: 710, lg: 710 },
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${imagesCdn}/landing.jpg)`,
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${imagesCdn}/background/landing.jpg)`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           display: "flex",
