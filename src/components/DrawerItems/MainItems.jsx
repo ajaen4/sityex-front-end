@@ -10,6 +10,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import SearchIcon from "@mui/icons-material/SearchOutlined";
 import NewspaperIcon from "@mui/icons-material/NewspaperOutlined";
+import Diversity3Icon from "@mui/icons-material/Diversity3Outlined";
 
 import * as ROUTES_PATHS from "routes/paths";
 
@@ -63,6 +64,27 @@ const MainItems = () => {
             <NewspaperIcon />
           </ListItemIcon>
           <ListItemText primary="Blog" />
+        </ListItemButton>
+      </ListItem>
+      <ListItem disablePadding sx={{ display: "block" }}>
+        <ListItemButton
+          sx={{
+            minHeight: 48,
+            px: 2.5,
+          }}
+          data-path={ROUTES_PATHS.ABOUT_US}
+          onClick={itemSelected}
+        >
+          <ListItemIcon
+            sx={{
+              minWidth: 0,
+              mr: 3,
+              justifyContent: "center",
+            }}
+          >
+            <Diversity3Icon />
+          </ListItemIcon>
+          <ListItemText primary="About us" />
         </ListItemButton>
       </ListItem>
     </List>

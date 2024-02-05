@@ -29,7 +29,7 @@ export default function HousingList({ pageNum }) {
   const itemsPerPage = 30;
   const slicedData = housingIndex.listings.slice(
     (pageNum - 1) * itemsPerPage,
-    (pageNum) * itemsPerPage,
+    pageNum * itemsPerPage,
   );
   const actualItemCount = slicedData.length;
 

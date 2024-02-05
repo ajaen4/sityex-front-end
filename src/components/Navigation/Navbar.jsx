@@ -36,6 +36,7 @@ function NavBar({}) {
   const handleClickNavMenu = (page) => {
     if (page === "Search City") router.push(ROUTES_PATHS.SEARCH);
     if (page === "Blog") router.push(ROUTES_PATHS.BLOG);
+    if (page === "About Us") router.push(ROUTES_PATHS.ABOUT_US);
   };
 
   const clickedLogo = () => router.push(ROUTES_PATHS.ROOT);

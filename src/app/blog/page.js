@@ -36,7 +36,7 @@ const BlogPage = () => {
           display: "flex",
           height: "60vh",
           justifyContent: "center",
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${imagesCdn}/blog_background.png)`,
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${imagesCdn}/background/blog_background.png)`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           alignItems: "center",
