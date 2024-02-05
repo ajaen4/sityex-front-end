@@ -24,9 +24,9 @@ export const metadata = {
 const AboutUs = () => {
   return (
     <Box>
-      <Grid container sx={{ alignItems: "center", my: 5 }}>
+      <Grid container sx={{ alignItems: "center" }}>
         <SendGAPageView pageTitle="Landing Page" />
-        <Grid item xs={12} md={7} sx={{ p: 3 }}>
+        <Grid item xs={12} md={7} sx={{ p: { xs: 3, md: 5 } }}>
           <Typography variant="h4" fontSize={40}>
             From one expat to another ;)
           </Typography>
@@ -50,7 +50,7 @@ const AboutUs = () => {
           sx={{
             display: "flex",
             justifyContent: "center",
-            p: 3,
+            p: { xs: 3, md: 5 },
           }}
         >
           <img
@@ -69,7 +69,7 @@ const AboutUs = () => {
             textAlign: "center",
           }}
         >
-          <Box sx={{ p: 3 }}>
+          <Box sx={{ p: { xs: 3, md: 5 } }}>
             <Typography variant="h4" fontSize={40} sx={{ my: 1 }}>
               Our mission
             </Typography>
@@ -86,7 +86,7 @@ const AboutUs = () => {
             </Typography>
           </Box>
           <Grid container>
-            <Grid item xs={12} md={6} sx={{ p: 3 }}>
+            <Grid item xs={12} md={6} sx={{ p: { xs: 3, md: 5 } }}>
               <Box
                 sx={{
                   textAlign: "left",
