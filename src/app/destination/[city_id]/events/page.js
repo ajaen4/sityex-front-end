@@ -35,6 +35,7 @@ const CityEventsPage = () => {
   const dispatch = useDispatch();
 
   const eventsData = events.events || [];
+  const today = new Date().setHours(0, 0, 0, 0);
 
   useEffect(() => {
     if (selectedCity) {
@@ -59,15 +60,19 @@ const CityEventsPage = () => {
     });
 
     return eventCategories.filter((subcategory) =>
-      usedSubcategories.has(subcategory),
+      usedSubcategories.has(subcategory)
     );
   }, [events]);
 
   const memoizedEvents = useMemo(() => {
     return filteredSubcategories.map((category) =>
       eventsData
-        .filter((event) => event.sityex_subcategories.includes(category))
-        .sort((a, b) => a.remaining_days - b.remaining_days),
+        .filter(
+          (event) =>
+            event.sityex_subcategories.includes(category) &&
+            new Date(event.end_date) > today
+        )
+        .sort((a, b) => a.remaining_days - b.remaining_days)
     );
   }, [events, filteredSubcategories]);
 
@@ -125,7 +130,7 @@ const CityEventsPage = () => {
           (category, index) =>
             selectedTab === index && (
               <EventsGrid key={category} events={memoizedEvents[index]} />
-            ),
+            )
         )}
       </Box>
     </Box>
