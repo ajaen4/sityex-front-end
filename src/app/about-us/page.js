@@ -127,7 +127,7 @@ const AboutUs = () => {
               md={5}
               sx={{
                 m: 3,
-                height: 500,
+                height: { xs: 350, md: 400 },
                 backgroundImage: `url(${imagesCdn}/background/values.webp)`,
                 backgroundPosition: "center",
                 backgroundSize: "cover",
