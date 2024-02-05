@@ -66,6 +66,11 @@ const HousingPage = () => {
     return <CenteredLoadingSpinner />;
   }
 
+  const numPages =
+    housingIndex.listings.length > 30
+      ? Math.floor(housingIndex.listings.length / 30) - 1
+      : 1;
+
   return (
     <Box
       sx={{
@@ -113,7 +118,7 @@ const HousingPage = () => {
               }}
             >
               <Pagination
-                count={Math.floor(housingIndex.listings.length / 30) - 1}
+                count={numPages}
                 siblingCount={0}
                 boundaryCount={1}
                 size="small"
@@ -164,7 +169,7 @@ const HousingPage = () => {
               }}
             >
               <Pagination
-                count={Math.floor(housingIndex.listings.length / 30)}
+                count={numPages}
                 siblingCount={0}
                 boundaryCount={1}
                 size="small"

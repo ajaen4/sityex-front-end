@@ -16,7 +16,7 @@ import RequirementsModal from "components/Modals/RequirementsModal";
 
 import { imagesCdn } from "constants/constants";
 
-const TaxBureaucracy = ({
+const TaxPaperwork = ({
   title,
   is_taxdown,
   content,
@@ -157,4 +157,4 @@ const TaxBureaucracy = ({
   );
 };
 
-export default TaxBureaucracy;
+export default TaxPaperwork;
