@@ -22,8 +22,8 @@ function Footer() {
           />
           <Typography sx={{ color: "white" }}>
             Community-based, one-stop platform for all expat needs in Spain. We
-            focus on housing and bureaucracy services with a vibrant community
-            at its base.
+            focus on housing and paperwork services with a vibrant community at
+            its base.
           </Typography>
         </Grid>
         <Grid item xs={12} md={7} sx={{ display: "flex", p: 3 }}>

@@ -13,7 +13,7 @@ import {
 
 import RequirementsModal from "components/Modals/RequirementsModal";
 
-const ConsultationBureaucracy = ({
+const ConsultationPaperwork = ({
   title,
   content,
   mdMinHeight,
@@ -122,4 +122,4 @@ const ConsultationBureaucracy = ({
   );
 };
 
-export default ConsultationBureaucracy;
+export default ConsultationPaperwork;

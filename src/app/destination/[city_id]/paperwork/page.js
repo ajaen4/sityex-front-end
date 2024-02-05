@@ -6,11 +6,11 @@ import { useSelector } from "react-redux";
 import { Typography, Box, Tabs, Tab, Grid } from "@mui/material";
 
 import SendGAPageView from "components/DataLoaders/SendGAPageView";
-import BureaucracyAccordeon from "components/Accordions/BureaucracyAccordeon";
+import PaperworkAccordeon from "components/Accordions/PaperworkAccordeon";
 import EntreTramitesExp from "components/Cards/EntreTramitesExp";
-import EssentialsBureaucracy from "components/Cards/EssentialsBureaucracy";
-import ConsultationBureaucracy from "components/Cards/ConsultationBureaucracy";
-import TaxBureaucracy from "components/Cards/TaxBureaucracy";
+import EssentialsPaperwork from "components/Cards/EssentialsPaperwork";
+import ConsultationPaperwork from "components/Cards/ConsultationPaperwork";
+import TaxPaperwork from "components/Cards/TaxPaperwork";
 
 import {
   digitalNomadReq,
@@ -18,7 +18,7 @@ import {
   beckhamReq,
 } from "constants/constants";
 
-const BureaucracyPage = () => {
+const PaperworkPage = () => {
   const selectedCity = useSelector((state) => state.selectedCity.data);
   const [selectedTab, setSelectedTab] = useState(0);
 
@@ -36,14 +36,14 @@ const BureaucracyPage = () => {
       }}
     >
       <SendGAPageView
-        pageTitle="City Bureaucracy Page"
+        pageTitle="City Paperwork Page"
         selectedCity={{
           city_name: selectedCity.name,
           city_id: selectedCity.city_id,
         }}
       />
       <Typography variant="h1" sx={{ my: 3, fontSize: 30 }}>
-        Bureaucracy
+        Paperwork
       </Typography>
       <Tabs
         value={selectedTab}
@@ -73,7 +73,7 @@ const BureaucracyPage = () => {
             width: "100%",
           }}
         >
-          <BureaucracyAccordeon />
+          <PaperworkAccordeon />
           <EntreTramitesExp
             ServiceName="Essentials"
             showFreeConsultation={true}
@@ -83,7 +83,7 @@ const BureaucracyPage = () => {
           </Typography>
           <Grid container sx={{ justifyContent: "center" }}>
             <Grid item xs={10} md={4} lg={3}>
-              <EssentialsBureaucracy
+              <EssentialsPaperwork
                 title="Non-Residential NIE"
                 tooltipText="Tax identification number assigned to every foreigner who carries out an economic or professional activity."
                 mdMinHeight={260}
@@ -110,7 +110,7 @@ const BureaucracyPage = () => {
               />
             </Grid>
             <Grid item xs={10} md={4} lg={3}>
-              <EssentialsBureaucracy
+              <EssentialsPaperwork
                 title="Residential NIE"
                 tooltipText="Certifies the right of a person to reside in Spain. Also
                 brings the tax identification number."
@@ -141,7 +141,7 @@ const BureaucracyPage = () => {
               />
             </Grid>
             <Grid item xs={10} md={4} lg={3}>
-              <EssentialsBureaucracy
+              <EssentialsPaperwork
                 title="Empadronamiento"
                 tooltipText="Allows individuals to declare their place of residence in
                 Spain. It is required for accessing public services and
@@ -168,7 +168,7 @@ const BureaucracyPage = () => {
             </Grid>
             <Grid item xs={12} style={{ width: "100%", height: 0 }}></Grid>
             <Grid item xs={10} md={4} lg={3}>
-              <EssentialsBureaucracy
+              <EssentialsPaperwork
                 title="Non-EU citizen Half Pack"
                 mdMinHeight={232}
                 content={
@@ -189,7 +189,7 @@ const BureaucracyPage = () => {
               />
             </Grid>
             <Grid item xs={10} md={4} lg={3}>
-              <EssentialsBureaucracy
+              <EssentialsPaperwork
                 title="Non-EU citizen Full Pack"
                 mdMinHeight={232}
                 content={
@@ -214,7 +214,7 @@ const BureaucracyPage = () => {
               />
             </Grid>
             <Grid item xs={10} md={4} lg={3}>
-              <EssentialsBureaucracy
+              <EssentialsPaperwork
                 title="EU citizen Half Pack"
                 mdMinHeight={232}
                 content={
@@ -235,7 +235,7 @@ const BureaucracyPage = () => {
               />
             </Grid>
             <Grid item xs={10} md={4} lg={3}>
-              <EssentialsBureaucracy
+              <EssentialsPaperwork
                 title="EU citizen Full Pack"
                 mdMinHeight={232}
                 content={
@@ -276,7 +276,7 @@ const BureaucracyPage = () => {
           </Typography>
           <Grid container sx={{ justifyContent: "center" }}>
             <Grid item xs={10} md={4} lg={3}>
-              <ConsultationBureaucracy
+              <ConsultationPaperwork
                 title="Digital Nomad Visa"
                 mdMinHeight={205}
                 content={
@@ -303,7 +303,7 @@ const BureaucracyPage = () => {
               />
             </Grid>
             <Grid item xs={10} md={4} lg={3}>
-              <ConsultationBureaucracy
+              <ConsultationPaperwork
                 title="Golden Visa (Non-EU citizens)"
                 mdMinHeight={205}
                 content={
@@ -338,7 +338,7 @@ const BureaucracyPage = () => {
         >
           <Grid container sx={{ justifyContent: "center" }}>
             <Grid item xs={10} md={4} lg={3}>
-              <TaxBureaucracy
+              <TaxPaperwork
                 title="Beckham Law Application"
                 mdMinHeight={300}
                 mdMinHeightContent={410}
@@ -366,7 +366,7 @@ const BureaucracyPage = () => {
               />
             </Grid>
             <Grid item xs={10} md={4} lg={3}>
-              <TaxBureaucracy
+              <TaxPaperwork
                 title="Accountant Tax Declaration"
                 mdMinHeight={300}
                 mdMinHeightContent={461}
@@ -386,7 +386,7 @@ const BureaucracyPage = () => {
               />
             </Grid>
             <Grid item xs={10} md={4} lg={3}>
-              <TaxBureaucracy
+              <TaxPaperwork
                 title="Automated Tax Declaration"
                 is_taxdown={true}
                 mdMinHeight={405}
@@ -433,7 +433,7 @@ const BureaucracyPage = () => {
           </Typography>
           <Grid container sx={{ justifyContent: "center" }}>
             <Grid item xs={10} md={4} lg={3}>
-              <ConsultationBureaucracy
+              <ConsultationPaperwork
                 title="Driver's License Exchange"
                 mdMinHeight={238}
                 content={
@@ -459,7 +459,7 @@ const BureaucracyPage = () => {
               />
             </Grid>
             <Grid item xs={10} md={4} lg={3}>
-              <ConsultationBureaucracy
+              <ConsultationPaperwork
                 title="Vehicle Registration"
                 mdMinHeight={238}
                 content={
@@ -484,4 +484,4 @@ const BureaucracyPage = () => {
   );
 };
 
-export default BureaucracyPage;
+export default PaperworkPage;

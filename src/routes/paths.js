@@ -12,4 +12,4 @@ export const CITY_EVENTS = "events";
 export const CITY_EVENT = "event/:event_id";
 export const CITY_COMMUNITY = "community";
 export const CITY_HOUSING = "housing";
-export const CITY_BUREAUCRACY = "bureaucracy";
+export const CITY_BUREAUCRACY = "paperwork";
