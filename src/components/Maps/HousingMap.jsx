@@ -28,13 +28,16 @@ function HousingMap() {
   const [selectedListing, setSelectedListing] = useState(null);
   const [currentZoom, setCurrentZoom] = useState(11);
 
-  const onClickListing = useCallback((listing) => {
-    fetchHousingListing(selectedCity.city_id, listing.housing_id).then(
-      (listing) => {
-        setSelectedListing(listing);
-      },
-    );
-  }, [selectedCity.city_id]);
+  const onClickListing = useCallback(
+    (listing) => {
+      fetchHousingListing(selectedCity.city_id, listing.housing_id).then(
+        (listing) => {
+          setSelectedListing(listing);
+        },
+      );
+    },
+    [selectedCity.city_id],
+  );
 
   if (!housingIndex) {
     return <CenteredLoadingSpinner />;

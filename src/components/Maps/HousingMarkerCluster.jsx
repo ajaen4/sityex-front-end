@@ -17,7 +17,9 @@ const createCustomIcon = (listing) => {
   return L.divIcon({
     className: "custom-icon",
     html: `<div style="background-color: #90caf9; border-radius: 5px; padding: 5px 10px; display: flex; align-items: center; position: relative;">
-      <span style="color: white;">${formatPrice(listing.costsFormatted.price)}</span>
+      <span style="color: white;">${formatPrice(
+        listing.costsFormatted.price,
+      )}</span>
     </div>`,
     iconSize: [70, 20],
   });
@@ -71,7 +73,6 @@ function HousingMarkerCluster({ listings, onClickListing, currentZoom }) {
 
       markers.addLayer(marker);
     });
-
   }, [map, listings, currentZoom, onClickListing]);
 
   return null;

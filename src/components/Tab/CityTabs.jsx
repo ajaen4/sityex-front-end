@@ -37,11 +37,10 @@ export default function CityTabs() {
     const path = pathname.split("/");
 
     if (path.includes(ROUTES_PATHS.CITY_BUREAUCRACY)) setValue(0);
-    if (path.includes(ROUTES_PATHS.CITY_HOUSING))  setValue(1);
-    if (path.includes(ROUTES_PATHS.CITY_EVENTS))  setValue(2);
+    if (path.includes(ROUTES_PATHS.CITY_HOUSING)) setValue(1);
+    if (path.includes(ROUTES_PATHS.CITY_EVENTS)) setValue(2);
     if (path.includes(ROUTES_PATHS.CITY_COMMUNITY)) setValue(3);
-
-  }
+  };
 
   const itemSelected = (event, value) => {
     setValue(value);
