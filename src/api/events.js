@@ -1,5 +1,13 @@
 import db from "baas";
-import { doc, getDoc, getDocs, collection, setDoc } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  getDocs,
+  collection,
+  setDoc,
+  query,
+  where,
+} from "firebase/firestore";
 
 const citiesCollection = collection(db, "cities");
 
@@ -7,6 +15,20 @@ export const getCityEvents = async (city_id) => {
   const cityDocRef = doc(citiesCollection, city_id);
   const eventsCollectionRef = collection(cityDocRef, "events");
   const eventsDocs = await getDocs(eventsCollectionRef);
+
+  if (eventsDocs.empty) return [];
+
+  return eventsDocs.docs.map((doc) => doc.data());
+};
+
+export const getCityTrendingEvents = async (city_id) => {
+  const cityDocRef = doc(citiesCollection, city_id);
+  const eventsCollectionRef = collection(cityDocRef, "events");
+  const q = query(
+    eventsCollectionRef,
+    where("availability_of_tickets", "!=", "high"),
+  );
+  const eventsDocs = await getDocs(q);
 
   if (eventsDocs.empty) return [];
 

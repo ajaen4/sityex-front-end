@@ -9,7 +9,7 @@ const HousingSlide = ({ city_id, housing_id }) => {
   const [listing, setListing] = useState(null);
   const router = useRouter();
 
-  const handleCityClick = (city_id) => {
+  const handleListingClick = (city_id) => {
     router.push(`/destination/${city_id}/housing`);
   };
 
@@ -25,21 +25,26 @@ const HousingSlide = ({ city_id, housing_id }) => {
 
   return (
     <Box
-      key={listing.housing_id}
-      sx={{ display: "flex", flexDirection: "column", m: 1, height: "100%", width: "100%"}}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        m: 1,
+        height: "100%",
+        width: "100%",
+      }}
     >
       <Paper>
         <Box
           sx={{
             borderRadius: 2,
-            width: {xs: "100%", md: 263},
+            width: { xs: "100%", md: 263 },
             height: "53vh",
             backgroundImage: `url(${listing.images[0].sizes["640x480"].link})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             cursor: "pointer",
           }}
-          onClick={() => handleCityClick(city_id)}
+          onClick={() => handleListingClick(city_id)}
         />
       </Paper>
       <Typography
