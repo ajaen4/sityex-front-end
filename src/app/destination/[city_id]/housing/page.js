@@ -33,7 +33,7 @@ import { imagesCdn } from "constants/constants";
 
 const HousingPage = () => {
   const [selectedView, setSelectedView] = useState("listings");
-  const [sortBy, setSortBy] = useState("rank");
+  const [sortBy, setSortBy] = useState(-1);
   const [pageNum, setPageNum] = useState(1);
 
   const selectedCity = useSelector((state) => state.selectedCity.data);
@@ -59,7 +59,7 @@ const HousingPage = () => {
       return;
     }
 
-    dispatch(fetchHousingIndex(selectedCity.city_id, sortBy));
+    dispatch(fetchHousingIndex(selectedCity.city_id));
   }, [selectedCity.city_id]);
 
   if (!housingIndex) {

@@ -13,7 +13,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 
-import HousingSlides from "components/Slides/HousingSlides";
+import ListingSlides from "components/Slides/ListingSlides";
 
 import { fetchHousingListing } from "actions";
 
@@ -69,7 +69,7 @@ const HousingListing = ({ listing }) => {
     >
       <Grid container>
         <Grid item xs={12} md={4}>
-          <HousingSlides
+          <ListingSlides
             listing={fullData}
             imageHeight={isSmallScreen ? "200px" : "240px"}
             autoPlay={false}

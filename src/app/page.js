@@ -7,6 +7,7 @@ import GovernmentIcon from "@mui/icons-material/AssuredWorkloadOutlined";
 
 import CitiesAutocomplete from "components/Autocomplete/CitiesAutocomplete";
 import CitySlides from "components/Slides/CitySlides";
+import HousingSlides from "components/Slides/HousingSlides";
 import SendGAPageView from "components/DataLoaders/SendGAPageView";
 import Footer from "components/Footers/Footer";
 
@@ -29,13 +30,11 @@ const LandingPage = () => {
         item
         xs={12}
         sx={{
-          height: { xs: 710, md: 710, lg: 710 },
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${imagesCdn}/background/landing.jpg)`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "end",
           alignItems: "center",
         }}
       >
@@ -46,12 +45,12 @@ const LandingPage = () => {
           sx={{
             textAlign: "center",
             alignSelf: "center",
-            mb: 4,
+            mt: 20,
           }}
         >
           Discover, Connect, Belong
         </Typography>
-        <Box sx={{ width: 250, mb: { xs: 20, md: 25 } }}>
+        <Box sx={{ width: 250, mt: 5, mb: { xs: 10, md: 15 } }}>
           <CitiesAutocomplete placeholder="Enter your destination" />
         </Box>
         <Typography
@@ -64,7 +63,7 @@ const LandingPage = () => {
         >
           One-stop platform for expats
         </Typography>
-        <Box sx={{ display: "flex", mb: 4 }}>
+        <Box sx={{ display: "flex", mb: 2 }}>
           <Box
             sx={{
               display: "flex",
@@ -73,7 +72,7 @@ const LandingPage = () => {
               mx: 3,
             }}
           >
-            <GovernmentIcon sx={{ color: "white", fontSize: 60 }} />
+            <GovernmentIcon sx={{ color: "white", fontSize: 40 }} />
             <Typography color="white"> Paperwork </Typography>
           </Box>
           <Box
@@ -84,7 +83,7 @@ const LandingPage = () => {
               mx: 3,
             }}
           >
-            <HouseIcon sx={{ color: "white", fontSize: 60 }} />
+            <HouseIcon sx={{ color: "white", fontSize: 40 }} />
             <Typography color="white"> Housing </Typography>
           </Box>
           <Box
@@ -95,7 +94,7 @@ const LandingPage = () => {
               mx: 3,
             }}
           >
-            <PeopleIcon sx={{ color: "white", fontSize: 60 }} />
+            <PeopleIcon sx={{ color: "white", fontSize: 40 }} />
             <Typography color="white"> Community </Typography>
           </Box>
         </Box>
@@ -106,41 +105,25 @@ const LandingPage = () => {
         sx={{
           display: "flex",
           flexDirection: "column",
-          px: 2,
-          alignItems: "center",
-          textAlign: "center",
-          mt: 10,
+          px: 3,
+          mt: 5,
         }}
       >
         <Box
           sx={{
             display: "flex",
             flexDirection: "column",
-            alignItems: "center",
-            textAlign: "center",
           }}
         >
-          <img
-            width="80"
-            height="80"
-            src={`${imagesCdn}/icons/community.png`}
-            alt="community icon"
-            title="Community"
-          />
-          <Typography
-            variant="h2"
-            sx={{ color: "grey.500", mt: 1, mb: 5, fontSize: 40 }}
-          >
-            Unlock the power of Community
+          <Typography variant="h2" sx={{ color: "grey.500", fontSize: 35 }}>
+            Your go-to platform for expats
           </Typography>
           <Typography
             variant="h1"
             sx={{
+              mt: 2,
               fontSize: 22,
-              width: {
-                xs: "90%",
-                md: "100%",
-              },
+              width: "100%",
             }}
           >
             Community-based, one-stop platform for expats
@@ -171,9 +154,9 @@ const LandingPage = () => {
               }}
             >
               <img
-                width="80"
+                width="120"
                 height="80"
-                src={`${imagesCdn}/icons/government.png`}
+                src={`${imagesCdn}/icons/paperwork.png`}
                 alt="government icon"
                 title="Government Paperwork"
               />
@@ -209,9 +192,9 @@ const LandingPage = () => {
               }}
             >
               <img
-                width="80"
+                width="100"
                 height="80"
-                src={`${imagesCdn}/icons/house.png`}
+                src={`${imagesCdn}/icons/housing.png`}
                 alt="housing icon"
                 title="Housing"
               />
@@ -250,7 +233,7 @@ const LandingPage = () => {
               <img
                 width="80"
                 height="80"
-                src={`${imagesCdn}/icons/party.png`}
+                src={`${imagesCdn}/icons/events.png`}
                 alt="events icon"
                 title="Events"
               />
@@ -270,267 +253,33 @@ const LandingPage = () => {
           </Grid>
         </Grid>
       </Grid>
+
       <Grid
         item
         xs={12}
         sx={{
           display: "flex",
+          justifyContent: "center",
           flexDirection: "column",
-          px: 2,
-          alignItems: "center",
-          textAlign: "center",
-          mt: 15,
+          textAlign: "start",
+          px: 3,
+          mt: 5,
         }}
       >
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            textAlign: "center",
-          }}
-        >
+        <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
           <img
-            width="80"
-            height="80"
-            src={`${imagesCdn}/icons/how_it_works.png`}
-            alt="how it works"
-            title="How it works"
+            width="25"
+            height="25"
+            src={`${imagesCdn}/icons/signpost-fill.png`}
+            alt="choose-city"
+            title="Choose City"
+            style={{ marginRight: 10 }}
           />
-          <Typography
-            variant="h2"
-            sx={{ color: "grey.500", my: 1, fontSize: 40 }}
-          >
-            How it works
+          <Typography variant="h2" sx={{ color: "grey.500", fontSize: 30 }}>
+            Choose your city
           </Typography>
-          <Typography
-            sx={{
-              fontSize: 22,
-              mt: 5,
-              width: {
-                xs: "90%",
-                md: "70%",
-              },
-            }}
-          >
-            We establish partnerships with local experts, offering our members
-            exclusive integrations and discounts.
-          </Typography>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: { md: "center" },
-              flexDirection: "row",
-              overflowX: { xs: "scroll" },
-              maxWidth: "100vw",
-            }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                border: "1px solid #673ab7",
-                borderRadius: "10px",
-                minWidth: 340,
-                padding: 3,
-                mt: 5,
-                mx: 1,
-              }}
-            >
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                }}
-              >
-                <Box
-                  sx={{
-                    width: 30,
-                    height: 30,
-                    backgroundColor: "primary.main",
-                    borderRadius: "50%",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    color: "white",
-                    fontSize: "20px",
-                    mr: 1,
-                  }}
-                >
-                  1
-                </Box>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontSize: 20,
-                  }}
-                >
-                  Sort your paperwork
-                </Typography>
-              </Box>
-              <img
-                width="200"
-                height="50"
-                src={`${imagesCdn}/partner_logos/entretramites.webp`}
-                alt="entretramites icon"
-                title="Entre Tramites"
-                style={{ marginTop: 20 }}
-              />
-              <a
-                href="https://taxdown.es/landings_partners/sityex/?utm_source=empleados&utm_medium=partnership&utm_campaign=empleados_partnership"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  width="200"
-                  height="40"
-                  src={`${imagesCdn}/partner_logos/taxdown.png`}
-                  alt="taxdown icon"
-                  title="Taxdown"
-                  style={{ marginTop: 20 }}
-                />
-              </a>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                border: "1px solid #673ab7",
-                borderRadius: "10px",
-                padding: 3,
-                mx: 1,
-                mt: 5,
-                minWidth: 340,
-              }}
-            >
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                }}
-              >
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    width: 30,
-                    height: 30,
-                    backgroundColor: "primary.main",
-                    borderRadius: "50%",
-                    color: "white",
-                    fontSize: "20px",
-                    mr: 1,
-                  }}
-                >
-                  2
-                </Box>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontSize: 20,
-                  }}
-                >
-                  Find your new home
-                </Typography>
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexWrap: "wrap",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  maxWidth: 290,
-                }}
-              >
-                <img
-                  width="140"
-                  height="45"
-                  src={`${imagesCdn}/partner_logos/housing_anywhere.png`}
-                  alt="housinganywhere icon"
-                  title="HousingAnywhere"
-                  style={{ marginTop: 20, marginRight: 10 }}
-                />
-                <img
-                  width="80"
-                  height="100"
-                  src={`${imagesCdn}/partner_logos/spotahome.png`}
-                  alt="spotahome icon"
-                  title="Spotahome"
-                  style={{ marginTop: 20 }}
-                />
-                <img
-                  width="180"
-                  height="35"
-                  src={`${imagesCdn}/partner_logos/uniplaces.png`}
-                  alt="uniplaces icon"
-                  title="Uniplaces"
-                  style={{ marginTop: 10 }}
-                />
-              </Box>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                border: "1px solid #673ab7",
-                borderRadius: "10px",
-                padding: 3,
-                mx: 1,
-                mt: 5,
-                minWidth: 340,
-              }}
-            >
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                }}
-              >
-                <Box
-                  sx={{
-                    width: 30,
-                    height: 30,
-                    backgroundColor: "primary.main",
-                    borderRadius: "50%",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    color: "white",
-                    fontSize: "20px",
-                    mr: 1,
-                  }}
-                >
-                  3
-                </Box>
-
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontSize: 20,
-                  }}
-                >
-                  Do cool stuff
-                </Typography>
-              </Box>
-              <img
-                width="100"
-                height="30"
-                src={`${imagesCdn}/partner_logos/fever.png`}
-                alt="fever icon"
-                title="Fever"
-                style={{ marginTop: 20 }}
-              />
-            </Box>
-          </Box>
         </Box>
+        <CitySlides />
       </Grid>
       <Grid
         item
@@ -539,31 +288,130 @@ const LandingPage = () => {
           display: "flex",
           justifyContent: "center",
           flexDirection: "column",
-          alignItems: "center",
-          textAlign: "center",
-          px: 2,
-          mt: 15,
+          textAlign: "start",
+          px: 3,
+          mt: 5,
         }}
       >
-        <img
-          width="80"
-          height="80"
-          src={`${imagesCdn}/icons/cities.png`}
-          alt="cities icon"
-          title="Cities"
-        />
-        <Typography
-          variant="h2"
-          sx={{ color: "grey.500", my: 1, mb: 1, fontSize: 30 }}
-        >
-          Cities
-        </Typography>
-        <Typography sx={{ fontSize: 22, width: { xs: "90%", md: "70%" } }}>
-          Cities all over Spain
-        </Typography>
-        <CitySlides />
+        <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+          <img
+            width="25"
+            height="25"
+            src={`${imagesCdn}/icons/house-door-fill.png`}
+            alt="housing-icon"
+            title="Housing"
+            style={{ marginRight: 10 }}
+          />
+          <Typography variant="h2" sx={{ color: "grey.500", fontSize: 30 }}>
+            Housing
+          </Typography>
+        </Box>
+        <HousingSlides />
       </Grid>
-      <Grid item xs={12} sx={{ mt: 5 }}>
+      <Grid
+        item
+        xs={12}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          textAlign: "start",
+          px: 3,
+          pb: 10,
+          pt: 2,
+          mt: 3,
+          backgroundColor: "grey.100",
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            textAlign: "start",
+          }}
+        >
+          <Typography
+            variant="h2"
+            sx={{ color: "grey.500", mb: 2, fontSize: 35 }}
+          >
+            How it works
+          </Typography>
+          <Typography
+            sx={{
+              fontSize: 22,
+              width: "100%",
+            }}
+          >
+            We establish partnerships with local experts specializing in various
+            aspects of the expat journey, offering our members exclusive
+            integrations and discounts.
+          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-evenly",
+              flexDirection: "row",
+              flexWrap: "wrap",
+              mt: 5,
+            }}
+          >
+            <img
+              width="200"
+              height="50"
+              src={`${imagesCdn}/partner_logos/entretramites.webp`}
+              alt="entretramites icon"
+              title="Entre Tramites"
+              style={{ marginTop: 30, marginLeft: 10, marginRight: 10 }}
+            />
+            <a
+              href="https://taxdown.es/landings_partners/sityex/?utm_source=empleados&utm_medium=partnership&utm_campaign=empleados_partnership"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                width="200"
+                height="40"
+                src={`${imagesCdn}/partner_logos/taxdown.png`}
+                alt="taxdown icon"
+                title="Taxdown"
+                style={{ marginTop: 30, marginLeft: 10, marginRight: 10 }}
+              />
+            </a>
+            <img
+              width="140"
+              height="45"
+              src={`${imagesCdn}/partner_logos/housing_anywhere.png`}
+              alt="housinganywhere icon"
+              title="HousingAnywhere"
+              style={{ marginTop: 30, marginLeft: 10, marginRight: 10 }}
+            />
+            <img
+              width="80"
+              height="100"
+              src={`${imagesCdn}/partner_logos/spotahome.png`}
+              alt="spotahome icon"
+              title="Spotahome"
+              style={{ marginTop: 20, marginLeft: 10, marginRight: 10 }}
+            />
+            <img
+              width="180"
+              height="35"
+              src={`${imagesCdn}/partner_logos/uniplaces.png`}
+              alt="uniplaces icon"
+              title="Uniplaces"
+              style={{ marginTop: 30, marginLeft: 10, marginRight: 10 }}
+            />
+            <img
+              width="100"
+              height="30"
+              src={`${imagesCdn}/partner_logos/fever.png`}
+              alt="fever icon"
+              title="Fever"
+              style={{ marginTop: 30, marginLeft: 10, marginRight: 10 }}
+            />
+          </Box>
+        </Box>
+      </Grid>
+      <Grid item xs={12}>
         <Footer />
       </Grid>
     </Grid>
