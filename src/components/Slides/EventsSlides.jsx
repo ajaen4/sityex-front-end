@@ -42,49 +42,45 @@ const EventsSlides = () => {
         >
           {events.slice(i, i + slice).map((event) => (
             <Box
-            key={event.event_id}
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              m: 1,
-              height: "100%",
-              width: "100%",
-            }}
-          >
-            <Paper>
-              <Box
-                sx={{
-                  borderRadius: 2,
-                  width: { xs: "100%", md: 263 },
-                  height: "53vh",
-                  backgroundImage: `url(${event.photo_1})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  cursor: "pointer",
-                }}
-                onClick={() => handleEventClick(city_id, event.event_id)}
-              />
-            </Paper>
-            <Typography
-              variant="h4"
+              key={event.event_id}
               sx={{
-                my: 1,
-                fontSize: 16,
+                display: "flex",
+                flexDirection: "column",
+                m: 1,
+                height: "100%",
+                width: "100%",
               }}
             >
-              {event.plan_name_en}
-            </Typography>
-          </Box>
+              <Paper>
+                <Box
+                  sx={{
+                    borderRadius: 2,
+                    width: { xs: "100%", md: 263 },
+                    height: "53vh",
+                    backgroundImage: `url(${event.photo_1})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => handleEventClick(city_id, event.event_id)}
+                />
+              </Paper>
+              <Typography
+                variant="h4"
+                sx={{
+                  my: 1,
+                  fontSize: 16,
+                }}
+              >
+                {event.plan_name_en}
+              </Typography>
+            </Box>
           ))}
         </Box>,
       );
     }
     return slides;
   };
-
-  if (!events){
-    return null;
-  }
 
   return (
     <Carousel
@@ -96,7 +92,6 @@ const EventsSlides = () => {
       {createSlides(events)}
     </Carousel>
   );
-
 };
 
 export default EventsSlides;
