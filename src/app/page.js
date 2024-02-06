@@ -8,6 +8,7 @@ import GovernmentIcon from "@mui/icons-material/AssuredWorkloadOutlined";
 import CitiesAutocomplete from "components/Autocomplete/CitiesAutocomplete";
 import CitySlides from "components/Slides/CitySlides";
 import HousingSlides from "components/Slides/HousingSlides";
+import EventsSlides from "components/Slides/EventsSlides";
 import SendGAPageView from "components/DataLoaders/SendGAPageView";
 import Footer from "components/Footers/Footer";
 
@@ -307,6 +308,33 @@ const LandingPage = () => {
           </Typography>
         </Box>
         <HousingSlides />
+      </Grid>
+      <Grid
+        item
+        xs={12}
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          flexDirection: "column",
+          textAlign: "start",
+          px: 3,
+          mt: 5,
+        }}
+      >
+        <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+          <img
+            width="25"
+            height="25"
+            src={`${imagesCdn}/icons/sunglasses.png`}
+            alt="events-icon"
+            title="Events"
+            style={{ marginRight: 10 }}
+          />
+          <Typography variant="h2" sx={{ color: "grey.500", fontSize: 30 }}>
+            Trending Events
+          </Typography>
+        </Box>
+        <EventsSlides />
       </Grid>
       <Grid
         item
