@@ -131,6 +131,7 @@ const Services = () => {
       <Grid
         container
         sx={{
+          display: {xs: "none", md: "flex"},
           justifyContent: "space-evenly",
           textAlign: "center",
           mt: 5,
