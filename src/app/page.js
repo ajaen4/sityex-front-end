@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Box, Typography, Stack, Grid } from "@mui/material";
+import { Box, Typography, Grid, Card } from "@mui/material";
 import PeopleIcon from "@mui/icons-material/PeopleOutlined";
 import HouseIcon from "@mui/icons-material/MapsHomeWorkOutlined";
 import GovernmentIcon from "@mui/icons-material/AssuredWorkloadOutlined";
@@ -11,6 +11,7 @@ import HousingSlides from "components/Slides/HousingSlides";
 import EventsSlides from "components/Slides/EventsSlides";
 import SendGAPageView from "components/DataLoaders/SendGAPageView";
 import Footer from "components/Footers/Footer";
+import Services from "components/Interactive/Services";
 
 import { imagesCdn } from "constants/constants";
 
@@ -106,7 +107,6 @@ const LandingPage = () => {
         sx={{
           display: "flex",
           flexDirection: "column",
-          px: 3,
           mt: 5,
         }}
       >
@@ -116,7 +116,10 @@ const LandingPage = () => {
             flexDirection: "column",
           }}
         >
-          <Typography variant="h2" sx={{ color: "grey.500", fontSize: 35 }}>
+          <Typography
+            variant="h2"
+            sx={{ color: "grey.500", fontSize: 35, px: 3 }}
+          >
             Your go-to platform for expats
           </Typography>
           <Typography
@@ -125,134 +128,15 @@ const LandingPage = () => {
               mt: 2,
               fontSize: 22,
               width: "100%",
+
+              px: 3,
             }}
           >
             Community-based, one-stop platform for expats
           </Typography>
         </Box>
 
-        <Grid
-          container
-          sx={{
-            justifyContent: "space-evenly",
-          }}
-        >
-          <Grid
-            item
-            xs={12}
-            md={3}
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              mt: 10,
-            }}
-          >
-            <Stack
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                textAlign: "center",
-              }}
-            >
-              <img
-                width="120"
-                height="80"
-                src={`${imagesCdn}/icons/paperwork.png`}
-                alt="government icon"
-                title="Government Paperwork"
-              />
-              <Typography
-                variant="h2"
-                sx={{ color: "grey.500", fontSize: 25, my: 2 }}
-              >
-                Paperwork
-              </Typography>
-              <Typography
-                sx={{ color: "grey.500", fontSize: 20, mt: 2, mx: 2 }}
-              >
-                Automatized processes through our local partners that do the
-                paperwork for you
-              </Typography>
-            </Stack>
-          </Grid>
-          <Grid
-            item
-            xs={12}
-            md={3}
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              mt: 10,
-            }}
-          >
-            <Stack
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                textAlign: "center",
-              }}
-            >
-              <img
-                width="100"
-                height="80"
-                src={`${imagesCdn}/icons/housing.png`}
-                alt="housing icon"
-                title="Housing"
-              />
-
-              <Typography
-                variant="h2"
-                sx={{ color: "grey.500", fontSize: 25, my: 2 }}
-              >
-                Housing
-              </Typography>
-              <Typography
-                sx={{ color: "grey.500", fontSize: 20, mt: 2, mx: 2 }}
-              >
-                Housing options and discounts through our partners to help you
-                find your ideal home
-              </Typography>
-            </Stack>
-          </Grid>
-          <Grid
-            item
-            xs={12}
-            md={3}
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              mt: 10,
-            }}
-          >
-            <Stack
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                textAlign: "center",
-              }}
-            >
-              <img
-                width="80"
-                height="80"
-                src={`${imagesCdn}/icons/events.png`}
-                alt="events icon"
-                title="Events"
-              />
-              <Typography
-                variant="h2"
-                sx={{ color: "grey.500", fontSize: 25, my: 2 }}
-              >
-                Events
-              </Typography>
-              <Typography
-                sx={{ color: "grey.500", fontSize: 20, mt: 2, mx: 2 }}
-              >
-                Exclusive SityEx and third party events to discover your new
-                home city
-              </Typography>
-            </Stack>
-          </Grid>
-        </Grid>
+        <Services />
       </Grid>
 
       <Grid
