@@ -64,12 +64,7 @@ const CitySlides = () => {
   };
 
   return (
-    <Carousel
-      sx={{ width: "100%" }}
-      navButtonsAlwaysVisible
-      indicators={false}
-      interval={7000}
-    >
+    <Carousel sx={{ width: "100%" }} navButtonsAlwaysVisible indicators={false}>
       {citiesIndex?.cities && createSlides(citiesIndex.cities)}
     </Carousel>
   );
