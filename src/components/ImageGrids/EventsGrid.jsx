@@ -16,7 +16,7 @@ import {
 
 import { countInterestedUsers } from "actions";
 
-import { useShowBottomNavContext } from "components/Contexts/ShowBottomNav";
+import { useShowBotNavContext } from "components/Contexts/ShowBotNavContext";
 
 import { imagesCdn, minBottomNavHeight } from "constants/constants";
 
@@ -24,7 +24,7 @@ const EventsGrid = ({ events }) => {
   const auth = useSelector((state) => state.auth);
   const selectedCity = useSelector((state) => state.selectedCity.data);
   const [eventsBadImage, setEventsBadImage] = useState([]);
-  const { showBottomNav } = useShowBottomNavContext();
+  const { showBotNav } = useShowBotNavContext();
 
   const theme = useTheme();
   const router = useRouter();
@@ -149,7 +149,7 @@ const EventsGrid = ({ events }) => {
           columnWidth={width / numColumns}
           height={
             Math.ceil(events.length / numColumns) * getRowHeight(width) +
-            (showBottomNav ? minBottomNavHeight : 0)
+            (showBotNav ? minBottomNavHeight : 0)
           }
           rowCount={Math.ceil(events.length / numColumns)}
           rowHeight={getRowHeight(width)}

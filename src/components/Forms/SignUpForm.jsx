@@ -11,7 +11,6 @@ import {
   FormControl,
   FormHelperText,
   Grid,
-  Link,
   useMediaQuery,
   Divider,
   Typography,
@@ -31,7 +30,6 @@ import LoadingSpinner from "components/Spinner/LoadingSpinner";
 import { createUser, logInUserWithGoogle, storeAuthUser } from "actions";
 import { sameAs } from "helpers/validators";
 
-import * as ROUTES_PATHS from "routes/paths";
 import * as api from "api";
 import { auth } from "baas";
 
@@ -92,8 +90,7 @@ const SignUpForm = ({}) => {
   useEffect(() => {
     getRedirectResult(auth)
       .then((result) => {
-        if (result) {
-          setIsFetching(true);
+        if (result && isFetching) {
           const user = result.user;
           const dbUser = {
             uid: user.uid,
@@ -108,6 +105,9 @@ const SignUpForm = ({}) => {
       })
       .catch((error) => {
         console.error(error);
+      })
+      .finally(() => {
+        setIsFetching(false);
       });
   }, []);
 
@@ -340,18 +340,6 @@ const SignUpForm = ({}) => {
               </Box>
             </Grid>
           </Grid>
-        </Grid>
-        <Grid item xs={12} sx={{ my: 1 }}>
-          <Divider />
-        </Grid>
-        <Grid item xs={12} sx={{ textAlign: "center" }}>
-          <Link
-            href={ROUTES_PATHS.LOG_IN}
-            variant="subtitle1"
-            sx={{ textDecoration: "none" }}
-          >
-            Already have an account?
-          </Link>
         </Grid>
       </Grid>
       {signedUpMessage !== null && (

@@ -13,7 +13,7 @@ import PeopleIcon from "@mui/icons-material/PeopleOutlined";
 import HouseIcon from "@mui/icons-material/MapsHomeWorkOutlined";
 import GovernmentIcon from "@mui/icons-material/AssuredWorkloadOutlined";
 
-import { useShowBottomNavContext } from "components/Contexts/ShowBottomNav";
+import { useShowBotNavContext } from "components/Contexts/ShowBotNavContext";
 
 import { minBottomNavHeight } from "constants/constants";
 import * as ROUTES_PATHS from "routes/paths";
@@ -25,7 +25,7 @@ export default function CityTabs() {
   const pathname = usePathname();
 
   const selectedCity = useSelector((state) => state.selectedCity.data);
-  const { showBottomNav, setShowBottomNav } = useShowBottomNavContext();
+  const { showBotNav, setShowBotNav } = useShowBotNavContext();
 
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
   const isDestinationPage = pathname.split("/").includes("destination");
@@ -49,14 +49,14 @@ export default function CityTabs() {
   };
 
   useEffect(() => {
-    setShowBottomNav(isDestinationPage && isSmallScreen);
+    setShowBotNav(isDestinationPage && isSmallScreen);
   }, [isDestinationPage, isCityEventPage, isSmallScreen]);
 
   useEffect(() => {
     getTabValue();
   }, [pathname]);
 
-  if (!showBottomNav) return null;
+  if (!showBotNav) return null;
 
   return (
     <Box sx={{ minHeight: minBottomNavHeight }}>
