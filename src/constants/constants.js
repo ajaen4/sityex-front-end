@@ -18,7 +18,9 @@ export const contentHeight = {
   xl: "93.5vh",
 };
 
-export const imagesCdn = "https://d1dshnpqadx0e7.cloudfront.net";
+export const imagesCdn = "https://d1dshnpqadx0e7.cloudfront.net/images";
+export const documentsCdn =
+  "https://sityex-public-documents.s3.eu-west-1.amazonaws.com/documents";
 
 export const digitalNomadReq = (
   <ul style={{ fontSize: 15 }}>
