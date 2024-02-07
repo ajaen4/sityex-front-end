@@ -393,7 +393,10 @@ const PaperworkPage = () => {
                 mdMinHeightContent={461}
                 content={
                   <Box>
-                    <Typography variant="body2" sx={{ textAlign: "left" }}>
+                    <Typography
+                      variant="body2"
+                      sx={{ textAlign: "left", mt: 1 }}
+                    >
                       For those who want to:
                     </Typography>
                     <Box sx={{ textAlign: "left" }}>
