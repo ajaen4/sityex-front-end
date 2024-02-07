@@ -48,7 +48,7 @@ const TaxPaperwork = ({
           display: "flex",
           flexDirection: "column",
           m: 1,
-          textAlign: "left",
+          textAlign: "center",
         }}
       >
         <CardContent sx={{ pb: 0, minHeight: { md: mdMinHeightContent } }}>
@@ -80,7 +80,9 @@ const TaxPaperwork = ({
                 style={{ marginTop: is_taxdown ? 25 : 15, marginBottom: 15 }}
               />
             </Box>
+            <Box sx={{ textAlign: "left" }}>
             {content}
+            </Box>
           </Box>
           {!is_taxdown && (
             <Chip
