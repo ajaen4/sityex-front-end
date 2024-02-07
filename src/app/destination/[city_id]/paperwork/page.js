@@ -402,7 +402,11 @@ const PaperworkPage = () => {
                         <li>Do the Tax Declaration completely online.</li>
                       </ul>
                     </Box>
-                    <Typography variant="body1" gutterBottom sx={{ my: 1 }}>
+                    <Typography
+                      variant="body1"
+                      gutterBottom
+                      sx={{ my: 1, textAlign: "center" }}
+                    >
                       We have partnered with <b>TaxDown</b> to offer you a{" "}
                       <b>15% discount</b> on their Tax Declaration automated
                       service.
