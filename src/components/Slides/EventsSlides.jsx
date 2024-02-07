@@ -37,7 +37,7 @@ const EventsSlides = () => {
           sx={{
             display: "flex",
             width: "100%",
-            height: "60vh",
+            height: "63vh",
           }}
         >
           {events.slice(i, i + slice).map((event) => (
