@@ -29,7 +29,7 @@ const HousingMap = dynamic(() => import("components/Maps/HousingMap"), {
 
 import { fetchHousingIndex, orderHousingIndex } from "actions";
 
-import { imagesCdn } from "constants/constants";
+import { imagesCdn, documentsCdn } from "constants/constants";
 
 const HousingPage = () => {
   const [selectedView, setSelectedView] = useState("listings");
@@ -243,7 +243,7 @@ const HousingPage = () => {
               >
                 <Link
                   target="_blank"
-                  href="https://sityex-public-documents.s3.eu-west-1.amazonaws.com/partners/spotahome/discount_explanation.pdf"
+                  href={`${documentsCdn}/partners/spotahome/discount_explanation.pdf`}
                 >
                   Read instructions
                 </Link>
