@@ -55,7 +55,7 @@ const EventsSlides = () => {
                 <Box
                   sx={{
                     borderRadius: 2,
-                    width: { xs: "100%", md: 263 },
+                    width: "100%",
                     height: "53vh",
                     backgroundImage: `url(${event.photo_1})`,
                     backgroundSize: "cover",
