@@ -126,16 +126,6 @@ const CityCommunityPage = () => {
             New in town or looking to meet like-minded expats? Discover our
             community on Meetup!
           </Typography>
-          <Typography
-            variant="body1"
-            sx={{ fontSize: 16, my: 1, textAlign: "center" }}
-            gutterBottom
-          >
-            Meetup is a platform where people with shared interests come
-            together to engage in social activities, learn new things, and make
-            new friends. It's a fantastic way to connect with other expats in a
-            relaxed and friendly environment.
-          </Typography>
           <Button
             variant="contained"
             style={{
