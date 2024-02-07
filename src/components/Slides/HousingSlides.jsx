@@ -1,52 +1,63 @@
-import React, { useEffect } from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
+
+import { Box, useTheme, useMediaQuery } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
 
-import { Box } from "@mui/material";
+import HousingSlide from "components/Slides/HousingSlide";
 
-const HousingSlides = ({ listing, isInMap, imageHeight, autoPlay, swipe }) => {
-  const carouselRef = React.useRef(null);
+import * as api from "api";
+
+const HousingSlides = ({}) => {
+  const [listings, setListings] = useState([]);
+
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+
+  const slice = isSmallScreen ? 1 : 5;
+  const city_id = "3117735";
 
   useEffect(() => {
-    const wrapper = carouselRef.current;
-
-    if (wrapper && isInMap) {
-      const disableClickPropagation = L?.DomEvent?.disableClickPropagation;
-      disableClickPropagation(wrapper);
-    }
+    api.getHousingIndex(city_id).then((response) => {
+      setListings(response.listings.slice(0, 30));
+    });
   }, []);
 
-  const createSlides = (images) => {
-    if (!images || images.length === 0) {
-      return null;
+  const createSlides = (listings) => {
+    let slides = [];
+    for (let i = 0; i < listings.length; i += slice) {
+      slides.push(
+        <Box
+          key={i}
+          sx={{
+            display: "flex",
+            width: "100%",
+            height: "60vh",
+          }}
+        >
+          {listings.slice(i, i + slice).map((listing) => (
+            <HousingSlide
+              key={listing.housing_id}
+              city_id={city_id}
+              housing_id={listing.housing_id}
+            />
+          ))}
+        </Box>,
+      );
     }
-
-    return images.map((image, index) => (
-      <Box
-        key={index}
-        sx={{
-          width: "100%",
-          height: imageHeight,
-          backgroundImage: `url(${image.sizes["640x480"].link})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      />
-    ));
+    return slides;
   };
 
   return (
-    <div ref={carouselRef}>
-      {listing.images && (
-        <Carousel
-          navButtonsAlwaysVisible={listing.images.length > 1}
-          indicators={false}
-          autoPlay={autoPlay}
-          swipe={swipe ? true : false}
-        >
-          {createSlides(listing.images)}
-        </Carousel>
-      )}
-    </div>
+    <Carousel
+      sx={{ width: "100%" }}
+      navButtonsAlwaysVisible
+      indicators={false}
+      interval={7000}
+    >
+      {createSlides(listings)}
+    </Carousel>
   );
 };
 

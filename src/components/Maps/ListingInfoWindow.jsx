@@ -5,7 +5,7 @@ import React, { useRef, useEffect } from "react";
 import { Card, CardContent, Typography, Box, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
-import HousingSlides from "components/Slides/HousingSlides";
+import ListingSlides from "components/Slides/ListingSlides";
 
 const ListingInfoWindow = ({ listing, setSelectedListing }) => {
   const cardRef = useRef(null);
@@ -70,7 +70,7 @@ const ListingInfoWindow = ({ listing, setSelectedListing }) => {
       >
         <CloseIcon fontSize="small" />
       </IconButton>
-      <HousingSlides
+      <ListingSlides
         listing={listing}
         isInMap={true}
         imageHeight={"200px"}

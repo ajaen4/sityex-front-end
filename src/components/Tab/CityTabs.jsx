@@ -49,7 +49,7 @@ export default function CityTabs() {
   };
 
   useEffect(() => {
-    setShowBottomNav(isDestinationPage && !isCityEventPage && isSmallScreen);
+    setShowBottomNav(isDestinationPage && isSmallScreen);
   }, [isDestinationPage, isCityEventPage, isSmallScreen]);
 
   useEffect(() => {
@@ -67,6 +67,7 @@ export default function CityTabs() {
           left: 0,
           right: 0,
           backgroundColor: "transparent",
+          zIndex: 1100,
         }}
         elevation={3}
       >
