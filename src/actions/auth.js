@@ -18,14 +18,14 @@ export const logInUserWithGoogle = () => {
   api.logInWithGoogle();
 };
 
-export const signOutUser = (uid) => {
+export const signOutUser = () => {
   api.signOutUser();
 };
 
 export const onAuthStateChanged = (onAuthCallback) =>
   api.onAuthStateChangedCallback(onAuthCallback);
 
-export const storeAuthUser = (authUser) => (dispatch, getState) => {
+export const storeAuthUser = (authUser) => (dispatch, _) => {
   if (authUser && authUser.emailVerified) {
     api.getUserData(authUser.uid).then(
       (user) => {

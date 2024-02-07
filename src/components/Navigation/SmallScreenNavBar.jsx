@@ -21,7 +21,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 
 import { useDrawerContext } from "components/Contexts/DrawerContext";
 
-import * as ROUTES_PATHS from "routes/paths";
 import { settings } from "constants/constants.js";
 
 const logo_white = "/big_logo_white.png";
@@ -31,13 +30,13 @@ function SmallScreenNavBar({
   isOpaqueNavbar,
   handleCloseUserMenu,
   clickedLogo,
+  toggleSignUpModal,
 }) {
   const { isOpenDrawer, setIsOpenDrawer } = useDrawerContext();
   const [isOpenUserMenu, setIsOpenUserMenu] = useState(false);
 
   const auth = useSelector((state) => state.auth);
 
-  const router = useRouter();
   const theme = useTheme();
   const userSettingsRef = useRef(null);
 
@@ -153,7 +152,7 @@ function SmallScreenNavBar({
               <Button
                 variant="contained"
                 color="secondary"
-                onClick={() => router.push(ROUTES_PATHS.SIGN_UP)}
+                onClick={toggleSignUpModal}
                 sx={{ mr: 0 }}
               >
                 Sign up
