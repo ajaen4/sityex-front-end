@@ -37,7 +37,6 @@ const EventsSlides = () => {
           sx={{
             display: "flex",
             width: "100%",
-            height: "65vh",
           }}
         >
           {events.slice(i, i + slice).map((event) => (
@@ -47,7 +46,6 @@ const EventsSlides = () => {
                 display: "flex",
                 flexDirection: "column",
                 m: 1,
-                height: "100%",
                 width: "100%",
               }}
             >
@@ -56,7 +54,7 @@ const EventsSlides = () => {
                   sx={{
                     borderRadius: 2,
                     width: "100%",
-                    height: "53vh",
+                    height: "52vh",
                     backgroundImage: `url(${event.photo_1})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
@@ -70,6 +68,7 @@ const EventsSlides = () => {
                 sx={{
                   my: 1,
                   fontSize: 16,
+                  minHeight: "8vh",
                 }}
               >
                 {event.plan_name_en}
