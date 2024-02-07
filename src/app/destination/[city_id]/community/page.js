@@ -2,23 +2,24 @@
 
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useRouter } from "next/navigation";
 
 import { getQRCode } from "api";
 
 import { Container, Paper, Typography, Box, Button } from "@mui/material";
 
 import SendGAPageView from "components/DataLoaders/SendGAPageView";
+import { useShowSignUpContext } from "components/Contexts/ShowSignUpContext";
 
 import { imagesCdn } from "constants/constants";
 
 const CityCommunityPage = () => {
   const auth = useSelector((state) => state.auth);
   const selectedCity = useSelector((state) => state.selectedCity.data);
+
+  const { showSignUpModal, setShowSignUpModal } = useShowSignUpContext();
+
   const [qrCodeUrl, setQrCodeUrl] = useState(null);
   const [cityHasCommunity, setCityHasCommunity] = useState(true);
-
-  const router = useRouter();
 
   useEffect(() => {
     if (auth.isAuthResolved && selectedCity) {
@@ -56,10 +57,10 @@ const CityCommunityPage = () => {
             <Button
               variant="contained"
               color="secondary"
-              onClick={() => router.push("/login")}
+              onClick={() => setShowSignUpModal(true)}
               sx={{ fontSize: 16 }}
             >
-              Go to Authentication
+              Authenticate
             </Button>
           </Box>
         </Paper>

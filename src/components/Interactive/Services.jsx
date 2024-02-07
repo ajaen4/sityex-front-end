@@ -36,7 +36,7 @@ const Services = () => {
       title: "Events",
       description:
         "Exclusive SityEx and third party events to discover your new home city",
-        position: "57.5%",
+      position: "57.5%",
     },
   };
 
@@ -108,21 +108,20 @@ const Services = () => {
           ))}
         </Box>
 
-        <Box sx={{ minHeight: 98, px: 3}}>
-        {activeService && (
-          <Typography
-            sx={{
-              color: "grey.500",
-              backgroundColor: "grey.100",
-              fontSize: 16,
-              borderRadius: 3,
-              p: 2,
-            }}
-          >
-            {services[activeService].description}
-          </Typography>
-          
-        )}
+        <Box sx={{ minHeight: 98, px: 3 }}>
+          {activeService && (
+            <Typography
+              sx={{
+                color: "grey.500",
+                backgroundColor: "grey.100",
+                fontSize: 16,
+                borderRadius: 3,
+                p: 2,
+              }}
+            >
+              {services[activeService].description}
+            </Typography>
+          )}
         </Box>
       </Box>
     );
@@ -131,7 +130,7 @@ const Services = () => {
       <Grid
         container
         sx={{
-          display: {xs: "none", md: "flex"},
+          display: { xs: "none", md: "flex" },
           justifyContent: "space-evenly",
           textAlign: "center",
           mt: 5,

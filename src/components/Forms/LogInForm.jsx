@@ -209,31 +209,19 @@ const LogInForm = ({}) => {
                   {errors.password?.message}
                 </FormHelperText>
               </FormControl>
-              <Button
-                disabled={Object.keys(errors).length !== 0}
-                type="submit"
-                fullWidth
-                variant="contained"
-              >
-                {!isFetching && <div>Log In</div>}
-                {isFetching && <LoadingSpinner color="white" />}
-              </Button>
+              <Box display="flex" justifyContent="center">
+                <Button
+                  variant="contained"
+                  color="primary"
+                  type="submit"
+                  style={{ margin: "2%", width: "100%" }}
+                >
+                  {!isFetching && <div>Log In</div>}
+                  {isFetching && <LoadingSpinner color="white" />}
+                </Button>
+              </Box>
             </Box>
           </Grid>
-        </Grid>
-      </Grid>
-      <Grid item xs={12}>
-        <Divider />
-      </Grid>
-      <Grid item xs={12}>
-        <Grid item container direction="column" alignItems="center" xs={12}>
-          <Link
-            href={ROUTES_PATHS.SIGN_UP}
-            variant="subtitle1"
-            sx={{ textDecoration: "none" }}
-          >
-            Don&apos;t have an account?
-          </Link>
         </Grid>
       </Grid>
       {errorMessage !== null && (

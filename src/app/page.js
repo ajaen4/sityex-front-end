@@ -202,7 +202,6 @@ const LandingPage = () => {
           flexDirection: "column",
           textAlign: "start",
           px: 3,
-          mt: 5,
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
@@ -230,7 +229,7 @@ const LandingPage = () => {
           px: 3,
           pb: 10,
           pt: 2,
-          mt: 3,
+          mt: 2,
           backgroundColor: "grey.100",
         }}
       >
