@@ -48,7 +48,7 @@ const TaxPaperwork = ({
           display: "flex",
           flexDirection: "column",
           m: 1,
-          textAlign: "center",
+          textAlign: "left",
         }}
       >
         <CardContent sx={{ pb: 0, minHeight: { md: mdMinHeightContent } }}>
@@ -77,7 +77,7 @@ const TaxPaperwork = ({
                 }
                 alt="partner icon"
                 title="Partner"
-                style={{ marginTop: is_taxdown ? 25 : 15 }}
+                style={{ marginTop: is_taxdown ? 25 : 15, marginBottom: 15 }}
               />
             </Box>
             {content}
