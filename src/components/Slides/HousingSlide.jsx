@@ -37,7 +37,7 @@ const HousingSlide = ({ city_id, housing_id }) => {
         <Box
           sx={{
             borderRadius: 2,
-            width: { xs: "100%", md: 263 },
+            width: "100%",
             height: "53vh",
             backgroundImage: `url(${listing.images[0].sizes["640x480"].link})`,
             backgroundSize: "cover",
