@@ -33,7 +33,6 @@ const HousingSlides = ({}) => {
           sx={{
             display: "flex",
             width: "100%",
-            height: "60vh",
           }}
         >
           {listings.slice(i, i + slice).map((listing) => (

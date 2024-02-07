@@ -29,7 +29,6 @@ const HousingSlide = ({ city_id, housing_id }) => {
         display: "flex",
         flexDirection: "column",
         m: 1,
-        height: "100%",
         width: "100%",
       }}
     >
@@ -52,6 +51,7 @@ const HousingSlide = ({ city_id, housing_id }) => {
         sx={{
           my: 1,
           fontSize: 16,
+          minHeight: "7vh",
         }}
       >
         {listing.title}
