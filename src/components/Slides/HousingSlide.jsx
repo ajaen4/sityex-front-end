@@ -37,7 +37,7 @@ const HousingSlide = ({ city_id, housing_id }) => {
           sx={{
             borderRadius: 2,
             width: "100%",
-            height: {xs: "55vh", md: "53vh"},
+            height: { xs: "55vh", md: "53vh" },
             backgroundImage: `url(${listing.images[0].sizes["640x480"].link})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
@@ -51,7 +51,7 @@ const HousingSlide = ({ city_id, housing_id }) => {
         sx={{
           my: 1,
           fontSize: 16,
-          minHeight: {xs: "5vh", md: "7vh"},
+          minHeight: { xs: "5vh", md: "7vh" },
         }}
       >
         {listing.title}
