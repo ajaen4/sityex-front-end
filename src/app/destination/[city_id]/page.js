@@ -123,8 +123,8 @@ const PaperworkPage = () => {
                 variant="body2"
                 sx={{ fontSize: { xs: 15, md: 16 }, mt: 2 }}
               >
-                Find your perfect home in {selectedCity.name}. From single rooms
-                to full apartments, we've got you covered.
+                Find your perfect home. From single rooms to full apartments,
+                we've got you covered.
               </Typography>
             </CardContent>
             <CardActions
@@ -205,8 +205,8 @@ const PaperworkPage = () => {
                 variant="body2"
                 sx={{ fontSize: { xs: 15, md: 16 }, mt: 2 }}
               >
-                Start feeling at home in {selectedCity.name} from day one.
-                Connect with our welcoming expat community!
+                Start feeling at home from day one. Connect with our welcoming
+                expat community!
               </Typography>
             </CardContent>
             <CardActions
