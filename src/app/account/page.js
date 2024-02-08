@@ -34,7 +34,7 @@ import SendGAPageView from "components/DataLoaders/SendGAPageView";
 import { updateUser } from "actions";
 
 const AccountPage = () => {
-  const [selectedTab, setSelectedtab] = useState(false);
+  const [selectedTab, setSelectedTab] = useState(0);
   const [snackbarMessage, setSnackbarMessage] = useState(null);
 
   const auth = useSelector((state) => state.auth.data);
@@ -52,7 +52,7 @@ const AccountPage = () => {
   } = useForm();
 
   const handleChange = (event, newValue) => {
-    setSelectedtab(newValue);
+    setSelectedTab(newValue);
   };
 
   useEffect(() => {
@@ -100,7 +100,7 @@ const AccountPage = () => {
                   alt="Remy Sharp"
                   src={`https://eu.ui-avatars.com/api/?name=${auth.userName.replace(
                     " ",
-                    "+",
+                    "+"
                   )}&size=512`}
                   sx={{ width: 50, height: 50 }}
                 />

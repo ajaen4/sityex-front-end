@@ -15,15 +15,28 @@ import PeopleIcon from "@mui/icons-material/PeopleOutlined";
 import HouseIcon from "@mui/icons-material/MapsHomeWorkOutlined";
 import GovernmentIcon from "@mui/icons-material/AssuredWorkloadOutlined";
 
+import { useShowSignUpContext } from "components/Contexts/ShowSignUpContext";
+
 import * as ROUTES_PATHS from "routes/paths";
 
 const CityItems = () => {
   const router = useRouter();
+
   const selectedCity = useSelector((state) => state.selectedCity.data);
+  const auth = useSelector((state) => state.auth);
+
+  const { setShowSignUpModal } = useShowSignUpContext();
 
   const itemSelected = (event) => {
     const path = event.currentTarget.getAttribute("data-path");
-    router.push(`/destination/${selectedCity.city_id}/${path}`);
+    if (
+      path === ROUTES_PATHS.CITY_COMMUNITY &&
+      auth.isAuthResolved === false
+    ) {
+      setShowSignUpModal(true);
+    } else {
+      router.push(`/destination/${selectedCity.city_id}/${path}`);
+    }
   };
 
   return (

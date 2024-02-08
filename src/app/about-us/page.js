@@ -25,7 +25,7 @@ const AboutUs = () => {
   return (
     <Box>
       <Grid container sx={{ alignItems: "center" }}>
-        <SendGAPageView pageTitle="Landing Page" />
+        <SendGAPageView pageTitle="About Us" />
         <Grid item xs={12} md={7} sx={{ p: { xs: 3, md: 5 } }}>
           <Typography variant="h4" fontSize={40}>
             From one expat to another ;)
