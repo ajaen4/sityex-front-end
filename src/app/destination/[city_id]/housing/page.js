@@ -53,15 +53,14 @@ const HousingPage = () => {
   const dispatch = useDispatch();
 
   const changeTab = (newValue) => {
+    const destinationURL = `/destination/${selectedCity.city_id}/housing/?tab=${newValue}`;
+
     if (newValue === "discounts" && auth.isAuthResolved === false) {
       setShowSignUpModal(true);
+      localStorage.setItem("destinationURL", destinationURL);
     } else {
       setSelectedTab(newValue);
-      router.push(
-        `/destination/${selectedCity.city_id}/housing/?tab=${newValue}`,
-        undefined,
-        { shallow: true }
-      );
+      router.push(destinationURL, undefined, { shallow: true });
     }
   };
 
