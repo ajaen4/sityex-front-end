@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
 
 import {
   Typography,
@@ -19,11 +20,28 @@ import HouseIcon from "@mui/icons-material/MapsHomeWorkOutlined";
 import GovernmentIcon from "@mui/icons-material/AssuredWorkloadOutlined";
 
 import SendGAPageView from "components/DataLoaders/SendGAPageView";
+import { useShowSignUpContext } from "components/Contexts/ShowSignUpContext";
 
 import * as ROUTES_PATHS from "routes/paths";
 
 const PaperworkPage = () => {
   const selectedCity = useSelector((state) => state.selectedCity.data);
+  const auth = useSelector((state) => state.auth);
+
+  const { setShowSignUpModal } = useShowSignUpContext();
+
+  const router = useRouter();
+
+  const onClickExplore = (section) => {
+    if (
+      section === ROUTES_PATHS.CITY_COMMUNITY &&
+      auth.isAuthResolved === false
+    ) {
+      setShowSignUpModal(true);
+    } else {
+      router.push(`/destination/${selectedCity.city_id}/${section}`);
+    }
+  };
 
   return (
     <Box
@@ -96,7 +114,7 @@ const PaperworkPage = () => {
                 sx={{ alignSelf: "center", fontSize: { xs: 15, md: 16 } }}
                 size="small"
                 variant="contained"
-                href={`${selectedCity.city_id}/${ROUTES_PATHS.CITY_BUREAUCRACY}`}
+                onClick={() => onClickExplore(ROUTES_PATHS.CITY_BUREAUCRACY)}
               >
                 Explore
               </Button>
@@ -137,7 +155,7 @@ const PaperworkPage = () => {
                 sx={{ alignSelf: "center", fontSize: { xs: 15, md: 16 } }}
                 size="small"
                 variant="contained"
-                href={`${selectedCity.city_id}/${ROUTES_PATHS.CITY_HOUSING}`}
+                onClick={() => onClickExplore(ROUTES_PATHS.CITY_HOUSING)}
               >
                 Explore
               </Button>
@@ -178,7 +196,7 @@ const PaperworkPage = () => {
                 sx={{ alignSelf: "center", fontSize: { xs: 15, md: 16 } }}
                 size="small"
                 variant="contained"
-                href={`${selectedCity.city_id}/${ROUTES_PATHS.CITY_EVENTS}`}
+                onClick={() => onClickExplore(ROUTES_PATHS.CITY_EVENTS)}
               >
                 Explore
               </Button>
@@ -219,7 +237,7 @@ const PaperworkPage = () => {
                 sx={{ alignSelf: "center", fontSize: { xs: 15, md: 16 } }}
                 size="small"
                 variant="contained"
-                href={`${selectedCity.city_id}/${ROUTES_PATHS.CITY_COMMUNITY}`}
+                onClick={() => onClickExplore(ROUTES_PATHS.CITY_COMMUNITY)}
               >
                 Explore
               </Button>
