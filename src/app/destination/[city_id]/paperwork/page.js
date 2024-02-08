@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useSearchParams, useRouter } from "next/navigation";
 
 import { Typography, Box, Tabs, Tab, Grid } from "@mui/material";
 
@@ -18,13 +19,40 @@ import {
   beckhamReq,
 } from "constants/constants";
 
+const tabs = [
+  { value: "essentials", label: "Essentials" },
+  { value: "visa", label: "Visa" },
+  { value: "tax-declaration", label: "Tax Declaration" },
+  {
+    value: "driver-vehicle-licensing",
+    label: "Driver's and Vehicle Licensing",
+  },
+];
+
 const PaperworkPage = () => {
   const selectedCity = useSelector((state) => state.selectedCity.data);
-  const [selectedTab, setSelectedTab] = useState(0);
+  const [selectedTab, setSelectedTab] = useState("essentials");
 
-  const handleTabChange = (event, newValue) => {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const changeTab = (newValue) => {
     setSelectedTab(newValue);
+    router.push(
+      `/destination/${selectedCity.city_id}/paperwork/?tab=${newValue}`,
+      undefined,
+      { shallow: true }
+    );
   };
+
+  useEffect(() => {
+    if (
+      searchParams.get("tab") &&
+      tabs.map((tab) => tab.value).includes(searchParams.get("tab"))
+    ) {
+      changeTab(searchParams.get("tab"));
+    }
+  }, [searchParams.get("tab")]);
 
   return (
     <Box
@@ -47,7 +75,7 @@ const PaperworkPage = () => {
       </Typography>
       <Tabs
         value={selectedTab}
-        onChange={handleTabChange}
+        onChange={(_, newValue) => changeTab(newValue)}
         textColor="secondary"
         indicatorColor="secondary"
         variant="scrollable"
@@ -59,12 +87,11 @@ const PaperworkPage = () => {
           mt: 0,
         }}
       >
-        <Tab label="Essentials" key="Essentials" />
-        <Tab label="Visa" key="Visa" />
-        <Tab label="Tax Declaration" key="Tax Declaration" />
-        <Tab label="Driver's and Vehicle Licensing" key="car-related" />
+        {tabs.map((tab) => (
+          <Tab label={tab.label} value={tab.value} />
+        ))}
       </Tabs>
-      {selectedTab === 0 && (
+      {selectedTab === "essentials" && (
         <Box
           sx={{
             display: "flex",
@@ -262,7 +289,7 @@ const PaperworkPage = () => {
           </Grid>
         </Box>
       )}
-      {selectedTab === 1 && (
+      {selectedTab === "visa" && (
         <Box
           sx={{
             display: "flex",
@@ -327,7 +354,7 @@ const PaperworkPage = () => {
           </Grid>
         </Box>
       )}
-      {selectedTab === 2 && (
+      {selectedTab === "tax-declaration" && (
         <Box
           sx={{
             width: "100%",
@@ -422,7 +449,7 @@ const PaperworkPage = () => {
           </Grid>
         </Box>
       )}
-      {selectedTab === 3 && (
+      {selectedTab === "driver-vehicle-licensing" && (
         <Box
           sx={{
             display: "flex",
