@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useSelector } from "react-redux";
 
 import {
   Typography,
@@ -12,8 +13,9 @@ import {
   Tooltip,
   IconButton,
 } from "@mui/material";
-
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+
+import { useShowSignUpContext } from "components/Contexts/ShowSignUpContext";
 
 const EssentialsPaperwork = ({
   title,
@@ -23,12 +25,25 @@ const EssentialsPaperwork = ({
   price,
   paymentLink,
 }) => {
+  const auth = useSelector((state) => state.auth);
+
+  const { setShowSignUpModal } = useShowSignUpContext();
+
   const formatNumberEuropeanStyle = (number) => {
     return number.toLocaleString("de-DE", {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     });
   };
+
+  const onClick = () => {
+    if (auth.isAuthResolved === false) {
+      setShowSignUpModal(true);
+    }
+    else{
+      window.open(paymentLink, '_blank', 'noopener,noreferrer');
+    }
+  }
 
   return (
     <Card
@@ -90,8 +105,7 @@ const EssentialsPaperwork = ({
           sx={{ alignSelf: "center" }}
           size="small"
           variant="contained"
-          href={paymentLink}
-          target="_blank"
+          onClick={onClick}
         >
           Hire service
         </Button>

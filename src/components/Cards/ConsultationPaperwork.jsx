@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 import {
   Typography,
@@ -12,6 +13,7 @@ import {
 } from "@mui/material";
 
 import RequirementsModal from "components/Modals/RequirementsModal";
+import { useShowSignUpContext } from "components/Contexts/ShowSignUpContext";
 
 const ConsultationPaperwork = ({
   title,
@@ -24,6 +26,10 @@ const ConsultationPaperwork = ({
   const [showModal, setShowModal] = useState(false);
   const [requirementsContent, setRequirementsContent] = useState("");
 
+  const auth = useSelector((state) => state.auth);
+
+  const { setShowSignUpModal } = useShowSignUpContext();
+
   const formatNumberEuropeanStyle = (number) => {
     return number.toLocaleString("de-DE", {
       minimumFractionDigits: 2,
@@ -35,6 +41,15 @@ const ConsultationPaperwork = ({
     setRequirementsContent(requirements);
     setShowModal(true);
   };
+
+  const onClickHire = () => {
+    if (auth.isAuthResolved === false) {
+      setShowSignUpModal(true);
+    }
+    else{
+      window.open(freeConsultationLink, '_blank', 'noopener,noreferrer');
+    }
+  }
 
   return (
     <Box>
@@ -104,8 +119,7 @@ const ConsultationPaperwork = ({
             sx={{ alignSelf: "center", mt: 1 }}
             size="small"
             variant="contained"
-            href={freeConsultationLink}
-            target="_blank"
+            onClick={onClickHire}
           >
             Free consultation
           </Button>
