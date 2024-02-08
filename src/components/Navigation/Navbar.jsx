@@ -63,6 +63,15 @@ function NavBar({}) {
     };
   }, []);
 
+  useEffect(() => {
+    const destinationURL = localStorage.getItem("destinationURL");
+
+    if (!showSignUpModal && destinationURL) {
+      localStorage.removeItem("destinationURL");
+      router.push(destinationURL);
+    }
+  }, [showSignUpModal]);
+
   return (
     <>
       <Box

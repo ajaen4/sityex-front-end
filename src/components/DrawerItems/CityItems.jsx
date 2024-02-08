@@ -29,13 +29,16 @@ const CityItems = () => {
 
   const itemSelected = (event) => {
     const path = event.currentTarget.getAttribute("data-path");
+    const destinationURL = `/destination/${selectedCity.city_id}/${path}`;
+
     if (
       path === ROUTES_PATHS.CITY_COMMUNITY &&
       auth.isAuthResolved === false
     ) {
       setShowSignUpModal(true);
+      localStorage.setItem("destinationURL", destinationURL);
     } else {
-      router.push(`/destination/${selectedCity.city_id}/${path}`);
+      router.push(destinationURL);
     }
   };
 

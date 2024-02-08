@@ -33,13 +33,16 @@ const PaperworkPage = () => {
   const router = useRouter();
 
   const onClickExplore = (section) => {
+    const destinationURL = `/destination/${selectedCity.city_id}/${section}`;
+
     if (
       section === ROUTES_PATHS.CITY_COMMUNITY &&
       auth.isAuthResolved === false
     ) {
       setShowSignUpModal(true);
+      localStorage.setItem("destinationURL", destinationURL);
     } else {
-      router.push(`/destination/${selectedCity.city_id}/${section}`);
+      router.push(destinationURL);
     }
   };
 
