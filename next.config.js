@@ -1,5 +1,14 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  async rewrites() {
+    return [
+      {
+        source: "/__/auth/:path*",
+        destination: "https://sityex-dev.firebaseapp.com/__/auth/:path*",
+      },
+    ];
+  },
+};
 
 module.exports = nextConfig;
 
@@ -42,5 +51,5 @@ module.exports = withSentryConfig(
     // https://docs.sentry.io/product/crons/
     // https://vercel.com/docs/cron-jobs
     automaticVercelMonitors: true,
-  },
+  }
 );
