@@ -300,7 +300,7 @@ const HousingPage = () => {
           aria-label="Listings or map selector"
         >
           {tabs.map((tab) => (
-            <Tab value={tab} label={capitalize(tab)} />
+            <Tab key={tab} value={tab} label={capitalize(tab)} />
           ))}
         </Tabs>
       </Box>

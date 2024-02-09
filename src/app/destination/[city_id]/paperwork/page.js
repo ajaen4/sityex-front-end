@@ -88,7 +88,7 @@ const PaperworkPage = () => {
         }}
       >
         {tabs.map((tab) => (
-          <Tab label={tab.label} value={tab.value} />
+          <Tab key={tab.value} label={tab.label} value={tab.value} />
         ))}
       </Tabs>
       {selectedTab === "essentials" && (
