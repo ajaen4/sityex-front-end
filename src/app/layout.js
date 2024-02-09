@@ -38,7 +38,7 @@ export const metadata = {
     description:
       "Community-based, one-stop platform for all expat needs in Spain. We focus on housing and paperwork services with a vibrant community at its base.",
     images: [
-      "https://d1dshnpqadx0e7.cloudfront.net/logos/resized_big_logo_blue.png",
+      "https://d1dshnpqadx0e7.cloudfront.net/images/logos/resized_big_logo_blue.png",
     ],
   },
   twitter: {
@@ -47,7 +47,7 @@ export const metadata = {
     description:
       "Community-based, one-stop platform for all expat needs in Spain. We focus on housing and paperwork services with a vibrant community at its base.",
     images: [
-      "https://d1dshnpqadx0e7.cloudfront.net/logos/resized_big_logo_blue.png",
+      "https://d1dshnpqadx0e7.cloudfront.net/images/logos/resized_big_logo_blue.png",
     ],
     url: "https://sityex.com/",
   },
