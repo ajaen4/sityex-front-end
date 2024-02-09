@@ -42,9 +42,11 @@ const ConsultationPaperwork = ({
     setShowModal(true);
   };
 
-  const onClickHire = () => {
+  const onClickFreeConsultation = () => {
     if (auth.isAuthResolved === false) {
       setShowSignUpModal(true);
+      localStorage.setItem("destinationURL", freeConsultationLink);
+      localStorage.setItem("openInNewTab", true);
     }
     else{
       window.open(freeConsultationLink, '_blank', 'noopener,noreferrer');
@@ -119,7 +121,7 @@ const ConsultationPaperwork = ({
             sx={{ alignSelf: "center", mt: 1 }}
             size="small"
             variant="contained"
-            onClick={onClickHire}
+            onClick={onClickFreeConsultation}
           >
             Free consultation
           </Button>

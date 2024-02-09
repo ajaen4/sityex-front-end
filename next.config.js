@@ -4,7 +4,7 @@ const nextConfig = {
     return [
       {
         source: "/__/auth/:path*",
-        destination: "https://sityex-dev.firebaseapp.com/__/auth/:path*",
+        destination: `https://${process.env.NEXT_PUBLIC_AUTH_DOMAIN}/__/auth/:path*`,
       },
     ];
   },
