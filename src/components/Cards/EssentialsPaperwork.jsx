@@ -39,6 +39,8 @@ const EssentialsPaperwork = ({
   const onClick = () => {
     if (auth.isAuthResolved === false) {
       setShowSignUpModal(true);
+      localStorage.setItem("destinationURL", paymentLink);
+      localStorage.setItem("openInNewTab", true);
     }
     else{
       window.open(paymentLink, '_blank', 'noopener,noreferrer');
