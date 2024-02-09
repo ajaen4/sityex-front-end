@@ -271,7 +271,7 @@ const LandingPage = () => {
               src={`${imagesCdn}/partner_logos/entretramites.webp`}
               alt="entretramites icon"
               title="Entre Tramites"
-              style={{ marginTop: 30, marginLeft: 10, marginRight: 10 }}
+              style={{ marginTop: 30, marginLeft: 20, marginRight: 20 }}
             />
             <a
               href="https://taxdown.es/landings_partners/sityex/?utm_source=empleados&utm_medium=partnership&utm_campaign=empleados_partnership"
@@ -284,7 +284,7 @@ const LandingPage = () => {
                 src={`${imagesCdn}/partner_logos/taxdown.png`}
                 alt="taxdown icon"
                 title="Taxdown"
-                style={{ marginTop: 30, marginLeft: 10, marginRight: 10 }}
+                style={{ marginTop: 30, marginLeft: 20, marginRight: 20 }}
               />
             </a>
             <img

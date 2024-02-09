@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useSearchParams, useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 
@@ -26,23 +27,41 @@ const HousingMap = dynamic(() => import("components/Maps/HousingMap"), {
   ssr: false,
   loading: () => <CenteredLoadingSpinner />,
 });
+import { useShowSignUpContext } from "components/Contexts/ShowSignUpContext";
 
 import { fetchHousingIndex, orderHousingIndex } from "actions";
+import { capitalize } from "helpers/usefulFunctions";
 
 import { imagesCdn, documentsCdn } from "constants/constants";
 
+const tabs = ["listings", "map", "discounts"];
+
 const HousingPage = () => {
-  const [selectedView, setSelectedView] = useState("listings");
+  const searchParams = useSearchParams();
+
+  const [selectedTab, setSelectedTab] = useState("listings");
   const [sortBy, setSortBy] = useState(-1);
   const [pageNum, setPageNum] = useState(1);
 
   const selectedCity = useSelector((state) => state.selectedCity.data);
   const housingIndex = useSelector((state) => state.housing.data);
+  const auth = useSelector((state) => state.auth);
+
+  const { setShowSignUpModal } = useShowSignUpContext();
+  const router = useRouter();
 
   const dispatch = useDispatch();
 
-  const changeTab = (event, newValue) => {
-    setSelectedView(newValue);
+  const changeTab = (newValue) => {
+    const destinationURL = `/destination/${selectedCity.city_id}/housing/?tab=${newValue}`;
+
+    if (newValue === "discounts" && auth.isAuthResolved === false) {
+      setShowSignUpModal(true);
+      localStorage.setItem("destinationURL", destinationURL);
+    } else {
+      setSelectedTab(newValue);
+      router.push(destinationURL, undefined, { shallow: true });
+    }
   };
 
   const changeSortBy = (event, sortBy) => {
@@ -61,6 +80,12 @@ const HousingPage = () => {
 
     dispatch(fetchHousingIndex(selectedCity.city_id));
   }, [selectedCity.city_id]);
+
+  useEffect(() => {
+    if (searchParams.get("tab") && tabs.includes(searchParams.get("tab"))) {
+      changeTab(searchParams.get("tab"));
+    }
+  }, [searchParams.get("tab"), auth]);
 
   if (!housingIndex) {
     return <CenteredLoadingSpinner />;
@@ -90,7 +115,7 @@ const HousingPage = () => {
           city_id: selectedCity.city_id,
         }}
       />
-      {selectedView === "listings" && (
+      {selectedTab === "listings" && (
         <Box
           style={{
             height: "100%",
@@ -194,8 +219,8 @@ const HousingPage = () => {
           </Box>
         </Box>
       )}
-      {selectedView === "map" && <HousingMap />}
-      {selectedView === "discounts" && (
+      {selectedTab === "map" && <HousingMap />}
+      {selectedTab === "discounts" && (
         <Box
           style={{
             height: "100%",
@@ -258,7 +283,7 @@ const HousingPage = () => {
           justifyContent: "center",
           alignItems: "center",
           position: "absolute",
-          top: selectedView !== "map" ? "85px" : "20px",
+          top: selectedTab !== "map" ? "85px" : "20px",
           left: "50%",
           transform: "translateX(-50%)",
           zIndex: 400,
@@ -268,15 +293,15 @@ const HousingPage = () => {
         }}
       >
         <Tabs
-          value={selectedView}
-          onChange={changeTab}
+          value={selectedTab}
+          onChange={(_, newValue) => changeTab(newValue)}
           textColor="secondary"
           indicatorColor="secondary"
           aria-label="Listings or map selector"
         >
-          <Tab value="listings" label="Listings" />
-          <Tab value="map" label="Map" />
-          <Tab value="discounts" label="Discounts" />
+          {tabs.map((tab) => (
+            <Tab key={tab} value={tab} label={capitalize(tab)} />
+          ))}
         </Tabs>
       </Box>
     </Box>

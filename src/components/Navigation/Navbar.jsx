@@ -63,6 +63,23 @@ function NavBar({}) {
     };
   }, []);
 
+  useEffect(() => {
+    const destinationURL = localStorage.getItem("destinationURL");
+    const openInNewTab = localStorage.getItem("openInNewTab");
+
+    if (!showSignUpModal && destinationURL) {
+      localStorage.removeItem("destinationURL");
+
+      if(openInNewTab){
+        localStorage.removeItem("openInNewTab");
+        window.open(destinationURL, '_blank', 'noopener,noreferrer');
+      }
+      else {
+        router.push(destinationURL);
+      }
+    }
+  }, [showSignUpModal]);
+
   return (
     <>
       <Box
