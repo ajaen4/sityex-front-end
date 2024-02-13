@@ -14,7 +14,7 @@ import {
 import HousingListing from "components/Cards/HousingListing";
 import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 
-import { fetchHousingPage } from "actions";
+import { fetchHousingListings, updateHousingOrderBy } from "actions";
 import { housingPageSize } from "constants/constants";
 
 function renderRow(props) {
@@ -40,17 +40,18 @@ export default function HousingList() {
   const [orderBy, setOrderBy] = useState("housing_id");
   const [pageNum, setPageNum] = useState(1);
 
-  const pagesListings = useSelector(
-    (state) => state.housing.data.pagesListings,
+  const filteredHListings = useSelector(
+    (state) => state.housing.data.filteredHListings,
   );
   const housingState = useSelector((state) => state.housing);
   const selectedCity = useSelector((state) => state.selectedCity.data);
 
   const itemSize = isSmallScreen ? 530 : 255;
   const numPages =
-    pagesListings.length > housingPageSize
-      ? Math.floor(pagesListings.length / housingPageSize) - 1
+    filteredHListings.length > housingPageSize
+      ? Math.floor(filteredHListings.length / housingPageSize) - 1
       : 1;
+  const itemCount = filteredHListings.length > housingPageSize ? housingPageSize : filteredHListings.length;
 
   const updateHeight = () => {
     if (listRef.current) {
@@ -61,12 +62,7 @@ export default function HousingList() {
   };
 
   useEffect(() => {
-    if (housingState.data.orderBy !== orderBy) {
-      dispatch(fetchHousingPage(selectedCity.city_id, orderBy));
-    }
-  }, [orderBy]);
-
-  useEffect(() => {
+    dispatch(fetchHousingListings(selectedCity.city_id));
     updateHeight();
     window.addEventListener("resize", updateHeight);
 
@@ -77,6 +73,7 @@ export default function HousingList() {
 
   const changeOrderBy = (event, orderBy) => {
     setOrderBy(orderBy);
+    dispatch(updateHousingOrderBy(orderBy));
   };
 
   const changePage = (event, value) => {
@@ -129,16 +126,16 @@ export default function HousingList() {
           flexGrow: 1,
         }}
       >
-        {pagesListings.length > 0 && (
+        {filteredHListings.length > 0 && (
           <FixedSizeList
-            height={itemSize * housingPageSize}
+            height={itemSize * itemCount}
             width="100%"
             itemSize={itemSize}
-            itemData={pagesListings.slice(
+            itemData={filteredHListings.slice(
               (pageNum - 1) * housingPageSize,
               pageNum * housingPageSize,
             )}
-            itemCount={housingPageSize}
+            itemCount={itemCount}
             overscanCount={10}
           >
             {renderRow}

@@ -6,34 +6,19 @@ import {
   query,
   limit,
   where,
-  startAfter,
   orderBy,
 } from "firebase/firestore";
 import db from "baas";
 
-export const getHousingPage = async (
-  city_id,
-  orderByV = "housing_id",
-  limitV = null
-) => {
+export const getHousingListings = async (city_id, limitV = null) => {
   try {
     const housingCol = collection(db, "cities", city_id, "housing");
-    console.log("orderByV value:", orderByV);
-
-    let orderF = null;
-    if (orderByV === "rank") {
-      orderF = orderBy("rank");
-    } else if (orderByV === "price") {
-      orderF = orderBy("costs.price");
-    } else {
-      orderF = orderBy(orderByV);
-    }
 
     let q = null;
     if (limitV) {
-      q = query(housingCol, orderF, limit(limitV));
+      q = query(housingCol, limit(limitV));
     } else {
-      q = query(housingCol, orderF);
+      q = query(housingCol);
     }
 
     const housingDocs = await getDocs(q);

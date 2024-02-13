@@ -18,6 +18,12 @@ const HousingSlides = ({}) => {
   const slice = isSmallScreen ? 1 : 5;
   const city_id = "3117735";
 
+  useEffect(() => {
+    api.getHousingListings(city_id, 30).then((data) => {
+      setListings(data);
+    });
+  }, []);
+
   const createSlides = (listings) => {
     let slides = [];
     for (let i = 0; i < listings.length; i += slice) {
@@ -34,6 +40,7 @@ const HousingSlides = ({}) => {
               key={listing.housing_id}
               city_id={city_id}
               housing_id={listing.housing_id}
+              title={listing.title}
             />
           ))}
         </Box>,
