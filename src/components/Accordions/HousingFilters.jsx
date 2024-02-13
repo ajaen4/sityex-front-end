@@ -18,19 +18,11 @@ import MultipleSelect from "components/Selects/MultipleSelect";
 
 import { debounce } from "helpers/usefulFunctions";
 import { updateHousingFilters } from "actions";
-
-const defaultValues = {
-  propertyType: [],
-  furniture: [],
-  totalSize: [],
-  facilities: [],
-  amenities: [],
-  rentType: [],
-};
+import { defaultHousingFilters } from "constants/constants";
 
 const HousingFilters = () => {
   const { register, watch, control } = useForm({
-    defaultValues: defaultValues,
+    defaultValues: defaultHousingFilters,
   });
 
   const dispatch = useDispatch();

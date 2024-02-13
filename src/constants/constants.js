@@ -19,6 +19,15 @@ export const contentHeight = {
   xl: "93.5vh",
 };
 
+export const defaultHousingFilters = {
+  propertyType: [],
+  furniture: [],
+  totalSize: [],
+  facilities: [],
+  amenities: [],
+  rentType: [],
+};
+
 export const imagesCdn = "https://d1dshnpqadx0e7.cloudfront.net/images";
 export const documentsCdn = "https://d1dshnpqadx0e7.cloudfront.net/documents";
 
