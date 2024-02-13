@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "next/navigation";
 
-import { fetchCity, fetchCountry } from "actions";
+import { fetchCity } from "actions";
 
 import { Box } from "@mui/material";
 
@@ -36,10 +36,6 @@ const CityLayout = ({ children }) => {
   useEffect(() => {
     dispatch(fetchCity(city_id));
   }, [city_id]);
-
-  useEffect(() => {
-    if (selectedCity) dispatch(fetchCountry(selectedCity.country_3_code));
-  }, [selectedCity]);
 
   if (selectedCity === null || selectedCity.city_id !== city_id)
     return <CenteredLoadingSpinner />;

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 import { useForm, Controller } from "react-hook-form";
 
@@ -11,10 +12,12 @@ import {
   Grid,
   TextField,
 } from "@mui/material";
-
 import ExpandMoreIcon from "@mui/icons-material/ExpandMoreOutlined";
 
 import MultipleSelect from "components/Selects/MultipleSelect";
+
+import { debounce } from "helpers/usefulFunctions";
+import { updateHousingFilters } from "actions";
 
 const defaultValues = {
   propertyType: [],
@@ -22,6 +25,7 @@ const defaultValues = {
   totalSize: [],
   facilities: [],
   amenities: [],
+  rentType: [],
 };
 
 const HousingFilters = () => {
@@ -29,13 +33,19 @@ const HousingFilters = () => {
     defaultValues: defaultValues,
   });
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const subscription = watch((value, { name, type }) => onSubmit(value));
     return () => subscription.unsubscribe();
   }, [watch]);
 
+  const debounceFilters = debounce((data) => {
+    dispatch(updateHousingFilters(data))}, 700
+  );
+
   const onSubmit = (data) => {
-    console.log(data);
+    debounceFilters(data);
   };
 
   return (
@@ -89,11 +99,9 @@ const HousingFilters = () => {
                 <MultipleSelect
                   {...field}
                   options={[
-                    "Studio",
                     "Apartment",
-                    "Private room",
-                    "Shared room",
-                    "Student residence",
+                    "Building",
+                    "House",
                   ]}
                   label="Property type"
                 />
@@ -149,6 +157,23 @@ const HousingFilters = () => {
                     "Basement",
                   ]}
                   label="Facilities"
+                />
+              )}
+            />
+          </Grid>
+          <Grid item xs={6} md={2.5}>
+            <Controller
+              name="rentType"
+              control={control}
+              render={({ field }) => (
+                <MultipleSelect
+                  {...field}
+                  options={[
+                    "Private room",
+                    "Entire place",
+                    "Shared room",
+                  ]}
+                  label="Rent type"
                 />
               )}
             />

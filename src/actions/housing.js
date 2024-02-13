@@ -1,23 +1,39 @@
 import * as api from "api";
 
 import {
-  fetchHousingPageSuccess,
-  fetchingHousingPage,
+  fetchHousingListingsSuccess,
+  fetchingHousingListings,
+  setHousingOrderBy,
+  setHousingFilters,
 } from "store/reducers/housing";
 
-export const fetchHousingPage =
-  (city_id, orderBy, limit) => (dispatch, getState) => {
-    dispatch(fetchingHousingPage());
+export const fetchHousingListings = (city_id, limit) => (dispatch, _) => {
+  dispatch(fetchingHousingListings());
 
-    return api.getHousingPage(city_id, orderBy, limit).then((data) => {
-      dispatch(
-        fetchHousingPageSuccess({
-          pageListings: data,
-          orderBy: orderBy,
-        })
-      );
-    });
-  };
+  return api.getHousingListings(city_id, limit).then((data) => {
+    dispatch(
+      fetchHousingListingsSuccess({
+        housingListings: data,
+      })
+    );
+  });
+};
+
+export const updateHousingOrderBy = (orderBy) => (dispatch, _) => {
+  dispatch(
+    setHousingOrderBy({
+      orderBy: orderBy,
+    })
+  );
+};
+
+export const updateHousingFilters = (filters) => (dispatch, _) => {
+  dispatch(
+    setHousingFilters({
+      filters: filters,
+    })
+  );
+};
 
 export const fetchHousingListing = (city_id, housing_id) => {
   return api.getHousingListing(city_id, housing_id);

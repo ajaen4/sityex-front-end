@@ -23,7 +23,7 @@ const ZoomHandler = ({ onZoom }) => {
 
 function HousingMap() {
   const selectedCity = useSelector((state) => state.selectedCity.data);
-  const housingIndex = useSelector((state) => state.housing.data.pagesListings);
+  const housingIndex = useSelector((state) => state.housing.data.filteredHListings);
   const isFetchingHousing = useSelector((state) => state.housing.isFetching);
   const [selectedListing, setSelectedListing] = useState(null);
   const [currentZoom, setCurrentZoom] = useState(11);
