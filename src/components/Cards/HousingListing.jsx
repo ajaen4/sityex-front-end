@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 import { useTheme } from "@mui/material/styles";
 import {
@@ -14,9 +15,15 @@ import {
 
 import ListingSlides from "components/Slides/ListingSlides";
 
+import { fetchListingImages } from "actions";
+
 const HousingListing = ({ listing }) => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+
+  const [images, setImages] = useState();
+
+  const selectedCity = useSelector((state) => state.selectedCity.data);
 
   const maxDescriptionLength = isSmallScreen ? 200 : 250;
 
@@ -36,6 +43,14 @@ const HousingListing = ({ listing }) => {
     }).format(number);
   };
 
+  useEffect(() => {
+    fetchListingImages(selectedCity.city_id, listing.housing_id).then(
+      (images) => {
+        setImages(images);
+      }
+    )
+  }, [listing]);
+
   return (
     <Card
       id={listing.housing_id}
@@ -52,7 +67,7 @@ const HousingListing = ({ listing }) => {
       <Grid container>
         <Grid item xs={12} md={4}>
           <ListingSlides
-            listing={listing}
+            images={images}
             imageHeight={isSmallScreen ? "200px" : "240px"}
             autoPlay={false}
           />

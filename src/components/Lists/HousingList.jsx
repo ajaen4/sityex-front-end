@@ -7,15 +7,15 @@ import {
   Box,
   ToggleButton,
   ToggleButtonGroup,
-  Pagination,
   Typography,
+  Pagination,
 } from "@mui/material";
 
 import HousingListing from "components/Cards/HousingListing";
 import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 
-import { housingPageSize } from "constants/constants";
 import { fetchHousingPage } from "actions";
+import { housingPageSize } from "constants/constants";
 
 function renderRow(props) {
   const { index, style, data } = props;
@@ -37,19 +37,19 @@ export default function HousingList() {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
   const dispatch = useDispatch();
 
-  const [orderBy, setOrderBy] = useState(-1);
+  const [orderBy, setOrderBy] = useState("housing_id");
   const [pageNum, setPageNum] = useState(1);
 
   const pagesListings = useSelector(
     (state) => state.housing.data.pagesListings,
   );
-  const housingIndex = useSelector((state) => state.housing.data);
+  const housingState = useSelector((state) => state.housing);
   const selectedCity = useSelector((state) => state.selectedCity.data);
 
   const itemSize = isSmallScreen ? 530 : 255;
   const numPages =
-    housingIndex.index.length > housingPageSize
-      ? Math.floor(housingIndex.index.length / housingPageSize) - 1
+    pagesListings.length > housingPageSize
+      ? Math.floor(pagesListings.length / housingPageSize) - 1
       : 1;
 
   const updateHeight = () => {
@@ -61,12 +61,9 @@ export default function HousingList() {
   };
 
   useEffect(() => {
-    dispatch(fetchHousingPage(selectedCity.city_id, pageNum - 1, orderBy));
-  }, [pageNum]);
-
-  useEffect(() => {
-    setPageNum(1);
-    dispatch(fetchHousingPage(selectedCity.city_id, pageNum - 1, orderBy));
+    if (housingState.data.orderBy !== orderBy) {
+      dispatch(fetchHousingPage(selectedCity.city_id, orderBy));
+    }
   }, [orderBy]);
 
   useEffect(() => {
@@ -86,21 +83,21 @@ export default function HousingList() {
     setPageNum(value);
   };
 
-  if (!pagesListings || pagesListings.length < pageNum) {
+  if (housingState.isFetching) {
     return <CenteredLoadingSpinner />;
   }
 
   return (
     <Box>
       <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "end",
-            mr: { xs: 1, md: 10 },
-            my: 1,
-          }}
-        >
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "end",
+          mr: { xs: 1, md: 10 },
+          my: 1,
+        }}
+      >
         <Pagination
           count={numPages}
           siblingCount={0}
@@ -132,16 +129,21 @@ export default function HousingList() {
           flexGrow: 1,
         }}
       >
-        <FixedSizeList
-          height={itemSize * pagesListings[pageNum - 1].length}
-          width="100%"
-          itemSize={itemSize}
-          itemData={pagesListings[pageNum - 1]}
-          itemCount={pagesListings[pageNum - 1].length}
-          overscanCount={10}
-        >
-          {renderRow}
-        </FixedSizeList>
+        {pagesListings.length > 0 && (
+          <FixedSizeList
+            height={itemSize * housingPageSize}
+            width="100%"
+            itemSize={itemSize}
+            itemData={pagesListings.slice(
+              (pageNum - 1) * housingPageSize,
+              pageNum * housingPageSize,
+            )}
+            itemCount={housingPageSize}
+            overscanCount={10}
+          >
+            {renderRow}
+          </FixedSizeList>
+        )}
       </Box>
       <Box
         sx={{

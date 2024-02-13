@@ -27,7 +27,6 @@ const HousingMap = dynamic(() => import("components/Maps/HousingMap"), {
 import HousingFilters from "components/Accordions/HousingFilters";
 import { useShowSignUpContext } from "components/Contexts/ShowSignUpContext";
 
-import { fetchHousingIndex } from "actions";
 import { capitalize } from "helpers/usefulFunctions";
 
 import { imagesCdn, documentsCdn } from "constants/constants";
@@ -39,13 +38,10 @@ const HousingPage = () => {
   const [selectedTab, setSelectedTab] = useState("listings");
 
   const selectedCity = useSelector((state) => state.selectedCity.data);
-  const housingIndex = useSelector((state) => state.housing.data);
   const auth = useSelector((state) => state.auth);
 
   const { setShowSignUpModal } = useShowSignUpContext();
   const router = useRouter();
-
-  const dispatch = useDispatch();
 
   const changeTab = (newValue) => {
     const destinationURL = `/destination/${selectedCity.city_id}/housing/?tab=${newValue}`;
@@ -60,21 +56,10 @@ const HousingPage = () => {
   };
 
   useEffect(() => {
-    if (!selectedCity) {
-      return;
-    }
-    dispatch(fetchHousingIndex(selectedCity.city_id));
-  }, [selectedCity.city_id]);
-
-  useEffect(() => {
     if (searchParams.get("tab") && tabs.includes(searchParams.get("tab"))) {
       changeTab(searchParams.get("tab"));
     }
   }, [searchParams.get("tab"), auth]);
-
-  if (!housingIndex || housingIndex.city_id !== selectedCity.city_id) {
-    return <CenteredLoadingSpinner />;
-  }
 
   return (
     <Box

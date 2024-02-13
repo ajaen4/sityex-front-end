@@ -4,7 +4,6 @@ const HousingSlice = createSlice({
   name: "housing",
   initialState: {
     data: {
-      index: null,
       city_id: null,
       pagesListings: [],
       lastVisibleDocId: null,
@@ -14,24 +13,17 @@ const HousingSlice = createSlice({
     isFetching: false,
   },
   reducers: {
-    requestingHousingIndex: (state) => {
-      state.isFetching = true;
-    },
-    fetchHousingIndexSuccess: (state, action) => {
-      state.data.index = action.payload.index;
-      state.data.city_id = action.payload.city_id;
-      state.isFetching = false;
-    },
     resetHousingPage: (state, _) => {
       state.data.pagesListings = [];
       state.data.lastVisibleDocId = null;
       state.data.orderBy = null;
       state.isFetching = false;
     },
+    fetchingHousingPage: (state) => {
+      state.isFetching = true;
+    },
     fetchHousingPageSuccess: (state, action) => {
-      state.data.pagesListings[action.payload.pageNum] =
-        action.payload.pageListings;
-      state.data.lastVisibleDocId = action.payload.lastVisibleDocId;
+      state.data.pagesListings = action.payload.pageListings;
       state.data.orderBy = action.payload.orderBy;
       state.isFetching = false;
     },
@@ -39,9 +31,8 @@ const HousingSlice = createSlice({
 });
 
 export const {
-  requestingHousingIndex,
-  fetchHousingIndexSuccess,
   fetchHousingPageSuccess,
   resetHousingPage,
+  fetchingHousingPage,
 } = HousingSlice.actions;
 export default HousingSlice.reducer;

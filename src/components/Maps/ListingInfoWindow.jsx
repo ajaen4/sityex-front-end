@@ -1,20 +1,32 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 import { Card, CardContent, Typography, Box, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
 import ListingSlides from "components/Slides/ListingSlides";
 
+import { fetchListingImages } from "actions";
+
 const ListingInfoWindow = ({ listing, setSelectedListing }) => {
   const cardRef = useRef(null);
+
+  const [images, setImages] = useState();
+  const selectedCity = useSelector((state) => state.selectedCity.data);
 
   useEffect(() => {
     if (cardRef?.current) {
       const disableClickPropagation = L?.DomEvent?.disableClickPropagation;
       disableClickPropagation(cardRef.current);
     }
+
+    fetchListingImages(selectedCity.city_id, listing.housing_id).then(
+      (images) => {
+        setImages(images);
+      }
+    )
   }, [listing]);
 
   const formatPrice = (price) => {
@@ -71,7 +83,7 @@ const ListingInfoWindow = ({ listing, setSelectedListing }) => {
         <CloseIcon fontSize="small" />
       </IconButton>
       <ListingSlides
-        listing={listing}
+        images={images}
         isInMap={true}
         imageHeight={"200px"}
         autoPlay={true}

@@ -11,11 +11,14 @@ import {
 } from "firebase/firestore";
 import db from "baas";
 
-import { housingPageSize } from "constants/constants";
-
-export const getHousingPage = async (city_id, lastVisibleDocId, orderByV) => {
+export const getHousingPage = async (
+  city_id,
+  orderByV = "housing_id",
+  limitV = null
+) => {
   try {
     const housingCol = collection(db, "cities", city_id, "housing");
+    console.log("orderByV value:", orderByV);
 
     let orderF = null;
     if (orderByV === "rank") {
@@ -23,27 +26,14 @@ export const getHousingPage = async (city_id, lastVisibleDocId, orderByV) => {
     } else if (orderByV === "price") {
       orderF = orderBy("costs.price");
     } else {
-      orderF = orderBy("housing_id");
+      orderF = orderBy(orderByV);
     }
 
     let q = null;
-    if (lastVisibleDocId) {
-      const lastVisibleDocRef = doc(
-        db,
-        "cities",
-        city_id,
-        "housing",
-        lastVisibleDocId
-      );
-      const lastVisibleDoc = await getDoc(lastVisibleDocRef);
-      q = query(
-        housingCol,
-        orderF,
-        startAfter(lastVisibleDoc),
-        limit(housingPageSize)
-      );
+    if (limitV) {
+      q = query(housingCol, orderF, limit(limitV));
     } else {
-      q = query(housingCol, orderF, limit(housingPageSize));
+      q = query(housingCol, orderF);
     }
 
     const housingDocs = await getDocs(q);
@@ -71,22 +61,19 @@ export const getHousingListing = async (city_id, housing_id) => {
   }
 };
 
-export const getHousingIndex = async (city_id) => {
+export const getListingImages = async (city_id, housing_id) => {
   try {
-    const document_name = "index";
-    const indexDoc = await getDoc(
-      doc(collection(db, "cities", city_id, "housing_index"), document_name)
+    const housingDoc = await getDoc(
+      doc(collection(db, "cities", city_id, "housing_images"), housing_id)
     );
-    if (!indexDoc.exists()) {
-      console.log(
-        "No such document " + document_name + " in collection housing!"
-      );
+    if (!housingDoc.exists()) {
+      console.log("No such document ", housing_id, " in collection cities!");
       return {};
     } else {
-      return indexDoc.data();
+      return housingDoc.data();
     }
   } catch (err) {
-    console.error("Error fetching housing index:", err);
+    console.error("Error fetching housing listing:", err);
     return err;
   }
 };
