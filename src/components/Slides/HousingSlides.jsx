@@ -18,12 +18,6 @@ const HousingSlides = ({}) => {
   const slice = isSmallScreen ? 1 : 5;
   const city_id = "3117735";
 
-  useEffect(() => {
-    api.getHousingIndex(city_id).then((response) => {
-      setListings(response.listings.slice(0, 30));
-    });
-  }, []);
-
   const createSlides = (listings) => {
     let slides = [];
     for (let i = 0; i < listings.length; i += slice) {

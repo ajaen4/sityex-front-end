@@ -1,9 +1,9 @@
-export const sortListings = (listings, sortBy) => {
+export const sortListings = (listings, orderBy) => {
   const sortedHousingIndex = [...listings].sort((a, b) => {
-    if (sortBy === "rank") {
+    if (orderBy === "rank") {
       return a.rank - b.rank;
     }
-    if (sortBy === "price") {
+    if (orderBy === "price") {
       return (
         parseFloat(a.costsFormatted.price) - parseFloat(b.costsFormatted.price)
       );

@@ -1,9 +1,21 @@
-import React, { useEffect, useRef } from "react";
-import { useSelector } from "react-redux";
+import React, { useState, useEffect, useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { FixedSizeList } from "react-window";
-import { useMediaQuery, useTheme } from "@mui/material";
+import {
+  useMediaQuery,
+  useTheme,
+  Box,
+  ToggleButton,
+  ToggleButtonGroup,
+  Typography,
+  Pagination,
+} from "@mui/material";
 
 import HousingListing from "components/Cards/HousingListing";
+import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
+
+import { fetchHousingPage } from "actions";
+import { housingPageSize } from "constants/constants";
 
 function renderRow(props) {
   const { index, style, data } = props;
@@ -19,19 +31,26 @@ function renderRow(props) {
   );
 }
 
-export default function HousingList({ pageNum }) {
+export default function HousingList() {
   const listRef = useRef();
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
-  const housingIndex = useSelector((state) => state.housing.data);
+  const dispatch = useDispatch();
+
+  const [orderBy, setOrderBy] = useState("housing_id");
+  const [pageNum, setPageNum] = useState(1);
+
+  const pagesListings = useSelector(
+    (state) => state.housing.data.pagesListings,
+  );
+  const housingState = useSelector((state) => state.housing);
+  const selectedCity = useSelector((state) => state.selectedCity.data);
 
   const itemSize = isSmallScreen ? 530 : 255;
-  const itemsPerPage = 30;
-  const slicedData = housingIndex.listings.slice(
-    (pageNum - 1) * itemsPerPage,
-    pageNum * itemsPerPage,
-  );
-  const actualItemCount = slicedData.length;
+  const numPages =
+    pagesListings.length > housingPageSize
+      ? Math.floor(pagesListings.length / housingPageSize) - 1
+      : 1;
 
   const updateHeight = () => {
     if (listRef.current) {
@@ -42,6 +61,12 @@ export default function HousingList({ pageNum }) {
   };
 
   useEffect(() => {
+    if (housingState.data.orderBy !== orderBy) {
+      dispatch(fetchHousingPage(selectedCity.city_id, orderBy));
+    }
+  }, [orderBy]);
+
+  useEffect(() => {
     updateHeight();
     window.addEventListener("resize", updateHeight);
 
@@ -50,16 +75,118 @@ export default function HousingList({ pageNum }) {
     };
   }, []);
 
+  const changeOrderBy = (event, orderBy) => {
+    setOrderBy(orderBy);
+  };
+
+  const changePage = (event, value) => {
+    setPageNum(value);
+  };
+
+  if (housingState.isFetching) {
+    return <CenteredLoadingSpinner />;
+  }
+
   return (
-    <FixedSizeList
-      height={itemSize * actualItemCount}
-      width="100%"
-      itemSize={itemSize}
-      itemData={slicedData}
-      itemCount={actualItemCount}
-      overscanCount={10}
-    >
-      {renderRow}
-    </FixedSizeList>
+    <Box>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "end",
+          mr: { xs: 1, md: 10 },
+          my: 1,
+        }}
+      >
+        <Pagination
+          count={numPages}
+          siblingCount={0}
+          boundaryCount={1}
+          size="small"
+          page={pageNum}
+          onChange={changePage}
+        />
+        <Typography variant="h5" sx={{ mx: 1 }}>
+          Order by:
+        </Typography>
+        <ToggleButtonGroup
+          color="primary"
+          value={orderBy}
+          exclusive
+          onChange={changeOrderBy}
+          aria-label="orderBy"
+          size="small"
+        >
+          <ToggleButton value="rank">Rank</ToggleButton>
+          <ToggleButton value="price">Price</ToggleButton>
+        </ToggleButtonGroup>
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          width: "100%",
+          flexGrow: 1,
+        }}
+      >
+        {pagesListings.length > 0 && (
+          <FixedSizeList
+            height={itemSize * housingPageSize}
+            width="100%"
+            itemSize={itemSize}
+            itemData={pagesListings.slice(
+              (pageNum - 1) * housingPageSize,
+              pageNum * housingPageSize,
+            )}
+            itemCount={housingPageSize}
+            overscanCount={10}
+          >
+            {renderRow}
+          </FixedSizeList>
+        )}
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "end",
+          alignItems: "center",
+          width: "100%",
+          minHeight: { xs: 110, md: 0 },
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "end",
+            mr: { xs: 1, md: 10 },
+            my: 1,
+          }}
+        >
+          <Pagination
+            count={numPages}
+            siblingCount={0}
+            boundaryCount={1}
+            size="small"
+            page={pageNum}
+            onChange={changePage}
+          />
+          <Typography variant="h5" sx={{ mx: 1 }}>
+            Order by:
+          </Typography>
+          <ToggleButtonGroup
+            color="primary"
+            value={orderBy}
+            exclusive
+            onChange={changeOrderBy}
+            aria-label="orderBy"
+            size="small"
+          >
+            <ToggleButton value="rank">Rank</ToggleButton>
+            <ToggleButton value="price">Price</ToggleButton>
+          </ToggleButtonGroup>
+        </Box>
+      </Box>
+    </Box>
   );
 }

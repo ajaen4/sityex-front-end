@@ -3,7 +3,8 @@ import Carousel from "react-material-ui-carousel";
 
 import { Box } from "@mui/material";
 
-const ListingSlides = ({ listing, isInMap, imageHeight, autoPlay, swipe }) => {
+
+const ListingSlides = ({ images, isInMap, imageHeight, autoPlay, swipe }) => {
   const carouselRef = React.useRef(null);
 
   useEffect(() => {
@@ -36,14 +37,14 @@ const ListingSlides = ({ listing, isInMap, imageHeight, autoPlay, swipe }) => {
 
   return (
     <div ref={carouselRef}>
-      {listing.images && (
+      {images && (
         <Carousel
-          navButtonsAlwaysVisible={listing.images.length > 1}
+          navButtonsAlwaysVisible={images.images.length > 1}
           indicators={false}
           autoPlay={autoPlay}
           swipe={swipe ? true : false}
         >
-          {createSlides(listing.images)}
+          {createSlides(images.images)}
         </Carousel>
       )}
     </div>

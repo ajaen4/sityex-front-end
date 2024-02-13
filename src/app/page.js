@@ -120,7 +120,7 @@ const LandingPage = () => {
             variant="h2"
             sx={{ color: "grey.500", fontSize: 35, px: 3 }}
           >
-            Your go-to platform for expats
+            Your one-stop platform for expats
           </Typography>
           <Typography
             variant="h1"

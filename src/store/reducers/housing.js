@@ -1,23 +1,38 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const HousingIndexSlice = createSlice({
-  name: "housingIndex",
+const HousingSlice = createSlice({
+  name: "housing",
   initialState: {
-    data: null,
+    data: {
+      city_id: null,
+      pagesListings: [],
+      lastVisibleDocId: null,
+      orderBy: null,
+    },
+    filters: null,
     isFetching: false,
-    error: null,
   },
   reducers: {
-    requestingHousingIndex: (state) => {
+    resetHousingPage: (state, _) => {
+      state.data.pagesListings = [];
+      state.data.lastVisibleDocId = null;
+      state.data.orderBy = null;
+      state.isFetching = false;
+    },
+    fetchingHousingPage: (state) => {
       state.isFetching = true;
     },
-    fetchHousingIndexSuccess: (state, action) => {
-      state.data = action.payload.housingIndex;
+    fetchHousingPageSuccess: (state, action) => {
+      state.data.pagesListings = action.payload.pageListings;
+      state.data.orderBy = action.payload.orderBy;
       state.isFetching = false;
     },
   },
 });
 
-export const { requestingHousingIndex, fetchHousingIndexSuccess } =
-  HousingIndexSlice.actions;
-export default HousingIndexSlice.reducer;
+export const {
+  fetchHousingPageSuccess,
+  resetHousingPage,
+  fetchingHousingPage,
+} = HousingSlice.actions;
+export default HousingSlice.reducer;
