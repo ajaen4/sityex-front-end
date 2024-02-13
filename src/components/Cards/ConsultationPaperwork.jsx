@@ -47,11 +47,10 @@ const ConsultationPaperwork = ({
       setShowSignUpModal(true);
       localStorage.setItem("destinationURL", freeConsultationLink);
       localStorage.setItem("openInNewTab", true);
+    } else {
+      window.open(freeConsultationLink, "_blank", "noopener,noreferrer");
     }
-    else{
-      window.open(freeConsultationLink, '_blank', 'noopener,noreferrer');
-    }
-  }
+  };
 
   return (
     <Box>

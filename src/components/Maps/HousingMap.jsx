@@ -59,7 +59,7 @@ function HousingMap() {
         url={`${STREET_MAP_STYLE}${TOKEN}`}
       />
       <HousingMarkerCluster
-        listings={housingIndex.listings}
+        listings={housingIndex.index}
         onClickListing={onClickListing}
         currentZoom={currentZoom}
       />

@@ -20,7 +20,9 @@ const HousingSlides = ({}) => {
 
   useEffect(() => {
     api.getHousingIndex(city_id).then((response) => {
-      setListings(response.listings.slice(0, 30));
+      if (response.index) {
+        setListings(response.index.slice(0, 30));
+      }
     });
   }, []);
 

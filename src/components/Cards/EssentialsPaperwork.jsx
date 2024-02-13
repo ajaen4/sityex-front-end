@@ -41,11 +41,10 @@ const EssentialsPaperwork = ({
       setShowSignUpModal(true);
       localStorage.setItem("destinationURL", paymentLink);
       localStorage.setItem("openInNewTab", true);
+    } else {
+      window.open(paymentLink, "_blank", "noopener,noreferrer");
     }
-    else{
-      window.open(paymentLink, '_blank', 'noopener,noreferrer');
-    }
-  }
+  };
 
   return (
     <Card

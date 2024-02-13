@@ -74,19 +74,16 @@ function NavBar({}) {
     if (!showSignUpModal && destinationURL && auth.isAuthResolved) {
       localStorage.removeItem("destinationURL");
 
-      if(openInNewTab){
+      if (openInNewTab) {
         localStorage.removeItem("openInNewTab");
-        window.open(destinationURL, '_blank', 'noopener,noreferrer');
-      }
-      else {
+        window.open(destinationURL, "_blank", "noopener,noreferrer");
+      } else {
         router.push(destinationURL);
       }
-    }
-    else if(!showSignUpModal && auth.isAuthResolved === false){
+    } else if (!showSignUpModal && auth.isAuthResolved === false) {
       localStorage.removeItem("destinationURL");
       localStorage.removeItem("openInNewTab");
     }
-
   }, [showSignUpModal, auth]);
 
   return (

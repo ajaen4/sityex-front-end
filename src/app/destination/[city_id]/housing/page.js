@@ -11,9 +11,6 @@ import {
   Tabs,
   Tab,
   Typography,
-  ToggleButton,
-  ToggleButtonGroup,
-  Pagination,
   Card,
   CardMedia,
   CardContent,
@@ -27,21 +24,19 @@ const HousingMap = dynamic(() => import("components/Maps/HousingMap"), {
   ssr: false,
   loading: () => <CenteredLoadingSpinner />,
 });
+import HousingFilters from "components/Accordions/HousingFilters";
 import { useShowSignUpContext } from "components/Contexts/ShowSignUpContext";
 
-import { fetchHousingIndex, orderHousingIndex } from "actions";
+import { fetchHousingIndex } from "actions";
 import { capitalize } from "helpers/usefulFunctions";
 
 import { imagesCdn, documentsCdn } from "constants/constants";
 
 const tabs = ["listings", "map", "discounts"];
-
 const HousingPage = () => {
   const searchParams = useSearchParams();
 
   const [selectedTab, setSelectedTab] = useState("listings");
-  const [sortBy, setSortBy] = useState(-1);
-  const [pageNum, setPageNum] = useState(1);
 
   const selectedCity = useSelector((state) => state.selectedCity.data);
   const housingIndex = useSelector((state) => state.housing.data);
@@ -64,20 +59,10 @@ const HousingPage = () => {
     }
   };
 
-  const changeSortBy = (event, sortBy) => {
-    setSortBy(sortBy);
-    dispatch(orderHousingIndex(sortBy));
-  };
-
-  const changePage = (event, value) => {
-    setPageNum(value);
-  };
-
   useEffect(() => {
     if (!selectedCity) {
       return;
     }
-
     dispatch(fetchHousingIndex(selectedCity.city_id));
   }, [selectedCity.city_id]);
 
@@ -87,14 +72,9 @@ const HousingPage = () => {
     }
   }, [searchParams.get("tab"), auth]);
 
-  if (!housingIndex) {
+  if (!housingIndex || housingIndex.city_id !== selectedCity.city_id) {
     return <CenteredLoadingSpinner />;
   }
-
-  const numPages =
-    housingIndex.listings.length > 30
-      ? Math.floor(housingIndex.listings.length / 30) - 1
-      : 1;
 
   return (
     <Box
@@ -128,95 +108,14 @@ const HousingPage = () => {
           <Box
             sx={{
               display: "flex",
-              justifyContent: "end",
-              alignItems: "start",
+              justifyContent: "center",
               width: "100%",
               mt: 18,
             }}
           >
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                mr: { xs: 1, md: 10 },
-                mb: 1,
-              }}
-            >
-              <Pagination
-                count={numPages}
-                siblingCount={0}
-                boundaryCount={1}
-                size="small"
-                page={pageNum}
-                onChange={changePage}
-              />
-              <Typography variant="h5" sx={{ mx: 1 }}>
-                Order by:
-              </Typography>
-              <ToggleButtonGroup
-                color="primary"
-                value={sortBy}
-                exclusive
-                onChange={changeSortBy}
-                aria-label="sortBy"
-                size="small"
-              >
-                <ToggleButton value="rank">Rank</ToggleButton>
-                <ToggleButton value="price">Price</ToggleButton>
-              </ToggleButtonGroup>
-            </Box>
+            <HousingFilters />
           </Box>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              width: "100%",
-              flexGrow: 1,
-            }}
-          >
-            <HousingList pageNum={pageNum} />
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "end",
-              alignItems: "start",
-              width: "100%",
-              minHeight: { xs: 110, md: 0 },
-            }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                mr: { xs: 1, md: 10 },
-                mb: 1,
-              }}
-            >
-              <Pagination
-                count={numPages}
-                siblingCount={0}
-                boundaryCount={1}
-                size="small"
-                page={pageNum}
-                onChange={changePage}
-              />
-              <Typography variant="h5" sx={{ mx: 1 }}>
-                Order by:
-              </Typography>
-              <ToggleButtonGroup
-                color="primary"
-                value={sortBy}
-                exclusive
-                onChange={changeSortBy}
-                aria-label="sortBy"
-                size="small"
-              >
-                <ToggleButton value="rank">Rank</ToggleButton>
-                <ToggleButton value="price">Price</ToggleButton>
-              </ToggleButtonGroup>
-            </Box>
-          </Box>
+          <HousingList />
         </Box>
       )}
       {selectedTab === "map" && <HousingMap />}

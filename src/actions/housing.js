@@ -3,39 +3,53 @@ import * as api from "api";
 import {
   requestingHousingIndex,
   fetchHousingIndexSuccess,
+  fetchHousingPageSuccess,
+  resetHousingPage,
 } from "store/reducers/housing";
 
-import { sortListings } from "helpers/listUtils";
-
-export const fetchHousingIndex = (city_id, sortBy) => (dispatch, getState) => {
-  const current_city_id = getState().housing.data?.city_id;
+export const fetchHousingIndex = (city_id) => (dispatch, getState) => {
+  const current_city_id = getState().housing.data.city_id;
   if (current_city_id === city_id) {
     return Promise.resolve();
   }
   dispatch(requestingHousingIndex());
   return api.getHousingIndex(city_id).then((data) => {
-    if (sortBy) {
-      data.listings = sortListings(data.listings, sortBy);
-    }
-
     dispatch(
       fetchHousingIndexSuccess({
-        housingIndex: data,
-      }),
+        index: data.index,
+        city_id: city_id,
+      })
     );
   });
 };
 
+export const fetchHousingPage =
+  (city_id, pageNum, orderBy) => (dispatch, getState) => {
+    const maxPageNum = getState().housing.data.pagesListings.length - 1;
+    const lastVisibleDocId = getState().housing.data.lastVisibleDocId;
+
+    const newOrderBy = getState().housing.data.orderBy !== orderBy;
+
+    if (newOrderBy) {
+      resetHousingPage();
+    }
+
+    if (newOrderBy || pageNum > maxPageNum) {
+      return api
+        .getHousingPage(city_id, lastVisibleDocId, orderBy)
+        .then((data) => {
+          dispatch(
+            fetchHousingPageSuccess({
+              pageNum: pageNum,
+              pageListings: data,
+              lastVisibleDocId: data[data.length - 1].housing_id,
+              orderBy: orderBy,
+            })
+          );
+        });
+    }
+  };
+
 export const fetchHousingListing = (city_id, housing_id) => {
   return api.getHousingListing(city_id, housing_id);
-};
-
-export const orderHousingIndex = (sortBy) => (dispatch, getState) => {
-  const currHousingIndex = getState().housing.data.listings;
-
-  dispatch(
-    fetchHousingIndexSuccess({
-      housingIndex: { listings: sortListings(currHousingIndex, sortBy) },
-    }),
-  );
 };

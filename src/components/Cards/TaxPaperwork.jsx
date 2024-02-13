@@ -52,11 +52,10 @@ const TaxPaperwork = ({
       setShowSignUpModal(true);
       localStorage.setItem("destinationURL", paymentLink);
       localStorage.setItem("openInNewTab", true);
+    } else {
+      window.open(paymentLink, "_blank", "noopener,noreferrer");
     }
-    else{
-      window.open(paymentLink, '_blank', 'noopener,noreferrer');
-    }
-  }
+  };
 
   return (
     <Box>
@@ -97,9 +96,7 @@ const TaxPaperwork = ({
                 style={{ marginTop: is_taxdown ? 25 : 15, marginBottom: 15 }}
               />
             </Box>
-            <Box sx={{ textAlign: "left" }}>
-            {content}
-            </Box>
+            <Box sx={{ textAlign: "left" }}>{content}</Box>
           </Box>
           {!is_taxdown && (
             <Chip
