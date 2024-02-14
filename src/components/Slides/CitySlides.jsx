@@ -24,17 +24,23 @@ const CitySlides = () => {
 
   const createSlides = (cities) => {
     let slides = [];
-    for (let i = 0; i < cities.length; i += slice) {
+    const totalSlides = Math.ceil(cities.length / slice);
+    for (let slide = 0; slide < totalSlides; slide++) {
+      let slideCities = [];
+      for (let i = 0; i < slice; i++) {
+        const cityIndex = (slide * slice + i) % cities.length;
+        slideCities.push(cities[cityIndex]);
+      }
       slides.push(
         <Box
-          key={i}
+          key={slide}
           sx={{
             display: "flex",
             width: "100%",
             height: "60vh",
           }}
         >
-          {cities.slice(i, i + slice).map((city) => (
+          {slideCities.map((city) => (
             <Paper key={city.city_id} sx={{ flex: 1, m: 1 }}>
               <Box
                 style={{
@@ -57,7 +63,7 @@ const CitySlides = () => {
               </Box>
             </Paper>
           ))}
-        </Box>,
+        </Box>
       );
     }
     return slides;
@@ -65,7 +71,6 @@ const CitySlides = () => {
 
   return (
     <Carousel
-      sx={{ width: "100%" }}
       navButtonsAlwaysVisible
       indicators={false}
       interval={7000}

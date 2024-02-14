@@ -51,7 +51,6 @@ const HousingSlides = ({}) => {
 
   return (
     <Carousel
-      sx={{ width: "100%" }}
       navButtonsAlwaysVisible
       indicators={false}
       interval={7000}
