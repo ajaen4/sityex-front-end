@@ -5,12 +5,10 @@ import {
   InputLabel,
   MenuItem,
   FormControl,
-  ListItemText,
   Select,
-  Checkbox,
 } from "@mui/material";
 
-const MultipleSelect = React.forwardRef(
+const SingleSelect = React.forwardRef(
   ({ onChange, value, options, label }, ref) => {
     const handleChange = (event) => {
       const {
@@ -24,24 +22,13 @@ const MultipleSelect = React.forwardRef(
         <FormControl sx={{ width: "100%" }}>
           <InputLabel>{label}</InputLabel>
           <Select
-            multiple
             value={value}
             onChange={handleChange}
             input={<OutlinedInput label={label} />}
-            renderValue={(selected) =>
-              selected
-                .map(
-                  (selectedValue) =>
-                    options.find((option) => option.value === selectedValue)
-                      ?.label || selectedValue,
-                )
-                .join(", ")
-            }
           >
             {options.map((option) => (
               <MenuItem key={option.value} value={option.value}>
-                <Checkbox checked={value.includes(option.value)} />
-                <ListItemText primary={option.label} />
+                {option.label}
               </MenuItem>
             ))}
           </Select>
@@ -51,4 +38,4 @@ const MultipleSelect = React.forwardRef(
   },
 );
 
-export default MultipleSelect;
+export default SingleSelect;

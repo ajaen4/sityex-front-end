@@ -15,7 +15,7 @@ export const fetchCountries = () => (dispatch, getState) => {
     dispatch(
       fetchAllCountriesSuccess({
         allCountriesData: data,
-      })
+      }),
     );
   });
 };

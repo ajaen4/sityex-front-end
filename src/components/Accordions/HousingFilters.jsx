@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { useForm, Controller } from "react-hook-form";
 
@@ -15,14 +15,16 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMoreOutlined";
 
 import MultipleSelect from "components/Selects/MultipleSelect";
+import SingleSelect from "components/Selects/SingleSelect";
 
 import { debounce } from "helpers/usefulFunctions";
 import { updateHousingFilters } from "actions";
-import { defaultHousingFilters } from "constants/constants";
 
 const HousingFilters = () => {
+  const housingFilters = useSelector((state) => state.housing.data.filters);
+
   const { register, watch, control } = useForm({
-    defaultValues: defaultHousingFilters,
+    defaultValues: housingFilters,
   });
 
   const dispatch = useDispatch();
@@ -33,8 +35,8 @@ const HousingFilters = () => {
   }, [watch]);
 
   const debounceFilters = debounce((data) => {
-    dispatch(updateHousingFilters(data))}, 700
-  );
+    dispatch(updateHousingFilters(data));
+  }, 500);
 
   const onSubmit = (data) => {
     debounceFilters(data);
@@ -91,9 +93,9 @@ const HousingFilters = () => {
                 <MultipleSelect
                   {...field}
                   options={[
-                    "Apartment",
-                    "Building",
-                    "House",
+                    { label: "Apartment", value: "apartment" },
+                    { label: "Building", value: "building" },
+                    { label: "House", value: "house" },
                   ]}
                   label="Property type"
                 />
@@ -105,9 +107,12 @@ const HousingFilters = () => {
               name="furniture"
               control={control}
               render={({ field }) => (
-                <MultipleSelect
+                <SingleSelect
                   {...field}
-                  options={["Furnished", "Unfurnished"]}
+                  options={[
+                    { label: "Furnished", value: "furnished" },
+                    { label: "Unfurnished", value: "unfurnished" },
+                  ]}
                   label="Furniture"
                 />
               )}
@@ -118,13 +123,13 @@ const HousingFilters = () => {
               name="totalSize"
               control={control}
               render={({ field }) => (
-                <MultipleSelect
+                <SingleSelect
                   {...field}
                   options={[
-                    "15 m2 or more",
-                    "30 m2 or more",
-                    "60 m2 or more",
-                    "90 m2 or more",
+                    { label: "15 m2 or more", value: 15 },
+                    { label: "30 m2 or more", value: 30 },
+                    { label: "60 m2 or more", value: 60 },
+                    { label: "90 m2 or more", value: 90 },
                   ]}
                   label="Total size"
                 />
@@ -139,14 +144,17 @@ const HousingFilters = () => {
                 <MultipleSelect
                   {...field}
                   options={[
-                    "Private bathroom",
-                    "Balcony/terrace",
-                    "Garden",
-                    "Kitchen",
-                    "Parking",
-                    "Pets allowed",
-                    "Wheelchair accessible",
-                    "Basement",
+                    { label: "Private bathroom", value: "bathroom" },
+                    { label: "Balcony/terrace", value: "balconyTerrace" },
+                    { label: "Garden", value: "garden" },
+                    { label: "Kitchen", value: "kitchen" },
+                    { label: "Parking", value: "parking" },
+                    { label: "Pets allowed", value: "pets" },
+                    {
+                      label: "Wheelchair accessible",
+                      value: "wheelchairAccessible",
+                    },
+                    { label: "Basement", value: "basement" },
                   ]}
                   label="Facilities"
                 />
@@ -161,9 +169,9 @@ const HousingFilters = () => {
                 <MultipleSelect
                   {...field}
                   options={[
-                    "Private room",
-                    "Entire place",
-                    "Shared room",
+                    { label: "Private room", value: "private room" },
+                    { label: "Entire place", value: "entire place" },
+                    { label: "Shared room", value: "shared room" },
                   ]}
                   label="Rent type"
                 />
@@ -178,11 +186,11 @@ const HousingFilters = () => {
                 <MultipleSelect
                   {...field}
                   options={[
-                    "Dishwasher",
-                    "Washing machine",
-                    "Dryer",
-                    "Air conditioning",
-                    "Heating",
+                    { label: "Dishwasher", value: "dishwasher" },
+                    { label: "Washing machine", value: "washingMachine" },
+                    { label: "Dryer", value: "dryer" },
+                    { label: "Air conditioning", value: "airConditioning" },
+                    { label: "Heating", value: "heating" },
                   ]}
                   label="Amenities"
                 />

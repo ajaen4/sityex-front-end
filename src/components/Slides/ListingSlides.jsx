@@ -3,7 +3,6 @@ import Carousel from "react-material-ui-carousel";
 
 import { Box } from "@mui/material";
 
-
 const ListingSlides = ({ images, isInMap, imageHeight, autoPlay, swipe }) => {
   const carouselRef = React.useRef(null);
 

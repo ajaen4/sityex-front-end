@@ -47,8 +47,8 @@ const HousingListing = ({ listing }) => {
     fetchListingImages(selectedCity.city_id, listing.housing_id).then(
       (images) => {
         setImages(images);
-      }
-    )
+      },
+    );
   }, [listing]);
 
   return (

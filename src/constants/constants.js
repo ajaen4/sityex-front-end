@@ -21,8 +21,8 @@ export const contentHeight = {
 
 export const defaultHousingFilters = {
   propertyType: [],
-  furniture: [],
-  totalSize: [],
+  furniture: "",
+  totalSize: "",
   facilities: [],
   amenities: [],
   rentType: [],

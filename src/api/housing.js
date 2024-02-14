@@ -32,7 +32,7 @@ export const getHousingListings = async (city_id, limitV = null) => {
 export const getHousingListing = async (city_id, housing_id) => {
   try {
     const housingDoc = await getDoc(
-      doc(collection(db, "cities", city_id, "housing"), housing_id)
+      doc(collection(db, "cities", city_id, "housing"), housing_id),
     );
     if (!housingDoc.exists()) {
       console.log("No such document ", housing_id, " in collection cities!");
@@ -49,7 +49,7 @@ export const getHousingListing = async (city_id, housing_id) => {
 export const getListingImages = async (city_id, housing_id) => {
   try {
     const housingDoc = await getDoc(
-      doc(collection(db, "cities", city_id, "housing_images"), housing_id)
+      doc(collection(db, "cities", city_id, "housing_images"), housing_id),
     );
     if (!housingDoc.exists()) {
       console.log("No such document ", housing_id, " in collection cities!");

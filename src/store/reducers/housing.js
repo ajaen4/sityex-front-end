@@ -31,7 +31,7 @@ const HousingSlice = createSlice({
       state.data.filteredHListings = filterListings(
         state.data.housingListings,
         state.data.filters,
-        state.data.orderBy
+        state.data.orderBy,
       );
       state.isFetching = false;
     },
@@ -40,7 +40,7 @@ const HousingSlice = createSlice({
       state.data.filteredHListings = filterListings(
         state.data.housingListings,
         state.data.filters,
-        state.data.orderBy
+        state.data.orderBy,
       );
       state.isFetching = false;
     },

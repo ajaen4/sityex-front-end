@@ -14,11 +14,9 @@ const HousingSlide = ({ city_id, housing_id, title }) => {
   };
 
   useEffect(() => {
-    fetchListingImages(city_id, housing_id).then(
-      (images) => {
-        setImages(images);
-      }
-    )
+    fetchListingImages(city_id, housing_id).then((images) => {
+      setImages(images);
+    });
   }, []);
 
   return (
@@ -36,7 +34,9 @@ const HousingSlide = ({ city_id, housing_id, title }) => {
             borderRadius: 2,
             width: "100%",
             height: { xs: "55vh", md: "53vh" },
-            backgroundImage: images ? `url(${images.images[0].sizes["640x480"].link})` : null,
+            backgroundImage: images
+              ? `url(${images.images[0].sizes["640x480"].link})`
+              : null,
             backgroundSize: "cover",
             backgroundPosition: "center",
             cursor: "pointer",
