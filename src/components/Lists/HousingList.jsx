@@ -9,6 +9,11 @@ import {
   ToggleButtonGroup,
   Typography,
   Pagination,
+  InputLabel,
+  Select,
+  MenuItem,
+  OutlinedInput,
+  FormControl,
 } from "@mui/material";
 
 import HousingListing from "components/Cards/HousingListing";
@@ -37,7 +42,7 @@ export default function HousingList() {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
   const dispatch = useDispatch();
 
-  const [orderBy, setOrderBy] = useState("housing_id");
+  const [orderBy, setOrderBy] = useState("");
   const [pageNum, setPageNum] = useState(1);
 
   const filteredHListings = useSelector(
@@ -77,9 +82,10 @@ export default function HousingList() {
     };
   }, []);
 
-  const changeOrderBy = (_, orderBy) => {
-    setOrderBy(orderBy);
-    dispatch(updateHousingOrderBy(orderBy));
+  const changeOrderBy = (event) => {
+    const value = event.target.value;
+    setOrderBy(value);
+    dispatch(updateHousingOrderBy(value));
   };
 
   const changePage = (_, value) => {
@@ -109,20 +115,24 @@ export default function HousingList() {
           page={validatedPageNum}
           onChange={changePage}
         />
-        <Typography variant="h5" sx={{ mx: 1 }}>
-          Order by:
-        </Typography>
-        <ToggleButtonGroup
-          color="primary"
+        <FormControl sx={{ width: 140, mt: 1.5 }}>
+        <InputLabel id="order-by">Order By</InputLabel>
+        <Select
           value={orderBy}
-          exclusive
           onChange={changeOrderBy}
-          aria-label="orderBy"
-          size="small"
+          input={<OutlinedInput label="Order By" />}
         >
-          <ToggleButton value="rank">Rank</ToggleButton>
-          <ToggleButton value="price">Price</ToggleButton>
-        </ToggleButtonGroup>
+          <MenuItem key="rank" value="rank">
+              Rank
+          </MenuItem>
+          <MenuItem key="low-price" value="low-price">
+              Lowest price
+          </MenuItem>
+          <MenuItem key="high-price" value="high-price">
+              Highest price
+          </MenuItem>
+        </Select>
+        </FormControl>
       </Box>
       <Box
         sx={{
@@ -157,7 +167,7 @@ export default function HousingList() {
           minHeight: { xs: 110, md: 0 },
         }}
       >
-        <Box
+        {filteredHListings.length > housingPageSize && <Box
           sx={{
             display: "flex",
             alignItems: "center",
@@ -188,7 +198,7 @@ export default function HousingList() {
             <ToggleButton value="rank">Rank</ToggleButton>
             <ToggleButton value="price">Price</ToggleButton>
           </ToggleButtonGroup>
-        </Box>
+        </Box>}
       </Box>
     </Box>
   );

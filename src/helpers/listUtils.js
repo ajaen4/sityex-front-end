@@ -20,12 +20,10 @@ export const filterListings = (listings, filters, orderBy) => {
     // Furniture criteria
     if (
       filters.furniture &&
-      !(
-        listing.facilities.roomFurniture?.value === furnitureValue ||
-        listing.facilities.bedroomFurnished?.value === furnitureValue ||
-        (!listing.facilities.roomFurniture &&
-          !listing.facilities.bedroomFurnished)
-      )
+      ((listing.facilities.roomFurniture !== undefined &&
+        listing.facilities.roomFurniture.value !== furnitureValue) ||
+        (listing.facilities.bedroomFurnished !== undefined &&
+          listing.facilities.bedroomFurnished.value !== furnitureValue))
     ) {
       return false;
     }
@@ -79,19 +77,19 @@ const facilitiesFilter = (listing, facilities) => {
       ((facility === "bathroom" &&
         listing.facilities[facility].value === "private") ||
         (facility !== "bathroom" &&
-          listing.facilities[facility].value !== "no")),
+          listing.facilities[facility].value !== "no"))
   );
 };
 
 const amenitiesFilter = (listing, amenities) => {
   return amenities.every(
     (amenity) =>
-      listing.facilities[amenity] && listing.facilities[amenity].value !== "no",
+      listing.facilities[amenity] && listing.facilities[amenity].value !== "no"
   );
 };
 
 const orderByListings = (listings, orderBy) => {
-  if (orderBy === "housing_id") {
+  if (!orderBy) {
     return listings;
   }
 
@@ -99,9 +97,14 @@ const orderByListings = (listings, orderBy) => {
     if (orderBy === "rank") {
       return a.rank - b.rank;
     }
-    if (orderBy === "price") {
+    if (orderBy === "low-price") {
       return (
         parseFloat(a.costsFormatted.price) - parseFloat(b.costsFormatted.price)
+      );
+    }
+    if (orderBy === "high-price") {
+      return (
+        parseFloat(b.costsFormatted.price) - parseFloat(a.costsFormatted.price)
       );
     }
   });

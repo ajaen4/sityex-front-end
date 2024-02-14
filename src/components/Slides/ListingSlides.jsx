@@ -31,15 +31,21 @@ const ListingSlides = ({ images, isInMap, imageHeight, autoPlay, swipe }) => {
   };
 
   return (
-    <div ref={carouselRef}>
+    <div
+      ref={carouselRef}
+      style={{
+        minHeight: imageHeight,
+        width: "100%",
+      }}
+    >
       {!images && (
         <Box
-          sx={{
+          style={{
             display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
             width: "100%",
             minHeight: imageHeight,
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
           <CircularProgress />
