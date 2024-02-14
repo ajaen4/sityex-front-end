@@ -104,7 +104,7 @@ export default function HousingList() {
           alignItems: "center",
           justifyContent: "end",
           mr: { xs: 1, md: 10 },
-          my: 1,
+          mt: 2.5,
         }}
       >
         <Pagination
@@ -115,7 +115,7 @@ export default function HousingList() {
           page={validatedPageNum}
           onChange={changePage}
         />
-        <FormControl sx={{ width: 140, mt: 1.5 }}>
+        <FormControl sx={{ width: 140 }}>
         <InputLabel id="order-by">Order By</InputLabel>
         <Select
           value={orderBy}

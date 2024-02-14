@@ -58,7 +58,7 @@ const HousingFilters = () => {
           <Grid
             item
             xs={6}
-            md={2.5}
+            md={2.3}
             sx={{ display: "flex", textAlign: "center", alignItems: "center" }}
           >
             <TextField
@@ -73,7 +73,7 @@ const HousingFilters = () => {
           <Grid
             item
             xs={6}
-            md={2.5}
+            md={2.3}
             sx={{ display: "flex", textAlign: "center", alignItems: "center" }}
           >
             <TextField
@@ -85,7 +85,7 @@ const HousingFilters = () => {
               autoComplete="Max price"
             />
           </Grid>
-          <Grid item xs={6} md={2.5}>
+          <Grid item xs={6} md={2.3}>
             <Controller
               name="propertyType"
               control={control}
@@ -102,7 +102,7 @@ const HousingFilters = () => {
               )}
             />
           </Grid>
-          <Grid item xs={6} md={2.5}>
+          <Grid item xs={6} md={2.3}>
             <Controller
               name="furniture"
               control={control}
@@ -118,7 +118,7 @@ const HousingFilters = () => {
               )}
             />
           </Grid>
-          <Grid item xs={6} md={2.5}>
+          <Grid item xs={6} md={2.3}>
             <Controller
               name="totalSize"
               control={control}
@@ -136,7 +136,25 @@ const HousingFilters = () => {
               )}
             />
           </Grid>
-          <Grid item xs={6} md={2.5}>
+          <Grid item xs={6} md={2.3}>
+            <Controller
+              name="bedrooms"
+              control={control}
+              render={({ field }) => (
+                <SingleSelect
+                  {...field}
+                  options={[
+                    { label: "1", value: 1 },
+                    { label: "2", value: 2 },
+                    { label: "3", value: 3 },
+                    { label: "4+", value: 4 },
+                  ]}
+                  label="Bedrooms"
+                />
+              )}
+            />
+          </Grid>
+          <Grid item xs={6} md={2.3}>
             <Controller
               name="facilities"
               control={control}
@@ -161,7 +179,7 @@ const HousingFilters = () => {
               )}
             />
           </Grid>
-          <Grid item xs={6} md={2.5}>
+          <Grid item xs={6} md={2.3}>
             <Controller
               name="rentType"
               control={control}
@@ -178,7 +196,7 @@ const HousingFilters = () => {
               )}
             />
           </Grid>
-          <Grid item xs={6} md={2.5}>
+          <Grid item xs={6} md={2.3}>
             <Controller
               name="amenities"
               control={control}
