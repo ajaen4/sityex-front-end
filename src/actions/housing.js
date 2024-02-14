@@ -14,7 +14,7 @@ export const fetchHousingListings = (city_id, limit) => (dispatch, _) => {
     dispatch(
       fetchHousingListingsSuccess({
         housingListings: data,
-      })
+      }),
     );
   });
 };
@@ -23,7 +23,7 @@ export const updateHousingOrderBy = (orderBy) => (dispatch, _) => {
   dispatch(
     setHousingOrderBy({
       orderBy: orderBy,
-    })
+    }),
   );
 };
 
@@ -31,7 +31,7 @@ export const updateHousingFilters = (filters) => (dispatch, _) => {
   dispatch(
     setHousingFilters({
       filters: filters,
-    })
+    }),
   );
 };
 

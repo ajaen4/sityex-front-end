@@ -25,8 +25,8 @@ const ListingInfoWindow = ({ listing, setSelectedListing }) => {
     fetchListingImages(selectedCity.city_id, listing.housing_id).then(
       (images) => {
         setImages(images);
-      }
-    )
+      },
+    );
   }, [listing]);
 
   const formatPrice = (price) => {

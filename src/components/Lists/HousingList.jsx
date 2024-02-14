@@ -51,7 +51,11 @@ export default function HousingList() {
     filteredHListings.length > housingPageSize
       ? Math.floor(filteredHListings.length / housingPageSize) - 1
       : 1;
-  const itemCount = filteredHListings.length > housingPageSize ? housingPageSize : filteredHListings.length;
+  const validatedPageNum = pageNum > numPages ? numPages : pageNum;
+  const itemCount =
+    filteredHListings.length >= housingPageSize
+      ? housingPageSize
+      : filteredHListings.length;
 
   const updateHeight = () => {
     if (listRef.current) {
@@ -62,7 +66,9 @@ export default function HousingList() {
   };
 
   useEffect(() => {
-    dispatch(fetchHousingListings(selectedCity.city_id));
+    if (housingState.data.housingListings.length === 0) {
+      dispatch(fetchHousingListings(selectedCity.city_id));
+    }
     updateHeight();
     window.addEventListener("resize", updateHeight);
 
@@ -71,12 +77,12 @@ export default function HousingList() {
     };
   }, []);
 
-  const changeOrderBy = (event, orderBy) => {
+  const changeOrderBy = (_, orderBy) => {
     setOrderBy(orderBy);
     dispatch(updateHousingOrderBy(orderBy));
   };
 
-  const changePage = (event, value) => {
+  const changePage = (_, value) => {
     setPageNum(value);
   };
 
@@ -100,7 +106,7 @@ export default function HousingList() {
           siblingCount={0}
           boundaryCount={1}
           size="small"
-          page={pageNum}
+          page={validatedPageNum}
           onChange={changePage}
         />
         <Typography variant="h5" sx={{ mx: 1 }}>
@@ -132,8 +138,8 @@ export default function HousingList() {
             width="100%"
             itemSize={itemSize}
             itemData={filteredHListings.slice(
-              (pageNum - 1) * housingPageSize,
-              pageNum * housingPageSize,
+              (validatedPageNum - 1) * housingPageSize,
+              validatedPageNum * housingPageSize,
             )}
             itemCount={itemCount}
             overscanCount={10}
@@ -165,7 +171,7 @@ export default function HousingList() {
             siblingCount={0}
             boundaryCount={1}
             size="small"
-            page={pageNum}
+            page={validatedPageNum}
             onChange={changePage}
           />
           <Typography variant="h5" sx={{ mx: 1 }}>
