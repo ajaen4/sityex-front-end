@@ -117,22 +117,22 @@ export default function HousingList() {
           onChange={changePage}
         />
         <FormControl sx={{ width: 140 }}>
-        <InputLabel id="order-by">Order By</InputLabel>
-        <Select
-          value={orderBy}
-          onChange={changeOrderBy}
-          input={<OutlinedInput label="Order By" />}
-        >
-          <MenuItem key="rank" value="rank">
+          <InputLabel id="order-by">Order By</InputLabel>
+          <Select
+            value={orderBy}
+            onChange={changeOrderBy}
+            input={<OutlinedInput label="Order By" />}
+          >
+            <MenuItem key="rank" value="rank">
               Rank
-          </MenuItem>
-          <MenuItem key="low-price" value="low-price">
+            </MenuItem>
+            <MenuItem key="low-price" value="low-price">
               Lowest price
-          </MenuItem>
-          <MenuItem key="high-price" value="high-price">
+            </MenuItem>
+            <MenuItem key="high-price" value="high-price">
               Highest price
-          </MenuItem>
-        </Select>
+            </MenuItem>
+          </Select>
         </FormControl>
       </Box>
       <Box
@@ -168,38 +168,40 @@ export default function HousingList() {
           minHeight: { xs: 110, md: 0 },
         }}
       >
-        {filteredHListings.length > housingPageSize && <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "end",
-            mr: { xs: 1, md: 10 },
-            my: 1,
-          }}
-        >
-          <Pagination
-            count={numPages}
-            siblingCount={0}
-            boundaryCount={1}
-            size="small"
-            page={validatedPageNum}
-            onChange={changePage}
-          />
-          <Typography variant="h5" sx={{ mx: 1 }}>
-            Order by:
-          </Typography>
-          <ToggleButtonGroup
-            color="primary"
-            value={orderBy}
-            exclusive
-            onChange={changeOrderBy}
-            aria-label="orderBy"
-            size="small"
+        {filteredHListings.length > housingPageSize && (
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "end",
+              mr: { xs: 1, md: 10 },
+              my: 1,
+            }}
           >
-            <ToggleButton value="rank">Rank</ToggleButton>
-            <ToggleButton value="price">Price</ToggleButton>
-          </ToggleButtonGroup>
-        </Box>}
+            <Pagination
+              count={numPages}
+              siblingCount={0}
+              boundaryCount={1}
+              size="small"
+              page={validatedPageNum}
+              onChange={changePage}
+            />
+            <Typography variant="h5" sx={{ mx: 1 }}>
+              Order by:
+            </Typography>
+            <ToggleButtonGroup
+              color="primary"
+              value={orderBy}
+              exclusive
+              onChange={changeOrderBy}
+              aria-label="orderBy"
+              size="small"
+            >
+              <ToggleButton value="rank">Rank</ToggleButton>
+              <ToggleButton value="price">Price</ToggleButton>
+            </ToggleButtonGroup>
+          </Box>
+        )}
       </Box>
     </Box>
   );

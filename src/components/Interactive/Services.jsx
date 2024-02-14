@@ -138,51 +138,52 @@ const Services = () => {
       >
         {Object.values(services).map((service) => (
           <Grid
-          key={service.id}
-          item
-          xs={4}
-          md={3}
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          <Card
+            key={service.id}
+            item
+            xs={4}
+            md={3}
             sx={{
               display: "flex",
               flexDirection: "column",
-              alignItems: "center",
-              p: 3,
-              width: "fit-content",
-              margin: "auto",
             }}
           >
-            <img
-              height="120"
-              src={`${imagesCdn}/icons/${service.icon}`}
-              alt={service.title}
-              title={service.title}
-            />
-            <Typography
-              variant="h2"
-              sx={{ color: "grey.500", fontSize: 25, mt: 2 }}
+            <Card
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                p: 3,
+                width: "fit-content",
+                margin: "auto",
+              }}
             >
-              {service.title}
+              <img
+                height="120"
+                src={`${imagesCdn}/icons/${service.icon}`}
+                alt={service.title}
+                title={service.title}
+              />
+              <Typography
+                variant="h2"
+                sx={{ color: "grey.500", fontSize: 25, mt: 2 }}
+              >
+                {service.title}
+              </Typography>
+            </Card>
+            <Typography
+              sx={{
+                color: "grey.500",
+                backgroundColor: "grey.100",
+                fontSize: 20,
+                mt: 2,
+                borderRadius: 3,
+                p: 2,
+              }}
+            >
+              {service.description}
             </Typography>
-          </Card>
-          <Typography
-            sx={{
-              color: "grey.500",
-              backgroundColor: "grey.100",
-              fontSize: 20,
-              mt: 2,
-              borderRadius: 3,
-              p: 2,
-            }}
-          >
-            {service.description}
-          </Typography>
-        </Grid>))}
+          </Grid>
+        ))}
       </Grid>
     );
   }
