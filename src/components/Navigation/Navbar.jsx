@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { useSelector } from "react-redux";
 
 import { Box } from "@mui/material";
 
@@ -14,12 +13,9 @@ import SignUpModal from "components/Modals/SignUpModal";
 import { useShowSignUpContext } from "components/Contexts/ShowSignUpContext";
 
 import * as ROUTES_PATHS from "routes/paths";
-import { ESLINT_DEFAULT_DIRS } from "next/dist/lib/constants";
 
 function NavBar({}) {
   const [scrolledY, setScrolledY] = useState(0);
-
-  const auth = useSelector((state) => state.auth);
   const { showSignUpModal, setShowSignUpModal } = useShowSignUpContext();
 
   const router = useRouter();
@@ -71,20 +67,18 @@ function NavBar({}) {
     const destinationURL = localStorage.getItem("destinationURL");
     const openInNewTab = localStorage.getItem("openInNewTab");
 
-    if (!showSignUpModal && destinationURL && auth.isAuthResolved) {
+    if (!showSignUpModal && destinationURL) {
       localStorage.removeItem("destinationURL");
 
-      if (openInNewTab) {
+      if(openInNewTab){
         localStorage.removeItem("openInNewTab");
-        window.open(destinationURL, "_blank", "noopener,noreferrer");
-      } else {
+        window.open(destinationURL, '_blank', 'noopener,noreferrer');
+      }
+      else {
         router.push(destinationURL);
       }
-    } else if (!showSignUpModal && auth.isAuthResolved === false) {
-      localStorage.removeItem("destinationURL");
-      localStorage.removeItem("openInNewTab");
     }
-  }, [showSignUpModal, auth]);
+  }, [showSignUpModal]);
 
   return (
     <>

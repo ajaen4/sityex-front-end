@@ -6,7 +6,7 @@ const CenteredLoadingSpinner = () => {
     <Box
       sx={{
         display: "flex",
-        height: "50vh",
+        height: "80vh",
         width: "100%",
         alignItems: "center",
         justifyContent: "center",

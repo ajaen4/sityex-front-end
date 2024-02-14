@@ -3,7 +3,6 @@ export const settings = ["Account", "Logout"];
 export const drawerWidth = 240;
 export const tabletDrawerWidth = 200;
 export const minBottomNavHeight = 60;
-export const housingPageSize = 30;
 export const minNavbarHeight = {
   xs: "50px",
   sm: "50px",
@@ -17,16 +16,6 @@ export const contentHeight = {
   md: "82vh",
   lg: "92vh",
   xl: "93.5vh",
-};
-
-export const defaultHousingFilters = {
-  propertyType: [],
-  furniture: "",
-  totalSize: "",
-  bedrooms: "",
-  facilities: [],
-  amenities: [],
-  rentType: [],
 };
 
 export const imagesCdn = "https://d1dshnpqadx0e7.cloudfront.net/images";

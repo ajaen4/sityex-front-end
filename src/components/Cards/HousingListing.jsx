@@ -15,15 +15,14 @@ import {
 
 import ListingSlides from "components/Slides/ListingSlides";
 
-import { fetchListingImages } from "actions";
+import { fetchHousingListing } from "actions";
 
 const HousingListing = ({ listing }) => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
-  const [images, setImages] = useState();
-
   const selectedCity = useSelector((state) => state.selectedCity.data);
+  const [fullData, setFullData] = useState(null);
 
   const maxDescriptionLength = isSmallScreen ? 200 : 250;
 
@@ -44,19 +43,23 @@ const HousingListing = ({ listing }) => {
   };
 
   useEffect(() => {
-    fetchListingImages(selectedCity.city_id, listing.housing_id).then(
-      (images) => {
-        setImages(images);
+    fetchHousingListing(selectedCity.city_id, listing.housing_id).then(
+      (response) => {
+        setFullData(response);
       },
     );
-  }, [listing]);
+  }, []);
+
+  if (!fullData) {
+    return null;
+  }
 
   return (
     <Card
-      id={listing.housing_id}
-      onClick={() => window.open(listing.originalLink, "_blank")}
-      key={listing.housing_id}
-      href={listing.originalLink}
+      id={fullData.housing_id}
+      onClick={() => window.open(fullData.originalLink, "_blank")}
+      key={fullData.housing_id}
+      href={fullData.originalLink}
       sx={{
         display: "flex",
         flexDirection: "row",
@@ -67,7 +70,7 @@ const HousingListing = ({ listing }) => {
       <Grid container>
         <Grid item xs={12} md={4}>
           <ListingSlides
-            images={images}
+            listing={fullData}
             imageHeight={isSmallScreen ? "200px" : "240px"}
             autoPlay={false}
           />
@@ -90,7 +93,7 @@ const HousingListing = ({ listing }) => {
                 fontSize: 18,
               }}
             >
-              {listing.title}
+              {fullData.title}
             </Typography>
             <Typography
               variant="body1"
@@ -100,7 +103,7 @@ const HousingListing = ({ listing }) => {
                 fontSize: 18,
               }}
             >
-              {listing.location.neighborhood}
+              {fullData.location.neighborhood}
             </Typography>
             <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
               <Typography
@@ -111,17 +114,17 @@ const HousingListing = ({ listing }) => {
                   fontSize: 20,
                 }}
               >
-                {formatPrice(listing.costsFormatted.price)}
+                {formatPrice(fullData.costsFormatted.price)}
               </Typography>
               <Typography variant="body1" sx={{ fontSize: 18 }}>
-                {listing.costsFormatted.pricing}
+                {fullData.costsFormatted.pricing}
               </Typography>
             </Box>
             <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
               <Typography variant="body1" sx={{ fontSize: 16 }}>
-                {listing.kindLabel} • {listing.typeLabel}
-                {listing.facilities.totalSize &&
-                  ` • ${listing.facilities.totalSize.value} m²`}
+                {fullData.kindLabel} • {fullData.typeLabel}
+                {fullData.facilities.totalSize &&
+                  ` • ${fullData.facilities.totalSize.value} m²`}
               </Typography>
             </Box>
             <Typography
@@ -133,7 +136,7 @@ const HousingListing = ({ listing }) => {
                 fontSize: 16,
               }}
             >
-              {getMinDescription(listing.description)}
+              {getMinDescription(fullData.description)}
             </Typography>
           </CardContent>
         </Grid>

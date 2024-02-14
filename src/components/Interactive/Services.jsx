@@ -16,7 +16,7 @@ const Services = () => {
   const services = {
     paperwork: {
       id: "paperwork",
-      icon: "paperwork-2.png",
+      icon: "paperwork.png",
       title: "Paperwork",
       description:
         "Automatized processes through our local partners that do the paperwork for you",
@@ -24,7 +24,7 @@ const Services = () => {
     },
     housing: {
       id: "housing",
-      icon: "housing-2.png",
+      icon: "housing.png",
       title: "Housing",
       description:
         "Housing options and discounts through our partners to help you find your ideal home",
@@ -32,7 +32,7 @@ const Services = () => {
     },
     events: {
       id: "events",
-      icon: "events-2.png",
+      icon: "events.png",
       title: "Events",
       description:
         "Exclusive SityEx and third party events to discover your new home city",
@@ -59,7 +59,7 @@ const Services = () => {
             px: 2,
           }}
         >
-          {Object.values(services).map((service) => (
+          {Object.values(services).map((service, index) => (
             <Box
               key={service.id}
               sx={{
@@ -136,54 +136,145 @@ const Services = () => {
           mt: 5,
         }}
       >
-        {Object.values(services).map((service) => (
-          <Grid
-            key={service.id}
-            item
-            xs={4}
-            md={3}
+        <Grid
+          item
+          xs={4}
+          md={3}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <Card
             sx={{
               display: "flex",
               flexDirection: "column",
+              alignItems: "center",
+              p: 3,
+              width: "fit-content",
+              margin: "auto",
             }}
           >
-            <Card
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                p: 3,
-                width: "fit-content",
-                margin: "auto",
-              }}
-            >
-              <img
-                height="120"
-                src={`${imagesCdn}/icons/${service.icon}`}
-                alt={service.title}
-                title={service.title}
-              />
-              <Typography
-                variant="h2"
-                sx={{ color: "grey.500", fontSize: 25, mt: 2 }}
-              >
-                {service.title}
-              </Typography>
-            </Card>
+            <img
+              height="80"
+              src={`${imagesCdn}/icons/paperwork.png`}
+              alt="government icon"
+              title="Government Paperwork"
+            />
             <Typography
-              sx={{
-                color: "grey.500",
-                backgroundColor: "grey.100",
-                fontSize: 20,
-                mt: 2,
-                borderRadius: 3,
-                p: 2,
-              }}
+              variant="h2"
+              sx={{ color: "grey.500", fontSize: 25, mt: 2 }}
             >
-              {service.description}
+              Paperwork
             </Typography>
-          </Grid>
-        ))}
+          </Card>
+          <Typography
+            sx={{
+              color: "grey.500",
+              backgroundColor: "grey.100",
+              fontSize: 20,
+              mt: 2,
+              borderRadius: 3,
+              p: 2,
+            }}
+          >
+            Automatized processes through our local partners that do the
+            paperwork for you
+          </Typography>
+        </Grid>
+        <Grid
+          item
+          xs={4}
+          md={3}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <Card
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              p: 3,
+              width: "fit-content",
+              margin: "auto",
+            }}
+          >
+            <img
+              height="80"
+              src={`${imagesCdn}/icons/housing.png`}
+              alt="housing icon"
+              title="Housing"
+            />
+
+            <Typography
+              variant="h2"
+              sx={{ color: "grey.500", fontSize: 25, my: 1 }}
+            >
+              Housing
+            </Typography>
+          </Card>
+          <Typography
+            sx={{
+              color: "grey.500",
+              backgroundColor: "grey.100",
+              fontSize: 20,
+              mt: 2,
+              borderRadius: 3,
+              p: 2,
+            }}
+          >
+            Housing options and discounts through our partners to help you find
+            your ideal home
+          </Typography>
+        </Grid>
+        <Grid
+          item
+          xs={4}
+          md={3}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <Card
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              p: 3,
+              width: "fit-content",
+              margin: "auto",
+            }}
+          >
+            <img
+              height="80"
+              src={`${imagesCdn}/icons/events.png`}
+              alt="events icon"
+              title="Events"
+            />
+            <Typography
+              variant="h2"
+              sx={{ color: "grey.500", fontSize: 25, my: 1 }}
+            >
+              Events
+            </Typography>
+          </Card>
+          <Typography
+            sx={{
+              color: "grey.500",
+              backgroundColor: "grey.100",
+              fontSize: 20,
+              mt: 2,
+              borderRadius: 3,
+              p: 2,
+            }}
+          >
+            Exclusive SityEx and third party events to discover your new home
+            city
+          </Typography>
+        </Grid>
       </Grid>
     );
   }

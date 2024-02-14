@@ -7,6 +7,7 @@ import { FullscreenControl } from "react-leaflet-fullscreen";
 
 import ListingInfoWindow from "components/Maps/ListingInfoWindow";
 import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
+import { fetchHousingListing } from "actions";
 import HousingMarkerCluster from "components/Maps/HousingMarkerCluster";
 
 const TOKEN = process.env.NEXT_PUBLIC_MAPS_API_KEY;
@@ -23,21 +24,22 @@ const ZoomHandler = ({ onZoom }) => {
 
 function HousingMap() {
   const selectedCity = useSelector((state) => state.selectedCity.data);
-  const housingIndex = useSelector(
-    (state) => state.housing.data.filteredHListings,
-  );
-  const isFetchingHousing = useSelector((state) => state.housing.isFetching);
+  const housingIndex = useSelector((state) => state.housing.data);
   const [selectedListing, setSelectedListing] = useState(null);
   const [currentZoom, setCurrentZoom] = useState(11);
 
   const onClickListing = useCallback(
     (listing) => {
-      setSelectedListing(listing);
+      fetchHousingListing(selectedCity.city_id, listing.housing_id).then(
+        (listing) => {
+          setSelectedListing(listing);
+        },
+      );
     },
     [selectedCity.city_id],
   );
 
-  if (isFetchingHousing) {
+  if (!housingIndex) {
     return <CenteredLoadingSpinner />;
   }
 
@@ -57,7 +59,7 @@ function HousingMap() {
         url={`${STREET_MAP_STYLE}${TOKEN}`}
       />
       <HousingMarkerCluster
-        listings={housingIndex}
+        listings={housingIndex.listings}
         onClickListing={onClickListing}
         currentZoom={currentZoom}
       />

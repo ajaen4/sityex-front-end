@@ -1,119 +1,61 @@
 "use client";
 
 import React from "react";
+import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 
-import {
-  Box,
-  useTheme,
-  Paper,
-  useMediaQuery,
-  Typography,
-  Stack,
-} from "@mui/material";
+import { Box, useTheme, Paper, useMediaQuery } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
 
 import { imagesCdn } from "constants/constants";
 
-const paperworkServices = [
-  {
-    name: "NIE",
-    image: "nie.png",
-    path: "/destination/3117735/paperwork?tab=essentials",
-  },
-  {
-    name: "Empadronamiento",
-    image: "empadronamiento.png",
-    path: "/destination/3117735/paperwork?tab=essentials",
-  },
-  {
-    name: "Social Security",
-    image: "seguridad-social.png",
-    path: "/destination/3117735/paperwork?tab=essentials",
-  },
-  {
-    name: "Health Card",
-    image: "tarjeta-sanitaria.png",
-    path: "/destination/3117735/paperwork?tab=essentials",
-  },
-  {
-    name: "Taxes",
-    image: "taxes.png",
-    path: "/destination/3117735/paperwork?tab=tax-declaration",
-  },
-  {
-    name: "Drivers License Exchange",
-    image: "drivers-license.png",
-    path: "/destination/3117735/paperwork?tab=driver-vehicle-licensing",
-  },
-  {
-    name: "Vehicle Licensing",
-    image: "vehicle-licensing.png",
-    path: "/destination/3117735/paperwork?tab=driver-vehicle-licensing",
-  },
-];
+const CitySlides = () => {
+  const citiesIndex = useSelector((state) => state.citiesIndex.data);
 
-const PaperworkSlides = () => {
   const theme = useTheme();
   const router = useRouter();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const slice = isSmallScreen ? 1 : 5;
 
-  const handleServiceClick = (link) => {
-    router.push(link);
+  const handleCityClick = (city_id) => {
+    router.push(`/destination/${city_id}`);
   };
 
-  const createSlides = () => {
+  const createSlides = (cities) => {
     let slides = [];
-    const totalItemsNeeded =
-      Math.ceil(paperworkServices.length / slice) * slice;
-    for (let i = 0; i < totalItemsNeeded; i += slice) {
-      let itemsForCurrentSlide = [];
-      for (let j = 0; j < slice; j++) {
-        const currentItemIndex = (i + j) % paperworkServices.length;
-        itemsForCurrentSlide.push(paperworkServices[currentItemIndex]);
-      }
-
+    for (let i = 0; i < cities.length; i += slice) {
       slides.push(
         <Box
           key={i}
           sx={{
             display: "flex",
             width: "100%",
+            height: "60vh",
           }}
         >
-          {itemsForCurrentSlide.map((service) => (
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                m: 1,
-                width: "100%",
-              }}
-            >
-              <Paper
-                sx={{ display: "flex", justifyContent: "center", height: "31vh", width: "100%", cursor: "pointer" }}
-                onClick={() => handleServiceClick(service.path)}
-              >
-                <img
-                  src={`${imagesCdn}/icons/${service.image}`}
-                  alt={service.name}
-                  style={{ height: "100%" }}
-                />
-              </Paper>
-              <Typography
-                variant="h4"
-                sx={{
-                  my: 1,
-                  fontSize: 16,
-                  minHeight: { xs: "5vh", md: "7vh" },
+          {cities.slice(i, i + slice).map((city) => (
+            <Paper key={city.city_id} sx={{ flex: 1, m: 1 }}>
+              <Box
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "end",
+                  height: "100%",
+                  width: "100%",
+                  borderRadius: 10,
+                  backgroundImage: `url(${imagesCdn}/cities/${city.city_id}.jpg)`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  cursor: "pointer",
                 }}
+                onClick={() => handleCityClick(city.city_id)}
+                alt={city.name}
+                title={city.name}
               >
-                {service.name}
-              </Typography>
-            </Box>
+                <h2 style={{ color: "white" }}>{city.name}</h2>
+              </Box>
+            </Paper>
           ))}
         </Box>,
       );
@@ -122,10 +64,10 @@ const PaperworkSlides = () => {
   };
 
   return (
-    <Carousel navButtonsAlwaysVisible indicators={false} interval={7000}>
-      {createSlides()}
+    <Carousel sx={{ width: "100%" }} navButtonsAlwaysVisible indicators={false}>
+      {citiesIndex?.cities && createSlides(citiesIndex.cities)}
     </Carousel>
   );
 };
 
-export default PaperworkSlides;
+export default CitySlides;

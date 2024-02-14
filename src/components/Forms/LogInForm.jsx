@@ -14,6 +14,7 @@ import {
   TextField,
   FormHelperText,
   FormControl,
+  Link,
   InputAdornment,
   IconButton,
 } from "@mui/material";
@@ -24,6 +25,7 @@ import { logInUser, logInUserWithGoogle, storeAuthUser } from "actions";
 import StandarModal from "components/Modals/StandarModal";
 import LoadingSpinner from "components/Spinner/LoadingSpinner";
 
+import * as ROUTES_PATHS from "routes/paths";
 import * as api from "api";
 import { auth } from "baas";
 

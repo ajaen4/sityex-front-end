@@ -3,10 +3,10 @@ import { useRouter } from "next/navigation";
 
 import { Box, Paper, Typography } from "@mui/material";
 
-import { fetchListingImages } from "actions";
+import { fetchHousingListing } from "actions";
 
-const HousingSlide = ({ city_id, housing_id, title }) => {
-  const [images, setImages] = useState(null);
+const HousingSlide = ({ city_id, housing_id }) => {
+  const [listing, setListing] = useState(null);
   const router = useRouter();
 
   const handleListingClick = (city_id) => {
@@ -14,10 +14,14 @@ const HousingSlide = ({ city_id, housing_id, title }) => {
   };
 
   useEffect(() => {
-    fetchListingImages(city_id, housing_id).then((images) => {
-      setImages(images);
+    fetchHousingListing(city_id, housing_id).then((listing) => {
+      setListing(listing);
     });
   }, []);
+
+  if (!listing) {
+    return null;
+  }
 
   return (
     <Box
@@ -34,9 +38,7 @@ const HousingSlide = ({ city_id, housing_id, title }) => {
             borderRadius: 2,
             width: "100%",
             height: { xs: "55vh", md: "53vh" },
-            backgroundImage: images
-              ? `url(${images.images[0].sizes["640x480"].link})`
-              : null,
+            backgroundImage: `url(${listing.images[0].sizes["640x480"].link})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             cursor: "pointer",
@@ -52,7 +54,7 @@ const HousingSlide = ({ city_id, housing_id, title }) => {
           minHeight: { xs: "5vh", md: "7vh" },
         }}
       >
-        {title}
+        {listing.title}
       </Typography>
     </Box>
   );

@@ -41,7 +41,7 @@ const PaperworkPage = () => {
     router.push(
       `/destination/${selectedCity.city_id}/paperwork/?tab=${newValue}`,
       undefined,
-      { shallow: true },
+      { shallow: true }
     );
   };
 
