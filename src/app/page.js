@@ -8,6 +8,7 @@ import GovernmentIcon from "@mui/icons-material/AssuredWorkloadOutlined";
 import CitiesAutocomplete from "components/Autocomplete/CitiesAutocomplete";
 import CitySlides from "components/Slides/CitySlides";
 import HousingSlides from "components/Slides/HousingSlides";
+import PaperworkSlides from "components/Slides/PaperworkSlides";
 import EventsSlides from "components/Slides/EventsSlides";
 import SendGAPageView from "components/DataLoaders/SendGAPageView";
 import Footer from "components/Footers/Footer";
@@ -120,7 +121,7 @@ const LandingPage = () => {
             variant="h2"
             sx={{ color: "grey.500", fontSize: 35, px: 3 }}
           >
-            Your go-to platform for expats
+            Your one-stop platform for expats
           </Typography>
           <Typography
             variant="h1"
@@ -135,10 +136,8 @@ const LandingPage = () => {
             Community-based, one-stop platform for expats
           </Typography>
         </Box>
-
         <Services />
       </Grid>
-
       <Grid
         item
         xs={12}
@@ -176,6 +175,32 @@ const LandingPage = () => {
           textAlign: "start",
           px: 3,
           mt: 5,
+        }}
+      >
+        <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+          <img
+            width="25"
+            height="25"
+            src={`${imagesCdn}/icons/paperclip.png`}
+            alt="choose-paperwork"
+            title="Choose Paperwork"
+            style={{ marginRight: 10 }}
+          />
+          <Typography variant="h2" sx={{ color: "grey.500", fontSize: 30 }}>
+            Need help with your paperwork?
+          </Typography>
+        </Box>
+        <PaperworkSlides />
+      </Grid>
+      <Grid
+        item
+        xs={12}
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          flexDirection: "column",
+          textAlign: "start",
+          px: 3,
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>

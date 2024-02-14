@@ -1,41 +1,44 @@
 import * as api from "api";
 
 import {
-  requestingHousingIndex,
-  fetchHousingIndexSuccess,
+  fetchHousingListingsSuccess,
+  fetchingHousingListings,
+  setHousingOrderBy,
+  setHousingFilters,
 } from "store/reducers/housing";
 
-import { sortListings } from "helpers/listUtils";
+export const fetchHousingListings = (city_id, limit) => (dispatch, _) => {
+  dispatch(fetchingHousingListings());
 
-export const fetchHousingIndex = (city_id, sortBy) => (dispatch, getState) => {
-  const current_city_id = getState().housing.data?.city_id;
-  if (current_city_id === city_id) {
-    return Promise.resolve();
-  }
-  dispatch(requestingHousingIndex());
-  return api.getHousingIndex(city_id).then((data) => {
-    if (sortBy) {
-      data.listings = sortListings(data.listings, sortBy);
-    }
-
+  return api.getHousingListings(city_id, limit).then((data) => {
     dispatch(
-      fetchHousingIndexSuccess({
-        housingIndex: data,
+      fetchHousingListingsSuccess({
+        housingListings: data,
       }),
     );
   });
+};
+
+export const updateHousingOrderBy = (orderBy) => (dispatch, _) => {
+  dispatch(
+    setHousingOrderBy({
+      orderBy: orderBy,
+    }),
+  );
+};
+
+export const updateHousingFilters = (filters) => (dispatch, _) => {
+  dispatch(
+    setHousingFilters({
+      filters: filters,
+    }),
+  );
 };
 
 export const fetchHousingListing = (city_id, housing_id) => {
   return api.getHousingListing(city_id, housing_id);
 };
 
-export const orderHousingIndex = (sortBy) => (dispatch, getState) => {
-  const currHousingIndex = getState().housing.data.listings;
-
-  dispatch(
-    fetchHousingIndexSuccess({
-      housingIndex: { listings: sortListings(currHousingIndex, sortBy) },
-    }),
-  );
+export const fetchListingImages = (city_id, housing_id) => {
+  return api.getListingImages(city_id, housing_id);
 };

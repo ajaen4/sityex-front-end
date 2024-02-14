@@ -67,7 +67,10 @@ function HousingMarkerCluster({ listings, onClickListing, currentZoom }) {
       const normalIcon = createNormalIcon();
 
       const marker = L.marker(
-        [listing.coordinates.latitude, listing.coordinates.longitude],
+        [
+          listing.location.coordinates.latitude,
+          listing.location.coordinates.longitude,
+        ],
         { icon: currentZoom >= 16 ? customIcon : normalIcon },
       ).on("click", () => onClickListing(listing));
 

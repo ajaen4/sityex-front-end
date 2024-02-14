@@ -19,8 +19,8 @@ import { useShowSignUpContext } from "components/Contexts/ShowSignUpContext";
 import { imagesCdn } from "constants/constants";
 
 const EntreTramitesExp = ({ ServiceName, showFreeConsultation }) => {
-
-  const freeConsultationLink = "https://entretramites.com/en/partners-program/free-consultation-partners?aff=3d90441f";
+  const freeConsultationLink =
+    "https://entretramites.com/en/partners-program/free-consultation-partners?aff=3d90441f";
 
   const auth = useSelector((state) => state.auth);
 
@@ -31,11 +31,10 @@ const EntreTramitesExp = ({ ServiceName, showFreeConsultation }) => {
       setShowSignUpModal(true);
       localStorage.setItem("destinationURL", freeConsultationLink);
       localStorage.setItem("openInNewTab", true);
+    } else {
+      window.open(freeConsultationLink, "_blank", "noopener,noreferrer");
     }
-    else{
-      window.open(freeConsultationLink, '_blank', 'noopener,noreferrer');
-    }
-  }
+  };
 
   return (
     <Card

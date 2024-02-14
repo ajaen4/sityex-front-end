@@ -27,6 +27,10 @@ service cloud.firestore {
       match /housing/{housing_id} {
         allow read; 
       }
+      
+      match /housing_images/{housing_id} {
+        allow read; 
+      }
     }
     
     match /countries/{document=**} {

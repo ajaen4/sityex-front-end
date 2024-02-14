@@ -19,8 +19,8 @@ const HousingSlides = ({}) => {
   const city_id = "3117735";
 
   useEffect(() => {
-    api.getHousingIndex(city_id).then((response) => {
-      setListings(response.listings.slice(0, 30));
+    api.getHousingListings(city_id, 30).then((data) => {
+      setListings(data);
     });
   }, []);
 
@@ -40,6 +40,7 @@ const HousingSlides = ({}) => {
               key={listing.housing_id}
               city_id={city_id}
               housing_id={listing.housing_id}
+              title={listing.title}
             />
           ))}
         </Box>,
@@ -49,12 +50,7 @@ const HousingSlides = ({}) => {
   };
 
   return (
-    <Carousel
-      sx={{ width: "100%" }}
-      navButtonsAlwaysVisible
-      indicators={false}
-      interval={7000}
-    >
+    <Carousel navButtonsAlwaysVisible indicators={false} interval={7000}>
       {createSlides(listings)}
     </Carousel>
   );
