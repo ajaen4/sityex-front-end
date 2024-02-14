@@ -23,6 +23,7 @@ export const defaultHousingFilters = {
   propertyType: [],
   furniture: "",
   totalSize: "",
+  bedrooms: "",
   facilities: [],
   amenities: [],
   rentType: [],

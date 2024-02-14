@@ -4,17 +4,12 @@ export const filterListings = (listings, filters, orderBy) => {
     const maxPrice = filters.maxPrice ? parseFloat(filters.maxPrice) : null;
     const furnitureValue = filters.furniture === "furnished" ? "yes" : "no";
     const totalSize = filters.totalSize ? parseFloat(filters.totalSize) : null;
+    const bedrooms = filters.bedrooms ? filters.bedrooms : null;
 
     // Price criteria
-    if (
-      minPrice !== null &&
-      parseFloat(listing.costsFormatted.price) < minPrice
-    )
+    if (minPrice && parseFloat(listing.costsFormatted.price) < minPrice)
       return false;
-    if (
-      maxPrice !== null &&
-      parseFloat(listing.costsFormatted.price) > maxPrice
-    )
+    if (maxPrice && parseFloat(listing.costsFormatted.price) > maxPrice)
       return false;
 
     // Furniture criteria
@@ -30,8 +25,19 @@ export const filterListings = (listings, filters, orderBy) => {
 
     // Total size criteria
     if (
-      totalSize !== null &&
+      totalSize &&
       parseFloat(listing.facilities.totalSize?.value) < totalSize
+    )
+      return false;
+
+    // Bedrooms criteria
+    const listingBedrooms = parseInt(listing.facilities.bedrooms?.value);
+    if (
+      (bedrooms &&
+        listingBedrooms &&
+        ((bedrooms < 4 && listingBedrooms !== bedrooms) ||
+          (bedrooms === 4 && listingBedrooms < bedrooms))) ||
+      (bedrooms && !listingBedrooms)
     )
       return false;
 
