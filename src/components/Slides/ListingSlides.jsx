@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Carousel from "react-material-ui-carousel";
 
-import { Box } from "@mui/material";
+import { Box, CircularProgress } from "@mui/material";
 
 const ListingSlides = ({ images, isInMap, imageHeight, autoPlay, swipe }) => {
   const carouselRef = React.useRef(null);
@@ -16,11 +16,7 @@ const ListingSlides = ({ images, isInMap, imageHeight, autoPlay, swipe }) => {
   }, []);
 
   const createSlides = (images) => {
-    if (!images || images.length === 0) {
-      return null;
-    }
-
-    return images.map((image, index) => (
+    return images.images.map((image, index) => (
       <Box
         key={index}
         sx={{
@@ -36,14 +32,27 @@ const ListingSlides = ({ images, isInMap, imageHeight, autoPlay, swipe }) => {
 
   return (
     <div ref={carouselRef}>
+      {!images && (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+            minHeight: imageHeight,
+          }}
+        >
+          <CircularProgress />
+        </Box>
+      )}
       {images && (
         <Carousel
-          navButtonsAlwaysVisible={images.images.length > 1}
+          navButtonsAlwaysVisible={images?.images}
           indicators={false}
           autoPlay={autoPlay}
           swipe={swipe ? true : false}
         >
-          {createSlides(images.images)}
+          {createSlides(images)}
         </Carousel>
       )}
     </div>

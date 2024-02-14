@@ -79,14 +79,14 @@ const facilitiesFilter = (listing, facilities) => {
       ((facility === "bathroom" &&
         listing.facilities[facility].value === "private") ||
         (facility !== "bathroom" &&
-          listing.facilities[facility].value !== "no"))
+          listing.facilities[facility].value !== "no")),
   );
 };
 
 const amenitiesFilter = (listing, amenities) => {
   return amenities.every(
     (amenity) =>
-      listing.facilities[amenity] && listing.facilities[amenity].value !== "no"
+      listing.facilities[amenity] && listing.facilities[amenity].value !== "no",
   );
 };
 
