@@ -42,14 +42,15 @@ export default function HousingList() {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
   const dispatch = useDispatch();
 
-  const [orderBy, setOrderBy] = useState("");
-  const [pageNum, setPageNum] = useState(1);
-
   const filteredHListings = useSelector(
     (state) => state.housing.data.filteredHListings,
   );
   const housingState = useSelector((state) => state.housing);
   const selectedCity = useSelector((state) => state.selectedCity.data);
+  const housingOrderBy = useSelector((state) => state.housing.data.orderBy);
+
+  const [orderBy, setOrderBy] = useState(housingOrderBy);
+  const [pageNum, setPageNum] = useState(1);
 
   const itemSize = isSmallScreen ? 530 : 255;
   const numPages =
