@@ -50,11 +50,7 @@ const HousingSlides = ({}) => {
   };
 
   return (
-    <Carousel
-      navButtonsAlwaysVisible
-      indicators={false}
-      interval={7000}
-    >
+    <Carousel navButtonsAlwaysVisible indicators={false} interval={7000}>
       {createSlides(listings)}
     </Carousel>
   );

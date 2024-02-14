@@ -63,18 +63,14 @@ const CitySlides = () => {
               </Box>
             </Paper>
           ))}
-        </Box>
+        </Box>,
       );
     }
     return slides;
   };
 
   return (
-    <Carousel
-      navButtonsAlwaysVisible
-      indicators={false}
-      interval={7000}
-    >
+    <Carousel navButtonsAlwaysVisible indicators={false} interval={7000}>
       {citiesIndex?.cities && createSlides(citiesIndex.cities)}
     </Carousel>
   );
