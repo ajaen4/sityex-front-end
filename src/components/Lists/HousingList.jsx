@@ -19,7 +19,7 @@ import {
 import HousingListing from "components/Cards/HousingListing";
 import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 
-import { fetchHousingListings, updateHousingOrderBy } from "actions";
+import { updateHousingOrderBy } from "actions";
 import { housingPageSize } from "constants/constants";
 
 function renderRow(props) {
@@ -46,7 +46,6 @@ export default function HousingList() {
     (state) => state.housing.data.filteredHListings,
   );
   const housingState = useSelector((state) => state.housing);
-  const selectedCity = useSelector((state) => state.selectedCity.data);
   const housingOrderBy = useSelector((state) => state.housing.data.orderBy);
 
   const [orderBy, setOrderBy] = useState(housingOrderBy);
@@ -55,13 +54,14 @@ export default function HousingList() {
   const itemSize = isSmallScreen ? 530 : 255;
   const numPages =
     filteredHListings.length > housingPageSize
-      ? Math.floor(filteredHListings.length / housingPageSize) - 1
+      ? Math.round(filteredHListings.length / housingPageSize)
       : 1;
   const validatedPageNum = pageNum > numPages ? numPages : pageNum;
-  const itemCount =
-    filteredHListings.length >= housingPageSize
-      ? housingPageSize
-      : filteredHListings.length;
+  const itemData = filteredHListings.slice(
+    (validatedPageNum - 1) * housingPageSize,
+    validatedPageNum * housingPageSize,
+  );
+  const itemCount = itemData.length;
 
   const updateHeight = () => {
     if (listRef.current) {
@@ -72,9 +72,7 @@ export default function HousingList() {
   };
 
   useEffect(() => {
-    if (housingState.data.housingListings.length === 0) {
-      dispatch(fetchHousingListings(selectedCity.city_id));
-    }
+    
     updateHeight();
     window.addEventListener("resize", updateHeight);
 
@@ -148,10 +146,7 @@ export default function HousingList() {
             height={itemSize * itemCount}
             width="100%"
             itemSize={itemSize}
-            itemData={filteredHListings.slice(
-              (validatedPageNum - 1) * housingPageSize,
-              validatedPageNum * housingPageSize,
-            )}
+            itemData={itemData}
             itemCount={itemCount}
             overscanCount={10}
           >
