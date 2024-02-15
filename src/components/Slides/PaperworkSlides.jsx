@@ -94,7 +94,13 @@ const PaperworkSlides = () => {
               }}
             >
               <Paper
-                sx={{ display: "flex", justifyContent: "center", height: "31vh", width: "100%", cursor: "pointer" }}
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  height: "31vh",
+                  width: "100%",
+                  cursor: "pointer",
+                }}
                 onClick={() => handleServiceClick(service.path)}
               >
                 <img

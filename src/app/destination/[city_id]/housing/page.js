@@ -27,18 +27,20 @@ const HousingMap = dynamic(() => import("components/Maps/HousingMap"), {
 import HousingFilters from "components/Accordions/HousingFilters";
 import { useShowSignUpContext } from "components/Contexts/ShowSignUpContext";
 
+import { fetchHousingListings } from "actions";
 import { capitalize } from "helpers/usefulFunctions";
-
 import { imagesCdn, documentsCdn } from "constants/constants";
 
 const tabs = ["listings", "map", "discounts"];
 const HousingPage = () => {
   const searchParams = useSearchParams();
+  const dispatch = useDispatch();
 
   const [selectedTab, setSelectedTab] = useState("listings");
 
   const selectedCity = useSelector((state) => state.selectedCity.data);
   const auth = useSelector((state) => state.auth);
+  const housingState = useSelector((state) => state.housing);
 
   const { setShowSignUpModal } = useShowSignUpContext();
   const router = useRouter();
@@ -60,6 +62,15 @@ const HousingPage = () => {
       changeTab(searchParams.get("tab"));
     }
   }, [searchParams.get("tab"), auth]);
+
+  useEffect(() => {
+    if (
+      housingState.data.housingListings.length === 0 ||
+      housingState.data.city_id !== selectedCity.city_id
+    ) {
+      dispatch(fetchHousingListings(selectedCity.city_id));
+    }
+  }, [selectedCity]);
 
   return (
     <Box
