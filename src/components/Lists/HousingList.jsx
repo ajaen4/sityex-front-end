@@ -72,7 +72,6 @@ export default function HousingList() {
   };
 
   useEffect(() => {
-    
     updateHeight();
     window.addEventListener("resize", updateHeight);
 
