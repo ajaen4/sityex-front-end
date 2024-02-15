@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Box, Typography, Grid, Card } from "@mui/material";
+import { Box, Typography, Grid, Chip } from "@mui/material";
 import PeopleIcon from "@mui/icons-material/PeopleOutlined";
 import HouseIcon from "@mui/icons-material/MapsHomeWorkOutlined";
 import GovernmentIcon from "@mui/icons-material/AssuredWorkloadOutlined";
@@ -177,18 +177,99 @@ const LandingPage = () => {
           mt: 5,
         }}
       >
-        <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-          <img
-            width="25"
-            height="25"
-            src={`${imagesCdn}/icons/paperclip.png`}
-            alt="choose-paperwork"
-            title="Choose Paperwork"
-            style={{ marginRight: 10 }}
-          />
-          <Typography variant="h2" sx={{ color: "grey.500", fontSize: 30 }}>
-            Need help with your paperwork?
-          </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            mb: 2,
+          }}
+        >
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <img
+              width="25"
+              height="25"
+              src={`${imagesCdn}/icons/paperclip.png`}
+              alt="choose-paperwork"
+              title="Choose Paperwork"
+              style={{ marginRight: 5 }}
+            />
+            <Typography
+              variant="h2"
+              sx={{ color: "grey.500", fontSize: 30, mr: 2 }}
+            >
+              Paperwork
+            </Typography>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              mt: { xs: 2, md: 0 },
+            }}
+          >
+            <a
+              href="/destination/3117735/paperwork"
+              style={{ textDecoration: "none", marginLeft: 0 }}
+            >
+              <img
+                width="120"
+                height="30"
+                src={`${imagesCdn}/partner_logos/entretramites.webp`}
+                alt="entretramites icon"
+                title="Entre Tramites"
+                style={{ marginTop: 4 }}
+              />
+            </a>
+            <a
+              href="/destination/3117735/paperwork"
+              style={{ textDecoration: "none" }}
+            >
+              <Chip
+                label="10% off"
+                color="success"
+                sx={{
+                  display: { xs: "none", md: "flex" },
+                  ml: 1,
+                }}
+              />
+            </a>
+            <a
+              href="https://taxdown.es/landings_partners/sityex/?utm_source=empleados&utm_medium=partnership&utm_campaign=empleados_partnership"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                width="150"
+                height="25"
+                src={`${imagesCdn}/partner_logos/taxdown.png`}
+                alt="taxdown icon"
+                title="Taxdown"
+                style={{ marginTop: 7, marginLeft: 5 }}
+              />
+            </a>
+            <a
+              href="/destination/3117735/paperwork"
+              style={{ textDecoration: "none" }}
+            >
+              <Chip
+                label="10/15% off"
+                color="success"
+                sx={{ display: { xs: "flex", md: "none" } }}
+              />
+            </a>
+            <a
+              href="https://taxdown.es/landings_partners/sityex/?utm_source=empleados&utm_medium=partnership&utm_campaign=empleados_partnership"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "none" }}
+            >
+              <Chip
+                label="15% off"
+                color="success"
+                sx={{ display: { xs: "none", md: "flex" }, ml: 1 }}
+              />
+            </a>
+          </Box>
         </Box>
         <PaperworkSlides />
       </Grid>
@@ -203,7 +284,13 @@ const LandingPage = () => {
           px: 3,
         }}
       >
-        <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            mb: 2,
+          }}
+        >
           <img
             width="25"
             height="25"
@@ -212,9 +299,24 @@ const LandingPage = () => {
             title="Housing"
             style={{ marginRight: 10 }}
           />
-          <Typography variant="h2" sx={{ color: "grey.500", fontSize: 30 }}>
+          <Typography
+            variant="h2"
+            sx={{ color: "grey.500", fontSize: 30, mr: 2 }}
+          >
             Housing
           </Typography>
+          <a href="/destination/3117735/housing?tab=discounts">
+            <img
+              width="40"
+              height="50"
+              src={`${imagesCdn}/partner_logos/spotahome.png`}
+              alt="spotahome icon"
+              title="Spotahome"
+            />
+          </a>
+          <a href="/destination/3117735/housing?tab=discounts">
+            <Chip label="25% off" color="success" sx={{ ml: 1 }} />
+          </a>
         </Box>
         <HousingSlides />
       </Grid>
