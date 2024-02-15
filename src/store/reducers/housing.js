@@ -21,6 +21,7 @@ const HousingSlice = createSlice({
       state.isFetching = true;
     },
     fetchHousingListingsSuccess: (state, action) => {
+      state.data.city_id = action.payload.city_id;
       state.data.housingListings = action.payload.housingListings;
       state.data.filteredHListings = action.payload.housingListings;
       state.data.orderBy = action.payload.orderBy;
@@ -31,7 +32,7 @@ const HousingSlice = createSlice({
       state.data.filteredHListings = filterListings(
         state.data.housingListings,
         state.data.filters,
-        state.data.orderBy,
+        state.data.orderBy
       );
       state.isFetching = false;
     },
@@ -40,7 +41,7 @@ const HousingSlice = createSlice({
       state.data.filteredHListings = filterListings(
         state.data.housingListings,
         state.data.filters,
-        state.data.orderBy,
+        state.data.orderBy
       );
       state.isFetching = false;
     },

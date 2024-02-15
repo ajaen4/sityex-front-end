@@ -38,7 +38,7 @@ const ListingSlides = ({ images, isInMap, imageHeight, autoPlay, swipe }) => {
         width: "100%",
       }}
     >
-      {!images && (
+      {!images?.images && (
         <Box
           style={{
             display: "flex",
@@ -51,7 +51,7 @@ const ListingSlides = ({ images, isInMap, imageHeight, autoPlay, swipe }) => {
           <CircularProgress />
         </Box>
       )}
-      {images && (
+      {images?.images && (
         <Carousel
           navButtonsAlwaysVisible={images?.images}
           indicators={false}
