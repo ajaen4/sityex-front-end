@@ -97,6 +97,7 @@ const PaperworkSlides = () => {
                 sx={{
                   display: "flex",
                   justifyContent: "center",
+                  alignItems: "center",
                   height: "31vh",
                   width: "100%",
                   cursor: "pointer",
@@ -106,7 +107,7 @@ const PaperworkSlides = () => {
                 <img
                   src={`${imagesCdn}/icons/${service.image}`}
                   alt={service.name}
-                  style={{ height: "100%" }}
+                  style={{ height: "75%" }}
                 />
               </Paper>
               <Typography
