@@ -3,12 +3,20 @@
 import React, { useRef, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-import { Card, CardContent, Typography, Box, IconButton } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  Typography,
+  Box,
+  IconButton,
+  Grid,
+} from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
 import ListingSlides from "components/Slides/ListingSlides";
 
 import { fetchListingImages } from "actions";
+import { imagesCdn } from "constants/constants";
 
 const ListingInfoWindow = ({ listing, setSelectedListing }) => {
   const cardRef = useRef(null);
@@ -63,10 +71,10 @@ const ListingInfoWindow = ({ listing, setSelectedListing }) => {
         flexDirection: "column",
         position: "absolute",
         top: 15,
-        right: 15,
+        right: 10,
         zIndex: 1000,
         p: 0,
-        width: 300,
+        width: { xs: 330, md: 380 },
       }}
     >
       <IconButton
@@ -98,21 +106,45 @@ const ListingInfoWindow = ({ listing, setSelectedListing }) => {
           textAlign: "left",
         }}
       >
-        <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Typography
-            variant="h6"
-            sx={{
-              fontWeight: "bold",
-              mr: 1,
-              fontSize: 18,
-            }}
+        <Grid container sx={{ mb: 1, display: "flex", alignItems: "center" }}>
+          <Grid
+            item
+            xs={7}
+            md={8}
+            sx={{ display: "flex", alignItems: "center" }}
           >
-            {formatPrice(listing.costsFormatted.price)}
-          </Typography>
-          <Typography variant="body1">
-            {listing.costsFormatted.pricing}
-          </Typography>
-        </Box>
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+              <Typography
+                variant="h6"
+                sx={{
+                  fontWeight: "bold",
+                  mr: 1,
+                  fontSize: 18,
+                }}
+              >
+                {formatPrice(listing.costsFormatted.price)}
+              </Typography>
+              <Typography variant="body1">
+                {listing.costsFormatted.pricing}
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid
+            item
+            xs={5}
+            md={4}
+            sx={{ display: "flex", justifyContent: "center" }}
+          >
+            <img
+              width="100"
+              height="30"
+              src={`${imagesCdn}/partner_logos/housing_anywhere.png`}
+              alt="housinganywhere icon"
+              title="HousingAnywhere"
+              style={{ marginTop: 3 }}
+            />
+          </Grid>
+        </Grid>
         <Box sx={{ display: "flex", alignItems: "center", mt: 0.5 }}>
           <Typography variant="body1" sx={{ fontSize: 16 }}>
             {listing.kindLabel} • {listing.typeLabel}

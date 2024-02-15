@@ -16,6 +16,7 @@ import {
 import ListingSlides from "components/Slides/ListingSlides";
 
 import { fetchListingImages } from "actions";
+import { imagesCdn } from "constants/constants";
 
 const HousingListing = ({ listing }) => {
   const theme = useTheme();
@@ -82,41 +83,65 @@ const HousingListing = ({ listing }) => {
               textAlign: "left",
             }}
           >
-            <Typography
-              variant="h4"
-              sx={{
-                mt: 1,
-                mr: 1,
-                fontSize: 18,
-              }}
-            >
-              {listing.title}
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                mt: 1,
-                mr: 1,
-                fontSize: 18,
-              }}
-            >
-              {listing.location.neighborhood}
-            </Typography>
-            <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
-              <Typography
-                variant="h6"
-                sx={{
-                  fontWeight: "bold",
-                  mr: 1,
-                  fontSize: 20,
-                }}
+            <Grid container>
+              <Grid
+                item
+                xs={7}
+                md={9}
+                sx={{ display: "flex", flexDirection: "column" }}
               >
-                {formatPrice(listing.costsFormatted.price)}
-              </Typography>
-              <Typography variant="body1" sx={{ fontSize: 18 }}>
-                {listing.costsFormatted.pricing}
-              </Typography>
-            </Box>
+                <Typography
+                  variant="h4"
+                  sx={{
+                    mt: 1,
+                    mr: 1,
+                    fontSize: 18,
+                  }}
+                >
+                  {listing.title}
+                </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    mt: 1,
+                    mr: 1,
+                    fontSize: 18,
+                  }}
+                >
+                  {listing.location.neighborhood}
+                </Typography>
+                <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      fontWeight: "bold",
+                      mr: 1,
+                      fontSize: 20,
+                    }}
+                  >
+                    {formatPrice(listing.costsFormatted.price)}
+                  </Typography>
+                  <Typography variant="body1" sx={{ fontSize: 18 }}>
+                    {listing.costsFormatted.pricing}
+                  </Typography>
+                </Box>
+              </Grid>
+              <Grid
+                item
+                xs={5}
+                md={3}
+                sx={{ display: "flex", justifyContent: "center" }}
+              >
+                <img
+                  width="136"
+                  height="41"
+                  src={`${imagesCdn}/partner_logos/housing_anywhere.png`}
+                  alt="housinganywhere icon"
+                  title="HousingAnywhere"
+                  style={{ marginTop: 10 }}
+                />
+              </Grid>
+            </Grid>
             <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
               <Typography variant="body1" sx={{ fontSize: 16 }}>
                 {listing.kindLabel} • {listing.typeLabel}
