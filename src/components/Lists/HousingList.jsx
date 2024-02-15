@@ -54,7 +54,7 @@ export default function HousingList() {
   const itemSize = isSmallScreen ? 530 : 255;
   const numPages =
     filteredHListings.length > housingPageSize
-      ? Math.round(filteredHListings.length / housingPageSize)
+      ? Math.ceil(filteredHListings.length / housingPageSize)
       : 1;
   const validatedPageNum = pageNum > numPages ? numPages : pageNum;
   const itemData = filteredHListings.slice(
