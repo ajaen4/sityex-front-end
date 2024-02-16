@@ -134,7 +134,7 @@ const HousingListing = ({ listing }) => {
               >
                 <img
                   width="136"
-                  height="41"
+                  height="42"
                   src={`${imagesCdn}/partner_logos/housing_anywhere.png`}
                   alt="housinganywhere icon"
                   title="HousingAnywhere"

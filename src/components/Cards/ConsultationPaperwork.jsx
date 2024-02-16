@@ -13,7 +13,6 @@ import {
 } from "@mui/material";
 
 import RequirementsModal from "components/Modals/RequirementsModal";
-import { useShowSignUpContext } from "components/Contexts/ShowSignUpContext";
 
 const ConsultationPaperwork = ({
   title,
@@ -28,8 +27,6 @@ const ConsultationPaperwork = ({
 
   const auth = useSelector((state) => state.auth);
 
-  const { setShowSignUpModal } = useShowSignUpContext();
-
   const formatNumberEuropeanStyle = (number) => {
     return number.toLocaleString("de-DE", {
       minimumFractionDigits: 2,
@@ -43,13 +40,7 @@ const ConsultationPaperwork = ({
   };
 
   const onClickFreeConsultation = () => {
-    if (auth.isAuthResolved === false) {
-      setShowSignUpModal(true);
-      localStorage.setItem("destinationURL", freeConsultationLink);
-      localStorage.setItem("openInNewTab", true);
-    } else {
-      window.open(freeConsultationLink, "_blank", "noopener,noreferrer");
-    }
+    window.open(freeConsultationLink, "_blank", "noopener,noreferrer");
   };
 
   return (
