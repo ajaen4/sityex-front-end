@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 
 import { Grid, Typography, Card, Box, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
@@ -12,12 +13,14 @@ const Services = () => {
 
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+  const router = useRouter();
 
   const services = {
     paperwork: {
       id: "paperwork",
       icon: "paperwork-2.png",
       title: "Paperwork",
+      link: "/destination/3117735/paperwork",
       description:
         "Automatized processes through our local partners that do the paperwork for you",
       position: "7.5%",
@@ -26,12 +29,14 @@ const Services = () => {
       id: "housing",
       icon: "housing-2.png",
       title: "Housing",
+      link: "/destination/3117735/housing",
       description:
         "Housing options and discounts through our partners to help you find your ideal home",
       position: "35%",
     },
     events: {
       id: "events",
+      link: "/destination/3117735/events",
       icon: "events-2.png",
       title: "Events",
       description:
@@ -155,7 +160,9 @@ const Services = () => {
                 p: 3,
                 width: "fit-content",
                 margin: "auto",
+                cursor: "pointer",
               }}
+              onClick={() => router.push(service.link)}
             >
               <img
                 height="120"

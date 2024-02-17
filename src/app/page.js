@@ -33,79 +33,6 @@ const LandingPage = () => {
         item
         xs={12}
         sx={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${imagesCdn}/background/landing.jpg)`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <Typography
-          variant="h5"
-          color="white"
-          fontSize={50}
-          sx={{
-            textAlign: "center",
-            alignSelf: "center",
-            mt: 20,
-          }}
-        >
-          Discover, Connect, Belong
-        </Typography>
-        <Box sx={{ width: 250, mt: 5, mb: { xs: 10, md: 15 } }}>
-          <CitiesAutocomplete placeholder="Enter your destination" />
-        </Box>
-        <Typography
-          variant="h1"
-          color="white"
-          fontSize={20}
-          sx={{
-            mb: 2,
-          }}
-        >
-          One-stop platform for expats
-        </Typography>
-        <Box sx={{ display: "flex", mb: 2 }}>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              mx: 3,
-            }}
-          >
-            <GovernmentIcon sx={{ color: "white", fontSize: 40 }} />
-            <Typography color="white"> Paperwork </Typography>
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              mx: 3,
-            }}
-          >
-            <HouseIcon sx={{ color: "white", fontSize: 40 }} />
-            <Typography color="white"> Housing </Typography>
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              mx: 3,
-            }}
-          >
-            <PeopleIcon sx={{ color: "white", fontSize: 40 }} />
-            <Typography color="white"> Community </Typography>
-          </Box>
-        </Box>
-      </Grid>
-      <Grid
-        item
-        xs={12}
-        sx={{
           display: "flex",
           flexDirection: "column",
           mt: 5,
@@ -137,33 +64,6 @@ const LandingPage = () => {
           </Typography>
         </Box>
         <Services />
-      </Grid>
-      <Grid
-        item
-        xs={12}
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          flexDirection: "column",
-          textAlign: "start",
-          px: 3,
-          mt: 5,
-        }}
-      >
-        <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-          <img
-            width="25"
-            height="25"
-            src={`${imagesCdn}/icons/signpost-fill.png`}
-            alt="choose-city"
-            title="Choose City"
-            style={{ marginRight: 10 }}
-          />
-          <Typography variant="h2" sx={{ color: "grey.500", fontSize: 30 }}>
-            Choose your city
-          </Typography>
-        </Box>
-        <CitySlides />
       </Grid>
       <Grid
         item
