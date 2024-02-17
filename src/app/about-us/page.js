@@ -1,12 +1,6 @@
 import React from "react";
 
 import { Box, Typography, Stack, Grid } from "@mui/material";
-import PeopleIcon from "@mui/icons-material/PeopleOutlined";
-import HouseIcon from "@mui/icons-material/MapsHomeWorkOutlined";
-import GovernmentIcon from "@mui/icons-material/AssuredWorkloadOutlined";
-
-import CitiesAutocomplete from "components/Autocomplete/CitiesAutocomplete";
-import CitySlides from "components/Slides/CitySlides";
 import SendGAPageView from "components/DataLoaders/SendGAPageView";
 import Footer from "components/Footers/Footer";
 
@@ -81,8 +75,7 @@ const AboutUs = () => {
               To create a digital platform that offers 100% online services,
               making the process of settling into any city seamless and
               immediate. We leverage technology while preserving a human touch
-              through our community, ensuring our solutions truly understand and
-              meet the diverse needs of people.
+              through our community.
             </Typography>
           </Box>
           <Grid container>
