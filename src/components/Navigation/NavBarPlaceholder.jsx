@@ -16,8 +16,7 @@ function NavBarPlaceholder({}) {
   const isBlogPage =
     pathname.split("/")[pathname.split("/").length - 1] === "blog";
   const isOpaqueNavbar =
-    (!isLandingPage && !isBlogPage) ||
-    (isLandingPage && scrolledY > 750) ||
+    (!isBlogPage) ||
     (isBlogPage && scrolledY > 400);
 
   useEffect(() => {

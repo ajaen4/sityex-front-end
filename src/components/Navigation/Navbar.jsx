@@ -14,7 +14,6 @@ import SignUpModal from "components/Modals/SignUpModal";
 import { useShowSignUpContext } from "components/Contexts/ShowSignUpContext";
 
 import * as ROUTES_PATHS from "routes/paths";
-import { ESLINT_DEFAULT_DIRS } from "next/dist/lib/constants";
 
 function NavBar({}) {
   const [scrolledY, setScrolledY] = useState(0);
@@ -29,8 +28,7 @@ function NavBar({}) {
   const isBlogPage =
     pathname.split("/")[pathname.split("/").length - 1] === "blog";
   const isOpaqueNavbar =
-    (!isLandingPage && !isBlogPage) ||
-    (isLandingPage && scrolledY > 550) ||
+    (!isBlogPage) ||
     (isBlogPage && scrolledY > 400);
 
   const toggleSignUpModal = () => {
