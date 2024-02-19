@@ -60,7 +60,7 @@ const CityEventsPage = () => {
     });
 
     return eventCategories.filter((subcategory) =>
-      usedSubcategories.has(subcategory)
+      usedSubcategories.has(subcategory),
     );
   }, [eventsData]);
 
@@ -70,9 +70,9 @@ const CityEventsPage = () => {
         .filter(
           (event) =>
             event.sityex_subcategories.includes(category) &&
-            new Date(event.end_date) > today
+            new Date(event.end_date) > today,
         )
-        .sort((a, b) => a.remaining_days - b.remaining_days)
+        .sort((a, b) => a.remaining_days - b.remaining_days),
     );
   }, [filteredSubcategories, eventsData, today]);
 
@@ -130,7 +130,7 @@ const CityEventsPage = () => {
           (category, index) =>
             selectedTab === index && (
               <EventsGrid key={category} events={memoizedEvents[index]} />
-            )
+            ),
         )}
       </Box>
     </Box>

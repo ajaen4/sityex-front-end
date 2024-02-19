@@ -18,7 +18,9 @@ const WithoutAuth = (Component) => {
     return !isAuthResolved ? <Component {...props} /> : null;
   };
 
-  AuthComponent.displayName = `WithoutAuth(${Component.displayName || Component.name || "Component"})`;
+  AuthComponent.displayName = `WithoutAuth(${
+    Component.displayName || Component.name || "Component"
+  })`;
 
   return AuthComponent;
 };

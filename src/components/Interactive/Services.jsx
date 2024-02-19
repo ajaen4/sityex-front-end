@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { useRouter } from "next/navigation";
 
 import { Grid, Typography, Card, Box, useMediaQuery } from "@mui/material";
@@ -9,7 +9,6 @@ import { useTheme } from "@mui/material/styles";
 import { imagesCdn } from "constants/constants";
 
 const Services = () => {
-  const [activeService, setActiveService] = useState("paperwork");
 
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -23,7 +22,6 @@ const Services = () => {
       link: "/services/3117735/paperwork",
       description:
         "Automatized processes through our local partners that do the paperwork for you",
-      position: "7.5%",
     },
     housing: {
       id: "housing",
@@ -32,21 +30,15 @@ const Services = () => {
       link: "/services/3117735/housing",
       description:
         "Housing options and discounts through our partners to help you find your ideal home",
-      position: "35%",
     },
     community: {
       id: "community",
       link: "/services/3117735/community",
       icon: "events-2.png",
-      title: "community",
+      title: "Community",
       description:
         "We have created a thriving community of expats to help you feel at home in Spain",
-      position: "57.5%",
     },
-  };
-
-  const handleServiceClick = (serviceId) => {
-    setActiveService(serviceId);
   };
 
   if (isSmallScreen) {
@@ -55,9 +47,9 @@ const Services = () => {
         <Box
           sx={{
             overflow: "hidden",
-            position: "relative",
-            mt: 5,
-            height: "25vh",
+            mt: { xs: 1, md: 5 },
+            height: "23vh",
+            width: "100%",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
@@ -68,17 +60,10 @@ const Services = () => {
             <Box
               key={service.id}
               sx={{
-                position: "absolute",
-                left: service.position,
-                transition: "all 0.3s ease",
-                width: activeService === service.id ? "35%" : "30%",
-                zIndex: activeService === service.id ? 2 : 1,
                 cursor: "pointer",
-                "&:hover": {
-                  transform: "scale(1.1)",
-                },
+                mx: 1,
               }}
-              onClick={() => handleServiceClick(service.id)}
+              onClick={() => router.push(service.link)}
             >
               <Card
                 sx={{
@@ -93,40 +78,22 @@ const Services = () => {
                   src={`${imagesCdn}/icons/${service.icon}`}
                   alt={`${service.title} icon`}
                   title={service.title}
-                  style={{ height: "80px" }}
+                  style={{ height: "50px" }}
                 />
-                {activeService === service.id && (
-                  <Typography
-                    variant="h2"
-                    sx={{
-                      color: "grey.500",
-                      fontSize: 20,
-                      mt: 2,
-                      textAlign: "center",
-                    }}
-                  >
-                    {service.title}
-                  </Typography>
-                )}
               </Card>
+              <Typography
+                variant="h2"
+                sx={{
+                  color: "grey.500",
+                  fontSize: 20,
+                  mt: 2,
+                  textAlign: "center",
+                }}
+              >
+                {service.title}
+              </Typography>
             </Box>
           ))}
-        </Box>
-
-        <Box sx={{ minHeight: 98, px: 3 }}>
-          {activeService && (
-            <Typography
-              sx={{
-                color: "grey.500",
-                backgroundColor: "grey.100",
-                fontSize: 16,
-                borderRadius: 3,
-                p: 2,
-              }}
-            >
-              {services[activeService].description}
-            </Typography>
-          )}
         </Box>
       </Box>
     );

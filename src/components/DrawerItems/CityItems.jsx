@@ -25,7 +25,7 @@ const CityItems = () => {
   const itemSelected = (event) => {
     const path = event.currentTarget.getAttribute("data-path");
     const destinationURL = `/services/${selectedCity.city_id}/${path}`;
-    
+
     router.push(destinationURL);
   };
 

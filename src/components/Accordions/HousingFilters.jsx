@@ -34,7 +34,9 @@ const HousingFilters = () => {
   }, 500);
 
   useEffect(() => {
-    const subscription = watch((value, { name, type }) => debounceFilters(value));
+    const subscription = watch((value, { name, type }) =>
+      debounceFilters(value),
+    );
     return () => subscription.unsubscribe();
   }, [watch, debounceFilters]);
 

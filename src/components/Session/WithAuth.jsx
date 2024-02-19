@@ -20,7 +20,9 @@ const WithAuth = (Component) => {
     return isAuthResolved ? <Component {...props} /> : null;
   };
 
-  AuthenticatedComponent.displayName = `WithAuth(${Component.displayName || Component.name || 'Component'})`;
+  AuthenticatedComponent.displayName = `WithAuth(${
+    Component.displayName || Component.name || "Component"
+  })`;
 
   return AuthenticatedComponent;
 };
