@@ -46,9 +46,8 @@ const Services = () => {
       <Box>
         <Box
           sx={{
-            overflow: "hidden",
             mt: { xs: 1, md: 5 },
-            height: "23vh",
+            height: "20vh",
             width: "100%",
             display: "flex",
             justifyContent: "center",
@@ -70,7 +69,7 @@ const Services = () => {
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
-                  p: 3,
+                  p: 1,
                   height: "fit-content",
                 }}
               >
@@ -78,7 +77,7 @@ const Services = () => {
                   src={`${imagesCdn}/icons/${service.icon}`}
                   alt={`${service.title} icon`}
                   title={service.title}
-                  style={{ height: "50px" }}
+                  style={{ height: "80px" }}
                 />
               </Card>
               <Typography
@@ -95,6 +94,20 @@ const Services = () => {
             </Box>
           ))}
         </Box>
+        <Typography
+              sx={{
+                textAlign: "center",
+                color: "grey.500",
+                backgroundColor: "grey.100",
+                fontSize: 18,
+                mx: 2,
+                borderRadius: 3,
+                p: 2,
+                mt: 2,
+              }}
+            >
+              100% online services, we take care of everything for you
+            </Typography>
       </Box>
     );
   } else {
