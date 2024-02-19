@@ -85,6 +85,7 @@ const PaperworkSlides = () => {
         >
           {itemsForCurrentSlide.map((service) => (
             <Box
+              key={service.name}
               sx={{
                 display: "flex",
                 flexDirection: "column",

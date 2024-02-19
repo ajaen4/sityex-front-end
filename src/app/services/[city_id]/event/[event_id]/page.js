@@ -42,13 +42,13 @@ const CityEventPage = () => {
       selectedCity.city_id,
       event_id,
       auth.data.id,
-      interested_info,
+      interested_info
     );
-  }, []);
+  }, [auth.data, event_id, selectedCity.city_id]);
 
   useEffect(() => {
     dispatch(getCityEvent(selectedCity.city_id, event_id));
-  }, [event_id]);
+  }, [dispatch, selectedCity.city_id, event_id]);
 
   const formatText = (text) => {
     return text.split("\n").map((line, index) => (
@@ -69,12 +69,12 @@ const CityEventPage = () => {
         selectedCity.city_id,
         event_id,
         auth.data?.id,
-        buy_info,
+        buy_info
       );
     window.open(selectedEvent.affiliate_url, "_blank", "noopener");
   };
 
-  if (!selectedEvent) return null;
+  if (!selectedEvent) return <CenteredLoadingSpinner />;
 
   let imgSrc = null;
   if (selectedEvent.partner === "sityex") {

@@ -61,7 +61,7 @@ const AccountPage = () => {
       setValue("homeCountry3Code", auth.homeCountry3Code || "");
       setValue("email", auth.email);
     }
-  }, [auth, allCountries]);
+  }, [auth, allCountries, setValue]);
 
   const updateUserData = (data) => {
     const dataWithId = { ...data, id: auth.id };
@@ -100,7 +100,7 @@ const AccountPage = () => {
                   alt="Remy Sharp"
                   src={`https://eu.ui-avatars.com/api/?name=${auth.userName.replace(
                     " ",
-                    "+",
+                    "+"
                   )}&size=512`}
                   sx={{ width: 50, height: 50 }}
                 />

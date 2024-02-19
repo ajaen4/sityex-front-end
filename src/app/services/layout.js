@@ -35,7 +35,7 @@ const CityLayout = ({ children }) => {
 
   useEffect(() => {
     dispatch(fetchCity(city_id));
-  }, [city_id]);
+  }, [city_id, dispatch]);
 
   if (selectedCity === null || selectedCity.city_id !== city_id)
     return <CenteredLoadingSpinner />;

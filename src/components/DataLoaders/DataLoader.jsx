@@ -23,7 +23,7 @@ const DataLoader = () => {
     return () => {
       unsubscribeAuth();
     };
-  }, []);
+  }, [dispatch]);
 
   return null;
 };

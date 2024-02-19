@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useSearchParams, useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
@@ -25,7 +25,6 @@ const HousingMap = dynamic(() => import("components/Maps/HousingMap"), {
   loading: () => <CenteredLoadingSpinner />,
 });
 import HousingFilters from "components/Accordions/HousingFilters";
-import { useShowSignUpContext } from "components/Contexts/ShowSignUpContext";
 
 import { fetchHousingListings } from "actions";
 import { capitalize } from "helpers/usefulFunctions";
@@ -39,24 +38,25 @@ const HousingPage = () => {
   const [selectedTab, setSelectedTab] = useState("listings");
 
   const selectedCity = useSelector((state) => state.selectedCity.data);
-  const auth = useSelector((state) => state.auth);
   const housingState = useSelector((state) => state.housing);
 
-  const { setShowSignUpModal } = useShowSignUpContext();
   const router = useRouter();
 
-  const changeTab = (newValue) => {
-    const destinationURL = `/services/${selectedCity.city_id}/housing/?tab=${newValue}`;
+  const changeTab = useCallback(
+    (newValue) => {
+      const destinationURL = `/services/${selectedCity.city_id}/housing/?tab=${newValue}`;
 
-    setSelectedTab(newValue);
-    router.push(destinationURL, undefined, { shallow: true });
-  };
+      setSelectedTab(newValue);
+      router.push(destinationURL, undefined, { shallow: true });
+    },
+    [router, selectedCity.city_id]
+  );
 
   useEffect(() => {
     if (searchParams.get("tab") && tabs.includes(searchParams.get("tab"))) {
       changeTab(searchParams.get("tab"));
     }
-  }, [searchParams.get("tab"), auth]);
+  }, [searchParams, changeTab]);
 
   useEffect(() => {
     if (
@@ -65,7 +65,7 @@ const HousingPage = () => {
     ) {
       dispatch(fetchHousingListings(selectedCity.city_id));
     }
-  }, [selectedCity]);
+  }, [selectedCity.city_id, dispatch, housingState]);
 
   return (
     <Box

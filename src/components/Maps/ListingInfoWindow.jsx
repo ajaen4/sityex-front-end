@@ -35,7 +35,7 @@ const ListingInfoWindow = ({ listing, setSelectedListing }) => {
         setImages(images);
       },
     );
-  }, [listing]);
+  }, [listing, selectedCity.city_id]);
 
   const formatPrice = (price) => {
     const number = parseFloat(price.replace(/,/g, ""));

@@ -1,17 +1,15 @@
-"use client";
-
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 
 import * as ROUTES_PATHS from "routes/paths";
 
 const WithoutAuth = (Component) => {
-  return (props) => {
+  const AuthComponent = (props) => {
     const router = useRouter();
     const isAuthResolved = useSelector((state) => state.auth.isAuthResolved);
 
-    React.useEffect(() => {
+    useEffect(() => {
       if (isAuthResolved) {
         router.push(ROUTES_PATHS.ROOT);
       }
@@ -19,6 +17,10 @@ const WithoutAuth = (Component) => {
 
     return !isAuthResolved ? <Component {...props} /> : null;
   };
+
+  AuthComponent.displayName = `WithoutAuth(${Component.displayName || Component.name || "Component"})`;
+
+  return AuthComponent;
 };
 
 export default WithoutAuth;

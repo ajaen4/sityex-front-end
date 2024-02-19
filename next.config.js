@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    domains: ["d1dshnpqadx0e7.cloudfront.net"],
+  },
   async rewrites() {
     return [
       {
@@ -51,5 +54,5 @@ module.exports = withSentryConfig(
     // https://docs.sentry.io/product/crons/
     // https://vercel.com/docs/cron-jobs
     automaticVercelMonitors: true,
-  },
+  }
 );

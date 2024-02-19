@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { useSearchParams, useRouter } from "next/navigation";
 
@@ -36,14 +36,17 @@ const PaperworkPage = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const changeTab = (newValue) => {
-    setSelectedTab(newValue);
-    router.push(
-      `/services/${selectedCity.city_id}/paperwork/?tab=${newValue}`,
-      undefined,
-      { shallow: true },
-    );
-  };
+  const changeTab = useCallback(
+    (newValue) => {
+      setSelectedTab(newValue);
+      router.push(
+        `/services/${selectedCity.city_id}/paperwork/?tab=${newValue}`,
+        undefined,
+        { shallow: true }
+      );
+    },
+    [setSelectedTab, router, selectedCity.city_id]
+  );
 
   useEffect(() => {
     if (
@@ -52,7 +55,7 @@ const PaperworkPage = () => {
     ) {
       changeTab(searchParams.get("tab"));
     }
-  }, [searchParams.get("tab")]);
+  }, [searchParams, changeTab]);
 
   return (
     <Box
@@ -155,7 +158,7 @@ const PaperworkPage = () => {
                         <li>
                           Register for social services and health care in Spain.
                         </li>
-                        <li>Apply for a driver's license in Spain.</li>
+                        <li>Apply for a driver&apos;s license in Spain.</li>
                         <li>
                           Buy, sell, or own property in Spain as a resident.
                         </li>
@@ -201,7 +204,8 @@ const PaperworkPage = () => {
                 content={
                   <Box sx={{ textAlign: "left" }}>
                     <Typography variant="body2">
-                      Perfect if you don't need all the paperwork, includes:
+                      Perfect if you don&apos;t need all the paperwork,
+                      includes:
                     </Typography>
                     <Box>
                       <ul>
@@ -247,7 +251,8 @@ const PaperworkPage = () => {
                 content={
                   <Box sx={{ textAlign: "left" }}>
                     <Typography variant="body2">
-                      Perfect if you don't need all the paperwork, includes:
+                      Perfect if you don&apos;t need all the paperwork,
+                      includes:
                     </Typography>
                     <Box>
                       <ul>
@@ -476,11 +481,11 @@ const PaperworkPage = () => {
                     <Box>
                       <ul>
                         <li>
-                          Have a driver's license from a country different from
-                          Spain.
+                          Have a driver&apos;s license from a country different
+                          from Spain.
                         </li>
                         <li>
-                          Want to have that driver's license recognized in
+                          Want to have that driver&apos;s license recognized in
                           Spain.
                         </li>
                         <li>Want a complete management of the procedure.</li>

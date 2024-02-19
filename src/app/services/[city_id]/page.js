@@ -145,7 +145,7 @@ const PaperworkPage = () => {
                 sx={{ fontSize: { xs: 15, md: 16 }, mt: 2 }}
               >
                 Find your perfect home. From single rooms to full apartments,
-                we've got you covered.
+                we&apos;ve got you covered.
               </Typography>
             </CardContent>
             <CardActions

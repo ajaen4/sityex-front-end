@@ -109,7 +109,7 @@ const SignUpForm = ({}) => {
       .finally(() => {
         setIsFetching(false);
       });
-  }, []);
+  }, [isFetching]);
 
   return (
     <>

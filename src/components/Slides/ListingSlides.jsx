@@ -13,7 +13,7 @@ const ListingSlides = ({ images, isInMap, imageHeight, autoPlay, swipe }) => {
       const disableClickPropagation = L?.DomEvent?.disableClickPropagation;
       disableClickPropagation(wrapper);
     }
-  }, []);
+  }, [isInMap]);
 
   const createSlides = (images) => {
     return images.images.map((image, index) => (

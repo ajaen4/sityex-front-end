@@ -34,14 +34,14 @@ const CityEventsPage = () => {
 
   const dispatch = useDispatch();
 
-  const eventsData = events.events || [];
+  const eventsData = useMemo(() => events.events || [], [events.events]);
   const today = new Date().setHours(0, 0, 0, 0);
 
   useEffect(() => {
     if (selectedCity) {
       dispatch(getCityEvents(selectedCity.city_id));
     }
-  }, [selectedCity]);
+  }, [dispatch, selectedCity]);
 
   const handleTabChange = (event, newValue) => {
     setSelectedTab(newValue);
@@ -60,9 +60,9 @@ const CityEventsPage = () => {
     });
 
     return eventCategories.filter((subcategory) =>
-      usedSubcategories.has(subcategory),
+      usedSubcategories.has(subcategory)
     );
-  }, [events]);
+  }, [eventsData]);
 
   const memoizedEvents = useMemo(() => {
     return filteredSubcategories.map((category) =>
@@ -70,11 +70,11 @@ const CityEventsPage = () => {
         .filter(
           (event) =>
             event.sityex_subcategories.includes(category) &&
-            new Date(event.end_date) > today,
+            new Date(event.end_date) > today
         )
-        .sort((a, b) => a.remaining_days - b.remaining_days),
+        .sort((a, b) => a.remaining_days - b.remaining_days)
     );
-  }, [events, filteredSubcategories]);
+  }, [filteredSubcategories, eventsData, today]);
 
   if (events.city_id !== selectedCity.city_id) {
     return <CenteredLoadingSpinner />;
@@ -130,7 +130,7 @@ const CityEventsPage = () => {
           (category, index) =>
             selectedTab === index && (
               <EventsGrid key={category} events={memoizedEvents[index]} />
-            ),
+            )
         )}
       </Box>
     </Box>

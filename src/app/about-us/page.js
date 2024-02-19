@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 import { Box, Typography, Stack, Grid } from "@mui/material";
 import SendGAPageView from "components/DataLoaders/SendGAPageView";
@@ -32,9 +33,9 @@ const AboutUs = () => {
           </Typography>
           <Typography variant="body1" fontSize={18} sx={{ mt: 3 }}>
             I envision a world where everyone has the freedom to live in any
-            city they choose. That's why SityEx was created—to make settling
-            into a new place simpler and more accessible for everyone. Together,
-            let's make this journey a shared success.
+            city they choose. That&apos;s why SityEx was created—to make
+            settling into a new place simpler and more accessible for everyone.
+            Together, let&apos;s make this journey a shared success.
           </Typography>
         </Grid>
         <Grid
@@ -47,10 +48,10 @@ const AboutUs = () => {
             p: { xs: 3, md: 5 },
           }}
         >
-          <img
-            style={{
-              height: 440,
-            }}
+          <Image
+            alt="profile"
+            height="440"
+            width="350"
             src={`${imagesCdn}/profile/profile.jpg`}
           />
         </Grid>
@@ -92,8 +93,8 @@ const AboutUs = () => {
                 <Typography variant="body1" fontSize={18} sx={{ mt: 1 }}>
                   At the core of SityEx is our commitment to building a strong
                   community. We understand that while our platform leverages
-                  technology, it's the human connections that truly make a new
-                  city feel like home.
+                  technology, it&apos;s the human connections that truly make a
+                  new city feel like home.
                 </Typography>
               </Box>
               <Box
@@ -106,11 +107,11 @@ const AboutUs = () => {
                   Online Services
                 </Typography>
                 <Typography variant="body1" fontSize={18} sx={{ mt: 1 }}>
-                  SityEx's foundation is built on providing online services,
-                  designed to streamline the relocation process. Our platform
-                  harnesses technology to offer comprehensive, user-friendly
-                  solutions that make moving to a new city as seamless as
-                  possible.
+                  SityEx&apos;s foundation is built on providing online
+                  services, designed to streamline the relocation process. Our
+                  platform harnesses technology to offer comprehensive,
+                  user-friendly solutions that make moving to a new city as
+                  seamless as possible.
                 </Typography>
               </Box>
             </Grid>
