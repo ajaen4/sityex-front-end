@@ -51,13 +51,11 @@ const EventsGrid = ({ events }) => {
     const event = events[eventIndex];
     const [interestedCount, setInterestedCount] = useState(null);
 
-    
-
     useEffect(() => {
-      if (!event){
-        return
+      if (!event) {
+        return;
       }
-  
+
       countInterestedUsers(
         selectedCity.city_id,
         event.event_id,

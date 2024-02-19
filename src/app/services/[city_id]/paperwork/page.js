@@ -42,10 +42,10 @@ const PaperworkPage = () => {
       router.push(
         `/services/${selectedCity.city_id}/paperwork/?tab=${newValue}`,
         undefined,
-        { shallow: true }
+        { shallow: true },
       );
     },
-    [setSelectedTab, router, selectedCity.city_id]
+    [setSelectedTab, router, selectedCity.city_id],
   );
 
   useEffect(() => {

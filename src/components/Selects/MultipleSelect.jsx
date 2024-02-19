@@ -49,6 +49,6 @@ const MultipleSelect = forwardRef(
   },
 );
 
-MultipleSelect.displayName = 'MultipleSelect';
+MultipleSelect.displayName = "MultipleSelect";
 
 export default MultipleSelect;

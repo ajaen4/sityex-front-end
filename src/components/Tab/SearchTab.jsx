@@ -5,9 +5,12 @@ import dynamic from "next/dynamic";
 
 import { Tabs, Tab, Stack, Box, Typography } from "@mui/material";
 
-const DestinationsMap = dynamic(() => import("components/Maps/DestinationsMap"), {
-  ssr: false,
-});
+const DestinationsMap = dynamic(
+  () => import("components/Maps/DestinationsMap"),
+  {
+    ssr: false,
+  },
+);
 import CitiesAutocomplete from "components/Autocomplete/CitiesAutocomplete";
 import CitiesGrid from "components/ImageGrids/CitiesGrid";
 
