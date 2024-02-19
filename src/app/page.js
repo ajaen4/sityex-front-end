@@ -79,7 +79,7 @@ const LandingPage = () => {
             title="Choose Paperwork"
             style={{ marginRight: 10 }}
           />
-          <Typography variant="h2" sx={{ color: "grey.500", fontSize: 30 }}>
+          <Typography variant="h2" sx={{ color: "grey.500", fontSize: 25 }}>
             Need help with your paperwork?
           </Typography>
         </Box>
@@ -105,7 +105,7 @@ const LandingPage = () => {
             title="Housing"
             style={{ marginRight: 10 }}
           />
-          <Typography variant="h2" sx={{ color: "grey.500", fontSize: 30 }}>
+          <Typography variant="h2" sx={{ color: "grey.500", fontSize: 25 }}>
             Housing
           </Typography>
         </Box>
