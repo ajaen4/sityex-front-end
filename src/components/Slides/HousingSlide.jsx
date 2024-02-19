@@ -17,7 +17,7 @@ const HousingSlide = ({ city_id, housing_id, title }) => {
     fetchListingImages(city_id, housing_id).then((images) => {
       setImages(images);
     });
-  }, []);
+  }, [city_id, housing_id]);
 
   return (
     <Box

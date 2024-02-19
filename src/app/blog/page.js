@@ -1,4 +1,5 @@
 import React, { Suspense } from "react";
+import Image from "next/image";
 
 import { Box, Grid, Typography } from "@mui/material";
 
@@ -66,7 +67,7 @@ const BlogPage = () => {
               padding: 3,
             }}
           >
-            <img
+            <Image
               width="80"
               height="80"
               src={`${imagesCdn}/icons/house.png`}
@@ -92,7 +93,7 @@ const BlogPage = () => {
               padding: 3,
             }}
           >
-            <img
+            <Image
               width="80"
               height="80"
               src={`${imagesCdn}/icons/government.png`}
@@ -118,7 +119,7 @@ const BlogPage = () => {
               padding: 3,
             }}
           >
-            <img
+            <Image
               width="80"
               height="80"
               src={`${imagesCdn}/icons/cities.png`}

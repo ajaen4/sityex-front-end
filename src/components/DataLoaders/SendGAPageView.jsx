@@ -31,7 +31,7 @@ const SendGAPageView = ({ pageTitle, selectedCity, blog_id, event_id }) => {
     }
 
     ReactGA.send(gaEvent);
-  }, []);
+  }, [blog_id, event_id, pageTitle, selectedCity]);
 
   return null;
 };

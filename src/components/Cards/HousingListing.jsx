@@ -50,7 +50,7 @@ const HousingListing = ({ listing }) => {
         setImages(images);
       },
     );
-  }, [listing]);
+  }, [listing, selectedCity.city_id]);
 
   return (
     <Card

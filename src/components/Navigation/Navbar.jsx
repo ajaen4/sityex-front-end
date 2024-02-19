@@ -79,7 +79,7 @@ function NavBar({}) {
       localStorage.removeItem("destinationURL");
       localStorage.removeItem("openInNewTab");
     }
-  }, [showSignUpModal, auth]);
+  }, [showSignUpModal, auth, router]);
 
   return (
     <>

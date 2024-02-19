@@ -34,7 +34,7 @@ function HousingMap() {
     (listing) => {
       setSelectedListing(listing);
     },
-    [selectedCity.city_id],
+    [setSelectedListing],
   );
 
   if (isFetchingHousing) {

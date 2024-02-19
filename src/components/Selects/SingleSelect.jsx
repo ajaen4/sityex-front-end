@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
 import {
   OutlinedInput,
@@ -8,7 +8,7 @@ import {
   Select,
 } from "@mui/material";
 
-const SingleSelect = React.forwardRef(
+const SingleSelect = forwardRef(
   ({ onChange, value, options, label }, ref) => {
     const handleChange = (event) => {
       const {
@@ -23,7 +23,7 @@ const SingleSelect = React.forwardRef(
         <Select
           value={value}
           onChange={handleChange}
-          input={<OutlinedInput label={label} />}
+          input={<OutlinedInput label={label} ref={ref} />}
         >
           {options.map((option) => (
             <MenuItem key={option.value} value={option.value}>
@@ -35,5 +35,7 @@ const SingleSelect = React.forwardRef(
     );
   },
 );
+
+SingleSelect.displayName = 'SingleSelect';
 
 export default SingleSelect;

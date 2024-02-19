@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 
@@ -35,14 +35,14 @@ export default function CityTabs() {
 
   const router = useRouter();
 
-  const getTabValue = () => {
+  const getTabValue = useCallback(() => {
     const path = pathname.split("/");
 
     if (path.includes(ROUTES_PATHS.CITY_BUREAUCRACY)) setValue(0);
     if (path.includes(ROUTES_PATHS.CITY_HOUSING)) setValue(1);
     if (path.includes(ROUTES_PATHS.CITY_EVENTS)) setValue(2);
     if (path.includes(ROUTES_PATHS.CITY_COMMUNITY)) setValue(3);
-  };
+  }, [pathname]);
 
   const itemSelected = (event, value) => {
     const path = event.currentTarget.getAttribute("data-path");
@@ -54,11 +54,11 @@ export default function CityTabs() {
 
   useEffect(() => {
     setShowBotNav(isServicesPage && isSmallScreen);
-  }, [isServicesPage, isCityEventPage, isSmallScreen]);
+  }, [isServicesPage, isCityEventPage, isSmallScreen, setShowBotNav]);
 
   useEffect(() => {
     getTabValue();
-  }, [pathname]);
+  }, [getTabValue]);
 
   if (!showBotNav) return null;
 

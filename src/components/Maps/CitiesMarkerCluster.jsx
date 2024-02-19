@@ -79,7 +79,7 @@ function CitiesMarkerCluster({ citiesIndex }) {
         map.removeLayer(group);
       });
     };
-  }, [map, citiesIndex]);
+  }, [map, citiesIndex, theme]);
 
   return null;
 }
