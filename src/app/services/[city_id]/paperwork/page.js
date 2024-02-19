@@ -39,7 +39,7 @@ const PaperworkPage = () => {
   const changeTab = (newValue) => {
     setSelectedTab(newValue);
     router.push(
-      `/destination/${selectedCity.city_id}/paperwork/?tab=${newValue}`,
+      `/services/${selectedCity.city_id}/paperwork/?tab=${newValue}`,
       undefined,
       { shallow: true },
     );

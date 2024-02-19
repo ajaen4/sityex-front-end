@@ -33,7 +33,7 @@ const EventsGrid = ({ events }) => {
   const aspectRatio = 1;
 
   const handleEventClick = (eventId) => {
-    router.push(`/destination/${selectedCity.city_id}/event/${eventId}`);
+    router.push(`/services/${selectedCity.city_id}/event/${eventId}`);
   };
 
   const handleImageError = (eventId) => {

@@ -25,7 +25,7 @@ const EventsSlides = () => {
   }, []);
 
   const handleEventClick = (city_id, event_id) => {
-    router.push(`/destination/${city_id}/event/${event_id}`);
+    router.push(`/services/${city_id}/event/${event_id}`);
   };
 
   const createSlides = (events) => {

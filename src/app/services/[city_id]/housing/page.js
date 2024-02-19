@@ -46,15 +46,10 @@ const HousingPage = () => {
   const router = useRouter();
 
   const changeTab = (newValue) => {
-    const destinationURL = `/destination/${selectedCity.city_id}/housing/?tab=${newValue}`;
+    const destinationURL = `/services/${selectedCity.city_id}/housing/?tab=${newValue}`;
 
-    if (newValue === "discounts" && auth.isAuthResolved === false) {
-      setShowSignUpModal(true);
-      localStorage.setItem("destinationURL", destinationURL);
-    } else {
-      setSelectedTab(newValue);
-      router.push(destinationURL, undefined, { shallow: true });
-    }
+    setSelectedTab(newValue);
+    router.push(destinationURL, undefined, { shallow: true });
   };
 
   useEffect(() => {

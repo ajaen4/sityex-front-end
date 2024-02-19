@@ -1,15 +1,8 @@
 import React from "react";
 
-import { Box, Typography, Grid, Card } from "@mui/material";
-import PeopleIcon from "@mui/icons-material/PeopleOutlined";
-import HouseIcon from "@mui/icons-material/MapsHomeWorkOutlined";
-import GovernmentIcon from "@mui/icons-material/AssuredWorkloadOutlined";
-
-import CitiesAutocomplete from "components/Autocomplete/CitiesAutocomplete";
-import CitySlides from "components/Slides/CitySlides";
+import { Box, Typography, Grid } from "@mui/material";
 import HousingSlides from "components/Slides/HousingSlides";
 import PaperworkSlides from "components/Slides/PaperworkSlides";
-import EventsSlides from "components/Slides/EventsSlides";
 import SendGAPageView from "components/DataLoaders/SendGAPageView";
 import Footer from "components/Footers/Footer";
 import Services from "components/Interactive/Services";
@@ -117,32 +110,6 @@ const LandingPage = () => {
           </Typography>
         </Box>
         <HousingSlides />
-      </Grid>
-      <Grid
-        item
-        xs={12}
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          flexDirection: "column",
-          textAlign: "start",
-          px: 3,
-        }}
-      >
-        <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-          <img
-            width="25"
-            height="25"
-            src={`${imagesCdn}/icons/sunglasses.png`}
-            alt="events-icon"
-            title="Events"
-            style={{ marginRight: 10 }}
-          />
-          <Typography variant="h2" sx={{ color: "grey.500", fontSize: 30 }}>
-            Trending Events
-          </Typography>
-        </Box>
-        <EventsSlides />
       </Grid>
       <Grid
         item

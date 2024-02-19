@@ -26,7 +26,7 @@ const SearchPage = () => {
         position: "relative",
       }}
     >
-      <SendGAPageView pageTitle="Search City Page" />
+      <SendGAPageView pageTitle="Services Page" />
       <SearchTab />
     </Box>
   );

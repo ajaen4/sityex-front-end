@@ -1,4 +1,4 @@
-export const pages = ["Search City", "Blog", "About Us"];
+export const pages = ["Services", "Blog", "About Us"];
 export const settings = ["Account", "Logout"];
 export const drawerWidth = 240;
 export const tabletDrawerWidth = 200;

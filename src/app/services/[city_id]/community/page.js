@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useRouter } from "next/navigation";
 
 import { getQRCode } from "api";
 
@@ -13,25 +12,9 @@ import SendGAPageView from "components/DataLoaders/SendGAPageView";
 import { imagesCdn } from "constants/constants";
 
 const CityCommunityPage = () => {
-  const auth = useSelector((state) => state.auth);
   const selectedCity = useSelector((state) => state.selectedCity.data);
 
-  const [qrCodeUrl, setQrCodeUrl] = useState(null);
-  const [cityHasCommunity, setCityHasCommunity] = useState(true);
-
-  const router = useRouter();
-
-  useEffect(() => {
-    if (auth.isAuthResolved && selectedCity) {
-      getQRCode(selectedCity.city_id)
-        .then((url) => setQrCodeUrl(url))
-        .catch((_) => {
-          setCityHasCommunity(false);
-        });
-    }
-  }, [auth, selectedCity]);
-
-  if (!cityHasCommunity)
+  if (!selectedCity.community_links?.meetup_link) {
     return (
       <Container maxWidth="sm" sx={{ height: "100%", textAlign: "center" }}>
         <Typography variant="h1" sx={{ my: 3 }}>
@@ -48,14 +31,7 @@ const CityCommunityPage = () => {
         </Paper>
       </Container>
     );
-
-  if (auth.isAuthResolved === false) {
-    router.push(`/destination/${selectedCity.city_id}`);
-  }
-
-  if (!qrCodeUrl) return null;
-
-  if (qrCodeUrl)
+  } else {
     return (
       <Container maxWidth="sm" sx={{ textAlign: "center" }}>
         <Typography variant="h1" sx={{ my: 3 }}>
@@ -112,6 +88,7 @@ const CityCommunityPage = () => {
         </Paper>
       </Container>
     );
+  }
 };
 
 export default CityCommunityPage;
