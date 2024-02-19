@@ -99,7 +99,7 @@ const PaperworkSlides = () => {
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                  height: "31vh",
+                  height: "25vh",
                   width: "100%",
                   cursor: "pointer",
                 }}

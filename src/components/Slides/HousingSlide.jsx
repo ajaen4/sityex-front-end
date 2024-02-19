@@ -33,7 +33,7 @@ const HousingSlide = ({ city_id, housing_id, title }) => {
           sx={{
             borderRadius: 2,
             width: "100%",
-            height: { xs: "55vh", md: "53vh" },
+            height: { xs: "50vh", md: "47vh" },
             backgroundImage: images
               ? `url(${images.images[0].sizes["640x480"].link})`
               : null,
