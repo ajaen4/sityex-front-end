@@ -10,7 +10,7 @@ const HousingSlide = ({ city_id, housing_id, title }) => {
   const router = useRouter();
 
   const handleListingClick = (city_id) => {
-    router.push(`/destination/${city_id}/housing`);
+    router.push(`/services/${city_id}/housing`);
   };
 
   useEffect(() => {

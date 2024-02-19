@@ -33,7 +33,7 @@ const PaperworkPage = () => {
   const router = useRouter();
 
   const onClickExplore = (section) => {
-    const destinationURL = `/destination/${selectedCity.city_id}/${section}`;
+    const destinationURL = `/services/${selectedCity.city_id}/${section}`;
 
     if (
       section === ROUTES_PATHS.CITY_COMMUNITY &&

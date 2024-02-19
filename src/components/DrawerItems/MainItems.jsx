@@ -30,7 +30,7 @@ const MainItems = () => {
             minHeight: 48,
             px: 2.5,
           }}
-          data-path={ROUTES_PATHS.SEARCH}
+          data-path={"services/3117735"}
           onClick={itemSelected}
         >
           <ListItemIcon
@@ -42,7 +42,7 @@ const MainItems = () => {
           >
             <SearchIcon />
           </ListItemIcon>
-          <ListItemText primary="Search City" />
+          <ListItemText primary="Services" />
         </ListItemButton>
       </ListItem>
       <ListItem disablePadding sx={{ display: "block" }}>

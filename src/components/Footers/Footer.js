@@ -41,7 +41,7 @@ function Footer() {
                       color: "white",
                     }}
                   >
-                    Search City
+                    Services
                   </Link>
                 </li>
                 <li

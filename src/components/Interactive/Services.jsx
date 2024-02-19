@@ -20,7 +20,7 @@ const Services = () => {
       id: "paperwork",
       icon: "paperwork-2.png",
       title: "Paperwork",
-      link: "/destination/3117735/paperwork",
+      link: "/services/3117735/paperwork",
       description:
         "Automatized processes through our local partners that do the paperwork for you",
       position: "7.5%",
@@ -29,18 +29,18 @@ const Services = () => {
       id: "housing",
       icon: "housing-2.png",
       title: "Housing",
-      link: "/destination/3117735/housing",
+      link: "/services/3117735/housing",
       description:
         "Housing options and discounts through our partners to help you find your ideal home",
       position: "35%",
     },
-    events: {
-      id: "events",
-      link: "/destination/3117735/events",
+    community: {
+      id: "community",
+      link: "/services/3117735/community",
       icon: "events-2.png",
-      title: "Events",
+      title: "community",
       description:
-        "Exclusive SityEx and third party events to discover your new home city",
+        "We have created a thriving community of expats to help you feel at home in Spain",
       position: "57.5%",
     },
   };

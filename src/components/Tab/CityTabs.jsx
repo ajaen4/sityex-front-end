@@ -14,7 +14,6 @@ import HouseIcon from "@mui/icons-material/MapsHomeWorkOutlined";
 import GovernmentIcon from "@mui/icons-material/AssuredWorkloadOutlined";
 
 import { useShowBotNavContext } from "components/Contexts/ShowBotNavContext";
-import { useShowSignUpContext } from "components/Contexts/ShowSignUpContext";
 
 import { minBottomNavHeight } from "constants/constants";
 import * as ROUTES_PATHS from "routes/paths";
@@ -29,10 +28,9 @@ export default function CityTabs() {
   const auth = useSelector((state) => state.auth);
 
   const { showBotNav, setShowBotNav } = useShowBotNavContext();
-  const { setShowSignUpModal } = useShowSignUpContext();
 
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
-  const isDestinationPage = pathname.split("/").includes("destination");
+  const isServicesPage = pathname.split("/").includes("services");
   const isCityEventPage = pathname.split("/").includes("event");
 
   const router = useRouter();
@@ -48,20 +46,15 @@ export default function CityTabs() {
 
   const itemSelected = (event, value) => {
     const path = event.currentTarget.getAttribute("data-path");
-    const destinationURL = `/destination/${selectedCity.city_id}/${path}`;
+    const destinationURL = `/services/${selectedCity.city_id}/${path}`;
 
-    if (path === ROUTES_PATHS.CITY_COMMUNITY && auth.isAuthResolved === false) {
-      setShowSignUpModal(true);
-      localStorage.setItem("destinationURL", destinationURL);
-    } else {
-      setValue(value);
-      router.push(destinationURL);
-    }
+    setValue(value);
+    router.push(destinationURL);
   };
 
   useEffect(() => {
-    setShowBotNav(isDestinationPage && isSmallScreen);
-  }, [isDestinationPage, isCityEventPage, isSmallScreen]);
+    setShowBotNav(isServicesPage && isSmallScreen);
+  }, [isServicesPage, isCityEventPage, isSmallScreen]);
 
   useEffect(() => {
     getTabValue();
