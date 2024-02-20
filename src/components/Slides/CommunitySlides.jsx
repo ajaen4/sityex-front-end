@@ -56,7 +56,7 @@ const CommunitySlides = () => {
                 padding: 2,
                 maxWidth: 300,
                 mx: 2,
-                mt: 2,
+                mt: {xs: 2, md: 0},
               }}
             >
               <img
