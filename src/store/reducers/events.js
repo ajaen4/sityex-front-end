@@ -33,7 +33,7 @@ const eventsSlice = createSlice({
       state.data.orderBy = orderBy;
       state.data.filteredGEvents = filterEvents(
         state.data.groupedEvents,
-        orderBy
+        orderBy,
       );
     },
   },

@@ -181,23 +181,23 @@ export default function HousingList() {
               onChange={changePage}
             />
             <FormControl sx={{ width: 140 }}>
-          <InputLabel id="order-by">Order By</InputLabel>
-          <Select
-            value={orderBy}
-            onChange={changeOrderBy}
-            input={<OutlinedInput label="Order By" />}
-          >
-            <MenuItem key="rank" value="rank">
-              Rank
-            </MenuItem>
-            <MenuItem key="low-price" value="low-price">
-              Lowest price
-            </MenuItem>
-            <MenuItem key="high-price" value="high-price">
-              Highest price
-            </MenuItem>
-          </Select>
-        </FormControl>
+              <InputLabel id="order-by">Order By</InputLabel>
+              <Select
+                value={orderBy}
+                onChange={changeOrderBy}
+                input={<OutlinedInput label="Order By" />}
+              >
+                <MenuItem key="rank" value="rank">
+                  Rank
+                </MenuItem>
+                <MenuItem key="low-price" value="low-price">
+                  Lowest price
+                </MenuItem>
+                <MenuItem key="high-price" value="high-price">
+                  Highest price
+                </MenuItem>
+              </Select>
+            </FormControl>
           </Box>
         )}
       </Box>

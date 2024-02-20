@@ -2,6 +2,7 @@ import React from "react";
 
 import { Box, Typography, Grid } from "@mui/material";
 import HousingSlides from "components/Slides/HousingSlides";
+import CommunitySlides from "components/Slides/CommunitySlides";
 import PaperworkSlides from "components/Slides/PaperworkSlides";
 import SendGAPageView from "components/DataLoaders/SendGAPageView";
 import Footer from "components/Footers/Footer";
@@ -98,6 +99,58 @@ const LandingPage = () => {
           </Typography>
         </Box>
         <HousingSlides />
+      </Grid>
+      <Grid
+        item
+        xs={12}
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          flexDirection: "column",
+          alignItems: "center",
+          textAlign: "start",
+          px: 3,
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "start",
+            alignItems: "center",
+            width: "100%",
+          }}
+        >
+          <img
+            width="25"
+            height="25"
+            src={`${imagesCdn}/icons/sunglasses.png`}
+            alt="housing-icon"
+            title="Housing"
+            style={{ marginRight: 10 }}
+          />
+          <Typography variant="h2" sx={{ color: "grey.500", fontSize: 25 }}>
+            Community
+          </Typography>
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: { xs: "100%", md: "70%" },
+            my: 4,
+          }}
+        >
+          <video width="100%" controls>
+            <source
+              src={`${imagesCdn}/video/production_id_4625285+(1080p).mp4`}
+              type="video/mp4"
+              style={{ borderRadius: "20px" }}
+            />
+            Your browser does not support the video tag.
+          </video>
+        </Box>
+        <CommunitySlides />
       </Grid>
       <Grid
         item

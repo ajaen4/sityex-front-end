@@ -116,7 +116,7 @@ const PaperworkSlides = () => {
                 sx={{
                   my: 1,
                   fontSize: 16,
-                  minHeight: { xs: "5vh", md: "7vh" },
+                  minHeight: "5vh",
                 }}
               >
                 {service.name}
