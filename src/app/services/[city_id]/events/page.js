@@ -3,39 +3,34 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { Box, Tabs, Tab, Typography } from "@mui/material";
+import {
+  Box,
+  Tabs,
+  Tab,
+  Typography,
+  Select,
+  MenuItem,
+  OutlinedInput,
+  FormControl,
+  InputLabel,
+} from "@mui/material";
 
 import EventsGrid from "components/ImageGrids/EventsGrid";
+import MultipleSelect from "components/Selects/MultipleSelect";
 
-import { getCityEvents } from "actions";
+import { getCityEvents, updateEventsOrderBy } from "actions";
 import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 import SendGAPageView from "components/DataLoaders/SendGAPageView";
 
-const eventCategories = [
-  "Exclusive events",
-  "Experiences",
-  "Music",
-  "Party",
-  "Food & Drinks",
-  "Play",
-  "Cinema",
-  "Museums",
-  "Courses",
-  "Sport",
-  "Fitness",
-  "Games",
-  "Other",
-];
-
 const CityEventsPage = () => {
   const selectedCity = useSelector((state) => state.selectedCity.data);
-  const events = useSelector((state) => state.events);
+  const eventsState = useSelector((state) => state.events);
+  const orderBy = useSelector((state) => state.events.data.orderBy);
   const [selectedTab, setSelectedTab] = useState(0);
 
-  const dispatch = useDispatch();
+  const usedSubcategories = eventsState.data.usedSubcategories;
 
-  const eventsData = useMemo(() => events.events || [], [events.events]);
-  const today = new Date().setHours(0, 0, 0, 0);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (selectedCity) {
@@ -47,36 +42,12 @@ const CityEventsPage = () => {
     setSelectedTab(newValue);
   };
 
-  const filteredSubcategories = useMemo(() => {
-    const usedSubcategories = new Set();
+  const changeOrderBy = (event) => {
+    const value = event.target.value;
+    dispatch(updateEventsOrderBy(value));
+  };
 
-    eventsData.forEach((event) => {
-      const subcategories = event.sityex_subcategories
-        .split(",")
-        .map((subcategory) => subcategory.trim());
-      subcategories.forEach((subcategory) => {
-        usedSubcategories.add(subcategory);
-      });
-    });
-
-    return eventCategories.filter((subcategory) =>
-      usedSubcategories.has(subcategory),
-    );
-  }, [eventsData]);
-
-  const memoizedEvents = useMemo(() => {
-    return filteredSubcategories.map((category) =>
-      eventsData
-        .filter(
-          (event) =>
-            event.sityex_subcategories.includes(category) &&
-            new Date(event.end_date) > today,
-        )
-        .sort((a, b) => a.remaining_days - b.remaining_days),
-    );
-  }, [filteredSubcategories, eventsData, today]);
-
-  if (events.city_id !== selectedCity.city_id) {
+  if (eventsState.city_id !== selectedCity.city_id) {
     return <CenteredLoadingSpinner />;
   }
 
@@ -100,6 +71,26 @@ const CityEventsPage = () => {
       <Typography variant="h1" sx={{ my: 3, fontSize: 30 }}>
         Events
       </Typography>
+      <Box>
+        <FormControl sx={{ width: 140 }}>
+          <InputLabel id="order-by">Order By</InputLabel>
+          <Select
+            value={orderBy}
+            onChange={changeOrderBy}
+            input={<OutlinedInput label="Order By" />}
+          >
+            <MenuItem key="closest-date" value="closest-date">
+              Closest date
+            </MenuItem>
+            <MenuItem key="low-price" value="low-price">
+              Lowest price
+            </MenuItem>
+            <MenuItem key="high-price" value="high-price">
+              Highest price
+            </MenuItem>
+          </Select>
+        </FormControl>
+      </Box>
       <Tabs
         value={selectedTab}
         onChange={handleTabChange}
@@ -114,7 +105,7 @@ const CityEventsPage = () => {
           mt: 0,
         }}
       >
-        {filteredSubcategories.map((category) => (
+        {[...usedSubcategories].map((category) => (
           <Tab label={category} key={category} />
         ))}
       </Tabs>
@@ -126,11 +117,14 @@ const CityEventsPage = () => {
           flexGrow: 1,
         }}
       >
-        {filteredSubcategories.map(
+        {[...usedSubcategories].map(
           (category, index) =>
             selectedTab === index && (
-              <EventsGrid key={category} events={memoizedEvents[index]} />
-            ),
+              <EventsGrid
+                key={category}
+                events={eventsState.data.groupedEvents[index]}
+              />
+            )
         )}
       </Box>
     </Box>

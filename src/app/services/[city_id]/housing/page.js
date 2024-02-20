@@ -49,7 +49,7 @@ const HousingPage = () => {
       setSelectedTab(newValue);
       router.push(destinationURL, undefined, { shallow: true });
     },
-    [router, selectedCity.city_id],
+    [router, selectedCity.city_id]
   );
 
   useEffect(() => {
@@ -61,7 +61,7 @@ const HousingPage = () => {
   useEffect(() => {
     if (
       housingState.data.housingListings.length === 0 ||
-      housingState.data.city_id !== selectedCity.city_id
+      housingState.city_id !== selectedCity.city_id
     ) {
       dispatch(fetchHousingListings(selectedCity.city_id));
     }

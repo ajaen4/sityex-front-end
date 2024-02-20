@@ -22,7 +22,7 @@ import { imagesCdn } from "constants/constants";
 const CityEventPage = () => {
   const auth = useSelector((state) => state.auth);
   const selectedCity = useSelector((state) => state.selectedCity.data);
-  const selectedEvent = useSelector((state) => state.events.selectedEvent);
+  const selectedEvent = useSelector((state) => state.events.data.selectedEvent);
   const [imageHasError, setImageHasError] = useState(false);
 
   const { event_id } = useParams();
@@ -42,7 +42,7 @@ const CityEventPage = () => {
       selectedCity.city_id,
       event_id,
       auth.data.id,
-      interested_info,
+      interested_info
     );
   }, [auth.data, event_id, selectedCity.city_id]);
 
@@ -69,7 +69,7 @@ const CityEventPage = () => {
         selectedCity.city_id,
         event_id,
         auth.data?.id,
-        buy_info,
+        buy_info
       );
     window.open(selectedEvent.affiliate_url, "_blank", "noopener");
   };
