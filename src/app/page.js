@@ -132,24 +132,6 @@ const LandingPage = () => {
             Community
           </Typography>
         </Box>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            width: { xs: "100%", md: "70%" },
-            my: 4,
-          }}
-        >
-          <video width="100%" controls>
-            <source
-              src={`${imagesCdn}/video/production_id_4625285+(1080p).mp4`}
-              type="video/mp4"
-              style={{ borderRadius: "20px" }}
-            />
-            Your browser does not support the video tag.
-          </video>
-        </Box>
         <CommunitySlides />
       </Grid>
       <Grid
