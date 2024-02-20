@@ -9,7 +9,6 @@ import { useTheme } from "@mui/material/styles";
 import { imagesCdn } from "constants/constants";
 
 const Services = () => {
-
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
   const router = useRouter();
@@ -95,19 +94,19 @@ const Services = () => {
           ))}
         </Box>
         <Typography
-              sx={{
-                textAlign: "center",
-                color: "grey.500",
-                backgroundColor: "grey.100",
-                fontSize: 18,
-                mx: 2,
-                borderRadius: 3,
-                p: 2,
-                mt: 2,
-              }}
-            >
-              100% online services, we take care of everything for you
-            </Typography>
+          sx={{
+            textAlign: "center",
+            color: "grey.500",
+            backgroundColor: "grey.100",
+            fontSize: 18,
+            mx: 2,
+            borderRadius: 3,
+            p: 2,
+            mt: 2,
+          }}
+        >
+          100% online services, we take care of everything for you
+        </Typography>
       </Box>
     );
   } else {

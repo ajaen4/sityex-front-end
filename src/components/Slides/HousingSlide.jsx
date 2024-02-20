@@ -49,7 +49,7 @@ const HousingSlide = ({ city_id, housing_id, title }) => {
         sx={{
           my: 1,
           fontSize: 16,
-          minHeight: { xs: "5vh", md: "7vh" },
+          minHeight: "5vh",
         }}
       >
         {title}

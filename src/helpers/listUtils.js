@@ -85,14 +85,14 @@ const facilitiesFilter = (listing, facilities) => {
       ((facility === "bathroom" &&
         listing.facilities[facility].value === "private") ||
         (facility !== "bathroom" &&
-          listing.facilities[facility].value !== "no"))
+          listing.facilities[facility].value !== "no")),
   );
 };
 
 const amenitiesFilter = (listing, amenities) => {
   return amenities.every(
     (amenity) =>
-      listing.facilities[amenity] && listing.facilities[amenity].value !== "no"
+      listing.facilities[amenity] && listing.facilities[amenity].value !== "no",
   );
 };
 
@@ -119,40 +119,40 @@ const orderByListings = (listings, orderBy) => {
 };
 
 export const filterEvents = (events, orderBy) => {
-  orderByEvents(events, orderBy);
+  return orderByEvents(events, orderBy);
 };
 
-export const getUsedSubcategories = (events) => {
-  const usedSubcategories = new Set();
+export const getCategories = (events) => {
+  const categories = new Set();
 
   events.forEach((event) => {
     const subcategories = event.sityex_subcategories
       .split(",")
       .map((subcategory) => subcategory.trim());
     subcategories.forEach((subcategory) => {
-      usedSubcategories.add(subcategory);
+      categories.add(subcategory);
     });
   });
 
   return eventCategories.filter((category) => {
-    return usedSubcategories.has(category);
+    return categories.has(category);
   });
 };
 
-export const groupEvents = (usedSubcategories, events) => {
+export const groupEvents = (categories, events) => {
   const today = new Date().setHours(0, 0, 0, 0);
-  return [...usedSubcategories].map((category) =>
+  return [...categories].map((category) =>
     events.filter(
       (event) =>
         event.sityex_subcategories.includes(category) &&
-        new Date(event.end_date) > today
-    )
+        new Date(event.end_date) > today,
+    ),
   );
 };
 
 export const orderByEvents = (groupedEvents, orderBy) => {
   if (!orderBy) {
-    return listings;
+    return groupedEvents;
   }
 
   return groupedEvents.map((events) =>
@@ -166,6 +166,6 @@ export const orderByEvents = (groupedEvents, orderBy) => {
       if (orderBy === "closest-date") {
         return parseFloat(a.remaining_days) - parseFloat(b.remaining_days);
       }
-    })
+    }),
   );
 };

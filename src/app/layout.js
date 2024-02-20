@@ -27,14 +27,14 @@ export const metadata = {
   creator: "Alberto Jaen",
   manifest: "https://sityex.com/manifest.json",
   title: {
-    default: "SityEx | One-stop platform for expats",
+    default: "SityEx | One-stop platform for young expats",
   },
   description:
     "One-stop platform for all expat needs in Madrid. We focus on housing and paperwork services with a vibrant community at its base.",
   openGraph: {
     type: "website",
     url: "https://sityex.com/",
-    title: "SityEx | One-stop platform for expats",
+    title: "SityEx | One-stop platform for young expats",
     description:
       "One-stop platform for all expat needs in Madrid. We focus on housing and paperwork services with a vibrant community at its base.",
     images: [
@@ -43,7 +43,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "SityEx | One-stop platform for expats",
+    title: "SityEx | One-stop platform for young expats",
     description:
       "One-stop platform for all expat needs in Madrid. We focus on housing and paperwork services with a vibrant community at its base.",
     images: [

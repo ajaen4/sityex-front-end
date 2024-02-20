@@ -99,12 +99,6 @@ export default function CityTabs() {
             sx={{ color: "white", "&.Mui-selected": { color: "white" } }}
             data-path={ROUTES_PATHS.CITY_EVENTS}
           />
-          <BottomNavigationAction
-            label="Community"
-            icon={<PeopleIcon />}
-            sx={{ color: "white", "&.Mui-selected": { color: "white" } }}
-            data-path={ROUTES_PATHS.CITY_COMMUNITY}
-          />
         </BottomNavigation>
       </Paper>
     </Box>
