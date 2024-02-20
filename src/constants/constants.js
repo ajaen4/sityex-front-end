@@ -29,6 +29,22 @@ export const defaultHousingFilters = {
   rentType: [],
 };
 
+export const eventCategories = [
+  "Exclusive events",
+  "Experiences",
+  "Music",
+  "Party",
+  "Food & Drinks",
+  "Play",
+  "Cinema",
+  "Museums",
+  "Courses",
+  "Sport",
+  "Fitness",
+  "Games",
+  "Other",
+];
+
 export const imagesCdn = "https://d1dshnpqadx0e7.cloudfront.net/images";
 export const documentsCdn = "https://d1dshnpqadx0e7.cloudfront.net/documents";
 

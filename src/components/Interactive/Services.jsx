@@ -46,7 +46,7 @@ const Services = () => {
       <Box>
         <Box
           sx={{
-            mt: { xs: 1, md: 5 },
+            mt: 5,
             height: "20vh",
             width: "100%",
             display: "flex",

@@ -12,7 +12,7 @@ import { imagesCdn } from "constants/constants";
 export const metadata = {
   title: "SityEx | One-stop platform for expats",
   description:
-    "Community-based, one-stop platform for all expat needs in Spain. We focus on housing and paperwork services with a vibrant community at its base.",
+    "One-stop platform for all expat needs in Madrid. We focus on housing and paperwork services with a vibrant community at its base.",
   alternates: {
     canonical: "https://sityex.com/",
   },
@@ -41,19 +41,7 @@ const LandingPage = () => {
             variant="h2"
             sx={{ color: "grey.500", fontSize: 35, px: 3 }}
           >
-            Your one-stop platform for expats
-          </Typography>
-          <Typography
-            variant="h1"
-            sx={{
-              mt: 2,
-              fontSize: 22,
-              width: "100%",
-
-              px: 3,
-            }}
-          >
-            Community-based, one-stop platform for expats
+            One-stop platform for expats
           </Typography>
         </Box>
         <Services />
