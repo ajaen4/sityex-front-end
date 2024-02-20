@@ -20,7 +20,7 @@ const CommunitySlides = () => {
         item
         xs={12}
         md={5}
-        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+        sx={{ display: "flex", justifyContent: "end", alignItems: "center", pr: 5 }}
       >
         <video height="550" controls>
           <source
@@ -35,7 +35,7 @@ const CommunitySlides = () => {
         item
         xs={12}
         md={5}
-        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+        sx={{ display: "flex", justifyContent: "center", alignItems: "center", pl: 5 }}
       >
         <Grid
           container
