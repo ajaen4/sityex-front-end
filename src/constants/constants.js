@@ -29,6 +29,10 @@ export const defaultHousingFilters = {
   rentType: [],
 };
 
+export const defaultEventFilters = {
+  categories: [],
+};
+
 export const eventCategories = [
   "Exclusive events",
   "Experiences",

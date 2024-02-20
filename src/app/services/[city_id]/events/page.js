@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import {
@@ -16,7 +16,6 @@ import {
 } from "@mui/material";
 
 import EventsGrid from "components/ImageGrids/EventsGrid";
-import MultipleSelect from "components/Selects/MultipleSelect";
 
 import { getCityEvents, updateEventsOrderBy } from "actions";
 import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
@@ -28,7 +27,7 @@ const CityEventsPage = () => {
   const orderBy = useSelector((state) => state.events.data.orderBy);
   const [selectedTab, setSelectedTab] = useState(0);
 
-  const usedSubcategories = eventsState.data.usedSubcategories;
+  const categories = eventsState.data.categories;
 
   const dispatch = useDispatch();
 
@@ -47,7 +46,10 @@ const CityEventsPage = () => {
     dispatch(updateEventsOrderBy(value));
   };
 
-  if (eventsState.city_id !== selectedCity.city_id) {
+  if (
+    eventsState.city_id !== selectedCity.city_id ||
+    eventsState.data.groupedEvents.length === 0
+  ) {
     return <CenteredLoadingSpinner />;
   }
 
@@ -71,7 +73,7 @@ const CityEventsPage = () => {
       <Typography variant="h1" sx={{ my: 3, fontSize: 30 }}>
         Events
       </Typography>
-      <Box>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
         <FormControl sx={{ width: 140 }}>
           <InputLabel id="order-by">Order By</InputLabel>
           <Select
@@ -105,7 +107,7 @@ const CityEventsPage = () => {
           mt: 0,
         }}
       >
-        {[...usedSubcategories].map((category) => (
+        {[...categories].map((category) => (
           <Tab label={category} key={category} />
         ))}
       </Tabs>
@@ -117,7 +119,7 @@ const CityEventsPage = () => {
           flexGrow: 1,
         }}
       >
-        {[...usedSubcategories].map(
+        {[...categories].map(
           (category, index) =>
             selectedTab === index && (
               <EventsGrid

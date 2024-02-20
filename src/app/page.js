@@ -10,7 +10,7 @@ import Services from "components/Interactive/Services";
 import { imagesCdn } from "constants/constants";
 
 export const metadata = {
-  title: "SityEx | One-stop platform for expats",
+  title: "SityEx | One-stop platform for young expats",
   description:
     "One-stop platform for all expat needs in Madrid. We focus on housing and paperwork services with a vibrant community at its base.",
   alternates: {
@@ -41,7 +41,7 @@ const LandingPage = () => {
             variant="h2"
             sx={{ color: "grey.500", fontSize: 35, px: 3 }}
           >
-            One-stop platform for expats
+            One-stop platform for young expats
           </Typography>
         </Box>
         <Services />

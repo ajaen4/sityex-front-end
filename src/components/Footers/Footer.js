@@ -34,7 +34,7 @@ function Footer() {
               <ul style={{ listStyleType: "none", padding: 0 }}>
                 <li style={{ marginTop: 10 }}>
                   <Link
-                    href="/search"
+                    href="/services/3117735/"
                     sx={{
                       textDecoration: "none",
                       color: "white",
