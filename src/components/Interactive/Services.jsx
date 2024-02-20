@@ -37,7 +37,7 @@ const Services = () => {
       icon: "events-2.png",
       title: "Community",
       description:
-        "We have created a thriving community of expats to help you feel at home in Spain",
+        "Thriving community of young expats to help you feel at home in Spain from day 1",
     },
   };
 
