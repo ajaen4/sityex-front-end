@@ -24,7 +24,7 @@ const CommunitySlides = () => {
       >
         <video height="550" controls>
           <source
-            src={`${imagesCdn}/video/vertical-test.mp4`}
+            src={`${imagesCdn}/video/community.mp4`}
             type="video/mp4"
             style={{ borderRadius: "20px" }}
           />

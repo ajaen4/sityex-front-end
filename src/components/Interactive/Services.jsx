@@ -18,7 +18,7 @@ const Services = () => {
       id: "paperwork",
       icon: "paperwork-2.png",
       title: "Paperwork",
-      link: "/services/3117735/paperwork",
+      onClick: () => router.push("/services/3117735/paperwork"),
       description:
         "Automatized processes through our local partners that do the paperwork for you",
     },
@@ -26,15 +26,15 @@ const Services = () => {
       id: "housing",
       icon: "housing-2.png",
       title: "Housing",
-      link: "/services/3117735/housing",
+      onClick: () => router.push("/services/3117735/housing"),
       description:
         "Housing options and discounts through our partners to help you find your ideal home",
     },
     community: {
       id: "community",
-      link: "/services/3117735/community",
       icon: "events-2.png",
       title: "Community",
+      onClick: () => window.location.hash = "#community",
       description:
         "Thriving community of young expats to help you feel at home in Spain from day 1",
     },
@@ -61,7 +61,7 @@ const Services = () => {
                 cursor: "pointer",
                 mx: 1,
               }}
-              onClick={() => router.push(service.link)}
+              onClick={service.onClick}
             >
               <Card
                 sx={{
@@ -141,7 +141,7 @@ const Services = () => {
                 margin: "auto",
                 cursor: "pointer",
               }}
-              onClick={() => router.push(service.link)}
+              onClick={service.onClick}
             >
               <img
                 height="120"
