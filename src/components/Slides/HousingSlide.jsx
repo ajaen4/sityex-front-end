@@ -10,14 +10,14 @@ const HousingSlide = ({ city_id, housing_id, title }) => {
   const router = useRouter();
 
   const handleListingClick = (city_id) => {
-    router.push(`/destination/${city_id}/housing`);
+    router.push(`/services/${city_id}/housing`);
   };
 
   useEffect(() => {
     fetchListingImages(city_id, housing_id).then((images) => {
       setImages(images);
     });
-  }, []);
+  }, [city_id, housing_id]);
 
   return (
     <Box
@@ -33,7 +33,7 @@ const HousingSlide = ({ city_id, housing_id, title }) => {
           sx={{
             borderRadius: 2,
             width: "100%",
-            height: { xs: "55vh", md: "53vh" },
+            height: { xs: "50vh", md: "47vh" },
             backgroundImage: images
               ? `url(${images.images[0].sizes["640x480"].link})`
               : null,
@@ -49,7 +49,7 @@ const HousingSlide = ({ city_id, housing_id, title }) => {
         sx={{
           my: 1,
           fontSize: 16,
-          minHeight: { xs: "5vh", md: "7vh" },
+          minHeight: "5vh",
         }}
       >
         {title}

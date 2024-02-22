@@ -1,11 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { filterEvents, getCategories, groupEvents } from "helpers/listUtils.js";
 
 const eventsSlice = createSlice({
   name: "events",
   initialState: {
-    events: [],
+    data: {
+      groupedEvent: [],
+      categories: [],
+      selectedEvent: null,
+      orderBy: "",
+    },
     city_id: null,
-    selectedEvent: null,
     isFetching: false,
   },
   reducers: {
@@ -13,17 +18,32 @@ const eventsSlice = createSlice({
       state.isFetching = true;
     },
     fetchingEventsSuccess: (state, action) => {
-      state.events = action.payload.events;
+      const categories = getCategories(action.payload.events);
+      state.data.categories = categories;
+      const groupedEvents = groupEvents(categories, action.payload.events);
+      state.data.groupedEvents = groupedEvents;
       state.city_id = action.payload.city_id;
-      state.selectedEvent = null;
+      state.data.selectedEvent = null;
     },
     fetchingEventSuccess: (state, action) => {
-      state.selectedEvent = action.payload.selected_event;
+      state.data.selectedEvent = action.payload.selected_event;
+    },
+    setEventsOrderBy: (state, action) => {
+      const orderBy = action.payload.orderBy;
+      state.data.orderBy = orderBy;
+      state.data.filteredGEvents = filterEvents(
+        state.data.groupedEvents,
+        orderBy,
+      );
     },
   },
 });
 
-export const { isFetchingEvents, fetchingEventsSuccess, fetchingEventSuccess } =
-  eventsSlice.actions;
+export const {
+  isFetchingEvents,
+  fetchingEventsSuccess,
+  fetchingEventSuccess,
+  setEventsOrderBy,
+} = eventsSlice.actions;
 
 export default eventsSlice.reducer;

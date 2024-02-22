@@ -180,20 +180,24 @@ export default function HousingList() {
               page={validatedPageNum}
               onChange={changePage}
             />
-            <Typography variant="h5" sx={{ mx: 1 }}>
-              Order by:
-            </Typography>
-            <ToggleButtonGroup
-              color="primary"
-              value={orderBy}
-              exclusive
-              onChange={changeOrderBy}
-              aria-label="orderBy"
-              size="small"
-            >
-              <ToggleButton value="rank">Rank</ToggleButton>
-              <ToggleButton value="price">Price</ToggleButton>
-            </ToggleButtonGroup>
+            <FormControl sx={{ width: 140 }}>
+              <InputLabel id="order-by">Order By</InputLabel>
+              <Select
+                value={orderBy}
+                onChange={changeOrderBy}
+                input={<OutlinedInput label="Order By" />}
+              >
+                <MenuItem key="rank" value="rank">
+                  Rank
+                </MenuItem>
+                <MenuItem key="low-price" value="low-price">
+                  Lowest price
+                </MenuItem>
+                <MenuItem key="high-price" value="high-price">
+                  Highest price
+                </MenuItem>
+              </Select>
+            </FormControl>
           </Box>
         )}
       </Box>

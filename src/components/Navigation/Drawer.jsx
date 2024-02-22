@@ -27,7 +27,7 @@ export default function Drawer({ ...props }) {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   useEffect(() => {
-    const paths = ["destination"];
+    const paths = ["services"];
 
     if (isSmallScreen) {
       setIsOpenDrawer(false);

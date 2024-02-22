@@ -37,7 +37,7 @@ const CitiesAutocomplete = ({ selectedCity, placeholder }) => {
   };
 
   const onSelectCity = (event, value) => {
-    router.push(`/destination/${value.city_id}`);
+    router.push(`/services/${value.city_id}`);
     setIsLoading(true);
   };
 

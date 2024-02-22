@@ -64,7 +64,7 @@ function CitiesMarkerCluster({ citiesIndex }) {
           [city.coordinates.latitude, city.coordinates.longitude],
           { icon: customIcon },
         ).on("click", () => {
-          window.location.href = `/destination/${city.city_id}`;
+          window.location.href = `/services/${city.city_id}`;
         });
 
         markers.addLayer(marker);
@@ -79,7 +79,7 @@ function CitiesMarkerCluster({ citiesIndex }) {
         map.removeLayer(group);
       });
     };
-  }, [map, citiesIndex]);
+  }, [map, citiesIndex, theme]);
 
   return null;
 }

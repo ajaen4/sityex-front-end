@@ -16,11 +16,13 @@
     "@mui/x-date-pickers": "^6.18.4",
     "@reduxjs/toolkit": "^2.0.1",
     "@sentry/nextjs": "^7.91.0",
+    "@vidstack/player": "^1.6.5",
+    "@vidstack/player-react": "^1.6.5",
+    "@vidstack/react": "^1.10.9",
     "dayjs": "^1.11.10",
     "firebase": "^10.7.1",
     "leaflet.markercluster": "^1.5.3",
     "next": "14.0.2",
-    "prettier": "^3.1.1",
     "react": "^18.0.0",
     "react-dom": "^18",
     "react-ga4": "^2.1.0",
@@ -34,7 +36,9 @@
     "redux-logger": "^3.0.6"
   },
   "devDependencies": {
-    "eslint": "^8",
-    "eslint-config-next": "14.0.2"
+    "eslint": "^8.56.0",
+    "eslint-config-next": "14.0.2",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.2.5"
   }
 }

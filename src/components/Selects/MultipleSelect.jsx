@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
 import {
   OutlinedInput,
@@ -10,7 +10,7 @@ import {
   Checkbox,
 } from "@mui/material";
 
-const MultipleSelect = React.forwardRef(
+const MultipleSelect = forwardRef(
   ({ onChange, value, options, label }, ref) => {
     const handleChange = (event) => {
       const {
@@ -48,5 +48,7 @@ const MultipleSelect = React.forwardRef(
     );
   },
 );
+
+MultipleSelect.displayName = "MultipleSelect";
 
 export default MultipleSelect;

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { useRouter } from "next/navigation";
 
 import { Grid, Typography, Card, Box, useMediaQuery } from "@mui/material";
@@ -9,8 +9,6 @@ import { useTheme } from "@mui/material/styles";
 import { imagesCdn } from "constants/constants";
 
 const Services = () => {
-  const [activeService, setActiveService] = useState("paperwork");
-
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
   const router = useRouter();
@@ -20,33 +18,26 @@ const Services = () => {
       id: "paperwork",
       icon: "paperwork-2.png",
       title: "Paperwork",
-      link: "/destination/3117735/paperwork",
+      onClick: () => router.push("/services/3117735/paperwork"),
       description:
         "Automatized processes through our local partners that do the paperwork for you",
-      position: "7.5%",
     },
     housing: {
       id: "housing",
       icon: "housing-2.png",
       title: "Housing",
-      link: "/destination/3117735/housing",
+      onClick: () => router.push("/services/3117735/housing"),
       description:
         "Housing options and discounts through our partners to help you find your ideal home",
-      position: "35%",
     },
-    events: {
-      id: "events",
-      link: "/destination/3117735/events",
+    community: {
+      id: "community",
       icon: "events-2.png",
-      title: "Events",
+      title: "Community",
+      onClick: () => (window.location.hash = "#community"),
       description:
-        "Exclusive SityEx and third party events to discover your new home city",
-      position: "57.5%",
+        "Thriving community of young expats to help you feel at home in Spain from day 1",
     },
-  };
-
-  const handleServiceClick = (serviceId) => {
-    setActiveService(serviceId);
   };
 
   if (isSmallScreen) {
@@ -54,10 +45,9 @@ const Services = () => {
       <Box>
         <Box
           sx={{
-            overflow: "hidden",
-            position: "relative",
             mt: 5,
-            height: "25vh",
+            height: "20vh",
+            width: "100%",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
@@ -68,24 +58,17 @@ const Services = () => {
             <Box
               key={service.id}
               sx={{
-                position: "absolute",
-                left: service.position,
-                transition: "all 0.3s ease",
-                width: activeService === service.id ? "35%" : "30%",
-                zIndex: activeService === service.id ? 2 : 1,
                 cursor: "pointer",
-                "&:hover": {
-                  transform: "scale(1.1)",
-                },
+                mx: 1,
               }}
-              onClick={() => handleServiceClick(service.id)}
+              onClick={service.onClick}
             >
               <Card
                 sx={{
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
-                  p: 3,
+                  p: 1,
                   height: "fit-content",
                 }}
               >
@@ -95,39 +78,35 @@ const Services = () => {
                   title={service.title}
                   style={{ height: "80px" }}
                 />
-                {activeService === service.id && (
-                  <Typography
-                    variant="h2"
-                    sx={{
-                      color: "grey.500",
-                      fontSize: 20,
-                      mt: 2,
-                      textAlign: "center",
-                    }}
-                  >
-                    {service.title}
-                  </Typography>
-                )}
               </Card>
+              <Typography
+                variant="h2"
+                sx={{
+                  color: "grey.500",
+                  fontSize: 20,
+                  mt: 2,
+                  textAlign: "center",
+                }}
+              >
+                {service.title}
+              </Typography>
             </Box>
           ))}
         </Box>
-
-        <Box sx={{ minHeight: 98, px: 3 }}>
-          {activeService && (
-            <Typography
-              sx={{
-                color: "grey.500",
-                backgroundColor: "grey.100",
-                fontSize: 16,
-                borderRadius: 3,
-                p: 2,
-              }}
-            >
-              {services[activeService].description}
-            </Typography>
-          )}
-        </Box>
+        <Typography
+          sx={{
+            textAlign: "center",
+            color: "grey.500",
+            backgroundColor: "grey.100",
+            fontSize: 18,
+            mx: 2,
+            borderRadius: 3,
+            p: 2,
+            mt: 2,
+          }}
+        >
+          100% online services, we take care of everything for you
+        </Typography>
       </Box>
     );
   } else {
@@ -162,7 +141,7 @@ const Services = () => {
                 margin: "auto",
                 cursor: "pointer",
               }}
-              onClick={() => router.push(service.link)}
+              onClick={service.onClick}
             >
               <img
                 height="120"

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 
@@ -14,7 +14,6 @@ import HouseIcon from "@mui/icons-material/MapsHomeWorkOutlined";
 import GovernmentIcon from "@mui/icons-material/AssuredWorkloadOutlined";
 
 import { useShowBotNavContext } from "components/Contexts/ShowBotNavContext";
-import { useShowSignUpContext } from "components/Contexts/ShowSignUpContext";
 
 import { minBottomNavHeight } from "constants/constants";
 import * as ROUTES_PATHS from "routes/paths";
@@ -29,43 +28,37 @@ export default function CityTabs() {
   const auth = useSelector((state) => state.auth);
 
   const { showBotNav, setShowBotNav } = useShowBotNavContext();
-  const { setShowSignUpModal } = useShowSignUpContext();
 
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
-  const isDestinationPage = pathname.split("/").includes("destination");
+  const isServicesPage = pathname.split("/").includes("services");
   const isCityEventPage = pathname.split("/").includes("event");
 
   const router = useRouter();
 
-  const getTabValue = () => {
+  const getTabValue = useCallback(() => {
     const path = pathname.split("/");
 
     if (path.includes(ROUTES_PATHS.CITY_BUREAUCRACY)) setValue(0);
     if (path.includes(ROUTES_PATHS.CITY_HOUSING)) setValue(1);
     if (path.includes(ROUTES_PATHS.CITY_EVENTS)) setValue(2);
     if (path.includes(ROUTES_PATHS.CITY_COMMUNITY)) setValue(3);
-  };
+  }, [pathname]);
 
   const itemSelected = (event, value) => {
     const path = event.currentTarget.getAttribute("data-path");
-    const destinationURL = `/destination/${selectedCity.city_id}/${path}`;
+    const destinationURL = `/services/${selectedCity.city_id}/${path}`;
 
-    if (path === ROUTES_PATHS.CITY_COMMUNITY && auth.isAuthResolved === false) {
-      setShowSignUpModal(true);
-      localStorage.setItem("destinationURL", destinationURL);
-    } else {
-      setValue(value);
-      router.push(destinationURL);
-    }
+    setValue(value);
+    router.push(destinationURL);
   };
 
   useEffect(() => {
-    setShowBotNav(isDestinationPage && isSmallScreen);
-  }, [isDestinationPage, isCityEventPage, isSmallScreen]);
+    setShowBotNav(isServicesPage && isSmallScreen);
+  }, [isServicesPage, isCityEventPage, isSmallScreen, setShowBotNav]);
 
   useEffect(() => {
     getTabValue();
-  }, [pathname]);
+  }, [getTabValue]);
 
   if (!showBotNav) return null;
 
@@ -105,12 +98,6 @@ export default function CityTabs() {
             icon={<TicketIcon />}
             sx={{ color: "white", "&.Mui-selected": { color: "white" } }}
             data-path={ROUTES_PATHS.CITY_EVENTS}
-          />
-          <BottomNavigationAction
-            label="Community"
-            icon={<PeopleIcon />}
-            sx={{ color: "white", "&.Mui-selected": { color: "white" } }}
-            data-path={ROUTES_PATHS.CITY_COMMUNITY}
           />
         </BottomNavigation>
       </Paper>

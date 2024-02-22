@@ -19,37 +19,37 @@ const paperworkServices = [
   {
     name: "NIE",
     image: "nie.png",
-    path: "/destination/3117735/paperwork?tab=essentials",
+    path: "/services/3117735/paperwork?tab=essentials",
   },
   {
     name: "Empadronamiento",
     image: "empadronamiento.png",
-    path: "/destination/3117735/paperwork?tab=essentials",
+    path: "/services/3117735/paperwork?tab=essentials",
   },
   {
     name: "Social Security",
     image: "seguridad-social.png",
-    path: "/destination/3117735/paperwork?tab=essentials",
+    path: "/services/3117735/paperwork?tab=essentials",
   },
   {
     name: "Health Card",
     image: "tarjeta-sanitaria.png",
-    path: "/destination/3117735/paperwork?tab=essentials",
+    path: "/services/3117735/paperwork?tab=essentials",
   },
   {
     name: "Taxes",
     image: "taxes.png",
-    path: "/destination/3117735/paperwork?tab=tax-declaration",
+    path: "/services/3117735/paperwork?tab=tax-declaration",
   },
   {
     name: "Drivers License Exchange",
     image: "drivers-license.png",
-    path: "/destination/3117735/paperwork?tab=driver-vehicle-licensing",
+    path: "/services/3117735/paperwork?tab=driver-vehicle-licensing",
   },
   {
     name: "Vehicle Licensing",
     image: "vehicle-licensing.png",
-    path: "/destination/3117735/paperwork?tab=driver-vehicle-licensing",
+    path: "/services/3117735/paperwork?tab=driver-vehicle-licensing",
   },
 ];
 
@@ -85,6 +85,7 @@ const PaperworkSlides = () => {
         >
           {itemsForCurrentSlide.map((service) => (
             <Box
+              key={service.name}
               sx={{
                 display: "flex",
                 flexDirection: "column",
@@ -98,7 +99,7 @@ const PaperworkSlides = () => {
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                  height: "31vh",
+                  height: "25vh",
                   width: "100%",
                   cursor: "pointer",
                 }}
@@ -115,7 +116,7 @@ const PaperworkSlides = () => {
                 sx={{
                   my: 1,
                   fontSize: 16,
-                  minHeight: { xs: "5vh", md: "7vh" },
+                  minHeight: "5vh",
                 }}
               >
                 {service.name}

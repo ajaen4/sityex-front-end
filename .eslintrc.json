@@ -1,4 +1,7 @@
 {
+  "rules": {
+    "@next/next/no-img-element": "off"
+  },
   "extends": ["prettier", "next/core-web-vitals"],
   "parserOptions": {
     "ecmaVersion": 2020,

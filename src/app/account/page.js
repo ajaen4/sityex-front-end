@@ -61,7 +61,7 @@ const AccountPage = () => {
       setValue("homeCountry3Code", auth.homeCountry3Code || "");
       setValue("email", auth.email);
     }
-  }, [auth, allCountries]);
+  }, [auth, allCountries, setValue]);
 
   const updateUserData = (data) => {
     const dataWithId = { ...data, id: auth.id };

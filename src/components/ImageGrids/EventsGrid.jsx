@@ -33,7 +33,7 @@ const EventsGrid = ({ events }) => {
   const aspectRatio = 1;
 
   const handleEventClick = (eventId) => {
-    router.push(`/destination/${selectedCity.city_id}/event/${eventId}`);
+    router.push(`/services/${selectedCity.city_id}/event/${eventId}`);
   };
 
   const handleImageError = (eventId) => {
@@ -51,9 +51,11 @@ const EventsGrid = ({ events }) => {
     const event = events[eventIndex];
     const [interestedCount, setInterestedCount] = useState(null);
 
-    if (!event) return null;
-
     useEffect(() => {
+      if (!event) {
+        return;
+      }
+
       countInterestedUsers(
         selectedCity.city_id,
         event.event_id,
@@ -62,6 +64,10 @@ const EventsGrid = ({ events }) => {
         setInterestedCount(interestedCount);
       });
     }, [event]);
+
+    if (!event) {
+      return null;
+    }
 
     const isError = eventsBadImage.includes(event.event_id);
 

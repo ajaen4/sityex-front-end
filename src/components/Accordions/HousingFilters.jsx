@@ -29,18 +29,16 @@ const HousingFilters = () => {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const subscription = watch((value, { name, type }) => onSubmit(value));
-    return () => subscription.unsubscribe();
-  }, [watch]);
-
   const debounceFilters = debounce((data) => {
     dispatch(updateHousingFilters(data));
   }, 500);
 
-  const onSubmit = (data) => {
-    debounceFilters(data);
-  };
+  useEffect(() => {
+    const subscription = watch((value, { name, type }) =>
+      debounceFilters(value),
+    );
+    return () => subscription.unsubscribe();
+  }, [watch, debounceFilters]);
 
   return (
     <Accordion

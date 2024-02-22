@@ -1,15 +1,9 @@
 import React from "react";
 
-import { Box, Typography, Grid, Card } from "@mui/material";
-import PeopleIcon from "@mui/icons-material/PeopleOutlined";
-import HouseIcon from "@mui/icons-material/MapsHomeWorkOutlined";
-import GovernmentIcon from "@mui/icons-material/AssuredWorkloadOutlined";
-
-import CitiesAutocomplete from "components/Autocomplete/CitiesAutocomplete";
-import CitySlides from "components/Slides/CitySlides";
+import { Box, Typography, Grid } from "@mui/material";
 import HousingSlides from "components/Slides/HousingSlides";
+import CommunitySlides from "components/Slides/CommunitySlides";
 import PaperworkSlides from "components/Slides/PaperworkSlides";
-import EventsSlides from "components/Slides/EventsSlides";
 import SendGAPageView from "components/DataLoaders/SendGAPageView";
 import Footer from "components/Footers/Footer";
 import Services from "components/Interactive/Services";
@@ -17,9 +11,9 @@ import Services from "components/Interactive/Services";
 import { imagesCdn } from "constants/constants";
 
 export const metadata = {
-  title: "SityEx | One-stop platform for expats",
+  title: "SityEx | One-stop platform for young expats",
   description:
-    "Community-based, one-stop platform for all expat needs in Spain. We focus on housing and paperwork services with a vibrant community at its base.",
+    "One-stop platform for all expat needs in Madrid. We focus on housing and paperwork services with a vibrant community at its base.",
   alternates: {
     canonical: "https://sityex.com/",
   },
@@ -48,19 +42,7 @@ const LandingPage = () => {
             variant="h2"
             sx={{ color: "grey.500", fontSize: 35, px: 3 }}
           >
-            Your one-stop platform for expats
-          </Typography>
-          <Typography
-            variant="h1"
-            sx={{
-              mt: 2,
-              fontSize: 22,
-              width: "100%",
-
-              px: 3,
-            }}
-          >
-            Community-based, one-stop platform for expats
+            One-stop platform for young expats
           </Typography>
         </Box>
         <Services />
@@ -86,7 +68,7 @@ const LandingPage = () => {
             title="Choose Paperwork"
             style={{ marginRight: 10 }}
           />
-          <Typography variant="h2" sx={{ color: "grey.500", fontSize: 30 }}>
+          <Typography variant="h2" sx={{ color: "grey.500", fontSize: 25 }}>
             Need help with your paperwork?
           </Typography>
         </Box>
@@ -112,7 +94,7 @@ const LandingPage = () => {
             title="Housing"
             style={{ marginRight: 10 }}
           />
-          <Typography variant="h2" sx={{ color: "grey.500", fontSize: 30 }}>
+          <Typography variant="h2" sx={{ color: "grey.500", fontSize: 25 }}>
             Housing
           </Typography>
         </Box>
@@ -120,29 +102,38 @@ const LandingPage = () => {
       </Grid>
       <Grid
         item
+        id="community"
         xs={12}
         sx={{
           display: "flex",
           justifyContent: "center",
           flexDirection: "column",
+          alignItems: "center",
           textAlign: "start",
           px: 3,
         }}
       >
-        <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "start",
+            alignItems: "center",
+            width: "100%",
+          }}
+        >
           <img
             width="25"
             height="25"
             src={`${imagesCdn}/icons/sunglasses.png`}
-            alt="events-icon"
-            title="Events"
+            alt="housing-icon"
+            title="Housing"
             style={{ marginRight: 10 }}
           />
-          <Typography variant="h2" sx={{ color: "grey.500", fontSize: 30 }}>
-            Trending Events
+          <Typography variant="h2" sx={{ color: "grey.500", fontSize: 25 }}>
+            Community
           </Typography>
         </Box>
-        <EventsSlides />
+        <CommunitySlides />
       </Grid>
       <Grid
         item

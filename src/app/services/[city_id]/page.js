@@ -33,7 +33,7 @@ const PaperworkPage = () => {
   const router = useRouter();
 
   const onClickExplore = (section) => {
-    const destinationURL = `/destination/${selectedCity.city_id}/${section}`;
+    const destinationURL = `/services/${selectedCity.city_id}/${section}`;
 
     if (
       section === ROUTES_PATHS.CITY_COMMUNITY &&
@@ -83,7 +83,7 @@ const PaperworkPage = () => {
       <Typography variant="h1" sx={{ my: 3, fontSize: 30 }}>
         Available services
       </Typography>
-      <Grid container>
+      <Grid container sx={{ justifyContent: "center" }}>
         <Grid item xs={6} md={3}>
           <Card
             sx={{
@@ -145,7 +145,7 @@ const PaperworkPage = () => {
                 sx={{ fontSize: { xs: 15, md: 16 }, mt: 2 }}
               >
                 Find your perfect home. From single rooms to full apartments,
-                we've got you covered.
+                we&apos;ve got you covered.
               </Typography>
             </CardContent>
             <CardActions
@@ -200,47 +200,6 @@ const PaperworkPage = () => {
                 size="small"
                 variant="contained"
                 onClick={() => onClickExplore(ROUTES_PATHS.CITY_EVENTS)}
-              >
-                Explore
-              </Button>
-            </CardActions>
-          </Card>
-        </Grid>
-        <Grid item xs={6} md={3}>
-          <Card
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              mx: { xs: 0.5, md: 1 },
-              mb: 2,
-            }}
-          >
-            <CardContent
-              sx={{ pb: 0, minHeight: { xs: 235, md: 250, lg: 205 } }}
-            >
-              <PeopleIcon sx={{ fontSize: { xs: 30, md: 40 } }} />
-              <Typography gutterBottom variant="h3" component="div">
-                Community
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{ fontSize: { xs: 15, md: 16 }, mt: 2 }}
-              >
-                Start feeling at home from day one. Connect with our welcoming
-                expat community!
-              </Typography>
-            </CardContent>
-            <CardActions
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
-              <Button
-                sx={{ alignSelf: "center", fontSize: { xs: 15, md: 16 } }}
-                size="small"
-                variant="contained"
-                onClick={() => onClickExplore(ROUTES_PATHS.CITY_COMMUNITY)}
               >
                 Explore
               </Button>

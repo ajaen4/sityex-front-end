@@ -24,12 +24,9 @@ function NavBar({}) {
   const router = useRouter();
   const pathname = usePathname();
 
-  const isLandingPage = pathname.split("/").every((str) => str === "");
   const isBlogPage =
     pathname.split("/")[pathname.split("/").length - 1] === "blog";
-  const isOpaqueNavbar =
-    (!isBlogPage) ||
-    (isBlogPage && scrolledY > 400);
+  const isOpaqueNavbar = !isBlogPage || (isBlogPage && scrolledY > 400);
 
   const toggleSignUpModal = () => {
     setShowSignUpModal(!showSignUpModal);
@@ -45,7 +42,7 @@ function NavBar({}) {
   };
 
   const handleClickNavMenu = (page) => {
-    if (page === "Search City") router.push(ROUTES_PATHS.SEARCH);
+    if (page === "Services") router.push("/services/3117735/");
     if (page === "Blog") router.push(ROUTES_PATHS.BLOG);
     if (page === "About Us") router.push(ROUTES_PATHS.ABOUT_US);
   };
@@ -82,7 +79,7 @@ function NavBar({}) {
       localStorage.removeItem("destinationURL");
       localStorage.removeItem("openInNewTab");
     }
-  }, [showSignUpModal, auth]);
+  }, [showSignUpModal, auth, router]);
 
   return (
     <>

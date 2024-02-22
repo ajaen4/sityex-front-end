@@ -7,13 +7,12 @@ const HousingSlice = createSlice({
   name: "housing",
   initialState: {
     data: {
-      city_id: null,
       housingListings: [],
       filteredHListings: [],
-      lastVisibleDocId: null,
       orderBy: "",
       filters: defaultHousingFilters,
     },
+    city_id: null,
     isFetching: false,
   },
   reducers: {
@@ -21,7 +20,7 @@ const HousingSlice = createSlice({
       state.isFetching = true;
     },
     fetchHousingListingsSuccess: (state, action) => {
-      state.data.city_id = action.payload.city_id;
+      state.city_id = action.payload.city_id;
       state.data.housingListings = action.payload.housingListings;
       state.data.filteredHListings = action.payload.housingListings;
       state.data.orderBy = action.payload.orderBy;

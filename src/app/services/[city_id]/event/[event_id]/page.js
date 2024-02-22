@@ -22,7 +22,7 @@ import { imagesCdn } from "constants/constants";
 const CityEventPage = () => {
   const auth = useSelector((state) => state.auth);
   const selectedCity = useSelector((state) => state.selectedCity.data);
-  const selectedEvent = useSelector((state) => state.events.selectedEvent);
+  const selectedEvent = useSelector((state) => state.events.data.selectedEvent);
   const [imageHasError, setImageHasError] = useState(false);
 
   const { event_id } = useParams();
@@ -44,11 +44,11 @@ const CityEventPage = () => {
       auth.data.id,
       interested_info,
     );
-  }, []);
+  }, [auth.data, event_id, selectedCity.city_id]);
 
   useEffect(() => {
     dispatch(getCityEvent(selectedCity.city_id, event_id));
-  }, [event_id]);
+  }, [dispatch, selectedCity.city_id, event_id]);
 
   const formatText = (text) => {
     return text.split("\n").map((line, index) => (
@@ -74,7 +74,7 @@ const CityEventPage = () => {
     window.open(selectedEvent.affiliate_url, "_blank", "noopener");
   };
 
-  if (!selectedEvent) return null;
+  if (!selectedEvent) return <CenteredLoadingSpinner />;
 
   let imgSrc = null;
   if (selectedEvent.partner === "sityex") {

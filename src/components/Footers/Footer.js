@@ -21,9 +21,8 @@ function Footer() {
             title="Entre Tramites"
           />
           <Typography sx={{ color: "white" }}>
-            Community-based, one-stop platform for all expat needs in Spain. We
-            focus on housing and paperwork services with a vibrant community at
-            its base.
+            One-stop platform for all expat needs in Madrid. We focus on housing
+            and paperwork services with a vibrant community at its base.
           </Typography>
         </Grid>
         <Grid item xs={12} md={7} sx={{ display: "flex", p: 3 }}>
@@ -35,13 +34,13 @@ function Footer() {
               <ul style={{ listStyleType: "none", padding: 0 }}>
                 <li style={{ marginTop: 10 }}>
                   <Link
-                    href="/search"
+                    href="/services/3117735/"
                     sx={{
                       textDecoration: "none",
                       color: "white",
                     }}
                   >
-                    Search City
+                    Services
                   </Link>
                 </li>
                 <li

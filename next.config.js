@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    domains: ["d1dshnpqadx0e7.cloudfront.net"],
+  },
   async rewrites() {
     return [
       {

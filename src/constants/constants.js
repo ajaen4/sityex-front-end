@@ -1,4 +1,4 @@
-export const pages = ["Search City", "Blog", "About Us"];
+export const pages = ["Services", "Blog", "About Us"];
 export const settings = ["Account", "Logout"];
 export const drawerWidth = 240;
 export const tabletDrawerWidth = 200;
@@ -28,6 +28,26 @@ export const defaultHousingFilters = {
   amenities: [],
   rentType: [],
 };
+
+export const defaultEventFilters = {
+  categories: [],
+};
+
+export const eventCategories = [
+  "Exclusive events",
+  "Experiences",
+  "Music",
+  "Party",
+  "Food & Drinks",
+  "Play",
+  "Cinema",
+  "Museums",
+  "Courses",
+  "Sport",
+  "Fitness",
+  "Games",
+  "Other",
+];
 
 export const imagesCdn = "https://d1dshnpqadx0e7.cloudfront.net/images";
 export const documentsCdn = "https://d1dshnpqadx0e7.cloudfront.net/documents";

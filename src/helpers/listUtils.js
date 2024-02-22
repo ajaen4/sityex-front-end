@@ -1,3 +1,5 @@
+import { eventCategories } from "constants/constants";
+
 export const filterListings = (listings, filters, orderBy) => {
   const filteredListings = listings.filter((listing) => {
     const minPrice = filters.minPrice ? parseFloat(filters.minPrice) : null;
@@ -114,4 +116,56 @@ const orderByListings = (listings, orderBy) => {
       );
     }
   });
+};
+
+export const filterEvents = (events, orderBy) => {
+  return orderByEvents(events, orderBy);
+};
+
+export const getCategories = (events) => {
+  const categories = new Set();
+
+  events.forEach((event) => {
+    const subcategories = event.sityex_subcategories
+      .split(",")
+      .map((subcategory) => subcategory.trim());
+    subcategories.forEach((subcategory) => {
+      categories.add(subcategory);
+    });
+  });
+
+  return eventCategories.filter((category) => {
+    return categories.has(category);
+  });
+};
+
+export const groupEvents = (categories, events) => {
+  const today = new Date().setHours(0, 0, 0, 0);
+  return [...categories].map((category) =>
+    events.filter(
+      (event) =>
+        event.sityex_subcategories.includes(category) &&
+        new Date(event.end_date) > today,
+    ),
+  );
+};
+
+export const orderByEvents = (groupedEvents, orderBy) => {
+  if (!orderBy) {
+    return groupedEvents;
+  }
+
+  return groupedEvents.map((events) =>
+    events.sort((a, b) => {
+      if (orderBy === "low-price") {
+        return parseFloat(a.minimum_price) - parseFloat(b.minimum_price);
+      }
+      if (orderBy === "high-price") {
+        return parseFloat(b.minimum_price) - parseFloat(a.minimum_price);
+      }
+      if (orderBy === "closest-date") {
+        return parseFloat(a.remaining_days) - parseFloat(b.remaining_days);
+      }
+    }),
+  );
 };

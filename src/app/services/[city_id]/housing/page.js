@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useSearchParams, useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
@@ -25,7 +25,6 @@ const HousingMap = dynamic(() => import("components/Maps/HousingMap"), {
   loading: () => <CenteredLoadingSpinner />,
 });
 import HousingFilters from "components/Accordions/HousingFilters";
-import { useShowSignUpContext } from "components/Contexts/ShowSignUpContext";
 
 import { fetchHousingListings } from "actions";
 import { capitalize } from "helpers/usefulFunctions";
@@ -39,38 +38,34 @@ const HousingPage = () => {
   const [selectedTab, setSelectedTab] = useState("listings");
 
   const selectedCity = useSelector((state) => state.selectedCity.data);
-  const auth = useSelector((state) => state.auth);
   const housingState = useSelector((state) => state.housing);
 
-  const { setShowSignUpModal } = useShowSignUpContext();
   const router = useRouter();
 
-  const changeTab = (newValue) => {
-    const destinationURL = `/destination/${selectedCity.city_id}/housing/?tab=${newValue}`;
+  const changeTab = useCallback(
+    (newValue) => {
+      const destinationURL = `/services/${selectedCity.city_id}/housing/?tab=${newValue}`;
 
-    if (newValue === "discounts" && auth.isAuthResolved === false) {
-      setShowSignUpModal(true);
-      localStorage.setItem("destinationURL", destinationURL);
-    } else {
       setSelectedTab(newValue);
       router.push(destinationURL, undefined, { shallow: true });
-    }
-  };
+    },
+    [router, selectedCity.city_id],
+  );
 
   useEffect(() => {
     if (searchParams.get("tab") && tabs.includes(searchParams.get("tab"))) {
       changeTab(searchParams.get("tab"));
     }
-  }, [searchParams.get("tab"), auth]);
+  }, [searchParams, changeTab]);
 
   useEffect(() => {
     if (
       housingState.data.housingListings.length === 0 ||
-      housingState.data.city_id !== selectedCity.city_id
+      housingState.city_id !== selectedCity.city_id
     ) {
       dispatch(fetchHousingListings(selectedCity.city_id));
     }
-  }, [selectedCity]);
+  }, [selectedCity.city_id, dispatch, housingState]);
 
   return (
     <Box
