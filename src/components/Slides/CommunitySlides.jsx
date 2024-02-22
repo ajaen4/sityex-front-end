@@ -1,7 +1,10 @@
 "use client";
 import React from "react";
+import { MediaPlayer, MediaProvider, Poster } from "@vidstack/react";
 
-import { Grid, Box, Typography, Button, Paper } from "@mui/material";
+import { Box, Grid, Typography, Button, Paper } from "@mui/material";
+
+import "@vidstack/react/player/styles/base.css";
 
 import { imagesCdn } from "constants/constants";
 
@@ -20,29 +23,47 @@ const CommunitySlides = () => {
         item
         xs={12}
         md={5}
-        sx={{ display: "flex", justifyContent: {xs: "center", md: "end"}, alignItems: "center", pr: {md: 5} }}
+        sx={{
+          display: "flex",
+          justifyContent: { xs: "center", md: "end" },
+          alignItems: "center",
+          pr: { md: 5 },
+        }}
       >
-        <video height="550" controls>
-          <source
-            src={`${imagesCdn}/video/community.mp4`}
-            type="video/mp4"
-            style={{ borderRadius: "20px" }}
+        <Box sx={{ width: "100%", height: "100%"}}>
+        <MediaPlayer
+          title="Community video"
+          src={`${imagesCdn}/video/community.mp4`}
+          aspectRatio="0.9"
+          controls
+          playsInline
+        >
+          <MediaProvider >
+          <Poster
+            src={`${imagesCdn}/video/video-thumbnail.jpeg`}
+            alt="SityEx"
           />
-          Your browser does not support the video tag.
-        </video>
+          </MediaProvider>
+        </MediaPlayer>
+        </Box>
       </Grid>
       <Grid
         item
         xs={12}
         md={5}
-        sx={{ display: "flex", justifyContent: "center", alignItems: "center", pl: {md: 5} }}
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          pl: { md: 5 },
+        }}
       >
         <Grid
           container
           sx={{
             display: "flex",
             flexDirection: "column",
-            alignItems: {xs: "center", md: "start"},
+            alignItems: { xs: "center", md: "start" },
           }}
         >
           <Grid item xs={12}>
@@ -56,7 +77,7 @@ const CommunitySlides = () => {
                 padding: 2,
                 maxWidth: 300,
                 mx: 2,
-                mt: {xs: 2, md: 0},
+                mt: { xs: 2, md: 0 },
               }}
             >
               <img
