@@ -34,7 +34,7 @@ const Services = () => {
       id: "community",
       icon: "events-2.png",
       title: "Community",
-      onClick: () => window.location.hash = "#community",
+      onClick: () => (window.location.hash = "#community"),
       description:
         "Thriving community of young expats to help you feel at home in Spain from day 1",
     },
