@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { MediaPlayer, MediaProvider, Poster } from "@vidstack/react";
 
 import { Box, Grid, Typography, Button, Paper } from "@mui/material";
@@ -9,6 +9,24 @@ import "@vidstack/react/player/styles/base.css";
 import { imagesCdn } from "constants/constants";
 
 const CommunitySlides = () => {
+
+  const [ height, setHeight ] = useState("500px");
+
+  useEffect(() => {
+    const isAppleDevice = /iPhone|iPad/.test(navigator.userAgent);
+    const isAndroid = /Android/.test(navigator.userAgent);
+
+    if (isAppleDevice) {
+      setHeight("700px");
+    } 
+    if (isAndroid){
+      setHeight("450px");
+    }
+    else {
+      setHeight("700px");
+    }
+  }, []);
+
   return (
     <Grid
       container
@@ -30,11 +48,11 @@ const CommunitySlides = () => {
           pr: { md: 5 },
         }}
       >
-        <Box sx={{ width: "100%", height: "100%"}}>
         <MediaPlayer
           title="Community video"
           src={`${imagesCdn}/video/community.mp4`}
-          aspectRatio="0.9"
+          aspectRatio="0.8"
+          style={{ height: height}}
           controls
           playsInline
         >
@@ -45,7 +63,6 @@ const CommunitySlides = () => {
           />
           </MediaProvider>
         </MediaPlayer>
-        </Box>
       </Grid>
       <Grid
         item
