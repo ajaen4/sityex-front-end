@@ -6,7 +6,6 @@ import { useSearchParams, useRouter } from "next/navigation";
 
 import { Typography, Box, Tabs, Tab, Grid } from "@mui/material";
 
-import SendGAPageView from "components/DataLoaders/SendGAPageView";
 import PaperworkAccordeon from "components/Accordions/PaperworkAccordeon";
 import EntreTramitesExp from "components/Cards/EntreTramitesExp";
 import EssentialsPaperwork from "components/Cards/EssentialsPaperwork";
@@ -42,10 +41,10 @@ const PaperworkPage = () => {
       router.push(
         `/services/${selectedCity.city_id}/paperwork/?tab=${newValue}`,
         undefined,
-        { shallow: true },
+        { shallow: true }
       );
     },
-    [setSelectedTab, router, selectedCity.city_id],
+    [setSelectedTab, router, selectedCity.city_id]
   );
 
   useEffect(() => {
@@ -66,13 +65,6 @@ const PaperworkPage = () => {
         alignItems: "center",
       }}
     >
-      <SendGAPageView
-        pageTitle="City Paperwork Page"
-        selectedCity={{
-          city_name: selectedCity.name,
-          city_id: selectedCity.city_id,
-        }}
-      />
       <Typography variant="h1" sx={{ my: 3, fontSize: 30 }}>
         Paperwork
       </Typography>
