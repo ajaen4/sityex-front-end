@@ -4,7 +4,6 @@ import { Box, Typography, Grid } from "@mui/material";
 import HousingSlides from "components/Slides/HousingSlides";
 import CommunitySlides from "components/Slides/CommunitySlides";
 import PaperworkSlides from "components/Slides/PaperworkSlides";
-import SendGAPageView from "components/DataLoaders/SendGAPageView";
 import Footer from "components/Footers/Footer";
 import Services from "components/Interactive/Services";
 
@@ -22,7 +21,6 @@ export const metadata = {
 const LandingPage = () => {
   return (
     <Grid container sx={{ alignItems: "center" }}>
-      <SendGAPageView pageTitle="Landing Page" />
       <Grid
         item
         xs={12}

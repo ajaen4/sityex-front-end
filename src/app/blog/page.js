@@ -5,7 +5,6 @@ import { Box, Grid, Typography } from "@mui/material";
 
 import BlogSlides from "components/Slides/BlogSlides";
 import LoadingSpinner from "components/Spinner/LoadingSpinner";
-import SendGAPageView from "components/DataLoaders/SendGAPageView";
 import Footer from "components/Footers/Footer";
 
 import { imagesCdn } from "constants/constants";
@@ -31,7 +30,6 @@ const BlogPage = () => {
         width: "100%",
       }}
     >
-      <SendGAPageView pageTitle="Blog Page" />
       <Box
         sx={{
           display: "flex",

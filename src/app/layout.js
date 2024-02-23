@@ -13,6 +13,7 @@ import { ShowBotNavProvider } from "components/Contexts/ShowBotNavContext";
 import ThemeRegistry from "theme/ThemeRegistry";
 
 import { drawerWidth, tabletDrawerWidth } from "constants/constants";
+import PostHogLoader from "components/DataLoaders/PostHogLoader";
 
 import "./globals.css";
 
@@ -80,6 +81,7 @@ export default function RootLayout({ children }) {
             <ShowBotNavProvider>
               <ShowSignUpProvider>
                 <ThemeRegistry options={{ key: "mui-theme" }}>
+                  <PostHogLoader />
                   <DataLoader />
                   <Navbar />
                   <Box

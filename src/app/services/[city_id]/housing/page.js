@@ -17,7 +17,6 @@ import {
   CardActions,
 } from "@mui/material";
 
-import SendGAPageView from "components/DataLoaders/SendGAPageView";
 import HousingList from "components/Lists/HousingList";
 import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 const HousingMap = dynamic(() => import("components/Maps/HousingMap"), {
@@ -79,13 +78,6 @@ const HousingPage = () => {
         position: "relative",
       }}
     >
-      <SendGAPageView
-        pageTitle="City Housing Page"
-        selectedCity={{
-          city_name: selectedCity.name,
-          city_id: selectedCity.city_id,
-        }}
-      />
       {selectedTab === "listings" && (
         <Box
           style={{

@@ -19,7 +19,6 @@ import EventsGrid from "components/ImageGrids/EventsGrid";
 
 import { getCityEvents, updateEventsOrderBy } from "actions";
 import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
-import SendGAPageView from "components/DataLoaders/SendGAPageView";
 
 const CityEventsPage = () => {
   const selectedCity = useSelector((state) => state.selectedCity.data);
@@ -63,13 +62,6 @@ const CityEventsPage = () => {
         textAlign: "center",
       }}
     >
-      <SendGAPageView
-        pageTitle="City Events Page"
-        selectedCity={{
-          city_name: selectedCity.name,
-          city_id: selectedCity.city_id,
-        }}
-      />
       <Typography variant="h1" sx={{ my: 3, fontSize: 30 }}>
         Events
       </Typography>
@@ -126,7 +118,7 @@ const CityEventsPage = () => {
                 key={category}
                 events={eventsState.data.groupedEvents[index]}
               />
-            ),
+            )
         )}
       </Box>
     </Box>

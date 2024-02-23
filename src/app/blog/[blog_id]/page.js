@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 import { Box, Typography } from "@mui/material";
 
 import BlogSlides from "components/Slides/BlogSlides";
-import SendGAPageView from "components/DataLoaders/SendGAPageView";
 import LoadingSpinner from "components/Spinner/LoadingSpinner";
 
 import * as api from "api";
@@ -32,7 +31,6 @@ const SingleBlogPage = async ({ params }) => {
         alignItems: "center",
       }}
     >
-      <SendGAPageView pageTitle="Single Blog Page" blog_id={blog_id} />
       <div
         className="mediumBlogStyle"
         dangerouslySetInnerHTML={{ __html: blog.content }}

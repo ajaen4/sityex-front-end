@@ -1,8 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-import { Box, Typography, Stack, Grid } from "@mui/material";
-import SendGAPageView from "components/DataLoaders/SendGAPageView";
+import { Box, Typography, Grid } from "@mui/material";
 import Footer from "components/Footers/Footer";
 
 import { imagesCdn } from "constants/constants";
@@ -20,7 +19,6 @@ const AboutUs = () => {
   return (
     <Box>
       <Grid container sx={{ alignItems: "center" }}>
-        <SendGAPageView pageTitle="About Us" />
         <Grid item xs={12} md={7} sx={{ p: { xs: 3, md: 5 } }}>
           <Typography variant="h4" fontSize={40}>
             From one expat to another ;)
