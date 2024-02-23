@@ -19,7 +19,6 @@ import PeopleIcon from "@mui/icons-material/PeopleOutlined";
 import HouseIcon from "@mui/icons-material/MapsHomeWorkOutlined";
 import GovernmentIcon from "@mui/icons-material/AssuredWorkloadOutlined";
 
-import SendGAPageView from "components/DataLoaders/SendGAPageView";
 import { useShowSignUpContext } from "components/Contexts/ShowSignUpContext";
 
 import * as ROUTES_PATHS from "routes/paths";
@@ -53,13 +52,6 @@ const PaperworkPage = () => {
         textAlign: "center",
       }}
     >
-      <SendGAPageView
-        pageTitle="City Main Page"
-        selectedCity={{
-          city_name: selectedCity.name,
-          city_id: selectedCity.city_id,
-        }}
-      />
       <Box
         sx={{
           display: "flex",

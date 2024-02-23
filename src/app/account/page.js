@@ -29,7 +29,6 @@ import {
 import ArrowBackIcon from "@mui/icons-material/ArrowBackOutlined";
 
 import WithAuth from "components/Session/WithAuth";
-import SendGAPageView from "components/DataLoaders/SendGAPageView";
 
 import { updateUser } from "actions";
 
@@ -90,7 +89,6 @@ const AccountPage = () => {
         p: 3,
       }}
     >
-      <SendGAPageView pageTitle="Account Page" />
       <Grid container spacing={1}>
         {((isSmallScreen && selectedTab === false) || !isSmallScreen) && (
           <Grid item xs={12} md={4}>
@@ -100,7 +98,7 @@ const AccountPage = () => {
                   alt="Remy Sharp"
                   src={`https://eu.ui-avatars.com/api/?name=${auth.userName.replace(
                     " ",
-                    "+",
+                    "+"
                   )}&size=512`}
                   sx={{ width: 50, height: 50 }}
                 />
