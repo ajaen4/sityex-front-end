@@ -4,7 +4,6 @@ import { Box } from "@mui/material";
 
 import Navbar from "components/Navigation/Navbar";
 import Drawer from "components/Navigation/Drawer";
-import NavBarPlaceholder from "components/Navigation/NavBarPlaceholder";
 import StoreProvider from "./StoreProvider";
 import DataLoader from "components/DataLoaders/DataLoader";
 import { DrawerProvider } from "components/Contexts/DrawerContext";
@@ -81,13 +80,13 @@ export default function RootLayout({ children }) {
             <ShowBotNavProvider>
               <ShowSignUpProvider>
                 <ThemeRegistry options={{ key: "mui-theme" }}>
+                  <DataLoader />
+                  <Navbar />
                   <Box
                     sx={{
                       display: "flex",
                     }}
                   >
-                    <DataLoader />
-                    <Navbar />
                     <Drawer />
                     <Box
                       sx={{
@@ -101,7 +100,6 @@ export default function RootLayout({ children }) {
                         },
                       }}
                     >
-                      <NavBarPlaceholder />
                       {children}
                     </Box>
                   </Box>

@@ -9,7 +9,6 @@ import { usePathname } from "next/navigation";
 import { useMediaQuery, Box } from "@mui/material";
 
 import TicketIcon from "@mui/icons-material/ConfirmationNumberOutlined";
-import PeopleIcon from "@mui/icons-material/PeopleOutlined";
 import HouseIcon from "@mui/icons-material/MapsHomeWorkOutlined";
 import GovernmentIcon from "@mui/icons-material/AssuredWorkloadOutlined";
 

@@ -12,6 +12,7 @@ import SmallScreenNavBar from "components/Navigation/SmallScreenNavBar";
 import BigScreenNavBar from "components/Navigation/BigScreenNavBar";
 import SignUpModal from "components/Modals/SignUpModal";
 import { useShowSignUpContext } from "components/Contexts/ShowSignUpContext";
+import NavBarPlaceholder from "components/Navigation/NavBarPlaceholder";
 
 import * as ROUTES_PATHS from "routes/paths";
 
@@ -82,7 +83,7 @@ function NavBar({}) {
   }, [showSignUpModal, auth, router]);
 
   return (
-    <>
+    <Box sx={{ display: "flex", flexDirection: "column"}}>
       <Box
         sx={{
           display: { xs: "flex", md: "None" },
@@ -104,8 +105,9 @@ function NavBar({}) {
           toggleSignUpModal={toggleSignUpModal}
         />
       </Box>
+      <NavBarPlaceholder />
       <SignUpModal open={showSignUpModal} onClose={closeSignUpModal} />
-    </>
+    </Box>
   );
 }
 
