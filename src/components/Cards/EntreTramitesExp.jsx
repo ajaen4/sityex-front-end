@@ -37,7 +37,7 @@ const EntreTramitesExp = ({ ServiceName, showFreeConsultation }) => {
         width: "95%",
       }}
     >
-      <Box>
+      <div>
         <Typography variant="h3" gutterBottom sx={{ mb: 2 }}>
           {ServiceName}
         </Typography>
@@ -66,7 +66,7 @@ const EntreTramitesExp = ({ ServiceName, showFreeConsultation }) => {
           take<b> care of the whole process for you, 100% online.</b>
         </Typography>
         {showFreeConsultation && (
-          <Box>
+          <div>
             <Typography
               variant="body1"
               gutterBottom
@@ -82,7 +82,7 @@ const EntreTramitesExp = ({ ServiceName, showFreeConsultation }) => {
             >
               Free consultation
             </Button>
-          </Box>
+          </div>
         )}
         <Box sx={{ mt: 3 }}>
           <Stepper alternativeLabel>
@@ -106,7 +106,7 @@ const EntreTramitesExp = ({ ServiceName, showFreeConsultation }) => {
             </Step>
           </Stepper>
         </Box>
-      </Box>
+      </div>
     </Card>
   );
 };

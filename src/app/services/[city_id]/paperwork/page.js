@@ -41,10 +41,10 @@ const PaperworkPage = () => {
       router.push(
         `/services/${selectedCity.city_id}/paperwork/?tab=${newValue}`,
         undefined,
-        { shallow: true },
+        { shallow: true }
       );
     },
-    [setSelectedTab, router, selectedCity.city_id],
+    [setSelectedTab, router, selectedCity.city_id]
   );
 
   useEffect(() => {
@@ -114,7 +114,7 @@ const PaperworkPage = () => {
                     <Typography variant="body2">
                       For those who plan to:
                     </Typography>
-                    <Box>
+                    <div>
                       <ul>
                         <li>Buy or sell property.</li>
                         <li>Inherit assets.</li>
@@ -124,7 +124,7 @@ const PaperworkPage = () => {
                           tax identification number.
                         </li>
                       </ul>
-                    </Box>
+                    </div>
                   </Box>
                 }
                 price={189.97}
@@ -142,7 +142,7 @@ const PaperworkPage = () => {
                     <Typography variant="body2">
                       For those who plan to:
                     </Typography>
-                    <Box>
+                    <div>
                       <ul>
                         <li>
                           Work or engage in any professional activity in Spain.
@@ -155,7 +155,7 @@ const PaperworkPage = () => {
                           Buy, sell, or own property in Spain as a resident.
                         </li>
                       </ul>
-                    </Box>
+                    </div>
                   </Box>
                 }
                 price={189.97}
@@ -174,14 +174,14 @@ const PaperworkPage = () => {
                     <Typography variant="body2">
                       For those who plan to:
                     </Typography>
-                    <Box>
+                    <div>
                       <ul>
                         <li>
                           Access any kind of public service and benefits in
                           Spain.
                         </li>
                       </ul>
-                    </Box>
+                    </div>
                   </Box>
                 }
                 price={64.13}
@@ -199,12 +199,12 @@ const PaperworkPage = () => {
                       Perfect if you don&apos;t need all the paperwork,
                       includes:
                     </Typography>
-                    <Box>
+                    <div>
                       <ul>
                         <li>Residential NIE.</li>
                         <li>Empadronamiento Certificate.</li>
                       </ul>
-                    </Box>
+                    </div>
                   </Box>
                 }
                 price={152.5}
@@ -221,7 +221,7 @@ const PaperworkPage = () => {
                       For those who want all their paperwork ready in one go,
                       includes:
                     </Typography>
-                    <Box>
+                    <div>
                       <ul>
                         <li>Residential NIE.</li>
                         <li>Empadronamiento Certificate.</li>
@@ -229,7 +229,7 @@ const PaperworkPage = () => {
                         <li>Social Security Number.</li>
                         <li>Individual Health Card (TSI).</li>
                       </ul>
-                    </Box>
+                    </div>
                   </Box>
                 }
                 price={215.38}
@@ -246,12 +246,12 @@ const PaperworkPage = () => {
                       Perfect if you don&apos;t need all the paperwork,
                       includes:
                     </Typography>
-                    <Box>
+                    <div>
                       <ul>
                         <li>Residential NIE.</li>
                         <li>Empadronamiento Certificate.</li>
                       </ul>
-                    </Box>
+                    </div>
                   </Box>
                 }
                 price={252.89}
@@ -268,7 +268,7 @@ const PaperworkPage = () => {
                       For those who want all their paperwork ready in one go,
                       includes:
                     </Typography>
-                    <Box>
+                    <div>
                       <ul>
                         <li>Residential NIE.</li>
                         <li>Empadronamiento Certificate.</li>
@@ -276,7 +276,7 @@ const PaperworkPage = () => {
                         <li>Social Security Number.</li>
                         <li>Individual Health Card (TSI).</li>
                       </ul>
-                    </Box>
+                    </div>
                   </Box>
                 }
                 price={315.81}
@@ -308,7 +308,7 @@ const PaperworkPage = () => {
                     <Typography variant="body2">
                       For those who plan to:
                     </Typography>
-                    <Box>
+                    <div>
                       <ul>
                         <li>
                           Work remotely for companies based outside Spain.
@@ -318,7 +318,7 @@ const PaperworkPage = () => {
                           employment.
                         </li>
                       </ul>
-                    </Box>
+                    </div>
                   </Box>
                 }
                 price={315.81}
@@ -335,12 +335,12 @@ const PaperworkPage = () => {
                     <Typography variant="body2">
                       For those who plan to:
                     </Typography>
-                    <Box>
+                    <div>
                       <ul>
                         <li>Stay long-term in Spain.</li>
                         <li>Make a significant investment in Spain.</li>
                       </ul>
-                    </Box>
+                    </div>
                   </Box>
                 }
                 price={1201.5}
@@ -367,7 +367,7 @@ const PaperworkPage = () => {
                 mdMinHeight={300}
                 mdMinHeightContent={410}
                 content={
-                  <Box>
+                  <div>
                     <Typography variant="body2">
                       For those who want to:
                     </Typography>
@@ -382,7 +382,7 @@ const PaperworkPage = () => {
                         resident taxation.
                       </li>
                     </ul>
-                  </Box>
+                  </div>
                 }
                 price={317.02}
                 requirements={beckhamReq}
@@ -395,7 +395,7 @@ const PaperworkPage = () => {
                 mdMinHeight={300}
                 mdMinHeightContent={461}
                 content={
-                  <Box>
+                  <div>
                     <Typography variant="body2">For those who:</Typography>
 
                     <ul>
@@ -403,7 +403,7 @@ const PaperworkPage = () => {
                       <li>Want simple, fast and up-to-date guidance.</li>
                       <li>Have a professional do your taxes for you.</li>
                     </ul>
-                  </Box>
+                  </div>
                 }
                 price={70.18}
                 paymentLink="https://app.entretramites.com/stripePaymentLink?id=5183&t=c23194a7"
@@ -416,7 +416,7 @@ const PaperworkPage = () => {
                 mdMinHeight={405}
                 mdMinHeightContent={461}
                 content={
-                  <Box>
+                  <div>
                     <Typography
                       variant="body2"
                       sx={{ textAlign: "left", mt: 1 }}
@@ -438,7 +438,7 @@ const PaperworkPage = () => {
                       <b>15% discount</b> on their Tax Declaration automated
                       service.
                     </Typography>
-                  </Box>
+                  </div>
                 }
                 paymentLink="https://taxdown.es/landings_partners/sityex/?utm_source=empleados&utm_medium=partnership&utm_campaign=empleados_partnership"
               />
@@ -470,7 +470,7 @@ const PaperworkPage = () => {
                 content={
                   <Box sx={{ textAlign: "left" }}>
                     <Typography variant="body2">For those who:</Typography>
-                    <Box>
+                    <div>
                       <ul>
                         <li>
                           Have a driver&apos;s license from a country different
@@ -482,7 +482,7 @@ const PaperworkPage = () => {
                         </li>
                         <li>Want a complete management of the procedure.</li>
                       </ul>
-                    </Box>
+                    </div>
                   </Box>
                 }
                 price={315.8}
@@ -496,12 +496,12 @@ const PaperworkPage = () => {
                 content={
                   <Box sx={{ textAlign: "left" }}>
                     <Typography variant="body2">For those who:</Typography>
-                    <Box>
+                    <div>
                       <ul>
                         <li>Want to register a vehicle in Spain.</li>
                         <li>Want a complete management of the procedure.</li>
                       </ul>
-                    </Box>
+                    </div>
                   </Box>
                 }
                 price={544.5}

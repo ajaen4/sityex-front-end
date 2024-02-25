@@ -98,7 +98,7 @@ const AccountPage = () => {
                   alt="Remy Sharp"
                   src={`https://eu.ui-avatars.com/api/?name=${auth.userName.replace(
                     " ",
-                    "+",
+                    "+"
                   )}&size=512`}
                   sx={{ width: 50, height: 50 }}
                 />
@@ -128,7 +128,7 @@ const AccountPage = () => {
         <Grid item xs={12} md={4}>
           <Box sx={{ mt: { md: 1.5 } }}>
             {selectedTab === 0 && (
-              <Box>
+              <div>
                 <Box sx={{ display: "flex", alignItems: "center" }}>
                   {isSmallScreen && (
                     <IconButton onClick={() => handleChange(null, false)}>
@@ -202,10 +202,10 @@ const AccountPage = () => {
                     </Button>
                   </Box>
                 </Box>
-              </Box>
+              </div>
             )}
             {selectedTab === 1 && (
-              <Box>
+              <div>
                 <Box sx={{ display: "flex", alignItems: "center" }}>
                   {isSmallScreen && (
                     <IconButton onClick={() => handleChange(null, false)}>
@@ -241,7 +241,7 @@ const AccountPage = () => {
                     </FormHelperText>
                   </FormControl>
                 </Box>
-              </Box>
+              </div>
             )}
           </Box>
         </Grid>

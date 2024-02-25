@@ -95,7 +95,7 @@ export default function HousingList() {
   }
 
   return (
-    <Box>
+    <div>
       <Box
         sx={{
           display: "flex",
@@ -202,6 +202,6 @@ export default function HousingList() {
           </Box>
         )}
       </Box>
-    </Box>
+    </div>
   );
 }

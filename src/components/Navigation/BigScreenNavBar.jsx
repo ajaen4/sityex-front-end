@@ -152,7 +152,7 @@ function BigScreenNavBar({
             </Box>
           )}
           {!auth.isAuthResolved && (
-            <Box>
+            <div>
               <Button
                 variant="contained"
                 color="secondary"
@@ -161,7 +161,7 @@ function BigScreenNavBar({
               >
                 Sign up
               </Button>
-            </Box>
+            </div>
           )}
         </Toolbar>
       </AppBar>

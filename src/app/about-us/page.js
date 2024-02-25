@@ -17,7 +17,7 @@ export const metadata = {
 
 const AboutUs = () => {
   return (
-    <Box>
+    <div>
       <Grid container sx={{ alignItems: "center" }}>
         <Grid item xs={12} md={7} sx={{ p: { xs: 3, md: 5 } }}>
           <Typography variant="h4" fontSize={40}>
@@ -131,7 +131,7 @@ const AboutUs = () => {
           <Footer />
         </Grid>
       </Grid>
-    </Box>
+    </div>
   );
 };
 

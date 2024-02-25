@@ -44,7 +44,7 @@ const ConsultationPaperwork = ({
   };
 
   return (
-    <Box>
+    <div>
       <Card
         sx={{
           display: "flex",
@@ -124,7 +124,7 @@ const ConsultationPaperwork = ({
         showModal={showModal}
         setShowModal={setShowModal}
       />
-    </Box>
+    </div>
   );
 };
 
