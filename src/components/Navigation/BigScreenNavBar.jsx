@@ -42,7 +42,7 @@ function BigScreenNavBar({
     if (page === "Services") return "/services/3117735/";
     if (page === "Blog") return ROUTES_PATHS.BLOG;
     if (page === "About Us") return ROUTES_PATHS.ABOUT_US;
-  }
+  };
 
   return (
     <>
@@ -152,7 +152,7 @@ function BigScreenNavBar({
             </Box>
           )}
           {!auth.isAuthResolved && (
-            <Box>
+            <div>
               <Button
                 variant="contained"
                 color="secondary"
@@ -161,7 +161,7 @@ function BigScreenNavBar({
               >
                 Sign up
               </Button>
-            </Box>
+            </div>
           )}
         </Toolbar>
       </AppBar>

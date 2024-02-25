@@ -26,7 +26,7 @@ function Footer() {
           </Typography>
         </Grid>
         <Grid item xs={12} md={7} sx={{ display: "flex", p: 3 }}>
-          <Box>
+          <div>
             <Typography variant="h3" sx={{ color: "white" }}>
               SityEx
             </Typography>
@@ -69,7 +69,7 @@ function Footer() {
                 </li>
               </ul>
             </nav>
-          </Box>
+          </div>
           <Box sx={{ ml: { xs: 5, md: 10 } }}>
             <Typography variant="h3" sx={{ color: "white" }}>
               Community
