@@ -42,7 +42,7 @@ function BigScreenNavBar({
     if (page === "Services") return "/services/3117735/";
     if (page === "Blog") return ROUTES_PATHS.BLOG;
     if (page === "About Us") return ROUTES_PATHS.ABOUT_US;
-  }
+  };
 
   return (
     <>
