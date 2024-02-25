@@ -42,8 +42,6 @@ function NavBar({}) {
     if (setting === "Logout") signOutUser();
   };
 
-  const clickedLogo = () => router.push(ROUTES_PATHS.ROOT);
-
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
@@ -86,7 +84,6 @@ function NavBar({}) {
         <SmallScreenNavBar
           isOpaqueNavbar={isOpaqueNavbar}
           handleCloseUserMenu={handleCloseUserMenu}
-          clickedLogo={clickedLogo}
           toggleSignUpModal={toggleSignUpModal}
         />
       </Box>
@@ -94,7 +91,6 @@ function NavBar({}) {
         <BigScreenNavBar
           isOpaqueNavbar={isOpaqueNavbar}
           handleCloseUserMenu={handleCloseUserMenu}
-          clickedLogo={clickedLogo}
           toggleSignUpModal={toggleSignUpModal}
         />
       </Box>
