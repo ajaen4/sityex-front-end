@@ -42,12 +42,6 @@ function NavBar({}) {
     if (setting === "Logout") signOutUser();
   };
 
-  const handleClickNavMenu = (page) => {
-    if (page === "Services") router.push("/services/3117735/");
-    if (page === "Blog") router.push(ROUTES_PATHS.BLOG);
-    if (page === "About Us") router.push(ROUTES_PATHS.ABOUT_US);
-  };
-
   const clickedLogo = () => router.push(ROUTES_PATHS.ROOT);
 
   useEffect(() => {
@@ -100,7 +94,6 @@ function NavBar({}) {
         <BigScreenNavBar
           isOpaqueNavbar={isOpaqueNavbar}
           handleCloseUserMenu={handleCloseUserMenu}
-          handleClickNavMenu={handleClickNavMenu}
           clickedLogo={clickedLogo}
           toggleSignUpModal={toggleSignUpModal}
         />
