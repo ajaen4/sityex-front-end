@@ -18,6 +18,7 @@ import {
 import { useTheme } from "@mui/material/styles";
 
 import { pages, settings } from "constants/constants.js";
+import * as ROUTES_PATHS from "routes/paths";
 
 const logo_white = "/big_logo_white.png";
 const logo_blue = "/big_logo_blue.png";
@@ -25,8 +26,6 @@ const logo_blue = "/big_logo_blue.png";
 function BigScreenNavBar({
   isOpaqueNavbar,
   handleCloseUserMenu,
-  handleClickNavMenu,
-  clickedLogo,
   toggleSignUpModal,
 }) {
   const auth = useSelector((state) => state.auth);
@@ -38,6 +37,12 @@ function BigScreenNavBar({
   const toggleUserMenu = () => {
     setIsOpenUserMenu(!isOpenUserMenu);
   };
+
+  const getPath = (page) => {
+    if (page === "Services") return "/services/3117735/";
+    if (page === "Blog") return ROUTES_PATHS.BLOG;
+    if (page === "About Us") return ROUTES_PATHS.ABOUT_US;
+  }
 
   return (
     <>
@@ -60,7 +65,7 @@ function BigScreenNavBar({
             sx={{
               mt: 0.5,
             }}
-            onClick={clickedLogo}
+            href={ROUTES_PATHS.ROOT}
           >
             <img
               src={isOpaqueNavbar ? logo_blue : logo_white}
@@ -79,7 +84,7 @@ function BigScreenNavBar({
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={() => handleClickNavMenu(page)}
+                href={getPath(page)}
                 sx={{
                   mx: 5,
                   color: isOpaqueNavbar ? "primary.main" : "white",

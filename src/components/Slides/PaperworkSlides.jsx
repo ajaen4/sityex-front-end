@@ -2,15 +2,8 @@
 
 import React from "react";
 import { useRouter } from "next/navigation";
-
-import {
-  Box,
-  useTheme,
-  Paper,
-  useMediaQuery,
-  Typography,
-  Stack,
-} from "@mui/material";
+import Link from "next/link";
+import { Box, useTheme, Paper, useMediaQuery, Typography } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
 
 import { imagesCdn } from "constants/constants";
@@ -60,10 +53,6 @@ const PaperworkSlides = () => {
 
   const slice = isSmallScreen ? 1 : 5;
 
-  const handleServiceClick = (link) => {
-    router.push(link);
-  };
-
   const createSlides = () => {
     let slides = [];
     const totalItemsNeeded =
@@ -103,13 +92,21 @@ const PaperworkSlides = () => {
                   width: "100%",
                   cursor: "pointer",
                 }}
-                onClick={() => handleServiceClick(service.path)}
               >
-                <img
-                  src={`${imagesCdn}/icons/${service.image}`}
-                  alt={service.name}
-                  style={{ height: "75%" }}
-                />
+                <Link
+                  href={service.path}
+                  style={{
+                    height: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <img
+                    src={`${imagesCdn}/icons/${service.image}`}
+                    alt={service.name}
+                    style={{ height: "75%" }}
+                  />
+                </Link>
               </Paper>
               <Typography
                 variant="h4"

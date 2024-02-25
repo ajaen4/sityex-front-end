@@ -160,7 +160,7 @@ export default function HousingList() {
           alignItems: "center",
           width: "100%",
           minHeight: { xs: 110, md: 0 },
-          pb: {xs: 8, md: 0},
+          pb: { xs: 8, md: 0 },
         }}
       >
         {filteredHListings.length > housingPageSize && (

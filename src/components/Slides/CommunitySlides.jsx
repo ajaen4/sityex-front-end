@@ -9,8 +9,7 @@ import "@vidstack/react/player/styles/base.css";
 import { imagesCdn } from "constants/constants";
 
 const CommunitySlides = () => {
-
-  const [ height, setHeight ] = useState("500px");
+  const [height, setHeight] = useState("500px");
 
   useEffect(() => {
     const isAppleDevice = /iPhone|iPad/.test(navigator.userAgent);
@@ -18,11 +17,10 @@ const CommunitySlides = () => {
 
     if (isAppleDevice) {
       setHeight("700px");
-    } 
-    if (isAndroid){
-      setHeight("450px");
     }
-    else {
+    if (isAndroid) {
+      setHeight("450px");
+    } else {
       setHeight("700px");
     }
   }, []);
@@ -52,15 +50,15 @@ const CommunitySlides = () => {
           title="Community video"
           src={`${imagesCdn}/video/community.mp4`}
           aspectRatio="0.8"
-          style={{ height: height}}
+          style={{ height: height }}
           controls
           playsInline
         >
-          <MediaProvider >
-          <Poster
-            src={`${imagesCdn}/video/video-thumbnail.jpeg`}
-            alt="SityEx"
-          />
+          <MediaProvider>
+            <Poster
+              src={`${imagesCdn}/video/video-thumbnail.jpeg`}
+              alt="SityEx"
+            />
           </MediaProvider>
         </MediaPlayer>
       </Grid>

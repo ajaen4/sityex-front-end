@@ -2,7 +2,6 @@
 
 import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
-import { useRouter } from "next/navigation";
 
 import {
   AppBar,
@@ -22,6 +21,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { useDrawerContext } from "components/Contexts/DrawerContext";
 
 import { settings } from "constants/constants.js";
+import * as ROUTES_PATHS from "routes/paths";
 
 const logo_white = "/big_logo_white.png";
 const logo_blue = "/big_logo_blue.png";
@@ -29,7 +29,6 @@ const logo_blue = "/big_logo_blue.png";
 function SmallScreenNavBar({
   isOpaqueNavbar,
   handleCloseUserMenu,
-  clickedLogo,
   toggleSignUpModal,
 }) {
   const { isOpenDrawer, setIsOpenDrawer } = useDrawerContext();
@@ -81,7 +80,7 @@ function SmallScreenNavBar({
               mt: 1,
               cursor: "pointer",
             }}
-            onClick={clickedLogo}
+            href={ROUTES_PATHS.ROOT}
           >
             <img
               src={isOpaqueNavbar ? logo_blue : logo_white}

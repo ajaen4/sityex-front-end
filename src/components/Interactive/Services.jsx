@@ -3,14 +3,13 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 
-import { Grid, Typography, Card, Box, useMediaQuery } from "@mui/material";
+import { Grid, Typography, Card, Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
 import { imagesCdn } from "constants/constants";
 
 const Services = () => {
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
   const router = useRouter();
 
   const services = {
@@ -40,9 +39,13 @@ const Services = () => {
     },
   };
 
-  if (isSmallScreen) {
-    return (
-      <Box>
+  return (
+    <>
+      <Box
+        sx={{
+          display: { xs: "flex", md: "none" },
+        }}
+      >
         <Box
           sx={{
             mt: 5,
@@ -108,9 +111,6 @@ const Services = () => {
           100% online services, we take care of everything for you
         </Typography>
       </Box>
-    );
-  } else {
-    return (
       <Grid
         container
         sx={{
@@ -171,8 +171,8 @@ const Services = () => {
           </Grid>
         ))}
       </Grid>
-    );
-  }
+    </>
+  );
 };
 
 export default Services;
