@@ -147,7 +147,7 @@ function SmallScreenNavBar({
             </Box>
           )}
           {!auth.isAuthResolved && (
-            <Box>
+            <div>
               <Button
                 variant="contained"
                 color="secondary"
@@ -156,7 +156,7 @@ function SmallScreenNavBar({
               >
                 Sign up
               </Button>
-            </Box>
+            </div>
           )}
         </Box>
       </Toolbar>

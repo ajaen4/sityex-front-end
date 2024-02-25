@@ -41,14 +41,14 @@ const BlogPage = () => {
           alignItems: "center",
         }}
       >
-        <Box>
+        <div>
           <Typography variant="h1" color="white" fontSize={40}>
             SityEx Blog
           </Typography>
           <Typography color="white" fontSize={20} sx={{ mt: 1 }}>
             Detailed information about paperwork, housing and your new city
           </Typography>
-        </Box>
+        </div>
       </Box>
       <Grid
         container
@@ -137,19 +137,19 @@ const BlogPage = () => {
       <Typography variant="h2" sx={{ color: "grey.500", my: 3, fontSize: 40 }}>
         Latest Blogs
       </Typography>
-      <Box>
+      <div>
         <Suspense fallback={<LoadingSpinner />}>
           <BlogSlides is_latest={true} />
         </Suspense>
-      </Box>
+      </div>
       <Typography variant="h2" sx={{ color: "grey.500", my: 3, fontSize: 40 }}>
         Other Blogs
       </Typography>
-      <Box>
+      <div>
         <Suspense fallback={<LoadingSpinner />}>
           <BlogSlides is_latest={false} />
         </Suspense>
-      </Box>
+      </div>
       <Box sx={{ mt: 5, textAlign: "start" }}>
         <Footer />
       </Box>

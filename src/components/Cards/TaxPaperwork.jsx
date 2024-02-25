@@ -58,7 +58,7 @@ const TaxPaperwork = ({
   };
 
   return (
-    <Box>
+    <div>
       <Card
         sx={{
           display: "flex",
@@ -168,7 +168,7 @@ const TaxPaperwork = ({
         showModal={showModal}
         setShowModal={setShowModal}
       />
-    </Box>
+    </div>
   );
 };
 

@@ -1,23 +1,17 @@
-"use client";
-
 import React from "react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 import { Grid, Typography, Card, Box } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
 
 import { imagesCdn } from "constants/constants";
 
 const Services = () => {
-  const theme = useTheme();
-  const router = useRouter();
-
   const services = {
     paperwork: {
       id: "paperwork",
       icon: "paperwork-2.png",
       title: "Paperwork",
-      onClick: () => router.push("/services/3117735/paperwork"),
+      link: "/services/3117735/paperwork",
       description:
         "Automatized processes through our local partners that do the paperwork for you",
     },
@@ -25,7 +19,7 @@ const Services = () => {
       id: "housing",
       icon: "housing-2.png",
       title: "Housing",
-      onClick: () => router.push("/services/3117735/housing"),
+      link: "/services/3117735/housing",
       description:
         "Housing options and discounts through our partners to help you find your ideal home",
     },
@@ -33,7 +27,7 @@ const Services = () => {
       id: "community",
       icon: "events-2.png",
       title: "Community",
-      onClick: () => (window.location.hash = "#community"),
+      link: "#community",
       description:
         "Thriving community of young expats to help you feel at home in Spain from day 1",
     },
@@ -44,6 +38,7 @@ const Services = () => {
       <Box
         sx={{
           display: { xs: "flex", md: "none" },
+          flexDirection: "column",
         }}
       >
         <Box
@@ -64,24 +59,30 @@ const Services = () => {
                 cursor: "pointer",
                 mx: 1,
               }}
-              onClick={service.onClick}
             >
-              <Card
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  p: 1,
-                  height: "fit-content",
-                }}
+              <Link
+                key={service.id}
+                href={service.link}
+                passHref
+                style={{ textDecoration: "none" }}
               >
-                <img
-                  src={`${imagesCdn}/icons/${service.icon}`}
-                  alt={`${service.title} icon`}
-                  title={service.title}
-                  style={{ height: "80px" }}
-                />
-              </Card>
+                <Card
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    p: 1,
+                    height: "fit-content",
+                  }}
+                >
+                  <img
+                    src={`${imagesCdn}/icons/${service.icon}`}
+                    alt={`${service.title} icon`}
+                    title={service.title}
+                    style={{ height: "80px" }}
+                  />
+                </Card>
+              </Link>
               <Typography
                 variant="h2"
                 sx={{
@@ -131,31 +132,37 @@ const Services = () => {
               flexDirection: "column",
             }}
           >
-            <Card
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                p: 3,
-                width: "fit-content",
-                margin: "auto",
-                cursor: "pointer",
-              }}
-              onClick={service.onClick}
+            <Link
+              href={service.link}
+              passHref
+              style={{ textDecoration: "none" }}
             >
-              <img
-                height="120"
-                src={`${imagesCdn}/icons/${service.icon}`}
-                alt={service.title}
-                title={service.title}
-              />
-              <Typography
-                variant="h2"
-                sx={{ color: "grey.500", fontSize: 25, mt: 2 }}
+              <Card
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  p: 3,
+                  width: "fit-content",
+                  margin: "auto",
+                  cursor: "pointer",
+                }}
+                onClick={service.onClick}
               >
-                {service.title}
-              </Typography>
-            </Card>
+                <img
+                  height="120"
+                  src={`${imagesCdn}/icons/${service.icon}`}
+                  alt={service.title}
+                  title={service.title}
+                />
+                <Typography
+                  variant="h2"
+                  sx={{ color: "grey.500", fontSize: 25, mt: 2 }}
+                >
+                  {service.title}
+                </Typography>
+              </Card>
+            </Link>
             <Typography
               sx={{
                 color: "grey.500",

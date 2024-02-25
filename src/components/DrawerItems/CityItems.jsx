@@ -1,99 +1,73 @@
 "use client";
 
 import React from "react";
-import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
+import Link from "next/link";
 
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import ListItemButton from "@mui/material/ListItemButton";
 
 import TicketIcon from "@mui/icons-material/ConfirmationNumberOutlined";
-import PeopleIcon from "@mui/icons-material/PeopleOutlined";
 import HouseIcon from "@mui/icons-material/MapsHomeWorkOutlined";
 import GovernmentIcon from "@mui/icons-material/AssuredWorkloadOutlined";
 
 import * as ROUTES_PATHS from "routes/paths";
 
 const CityItems = () => {
-  const router = useRouter();
-
   const selectedCity = useSelector((state) => state.selectedCity.data);
 
-  const itemSelected = (event) => {
-    const path = event.currentTarget.getAttribute("data-path");
-    const destinationURL = `/services/${selectedCity.city_id}/${path}`;
-
-    router.push(destinationURL);
-  };
+  if (!selectedCity) {
+    return null;
+  }
 
   return (
     <List>
-      <ListItem disablePadding sx={{ display: "block" }}>
-        <ListItemButton
-          sx={{
-            minHeight: 48,
-            px: 2.5,
-          }}
-          onClick={itemSelected}
-          data-path={ROUTES_PATHS.CITY_BUREAUCRACY}
-        >
-          <ListItemIcon
-            sx={{
-              minWidth: 0,
-              mr: 3,
-              justifyContent: "center",
-            }}
+      {[
+        {
+          icon: <GovernmentIcon />,
+          text: "Paperwork",
+          path: ROUTES_PATHS.CITY_BUREAUCRACY,
+        },
+        {
+          icon: <HouseIcon />,
+          text: "Housing",
+          path: ROUTES_PATHS.CITY_HOUSING,
+        },
+        {
+          icon: <TicketIcon />,
+          text: "Events",
+          path: ROUTES_PATHS.CITY_EVENTS,
+        },
+      ].map((item) => (
+        <ListItem disablePadding sx={{ display: "block" }} key={item.text}>
+          <Link
+            href={`/services/${selectedCity.city_id}/${item.path}`}
+            passHref
+            style={{ textDecoration: "none" }}
           >
-            <GovernmentIcon />
-          </ListItemIcon>
-          <ListItemText primary="Paperwork" />
-        </ListItemButton>
-      </ListItem>
-      <ListItem disablePadding sx={{ display: "block" }}>
-        <ListItemButton
-          sx={{
-            minHeight: 48,
-            px: 2.5,
-          }}
-          onClick={itemSelected}
-          data-path={ROUTES_PATHS.CITY_HOUSING}
-        >
-          <ListItemIcon
-            sx={{
-              minWidth: 0,
-              mr: 3,
-              justifyContent: "center",
-            }}
-          >
-            <HouseIcon />
-          </ListItemIcon>
-          <ListItemText primary="Housing" />
-        </ListItemButton>
-      </ListItem>
-      <ListItem disablePadding sx={{ display: "block" }}>
-        <ListItemButton
-          sx={{
-            minHeight: 48,
-            px: 2.5,
-          }}
-          onClick={itemSelected}
-          data-path={ROUTES_PATHS.CITY_EVENTS}
-        >
-          <ListItemIcon
-            sx={{
-              minWidth: 0,
-              mr: 3,
-              justifyContent: "center",
-            }}
-          >
-            <TicketIcon />
-          </ListItemIcon>
-          <ListItemText primary="Events" />
-        </ListItemButton>
-      </ListItem>
+            <ListItemButton
+              sx={{
+                minHeight: 48,
+                px: 2.5,
+              }}
+            >
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: 3,
+                  justifyContent: "center",
+                }}
+              >
+                {item.icon}
+              </ListItemIcon>
+              <ListItemText primary={item.text} />
+            </ListItemButton>
+          </Link>
+        </ListItem>
+      ))}
     </List>
   );
 };
