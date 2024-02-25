@@ -26,7 +26,6 @@ const logo_blue = "/big_logo_blue.png";
 function BigScreenNavBar({
   isOpaqueNavbar,
   handleCloseUserMenu,
-  clickedLogo,
   toggleSignUpModal,
 }) {
   const auth = useSelector((state) => state.auth);
@@ -66,7 +65,7 @@ function BigScreenNavBar({
             sx={{
               mt: 0.5,
             }}
-            onClick={clickedLogo}
+            href={ROUTES_PATHS.ROOT}
           >
             <img
               src={isOpaqueNavbar ? logo_blue : logo_white}
