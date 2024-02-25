@@ -41,7 +41,7 @@ const CityEventPage = () => {
       selectedCity.city_id,
       event_id,
       auth.data.id,
-      interested_info
+      interested_info,
     );
   }, [auth.data, event_id, selectedCity.city_id]);
 
@@ -68,7 +68,7 @@ const CityEventPage = () => {
         selectedCity.city_id,
         event_id,
         auth.data?.id,
-        buy_info
+        buy_info,
       );
     window.open(selectedEvent.affiliate_url, "_blank", "noopener");
   };

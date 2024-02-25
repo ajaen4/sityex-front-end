@@ -3,7 +3,7 @@
 import { postHogClient } from "analytics";
 
 const PostHogLoader = () => {
-    return null;
-}
+  return null;
+};
 
 export default PostHogLoader;
