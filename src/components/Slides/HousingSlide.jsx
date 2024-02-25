@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 import { Box, Paper, Typography } from "@mui/material";
 
@@ -7,11 +8,6 @@ import { fetchListingImages } from "actions";
 
 const HousingSlide = ({ city_id, housing_id, title }) => {
   const [images, setImages] = useState(null);
-  const router = useRouter();
-
-  const handleListingClick = (city_id) => {
-    router.push(`/services/${city_id}/housing`);
-  };
 
   useEffect(() => {
     fetchListingImages(city_id, housing_id).then((images) => {
@@ -29,6 +25,7 @@ const HousingSlide = ({ city_id, housing_id, title }) => {
       }}
     >
       <Paper>
+        <Link href={`/services/${city_id}/housing`}>
         <Box
           sx={{
             borderRadius: 2,
@@ -41,8 +38,8 @@ const HousingSlide = ({ city_id, housing_id, title }) => {
             backgroundPosition: "center",
             cursor: "pointer",
           }}
-          onClick={() => handleListingClick(city_id)}
         />
+        </Link>
       </Paper>
       <Typography
         variant="h4"
