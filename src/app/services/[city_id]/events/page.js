@@ -118,7 +118,7 @@ const CityEventsPage = () => {
                 key={category}
                 events={eventsState.data.groupedEvents[index]}
               />
-            )
+            ),
         )}
       </Box>
     </Box>

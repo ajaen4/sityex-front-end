@@ -83,7 +83,7 @@ function NavBar({}) {
   }, [showSignUpModal, auth, router]);
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column"}}>
+    <Box sx={{ display: "flex", flexDirection: "column" }}>
       <Box
         sx={{
           display: { xs: "flex", md: "None" },
