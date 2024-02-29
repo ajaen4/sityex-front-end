@@ -55,9 +55,8 @@ const HousingListing = ({ listing }) => {
   return (
     <Card
       id={listing.housing_id}
-      onClick={() => window.open(listing.originalLink, "_blank")}
+      onClick={() => window.open(listing.link, "_blank")}
       key={listing.housing_id}
-      href={listing.originalLink}
       sx={{
         display: "flex",
         flexDirection: "row",
