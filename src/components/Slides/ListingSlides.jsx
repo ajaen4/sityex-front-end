@@ -22,7 +22,7 @@ const ListingSlides = ({ images, isInMap, imageHeight, autoPlay, swipe }) => {
         sx={{
           width: "100%",
           height: imageHeight,
-          backgroundImage: `url(${image.sizes["640x480"].link})`,
+          backgroundImage: `url(${image})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
