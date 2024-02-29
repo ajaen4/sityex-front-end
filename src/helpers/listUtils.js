@@ -6,7 +6,6 @@ export const filterListings = (listings, filters, orderBy) => {
     const maxPrice = filters.maxPrice ? parseFloat(filters.maxPrice) : null;
     const furnitureValue = filters.furniture === "furnished" ? "yes" : "no";
     const totalSize = filters.totalSize ? parseFloat(filters.totalSize) : null;
-    const bedrooms = filters.bedrooms ? filters.bedrooms : null;
 
     // Price criteria
     if (minPrice && parseFloat(listing.costsFormatted.price) < minPrice)
@@ -18,28 +17,25 @@ export const filterListings = (listings, filters, orderBy) => {
     if (
       filters.furniture &&
       ((listing.facilities.roomFurniture !== undefined &&
-        listing.facilities.roomFurniture.value !== furnitureValue) ||
+        listing.facilities.roomFurniture !== furnitureValue) ||
         (listing.facilities.bedroomFurnished !== undefined &&
-          listing.facilities.bedroomFurnished.value !== furnitureValue))
+          listing.facilities.bedroomFurnished !== furnitureValue))
     ) {
       return false;
     }
 
     // Total size criteria
-    if (
-      totalSize &&
-      parseFloat(listing.facilities.totalSize?.value) < totalSize
-    )
+    if (totalSize && parseFloat(listing.facilities.totalSize) < totalSize)
       return false;
 
     // Bedrooms criteria
-    const listingBedrooms = parseInt(listing.facilities.bedrooms?.value);
+    const listingBedrooms = parseInt(listing.facilities.bedrooms);
     if (
-      (bedrooms &&
+      (filters.bedrooms &&
         listingBedrooms &&
-        ((bedrooms < 4 && listingBedrooms !== bedrooms) ||
-          (bedrooms === 4 && listingBedrooms < bedrooms))) ||
-      (bedrooms && !listingBedrooms)
+        ((filters.bedrooms < 4 && listingBedrooms !== filters.bedrooms) ||
+          (filters.bedrooms === 4 && listingBedrooms < filters.bedrooms))) ||
+      (filters.bedrooms && !listingBedrooms)
     )
       return false;
 
@@ -83,16 +79,15 @@ const facilitiesFilter = (listing, facilities) => {
     (facility) =>
       listing.facilities[facility] &&
       ((facility === "bathroom" &&
-        listing.facilities[facility].value === "private") ||
-        (facility !== "bathroom" &&
-          listing.facilities[facility].value !== "no")),
+        listing.facilities[facility] === "private") ||
+        (facility !== "bathroom" && listing.facilities[facility] !== "no"))
   );
 };
 
 const amenitiesFilter = (listing, amenities) => {
   return amenities.every(
     (amenity) =>
-      listing.facilities[amenity] && listing.facilities[amenity].value !== "no",
+      listing.facilities[amenity] && listing.facilities[amenity] !== "no"
   );
 };
 
@@ -145,8 +140,8 @@ export const groupEvents = (categories, events) => {
     events.filter(
       (event) =>
         event.sityex_subcategories.includes(category) &&
-        new Date(event.end_date) > today,
-    ),
+        new Date(event.end_date) > today
+    )
   );
 };
 
@@ -166,6 +161,6 @@ export const orderByEvents = (groupedEvents, orderBy) => {
       if (orderBy === "closest-date") {
         return parseFloat(a.remaining_days) - parseFloat(b.remaining_days);
       }
-    }),
+    })
   );
 };

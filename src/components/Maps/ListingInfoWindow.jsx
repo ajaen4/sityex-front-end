@@ -149,12 +149,12 @@ const ListingInfoWindow = ({ listing, setSelectedListing }) => {
           <Typography variant="body1" sx={{ fontSize: 16 }}>
             {listing.kindLabel} • {listing.typeLabel}
             {listing.facilities.totalSize &&
-              `• ${listing.facilities.totalSize.value} m²`}
+              `• ${listing.facilities.totalSize} m²`}
           </Typography>
         </Box>
         <Box sx={{ display: "flex", alignItems: "center", mt: 0.5 }}>
           <Typography variant="body1">
-            Available from {formatDate(listing.available[0]["from"])}
+            Available from {formatDate(listing.availability[0]["from"])}
           </Typography>
         </Box>
       </CardContent>

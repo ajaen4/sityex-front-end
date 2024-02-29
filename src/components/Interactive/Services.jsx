@@ -5,34 +5,35 @@ import { Grid, Typography, Card, Box } from "@mui/material";
 
 import { imagesCdn } from "constants/constants";
 
-const Services = () => {
-  const services = {
-    paperwork: {
-      id: "paperwork",
-      icon: "paperwork-2.png",
-      title: "Paperwork",
-      link: "/services/3117735/paperwork",
-      description:
-        "Automatized processes through our local partners that do the paperwork for you",
-    },
-    housing: {
-      id: "housing",
-      icon: "housing-2.png",
-      title: "Housing",
-      link: "/services/3117735/housing",
-      description:
-        "Housing options and discounts through our partners to help you find your ideal home",
-    },
-    community: {
-      id: "community",
-      icon: "events-2.png",
-      title: "Community",
-      link: "#community",
-      description:
-        "Thriving community of young expats to help you feel at home in Spain from day 1",
-    },
-  };
+const services = {
+  paperwork: {
+    id: "paperwork",
+    icon: "paperwork-2.png",
+    title: "Paperwork",
+    link: "/services/3117735/paperwork",
+    description:
+      "Automatized processes through our local partners that do the paperwork for you",
+  },
+  housing: {
+    id: "housing",
+    icon: "housing-2.png",
+    title: "Housing",
+    link: "/services/3117735/housing",
+    description:
+      "Housing options and discounts through our partners to help you find your ideal home",
+  },
+  community: {
+    id: "community",
+    icon: "events-2.png",
+    title: "Community",
+    link: "#community",
+    description:
+      "Thriving community of young expats to help you feel at home in Spain from day 1",
+  },
+};
 
+
+const Services = () => {
   return (
     <>
       <Box

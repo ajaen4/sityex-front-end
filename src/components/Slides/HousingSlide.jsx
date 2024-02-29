@@ -32,7 +32,7 @@ const HousingSlide = ({ city_id, housing_id, title }) => {
               width: "100%",
               height: { xs: "50vh", md: "47vh" },
               backgroundImage: images
-                ? `url(${images.images[0].sizes["640x480"].link})`
+                ? `url(${images.images[0]})`
                 : null,
               backgroundSize: "cover",
               backgroundPosition: "center",
