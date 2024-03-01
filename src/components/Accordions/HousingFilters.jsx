@@ -213,6 +213,23 @@ const HousingFilters = () => {
               )}
             />
           </Grid>
+          <Grid item xs={6} md={2.3}>
+            <Controller
+              name="partner"
+              control={control}
+              render={({ field }) => (
+                <SingleSelect
+                  {...field}
+                  options={[
+                    { label: "All", value: "all" },
+                    { label: "Uniplaces", value: "uniplaces" },
+                    { label: "housingAnywhere", value: "housing_anywhere" },
+                  ]}
+                  label="Partner"
+                />
+              )}
+            />
+          </Grid>
         </Grid>
       </AccordionDetails>
     </Accordion>
