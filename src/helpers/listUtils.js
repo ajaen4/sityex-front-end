@@ -16,10 +16,8 @@ export const filterListings = (listings, filters, orderBy) => {
     // Furniture criteria
     if (
       filters.furniture &&
-      ((listing.facilities.roomFurniture !== undefined &&
-        listing.facilities.roomFurniture !== furnitureValue) ||
-        (listing.facilities.bedroomFurnished !== undefined &&
-          listing.facilities.bedroomFurnished !== furnitureValue))
+      ((filters.furniture === "furnished" && !listing.isFurnished) ||
+        (filters.furniture === "unfurnished" && listing.isFurnished))
     ) {
       return false;
     }
