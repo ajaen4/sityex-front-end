@@ -134,7 +134,7 @@ const HousingListing = ({ listing }) => {
                 sx={{ display: "flex", justifyContent: "center" }}
               >
                 <img
-                  height={listing.partner == "housing_anywhere" ? "42" : "33"}
+                  height={listing.partner == "housing_anywhere" ? "42" : "27"}
                   src={logoURL}
                   alt="partner logo"
                   title="Partner logo"

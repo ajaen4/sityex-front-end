@@ -27,6 +27,7 @@ export const defaultHousingFilters = {
   facilities: [],
   amenities: [],
   rentType: [],
+  partner: "",
 };
 
 export const defaultEventFilters = {
