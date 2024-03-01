@@ -145,7 +145,7 @@ const HousingListing = ({ listing }) => {
               <Typography variant="body1" sx={{ fontSize: 16 }}>
                 {listing.kindLabel} • {listing.typeLabel}
                 {listing.facilities.totalSize &&
-                  ` • ${listing.facilities.totalSize.value} m²`}
+                  ` • ${listing.facilities.totalSize} m²`}
               </Typography>
             </Box>
             <Typography

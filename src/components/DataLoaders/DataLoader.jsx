@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import {
   onAuthStateChanged,
   storeAuthUser,
-  fetchCitiesIndex,
   fetchCountries,
 } from "actions";
 
@@ -17,7 +16,6 @@ const DataLoader = () => {
       dispatch(storeAuthUser(authUser));
     });
 
-    dispatch(fetchCitiesIndex());
     dispatch(fetchCountries());
 
     return () => {
