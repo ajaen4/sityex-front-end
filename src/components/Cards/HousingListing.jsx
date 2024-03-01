@@ -27,6 +27,7 @@ const HousingListing = ({ listing }) => {
   const selectedCity = useSelector((state) => state.selectedCity.data);
 
   const maxDescriptionLength = isSmallScreen ? 200 : 250;
+  const logoURL = `${imagesCdn}/partner_logos/${listing.partner}.png`
 
   const getMinDescription = (description) => {
     if (description.length >= maxDescriptionLength) {
@@ -86,7 +87,7 @@ const HousingListing = ({ listing }) => {
               <Grid
                 item
                 xs={7}
-                md={9}
+                md={8}
                 sx={{ display: "flex", flexDirection: "column" }}
               >
                 <Typography
@@ -99,7 +100,7 @@ const HousingListing = ({ listing }) => {
                 >
                   {listing.title}
                 </Typography>
-                <Typography
+                {listing.location.neighborhood && <Typography
                   variant="body1"
                   sx={{
                     mt: 1,
@@ -109,6 +110,7 @@ const HousingListing = ({ listing }) => {
                 >
                   {listing.location.neighborhood}
                 </Typography>
+                }
                 <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
                   <Typography
                     variant="h6"
@@ -128,23 +130,22 @@ const HousingListing = ({ listing }) => {
               <Grid
                 item
                 xs={5}
-                md={3}
+                md={4}
                 sx={{ display: "flex", justifyContent: "center" }}
               >
                 <img
-                  width="136"
-                  height="42"
-                  src={`${imagesCdn}/partner_logos/housing_anywhere.png`}
-                  alt="housinganywhere icon"
-                  title="HousingAnywhere"
+                  height={listing.partner == "housing_anywhere" ? "42" : "33"}
+                  src={logoURL}
+                  alt="partner logo"
+                  title="Partner logo"
                   style={{ marginTop: 10 }}
                 />
               </Grid>
             </Grid>
             <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
               <Typography variant="body1" sx={{ fontSize: 16 }}>
-                {listing.kindLabel} • {listing.typeLabel}
-                {listing.facilities.totalSize &&
+                {listing.kindLabel} {listing.typeLabel && `• ${listing.typeLabel}`}
+                {listing.facilities?.totalSize &&
                   ` • ${listing.facilities.totalSize} m²`}
               </Typography>
             </Box>
