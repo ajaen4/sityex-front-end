@@ -13,6 +13,7 @@ import {
   TextField,
   Box,
   Button,
+  Typography,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMoreOutlined";
 
@@ -132,6 +133,7 @@ const HousingFilters = () => {
                 />
               )}
             />
+            <Typography sx={{fontSize: 11}}>** Not applicable to Uniplaces **</Typography>
           </Grid>
           <Grid item xs={6} md={2.3}>
             <Controller
@@ -166,6 +168,7 @@ const HousingFilters = () => {
                 />
               )}
             />
+            <Typography sx={{fontSize: 11}}>** Not applicable to Uniplaces **</Typography>
           </Grid>
           <Grid item xs={6} md={2.3}>
             <Controller
@@ -209,6 +212,7 @@ const HousingFilters = () => {
                 />
               )}
             />
+            <Typography sx={{fontSize: 11}}>** Not applicable to Uniplaces **</Typography>
           </Grid>
           <Grid item xs={6} md={2.3}>
             <Controller
@@ -245,6 +249,7 @@ const HousingFilters = () => {
                 />
               )}
             />
+            <Typography sx={{fontSize: 11}}>** Not applicable to Uniplaces **</Typography>
           </Grid>
         </Grid>
       </AccordionDetails>
