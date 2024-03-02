@@ -91,7 +91,7 @@ const HousingFilters = () => {
             item
             xs={6}
             md={2.3}
-            sx={{ display: "flex", textAlign: "center", alignItems: "center" }}
+            sx={{ display: "flex", alignItems: "start", py: 1.5 }}
           >
             <TextField
               {...register("minPrice")}
@@ -100,13 +100,14 @@ const HousingFilters = () => {
               placeholder="Min price"
               type="number"
               autoComplete="Min price"
+              
             />
           </Grid>
           <Grid
             item
             xs={6}
             md={2.3}
-            sx={{ display: "flex", textAlign: "center", alignItems: "center" }}
+            sx={{ display: "flex", alignItems: "start", py: 1.5 }}
           >
             <TextField
               {...register("maxPrice")}
@@ -133,7 +134,7 @@ const HousingFilters = () => {
                 />
               )}
             />
-            <Typography sx={{fontSize: 11}}>** Not applicable to Uniplaces **</Typography>
+            <Typography sx={{fontSize: 11}}>**Not applicable to Uniplaces**</Typography>
           </Grid>
           <Grid item xs={6} md={2.3}>
             <Controller
@@ -168,7 +169,7 @@ const HousingFilters = () => {
                 />
               )}
             />
-            <Typography sx={{fontSize: 11}}>** Not applicable to Uniplaces **</Typography>
+            <Typography sx={{fontSize: 11}}>**Not applicable to Uniplaces**</Typography>
           </Grid>
           <Grid item xs={6} md={2.3}>
             <Controller
@@ -212,7 +213,7 @@ const HousingFilters = () => {
                 />
               )}
             />
-            <Typography sx={{fontSize: 11}}>** Not applicable to Uniplaces **</Typography>
+            <Typography sx={{fontSize: 11}}>**Not applicable to Uniplaces**</Typography>
           </Grid>
           <Grid item xs={6} md={2.3}>
             <Controller
@@ -249,7 +250,7 @@ const HousingFilters = () => {
                 />
               )}
             />
-            <Typography sx={{fontSize: 11}}>** Not applicable to Uniplaces **</Typography>
+            <Typography sx={{fontSize: 11}}>**Not applicable to Uniplaces**</Typography>
           </Grid>
         </Grid>
       </AccordionDetails>
