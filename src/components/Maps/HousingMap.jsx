@@ -60,7 +60,6 @@ function HousingMap() {
       <HousingMarkerCluster
         listings={housingIndex}
         onClickListing={onClickListing}
-        currentZoom={currentZoom}
       />
       <ZoomHandler onZoom={setCurrentZoom} />
       {selectedListing && (
