@@ -23,6 +23,7 @@ const ListingInfoWindow = ({ listing, setSelectedListing }) => {
 
   const [images, setImages] = useState();
   const selectedCity = useSelector((state) => state.selectedCity.data);
+  const logoURL = `${imagesCdn}/partner_logos/${listing.partner}.png`;
 
   useEffect(() => {
     if (cardRef?.current) {
@@ -135,9 +136,8 @@ const ListingInfoWindow = ({ listing, setSelectedListing }) => {
             sx={{ display: "flex", justifyContent: "center" }}
           >
             <img
-              width="100"
-              height="30"
-              src={`${imagesCdn}/partner_logos/housing_anywhere.png`}
+              height="20"
+              src={logoURL}
               alt="housinganywhere icon"
               title="HousingAnywhere"
               style={{ marginTop: 3 }}
@@ -146,9 +146,9 @@ const ListingInfoWindow = ({ listing, setSelectedListing }) => {
         </Grid>
         <Box sx={{ display: "flex", alignItems: "center", mt: 0.5 }}>
           <Typography variant="body1" sx={{ fontSize: 16 }}>
-            {listing.kindLabel} • {listing.typeLabel}
-            {listing.facilities.totalSize &&
-              `• ${listing.facilities.totalSize} m²`}
+            {listing.kindLabel} {listing.typeLabel && `• ${listing.typeLabel}`}
+            {listing.facilities?.totalSize &&
+              ` • ${listing.facilities.totalSize} m²`}
           </Typography>
         </Box>
         <Box sx={{ display: "flex", alignItems: "center", mt: 0.5 }}>

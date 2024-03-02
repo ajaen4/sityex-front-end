@@ -27,7 +27,7 @@ const HousingListing = ({ listing }) => {
   const selectedCity = useSelector((state) => state.selectedCity.data);
 
   const maxDescriptionLength = isSmallScreen ? 200 : 250;
-  const logoURL = `${imagesCdn}/partner_logos/${listing.partner}.png`
+  const logoURL = `${imagesCdn}/partner_logos/${listing.partner}.png`;
 
   const getMinDescription = (description) => {
     if (description.length >= maxDescriptionLength) {
@@ -100,17 +100,18 @@ const HousingListing = ({ listing }) => {
                 >
                   {listing.title}
                 </Typography>
-                {listing.location.neighborhood && <Typography
-                  variant="body1"
-                  sx={{
-                    mt: 1,
-                    mr: 1,
-                    fontSize: 18,
-                  }}
-                >
-                  {listing.location.neighborhood}
-                </Typography>
-                }
+                {listing.location.neighborhood && (
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      mt: 1,
+                      mr: 1,
+                      fontSize: 18,
+                    }}
+                  >
+                    {listing.location.neighborhood}
+                  </Typography>
+                )}
                 <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
                   <Typography
                     variant="h6"
@@ -144,7 +145,8 @@ const HousingListing = ({ listing }) => {
             </Grid>
             <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
               <Typography variant="body1" sx={{ fontSize: 16 }}>
-                {listing.kindLabel} {listing.typeLabel && `• ${listing.typeLabel}`}
+                {listing.kindLabel}{" "}
+                {listing.typeLabel && `• ${listing.typeLabel}`}
                 {listing.facilities?.totalSize &&
                   ` • ${listing.facilities.totalSize} m²`}
               </Typography>

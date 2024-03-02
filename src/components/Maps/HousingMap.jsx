@@ -47,6 +47,7 @@ function HousingMap() {
         selectedCity.coordinates.latitude,
         selectedCity.coordinates.longitude,
       ]}
+      preferCanvas={true}
       zoom={11}
       style={{ height: "100%", width: "100%" }}
       zoomControl={false}
