@@ -32,7 +32,6 @@ const services = {
   },
 };
 
-
 const Services = () => {
   return (
     <>

@@ -15,6 +15,8 @@ import {
   CardMedia,
   CardContent,
   CardActions,
+  Snackbar,
+  Alert,
 } from "@mui/material";
 
 import HousingList from "components/Lists/HousingList";
@@ -35,20 +37,35 @@ const HousingPage = () => {
   const dispatch = useDispatch();
 
   const [selectedTab, setSelectedTab] = useState("listings");
+  const [snackbarMessage, setSnackbarMessage] = useState(null);
 
   const selectedCity = useSelector((state) => state.selectedCity.data);
   const housingState = useSelector((state) => state.housing);
 
   const router = useRouter();
 
+  const snackbarClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setSnackbarMessage(null);
+  };
+
   const changeTab = useCallback(
     (newValue) => {
-      const destinationURL = `/services/${selectedCity.city_id}/housing/?tab=${newValue}`;
+      if (newValue === "map" && housingState.data.filters.partner === "") {
+        setSnackbarMessage(
+          "You must select a partner in the filters to see the map",
+        );
+      } else {
+        const destinationURL = `/services/${selectedCity.city_id}/housing/?tab=${newValue}`;
 
-      setSelectedTab(newValue);
-      router.push(destinationURL, undefined, { shallow: true });
+        setSelectedTab(newValue);
+        router.push(destinationURL, undefined, { shallow: true });
+      }
     },
-    [router, selectedCity.city_id],
+    [router, selectedCity.city_id, housingState.data.filters.partner],
   );
 
   useEffect(() => {
@@ -186,6 +203,16 @@ const HousingPage = () => {
           ))}
         </Tabs>
       </Box>
+      <Snackbar
+        open={snackbarMessage !== null}
+        autoHideDuration={6000}
+        onClose={snackbarClose}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      >
+        <Alert onClose={snackbarClose} severity="error" sx={{ width: "100%" }}>
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 };

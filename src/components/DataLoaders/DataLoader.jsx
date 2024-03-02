@@ -2,11 +2,7 @@
 
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import {
-  onAuthStateChanged,
-  storeAuthUser,
-  fetchCountries,
-} from "actions";
+import { onAuthStateChanged, storeAuthUser, fetchCountries } from "actions";
 
 const DataLoader = () => {
   const dispatch = useDispatch();

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import { useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet.markercluster/dist/MarkerCluster.css";
@@ -13,29 +13,29 @@ const formatPrice = (price) => {
   }).format(number);
 };
 
-const createCustomIcon = (listing) => {
-  return L.divIcon({
-    className: "custom-icon",
-    html: `<div style="background-color: #90caf9; border-radius: 5px; padding: 5px 10px; display: flex; align-items: center; position: relative;">
-      <span style="color: white;">${formatPrice(
-        listing.costsFormatted.price,
-      )}</span>
-    </div>`,
-    iconSize: [70, 20],
-  });
-};
-
-const createNormalIcon = () => {
-  return L.divIcon({
-    html: `<div style="background-color: #90caf9; width: 15px; height: 15px; border-radius: 50%; position: relative;"/>`,
-    className: "custom-cluster-icon",
-    iconSize: new L.Point(15, 15),
-  });
-};
-
 function HousingMarkerCluster({ listings, onClickListing, currentZoom }) {
   const map = useMap();
   const markersRef = useRef(null);
+
+  const createCustomIcon = useCallback((listing) => {
+    return L.divIcon({
+      className: "custom-icon",
+      html: `<div style="background-color: #90caf9; border-radius: 5px; padding: 5px 10px; display: flex; align-items: center; position: relative;">
+        <span style="color: white;">${formatPrice(
+          listing.costsFormatted.price,
+        )}</span>
+      </div>`,
+      iconSize: [70, 20],
+    });
+  }, []);
+
+  const createNormalIcon = useCallback(() => {
+    return L.divIcon({
+      html: `<div style="background-color: #90caf9; width: 15px; height: 15px; border-radius: 50%; position: relative;"/>`,
+      className: "custom-cluster-icon",
+      iconSize: new L.Point(15, 15),
+    });
+  }, []);
 
   useEffect(() => {
     if (!markersRef.current) {
@@ -43,7 +43,7 @@ function HousingMarkerCluster({ listings, onClickListing, currentZoom }) {
         spiderfyOnMaxZoom: false,
         zoomToBoundsOnClick: true,
         showCoverageOnHover: false,
-        maxClusterRadius: 80,
+        maxClusterRadius: 150,
         disableClusteringAtZoom: 15,
         iconCreateFunction: function (cluster) {
           const count = cluster.getChildCount();
@@ -76,7 +76,7 @@ function HousingMarkerCluster({ listings, onClickListing, currentZoom }) {
 
       markers.addLayer(marker);
     });
-  }, [map, listings, currentZoom, onClickListing]);
+  }, [map, listings, currentZoom, onClickListing, createCustomIcon, createNormalIcon]);
 
   return null;
 }
