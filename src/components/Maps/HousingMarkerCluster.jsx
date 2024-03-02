@@ -1,9 +1,7 @@
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef } from "react";
 import { useMap } from "react-leaflet";
 import L from "leaflet";
-import "leaflet.markercluster/dist/MarkerCluster.css";
-import "leaflet.markercluster/dist/MarkerCluster.Default.css";
-import { MarkerClusterGroup } from "leaflet.markercluster";
+import Supercluster from "supercluster";
 
 const formatPrice = (price) => {
   const number = parseFloat(price.replace(/,/g, ""));
@@ -13,70 +11,108 @@ const formatPrice = (price) => {
   }).format(number);
 };
 
-function HousingMarkerCluster({ listings, onClickListing, currentZoom }) {
+const createCustomIcon = (listing) => {
+  return L.divIcon({
+    className: "custom-icon",
+    html: `<div style="background-color: #90caf9; border-radius: 5px; padding: 5px 10px; display: flex; align-items: center; position: relative;">
+      <span style="color: white;">${formatPrice(
+        listing.costsFormatted.price,
+      )}</span>
+    </div>`,
+    iconSize: [70, 20],
+  });
+};
+
+const createNormalIcon = () => {
+  return L.divIcon({
+    html: `<div style="background-color: #90caf9; width: 15px; height: 15px; border-radius: 50%; position: relative;"></div>`,
+    className: "custom-normal-icon",
+    iconSize: [15, 15],
+  });
+};
+
+const createClusterIcon = (count) => {
+  return L.divIcon({
+    html: `<div style="background-color: #2196f3; width: 35px; height: 35px; border-radius: 50%; position: relative;">
+      <span style="color: white; text-align: center; line-height: 35px;">${count}</span>
+    </div>`,
+    className: "custom-cluster-icon",
+    iconSize: [35, 35],
+  });
+};
+
+function HousingMarkerCluster({ listings, onClickListing }) {
   const map = useMap();
-  const markersRef = useRef(null);
-
-  const createCustomIcon = useCallback((listing) => {
-    return L.divIcon({
-      className: "custom-icon",
-      html: `<div style="background-color: #90caf9; border-radius: 5px; padding: 5px 10px; display: flex; align-items: center; position: relative;">
-        <span style="color: white;">${formatPrice(
-          listing.costsFormatted.price,
-        )}</span>
-      </div>`,
-      iconSize: [70, 20],
-    });
-  }, []);
-
-  const createNormalIcon = useCallback(() => {
-    return L.divIcon({
-      html: `<div style="background-color: #90caf9; width: 15px; height: 15px; border-radius: 50%; position: relative;"/>`,
-      className: "custom-cluster-icon",
-      iconSize: new L.Point(15, 15),
-    });
-  }, []);
+  const superclusterRef = useRef(null);
+  const markersRef = useRef([]);
 
   useEffect(() => {
-    if (!markersRef.current) {
-      markersRef.current = new MarkerClusterGroup({
-        spiderfyOnMaxZoom: false,
-        zoomToBoundsOnClick: true,
-        showCoverageOnHover: false,
-        maxClusterRadius: 150,
-        disableClusteringAtZoom: 15,
-        iconCreateFunction: function (cluster) {
-          const count = cluster.getChildCount();
-          return L.divIcon({
-            html: `<div style="background-color: #2196f3; width: 35px; height: 35px; border-radius: 50%; position: relative;">
-              <div style="color: white; text-align: center; border-radius: 50%; width: 40px; height: 40px; line-height: 40px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">${count}</div>
-            </div>`,
-            className: "custom-cluster-icon",
-            iconSize: new L.Point(50, 50),
-          });
-        },
-      });
-      map.addLayer(markersRef.current);
-    }
-
-    const markers = markersRef.current;
-    markers.clearLayers();
-
-    listings.forEach((listing) => {
-      const customIcon = createCustomIcon(listing);
-      const normalIcon = createNormalIcon();
-
-      const marker = L.marker(
-        [
-          listing.location.coordinates.latitude,
-          listing.location.coordinates.longitude,
-        ],
-        { icon: currentZoom >= 16 ? customIcon : normalIcon },
-      ).on("click", () => onClickListing(listing));
-
-      markers.addLayer(marker);
+    superclusterRef.current = new Supercluster({
+      radius: 100,
+      maxZoom: 14,
     });
-  }, [map, listings, currentZoom, onClickListing, createCustomIcon, createNormalIcon]);
+
+    const features = listings.map((listing) => ({
+      type: "Feature",
+      properties: { ...listing },
+      geometry: {
+        type: "Point",
+        coordinates: [listing.location.coordinates.longitude, listing.location.coordinates.latitude],
+      },
+    }));
+
+    superclusterRef.current.load(features);
+  }, [listings]);
+
+  useEffect(() => {
+    const updateClusters = () => {
+      const bounds = map.getBounds();
+      const bbox = [bounds.getWest(), bounds.getSouth(), bounds.getEast(), bounds.getNorth()];
+      const zoom = map.getZoom();
+      const clusters = superclusterRef.current.getClusters(bbox, zoom);
+
+      markersRef.current.forEach((marker) => marker.remove()); // Clear existing markers
+      markersRef.current = [];
+
+      clusters.forEach((cluster) => {
+        const { geometry, properties } = cluster;
+        const [longitude, latitude] = geometry.coordinates;
+        const isCluster = properties.cluster;
+        const pointCount = properties.point_count;
+        const clusterId = properties.cluster_id;
+
+        const icon = isCluster
+          ? createClusterIcon(pointCount)
+          : zoom >= 16 ? createCustomIcon(properties) : createNormalIcon();
+
+        const marker = L.marker([latitude, longitude], { icon });
+
+        if (!isCluster) {
+          marker.on("click", () => onClickListing(properties));
+        } else {
+          marker.on("click", () => {
+            const expansionZoom = Math.min(
+              superclusterRef.current.getClusterExpansionZoom(clusterId),
+              16 // max zoom
+            );
+            map.setView([latitude, longitude], expansionZoom);
+          });
+        }
+
+        marker.addTo(map);
+        markersRef.current.push(marker);
+      });
+    };
+
+    map.on("moveend", updateClusters);
+    updateClusters();
+
+    return () => {
+      map.off("moveend", updateClusters);
+      markersRef.current.forEach((marker) => marker.remove());
+      markersRef.current = [];
+    };
+  }, [map, onClickListing]);
 
   return null;
 }

@@ -60,6 +60,10 @@ const ListingInfoWindow = ({ listing, setSelectedListing }) => {
     setSelectedListing(null);
   };
 
+  if (images?.housing_id !== listing.housing_id) {
+    return null;
+  }
+
   return (
     <Card
       ref={cardRef}
@@ -136,7 +140,7 @@ const ListingInfoWindow = ({ listing, setSelectedListing }) => {
             sx={{ display: "flex", justifyContent: "center" }}
           >
             <img
-              height="20"
+              height={listing.partner === "housing_anywhere" ? 30 : 20}
               src={logoURL}
               alt="housinganywhere icon"
               title="HousingAnywhere"
