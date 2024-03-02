@@ -20,6 +20,8 @@ export const contentHeight = {
 };
 
 export const defaultHousingFilters = {
+  minPrice: "",
+  maxPrice: "",
   propertyType: [],
   furniture: "",
   totalSize: "",
