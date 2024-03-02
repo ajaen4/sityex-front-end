@@ -4,8 +4,8 @@ export const filterListings = (listings, filters, orderBy) => {
   const filteredListings = listings.filter((listing) => {
     const minPrice = filters.minPrice ? parseFloat(filters.minPrice) : null;
     const maxPrice = filters.maxPrice ? parseFloat(filters.maxPrice) : null;
-    const furnitureValue = filters.furniture === "furnished" ? "yes" : "no";
     const totalSize = filters.totalSize ? parseFloat(filters.totalSize) : null;
+    const isUniplaces = listing.partner === "uniplaces";
 
     // Price criteria
     if (minPrice && parseFloat(listing.costsFormatted.price) < minPrice)
@@ -23,7 +23,10 @@ export const filterListings = (listings, filters, orderBy) => {
     }
 
     // Total size criteria
-    if (totalSize && parseFloat(listing.facilities.totalSize) < totalSize)
+    if (
+      totalSize &&
+      (isUniplaces || parseFloat(listing.facilities.totalSize) < totalSize)
+    )
       return false;
 
     // Bedrooms criteria
@@ -37,10 +40,12 @@ export const filterListings = (listings, filters, orderBy) => {
     )
       return false;
 
+    if (filters.partner && listing.partner !== filters.partner) return false;
+
     // Property type criteria
     if (
       filters.propertyType.length > 0 &&
-      !filters.propertyType.includes(listing.typeLabel)
+      (isUniplaces || !filters.propertyType.includes(listing.typeLabel))
     )
       return false;
 
@@ -54,14 +59,14 @@ export const filterListings = (listings, filters, orderBy) => {
     // Amenities criteria
     if (
       filters.amenities.length > 0 &&
-      !amenitiesFilter(listing, filters.amenities)
+      (isUniplaces || !amenitiesFilter(listing, filters.amenities))
     )
       return false;
 
     // Facilities criteria
     if (
       filters.facilities.length > 0 &&
-      !facilitiesFilter(listing, filters.facilities)
+      (isUniplaces || !facilitiesFilter(listing, filters.facilities))
     )
       return false;
 

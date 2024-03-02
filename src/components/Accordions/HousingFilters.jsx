@@ -11,6 +11,9 @@ import {
   AccordionDetails,
   Grid,
   TextField,
+  Box,
+  Button,
+  Typography,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMoreOutlined";
 
@@ -19,15 +22,20 @@ import SingleSelect from "components/Selects/SingleSelect";
 
 import { debounce } from "helpers/usefulFunctions";
 import { updateHousingFilters } from "actions";
+import { defaultHousingFilters } from "constants/constants";
 
 const HousingFilters = () => {
   const housingFilters = useSelector((state) => state.housing.data.filters);
 
-  const { register, watch, control } = useForm({
+  const { register, watch, control, reset } = useForm({
     defaultValues: housingFilters,
   });
 
   const dispatch = useDispatch();
+
+  const clearFilters = () => {
+    reset(defaultHousingFilters);
+  };
 
   const debounceFilters = debounce((data) => {
     dispatch(updateHousingFilters(data));
@@ -51,13 +59,39 @@ const HousingFilters = () => {
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
         <b>Filters</b>
       </AccordionSummary>
+      <Box sx={{ display: "flex", flexGrow: 1, justifyContent: "end" }}>
+        <Button
+          variant="contained"
+          color="success"
+          sx={{ mr: { xs: 2, md: 8}, mb: 2 }}
+          onClick={clearFilters}
+        >
+          Clear filters
+        </Button>
+      </Box>
       <AccordionDetails>
         <Grid container spacing={3}>
+          <Grid item xs={6} md={2.3}>
+            <Controller
+              name="partner"
+              control={control}
+              render={({ field }) => (
+                <SingleSelect
+                  {...field}
+                  options={[
+                    { label: "Uniplaces", value: "uniplaces" },
+                    { label: "housingAnywhere", value: "housing_anywhere" },
+                  ]}
+                  label="Partner"
+                />
+              )}
+            />
+          </Grid>
           <Grid
             item
             xs={6}
             md={2.3}
-            sx={{ display: "flex", textAlign: "center", alignItems: "center" }}
+            sx={{ display: "flex", alignItems: "start", py: 1.5 }}
           >
             <TextField
               {...register("minPrice")}
@@ -66,13 +100,14 @@ const HousingFilters = () => {
               placeholder="Min price"
               type="number"
               autoComplete="Min price"
+              
             />
           </Grid>
           <Grid
             item
             xs={6}
             md={2.3}
-            sx={{ display: "flex", textAlign: "center", alignItems: "center" }}
+            sx={{ display: "flex", alignItems: "start", py: 1.5 }}
           >
             <TextField
               {...register("maxPrice")}
@@ -99,6 +134,7 @@ const HousingFilters = () => {
                 />
               )}
             />
+            <Typography sx={{fontSize: 11}}>**Not applicable to Uniplaces**</Typography>
           </Grid>
           <Grid item xs={6} md={2.3}>
             <Controller
@@ -133,6 +169,7 @@ const HousingFilters = () => {
                 />
               )}
             />
+            <Typography sx={{fontSize: 11}}>**Not applicable to Uniplaces**</Typography>
           </Grid>
           <Grid item xs={6} md={2.3}>
             <Controller
@@ -176,6 +213,7 @@ const HousingFilters = () => {
                 />
               )}
             />
+            <Typography sx={{fontSize: 11}}>**Not applicable to Uniplaces**</Typography>
           </Grid>
           <Grid item xs={6} md={2.3}>
             <Controller
@@ -212,6 +250,7 @@ const HousingFilters = () => {
                 />
               )}
             />
+            <Typography sx={{fontSize: 11}}>**Not applicable to Uniplaces**</Typography>
           </Grid>
         </Grid>
       </AccordionDetails>
