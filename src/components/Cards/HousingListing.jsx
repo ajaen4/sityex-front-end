@@ -17,6 +17,7 @@ import ListingSlides from "components/Slides/ListingSlides";
 
 import { fetchListingImages } from "actions";
 import { imagesCdn } from "constants/constants";
+import { formatPrice } from "helpers/usefulFunctions";
 
 const HousingListing = ({ listing }) => {
   const theme = useTheme();
@@ -35,14 +36,6 @@ const HousingListing = ({ listing }) => {
     } else {
       return description;
     }
-  };
-
-  const formatPrice = (price) => {
-    const number = parseFloat(price.replace(/,/g, ""));
-    return new Intl.NumberFormat("de-DE", {
-      style: "currency",
-      currency: "EUR",
-    }).format(number);
   };
 
   useEffect(() => {

@@ -17,6 +17,7 @@ import ListingSlides from "components/Slides/ListingSlides";
 
 import { fetchListingImages } from "actions";
 import { imagesCdn } from "constants/constants";
+import { formatPrice } from "helpers/usefulFunctions";
 
 const ListingInfoWindow = ({ listing, setSelectedListing }) => {
   const cardRef = useRef(null);
@@ -37,14 +38,6 @@ const ListingInfoWindow = ({ listing, setSelectedListing }) => {
       },
     );
   }, [listing, selectedCity.city_id]);
-
-  const formatPrice = (price) => {
-    const number = parseFloat(price.replace(/,/g, ""));
-    return new Intl.NumberFormat("de-DE", {
-      style: "currency",
-      currency: "EUR",
-    }).format(number);
-  };
 
   function formatDate(inputDate) {
     const date = new Date(inputDate);
