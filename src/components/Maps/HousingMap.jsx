@@ -12,15 +12,6 @@ import HousingMarkerCluster from "components/Maps/HousingMarkerCluster";
 const TOKEN = process.env.NEXT_PUBLIC_MAPS_API_KEY;
 const STREET_MAP_STYLE = process.env.NEXT_PUBLIC_MAPS_STREET_STYLE;
 
-const ZoomHandler = ({ onZoom }) => {
-  useMapEvents({
-    zoomend: (e) => {
-      onZoom(e.target.getZoom());
-    },
-  });
-  return null;
-};
-
 function HousingMap() {
   const selectedCity = useSelector((state) => state.selectedCity.data);
   const housingIndex = useSelector(
@@ -28,7 +19,6 @@ function HousingMap() {
   );
   const isFetchingHousing = useSelector((state) => state.housing.isFetching);
   const [selectedListing, setSelectedListing] = useState(null);
-  const [currentZoom, setCurrentZoom] = useState(11);
 
   const onClickListing = useCallback(
     (listing) => {
@@ -61,7 +51,6 @@ function HousingMap() {
         listings={housingIndex}
         onClickListing={onClickListing}
       />
-      <ZoomHandler onZoom={setCurrentZoom} />
       {selectedListing && (
         <ListingInfoWindow
           listing={selectedListing}
