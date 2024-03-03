@@ -1,5 +1,5 @@
 import { useEffect, useRef, useCallback } from "react";
-import { useMap } from "react-leaflet";
+import { useSelector } from "react-redux";
 import L from "leaflet";
 import Supercluster from "supercluster";
 
@@ -11,11 +11,13 @@ const normalIcon = L.divIcon({
   iconSize: [15, 15],
 });
 
-
-function HousingMarkerCluster({ listings, onClickListing }) {
-  const map = useMap();
+function HousingMarkerCluster({ map, onClickListing }) {
   const superclusterRef = useRef(null);
   const markersRef = useRef([]);
+
+  const listings = useSelector(
+    (state) => state.housing.data.filteredHListings,
+  );
 
   const createCustomIcon = useCallback((listing) => {
     return L.divIcon({
@@ -40,6 +42,9 @@ function HousingMarkerCluster({ listings, onClickListing }) {
   }, []);
 
   useEffect(() => {
+
+    if (!map || !listings) return;
+  
     superclusterRef.current = new Supercluster({
       radius: 100,
       maxZoom: 14,
@@ -50,16 +55,24 @@ function HousingMarkerCluster({ listings, onClickListing }) {
       properties: { ...listing },
       geometry: {
         type: "Point",
-        coordinates: [listing.location.coordinates.longitude, listing.location.coordinates.latitude],
+        coordinates: [
+          listing.location.coordinates.longitude,
+          listing.location.coordinates.latitude,
+        ],
       },
     }));
 
     superclusterRef.current.load(features);
-  }, [listings]);
+  }, [map, listings]);
 
   const updateClusters = useCallback(() => {
     const bounds = map.getBounds();
-    const bbox = [bounds.getWest(), bounds.getSouth(), bounds.getEast(), bounds.getNorth()];
+    const bbox = [
+      bounds.getWest(),
+      bounds.getSouth(),
+      bounds.getEast(),
+      bounds.getNorth(),
+    ];
     const zoom = map.getZoom();
     const clusters = superclusterRef.current.getClusters(bbox, zoom);
 
@@ -77,11 +90,9 @@ function HousingMarkerCluster({ listings, onClickListing }) {
 
       if (isCluster) {
         icon = createClusterIcon(pointCount);
-      }
-      else if (zoom >= 16) {
+      } else if (zoom >= 16) {
         icon = createCustomIcon(properties);
-      }
-      else {
+      } else {
         icon = normalIcon;
       }
 
@@ -93,7 +104,7 @@ function HousingMarkerCluster({ listings, onClickListing }) {
         marker.on("click", () => {
           const expansionZoom = Math.min(
             superclusterRef.current.getClusterExpansionZoom(clusterId),
-            16 // max zoom
+            16, // max zoom
           );
           map.setView([latitude, longitude], expansionZoom);
         });
@@ -106,6 +117,8 @@ function HousingMarkerCluster({ listings, onClickListing }) {
 
   useEffect(() => {
 
+    if (!map) return;
+
     map.on("moveend", updateClusters);
     updateClusters();
 
@@ -114,7 +127,7 @@ function HousingMarkerCluster({ listings, onClickListing }) {
       markersRef.current.forEach((marker) => marker.remove());
       markersRef.current = [];
     };
-  }, [map, onClickListing, updateClusters]);
+  }, [map, onClickListing, updateClusters, listings]);
 
   return null;
 }

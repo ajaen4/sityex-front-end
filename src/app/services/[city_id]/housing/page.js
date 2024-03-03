@@ -66,6 +66,10 @@ const HousingPage = () => {
     }
   }, [selectedCity.city_id, dispatch, housingState]);
 
+  if (!housingState.data.filteredHListings) {
+    return <CenteredLoadingSpinner />;
+  }
+
   return (
     <Box
       sx={{

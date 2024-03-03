@@ -63,7 +63,7 @@ const HousingFilters = () => {
         <Button
           variant="contained"
           color="success"
-          sx={{ mr: { xs: 2, md: 8}, mb: 2 }}
+          sx={{ mr: { xs: 2, md: 8 }, mb: 2 }}
           onClick={clearFilters}
         >
           Clear filters
@@ -100,7 +100,6 @@ const HousingFilters = () => {
               placeholder="Min price"
               type="number"
               autoComplete="Min price"
-              
             />
           </Grid>
           <Grid
@@ -134,7 +133,9 @@ const HousingFilters = () => {
                 />
               )}
             />
-            <Typography sx={{fontSize: 11}}>**Not applicable to Uniplaces**</Typography>
+            <Typography sx={{ fontSize: 11 }}>
+              **Not applicable to Uniplaces**
+            </Typography>
           </Grid>
           <Grid item xs={6} md={2.3}>
             <Controller
@@ -169,7 +170,9 @@ const HousingFilters = () => {
                 />
               )}
             />
-            <Typography sx={{fontSize: 11}}>**Not applicable to Uniplaces**</Typography>
+            <Typography sx={{ fontSize: 11 }}>
+              **Not applicable to Uniplaces**
+            </Typography>
           </Grid>
           <Grid item xs={6} md={2.3}>
             <Controller
@@ -213,7 +216,9 @@ const HousingFilters = () => {
                 />
               )}
             />
-            <Typography sx={{fontSize: 11}}>**Not applicable to Uniplaces**</Typography>
+            <Typography sx={{ fontSize: 11 }}>
+              **Not applicable to Uniplaces**
+            </Typography>
           </Grid>
           <Grid item xs={6} md={2.3}>
             <Controller
@@ -250,7 +255,9 @@ const HousingFilters = () => {
                 />
               )}
             />
-            <Typography sx={{fontSize: 11}}>**Not applicable to Uniplaces**</Typography>
+            <Typography sx={{ fontSize: 11 }}>
+              **Not applicable to Uniplaces**
+            </Typography>
           </Grid>
         </Grid>
       </AccordionDetails>
