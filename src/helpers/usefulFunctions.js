@@ -23,3 +23,11 @@ export function debounce(func, wait) {
     timeout = setTimeout(later, wait);
   };
 }
+
+export const formatPrice = (price) => {
+  const number = parseFloat(price.replace(/,/g, ""));
+  return new Intl.NumberFormat("de-DE", {
+    style: "currency",
+    currency: "EUR",
+  }).format(number);
+};
