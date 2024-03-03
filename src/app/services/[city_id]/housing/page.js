@@ -62,7 +62,7 @@ const HousingPage = () => {
       housingState.data.housingListings.length === 0 ||
       housingState.city_id !== selectedCity.city_id
     ) {
-      dispatch(fetchHousingListings(selectedCity.city_id));
+      dispatch(fetchHousingListings(selectedCity.city_id, 5000));
     }
   }, [selectedCity.city_id, dispatch, housingState]);
 
