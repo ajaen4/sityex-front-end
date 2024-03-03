@@ -1,12 +1,10 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
-import { MapContainer, TileLayer, useMapEvents } from "react-leaflet";
-import "react-leaflet-fullscreen/styles.css";
+
+import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { FullscreenControl } from "react-leaflet-fullscreen";
 
 import ListingInfoWindow from "components/Maps/ListingInfoWindow";
-import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 import HousingMarkerCluster from "components/Maps/HousingMarkerCluster";
 
 const TOKEN = process.env.NEXT_PUBLIC_MAPS_API_KEY;
@@ -14,11 +12,10 @@ const STREET_MAP_STYLE = process.env.NEXT_PUBLIC_MAPS_STREET_STYLE;
 
 function HousingMap() {
   const selectedCity = useSelector((state) => state.selectedCity.data);
-  const housingIndex = useSelector(
-    (state) => state.housing.data.filteredHListings,
-  );
-  const isFetchingHousing = useSelector((state) => state.housing.isFetching);
   const [selectedListing, setSelectedListing] = useState(null);
+  const mapContainerRef = useRef(null);
+  const mapInstanceRef = useRef(null);
+  const [toggle, setToggle] = useState(false);
 
   const onClickListing = useCallback(
     (listing) => {
@@ -27,28 +24,33 @@ function HousingMap() {
     [setSelectedListing],
   );
 
-  if (isFetchingHousing) {
-    return <CenteredLoadingSpinner />;
-  }
+  useEffect(() => {
+    if (!mapContainerRef.current) return;
+
+    if (!mapInstanceRef.current) {
+      const initialMap = L.map(mapContainerRef.current).setView(
+        [selectedCity.coordinates.latitude, selectedCity.coordinates.longitude],
+        11,
+      );
+
+      L.tileLayer(`${STREET_MAP_STYLE}${TOKEN}`, {
+        attribution:
+          '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      }).addTo(initialMap);
+
+      mapInstanceRef.current = initialMap;
+      mapInstanceRef.current.setView(
+        [selectedCity.coordinates.latitude, selectedCity.coordinates.longitude],
+        11,
+      );
+      setToggle(!toggle);
+    }
+  }, [selectedCity.coordinates, setToggle, toggle]);
 
   return (
-    <MapContainer
-      center={[
-        selectedCity.coordinates.latitude,
-        selectedCity.coordinates.longitude,
-      ]}
-      preferCanvas={true}
-      zoom={11}
-      style={{ height: "100%", width: "100%" }}
-      zoomControl={false}
-    >
-      <FullscreenControl position="topright" />
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url={`${STREET_MAP_STYLE}${TOKEN}`}
-      />
+    <div ref={mapContainerRef} style={{ height: "100%", width: "100%" }} >
       <HousingMarkerCluster
-        listings={housingIndex}
+        map={mapInstanceRef.current}
         onClickListing={onClickListing}
       />
       {selectedListing && (
@@ -57,7 +59,7 @@ function HousingMap() {
           setSelectedListing={setSelectedListing}
         />
       )}
-    </MapContainer>
+    </div>
   );
 }
 
