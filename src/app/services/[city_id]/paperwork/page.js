@@ -41,10 +41,10 @@ const PaperworkPage = () => {
       router.push(
         `/services/${selectedCity.city_id}/paperwork/?tab=${newValue}`,
         undefined,
-        { shallow: true },
+        { shallow: true }
       );
     },
-    [setSelectedTab, router, selectedCity.city_id],
+    [setSelectedTab, router, selectedCity.city_id]
   );
 
   useEffect(() => {
@@ -128,6 +128,7 @@ const PaperworkPage = () => {
                   </Box>
                 }
                 price={189.97}
+                governmentFees={9.84}
                 paymentLink="https://app.entretramites.com/stripePaymentLink?id=5175&t=1b1e3c17"
               />
             </Grid>
@@ -140,7 +141,7 @@ const PaperworkPage = () => {
                 content={
                   <Box sx={{ textAlign: "left" }}>
                     <Typography variant="body2">
-                      For those who plan to:
+                      For <b>EU citizens </b> who plan to:
                     </Typography>
                     <div>
                       <ul>
@@ -159,6 +160,7 @@ const PaperworkPage = () => {
                   </Box>
                 }
                 price={189.97}
+                governmentFees={12}
                 paymentLink="https://app.entretramites.com/stripePaymentLink?id=5176&t=48fcd379"
               />
             </Grid>
@@ -185,6 +187,7 @@ const PaperworkPage = () => {
                   </Box>
                 }
                 price={64.13}
+                governmentFees={0.0}
                 paymentLink="https://app.entretramites.com/stripePaymentLink?id=5186&t=81b370ad"
               />
             </Grid>
@@ -201,13 +204,14 @@ const PaperworkPage = () => {
                     </Typography>
                     <div>
                       <ul>
-                        <li>Residential NIE.</li>
+                        <li>TIE.</li>
                         <li>Empadronamiento Certificate.</li>
                       </ul>
                     </div>
                   </Box>
                 }
                 price={152.5}
+                governmentFees={16.08}
                 paymentLink="https://app.entretramites.com/stripePaymentLink?id=5179&t=7da3d896"
               />
             </Grid>
@@ -223,7 +227,7 @@ const PaperworkPage = () => {
                     </Typography>
                     <div>
                       <ul>
-                        <li>Residential NIE.</li>
+                        <li>TIE.</li>
                         <li>Empadronamiento Certificate.</li>
                         <li>Digital Certificate.</li>
                         <li>Social Security Number.</li>
@@ -233,6 +237,7 @@ const PaperworkPage = () => {
                   </Box>
                 }
                 price={215.38}
+                governmentFees={16.08}
                 paymentLink="https://app.entretramites.com/stripePaymentLink?id=5180&t=b9898094"
               />
             </Grid>
@@ -255,6 +260,7 @@ const PaperworkPage = () => {
                   </Box>
                 }
                 price={252.89}
+                governmentFees={12}
                 paymentLink="https://app.entretramites.com/stripePaymentLink?id=5177&t=92a353b4"
               />
             </Grid>
@@ -280,6 +286,7 @@ const PaperworkPage = () => {
                   </Box>
                 }
                 price={315.81}
+                governmentFees={12}
                 paymentLink="https://app.entretramites.com/stripePaymentLink?id=5178&t=944e39a6"
               />
             </Grid>
@@ -299,10 +306,10 @@ const PaperworkPage = () => {
             Available Visas
           </Typography>
           <Grid container sx={{ justifyContent: "center" }}>
-            <Grid item xs={10} md={4} lg={3}>
+            <Grid item xs={10} md={4} lg={3.5}>
               <ConsultationPaperwork
                 title="Digital Nomad Visa"
-                mdMinHeight={205}
+                mdMinHeight={145}
                 content={
                   <Box sx={{ textAlign: "left" }}>
                     <Typography variant="body2">
@@ -322,14 +329,15 @@ const PaperworkPage = () => {
                   </Box>
                 }
                 price={315.81}
+                governmentFees={73.26}
                 requirements={digitalNomadReq}
                 freeConsultationLink="https://entretramites.com/en/digital-nomad-visa-consultation"
               />
             </Grid>
-            <Grid item xs={10} md={4} lg={3}>
+            <Grid item xs={10} md={4} lg={3.5}>
               <ConsultationPaperwork
                 title="Golden Visa (Non-EU citizens)"
-                mdMinHeight={205}
+                mdMinHeight={145}
                 content={
                   <Box sx={{ textAlign: "left" }}>
                     <Typography variant="body2">
@@ -344,6 +352,7 @@ const PaperworkPage = () => {
                   </Box>
                 }
                 price={1201.5}
+                governmentFees={73.26}
                 requirements={goldenVisaReq}
                 freeConsultationLink="https://entretramites.com/en/free-immigration-consultation"
               />
@@ -361,11 +370,11 @@ const PaperworkPage = () => {
           }}
         >
           <Grid container sx={{ justifyContent: "center" }}>
-            <Grid item xs={10} md={4} lg={3}>
+            <Grid item xs={10} md={4} lg={3.5}>
               <TaxPaperwork
                 title="Beckham Law Application"
                 mdMinHeight={300}
-                mdMinHeightContent={410}
+                mdMinHeightContent={450}
                 content={
                   <div>
                     <Typography variant="body2">
@@ -385,15 +394,16 @@ const PaperworkPage = () => {
                   </div>
                 }
                 price={317.02}
+                governmentFees={0.0}
                 requirements={beckhamReq}
                 paymentLink="https://app.entretramites.com/stripePaymentLink?id=5184&t=4f330a11"
               />
             </Grid>
-            <Grid item xs={10} md={4} lg={3}>
+            <Grid item xs={10} md={4} lg={3.5}>
               <TaxPaperwork
                 title="Accountant Tax Declaration"
                 mdMinHeight={300}
-                mdMinHeightContent={461}
+                mdMinHeightContent={500}
                 content={
                   <div>
                     <Typography variant="body2">For those who:</Typography>
@@ -406,15 +416,16 @@ const PaperworkPage = () => {
                   </div>
                 }
                 price={70.18}
+                governmentFees={0.0}
                 paymentLink="https://app.entretramites.com/stripePaymentLink?id=5183&t=c23194a7"
               />
             </Grid>
-            <Grid item xs={10} md={4} lg={3}>
+            <Grid item xs={10} md={4} lg={3.5}>
               <TaxPaperwork
                 title="Automated Tax Declaration"
                 is_taxdown={true}
-                mdMinHeight={405}
-                mdMinHeightContent={461}
+                mdMinHeight={365}
+                mdMinHeightContent={500}
                 content={
                   <div>
                     <Typography
@@ -440,6 +451,7 @@ const PaperworkPage = () => {
                     </Typography>
                   </div>
                 }
+                governmentFees={0.0}
                 paymentLink="https://taxdown.es/landings_partners/sityex/?utm_source=empleados&utm_medium=partnership&utm_campaign=empleados_partnership"
               />
             </Grid>
@@ -463,10 +475,10 @@ const PaperworkPage = () => {
             Available services
           </Typography>
           <Grid container sx={{ justifyContent: "center" }}>
-            <Grid item xs={10} md={4} lg={3}>
+            <Grid item xs={10} md={4} lg={3.5}>
               <ConsultationPaperwork
                 title="Driver's License Exchange"
-                mdMinHeight={238}
+                mdMinHeight={183}
                 content={
                   <Box sx={{ textAlign: "left" }}>
                     <Typography variant="body2">For those who:</Typography>
@@ -486,13 +498,14 @@ const PaperworkPage = () => {
                   </Box>
                 }
                 price={315.8}
+                governmentFees={[28.87, 94.05]}
                 freeConsultationLink="https://entretramites.com/en/partners-program/free-consultation-partners?aff=3d90441f"
               />
             </Grid>
-            <Grid item xs={10} md={4} lg={3}>
+            <Grid item xs={10} md={4} lg={3.5}>
               <ConsultationPaperwork
                 title="Vehicle Registration"
-                mdMinHeight={238}
+                mdMinHeight={183}
                 content={
                   <Box sx={{ textAlign: "left" }}>
                     <Typography variant="body2">For those who:</Typography>
@@ -505,6 +518,7 @@ const PaperworkPage = () => {
                   </Box>
                 }
                 price={544.5}
+                governmentFees={[27.85, 99.77]}
                 freeConsultationLink="https://entretramites.com/en/partners-program/free-consultation-partners?aff=3d90441f"
               />
             </Grid>
