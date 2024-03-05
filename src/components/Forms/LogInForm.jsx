@@ -26,6 +26,7 @@ import LoadingSpinner from "components/Spinner/LoadingSpinner";
 
 import * as api from "api";
 import { auth } from "baas";
+import { useShowSignUpContext } from "components/Contexts/ShowSignUpContext";
 
 const Google = "/social-google.svg";
 
@@ -42,9 +43,15 @@ const LogInForm = ({}) => {
   const [showPassword, setShowPassword] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
 
+  const { setShowSignUpModal } = useShowSignUpContext();
+
   const signInUser = (data) => {
+    setIsFetching(true);
     logInUser(data)
-      .then((user) => {})
+      .then((user) => {
+        setIsFetching(false);
+        setShowSignUpModal(false);
+      })
       .catch((errorMessage) => {
         setErrorMessage(errorMessage);
         reset();
