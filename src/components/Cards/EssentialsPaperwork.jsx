@@ -23,6 +23,7 @@ const EssentialsPaperwork = ({
   mdMinHeight,
   tooltipText,
   price,
+  governmentFees,
   paymentLink,
 }) => {
   const auth = useSelector((state) => state.auth);
@@ -63,7 +64,7 @@ const EssentialsPaperwork = ({
               <Tooltip
                 enterTouchDelay={0}
                 title={tooltipText}
-                sx={{ mx: 1, p: 0 }}
+                sx={{ mx: 0.5, p: 0 }}
               >
                 <IconButton>
                   <HelpOutlineIcon />
@@ -74,18 +75,19 @@ const EssentialsPaperwork = ({
           {content}
         </Box>
         <Typography variant="body2" sx={{ textAlign: "center", my: 2 }}>
+          Service price:{" "}
           <span
             style={{
               border: "1px solid #673ab7",
               borderRadius: "10px",
-              padding: "2px 10px",
+              padding: "1px 5px",
               display: "inline-block",
             }}
           >
             <span
               style={{
                 textDecoration: "line-through",
-                marginRight: "10px",
+                marginRight: "5px",
               }}
             >
               €{formatNumberEuropeanStyle(price)}
@@ -95,6 +97,21 @@ const EssentialsPaperwork = ({
             </span>
           </span>
         </Typography>
+        {governmentFees >= 0 && (
+          <Typography variant="body2" sx={{ textAlign: "center", my: 2 }}>
+            Government fees:{" "}
+            <span
+              style={{
+                border: "1px solid #673ab7",
+                borderRadius: "10px",
+                padding: "1px 5px",
+                display: "inline-block",
+              }}
+            >
+              <span>€{formatNumberEuropeanStyle(governmentFees)}</span>
+            </span>
+          </Typography>
+        )}
       </CardContent>
       <CardActions
         sx={{

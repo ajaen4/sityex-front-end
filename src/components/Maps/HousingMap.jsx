@@ -48,7 +48,7 @@ function HousingMap() {
   }, [selectedCity.coordinates, setToggle, toggle]);
 
   return (
-    <div ref={mapContainerRef} style={{ height: "100%", width: "100%" }} >
+    <div ref={mapContainerRef} style={{ height: "100%", width: "100%" }}>
       <HousingMarkerCluster
         map={mapInstanceRef.current}
         onClickListing={onClickListing}
