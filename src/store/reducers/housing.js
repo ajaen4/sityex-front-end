@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { filterListings } from "helpers/listUtils.js";
+import { filterListings, orderByListings } from "helpers/listUtils.js";
 import { defaultHousingFilters } from "constants/constants";
 
 const HousingSlice = createSlice({
@@ -22,7 +22,9 @@ const HousingSlice = createSlice({
     fetchHousingListingsSuccess: (state, action) => {
       state.city_id = action.payload.city_id;
       state.data.housingListings = action.payload.housingListings;
-      state.data.filteredHListings = action.payload.housingListings;
+      state.data.filteredHListings = orderByListings(
+        action.payload.housingListings
+      );
       state.data.orderBy = action.payload.orderBy;
       state.isFetching = false;
     },
@@ -31,7 +33,7 @@ const HousingSlice = createSlice({
       state.data.filteredHListings = filterListings(
         state.data.housingListings,
         state.data.filters,
-        state.data.orderBy,
+        state.data.orderBy
       );
       state.isFetching = false;
     },
@@ -40,7 +42,7 @@ const HousingSlice = createSlice({
       state.data.filteredHListings = filterListings(
         state.data.housingListings,
         state.data.filters,
-        state.data.orderBy,
+        state.data.orderBy
       );
       state.isFetching = false;
     },

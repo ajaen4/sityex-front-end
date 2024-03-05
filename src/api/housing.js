@@ -16,9 +16,9 @@ export const getHousingListings = async (city_id, limitV = null) => {
 
     let q = null;
     if (limitV) {
-      q = query(housingCol, limit(limitV));
+      q = query(housingCol, orderBy("created_at", "desc"), limit(limitV));
     } else {
-      q = query(housingCol);
+      q = query(housingCol, orderBy("created_at", "desc"));
     }
 
     const housingDocs = await getDocs(q);
@@ -32,7 +32,7 @@ export const getHousingListings = async (city_id, limitV = null) => {
 export const getHousingListing = async (city_id, housing_id) => {
   try {
     const housingDoc = await getDoc(
-      doc(collection(db, "cities", city_id, "housing"), housing_id),
+      doc(collection(db, "cities", city_id, "housing"), housing_id)
     );
     if (!housingDoc.exists()) {
       console.log("No such document ", housing_id, " in collection cities!");
@@ -49,7 +49,7 @@ export const getHousingListing = async (city_id, housing_id) => {
 export const getListingImages = async (city_id, housing_id) => {
   try {
     const housingDoc = await getDoc(
-      doc(collection(db, "cities", city_id, "housing_images"), housing_id),
+      doc(collection(db, "cities", city_id, "housing_images"), housing_id)
     );
     if (!housingDoc.exists()) {
       console.log("No such document ", housing_id, " in collection cities!");
