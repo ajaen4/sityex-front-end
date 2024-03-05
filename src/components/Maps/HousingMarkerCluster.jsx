@@ -15,9 +15,7 @@ function HousingMarkerCluster({ map, onClickListing }) {
   const superclusterRef = useRef(null);
   const markersRef = useRef([]);
 
-  const listings = useSelector(
-    (state) => state.housing.data.filteredHListings,
-  );
+  const listings = useSelector((state) => state.housing.data.filteredHListings);
 
   const createCustomIcon = useCallback((listing) => {
     return L.divIcon({
@@ -42,9 +40,8 @@ function HousingMarkerCluster({ map, onClickListing }) {
   }, []);
 
   useEffect(() => {
-
     if (!map || !listings) return;
-  
+
     superclusterRef.current = new Supercluster({
       radius: 100,
       maxZoom: 14,
@@ -116,7 +113,6 @@ function HousingMarkerCluster({ map, onClickListing }) {
   }, [map, onClickListing, createClusterIcon, createCustomIcon]);
 
   useEffect(() => {
-
     if (!map) return;
 
     map.on("moveend", updateClusters);

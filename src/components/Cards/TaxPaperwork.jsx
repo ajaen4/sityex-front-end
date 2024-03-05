@@ -25,6 +25,7 @@ const TaxPaperwork = ({
   mdMinHeight,
   mdMinHeightContent,
   price,
+  governmentFees,
   requirements,
   paymentLink,
 }) => {
@@ -110,18 +111,19 @@ const TaxPaperwork = ({
           )}
           {price && (
             <Typography variant="body2" sx={{ textAlign: "center", my: 2 }}>
+              Service price:{" "}
               <span
                 style={{
                   border: "1px solid #673ab7",
                   borderRadius: "10px",
-                  padding: "2px 10px",
+                  padding: "1px 5px",
                   display: "inline-block",
                 }}
               >
                 <span
                   style={{
                     textDecoration: "line-through",
-                    marginRight: "10px",
+                    marginRight: "5px",
                   }}
                 >
                   €{formatNumberEuropeanStyle(price)}
@@ -132,13 +134,33 @@ const TaxPaperwork = ({
               </span>
             </Typography>
           )}
+          {governmentFees >= 0 && (
+            <Typography variant="body2" sx={{ textAlign: "center", my: 2 }}>
+              Government fees:{" "}
+              <span
+                style={{
+                  border: "1px solid #673ab7",
+                  borderRadius: "10px",
+                  padding: "1px 5px",
+                  display: "inline-block",
+                }}
+              >
+                <span
+                >
+                  €{formatNumberEuropeanStyle(governmentFees)}
+                </span>
+              </span>
+            </Typography>
+          )}
         </CardContent>
         <CardActions
           sx={{
             display: "flex",
             flexDirection: "column",
+            pt: 0,
           }}
         >
+          <Box sx={{ display: "flex", flexDirection: "column"}}>
           {requirements && (
             <Button
               sx={{ alignSelf: "center", my: 1, color: "white" }}
@@ -159,6 +181,7 @@ const TaxPaperwork = ({
           >
             Hire service
           </Button>
+          </Box>
         </CardActions>
       </Card>
 
