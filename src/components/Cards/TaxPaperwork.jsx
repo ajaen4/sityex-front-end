@@ -158,12 +158,13 @@ const TaxPaperwork = ({
             display: "flex",
             flexDirection: "column",
             pt: 0,
+            pb: 2,
           }}
         >
           <Box sx={{ display: "flex", flexDirection: "column"}}>
           {requirements && (
             <Button
-              sx={{ alignSelf: "center", my: 1, color: "white" }}
+              sx={{ alignSelf: "center", mt: 0, mb:1, color: "white" }}
               size="small"
               variant="contained"
               target="_blank"
@@ -174,7 +175,7 @@ const TaxPaperwork = ({
             </Button>
           )}
           <Button
-            sx={{ alignSelf: "center", mt: 1 }}
+            sx={{ alignSelf: "center", mt: 0.5 }}
             size="small"
             variant="contained"
             onClick={onClickHire}

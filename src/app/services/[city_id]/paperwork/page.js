@@ -306,7 +306,7 @@ const PaperworkPage = () => {
             Available Visas
           </Typography>
           <Grid container sx={{ justifyContent: "center" }}>
-            <Grid item xs={10} md={4} lg={3.5}>
+            <Grid item xs={10} md={4.5} lg={3.5}>
               <ConsultationPaperwork
                 title="Digital Nomad Visa"
                 mdMinHeight={145}
@@ -334,7 +334,7 @@ const PaperworkPage = () => {
                 freeConsultationLink="https://entretramites.com/en/digital-nomad-visa-consultation"
               />
             </Grid>
-            <Grid item xs={10} md={4} lg={3.5}>
+            <Grid item xs={10} md={4.5} lg={3.5}>
               <ConsultationPaperwork
                 title="Golden Visa (Non-EU citizens)"
                 mdMinHeight={145}
@@ -374,7 +374,7 @@ const PaperworkPage = () => {
               <TaxPaperwork
                 title="Beckham Law Application"
                 mdMinHeight={300}
-                mdMinHeightContent={450}
+                mdMinHeightContent={460}
                 content={
                   <div>
                     <Typography variant="body2">
@@ -475,7 +475,7 @@ const PaperworkPage = () => {
             Available services
           </Typography>
           <Grid container sx={{ justifyContent: "center" }}>
-            <Grid item xs={10} md={4} lg={3.5}>
+            <Grid item xs={10} md={4.5} lg={3.5}>
               <ConsultationPaperwork
                 title="Driver's License Exchange"
                 mdMinHeight={183}
@@ -502,7 +502,7 @@ const PaperworkPage = () => {
                 freeConsultationLink="https://entretramites.com/en/partners-program/free-consultation-partners?aff=3d90441f"
               />
             </Grid>
-            <Grid item xs={10} md={4} lg={3.5}>
+            <Grid item xs={10} md={4.5} lg={3.5}>
               <ConsultationPaperwork
                 title="Vehicle Registration"
                 mdMinHeight={183}
