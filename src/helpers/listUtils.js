@@ -83,18 +83,18 @@ const facilitiesFilter = (listing, facilities) => {
       listing.facilities[facility] &&
       ((facility === "bathroom" &&
         listing.facilities[facility] === "private") ||
-        (facility !== "bathroom" && listing.facilities[facility] !== "no")),
+        (facility !== "bathroom" && listing.facilities[facility] !== "no"))
   );
 };
 
 const amenitiesFilter = (listing, amenities) => {
   return amenities.every(
     (amenity) =>
-      listing.facilities[amenity] && listing.facilities[amenity] !== "no",
+      listing.facilities[amenity] && listing.facilities[amenity] !== "no"
   );
 };
 
-const orderByListings = (listings, orderBy) => {
+export const orderByListings = (listings, orderBy) => {
   if (!orderBy) {
     return listings;
   }
@@ -143,8 +143,8 @@ export const groupEvents = (categories, events) => {
     events.filter(
       (event) =>
         event.sityex_subcategories.includes(category) &&
-        new Date(event.end_date) > today,
-    ),
+        new Date(event.end_date) > today
+    )
   );
 };
 
@@ -164,6 +164,6 @@ export const orderByEvents = (groupedEvents, orderBy) => {
       if (orderBy === "closest-date") {
         return parseFloat(a.remaining_days) - parseFloat(b.remaining_days);
       }
-    }),
+    })
   );
 };
