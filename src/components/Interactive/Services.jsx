@@ -12,7 +12,7 @@ const services = {
     title: "Paperwork",
     link: "/services/3117735/paperwork",
     description:
-      "Automatized processes through our local partners that do the paperwork for you",
+      "Completely online processes through our local partners that do the paperwork for you",
   },
   housing: {
     id: "housing",
@@ -28,7 +28,7 @@ const services = {
     title: "Community",
     link: "#community",
     description:
-      "Thriving community of young expats to help you feel at home in Spain from day 1",
+      "Thriving community of young expats to help you feel at home in Spain from day one",
   },
 };
 

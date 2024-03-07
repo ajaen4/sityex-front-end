@@ -127,7 +127,7 @@ const PaperworkSlides = () => {
   };
 
   return (
-    <Carousel navButtonsAlwaysVisible indicators={false} interval={7000}>
+    <Carousel navButtonsAlwaysVisible indicators={false} interval={7000} swipe={false}>
       {createSlides()}
     </Carousel>
   );
