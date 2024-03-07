@@ -59,10 +59,10 @@ const HousingFilters = () => {
     >
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
         <Chip
-              label={<b>Filters</b>}
-              color="secondary"
-              sx={{ mx: 2, py: 0.5 }}
-            />
+          label={<b>Filters</b>}
+          color="secondary"
+          sx={{ mx: 2, py: 0.5 }}
+        />
       </AccordionSummary>
       <Box sx={{ display: "flex", flexGrow: 1, justifyContent: "end" }}>
         <Button
