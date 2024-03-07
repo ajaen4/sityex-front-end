@@ -9,7 +9,6 @@ import "@vidstack/react/player/styles/base.css";
 import { imagesCdn } from "constants/constants";
 
 const CommunitySlides = () => {
-
   return (
     <Grid
       container
@@ -31,22 +30,22 @@ const CommunitySlides = () => {
           pr: { md: 5 },
         }}
       >
-        <Box sx={{ width: {xs: "100%", md: "65%", lg: "55%", xl: "45%"}}}>
-        <MediaPlayer
-          title="Community video"
-          src={`${imagesCdn}/video/community.mp4`}
-          aspectRatio="0.55"
-          style={{ width: '100%' }}
-          controls
-          playsInline
-        >
-          <MediaProvider>
-            <Poster
-              src={`${imagesCdn}/video/video-thumbnail.jpeg`}
-              alt="SityEx"
-            />
-          </MediaProvider>
-        </MediaPlayer>
+        <Box sx={{ width: { xs: "100%", md: "65%", lg: "55%", xl: "45%" } }}>
+          <MediaPlayer
+            title="Community video"
+            src={`${imagesCdn}/video/community.mp4`}
+            aspectRatio="0.55"
+            style={{ width: "100%" }}
+            controls
+            playsInline
+          >
+            <MediaProvider>
+              <Poster
+                src={`${imagesCdn}/video/video-thumbnail.jpeg`}
+                alt="SityEx"
+              />
+            </MediaProvider>
+          </MediaPlayer>
         </Box>
       </Grid>
       <Grid
