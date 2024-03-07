@@ -84,38 +84,37 @@ const ConsultationPaperwork = ({
               </span>
             </span>
           </Typography>
-          {Array.isArray(governmentFees)&& (
-          <Typography variant="body2" sx={{ textAlign: "center", my: 2 }}>
-            Government fees:{" "}
-            <span
-              style={{
-                border: "1px solid #673ab7",
-                borderRadius: "10px",
-                padding: "1px 5px",
-                display: "inline-block",
-              }}
-            >
-              <span>€{formatNumberEuropeanStyle(governmentFees[0])}</span>
-              - 
-              <span>€{formatNumberEuropeanStyle(governmentFees[1])}</span>
-            </span>
-          </Typography>
-        )}
+          {Array.isArray(governmentFees) && (
+            <Typography variant="body2" sx={{ textAlign: "center", my: 2 }}>
+              Government fees:{" "}
+              <span
+                style={{
+                  border: "1px solid #673ab7",
+                  borderRadius: "10px",
+                  padding: "1px 5px",
+                  display: "inline-block",
+                }}
+              >
+                <span>€{formatNumberEuropeanStyle(governmentFees[0])}</span>-
+                <span>€{formatNumberEuropeanStyle(governmentFees[1])}</span>
+              </span>
+            </Typography>
+          )}
           {governmentFees >= 0 && (
-          <Typography variant="body2" sx={{ textAlign: "center", my: 2 }}>
-            Government fees:{" "}
-            <span
-              style={{
-                border: "1px solid #673ab7",
-                borderRadius: "10px",
-                padding: "1px 5px",
-                display: "inline-block",
-              }}
-            >
-              <span>€{formatNumberEuropeanStyle(governmentFees)}</span>
-            </span>
-          </Typography>
-        )}
+            <Typography variant="body2" sx={{ textAlign: "center", my: 2 }}>
+              Government fees:{" "}
+              <span
+                style={{
+                  border: "1px solid #673ab7",
+                  borderRadius: "10px",
+                  padding: "1px 5px",
+                  display: "inline-block",
+                }}
+              >
+                <span>€{formatNumberEuropeanStyle(governmentFees)}</span>
+              </span>
+            </Typography>
+          )}
           <Typography variant="body2" sx={{ textAlign: "center" }}>
             <b>
               A free consultation with a specialist is necessary for this
@@ -129,27 +128,27 @@ const ConsultationPaperwork = ({
             flexDirection: "column",
           }}
         >
-          <Box sx={{ display: "flex", flexDirection: "column"}}>
-          {requirements && (
+          <Box sx={{ display: "flex", flexDirection: "column" }}>
+            {requirements && (
+              <Button
+                sx={{ alignSelf: "center", my: 1, color: "white" }}
+                size="small"
+                variant="contained"
+                target="_blank"
+                color="orange"
+                onClick={onClickRequirements}
+              >
+                See requirements
+              </Button>
+            )}
             <Button
-              sx={{ alignSelf: "center", my: 1,  color: "white" }}
+              sx={{ alignSelf: "center", mt: 1 }}
               size="small"
               variant="contained"
-              target="_blank"
-              color="orange"
-              onClick={onClickRequirements}
+              onClick={onClickFreeConsultation}
             >
-              See requirements
+              Free consultation
             </Button>
-          )}
-          <Button
-            sx={{ alignSelf: "center", mt: 1 }}
-            size="small"
-            variant="contained"
-            onClick={onClickFreeConsultation}
-          >
-            Free consultation
-          </Button>
           </Box>
         </CardActions>
       </Card>

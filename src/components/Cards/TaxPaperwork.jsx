@@ -145,10 +145,7 @@ const TaxPaperwork = ({
                   display: "inline-block",
                 }}
               >
-                <span
-                >
-                  €{formatNumberEuropeanStyle(governmentFees)}
-                </span>
+                <span>€{formatNumberEuropeanStyle(governmentFees)}</span>
               </span>
             </Typography>
           )}
@@ -161,27 +158,27 @@ const TaxPaperwork = ({
             pb: 2,
           }}
         >
-          <Box sx={{ display: "flex", flexDirection: "column"}}>
-          {requirements && (
+          <Box sx={{ display: "flex", flexDirection: "column" }}>
+            {requirements && (
+              <Button
+                sx={{ alignSelf: "center", mt: 0, mb: 1, color: "white" }}
+                size="small"
+                variant="contained"
+                target="_blank"
+                color="orange"
+                onClick={onClickRequirements}
+              >
+                See requirements
+              </Button>
+            )}
             <Button
-              sx={{ alignSelf: "center", mt: 0, mb:1, color: "white" }}
+              sx={{ alignSelf: "center", mt: 0.5 }}
               size="small"
               variant="contained"
-              target="_blank"
-              color="orange"
-              onClick={onClickRequirements}
+              onClick={onClickHire}
             >
-              See requirements
+              Hire service
             </Button>
-          )}
-          <Button
-            sx={{ alignSelf: "center", mt: 0.5 }}
-            size="small"
-            variant="contained"
-            onClick={onClickHire}
-          >
-            Hire service
-          </Button>
           </Box>
         </CardActions>
       </Card>

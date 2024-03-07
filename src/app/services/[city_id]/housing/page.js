@@ -48,7 +48,7 @@ const HousingPage = () => {
       setSelectedTab(newValue);
       router.push(destinationURL, undefined, { shallow: true });
     },
-    [router, selectedCity.city_id],
+    [router, selectedCity.city_id]
   );
 
   useEffect(() => {
@@ -62,7 +62,7 @@ const HousingPage = () => {
       housingState.data.housingListings.length === 0 ||
       housingState.city_id !== selectedCity.city_id
     ) {
-      dispatch(fetchHousingListings(selectedCity.city_id, 5000));
+      dispatch(fetchHousingListings(selectedCity.city_id, 4000));
     }
   }, [selectedCity.city_id, dispatch, housingState]);
 
