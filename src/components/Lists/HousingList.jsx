@@ -1,25 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { FixedSizeList } from "react-window";
-import {
-  useMediaQuery,
-  useTheme,
-  Box,
-  ToggleButton,
-  ToggleButtonGroup,
-  Typography,
-  Pagination,
-  InputLabel,
-  Select,
-  MenuItem,
-  OutlinedInput,
-  FormControl,
-} from "@mui/material";
+import { useMediaQuery, useTheme, Box, Pagination } from "@mui/material";
 
 import HousingListing from "components/Cards/HousingListing";
 import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 
-import { updateHousingOrderBy } from "actions";
 import { housingPageSize } from "constants/constants";
 
 function renderRow(props) {
@@ -40,15 +26,11 @@ export default function HousingList() {
   const listRef = useRef();
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
-  const dispatch = useDispatch();
 
   const filteredHListings = useSelector(
     (state) => state.housing.data.filteredHListings,
   );
   const housingState = useSelector((state) => state.housing);
-  const housingOrderBy = useSelector((state) => state.housing.data.orderBy);
-
-  const [orderBy, setOrderBy] = useState(housingOrderBy);
   const [pageNum, setPageNum] = useState(1);
 
   const itemSize = isSmallScreen ? 530 : 255;
@@ -80,12 +62,6 @@ export default function HousingList() {
     };
   }, []);
 
-  const changeOrderBy = (event) => {
-    const value = event.target.value;
-    setOrderBy(value);
-    dispatch(updateHousingOrderBy(value));
-  };
-
   const changePage = (_, value) => {
     setPageNum(value);
   };
@@ -113,24 +89,6 @@ export default function HousingList() {
           page={validatedPageNum}
           onChange={changePage}
         />
-        <FormControl sx={{ width: 140 }}>
-          <InputLabel id="order-by">Order By</InputLabel>
-          <Select
-            value={orderBy}
-            onChange={changeOrderBy}
-            input={<OutlinedInput label="Order By" />}
-          >
-            <MenuItem key="rank" value="rank">
-              Rank
-            </MenuItem>
-            <MenuItem key="low-price" value="low-price">
-              Lowest price
-            </MenuItem>
-            <MenuItem key="high-price" value="high-price">
-              Highest price
-            </MenuItem>
-          </Select>
-        </FormControl>
       </Box>
       <Box
         sx={{
@@ -181,24 +139,6 @@ export default function HousingList() {
               page={validatedPageNum}
               onChange={changePage}
             />
-            <FormControl sx={{ width: 140 }}>
-              <InputLabel id="order-by">Order By</InputLabel>
-              <Select
-                value={orderBy}
-                onChange={changeOrderBy}
-                input={<OutlinedInput label="Order By" />}
-              >
-                <MenuItem key="rank" value="rank">
-                  Rank
-                </MenuItem>
-                <MenuItem key="low-price" value="low-price">
-                  Lowest price
-                </MenuItem>
-                <MenuItem key="high-price" value="high-price">
-                  Highest price
-                </MenuItem>
-              </Select>
-            </FormControl>
           </Box>
         )}
       </Box>
