@@ -12,7 +12,7 @@ const services = {
     title: "Paperwork",
     link: "/services/3117735/paperwork",
     description:
-      "Completely online processes through our local partners that do the paperwork for you",
+      "Online processes through our local partners that do the paperwork for you",
   },
   housing: {
     id: "housing",

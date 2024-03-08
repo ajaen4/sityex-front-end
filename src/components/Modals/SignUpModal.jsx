@@ -1,19 +1,40 @@
 import React, { useState } from "react";
 
-import { Stack, Typography, Box, Dialog, Divider, Button } from "@mui/material";
+import { Stack, Typography, Box, Dialog, Divider, Button, IconButton, } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 
 import SignUpForm from "components/Forms/SignUpForm";
 import LogInForm from "components/Forms/LogInForm";
+import { useShowSignUpContext } from "components/Contexts/ShowSignUpContext";
 
 const SignUpModal = ({ open, onClose }) => {
   const [formType, setFormType] = useState("signup");
+  const { setShowSignUpModal } = useShowSignUpContext();
 
   const toggleFormType = () => {
     setFormType(formType === "signup" ? "login" : "signup");
   };
 
+  const handleClose = (e) => {
+    e.stopPropagation();
+    setShowSignUpModal(false);
+  };
+
   return (
     <Dialog open={open} onClose={onClose} sx={{ mt: 5 }}>
+      <IconButton
+        onClick={handleClose}
+        sx={{
+          position: "absolute",
+          right: 8,
+          top: 8,
+          zIndex: 100,
+          color: "black",
+          backgroundColor: "white",
+        }}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
       <Stack
         alignItems="center"
         justifyContent="center"
