@@ -15,8 +15,14 @@ import {
   Button,
   Typography,
   Chip,
+  InputLabel,
+  Select,
+  MenuItem,
+  OutlinedInput,
+  FormControl,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMoreOutlined";
+import StopPropagation from "components/StopPropagation/StopPropagation";
 
 import MultipleSelect from "components/Selects/MultipleSelect";
 import SingleSelect from "components/Selects/SingleSelect";
@@ -24,15 +30,17 @@ import SingleSelect from "components/Selects/SingleSelect";
 import { debounce } from "helpers/usefulFunctions";
 import { updateHousingFilters } from "actions";
 import { defaultHousingFilters } from "constants/constants";
+import { updateHousingOrderBy } from "actions";
 
 const HousingFilters = () => {
   const housingFilters = useSelector((state) => state.housing.data.filters);
+  const housingOrderBy = useSelector((state) => state.housing.data.orderBy);
+
+  const dispatch = useDispatch();
 
   const { register, watch, control, reset } = useForm({
     defaultValues: housingFilters,
   });
-
-  const dispatch = useDispatch();
 
   const clearFilters = () => {
     reset(defaultHousingFilters);
@@ -41,6 +49,11 @@ const HousingFilters = () => {
   const debounceFilters = debounce((data) => {
     dispatch(updateHousingFilters(data));
   }, 500);
+
+  const changeOrderBy = (event) => {
+    const value = event.target.value;
+    dispatch(updateHousingOrderBy(value));
+  };
 
   useEffect(() => {
     const subscription = watch((value, { name, type }) =>
@@ -58,11 +71,36 @@ const HousingFilters = () => {
       }}
     >
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-        <Chip
-          label={<b>Filters</b>}
-          color="secondary"
-          sx={{ mx: 2, py: 0.5 }}
-        />
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Chip
+            label={<b>Filters</b>}
+            color="secondary"
+            sx={{ mx: 2, py: 0.5 }}
+          />
+        </Box>
+        <Box sx={{ width: "100%", display: "flex", justifyContent: "end" }}>
+          <FormControl sx={{ width: 140, mr: { xs: 1, md: 2 } }}>
+            <InputLabel id="order-by">Order By</InputLabel>
+            <StopPropagation>
+              <Select
+                value={housingOrderBy}
+                onChange={changeOrderBy}
+                input={<OutlinedInput label="Order By"
+                style={{ width: "100%"}} />}
+              >
+                <MenuItem key="rank" value="rank">
+                  Rank
+                </MenuItem>
+                <MenuItem key="low-price" value="low-price">
+                  Lowest price
+                </MenuItem>
+                <MenuItem key="high-price" value="high-price">
+                  Highest price
+                </MenuItem>
+              </Select>
+            </StopPropagation>
+          </FormControl>
+        </Box>
       </AccordionSummary>
       <Box sx={{ display: "flex", flexGrow: 1, justifyContent: "end" }}>
         <Button

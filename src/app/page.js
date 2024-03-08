@@ -179,14 +179,16 @@ const LandingPage = () => {
               mt: 5,
             }}
           >
-            <img
-              width="200"
-              height="50"
-              src={`${imagesCdn}/partner_logos/entretramites.webp`}
-              alt="entretramites icon"
-              title="Entre Tramites"
-              style={{ marginTop: 30, marginLeft: 20, marginRight: 20 }}
-            />
+            <a href="/services/3117735/paperwork">
+              <img
+                width="200"
+                height="50"
+                src={`${imagesCdn}/partner_logos/entretramites.webp`}
+                alt="entretramites icon"
+                title="Entre Tramites"
+                style={{ marginTop: 30, marginLeft: 20, marginRight: 20 }}
+              />
+            </a>
             <a
               href="https://taxdown.es/landings_partners/sityex/?utm_source=empleados&utm_medium=partnership&utm_campaign=empleados_partnership"
               target="_blank"
@@ -201,30 +203,36 @@ const LandingPage = () => {
                 style={{ marginTop: 30, marginLeft: 20, marginRight: 20 }}
               />
             </a>
-            <img
-              width="140"
-              height="45"
-              src={`${imagesCdn}/partner_logos/housing_anywhere.png`}
-              alt="housinganywhere icon"
-              title="HousingAnywhere"
-              style={{ marginTop: 30, marginLeft: 10, marginRight: 10 }}
-            />
-            <img
-              width="80"
-              height="100"
-              src={`${imagesCdn}/partner_logos/spotahome.png`}
-              alt="spotahome icon"
-              title="Spotahome"
-              style={{ marginTop: 20, marginLeft: 10, marginRight: 10 }}
-            />
-            <img
-              width="180"
-              height="35"
-              src={`${imagesCdn}/partner_logos/uniplaces.png`}
-              alt="uniplaces icon"
-              title="Uniplaces"
-              style={{ marginTop: 30, marginLeft: 10, marginRight: 10 }}
-            />
+            <a href="/services/3117735/housing">
+              <img
+                width="140"
+                height="45"
+                src={`${imagesCdn}/partner_logos/housing_anywhere.png`}
+                alt="housinganywhere icon"
+                title="HousingAnywhere"
+                style={{ marginTop: 30, marginLeft: 10, marginRight: 10 }}
+              />
+            </a>
+            <a href="/services/3117735/housing?tab=discounts">
+              <img
+                width="80"
+                height="100"
+                src={`${imagesCdn}/partner_logos/spotahome.png`}
+                alt="spotahome icon"
+                title="Spotahome"
+                style={{ marginTop: 20, marginLeft: 10, marginRight: 10 }}
+              />
+            </a>
+            <a href="/services/3117735/housing">
+              <img
+                width="180"
+                height="35"
+                src={`${imagesCdn}/partner_logos/uniplaces.png`}
+                alt="uniplaces icon"
+                title="Uniplaces"
+                style={{ marginTop: 30, marginLeft: 10, marginRight: 10 }}
+              />
+            </a>
             <img
               width="100"
               height="30"

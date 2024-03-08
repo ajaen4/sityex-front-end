@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 
-import { Stack, Typography, Box, Dialog, Divider, Button, IconButton, } from "@mui/material";
+import {
+  Stack,
+  Typography,
+  Box,
+  Dialog,
+  Divider,
+  Button,
+  IconButton,
+} from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
 import SignUpForm from "components/Forms/SignUpForm";
