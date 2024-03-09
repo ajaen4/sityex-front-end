@@ -1,6 +1,6 @@
 export const pages = ["Services", "Blog", "About Us"];
 export const settings = ["Account", "Logout"];
-export const drawerWidth = 240;
+export const drawerWidth = 200;
 export const tabletDrawerWidth = 200;
 export const minBottomNavHeight = 60;
 export const housingPageSize = 30;
