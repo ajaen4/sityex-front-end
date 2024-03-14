@@ -31,3 +31,17 @@ export const formatPrice = (price) => {
     currency: "EUR",
   }).format(number);
 };
+
+export const formatDate = (date) => {
+  const options = {
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    timeZone: "Europe/Madrid",
+  };
+  const formattedDate = new Intl.DateTimeFormat("en-ES", options).format(date);
+
+  return formattedDate.replace(",", "").toUpperCase();
+};

@@ -15,6 +15,7 @@ import {
 
 import { useShowBotNavContext } from "components/Contexts/ShowBotNavContext";
 
+import { formatDate } from "helpers/usefulFunctions";
 import { imagesCdn, minBottomNavHeight } from "constants/constants";
 
 const EventsGrid = ({ events }) => {
@@ -50,6 +51,7 @@ const EventsGrid = ({ events }) => {
       return null;
     }
 
+    const eventDate = new Date(event.timestamp);
     const isError = eventsBadImage.includes(event.event_id);
     let imgSrc = event.image_url;
 
@@ -95,6 +97,8 @@ const EventsGrid = ({ events }) => {
                 }}
               >
                 {event.title}
+                <br />
+                {formatDate(eventDate)}
               </div>
             }
             onClick={() => handleEventClick(event.event_id)}

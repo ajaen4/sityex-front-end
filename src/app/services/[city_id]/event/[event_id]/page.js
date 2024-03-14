@@ -14,7 +14,7 @@ const EventMap = dynamic(() => import("components/Maps/EventMap"), {
 });
 
 import { getCityEvent } from "actions";
-
+import { formatDate } from "helpers/usefulFunctions";
 import { imagesCdn } from "constants/constants";
 
 const CityEventPage = () => {
@@ -34,22 +34,6 @@ const CityEventPage = () => {
 
   const clickedRSVP = () => {
     window.open(selectedEvent.event_url, "_blank", "noopener");
-  };
-
-  const formatDate = () => {
-    const options = {
-      weekday: "short",
-      month: "short",
-      day: "numeric",
-      hour: "numeric",
-      minute: "2-digit",
-      timeZone: "Europe/Madrid",
-    };
-    const formattedDate = new Intl.DateTimeFormat("en-ES", options).format(
-      eventDate
-    );
-
-    return formattedDate.replace(",", "").toUpperCase();
   };
 
   if (!selectedEvent) return <CenteredLoadingSpinner />;
@@ -107,7 +91,7 @@ const CityEventPage = () => {
             {selectedEvent.venue_name}
           </Typography>
           <Typography variant="h4" sx={{ px: { md: 2 }, py: 0.5 }}>
-            {formatDate()}
+            {formatDate(eventDate)}
           </Typography>
         </Grid>
         <Grid
