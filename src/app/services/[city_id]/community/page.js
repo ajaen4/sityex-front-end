@@ -69,7 +69,7 @@ const CommunityPage = () => {
           💆‍♂️ SityEx is a platform focused on making life easier for expats in
           Madrid. <br />
           <br />
-          😉 Don't be shy and take the leap!
+          😉 Don&apos;t be shy and take the leap!
         </Typography>
       </Box>
       <Typography variant="h3" sx={{ mb: { xs: 2, md: 3 }, fontSize: 25 }}>
