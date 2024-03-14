@@ -101,30 +101,12 @@ const CommunityPage = () => {
           <Box
             sx={{
               display: "flex",
-              alignItems: "end",
-              backgroundImage: `url(${currEvents[0].image_url})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
+              flexDirection: "column",
+              width: "100%",
               height: 230,
-              width: { xs: "100%", md: 415 },
-              cursor: "pointer",
             }}
-            onClick={() => handleEventClick(currEvents[0].event_id)}
           >
-            <div
-              style={{
-                padding: 10,
-                backgroundColor: "rgba(0, 0, 0, 0.5)",
-                whiteSpace: "normal",
-                height: "2.4rem",
-                fontSize: "0.8rem",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                color: "white",
-              }}
-            >
-              {currEvents[0].title}
-            </div>
+            <EventsGrid events={currEvents} />
           </Box>
         )}
       </Box>
