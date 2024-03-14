@@ -85,8 +85,9 @@ const HousingFilters = () => {
               <Select
                 value={housingOrderBy}
                 onChange={changeOrderBy}
-                input={<OutlinedInput label="Order By"
-                style={{ width: "100%"}} />}
+                input={
+                  <OutlinedInput label="Order By" style={{ width: "100%" }} />
+                }
               >
                 <MenuItem key="rank" value="rank">
                   Rank

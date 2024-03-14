@@ -14,35 +14,20 @@ import {
   Button,
 } from "@mui/material";
 
-import TicketIcon from "@mui/icons-material/ConfirmationNumberOutlined";
 import PeopleIcon from "@mui/icons-material/PeopleOutlined";
 import HouseIcon from "@mui/icons-material/MapsHomeWorkOutlined";
 import GovernmentIcon from "@mui/icons-material/AssuredWorkloadOutlined";
-
-import { useShowSignUpContext } from "components/Contexts/ShowSignUpContext";
 
 import * as ROUTES_PATHS from "routes/paths";
 
 const PaperworkPage = () => {
   const selectedCity = useSelector((state) => state.selectedCity.data);
-  const auth = useSelector((state) => state.auth);
-
-  const { setShowSignUpModal } = useShowSignUpContext();
 
   const router = useRouter();
 
   const onClickExplore = (section) => {
     const destinationURL = `/services/${selectedCity.city_id}/${section}`;
-
-    if (
-      section === ROUTES_PATHS.CITY_COMMUNITY &&
-      auth.isAuthResolved === false
-    ) {
-      setShowSignUpModal(true);
-      localStorage.setItem("destinationURL", destinationURL);
-    } else {
-      router.push(destinationURL);
-    }
+    router.push(destinationURL);
   };
 
   return (
@@ -109,7 +94,7 @@ const PaperworkPage = () => {
                 sx={{ alignSelf: "center", fontSize: { xs: 15, md: 16 } }}
                 size="small"
                 variant="contained"
-                onClick={() => onClickExplore(ROUTES_PATHS.CITY_BUREAUCRACY)}
+                onClick={() => onClickExplore(ROUTES_PATHS.CITY_PAPERWORK)}
               >
                 Explore
               </Button>
@@ -169,16 +154,16 @@ const PaperworkPage = () => {
             <CardContent
               sx={{ pb: 0, minHeight: { xs: 235, md: 250, lg: 205 } }}
             >
-              <TicketIcon sx={{ fontSize: { xs: 30, md: 40 } }} />
+              <PeopleIcon sx={{ fontSize: { xs: 30, md: 40 } }} />
               <Typography gutterBottom variant="h3" component="div">
-                Events
+                Community
               </Typography>
               <Typography
                 variant="body2"
                 sx={{ fontSize: { xs: 15, md: 16 }, mt: 2 }}
               >
-                We organize exclusive SityEx events and offer third party
-                experiences, concerts, etc...
+                Thriving community of young expats to help you feel at home in
+                Spain from day one
               </Typography>
             </CardContent>
             <CardActions
@@ -191,7 +176,7 @@ const PaperworkPage = () => {
                 sx={{ alignSelf: "center", fontSize: { xs: 15, md: 16 } }}
                 size="small"
                 variant="contained"
-                onClick={() => onClickExplore(ROUTES_PATHS.CITY_EVENTS)}
+                onClick={() => onClickExplore(ROUTES_PATHS.CITY_COMMUNITY)}
               >
                 Explore
               </Button>

@@ -5,7 +5,6 @@ import {
   getDocs,
   query,
   limit,
-  where,
   orderBy,
 } from "firebase/firestore";
 import db from "baas";

@@ -4,9 +4,8 @@ import {
   getDoc,
   getDocs,
   collection,
-  setDoc,
   query,
-  where,
+  orderBy,
 } from "firebase/firestore";
 
 const citiesCollection = collection(db, "cities");
@@ -14,20 +13,9 @@ const citiesCollection = collection(db, "cities");
 export const getCityEvents = async (city_id) => {
   const cityDocRef = doc(citiesCollection, city_id);
   const eventsCollectionRef = collection(cityDocRef, "events");
-  const eventsDocs = await getDocs(eventsCollectionRef);
 
-  if (eventsDocs.empty) return [];
+  const q = query(eventsCollectionRef, orderBy("timestamp", "desc"));
 
-  return eventsDocs.docs.map((doc) => doc.data());
-};
-
-export const getCityTrendingEvents = async (city_id) => {
-  const cityDocRef = doc(citiesCollection, city_id);
-  const eventsCollectionRef = collection(cityDocRef, "events");
-  const q = query(
-    eventsCollectionRef,
-    where("availability_of_tickets", "!=", "high"),
-  );
   const eventsDocs = await getDocs(q);
 
   if (eventsDocs.empty) return [];
@@ -43,48 +31,4 @@ export const getCityEvent = async (city_id, event_id) => {
   if (eventDoc.empty) return [];
 
   return eventDoc.data();
-};
-
-export const setUserInterested = async (
-  city_id,
-  event_id,
-  user_id,
-  interested_info,
-) => {
-  const cityDocRef = doc(citiesCollection, city_id);
-  const eventCollectionRef = doc(collection(cityDocRef, "events"), event_id);
-  const interestedUsersRef = doc(
-    collection(eventCollectionRef, "interested_users"),
-    user_id,
-  );
-
-  setDoc(
-    interestedUsersRef,
-    {
-      user_id: user_id,
-      ...interested_info,
-    },
-    { merge: true },
-  );
-};
-
-export const countInterestedUsers = async (city_id, event_id, user_id) => {
-  const cityDocRef = doc(citiesCollection, city_id);
-  const eventCollectionRef = doc(collection(cityDocRef, "events"), event_id);
-  const interestedUsersCollectionRef = collection(
-    eventCollectionRef,
-    "interested_users",
-  );
-
-  const querySnapshot = await getDocs(interestedUsersCollectionRef);
-  let count = 0;
-
-  querySnapshot.forEach((doc) => {
-    const doc_data = doc.data();
-    if (doc_data.is_interested && doc_data.user_id !== user_id) {
-      count++;
-    }
-  });
-
-  return count;
 };

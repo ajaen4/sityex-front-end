@@ -8,9 +8,9 @@ import { usePathname } from "next/navigation";
 
 import { useMediaQuery, Box } from "@mui/material";
 
-import TicketIcon from "@mui/icons-material/ConfirmationNumberOutlined";
 import HouseIcon from "@mui/icons-material/MapsHomeWorkOutlined";
 import GovernmentIcon from "@mui/icons-material/AssuredWorkloadOutlined";
+import PeopleIcon from "@mui/icons-material/PeopleOutlined";
 
 import { useShowBotNavContext } from "components/Contexts/ShowBotNavContext";
 
@@ -37,10 +37,9 @@ export default function CityTabs() {
   const getTabValue = useCallback(() => {
     const path = pathname.split("/");
 
-    if (path.includes(ROUTES_PATHS.CITY_BUREAUCRACY)) setValue(0);
+    if (path.includes(ROUTES_PATHS.CITY_PAPERWORK)) setValue(0);
     if (path.includes(ROUTES_PATHS.CITY_HOUSING)) setValue(1);
-    if (path.includes(ROUTES_PATHS.CITY_EVENTS)) setValue(2);
-    if (path.includes(ROUTES_PATHS.CITY_COMMUNITY)) setValue(3);
+    if (path.includes(ROUTES_PATHS.CITY_COMMUNITY)) setValue(2);
   }, [pathname]);
 
   const itemSelected = (event, value) => {
@@ -84,7 +83,7 @@ export default function CityTabs() {
             label="Paperwork"
             icon={<GovernmentIcon />}
             sx={{ color: "white", "&.Mui-selected": { color: "white" } }}
-            data-path={ROUTES_PATHS.CITY_BUREAUCRACY}
+            data-path={ROUTES_PATHS.CITY_PAPERWORK}
           />
           <BottomNavigationAction
             label="Housing"
@@ -92,11 +91,12 @@ export default function CityTabs() {
             data-path={ROUTES_PATHS.CITY_HOUSING}
             sx={{ color: "white", "&.Mui-selected": { color: "white" } }}
           />
+
           <BottomNavigationAction
-            label="Events"
-            icon={<TicketIcon />}
+            label="Community"
+            icon={<PeopleIcon />}
             sx={{ color: "white", "&.Mui-selected": { color: "white" } }}
-            data-path={ROUTES_PATHS.CITY_EVENTS}
+            data-path={ROUTES_PATHS.CITY_COMMUNITY}
           />
         </BottomNavigation>
       </Paper>

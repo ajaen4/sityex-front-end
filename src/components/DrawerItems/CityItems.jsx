@@ -13,6 +13,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import TicketIcon from "@mui/icons-material/ConfirmationNumberOutlined";
 import HouseIcon from "@mui/icons-material/MapsHomeWorkOutlined";
 import GovernmentIcon from "@mui/icons-material/AssuredWorkloadOutlined";
+import PeopleIcon from "@mui/icons-material/PeopleOutlined";
 
 import * as ROUTES_PATHS from "routes/paths";
 
@@ -29,7 +30,7 @@ const CityItems = () => {
         {
           icon: <GovernmentIcon />,
           text: "Paperwork",
-          path: ROUTES_PATHS.CITY_BUREAUCRACY,
+          path: ROUTES_PATHS.CITY_PAPERWORK,
         },
         {
           icon: <HouseIcon />,
@@ -37,9 +38,9 @@ const CityItems = () => {
           path: ROUTES_PATHS.CITY_HOUSING,
         },
         {
-          icon: <TicketIcon />,
-          text: "Events",
-          path: ROUTES_PATHS.CITY_EVENTS,
+          icon: <PeopleIcon />,
+          text: "Community",
+          path: ROUTES_PATHS.CITY_COMMUNITY,
         },
       ].map((item) => (
         <ListItem disablePadding sx={{ display: "block" }} key={item.text}>

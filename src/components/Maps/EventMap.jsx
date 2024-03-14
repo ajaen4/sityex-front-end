@@ -25,7 +25,7 @@ const customMarkerIcon = L.icon({
 function EventMap({ eventCoordinates }) {
   return (
     <MapContainer
-      center={[eventCoordinates.latitude, eventCoordinates.longitude]}
+      center={[eventCoordinates[0], eventCoordinates[1]]}
       zoom={17}
       style={{ height: "100%", width: "100%" }}
       zoomControl={false}
@@ -38,7 +38,7 @@ function EventMap({ eventCoordinates }) {
       <Marker
         icon={customMarkerIcon}
         draggable={false}
-        position={[eventCoordinates.latitude, eventCoordinates.longitude]}
+        position={[eventCoordinates[0], eventCoordinates[1]]}
       ></Marker>
     </MapContainer>
   );
