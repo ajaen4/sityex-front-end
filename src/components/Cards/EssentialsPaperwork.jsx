@@ -52,7 +52,7 @@ const EssentialsPaperwork = ({
       sx={{
         display: "flex",
         flexDirection: "column",
-        m: 1,
+        m: 0.5,
         textAlign: "center",
       }}
     >
