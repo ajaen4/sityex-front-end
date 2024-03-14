@@ -186,7 +186,7 @@ const LandingPage = () => {
                 src={`${imagesCdn}/partner_logos/entretramites.webp`}
                 alt="entretramites icon"
                 title="Entre Tramites"
-                style={{ marginTop: 30, marginLeft: 20, marginRight: 20 }}
+                style={{ marginTop: 20, marginLeft: 20, marginRight: 20 }}
               />
             </a>
             <a
@@ -233,14 +233,6 @@ const LandingPage = () => {
                 style={{ marginTop: 30, marginLeft: 10, marginRight: 10 }}
               />
             </a>
-            <img
-              width="100"
-              height="30"
-              src={`${imagesCdn}/partner_logos/fever.png`}
-              alt="fever icon"
-              title="Fever"
-              style={{ marginTop: 30, marginLeft: 10, marginRight: 10 }}
-            />
           </Box>
         </Box>
       </Grid>

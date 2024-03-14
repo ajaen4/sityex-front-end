@@ -1,6 +1,4 @@
-import {
-    Box
-} from "@mui/material";
+import { Box } from "@mui/material";
 
 const StopPropagation = ({ children }) => {
   const stopPropagation = (event) => {

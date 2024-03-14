@@ -26,7 +26,7 @@ const services = {
     id: "community",
     icon: "events-2.png",
     title: "Community",
-    link: "#community",
+    link: "/services/3117735/community",
     description:
       "Thriving community of young expats to help you feel at home in Spain from day one",
   },

@@ -5,90 +5,61 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "next/navigation";
 import dynamic from "next/dynamic";
 
-import { Box, Grid, Typography, Button, Chip } from "@mui/material";
+import { Box, Grid, Typography, Button, Card } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOnOutlined";
 import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 
 const EventMap = dynamic(() => import("components/Maps/EventMap"), {
   ssr: false,
 });
-import EventCalendar from "components/Calendars/EventCalendar";
 
-import { getCityEvent, setUserInterested } from "actions";
+import { getCityEvent } from "actions";
 
 import { imagesCdn } from "constants/constants";
 
 const CityEventPage = () => {
-  const auth = useSelector((state) => state.auth);
   const selectedCity = useSelector((state) => state.selectedCity.data);
   const selectedEvent = useSelector((state) => state.events.data.selectedEvent);
   const [imageHasError, setImageHasError] = useState(false);
+
+  const eventDate = new Date(selectedEvent?.timestamp);
 
   const { event_id } = useParams();
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!auth.data) {
-      return;
-    }
-
-    const interested_info = {
-      is_interested: true,
-    };
-
-    setUserInterested(
-      selectedCity.city_id,
-      event_id,
-      auth.data.id,
-      interested_info,
-    );
-  }, [auth.data, event_id, selectedCity.city_id]);
-
-  useEffect(() => {
     dispatch(getCityEvent(selectedCity.city_id, event_id));
   }, [dispatch, selectedCity.city_id, event_id]);
 
-  const formatText = (text) => {
-    return text.split("\n").map((line, index) => (
-      <span key={index}>
-        {line}
-        <br />
-      </span>
-    ));
+  const clickedRSVP = () => {
+    window.open(selectedEvent.event_url, "_blank", "noopener");
   };
 
-  const clickedBuyTickets = () => {
-    const buy_info = {
-      has_bought: true,
+  const formatDate = () => {
+    const options = {
+      weekday: "short",
+      month: "short",
+      day: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+      timeZone: "Europe/Madrid",
     };
+    const formattedDate = new Intl.DateTimeFormat("en-ES", options).format(
+      eventDate
+    );
 
-    if (auth.data?.id)
-      setUserInterested(
-        selectedCity.city_id,
-        event_id,
-        auth.data?.id,
-        buy_info,
-      );
-    window.open(selectedEvent.affiliate_url, "_blank", "noopener");
+    return formattedDate.replace(",", "").toUpperCase();
   };
 
   if (!selectedEvent) return <CenteredLoadingSpinner />;
 
-  let imgSrc = null;
-  if (selectedEvent.partner === "sityex") {
-    imgSrc = `${imagesCdn}/${selectedEvent.photo_1}`;
-  } else {
-    imgSrc = selectedEvent.photo_1;
-  }
+  const plan_name = selectedEvent.title;
+  let imgSrc = selectedEvent.image_url;
 
   if (imageHasError) {
     imgSrc = `${imagesCdn}/logos/square_black_big_logo_blue.png`;
   }
-
-  const plan_name = selectedEvent.plan_name_en
-    ? selectedEvent.plan_name_en
-    : selectedEvent.plan_name_es;
 
   if (selectedEvent.event_id !== event_id) {
     return <CenteredLoadingSpinner />;
@@ -106,8 +77,8 @@ const CityEventPage = () => {
         borderRadius: 2,
       }}
     >
-      <Grid container sx={{ display: "flex", justifyContent: "center" }}>
-        <Grid item xs={12} md={3} lg={3}>
+      <Grid container sx={{ display: "flex", justifyContent: "start" }}>
+        <Grid item xs={12} md={5} lg={5}>
           <img
             onError={() => setImageHasError(true)}
             srcSet={imgSrc}
@@ -120,8 +91,8 @@ const CityEventPage = () => {
         <Grid
           item
           xs={12}
-          md={7}
-          lg={7}
+          md={5}
+          lg={5}
           sx={{
             display: "flex",
             flexDirection: "column",
@@ -129,21 +100,14 @@ const CityEventPage = () => {
             justifyContent: "flex-end",
           }}
         >
-          {selectedEvent.availability_of_tickets === "low" && (
-            <Chip
-              label="Few tickets left"
-              color="secondary"
-              sx={{ mx: 2, py: 0.5 }}
-            />
-          )}
           <Typography variant="h2" sx={{ px: { md: 2 }, py: 0.5 }}>
             {plan_name}
           </Typography>
           <Typography variant="h4" sx={{ px: { md: 2 }, py: 0.5 }}>
-            {selectedEvent.venue}
+            {selectedEvent.venue_name}
           </Typography>
-          <Typography variant="h5" sx={{ px: { md: 2 }, py: 0.5 }}>
-            {`Starting from: ${selectedEvent.minimum_price} ${selectedEvent.currency}`}
+          <Typography variant="h4" sx={{ px: { md: 2 }, py: 0.5 }}>
+            {formatDate()}
           </Typography>
         </Grid>
         <Grid
@@ -159,20 +123,32 @@ const CityEventPage = () => {
             my: { xs: 2, md: 0, lg: 0 },
           }}
         >
-          {selectedEvent.partner !== "sityex" && (
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={clickedBuyTickets}
-            >
-              Buy tickets
+          {eventDate >= new Date() && (
+            <Button variant="contained" color="primary" onClick={clickedRSVP}>
+              RSVP
             </Button>
           )}
+          {eventDate < new Date() && (
+            <Card
+              sx={{
+                background: "#cdd5df",
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                p: 2,
+              }}
+            >
+              Past event
+            </Card>
+          )}
         </Grid>
-        <Grid item xs={12} md={7} lg={8} xl={9}>
-          <Typography sx={{ pt: { xs: 1, md: 4, lg: 4 }, pb: 2, fontSize: 16 }}>
-            {formatText(selectedEvent.description_en)}
-          </Typography>
+        <Grid item xs={12} md={8} lg={9} xl={9}>
+          <Typography
+            sx={{ pt: { xs: 1, md: 4, lg: 4 }, pb: 2, fontSize: 16 }}
+            dangerouslySetInnerHTML={{
+              __html: selectedEvent.description_html,
+            }}
+          />
         </Grid>
         <Grid
           item
@@ -184,16 +160,8 @@ const CityEventPage = () => {
             display: "flex",
             mt: { xs: 2 },
           }}
-        >
-          {selectedEvent.sessions &&
-            !plan_name.toLowerCase().includes("tarjeta regalo") && (
-              <EventCalendar selectedEvent={selectedEvent} />
-            )}
-        </Grid>
-        {!(
-          selectedEvent.coordinates.latitude === 0 &&
-          selectedEvent.coordinates.longitude === 0
-        ) && (
+        ></Grid>
+        {!(selectedEvent.latitude === 0 && selectedEvent.longitude === 0) && (
           <Grid item xs={12} sx={{ mt: 2 }}>
             <Box sx={{ display: "flex" }}>
               <LocationOnIcon sx={{ fontSize: 25 }} />
@@ -205,7 +173,12 @@ const CityEventPage = () => {
               {selectedEvent.location}
             </Typography>
             <Box sx={{ width: "100%", height: 200 }}>
-              <EventMap eventCoordinates={selectedEvent.coordinates} />
+              <EventMap
+                eventCoordinates={[
+                  selectedEvent.latitude,
+                  selectedEvent.longitude,
+                ]}
+              />
             </Box>
           </Grid>
         )}

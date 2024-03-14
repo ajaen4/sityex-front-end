@@ -48,7 +48,7 @@ const HousingPage = () => {
       setSelectedTab(newValue);
       router.push(destinationURL, undefined, { shallow: true });
     },
-    [router, selectedCity.city_id],
+    [router, selectedCity.city_id]
   );
 
   useEffect(() => {
@@ -77,7 +77,6 @@ const HousingPage = () => {
         flexDirection: "column",
         textAlign: "center",
         width: "100%",
-        height: "100%",
         justifyContent: "center",
         position: "relative",
       }}
