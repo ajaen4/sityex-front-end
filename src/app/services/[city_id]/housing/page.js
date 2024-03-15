@@ -77,6 +77,7 @@ const HousingPage = () => {
         flexDirection: "column",
         textAlign: "center",
         width: "100%",
+        height: "100%",
         justifyContent: "center",
         position: "relative",
       }}
