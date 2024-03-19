@@ -95,10 +95,7 @@ const EventsGrid = ({ events }) => {
                   position: "absolute",
                   top: 8,
                   right: 8,
-                  fontSize: {
-                    xs: "0.6rem",
-                    md: "0.8rem",
-                  },
+                  fontSize: "0.8rem",
                 }}
               />
           </div>
