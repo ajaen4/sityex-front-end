@@ -31,10 +31,6 @@ const CommunityPage = () => {
     }
   }, [dispatch, selectedCity]);
 
-  const handleEventClick = (eventId) => {
-    router.push(`/services/${selectedCity.city_id}/event/${eventId}`);
-  };
-
   return (
     <Box
       sx={{
@@ -81,6 +77,7 @@ const CommunityPage = () => {
           flexDirection: "column",
           alignItems: "start",
           width: "100%",
+          flexGrow: 1,
         }}
       >
         {currEvents.length === 0 && (
@@ -103,7 +100,8 @@ const CommunityPage = () => {
               display: "flex",
               flexDirection: "column",
               width: "100%",
-              height: 230,
+              minHeight: { xs: 220, md: 0 },
+              flexGrow: 1,
             }}
           >
             <EventsGrid events={currEvents} />
