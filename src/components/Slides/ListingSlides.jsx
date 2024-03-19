@@ -25,6 +25,7 @@ const ListingSlides = ({ images, isInMap, imageHeight, autoPlay, swipe }) => {
           backgroundImage: `url(${image})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
+          cursor: "pointer",
         }}
       />
     ));
