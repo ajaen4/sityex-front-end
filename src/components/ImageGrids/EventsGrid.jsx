@@ -108,7 +108,7 @@ const EventsGrid = ({ events }) => {
                 style={{
                   whiteSpace: "normal",
                   lineHeight: "1.2rem",
-                  maxHeight: "2.4rem",
+                  maxHeight: "4rem",
                   fontSize: "0.8rem",
                   overflow: "hidden",
                   textOverflow: "ellipsis",
@@ -117,6 +117,9 @@ const EventsGrid = ({ events }) => {
                 {event.title}
                 <br />
                 {formatDate(eventDate)}
+                <br />
+                {event.description.slice(0, isSmallScreen ? 50 : 70)}
+                ...
               </div>
             }
             onClick={() => handleEventClick(event.event_id)}
