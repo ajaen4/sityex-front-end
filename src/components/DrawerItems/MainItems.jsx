@@ -30,7 +30,7 @@ const MainItems = () => {
             minHeight: 48,
             px: 2.5,
           }}
-          data-path={"services/3117735"}
+          data-path={"/services/3117735"}
           onClick={itemSelected}
         >
           <ListItemIcon
