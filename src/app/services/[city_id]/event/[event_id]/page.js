@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "next/navigation";
 import dynamic from "next/dynamic";
 
-import { Box, Grid, Typography, Button, Card } from "@mui/material";
+import { Box, Grid, Typography, Button, Card, Chip } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOnOutlined";
 import CenteredLoadingSpinner from "components/Spinner/CenteredLoadingSpinner";
 
@@ -17,12 +17,15 @@ import { getCityEvent } from "actions";
 import { formatDate } from "helpers/usefulFunctions";
 import { imagesCdn } from "constants/constants";
 
+const now = new Date();
+
 const CityEventPage = () => {
   const selectedCity = useSelector((state) => state.selectedCity.data);
   const selectedEvent = useSelector((state) => state.events.data.selectedEvent);
   const [imageHasError, setImageHasError] = useState(false);
 
   const eventDate = new Date(selectedEvent?.timestamp);
+  const goingText = eventDate < now ? "went" : "going";
 
   const { event_id } = useParams();
 
@@ -84,6 +87,11 @@ const CityEventPage = () => {
             justifyContent: "flex-end",
           }}
         >
+          <Chip
+            sx={{ mx: { md: 2 } }}
+            color="secondary"
+            label={`${selectedEvent.going_count} ${goingText}`}
+          />
           <Typography variant="h2" sx={{ px: { md: 2 }, py: 0.5 }}>
             {plan_name}
           </Typography>
@@ -107,12 +115,12 @@ const CityEventPage = () => {
             my: { xs: 2, md: 0, lg: 0 },
           }}
         >
-          {eventDate >= new Date() && (
+          {eventDate >= now && (
             <Button variant="contained" color="primary" onClick={clickedRSVP}>
               RSVP
             </Button>
           )}
-          {eventDate < new Date() && (
+          {eventDate < now && (
             <Card
               sx={{
                 background: "#cdd5df",
