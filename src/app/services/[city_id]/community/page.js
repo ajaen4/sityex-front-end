@@ -100,7 +100,7 @@ const CommunityPage = () => {
               display: "flex",
               flexDirection: "column",
               width: "100%",
-              minHeight: { xs: 220, md: 0 },
+              minHeight: { xs: 230, md: 180, lg: 0 },
               flexGrow: 1,
             }}
           >
