@@ -11,12 +11,15 @@ import {
   ImageListItemBar,
   useMediaQuery,
   useTheme,
+  Chip,
 } from "@mui/material";
 
 import { useShowBotNavContext } from "components/Contexts/ShowBotNavContext";
 
 import { formatDate } from "helpers/usefulFunctions";
 import { imagesCdn, minBottomNavHeight } from "constants/constants";
+
+const now = new Date();
 
 const EventsGrid = ({ events }) => {
   const selectedCity = useSelector((state) => state.selectedCity.data);
@@ -55,6 +58,8 @@ const EventsGrid = ({ events }) => {
     const isError = eventsBadImage.includes(event.event_id);
     let imgSrc = event.image_url;
 
+    const goingText = eventDate < now ? "went" : "going";
+
     if (isError) {
       imgSrc = `${imagesCdn}/logos/square_black_big_logo_blue.png`;
     }
@@ -83,6 +88,19 @@ const EventsGrid = ({ events }) => {
               onError={() => handleImageError(event.event_id)}
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
+            <Chip
+                label={`${event.going_count} ${goingText}`}
+                color="secondary"
+                sx={{
+                  position: "absolute",
+                  top: 8,
+                  right: 8,
+                  fontSize: {
+                    xs: "0.6rem",
+                    md: "0.8rem",
+                  },
+                }}
+              />
           </div>
           <ImageListItemBar
             title={
@@ -90,7 +108,7 @@ const EventsGrid = ({ events }) => {
                 style={{
                   whiteSpace: "normal",
                   lineHeight: "1.2rem",
-                  maxHeight: "2.4rem",
+                  maxHeight: "4rem",
                   fontSize: "0.8rem",
                   overflow: "hidden",
                   textOverflow: "ellipsis",
@@ -99,6 +117,9 @@ const EventsGrid = ({ events }) => {
                 {event.title}
                 <br />
                 {formatDate(eventDate)}
+                <br />
+                {event.description.slice(0, isSmallScreen ? 50 : 70)}
+                ...
               </div>
             }
             onClick={() => handleEventClick(event.event_id)}
