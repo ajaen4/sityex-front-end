@@ -125,7 +125,7 @@ const EventsGrid = ({ events }) => {
                 style={{
                   whiteSpace: "normal",
                   lineHeight: "1.2rem",
-                  maxHeight: "4.8rem",
+                  maxHeight: "3.5rem",
                   fontSize: "0.8rem",
                   overflow: "hidden",
                   textOverflow: "ellipsis",

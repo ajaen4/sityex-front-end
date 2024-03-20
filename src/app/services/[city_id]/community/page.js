@@ -76,7 +76,7 @@ const CommunityPage = () => {
           flexDirection: "column",
           alignItems: alignCurrEvents,
           width: "100%",
-          height: { xs: 230, md: 260, lg: 300, xl: 330 },
+          height: { xs: 240, md: 260, lg: 300, xl: 330 },
         }}
       >
         {currEvents.length === 0 && (
@@ -103,7 +103,7 @@ const CommunityPage = () => {
           display: "flex",
           flexDirection: "column",
           width: "100%",
-          height: { xs: 200, md: 260, lg: 300, xl: 320 },
+          height: { xs: 240, md: 260, lg: 300, xl: 330 },
         }}
       >
         <EventsGrid events={pastEvents} />
