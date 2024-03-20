@@ -57,7 +57,7 @@ const Services = () => {
               key={service.id}
               sx={{
                 cursor: "pointer",
-                mx: 1,
+                mx: 0.8,
               }}
             >
               <Link
@@ -71,7 +71,7 @@ const Services = () => {
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
-                    p: 1,
+                    p: 0.8,
                     height: "fit-content",
                   }}
                 >
@@ -79,7 +79,7 @@ const Services = () => {
                     src={`${imagesCdn}/icons/${service.icon}`}
                     alt={`${service.title} icon`}
                     title={service.title}
-                    style={{ height: "80px" }}
+                    style={{ height: "75px" }}
                   />
                 </Card>
               </Link>

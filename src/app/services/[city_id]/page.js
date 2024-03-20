@@ -71,7 +71,11 @@ const PaperworkPage = () => {
             }}
           >
             <CardContent
-              sx={{ pb: 0, minHeight: { xs: 235, md: 250, lg: 205 } }}
+              sx={{
+                pb: 0,
+                px: { xs: 0.8, md: 2 },
+                minHeight: { xs: 235, md: 250, lg: 205 },
+              }}
             >
               <GovernmentIcon sx={{ fontSize: { xs: 30, md: 40 } }} />
               <Typography gutterBottom variant="h3" component="div">
@@ -111,7 +115,11 @@ const PaperworkPage = () => {
             }}
           >
             <CardContent
-              sx={{ pb: 0, minHeight: { xs: 235, md: 250, lg: 205 } }}
+              sx={{
+                pb: 0,
+                px: { xs: 0.8, md: 2 },
+                minHeight: { xs: 235, md: 250, lg: 205 },
+              }}
             >
               <HouseIcon sx={{ fontSize: { xs: 30, md: 40 } }} />
               <Typography gutterBottom variant="h3" component="div">
@@ -152,7 +160,11 @@ const PaperworkPage = () => {
             }}
           >
             <CardContent
-              sx={{ pb: 0, minHeight: { xs: 235, md: 250, lg: 205 } }}
+              sx={{
+                pb: 0,
+                px: { xs: 0.8, md: 2 },
+                minHeight: { xs: 235, md: 250, lg: 205 },
+              }}
             >
               <PeopleIcon sx={{ fontSize: { xs: 30, md: 40 } }} />
               <Typography gutterBottom variant="h3" component="div">
@@ -163,7 +175,7 @@ const PaperworkPage = () => {
                 sx={{ fontSize: { xs: 15, md: 16 }, mt: 2 }}
               >
                 Thriving community of young expats to help you feel at home in
-                Spain from day one
+                Madrid from day one
               </Typography>
             </CardContent>
             <CardActions
