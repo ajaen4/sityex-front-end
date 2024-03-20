@@ -28,9 +28,29 @@ const EventsGrid = ({ events }) => {
 
   const theme = useTheme();
   const router = useRouter();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
-  const numColumns = isSmallScreen ? 1 : 3;
+
+
   const aspectRatio = 1.77;
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+  const isTablet = useMediaQuery(theme.breakpoints.down("lg")) && !isSmallScreen;
+  const isPC = !isSmallScreen && !isTablet;
+
+  let numColumns = null;
+  let maxCharDesc = null;
+
+  if (isSmallScreen){
+    numColumns = 1;
+    maxCharDesc = 50;
+  }
+  else if (isTablet){
+    numColumns = 2;
+    maxCharDesc = 60;
+  }
+  else if (isPC){
+    numColumns = 3;
+    maxCharDesc = 70;
+  }
+  
 
   const handleEventClick = (eventId) => {
     router.push(`/services/${selectedCity.city_id}/event/${eventId}`);
@@ -105,7 +125,7 @@ const EventsGrid = ({ events }) => {
                 style={{
                   whiteSpace: "normal",
                   lineHeight: "1.2rem",
-                  maxHeight: "4rem",
+                  maxHeight: "3.5rem",
                   fontSize: "0.8rem",
                   overflow: "hidden",
                   textOverflow: "ellipsis",
@@ -115,7 +135,7 @@ const EventsGrid = ({ events }) => {
                 <br />
                 {formatDate(eventDate)}
                 <br />
-                {event.description.slice(0, isSmallScreen ? 50 : 70)}
+                {event.description.slice(0, maxCharDesc)}
                 ...
               </div>
             }

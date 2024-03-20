@@ -1,7 +1,6 @@
 "use client";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useRouter } from "next/navigation";
 
 import { Typography, Box } from "@mui/material";
 
@@ -13,8 +12,6 @@ const CommunityPage = () => {
   const selectedCity = useSelector((state) => state.selectedCity.data);
   const events = useSelector((state) => state.events.data.events);
 
-  const router = useRouter();
-
   const today = new Date();
   const currEvents = events.filter((event) => {
     return new Date(event.timestamp) >= today;
@@ -22,6 +19,8 @@ const CommunityPage = () => {
   const pastEvents = events.filter((event) => {
     return new Date(event.timestamp) < today;
   });
+
+  const alignCurrEvents = currEvents.length === 0 ? "center" : "start";
 
   const dispatch = useDispatch();
 
@@ -75,9 +74,9 @@ const CommunityPage = () => {
         sx={{
           display: "flex",
           flexDirection: "column",
-          alignItems: "start",
+          alignItems: alignCurrEvents,
           width: "100%",
-          flexGrow: 1,
+          height: { xs: 240, md: 260, lg: 300, xl: 330 },
         }}
       >
         {currEvents.length === 0 && (
@@ -94,19 +93,7 @@ const CommunityPage = () => {
             </Typography>
           </Box>
         )}
-        {currEvents.length !== 0 && (
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              width: "100%",
-              minHeight: { xs: 230, md: 180, lg: 0 },
-              flexGrow: 1,
-            }}
-          >
-            <EventsGrid events={currEvents} />
-          </Box>
-        )}
+        {currEvents.length !== 0 && <EventsGrid events={currEvents} />}
       </Box>
       <Typography variant="h3" sx={{ my: { xs: 2, md: 3 }, fontSize: 25 }}>
         Past events
@@ -116,7 +103,7 @@ const CommunityPage = () => {
           display: "flex",
           flexDirection: "column",
           width: "100%",
-          height: 100,
+          height: { xs: 240, md: 260, lg: 300, xl: 330 },
         }}
       >
         <EventsGrid events={pastEvents} />
