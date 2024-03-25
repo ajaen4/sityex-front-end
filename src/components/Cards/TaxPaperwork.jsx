@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
 
 import {
   Typography,
@@ -14,7 +13,6 @@ import {
 } from "@mui/material";
 
 import RequirementsModal from "components/Modals/RequirementsModal";
-import { useShowSignUpContext } from "components/Contexts/ShowSignUpContext";
 
 import { imagesCdn } from "constants/constants";
 
@@ -32,10 +30,6 @@ const TaxPaperwork = ({
   const [showModal, setShowModal] = useState(false);
   const [requirementsContent, setRequirementsContent] = useState("");
 
-  const auth = useSelector((state) => state.auth);
-
-  const { setShowSignUpModal } = useShowSignUpContext();
-
   const formatNumberEuropeanStyle = (number) => {
     return number.toLocaleString("de-DE", {
       minimumFractionDigits: 2,
@@ -49,13 +43,7 @@ const TaxPaperwork = ({
   };
 
   const onClickHire = () => {
-    if (auth.isAuthResolved === false) {
-      setShowSignUpModal(true);
-      localStorage.setItem("destinationURL", paymentLink);
-      localStorage.setItem("openInNewTab", true);
-    } else {
-      window.open(paymentLink, "_blank", "noopener,noreferrer");
-    }
+    window.open(paymentLink, "_blank", "noopener,noreferrer");
   };
 
   return (
