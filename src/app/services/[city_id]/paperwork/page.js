@@ -41,10 +41,10 @@ const PaperworkPage = () => {
       router.push(
         `/services/${selectedCity.city_id}/paperwork/?tab=${newValue}`,
         undefined,
-        { shallow: true },
+        { shallow: true }
       );
     },
-    [setSelectedTab, router, selectedCity.city_id],
+    [setSelectedTab, router, selectedCity.city_id]
   );
 
   useEffect(() => {
@@ -106,6 +106,7 @@ const PaperworkPage = () => {
           <Grid container sx={{ justifyContent: "center" }}>
             <Grid item xs={10} md={4} lg={3}>
               <EssentialsPaperwork
+                trackingService="non_residential_nie"
                 title="Non-Residential NIE"
                 tooltipText="Tax identification number assigned to every foreigner who carries out an economic or professional activity."
                 mdMinHeight={260}
@@ -134,6 +135,7 @@ const PaperworkPage = () => {
             </Grid>
             <Grid item xs={10} md={4} lg={3}>
               <EssentialsPaperwork
+                trackingService="residential_nie"
                 title="Residential NIE"
                 tooltipText="Certifies the right of a person to reside in Spain. Also
                 brings the tax identification number."
@@ -166,6 +168,7 @@ const PaperworkPage = () => {
             </Grid>
             <Grid item xs={10} md={4} lg={3}>
               <EssentialsPaperwork
+                trackingService="empadronamiento"
                 title="Empadronamiento"
                 tooltipText="Allows individuals to declare their place of residence in
                 Spain. It is required for accessing public services and
@@ -194,6 +197,7 @@ const PaperworkPage = () => {
             <Grid item xs={12} style={{ width: "100%", height: 0 }}></Grid>
             <Grid item xs={10} md={4} lg={3}>
               <EssentialsPaperwork
+                trackingService="non_eu_citizen_half_pack"
                 title="Non-EU citizen Half Pack"
                 mdMinHeight={232}
                 content={
@@ -217,6 +221,7 @@ const PaperworkPage = () => {
             </Grid>
             <Grid item xs={10} md={4} lg={3}>
               <EssentialsPaperwork
+                trackingService="non_eu_citizen_full_pack"
                 title="Non-EU citizen Full Pack"
                 mdMinHeight={232}
                 content={
@@ -243,6 +248,7 @@ const PaperworkPage = () => {
             </Grid>
             <Grid item xs={10} md={4} lg={3}>
               <EssentialsPaperwork
+                trackingService="eu_citizen_half_pack"
                 title="EU citizen Half Pack"
                 mdMinHeight={232}
                 content={
@@ -266,6 +272,7 @@ const PaperworkPage = () => {
             </Grid>
             <Grid item xs={10} md={4} lg={3}>
               <EssentialsPaperwork
+                trackingService="eu_citizen_full_pack"
                 title="EU citizen Full Pack"
                 mdMinHeight={232}
                 content={
@@ -308,6 +315,7 @@ const PaperworkPage = () => {
           <Grid container sx={{ justifyContent: "center" }}>
             <Grid item xs={10} md={4.5} lg={3.5}>
               <ConsultationPaperwork
+                trackingService="digital_nomad_visa"
                 title="Digital Nomad Visa"
                 mdMinHeight={145}
                 content={
@@ -336,6 +344,7 @@ const PaperworkPage = () => {
             </Grid>
             <Grid item xs={10} md={4.5} lg={3.5}>
               <ConsultationPaperwork
+                trackingService="golden_visa"
                 title="Golden Visa (Non-EU citizens)"
                 mdMinHeight={145}
                 content={
@@ -372,6 +381,7 @@ const PaperworkPage = () => {
           <Grid container sx={{ justifyContent: "center" }}>
             <Grid item xs={10} md={4} lg={3.5}>
               <TaxPaperwork
+                trackingService="beckham_law"
                 title="Beckham Law Application"
                 mdMinHeight={300}
                 mdMinHeightContent={460}
@@ -401,6 +411,7 @@ const PaperworkPage = () => {
             </Grid>
             <Grid item xs={10} md={4} lg={3.5}>
               <TaxPaperwork
+                trackingService="accountant_tax_declaration"
                 title="Accountant Tax Declaration"
                 mdMinHeight={300}
                 mdMinHeightContent={500}
@@ -422,6 +433,7 @@ const PaperworkPage = () => {
             </Grid>
             <Grid item xs={10} md={4} lg={3.5}>
               <TaxPaperwork
+                trackingService="taxdown_tax_declaration"
                 title="Automated Tax Declaration"
                 is_taxdown={true}
                 mdMinHeight={365}
@@ -477,6 +489,7 @@ const PaperworkPage = () => {
           <Grid container sx={{ justifyContent: "center" }}>
             <Grid item xs={10} md={4.5} lg={3.5}>
               <ConsultationPaperwork
+                trackingService="driver_license_exchange"
                 title="Driver's License Exchange"
                 mdMinHeight={183}
                 content={
@@ -504,6 +517,7 @@ const PaperworkPage = () => {
             </Grid>
             <Grid item xs={10} md={4.5} lg={3.5}>
               <ConsultationPaperwork
+                trackingService="vehicle_registration"
                 title="Vehicle Registration"
                 mdMinHeight={183}
                 content={

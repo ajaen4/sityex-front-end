@@ -14,7 +14,10 @@ import {
 
 import RequirementsModal from "components/Modals/RequirementsModal";
 
+import { postHogClient } from "analytics";
+
 const ConsultationPaperwork = ({
+  trackingService,
   title,
   content,
   mdMinHeight,
@@ -41,6 +44,7 @@ const ConsultationPaperwork = ({
   };
 
   const onClickFreeConsultation = () => {
+    postHogClient.capture("hire_paperwork", { service: trackingService });
     window.open(freeConsultationLink, "_blank", "noopener,noreferrer");
   };
 
