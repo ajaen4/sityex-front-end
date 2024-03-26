@@ -18,6 +18,7 @@ import ListingSlides from "components/Slides/ListingSlides";
 import { fetchListingImages } from "actions";
 import { imagesCdn } from "constants/constants";
 import { formatPrice } from "helpers/usefulFunctions";
+import { postHogClient } from "analytics";
 
 const ListingInfoWindow = ({ listing, setSelectedListing }) => {
   const cardRef = useRef(null);
@@ -53,6 +54,11 @@ const ListingInfoWindow = ({ listing, setSelectedListing }) => {
     setSelectedListing(null);
   };
 
+  const onClickListing = (link) => {
+    postHogClient.capture("housing_listing_clicked", { link: link, housing_id: listing.housing_id });
+    window.open(link, "_blank");
+  }
+
   if (images?.housing_id !== listing.housing_id) {
     return null;
   }
@@ -61,7 +67,7 @@ const ListingInfoWindow = ({ listing, setSelectedListing }) => {
     <Card
       ref={cardRef}
       id={listing.housing_id}
-      onClick={() => window.open(listing.link, "_blank")}
+      onClick={() => onClickListing(listing.link)}
       key={listing.housing_id}
       sx={{
         display: "flex",
