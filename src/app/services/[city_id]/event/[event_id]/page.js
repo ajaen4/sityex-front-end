@@ -16,6 +16,7 @@ const EventMap = dynamic(() => import("components/Maps/EventMap"), {
 import { getCityEvent } from "actions";
 import { formatDate } from "helpers/usefulFunctions";
 import { imagesCdn } from "constants/constants";
+import { postHogClient } from "analytics";
 
 const now = new Date();
 
@@ -36,6 +37,9 @@ const CityEventPage = () => {
   }, [dispatch, selectedCity.city_id, event_id]);
 
   const clickedRSVP = () => {
+    postHogClient.capture("event_rsvp_clicked", {
+      event_id: selectedEvent.event_id,
+    });
     window.open(selectedEvent.event_url, "_blank", "noopener");
   };
 

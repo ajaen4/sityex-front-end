@@ -19,6 +19,8 @@ import { fetchListingImages } from "actions";
 import { imagesCdn } from "constants/constants";
 import { formatPrice } from "helpers/usefulFunctions";
 
+import { postHogClient } from "analytics";
+
 const HousingListing = ({ listing }) => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -46,10 +48,15 @@ const HousingListing = ({ listing }) => {
     );
   }, [listing, selectedCity.city_id]);
 
+  const onClickListing = (link) => {
+    postHogClient.capture("housing_listing_clicked", { link: link, housing_id: listing.housing_id });
+    window.open(link, "_blank");
+  }
+
   return (
     <Card
       id={listing.housing_id}
-      onClick={() => window.open(listing.link, "_blank")}
+      onClick={() => onClickListing(listing.link)}
       key={listing.housing_id}
       sx={{
         display: "flex",
