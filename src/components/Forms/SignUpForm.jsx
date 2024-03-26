@@ -53,7 +53,7 @@ const SignUpForm = ({}) => {
   const [showPassword, setShowPassword] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
 
-  const allCountries = useSelector((state) => state.allCountries.data);
+  const [allCountries, setAllCountries] = useState([]);
 
   const resetForm = () => {
     reset({
@@ -86,6 +86,12 @@ const SignUpForm = ({}) => {
     setIsFetching(true);
     logInUserWithGoogle();
   };
+
+  useEffect(() => {
+    api.getCountries().then((countries) => {
+      setAllCountries(countries);
+    });
+  }, []);
 
   useEffect(() => {
     getRedirectResult(auth)

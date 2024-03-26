@@ -29,28 +29,25 @@ const EventsGrid = ({ events }) => {
   const theme = useTheme();
   const router = useRouter();
 
-
   const aspectRatio = 1.77;
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
-  const isTablet = useMediaQuery(theme.breakpoints.down("lg")) && !isSmallScreen;
+  const isTablet =
+    useMediaQuery(theme.breakpoints.down("lg")) && !isSmallScreen;
   const isPC = !isSmallScreen && !isTablet;
 
   let numColumns = null;
   let maxCharDesc = null;
 
-  if (isSmallScreen){
+  if (isSmallScreen) {
     numColumns = 1;
     maxCharDesc = 50;
-  }
-  else if (isTablet){
+  } else if (isTablet) {
     numColumns = 2;
     maxCharDesc = 60;
-  }
-  else if (isPC){
+  } else if (isPC) {
     numColumns = 3;
     maxCharDesc = 70;
   }
-  
 
   const handleEventClick = (eventId) => {
     router.push(`/services/${selectedCity.city_id}/event/${eventId}`);
@@ -109,15 +106,15 @@ const EventsGrid = ({ events }) => {
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
             <Chip
-                label={`${event.going_count} ${goingText}`}
-                color="secondary"
-                sx={{
-                  position: "absolute",
-                  top: 8,
-                  right: 8,
-                  fontSize: "0.8rem",
-                }}
-              />
+              label={`${event.going_count} ${goingText}`}
+              color="secondary"
+              sx={{
+                position: "absolute",
+                top: 8,
+                right: 8,
+                fontSize: "0.8rem",
+              }}
+            />
           </div>
           <ImageListItemBar
             title={

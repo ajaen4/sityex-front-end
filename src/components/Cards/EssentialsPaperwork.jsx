@@ -23,7 +23,6 @@ const EssentialsPaperwork = ({
   governmentFees,
   paymentLink,
 }) => {
-
   const formatNumberEuropeanStyle = (number) => {
     return number.toLocaleString("de-DE", {
       minimumFractionDigits: 2,
@@ -32,7 +31,7 @@ const EssentialsPaperwork = ({
   };
 
   const onClick = () => {
-      window.open(paymentLink, "_blank", "noopener,noreferrer");
+    window.open(paymentLink, "_blank", "noopener,noreferrer");
   };
 
   return (

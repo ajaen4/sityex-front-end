@@ -6,7 +6,8 @@
 
 [SityEx](https://sityex.com) is a one-stop platform for expats living in Madrid, Spain.
 
-This project's objective is to contain all the front-end development and the CI/CD to deploy to Vercel. Technologies used: 
+This project's objective is to contain all the front-end development and the CI/CD to deploy to Vercel. Technologies used:
+
 - React
 - Redux
 - Next.js
@@ -19,7 +20,6 @@ This project's objective is to contain all the front-end development and the CI/
 
 The project's structure is the following:
 
-- .github: GitHub Actions workflows. 
+- .github: GitHub Actions workflows.
 - public: static files.
 - src: React and Next.js code.
-
