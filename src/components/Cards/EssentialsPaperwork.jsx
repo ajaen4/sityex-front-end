@@ -14,7 +14,10 @@ import {
 } from "@mui/material";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 
+import { postHogClient } from "analytics";
+
 const EssentialsPaperwork = ({
+  trackingService,
   title,
   content,
   mdMinHeight,
@@ -23,7 +26,6 @@ const EssentialsPaperwork = ({
   governmentFees,
   paymentLink,
 }) => {
-
   const formatNumberEuropeanStyle = (number) => {
     return number.toLocaleString("de-DE", {
       minimumFractionDigits: 2,
@@ -32,7 +34,8 @@ const EssentialsPaperwork = ({
   };
 
   const onClick = () => {
-      window.open(paymentLink, "_blank", "noopener,noreferrer");
+    postHogClient.capture("hire_paperwork", { service: trackingService });
+    window.open(paymentLink, "_blank", "noopener,noreferrer");
   };
 
   return (

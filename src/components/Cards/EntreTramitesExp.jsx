@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { useSelector } from "react-redux";
 
 import {
   Typography,
@@ -15,14 +14,14 @@ import {
 } from "@mui/material";
 
 import { imagesCdn } from "constants/constants";
+import { postHogClient } from "analytics";
 
 const EntreTramitesExp = ({ ServiceName, showFreeConsultation }) => {
   const freeConsultationLink =
     "https://entretramites.com/en/partners-program/free-consultation-partners?aff=3d90441f";
 
-  const auth = useSelector((state) => state.auth);
-
   const onClickFreeConsultation = () => {
+    postHogClient.capture("hire_paperwork", { service: "free_consultation" });
     window.open(freeConsultationLink, "_blank", "noopener,noreferrer");
   };
 
