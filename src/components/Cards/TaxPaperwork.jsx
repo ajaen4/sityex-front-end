@@ -16,7 +16,10 @@ import RequirementsModal from "components/Modals/RequirementsModal";
 
 import { imagesCdn } from "constants/constants";
 
+import { postHogClient } from "analytics";
+
 const TaxPaperwork = ({
+  trackingService,
   title,
   is_taxdown,
   content,
@@ -43,6 +46,7 @@ const TaxPaperwork = ({
   };
 
   const onClickHire = () => {
+    postHogClient.capture("hire_paperwork", { service: trackingService });
     window.open(paymentLink, "_blank", "noopener,noreferrer");
   };
 
