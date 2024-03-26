@@ -32,12 +32,14 @@ import WithAuth from "components/Session/WithAuth";
 
 import { updateUser } from "actions";
 
+import * as api from "api";
+
 const AccountPage = () => {
   const [selectedTab, setSelectedTab] = useState(0);
   const [snackbarMessage, setSnackbarMessage] = useState(null);
+  const [allCountries, setAllCountries] = useState([]);
 
   const auth = useSelector((state) => state.auth.data);
-  const allCountries = useSelector((state) => state.allCountries.data);
 
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -53,6 +55,12 @@ const AccountPage = () => {
   const handleChange = (event, newValue) => {
     setSelectedTab(newValue);
   };
+
+  useEffect(() => {
+    api.getCountries().then((countries) => {
+      setAllCountries(countries);
+    });
+  }, []);
 
   useEffect(() => {
     if (auth) {
