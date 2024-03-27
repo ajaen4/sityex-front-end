@@ -55,7 +55,7 @@ const ListingInfoWindow = ({ listing, setSelectedListing }) => {
   };
 
   const onClickListing = (link) => {
-    postHogClient.capture("housing_listing_clicked", { link: link, housing_id: listing.housing_id });
+    postHogClient.capture("housing_listing_clicked", { housing_id: listing.housing_id, partner: listing.partner });
     window.open(link, "_blank");
   }
 
