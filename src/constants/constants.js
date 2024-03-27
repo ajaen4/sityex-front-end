@@ -55,6 +55,8 @@ export const eventCategories = [
 export const imagesCdn = "https://d1dshnpqadx0e7.cloudfront.net/images";
 export const documentsCdn = "https://d1dshnpqadx0e7.cloudfront.net/documents";
 
+export const spotAHomeDocLink = `${documentsCdn}/partners/spotahome/discount_explanation.pdf`;
+
 export const digitalNomadReq = (
   <ul style={{ fontSize: 15 }}>
     <li style={{ marginBottom: "5px" }}>
