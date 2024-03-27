@@ -15,6 +15,7 @@ import {
   CardMedia,
   CardContent,
   CardActions,
+  Button,
 } from "@mui/material";
 
 import HousingList from "components/Lists/HousingList";
@@ -27,7 +28,8 @@ import HousingFilters from "components/Accordions/HousingFilters";
 
 import { fetchHousingListings } from "actions";
 import { capitalize } from "helpers/usefulFunctions";
-import { imagesCdn, documentsCdn } from "constants/constants";
+import { imagesCdn, spotAHomeDocLink } from "constants/constants";
+import { postHogClient } from "analytics";
 
 const tabs = ["listings", "map", "discounts"];
 const HousingPage = () => {
@@ -48,7 +50,7 @@ const HousingPage = () => {
       setSelectedTab(newValue);
       router.push(destinationURL, undefined, { shallow: true });
     },
-    [router, selectedCity.city_id],
+    [router, selectedCity.city_id]
   );
 
   useEffect(() => {
@@ -65,6 +67,11 @@ const HousingPage = () => {
       dispatch(fetchHousingListings(selectedCity.city_id, 4000));
     }
   }, [selectedCity.city_id, dispatch, housingState]);
+
+  const onClickReadInst = () => {
+    postHogClient.capture("housing_discount_clicked", { partner: "spotahome" });
+    window.open(spotAHomeDocLink, "_blank");
+  };
 
   if (!housingState.data.filteredHListings) {
     return <CenteredLoadingSpinner />;
@@ -152,12 +159,7 @@ const HousingPage = () => {
               <CardActions
                 sx={{ display: "flex", justifyContent: "center", pt: 0 }}
               >
-                <Link
-                  target="_blank"
-                  href={`${documentsCdn}/partners/spotahome/discount_explanation.pdf`}
-                >
-                  Read instructions
-                </Link>
+                <Button onClick={onClickReadInst}>Read instructions</Button>
               </CardActions>
             </Card>
           </Box>
