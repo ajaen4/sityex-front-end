@@ -49,9 +49,12 @@ const HousingListing = ({ listing }) => {
   }, [listing, selectedCity.city_id]);
 
   const onClickListing = (link) => {
-    postHogClient.capture("housing_listing_clicked", { housing_id: listing.housing_id, partner: listing.partner });
+    postHogClient.capture("housing_listing_clicked", {
+      housing_id: listing.housing_id,
+      partner: listing.partner,
+    });
     window.open(link, "_blank");
-  }
+  };
 
   return (
     <Card

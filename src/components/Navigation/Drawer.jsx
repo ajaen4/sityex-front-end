@@ -18,7 +18,7 @@ import NavBarPlaceholder from "components/Navigation/NavBarPlaceholder";
 
 import { drawerWidth, tabletDrawerWidth } from "constants/constants";
 
-export default function Drawer({ ...props }) {
+export default function Drawer() {
   const { isOpenDrawer, setIsOpenDrawer } = useDrawerContext();
   const selectedCity = useSelector((state) => state.selectedCity.data);
 
@@ -49,20 +49,9 @@ export default function Drawer({ ...props }) {
     setIsOpenDrawer(!isOpenDrawer);
   };
 
-  const { window } = props;
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
-
   return (
-    <Box
-      component="nav"
-      sx={{
-        width: isOpenDrawer ? { md: tabletDrawerWidth, lg: drawerWidth } : 0,
-        flexShrink: { md: 0 },
-      }}
-    >
+    <Box>
       <MUIDrawer
-        container={container}
         variant="temporary"
         open={isOpenDrawer}
         onClose={handleDrawerToggle}

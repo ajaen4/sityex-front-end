@@ -36,7 +36,6 @@ const CommunityPage = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        flexGrow: 1,
       }}
     >
       <Typography variant="h1" sx={{ mt: { xs: 2, md: 3 }, fontSize: 30 }}>

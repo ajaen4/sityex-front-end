@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
-import { useSelector } from "react-redux";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useSearchParams, useRouter, useParams } from "next/navigation";
 
 import { Typography, Box, Tabs, Tab, Grid } from "@mui/material";
 
@@ -29,22 +28,22 @@ const tabs = [
 ];
 
 const PaperworkPage = () => {
-  const selectedCity = useSelector((state) => state.selectedCity.data);
   const [selectedTab, setSelectedTab] = useState("essentials");
 
   const searchParams = useSearchParams();
   const router = useRouter();
+  const { city_id } = useParams();
 
   const changeTab = useCallback(
     (newValue) => {
       setSelectedTab(newValue);
       router.push(
-        `/services/${selectedCity.city_id}/paperwork/?tab=${newValue}`,
+        `/services/${city_id}/paperwork/?tab=${newValue}`,
         undefined,
         { shallow: true }
       );
     },
-    [setSelectedTab, router, selectedCity.city_id]
+    [setSelectedTab, router, city_id]
   );
 
   useEffect(() => {
