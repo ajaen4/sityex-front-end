@@ -55,9 +55,12 @@ const ListingInfoWindow = ({ listing, setSelectedListing }) => {
   };
 
   const onClickListing = (link) => {
-    postHogClient.capture("housing_listing_clicked", { housing_id: listing.housing_id, partner: listing.partner });
+    postHogClient.capture("housing_listing_clicked", {
+      housing_id: listing.housing_id,
+      partner: listing.partner,
+    });
     window.open(link, "_blank");
-  }
+  };
 
   if (images?.housing_id !== listing.housing_id) {
     return null;
