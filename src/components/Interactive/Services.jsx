@@ -109,7 +109,7 @@ const Services = () => {
             mt: 2,
           }}
         >
-          100% online services, we take care of everything for you
+          Paperwork, Housing and Community all in one single digital platform.
         </Typography>
       </Box>
       <Grid
