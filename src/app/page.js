@@ -42,6 +42,9 @@ const LandingPage = () => {
           >
             One-stop platform for young expats
           </Typography>
+          <Typography variant="h5" sx={{ fontSize: 20, px: 3, mt: 1 }}>
+            All relocation needs, in one place
+          </Typography>
         </Box>
         <Services />
       </Grid>

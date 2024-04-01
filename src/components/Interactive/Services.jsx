@@ -28,7 +28,7 @@ const services = {
     title: "Community",
     link: "/services/3117735/community",
     description:
-      "Thriving community of young expats to help you feel at home in Spain from day one",
+      "Thriving community of young expats to help you feel at home in Madrid from day one",
   },
 };
 

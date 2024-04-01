@@ -12,10 +12,9 @@ import { ShowBotNavProvider } from "components/Contexts/ShowBotNavContext";
 
 import ThemeRegistry from "theme/ThemeRegistry";
 
-import { drawerWidth, tabletDrawerWidth } from "constants/constants";
-import PostHogLoader from "components/DataLoaders/PostHogLoader";
-
 import "./globals.css";
+
+import { minNavbarHeight } from "constants/constants";
 
 export const viewport = {
   themeColor: "#2196f3",
@@ -81,28 +80,38 @@ export default function RootLayout({ children }) {
             <ShowBotNavProvider>
               <ShowSignUpProvider>
                 <ThemeRegistry options={{ key: "mui-theme" }}>
-                  <PostHogLoader />
                   <DataLoader />
-                  <Navbar />
                   <Box
                     sx={{
                       display: "flex",
+                      flexDirection: "column",
+                      height: "100%",
                     }}
                   >
-                    <Drawer />
+                    <Navbar />
                     <Box
                       sx={{
                         display: "flex",
-                        flexDirection: "column",
-                        flexGrow: 1,
-                        width: {
-                          xs: "100%",
-                          md: `calc(100% - ${tabletDrawerWidth}px)`,
-                          lg: `calc(100% - ${drawerWidth}px)`,
+                        height: {
+                          xs: `calc(100% - ${minNavbarHeight.xs})`,
+                          sm: `calc(100% - ${minNavbarHeight.sm})`,
+                          md: `calc(100% - ${minNavbarHeight.md})`,
+                          lg: `calc(100% - ${minNavbarHeight.lg})`,
+                          xl: `calc(100% - ${minNavbarHeight.xl})`,
                         },
                       }}
                     >
-                      {children}
+                      <Drawer />
+                      <Box
+                        sx={{
+                          display: "flex",
+                          flexDirection: "column",
+                          flexGrow: 1,
+                          overflowY: "auto",
+                        }}
+                      >
+                        {children}
+                      </Box>
                     </Box>
                   </Box>
                 </ThemeRegistry>
