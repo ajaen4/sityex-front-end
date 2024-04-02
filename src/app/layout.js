@@ -106,8 +106,8 @@ export default function RootLayout({ children }) {
                         sx={{
                           display: "flex",
                           flexDirection: "column",
-                          flexGrow: 1,
-                          overflowY: "auto",
+                          width: "100%",
+                          height: "100%",
                         }}
                       >
                         {children}
