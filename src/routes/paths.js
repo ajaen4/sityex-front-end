@@ -4,6 +4,7 @@ export const LOG_IN = "/login";
 export const SEARCH = "/search";
 export const BLOG = "/blog";
 export const ABOUT_US = "/about-us";
+export const CONTACT = "/contact";
 export const ACCOUNT = "/account";
 export const ADMIN = "/admin";
 export const PASSWORD_FORGET = "/pw-forget";

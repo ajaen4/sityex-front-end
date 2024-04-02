@@ -41,6 +41,7 @@ function BigScreenNavBar({
   const getPath = (page) => {
     if (page === "Services") return "/services/3117735/";
     if (page === "Blog") return ROUTES_PATHS.BLOG;
+    if (page === "Contact") return ROUTES_PATHS.CONTACT;
     if (page === "About Us") return ROUTES_PATHS.ABOUT_US;
   };
 
