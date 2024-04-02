@@ -30,8 +30,9 @@ const CityLayout = ({ children }) => {
         display: "flex",
         flexDirection: "column",
         backgroundColor: "grey.100",
+        width: "100%",
         height: "100%",
-        overflowY: "auto",
+        overflowY: "scroll",
       }}
     >
       {children}

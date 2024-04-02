@@ -26,7 +26,6 @@ export default function CityTabs() {
   const pathname = usePathname();
 
   const selectedCity = useSelector((state) => state.selectedCity.data);
-  const auth = useSelector((state) => state.auth);
 
   const { showBotNav, setShowBotNav } = useShowBotNavContext();
 
