@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Box, Typography, Grid } from "@mui/material";
+import { Box, Typography, Grid, Button } from "@mui/material";
 import HousingSlides from "components/Slides/HousingSlides";
 import CommunitySlides from "components/Slides/CommunitySlides";
 import PaperworkSlides from "components/Slides/PaperworkSlides";
@@ -8,6 +8,7 @@ import Footer from "components/Footers/Footer";
 import Services from "components/Interactive/Services";
 
 import { imagesCdn } from "constants/constants";
+import * as ROUTES_PATHS from "routes/paths";
 
 export const metadata = {
   title: "SityEx | One-stop platform for young expats",
@@ -135,6 +136,87 @@ const LandingPage = () => {
           </Typography>
         </Box>
         <CommunitySlides />
+      </Grid>
+      <Grid
+        item
+        xs={12}
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          flexDirection: "column",
+          alignItems: "center",
+          textAlign: "start",
+          px: 3,
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            width: "100%",
+          }}
+        >
+          <Typography
+            variant="h2"
+            sx={{ color: "grey.500", fontSize: 35, mt: 3, textAlign: "center" }}
+          >
+            🤔 Have some questions?
+          </Typography>
+          <Typography sx={{ fontSize: 18, my: 2, textAlign: "center" }}>
+            You can talk to a member of our Community!
+          </Typography>
+        </Box>
+        <Box sx={{ display: "flex", width: "100%", justifyContent: "center" }}>
+          <Box
+            sx={{
+              marginRight: { xs: 2, md: 5 },
+              width: { xs: "55%", md: "24.5%" },
+            }}
+          >
+            <img
+              src={`${imagesCdn}/team_members/lorena.jpeg`}
+              alt="lorena"
+              title="lorena"
+              style={{ width: "100%" }}
+            />
+          </Box>
+          <Box sx={{ width: { xs: "45%", md: "20%" } }}>
+            <img
+              src={`${imagesCdn}/team_members/alberto.jpeg`}
+              alt="alberto"
+              title="alberto"
+              style={{ width: "100%" }}
+            />
+          </Box>
+        </Box>
+        <Typography
+          sx={{
+            fontSize: 18,
+            mt: 3,
+            textAlign: "center",
+            width: { xs: "100%", md: "50%" },
+          }}
+        >
+          Our community includes{" "}
+          <b style={{ color: "#673ab7" }}>expats and locals</b> who are experts
+          in Madrid life.
+        </Typography>
+        <Typography
+          sx={{
+            fontSize: 18,
+            my: 1,
+            textAlign: "center",
+            width: { xs: "100%", md: "50%" },
+          }}
+        >
+          Whether you are curious about neighborhoods, or practical tips for
+          your relocation, our team is here to help. Feel free to reach out and
+          start a conversation!
+        </Typography>
+        <Button variant="contained" sx={{ my: 2 }} href={ROUTES_PATHS.CONTACT}>
+          Talk to an expert
+        </Button>
       </Grid>
       <Grid
         item

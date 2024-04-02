@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Typography, Link, Grid } from "@mui/material";
 
 import { imagesCdn } from "constants/constants";
+import * as ROUTES_PATHS from "routes/paths";
 
 function Footer() {
   return (
@@ -49,7 +50,7 @@ function Footer() {
                   }}
                 >
                   <Link
-                    href="/blog"
+                    href={ROUTES_PATHS.BLOG}
                     sx={{ textDecoration: "none", color: "white" }}
                   >
                     Blog
@@ -61,7 +62,19 @@ function Footer() {
                   }}
                 >
                   <Link
-                    href="/about-us"
+                    href={ROUTES_PATHS.CONTACT}
+                    sx={{ textDecoration: "none", color: "white" }}
+                  >
+                    Contact
+                  </Link>
+                </li>
+                <li
+                  style={{
+                    marginTop: 5,
+                  }}
+                >
+                  <Link
+                    href={ROUTES_PATHS.ABOUT_US}
                     sx={{ textDecoration: "none", color: "white" }}
                   >
                     About Us

@@ -20,7 +20,7 @@ const AboutUs = () => {
     <div>
       <Grid container sx={{ alignItems: "center" }}>
         <Grid item xs={12} md={7} sx={{ p: { xs: 3, md: 5 } }}>
-          <Typography variant="h4" fontSize={40}>
+          <Typography variant="h4" fontSize={40} sx={{ color: "grey.500" }}>
             From one expat to another ;)
           </Typography>
           <Typography variant="body1" fontSize={18} sx={{ mt: 3 }}>
@@ -47,10 +47,10 @@ const AboutUs = () => {
           }}
         >
           <Image
-            alt="profile"
-            height="440"
-            width="350"
-            src={`${imagesCdn}/profile/profile.jpg`}
+            alt="alberto"
+            height="500"
+            width="330"
+            src={`${imagesCdn}/team_members/alberto.jpeg`}
           />
         </Grid>
       </Grid>
@@ -63,7 +63,11 @@ const AboutUs = () => {
           }}
         >
           <Box sx={{ p: { xs: 3, md: 5 } }}>
-            <Typography variant="h4" fontSize={40} sx={{ my: 1 }}>
+            <Typography
+              variant="h4"
+              fontSize={40}
+              sx={{ my: 1, color: "grey.500" }}
+            >
               Our mission
             </Typography>
             <Typography
@@ -85,7 +89,11 @@ const AboutUs = () => {
                   mt: { md: 5 },
                 }}
               >
-                <Typography variant="h4" fontSize={25}>
+                <Typography
+                  variant="h4"
+                  fontSize={25}
+                  sx={{ color: "grey.500" }}
+                >
                   Community
                 </Typography>
                 <Typography variant="body1" fontSize={18} sx={{ mt: 1 }}>
@@ -101,7 +109,11 @@ const AboutUs = () => {
                   mt: 5,
                 }}
               >
-                <Typography variant="h4" fontSize={25} sx={{ mt: 1 }}>
+                <Typography
+                  variant="h4"
+                  fontSize={25}
+                  sx={{ mt: 1, color: "grey.500" }}
+                >
                   Online Services
                 </Typography>
                 <Typography variant="body1" fontSize={18} sx={{ mt: 1 }}>
