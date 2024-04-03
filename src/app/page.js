@@ -210,9 +210,9 @@ const LandingPage = () => {
             width: { xs: "100%", md: "50%" },
           }}
         >
-          Whether you are curious about neighborhoods, or practical tips for
-          your relocation, our team is here to help. Feel free to reach out and
-          start a conversation!
+          Whether you are curious about neighborhoods, or need practical tips
+          for your relocation, our team is here to help. Feel free to reach out
+          and start a conversation!
         </Typography>
         <Button variant="contained" sx={{ my: 2 }} href={ROUTES_PATHS.CONTACT}>
           Talk to an expert
