@@ -181,7 +181,7 @@ const LandingPage = () => {
               style={{ width: "100%" }}
             />
           </Box>
-          <Box sx={{ width: { xs: "45%", md: "20%" } }}>
+          <Box sx={{ width: { xs: "55%", md: "24.5%" } }}>
             <img
               src={`${imagesCdn}/team_members/alberto.jpeg`}
               alt="alberto"
