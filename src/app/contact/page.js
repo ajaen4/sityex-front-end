@@ -127,7 +127,7 @@ const AboutUs = () => {
         <Box
           sx={{
             marginRight: { xs: 2, md: 5 },
-            width: { xs: "55%", md: "57.5%" },
+            width: { xs: "55%", md: "50%" },
           }}
         >
           <img
