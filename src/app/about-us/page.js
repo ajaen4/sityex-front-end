@@ -49,7 +49,7 @@ const AboutUs = () => {
           <Image
             alt="alberto"
             height="500"
-            width="330"
+            width="420"
             src={`${imagesCdn}/team_members/alberto.jpeg`}
           />
         </Grid>
