@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 
-import { postHogClient } from "analytics";
+import { postHogClient, ReactPixel } from "analytics";
 
 const EssentialsPaperwork = ({
   trackingService,
@@ -35,6 +35,7 @@ const EssentialsPaperwork = ({
 
   const onClick = () => {
     postHogClient.capture("hire_paperwork", { service: trackingService });
+    ReactPixel.track("Purchase", {currency: "EUR", value: price * 0.9});
     window.open(paymentLink, "_blank", "noopener,noreferrer");
   };
 

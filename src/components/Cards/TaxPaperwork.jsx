@@ -16,7 +16,7 @@ import RequirementsModal from "components/Modals/RequirementsModal";
 
 import { imagesCdn } from "constants/constants";
 
-import { postHogClient } from "analytics";
+import { postHogClient, ReactPixel } from "analytics";
 
 const TaxPaperwork = ({
   trackingService,
@@ -47,6 +47,7 @@ const TaxPaperwork = ({
 
   const onClickHire = () => {
     postHogClient.capture("hire_paperwork", { service: trackingService });
+    ReactPixel.track("Purchase", {currency: "EUR", value: price * 0.9});
     window.open(paymentLink, "_blank", "noopener,noreferrer");
   };
 
