@@ -14,7 +14,7 @@ import {
 
 import RequirementsModal from "components/Modals/RequirementsModal";
 
-import { postHogClient } from "analytics";
+import { postHogClient, ReactPixel } from "analytics";
 
 const ConsultationPaperwork = ({
   trackingService,
@@ -45,6 +45,7 @@ const ConsultationPaperwork = ({
 
   const onClickFreeConsultation = () => {
     postHogClient.capture("hire_paperwork", { service: trackingService });
+    ReactPixel.track("Purchase", {currency: "EUR", value: price * 0.9});
     window.open(freeConsultationLink, "_blank", "noopener,noreferrer");
   };
 

@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 
 import { imagesCdn } from "constants/constants";
-import { postHogClient } from "analytics";
+import { postHogClient, ReactPixel } from "analytics";
 
 const EntreTramitesExp = ({ ServiceName, showFreeConsultation }) => {
   const freeConsultationLink =
@@ -22,6 +22,7 @@ const EntreTramitesExp = ({ ServiceName, showFreeConsultation }) => {
 
   const onClickFreeConsultation = () => {
     postHogClient.capture("hire_paperwork", { service: "free_consultation" });
+    ReactPixel.track("Purchase", {currency: "EUR", value: 0});
     window.open(freeConsultationLink, "_blank", "noopener,noreferrer");
   };
 
