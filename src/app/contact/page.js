@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Footer from "components/Footers/Footer";
 
 import { imagesCdn } from "constants/constants";
@@ -42,85 +42,7 @@ const AboutUs = () => {
           justifyContent: "center",
           alignItems: "center",
           width: { xs: "100%", md: "80%" },
-          my: 3,
-        }}
-      >
-        <Box
-          sx={{
-            marginRight: { xs: 2, md: 5 },
-            width: { xs: "55%", md: "50%" },
-          }}
-        >
-          <img
-            src={`${imagesCdn}/team_members/lorena.jpeg`}
-            alt="lorena"
-            title="lorena"
-            style={{ width: "100%" }}
-          />
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: { xs: "center", md: "start" },
-            justifyContent: "center",
-          }}
-        >
-          <Typography
-            fontSize={18}
-            sx={{
-              width: { xs: "80%", md: "100%" },
-              textAlign: { xs: "center", md: "start" },
-              mt: { xs: 3, md: 0 },
-            }}
-          >
-            Hey! I&apos;m a Brazilian living in Spain since 2023 :) If you have
-            any questions about getting a visa to come to Spain or getting
-            housing in Madrid, I can help! You can contact me via mail{" "}
-            <b style={{ color: "#673ab7" }}>lorena.barbosa@sityex.com</b> or
-            WhatsApp.
-          </Typography>
-          <Typography
-            fontSize={18}
-            sx={{
-              width: { xs: "80%", md: "100%" },
-              textAlign: { xs: "center", md: "start" },
-              mt: 3,
-            }}
-          >
-            <b>SityEx Co-Founder</b>
-          </Typography>
-          <Box>
-            <a
-              href="https://wa.me/34663467459"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: "inline-block",
-                backgroundColor: "#00e676",
-                color: "white",
-                padding: "6px 16px",
-                fontWeight: "500",
-                lineHeight: "1.75",
-                borderRadius: "4px",
-                textDecoration: "none",
-                marginTop: 30,
-                boxShadow:
-                  "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)",
-              }}
-            >
-              WhatsApp Lorena
-            </a>
-          </Box>
-        </Box>
-      </Box>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: { xs: "column", md: "row" },
-          justifyContent: "center",
-          alignItems: "center",
-          width: { xs: "100%", md: "80%" },
+          height: { md: "55vh" },
           my: 3,
         }}
       >
@@ -172,7 +94,7 @@ const AboutUs = () => {
           </Typography>
           <Box>
             <a
-              href="https://wa.me/650611057"
+              href="https://wa.me/34650611057"
               target="_blank"
               rel="noopener noreferrer"
               style={{
