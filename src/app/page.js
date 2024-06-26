@@ -168,19 +168,6 @@ const LandingPage = () => {
           </Typography>
         </Box>
         <Box sx={{ display: "flex", width: "100%", justifyContent: "center" }}>
-          <Box
-            sx={{
-              marginRight: { xs: 2, md: 5 },
-              width: { xs: "55%", md: "24.5%" },
-            }}
-          >
-            <img
-              src={`${imagesCdn}/team_members/lorena.jpeg`}
-              alt="lorena"
-              title="lorena"
-              style={{ width: "100%" }}
-            />
-          </Box>
           <Box sx={{ width: { xs: "55%", md: "24.5%" } }}>
             <img
               src={`${imagesCdn}/team_members/alberto.jpeg`}
